@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game_object.h"
+#include "Game_Object.h"
 #include "Moveable.h"
 
 class Snowball :

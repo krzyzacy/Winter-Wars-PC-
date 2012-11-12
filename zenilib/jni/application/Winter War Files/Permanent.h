@@ -1,5 +1,5 @@
 #pragma once
-#include "game_object.h"
+#include "Game_Object.h"
 class Permanent :
 	public Game_Object
 {

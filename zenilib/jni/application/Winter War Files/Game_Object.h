@@ -1,5 +1,5 @@
 #pragma once
-#include "renderable.h"
+#include "Renderable.h"
 class Game_Object :
 	public Renderable
 {

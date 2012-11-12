@@ -1,5 +1,5 @@
 #pragma once
-#include "structure.h"
+#include "Structure.h"
 class Snowman :
 	public Structure
 {
