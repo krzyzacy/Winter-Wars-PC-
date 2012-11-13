@@ -32,6 +32,10 @@ private:
   bool m_next;
 
   bool escape;
+
+
+  vector<Controls*> controllers;
+
   
   Chronometer<Time> m_chrono;
   float m_time_passed;
@@ -122,6 +126,8 @@ private:
 	void render()
 	{
 		Video &vr = get_Video();
+		
+		
 		/*
 		vr.set_3d(Game_Model::get().get_player(0)->m_camera);
 	
