@@ -1,5 +1,9 @@
 #pragma once
-class Moveable
+
+#include "Game_Object.h"
+
+class Moveable :
+	public Game_Object
 {
 public:
 	Moveable(void);
