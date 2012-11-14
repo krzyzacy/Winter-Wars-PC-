@@ -1,6 +1,6 @@
 #pragma once
-<<<<<<< HEAD
-#include "Renderable.h"
+
+#include "Seen_Object.h"
 
 enum TILE_TYPE	{
 	SOFT_SNOW, HARD_SNOW, ICE
@@ -8,9 +8,6 @@ enum TILE_TYPE	{
 
 class Structure;
 
-=======
-#include "Seen_Object.h"
->>>>>>> ec6699d60743b9ffb5cc513d362d3e4a4073be77
 class Tile :
 	public Seen_Object
 {
@@ -23,8 +20,6 @@ public:
 
 	Tile(void);
 	~Tile(void);
-
-
 
 
 };
