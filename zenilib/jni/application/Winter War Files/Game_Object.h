@@ -1,7 +1,7 @@
 #pragma once
-#include "Renderable.h"
+#include "Seen_Object.h"
 class Game_Object :
-	public Renderable
+	public Seen_Object
 {
 public:
 	Game_Object(void);

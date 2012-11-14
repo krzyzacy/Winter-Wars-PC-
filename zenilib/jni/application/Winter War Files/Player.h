@@ -16,6 +16,7 @@ public:
 	void move_left(float force);
 	
 	void throw_ball();
-
+	
+	Zeni::Camera m_camera;
 };
 
