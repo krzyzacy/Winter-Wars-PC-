@@ -7,6 +7,8 @@
 #include <zenilib.h>
 
 #include "Controls.h"
+#include "View.h"
+#include "Player.h"
 
 
 #if defined(_DEBUG) && defined(_WINDOWS)
@@ -29,12 +31,16 @@ public:
 	, m_prev_clear_color(get_Video().get_clear_Color())
   {
     set_pausable(true);
+	view.add_renderable(&Rend);
   }
 
 private:
   bool m_next;
 
   bool escape;
+  Player Rend;
+
+  View view;
 
 
   vector<Controls*> controllers;
@@ -75,49 +81,16 @@ private:
   }*/
 	 void on_key(const SDL_KeyboardEvent &event) {
 		switch(event.keysym.sym) {
-		/*  case SDLK_w:
-			Game_Model::get().get_player(0)->m_controls.forward = event.type == SDL_KEYDOWN;
-			break;
-
-		  case SDLK_a:
-			Game_Model::get().get_player(0)->m_controls.left = event.type == SDL_KEYDOWN;
-			break;
-
-		  case SDLK_s:
-			Game_Model::get().get_player(0)->m_controls.back = event.type == SDL_KEYDOWN;
-			break;
-
-		  case SDLK_d:
-			Game_Model::get().get_player(0)->m_controls.right = event.type == SDL_KEYDOWN;
-			break;
-  
-		  case SDLK_RETURN:
-			  m_next = event.type == SDL_KEYDOWN;
-			  break;
-
-		  case SDLK_q:
-			  Game_Model::get().get_player(0)->m_controls.pack = event.type == SDL_KEYDOWN;
-			  Game_Model::get().get_player(0)->m_controls.finish_pack = event.type == SDL_KEYUP;
-			  break;
-
-		  case SDLK_SPACE:
-			  Game_Model::get().get_player(0)->m_controls.throw_ball = event.type == SDL_KEYDOWN;
-			  break;
-
-		  case SDLK_ESCAPE:
-			  escape = event.type == SDL_KEYDOWN;
-			  if (Game_Model::get().game_over())
-				  break;
-			  */
+		
 		  default:
 			Gamestate_Base::on_key(event); // Let Gamestate_Base handle it
 			break;
 		}
 	} 
 	 
-  void on_mouse_motion(const SDL_MouseMotionEvent &event) {/*
-    Game_Model::get().get_player(0)->adjust_pitch(event.yrel / 500.0f);
-    Game_Model::get().get_player(0)->turn_left_xy(-event.xrel / 500.0f);*/
+  void on_mouse_motion(const SDL_MouseMotionEvent &event) {
+    Rend.adjust_pitch(event.yrel / 500.0f);
+    Rend.turn_left(-event.xrel / 500.0f);
   }
 
 
@@ -130,14 +103,10 @@ private:
 	{
 		Video &vr = get_Video();
 		
-		
-		/*
-		vr.set_3d(Game_Model::get().get_player(0)->m_camera);
-	
-		if (Game_Model::get().game_over())
-		{	
 
-		}*/
+		vr.set_3d(Rend.m_camera);
+		view.render();
+
 	}
 };
 

@@ -1,7 +1,7 @@
 #pragma once
-#include "Renderable.h"
+#include "Seen_Object.h"
 class Tile :
-	public Renderable
+	public Seen_Object
 {
 public:
 	Tile(void);
