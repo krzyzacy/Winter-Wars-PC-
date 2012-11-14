@@ -6,7 +6,6 @@ using namespace Zeni;
 
 Seen_Object::Seen_Object(void)
 {
-	model = "snowball";
 	center = Point3f(100,100,100);
 	size = Vector3f(1,1,1);
 }

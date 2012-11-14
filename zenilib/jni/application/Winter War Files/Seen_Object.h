@@ -22,16 +22,13 @@ public:
 	// throws Error if model is null
 	void render(Zeni::Model *model) const;
 
-	const model_key_t &get_model_name() const
-		{return model;}
+	virtual const model_key_t &get_model_name() const = 0;
+
 
 protected:
 	Zeni::Point3f center;
 	Zeni::Vector3f size;
     Zeni::Quaternion rotation;
-
-private:
-	model_key_t model;
 
 };
 

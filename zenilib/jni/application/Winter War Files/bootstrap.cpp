@@ -9,6 +9,7 @@
 #include "Controls.h"
 #include "View.h"
 #include "Player.h"
+#include "Player_View.h"
 
 
 #if defined(_DEBUG) && defined(_WINDOWS)
@@ -32,6 +33,7 @@ public:
   {
     set_pausable(true);
 	view.add_renderable(&Rend);
+	view.add_player_view(new Player_View(&Rend));
   }
 
 private:
@@ -104,7 +106,7 @@ private:
 		Video &vr = get_Video();
 		
 
-		vr.set_3d(Rend.m_camera);
+		
 		view.render();
 
 	}

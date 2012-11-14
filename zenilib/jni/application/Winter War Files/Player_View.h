@@ -1,4 +1,3 @@
-#include <vector>
 
 class Player;
 
@@ -14,6 +13,6 @@ public:
 	void render_hud();
 
 private:
-	std::vector<Player*> players;
+	const Player *player;
 
 };

@@ -16,10 +16,12 @@ public:
 	View(void);
 	~View(void);
 
-	void render();
+	void render() const;
 
 	void remove_renderable(Seen_Object *);
 	void add_renderable(Seen_Object *);
+
+	void add_player_view(Player_View *pv);
 
 private:
 	std::vector<Player_View*> player_views;

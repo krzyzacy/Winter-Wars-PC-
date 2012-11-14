@@ -51,6 +51,7 @@ The following things are unsupported:
     <filepath>textures/toxic.png</filepath>
     <tile>1</tile>
   </SNOW.PNG>
+  
   <FOAM.PNG>
     <filepath>textures/bubble.png</filepath>
     <tile>1</tile>
@@ -65,10 +66,6 @@ The following things are unsupported:
     <filepath>textures/floor.png</filepath>
     <tile>1</tile>
   </FLOOR.PNG>
-  <SNOW.BMP>
-    <filepath>textures/snow.png</filepath>
-    <tile>1</tile>
-  </SNOW.BMP>
 
   <TOXIC.PNG>
     <filepath>textures/toxic.png</filepath>
