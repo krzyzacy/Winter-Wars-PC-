@@ -7,7 +7,7 @@ public:
 	Game_Object(void);
 	virtual ~Game_Object(void);
 
-	const model_key_t &get_model_name() const
+	const model_key_t get_model_name() const
 	{return "snowball";}
 };
 

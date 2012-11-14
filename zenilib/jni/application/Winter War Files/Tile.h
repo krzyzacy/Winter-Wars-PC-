@@ -18,6 +18,8 @@ public:
 
 	bool has_building();
 
+	virtual const model_key_t get_model_name() const;
+
 	Tile(void);
 	~Tile(void);
 
