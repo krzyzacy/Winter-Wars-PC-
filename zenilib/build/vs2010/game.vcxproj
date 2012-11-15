@@ -220,7 +220,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Composite_Shape.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Controls.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Game_Model.h" />
-    <ClInclude Include="..\..\jni\application\Winter War Files\Game_Object.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Collidable.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Moveable.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Permanent.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Player.h" />
@@ -357,7 +357,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Game_Model.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Game_Object.cpp">
+    <ClCompile Include="..\..\jni\application\Winter War Files\Collidable.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Moveable.cpp">
     </ClCompile>

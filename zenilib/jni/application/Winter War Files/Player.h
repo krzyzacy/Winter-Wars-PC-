@@ -1,5 +1,5 @@
 #pragma once
-#include "Game_Object.h"
+#include "Collidable.h"
 #include "Moveable.h"
 
 class Player :

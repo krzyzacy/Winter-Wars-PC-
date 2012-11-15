@@ -1,7 +1,7 @@
-﻿Build started 11/14/2012 5:25:37 PM.
+﻿Build started 11/14/2012 8:46:04 PM.
      1>Project "H:\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "obj\x32\Release\game.unsuccessfulbuild".
+         Creating "obj\x32\Release\game.unsuccessfulbuild" because "AlwaysCreate" was specified.
        PreBuildEvent:
          xcopy ..\..\dev\pc_ ..\.. /E /Y
          xcopy ..\..\jni\external\bin\x32 ..\..\bin\x32 /E /Y
@@ -21,39 +21,67 @@
          ..\..\jni\external\bin\x32\vccorlib110.dll
          6 File(s) copied
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Seen_Object.cpp" "..\..\jni\application\Winter War Files\View.cpp"
-         Seen_Object.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Collidable.cpp" "..\..\jni\application\Winter War Files\Moveable.cpp" "..\..\jni\application\Winter War Files\Permanent.cpp" "..\..\jni\application\Winter War Files\Player.cpp" "..\..\jni\application\Winter War Files\Player_View.cpp" "..\..\jni\application\Winter War Files\Snowball.cpp" "..\..\jni\application\Winter War Files\Snowman.cpp" "..\..\jni\application\Winter War Files\Structure.cpp" "..\..\jni\application\Winter War Files\Tile.cpp" "..\..\jni\application\Winter War Files\View.cpp" "..\..\jni\application\Winter War Files\bootstrap.cpp"
+         Collidable.cpp
+         Moveable.cpp
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Moveable.h(7): warning C4584: 'Moveable' : base-class 'Seen_Object' is already a base-class of 'Collidable'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Seen_Object.h(17) : see declaration of 'Seen_Object'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Collidable.h(4) : see declaration of 'Collidable'
+         Permanent.cpp
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Permanent.h(5): warning C4584: 'Permanent' : base-class 'Seen_Object' is already a base-class of 'Collidable'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Seen_Object.h(17) : see declaration of 'Seen_Object'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Collidable.h(4) : see declaration of 'Collidable'
+         Player.cpp
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Moveable.h(7): warning C4584: 'Moveable' : base-class 'Seen_Object' is already a base-class of 'Collidable'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Seen_Object.h(17) : see declaration of 'Seen_Object'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Collidable.h(4) : see declaration of 'Collidable'
+         Player_View.cpp
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Moveable.h(7): warning C4584: 'Moveable' : base-class 'Seen_Object' is already a base-class of 'Collidable'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Seen_Object.h(17) : see declaration of 'Seen_Object'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Collidable.h(4) : see declaration of 'Collidable'
+         Snowball.cpp
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Moveable.h(7): warning C4584: 'Moveable' : base-class 'Seen_Object' is already a base-class of 'Collidable'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Seen_Object.h(17) : see declaration of 'Seen_Object'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Collidable.h(4) : see declaration of 'Collidable'
+         Snowman.cpp
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(6): warning C4584: 'Structure' : base-class 'Seen_Object' is already a base-class of 'Collidable'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Seen_Object.h(17) : see declaration of 'Seen_Object'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Collidable.h(4) : see declaration of 'Collidable'
+         Structure.cpp
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(6): warning C4584: 'Structure' : base-class 'Seen_Object' is already a base-class of 'Collidable'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Seen_Object.h(17) : see declaration of 'Seen_Object'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Collidable.h(4) : see declaration of 'Collidable'
+         Tile.cpp
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(6): warning C4584: 'Structure' : base-class 'Seen_Object' is already a base-class of 'Collidable'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Seen_Object.h(17) : see declaration of 'Seen_Object'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Collidable.h(4) : see declaration of 'Collidable'
          View.cpp
      1>..\..\jni\application\Winter War Files\View.cpp(38): warning C4018: '<' : signed/unsigned mismatch
+         bootstrap.cpp
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Moveable.h(7): warning C4584: 'Moveable' : base-class 'Seen_Object' is already a base-class of 'Collidable'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Seen_Object.h(17) : see declaration of 'Seen_Object'
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Collidable.h(4) : see declaration of 'Collidable'
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(43): error C2259: 'Player' : cannot instantiate abstract class
+                 due to following members:
+                 'const model_key_t Seen_Object::get_model_name(void) const' : is abstract
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Seen_Object.h(24) : see declaration of 'Seen_Object::get_model_name'
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(35): error C2594: 'argument' : ambiguous conversions from 'Player *' to 'Seen_Object *'
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(63): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(63): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(63): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(90): warning C4065: switch statement contains 'default' but no 'case' labels
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(314): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(314): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(318): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(318): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(322): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(322): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(326): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(326): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\bootstrap.cpp(332): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
          Generating Code...
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\x32\game.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\bin\x32 local_SDLmain.lib zeni_rest.lib zeni_graphics.lib zeni_net.lib zeni_core.lib zeni_audio.lib zeni.lib local_SDL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"obj\x32\Release\game.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"H:\EECS494FinalProject\zenilib\bin\x32\game.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\x32\game.lib" /MACHINE:X86 obj\x32\Release\Component_Shape.obj
-         obj\x32\Release\Composite_Shape.obj
-         obj\x32\Release\Controls.obj
-         obj\x32\Release\Game_Model.obj
-         obj\x32\Release\Game_Object.obj
-         obj\x32\Release\Moveable.obj
-         obj\x32\Release\Permanent.obj
-         obj\x32\Release\Player.obj
-         obj\x32\Release\Player_View.obj
-         obj\x32\Release\Seen_Object.obj
-         obj\x32\Release\Shape.obj
-         obj\x32\Release\Snowball.obj
-         obj\x32\Release\Snowman.obj
-         obj\x32\Release\Structure.obj
-         obj\x32\Release\Team.obj
-         obj\x32\Release\Tile.obj
-         obj\x32\Release\View.obj
-         obj\x32\Release\World.obj
-         obj\x32\Release\bootstrap.obj
-         game.vcxproj -> H:\EECS494FinalProject\zenilib\build\vs2010\..\..\bin\x32\game.exe
-       Manifest:
-         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\x32\game.exe;#1" /manifest obj\x32\Release\game.exe.intermediate.manifest
-       FinalizeBuildStatus:
-         Deleting file "obj\x32\Release\game.unsuccessfulbuild".
-         Touching "obj\x32\Release\game.lastbuildstate".
-     1>Done Building Project "H:\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" (build target(s)).
+     1>Done Building Project "H:\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" (build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:26.59
+Time Elapsed 00:01:04.99

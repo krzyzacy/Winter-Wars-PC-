@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game_Object.h"
+#include "Collidable.h"
 
 class Moveable :
-	public Game_Object
+	public Collidable, public Seen_Object
 {
 public:
 	Moveable(void);

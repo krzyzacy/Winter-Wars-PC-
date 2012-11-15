@@ -9,6 +9,8 @@ public:
 	~Game_Model(void);
 
 
+	View *get_View();
+
 private:
 	View *view;
 };

@@ -417,9 +417,6 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Utility.h">
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Game_Object.h">
-      <Filter>jni\application\Winter War Files\Game Object</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\Moveable.h">
       <Filter>jni\application\Winter War Files\Game Object</Filter>
     </ClInclude>
@@ -468,6 +465,9 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Seen_Object.h">
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Collidable.h">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
@@ -475,9 +475,6 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\bootstrap.cpp">
       <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Game_Object.cpp">
-      <Filter>jni\application\Winter War Files\Game Object</Filter>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Moveable.cpp">
       <Filter>jni\application\Winter War Files\Game Object</Filter>
@@ -526,6 +523,9 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Seen_Object.cpp">
       <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Collidable.cpp">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

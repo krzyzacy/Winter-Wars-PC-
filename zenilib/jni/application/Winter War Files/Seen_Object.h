@@ -19,10 +19,9 @@ public:
 	Seen_Object(void);
 	virtual ~Seen_Object(void) = 0;
 
-	// throws Error if model is null
 	void render(Zeni::Model *model) const;
 
-	virtual const model_key_t &get_model_name() const = 0;
+	virtual const model_key_t get_model_name() const = 0;
 
 
 protected:

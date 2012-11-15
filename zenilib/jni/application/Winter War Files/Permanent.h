@@ -1,7 +1,7 @@
 #pragma once
-#include "Game_Object.h"
+#include "Collidable.h"
 class Permanent :
-	public Game_Object
+	public Collidable, public Seen_Object
 {
 public:
 	Permanent(void);
