@@ -8,5 +8,9 @@ class Permanent :
 public:
 	Permanent(void);
 	~Permanent(void);
+
+	
+	const model_key_t get_model_name() const
+		{return "world";}
 };
 

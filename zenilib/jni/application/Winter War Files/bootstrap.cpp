@@ -10,6 +10,7 @@
 #include "View.h"
 #include "Player.h"
 #include "Player_View.h"
+#include "Permanent.h"
 
 
 #if defined(_DEBUG) && defined(_WINDOWS)
@@ -34,6 +35,7 @@ public:
     set_pausable(true);
 	view.add_renderable(&Rend);
 	view.add_player_view(new Player_View(&Rend));
+	view.add_renderable(&Perm);
   }
 
 private:
@@ -41,7 +43,7 @@ private:
 
   bool escape;
   Player Rend;
-
+  Permanent Perm;
   View view;
 
 

@@ -1,7 +1,7 @@
-﻿Build started 11/15/2012 11:26:04 PM.
+﻿Build started 11/16/2012 12:20:05 AM.
      1>Project "H:\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "obj\x32\Release\game.unsuccessfulbuild".
+         Creating "obj\x32\Release\game.unsuccessfulbuild" because "AlwaysCreate" was specified.
        PreBuildEvent:
          xcopy ..\..\dev\pc_ ..\.. /E /Y
          xcopy ..\..\jni\external\bin\x32 ..\..\bin\x32 /E /Y
@@ -21,54 +21,10 @@
          ..\..\jni\external\bin\x32\vccorlib110.dll
          6 File(s) copied
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Moveable.cpp" "..\..\jni\application\Winter War Files\Permanent.cpp" "..\..\jni\application\Winter War Files\Player.cpp" "..\..\jni\application\Winter War Files\Player_View.cpp" "..\..\jni\application\Winter War Files\Snowball.cpp" "..\..\jni\application\Winter War Files\Snowman.cpp" "..\..\jni\application\Winter War Files\Structure.cpp" "..\..\jni\application\Winter War Files\Tile.cpp" "..\..\jni\application\Winter War Files\bootstrap.cpp"
-         Moveable.cpp
-         Permanent.cpp
-         Player.cpp
-         Player_View.cpp
-         Snowball.cpp
-         Snowman.cpp
-         Structure.cpp
-         Tile.cpp
-         bootstrap.cpp
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(63): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(63): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(63): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(90): warning C4065: switch statement contains 'default' but no 'case' labels
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(106): warning C4189: 'vr' : local variable is initialized but not referenced
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(314): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(314): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(318): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(318): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(322): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(322): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(326): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(326): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(332): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-         Generating Code...
+         All outputs are up-to-date.
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\x32\game.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\bin\x32 local_SDLmain.lib zeni_rest.lib zeni_graphics.lib zeni_net.lib zeni_core.lib zeni_audio.lib zeni.lib local_SDL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"obj\x32\Release\game.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"H:\EECS494FinalProject\zenilib\bin\x32\game.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\x32\game.lib" /MACHINE:X86 obj\x32\Release\Component_Shape.obj
-         obj\x32\Release\Composite_Shape.obj
-         obj\x32\Release\Controls.obj
-         obj\x32\Release\Game_Model.obj
-         obj\x32\Release\Collidable.obj
-         obj\x32\Release\Moveable.obj
-         obj\x32\Release\Permanent.obj
-         obj\x32\Release\Player.obj
-         obj\x32\Release\Player_View.obj
-         obj\x32\Release\Seen_Object.obj
-         obj\x32\Release\Shape.obj
-         obj\x32\Release\Snowball.obj
-         obj\x32\Release\Snowman.obj
-         obj\x32\Release\Structure.obj
-         obj\x32\Release\Team.obj
-         obj\x32\Release\Tile.obj
-         obj\x32\Release\View.obj
-         obj\x32\Release\World.obj
-         obj\x32\Release\bootstrap.obj
+         All outputs are up-to-date.
          game.vcxproj -> H:\EECS494FinalProject\zenilib\build\vs2010\..\..\bin\x32\game.exe
-       Manifest:
-         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\x32\game.exe;#1" /manifest obj\x32\Release\game.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "obj\x32\Release\game.unsuccessfulbuild".
          Touching "obj\x32\Release\game.lastbuildstate".
@@ -76,4 +32,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:53.54
+Time Elapsed 00:00:00.91

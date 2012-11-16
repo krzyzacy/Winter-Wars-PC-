@@ -48,7 +48,7 @@ The following things are unsupported:
   </CRATE_LI.PNG>
 
   <SNOW.PNG>
-    <filepath>textures/toxic.png</filepath>
+    <filepath>textures/snow.png</filepath>
     <tile>1</tile>
   </SNOW.PNG>
   
@@ -58,7 +58,7 @@ The following things are unsupported:
   </FOAM.PNG>
   
   <RAINBOW.PNG>
-    <filepath>textures/toxic.png</filepath>
+    <filepath>textures/snow.png</filepath>
     <tile>1</tile>
   </RAINBOW.PNG>
   
