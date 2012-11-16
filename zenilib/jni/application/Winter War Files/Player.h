@@ -1,5 +1,4 @@
 #pragma once
-#include "Collidable.h"
 #include "Moveable.h"
 
 class Player :
@@ -24,7 +23,10 @@ public:
 // Getters
 	const Zeni::Camera &get_camera() const
 		{return m_camera;}
+	
 
+	const model_key_t get_model_name() const
+		{return "snowball";}
 private:
 	Zeni::Camera m_camera;
 };
