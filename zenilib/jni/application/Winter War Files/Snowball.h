@@ -6,7 +6,9 @@ class Snowball :
 	public Moveable
 {
 public:
-	Snowball(void);
+	Snowball(const Zeni::Point3f &center_,
+              const Zeni::Vector3f &size_);
+
 	~Snowball(void);
 };
 

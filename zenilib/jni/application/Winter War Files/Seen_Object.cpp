@@ -4,10 +4,13 @@
 
 using namespace Zeni;
 
-Seen_Object::Seen_Object(void)
+Seen_Object::Seen_Object(const Zeni::Point3f &center_,
+              const Zeni::Vector3f &size_,
+              const Zeni::Quaternion &theta_ 
+			  )	:
+center(center_), size(size_), rotation(theta_)
 {
-	center = Point3f(100,100,100);
-	size = Vector3f(1,1,1);
+
 }
 
 

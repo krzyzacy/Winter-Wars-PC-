@@ -16,7 +16,11 @@ typedef std::string model_key_t;
 class Seen_Object
 {
 public:
-	Seen_Object(void);
+	Seen_Object(const Zeni::Point3f &position_ = Zeni::Point3f(0,0,0),
+              const Zeni::Vector3f &size_ = Zeni::Vector3f(1,1,1),
+              const Zeni::Quaternion &theta_ 
+				= Zeni::Quaternion::Axis_Angle(Zeni::Vector3f(0.0f, 0.0f, 1.0f), 0.0f));
+
 	virtual ~Seen_Object(void) = 0;
 
 	void render(Zeni::Model *model) const;

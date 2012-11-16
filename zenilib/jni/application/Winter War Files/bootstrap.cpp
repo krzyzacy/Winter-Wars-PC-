@@ -31,6 +31,8 @@ public:
 	, m_next(false)
 	, escape(false)
 	, m_prev_clear_color(get_Video().get_clear_Color())
+	, Perm(Point3f(10,10,0), Vector3f(1,1,1))
+
   {
     set_pausable(true);
 	view.add_renderable(&Rend);

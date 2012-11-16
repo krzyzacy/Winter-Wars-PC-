@@ -4,7 +4,8 @@
 
 using namespace Zeni;
 
-Player::Player(void)
+Player::Player(const Zeni::Point3f &center_) 
+	: Moveable(center_), m_camera(center_)
 {
 }
 

@@ -15,6 +15,7 @@ View::View(void)
 	model_map["snowball"] = new Zeni::Model("models/snowball.3ds");
 	model_map["simpletile"] = new Zeni::Model("models/simpletile.3ds");
 	model_map["world"] = new Zeni::Model("models/world2.3ds");
+	model_map["player"] = new Zeni::Model("models/snowball.3ds");
 
 }
 

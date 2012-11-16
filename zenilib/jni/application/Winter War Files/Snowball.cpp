@@ -1,7 +1,9 @@
 #include "Snowball.h"
 
 
-Snowball::Snowball(void)
+Snowball::Snowball(const Zeni::Point3f &center_,
+              const Zeni::Vector3f &size_) :
+	Moveable(center_, size_)
 {
 }
 

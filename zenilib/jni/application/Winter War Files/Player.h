@@ -5,7 +5,7 @@ class Player :
 	public Moveable
 {
 public:
-	Player(void);
+	Player(const Zeni::Point3f &center_ = Zeni::Point3f(0,0,10));
 	~Player(void);
 
 // camera functions
@@ -26,7 +26,7 @@ public:
 	
 
 	const model_key_t get_model_name() const
-		{return "snowball";}
+		{return "player";}
 private:
 	Zeni::Camera m_camera;
 };
