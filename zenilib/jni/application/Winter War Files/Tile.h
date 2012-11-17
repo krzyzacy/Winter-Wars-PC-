@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Seen_Object.h"
+#include <Zeni/Vector3f.h>
 
 enum TILE_TYPE	{
 	SOFT_SNOW, HARD_SNOW, ICE
@@ -20,7 +21,9 @@ public:
 
 	virtual const model_key_t get_model_name() const;
 
-	Tile(void);
+	Tile(const Zeni::Point3f &center__ = Zeni::Point3f(0.0f,0.0f,0.0f),
+		 const Zeni::Vector3f &scale__ = Zeni::Vector3f(1.0f,1.0f,1.0f) 
+		);
 	~Tile(void);
 
 

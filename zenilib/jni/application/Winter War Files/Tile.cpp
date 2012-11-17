@@ -1,12 +1,14 @@
 #include "Tile.h"
 #include "Structure.h"
 
-Tile::Tile(void)	:
+Tile::Tile(const Zeni::Point3f &center__,
+		   const Zeni::Vector3f &scale__
+		)	:
 	covering(HARD_SNOW),
 	Building(0)
 {
-	
-
+	this->center = center__;
+	this->size = scale__;
 }
 
 
