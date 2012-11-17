@@ -74,7 +74,7 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 	else{ // even row, section B
 		if(xr > tR){
 			if(yr < tH)
-				return map[sec_y][sec_x]
+				return map[sec_y][sec_x];
 			else{
 				if( sqrt(3.0f) * yr > (xr - tR)){
 					if(sec_y != 0)
@@ -82,22 +82,31 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 					else
 						cerr << "not a valid coordination" << endl;
 				}
+				else
+					return map[sec_y][sec_x];
 			}
 		}
 		else{
-			if(yr < (- xr / sqrt(3.0f)) + tH ){
+			if(yr < tH){
 				if(sec_x != 0)
 					return map[sec_y][sec_x - 1];
 				else
 					cerr << "not a valid coordination" << endl;
 			}
 			else{
-				if(sec_y != 0)
-					return map[sec_y - 1][sec_x];
-				else
-					cerr << "not a valid coordination" << endl;
+				if(yr < (- xr / sqrt(3.0f)) + tH ){
+					if(sec_x != 0)
+						return map[sec_y][sec_x - 1];
+					else
+						cerr << "not a valid coordination" << endl;
+				}
+				else{
+					if(sec_y != 0)
+						return map[sec_y - 1][sec_x];
+					else
+						cerr << "not a valid coordination" << endl;
+				}
 			}
 		}
 	}
-	
 }
