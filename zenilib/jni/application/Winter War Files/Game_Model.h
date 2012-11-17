@@ -8,10 +8,13 @@ public:
 	Game_Model(void);
 	~Game_Model(void);
 
+	void update();
 
-	View *get_View();
+	View *get_View()
+		{return view;}
 
 private:
 	View *view;
+
 };
 
