@@ -29,6 +29,7 @@ private:
 
 	std::map<model_key_t, Zeni::Model*> model_map;
 
+	void render_player(int player, const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight) const;
 	void render_world() const;
 	void render_renderable(const Seen_Object *to_rend) const;
 };
