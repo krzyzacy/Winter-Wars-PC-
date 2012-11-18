@@ -1,3 +1,4 @@
+#pragma once
 
 #include <zenilib.h>
 
@@ -18,3 +19,5 @@ private:
 	const Player *player;
 
 };
+
+
