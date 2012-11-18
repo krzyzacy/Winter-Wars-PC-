@@ -1,7 +1,7 @@
 #include "Controls.h"
 
 
-Controls::Controls(bool inverted)
+Controls::Controls(bool inverted_)
 {
 }
 

@@ -3,7 +3,7 @@
 class Controls
 {
 public:
-	Controls(bool inverted = false);
+	Controls(bool inverted_ = false);
 	~Controls(void);
 
 	void take_input();
