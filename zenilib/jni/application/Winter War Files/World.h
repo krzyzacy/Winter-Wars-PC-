@@ -10,8 +10,8 @@ class World
 {
 public:
 	World( View *view_,
-		   const int width__ = 100,
-		   const int height__ = 100,
+		   const int width__ = 15,
+		   const int height__ = 14,
 		   const float hex_length__ = 10.0f
 		);
 	~World(void);
