@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="jni">
+      <UniqueIdentifier>{0AEE811D-0F26-324D-813A-30B41926F7EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\application">
+      <UniqueIdentifier>{3FA1E481-8D1C-2149-A0FE-2331D759E229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\application\Winter War Files">
+      <UniqueIdentifier>{A39EA26B-935F-7A47-954B-D977AA000E1B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external">
+      <UniqueIdentifier>{BCE5EF1A-2A43-E042-A6EA-79CD16A0B27B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib">
+      <UniqueIdentifier>{17692B37-1428-1145-A8A8-0DBEB3981A0B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni">
+      <UniqueIdentifier>{7383B597-20E5-0749-B99E-F26F14C9EDAB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni\Zeni">
+      <UniqueIdentifier>{FF53856C-3AFF-624A-8E1A-4245CC089298}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni_audio">
+      <UniqueIdentifier>{0305BBC1-1E42-954D-BD15-59C45251E415}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni_audio\AL">
+      <UniqueIdentifier>{B8A1F827-9D66-934B-ADF0-C8322565D230}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni_audio\Zeni">
+      <UniqueIdentifier>{B13CF18E-489B-F740-A8B1-60ACDCDF7258}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni_core">
+      <UniqueIdentifier>{85EBDBF3-3A83-FF4B-A86B-CBAE6CD3DFD7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni_core\Zeni">
+      <UniqueIdentifier>{8ACA8809-FCB3-EE42-84F9-6F9B3BEDAB4F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni_graphics">
+      <UniqueIdentifier>{217A8949-BB0A-3347-9BA3-A894A447D410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni_graphics\GL">
+      <UniqueIdentifier>{98564572-F6EC-C947-BB16-A21855818B1E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni_graphics\GL\internal">
+      <UniqueIdentifier>{C0AF8A02-6AA2-A345-BFC2-CC762AD0B25C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni_graphics\Zeni">
+      <UniqueIdentifier>{4289791C-9D62-4C45-B0C9-2F4CF16A1FAC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni_net">
+      <UniqueIdentifier>{2DCD131A-C301-4C4A-B5C0-7A8CBA500E23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni_net\Zeni">
+      <UniqueIdentifier>{F7896BD0-B667-E54E-AC10-08D62B47FAA2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni_rest">
+      <UniqueIdentifier>{9B99C68F-1DDA-1F42-9C17-462CADCC6ECA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\external\zenilib\zeni_rest\Zeni">
+      <UniqueIdentifier>{8BADBB4F-7B4A-074A-98AA-58BE9016005D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Collidable.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Component_Shape.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Composite_Shape.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Controls.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Game_Model.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Moveable.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Permanent.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Play_State_Base.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Player.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Player_View.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Seen_Object.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Shape.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Snowball.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Snowman.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Structure.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Team.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Tile.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Utility.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\View.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\World.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zenilib.h">
+      <Filter>jni\external\zenilib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\zeni.h">
+      <Filter>jni\external\zenilib\zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Android.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Camera.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Chronometer.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Collision.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Color.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Colors.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Coordinate.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Database.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Define.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Error.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Event.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\File_Ops.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Hash_Map.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\macosx_zeni.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Matrix4f.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Quaternion.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Quit_Event.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Random.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Resource.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Serialization.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Singleton.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\String.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Timer_HQ.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Undefine.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Vector2f.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Vector3f.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\XML.h">
+      <Filter>jni\external\zenilib\zeni\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\zeni_audio.h">
+      <Filter>jni\external\zenilib\zeni_audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\AL\al.h">
+      <Filter>jni\external\zenilib\zeni_audio\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\AL\alc.h">
+      <Filter>jni\external\zenilib\zeni_audio\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\AL\alext.h">
+      <Filter>jni\external\zenilib\zeni_audio\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\AL\efx.h">
+      <Filter>jni\external\zenilib\zeni_audio\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\AL\efx-creative.h">
+      <Filter>jni\external\zenilib\zeni_audio\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\Zeni\Sound.h">
+      <Filter>jni\external\zenilib\zeni_audio\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\Zeni\Sound_Buffer.h">
+      <Filter>jni\external\zenilib\zeni_audio\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\Zeni\Sound_Renderer.h">
+      <Filter>jni\external\zenilib\zeni_audio\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\Zeni\Sound_Renderer_AL.h">
+      <Filter>jni\external\zenilib\zeni_audio\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\Zeni\Sound_Renderer_SLES.h">
+      <Filter>jni\external\zenilib\zeni_audio\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\Zeni\Sound_Source.h">
+      <Filter>jni\external\zenilib\zeni_audio\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\Zeni\Sound_Source_Pool.h">
+      <Filter>jni\external\zenilib\zeni_audio\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\Zeni\Sounds.h">
+      <Filter>jni\external\zenilib\zeni_audio\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_core\android_native_app_glue.h">
+      <Filter>jni\external\zenilib\zeni_core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_core\zeni_core.h">
+      <Filter>jni\external\zenilib\zeni_core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_core\Zeni\Core.h">
+      <Filter>jni\external\zenilib\zeni_core\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_core\Zeni\Joysticks.h">
+      <Filter>jni\external\zenilib\zeni_core\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_core\Zeni\Timer.h">
+      <Filter>jni\external\zenilib\zeni_core\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\d3d9.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\d3d9caps.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\d3d9types.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\d3dx9.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\d3dx9anim.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\d3dx9core.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\d3dx9effect.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\d3dx9math.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\d3dx9mesh.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\d3dx9shader.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\d3dx9shape.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\d3dx9tex.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\d3dx9xof.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\zeni_graphics.h">
+      <Filter>jni\external\zenilib\zeni_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\GL\gl.h">
+      <Filter>jni\external\zenilib\zeni_graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\GL\gl_mangle.h">
+      <Filter>jni\external\zenilib\zeni_graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\GL\glew.h">
+      <Filter>jni\external\zenilib\zeni_graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\GL\glext.h">
+      <Filter>jni\external\zenilib\zeni_graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\GL\glu.h">
+      <Filter>jni\external\zenilib\zeni_graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\GL\glu_mangle.h">
+      <Filter>jni\external\zenilib\zeni_graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\GL\glx.h">
+      <Filter>jni\external\zenilib\zeni_graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\GL\glx_mangle.h">
+      <Filter>jni\external\zenilib\zeni_graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\GL\glxew.h">
+      <Filter>jni\external\zenilib\zeni_graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\GL\glxext.h">
+      <Filter>jni\external\zenilib\zeni_graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\GL\wglew.h">
+      <Filter>jni\external\zenilib\zeni_graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\GL\internal\dri_interface.h">
+      <Filter>jni\external\zenilib\zeni_graphics\GL\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\EZ2D.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Fog.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Font.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Fonts.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\GLU.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Image.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Light.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Line_Segment.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Material.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Model.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Projector.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Quadrilateral.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Renderable.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Shader.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Texture.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Textures.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Triangle.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Vertex_Buffer.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Vertex2f.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Vertex3f.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Video.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Video_DX9.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Video_GL.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Window.h">
+      <Filter>jni\external\zenilib\zeni_graphics\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_net\zeni_net.h">
+      <Filter>jni\external\zenilib\zeni_net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_net\Zeni\Net.h">
+      <Filter>jni\external\zenilib\zeni_net\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_net\Zeni\VLUID.h">
+      <Filter>jni\external\zenilib\zeni_net\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\zeni_rest.h">
+      <Filter>jni\external\zenilib\zeni_rest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\Zeni\Configurator_Video.h">
+      <Filter>jni\external\zenilib\zeni_rest\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\Zeni\Console_State.h">
+      <Filter>jni\external\zenilib\zeni_rest\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\Zeni\Game.h">
+      <Filter>jni\external\zenilib\zeni_rest\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\Zeni\Gamestate.h">
+      <Filter>jni\external\zenilib\zeni_rest\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\Zeni\Gamestate_II.h">
+      <Filter>jni\external\zenilib\zeni_rest\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\Zeni\Logo.h">
+      <Filter>jni\external\zenilib\zeni_rest\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\Zeni\Popup_State.h">
+      <Filter>jni\external\zenilib\zeni_rest\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\Zeni\Title_State.h">
+      <Filter>jni\external\zenilib\zeni_rest\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\Zeni\Widget.h">
+      <Filter>jni\external\zenilib\zeni_rest\Zeni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\Zeni\Widget_Gamestate.h">
+      <Filter>jni\external\zenilib\zeni_rest\Zeni</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\jni\application\Winter War Files\bootstrap.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Collidable.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Component_Shape.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Composite_Shape.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Controls.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Game_Model.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Moveable.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Permanent.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Play_State_Base.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Player.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Player_View.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Seen_Object.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Shape.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Snowball.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Snowman.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Structure.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Tile.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\View.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\World.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
