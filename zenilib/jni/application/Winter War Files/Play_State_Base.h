@@ -20,7 +20,7 @@ using namespace Zeni;
 
 
 
-class Play_State_Base : public Gamestate_II		{
+class Play_State_Base : public Gamestate_Base		{
   Play_State_Base(const Play_State_Base &);
   Play_State_Base operator=(const Play_State_Base &);
  
@@ -51,7 +51,12 @@ private:
 	Color m_prev_clear_color;
 
 	void on_event(const SDL_Event &event);
-	void on_event(const Zeni_Input_ID &Zid, const float &confidence, const int &action);
+//	void on_event(const Zeni_Input_ID &Zid, const float &confidence, const int &action);
+
+	void on_joy_axis(const SDL_JoyAxisEvent &event);
+  void on_joy_ball(const SDL_JoyBallEvent &event); 
+  void on_joy_hat(const SDL_JoyHatEvent &event);
+  void on_joy_button(const SDL_JoyButtonEvent &event);
 
 
 	void on_push();
@@ -59,8 +64,8 @@ private:
 
 	void on_key(const SDL_KeyboardEvent &event);
   
-	//Not compatible with Gamestate_II, not sure how to translate yet
-	//void on_mouse_motion(const SDL_MouseMotionEvent &event);
+	
+	void on_mouse_motion(const SDL_MouseMotionEvent &event);
 
 	void perform_logic();
 

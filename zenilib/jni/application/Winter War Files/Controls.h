@@ -17,6 +17,11 @@ public:
 	bool take_input(const SDL_Event &event);
 	bool take_input(const Zeni::Zeni_Input_ID &Zid, const float &confidence, const int &action);
 
+	bool HandleJoy(const SDL_JoyAxisEvent &event);
+	bool HandleJoy(const SDL_JoyBallEvent &event);
+	bool HandleJoy(const SDL_JoyHatEvent &event);
+	bool HandleJoy(const SDL_JoyButtonEvent &event);
+
 //private:
 	
 	struct Inputs	{

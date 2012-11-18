@@ -30,15 +30,15 @@ Play_State_Base::Play_State_Base()	:
 
 
 		//Control Stuff (presently for one controller)
-		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_X), LSTICK_X);
-		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_Y), LSTICK_Y);
-		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_THUMB_X), RSTICK_X);
-		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_THUMB_Y), RSTICK_Y);
-		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_TRIGGER), L_TRIG);
-		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_TRIGGER), R_TRIG);
+		//set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_X), LSTICK_X);
+		//set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_Y), LSTICK_Y);
+		//set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_THUMB_X), RSTICK_X);
+		//set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_THUMB_Y), RSTICK_Y);
+		//set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_TRIGGER), L_TRIG);
+		//set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_TRIGGER), R_TRIG);
 
-		set_action(Zeni_Input_ID(SDL_JOYBUTTONUP, Joysticks::BUTTON_A), RELEASE_A);
-		set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, Joysticks::BUTTON_A), PRESS_A);
+		//set_action(Zeni_Input_ID(SDL_JOYBUTTONUP, Joysticks::BUTTON_A), RELEASE_A);
+		//set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, Joysticks::BUTTON_A), PRESS_A);
 
 }
 
@@ -63,22 +63,22 @@ void Play_State_Base::on_pop()	{
 void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {
 		switch(event.keysym.sym) {
 		  default:
-			Gamestate_II::on_key(event); // Let Gamestate_II handle it
+			Gamestate_Base::on_key(event); // Let Gamestate_Base handle it
 			break;
 		}
 } 
 
 void Play_State_Base::on_event(const SDL_Event &event)	{
 		if(!test.take_input(event))
-			Gamestate_II::on_event(event);
+			Gamestate_Base::on_event(event);
 }
 	
-void Play_State_Base::on_event(const Zeni_Input_ID &Zid, const float &confidence, const int &action)	{
-		if(!test.take_input(Zid, confidence, action))
-			Gamestate_II::on_event(Zid, confidence, action);
-}
+//void Play_State_Base::on_event(const Zeni_Input_ID &Zid, const float &confidence, const int &action)	{
+//		if(!test.take_input(Zid, confidence, action))
+//			Gamestate_Base::on_event(Zid, confidence, action);
+//}
 
-/*void Play_State_Base::on_mouse_motion(const SDL_MouseMotionEvent &event) {
+void Play_State_Base::on_mouse_motion(const SDL_MouseMotionEvent &event) {
 			Rend.adjust_pitch(event.yrel / 500.0f);
 			Rend.turn_left(-event.xrel / 500.0f);    
 
@@ -90,7 +90,29 @@ void Play_State_Base::on_event(const Zeni_Input_ID &Zid, const float &confidence
 
 			Rend4.adjust_pitch(event.yrel / 500.0f);
 			Rend4.turn_left(-event.xrel / 500.0f);
-}*/
+}
+
+void Play_State_Base::on_joy_axis(const SDL_JoyAxisEvent &event)	{
+	if(!test.HandleJoy(event))
+		Gamestate_Base::on_joy_axis(event);
+}
+
+void Play_State_Base::on_joy_ball(const SDL_JoyBallEvent &event)	{
+	if(!test.HandleJoy(event))
+		Gamestate_Base::on_joy_ball(event);
+}
+
+void Play_State_Base::on_joy_hat(const SDL_JoyHatEvent &event)	{
+	if(!test.HandleJoy(event))
+		Gamestate_Base::on_joy_hat(event);
+}
+
+void Play_State_Base::on_joy_button(const SDL_JoyButtonEvent &event)	{
+	if(!test.HandleJoy(event))
+		Gamestate_Base::on_joy_button(event);
+}
+
+
 
 void Play_State_Base::perform_logic()	
 {

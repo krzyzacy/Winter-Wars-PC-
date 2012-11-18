@@ -90,3 +90,12 @@ bool Controls::take_input(const Zeni::Zeni_Input_ID &Zid, const float &confidenc
 
 	return Handled_Input;
 }
+
+bool Controls::HandleJoy(const SDL_JoyAxisEvent &event){return false;}
+bool Controls::HandleJoy(const SDL_JoyBallEvent &event){return false;}
+bool Controls::HandleJoy(const SDL_JoyHatEvent &event){return false;}
+bool Controls::HandleJoy(const SDL_JoyButtonEvent &event){return false;}
+
+
+
+
