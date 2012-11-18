@@ -1,4 +1,4 @@
-t ls-files --others -i --exclude-standard
+# git ls-files --others -i --exclude-standard
 
 /assets/stderr.txt
 /assets/stdout.txt
