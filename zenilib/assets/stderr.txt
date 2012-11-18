@@ -66,8 +66,3 @@ zenilib App Debug   : Loading config/sounds.xml
 zenilib App Debug   : Loaded config/sounds.xml
 zenilib App Debug   : Loading config/colors.xml
 zenilib App Debug   : Loaded config/colors.xml
-Printing all possible error strings:
-SDL       : no error
-SDL_net   : no error
-OpenGL    : no error
-OpenAL    : AL_NO_ERROR

@@ -12,7 +12,7 @@ public:
 	World( View *view_,
 		   const int width__ = 15,
 		   const int height__ = 14,
-		   const float hex_length__ = 50.0f
+		   const float hex_length__ = 10.0f
 		);
 	~World(void);
 

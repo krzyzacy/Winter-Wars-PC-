@@ -23,7 +23,7 @@ World::World( View *view_,
 
 			Zeni::Point3f center;
 			center.x = w * tR * 2;
-			if(w % 2 == 1) center.x += tR;
+			if(h % 2 == 1) center.x += tR;
 			
 			center.y = h * (tH + tS) + tS;
 			center.z = 0.0f;
@@ -60,7 +60,7 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 	xr -= sec_x * 2 * tR;
 	yr -= sec_y * (tS + tH);
 
-	if(sec_y % 2 == 1){ // odd row, section A
+	if(sec_y % 2 == 0){ // odd row, section A
 		if(yr > tH)
 			return map[sec_y][sec_x];
 		else if(xr > tR){

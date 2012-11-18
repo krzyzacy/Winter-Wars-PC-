@@ -1,4 +1,4 @@
-﻿Build started 11/18/2012 3:36:15 PM.
+﻿Build started 11/18/2012 4:44:04 PM.
      1>Project "H:\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "obj\x32\Release\game.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -21,54 +21,10 @@
          ..\..\jni\external\bin\x32\vccorlib110.dll
          6 File(s) copied
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Collidable.cpp" "..\..\jni\application\Winter War Files\Component_Shape.cpp" "..\..\jni\application\Winter War Files\Composite_Shape.cpp" "..\..\jni\application\Winter War Files\Controls.cpp" "..\..\jni\application\Winter War Files\Game_Model.cpp" "..\..\jni\application\Winter War Files\Moveable.cpp" "..\..\jni\application\Winter War Files\Permanent.cpp" "..\..\jni\application\Winter War Files\Play_State_Base.cpp" "..\..\jni\application\Winter War Files\Player.cpp" "..\..\jni\application\Winter War Files\Player_View.cpp" "..\..\jni\application\Winter War Files\Seen_Object.cpp" "..\..\jni\application\Winter War Files\Shape.cpp" "..\..\jni\application\Winter War Files\Snowball.cpp" "..\..\jni\application\Winter War Files\Snowman.cpp" "..\..\jni\application\Winter War Files\Structure.cpp" "..\..\jni\application\Winter War Files\Team.cpp" "..\..\jni\application\Winter War Files\Tile.cpp" "..\..\jni\application\Winter War Files\View.cpp" "..\..\jni\application\Winter War Files\World.cpp" "..\..\jni\application\Winter War Files\bootstrap.cpp"
-         Collidable.cpp
-         Component_Shape.cpp
-         Composite_Shape.cpp
-         Controls.cpp
-     1>..\..\jni\application\Winter War Files\Controls.cpp(6): warning C4100: 'inverted_' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\Controls.cpp(22): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(25): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(28): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(31): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(36): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(39): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(42): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(45): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(58): warning C4100: 'Zid' : unreferenced formal parameter
-         Game_Model.cpp
-         Moveable.cpp
-         Permanent.cpp
-         Play_State_Base.cpp
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(53): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(53): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(53): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(68): warning C4065: switch statement contains 'default' but no 'case' labels
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(112): warning C4189: 'vr' : local variable is initialized but not referenced
-         Player.cpp
-         Player_View.cpp
-         Seen_Object.cpp
-         Shape.cpp
-         Snowball.cpp
-         Snowman.cpp
-         Structure.cpp
-         Team.cpp
-         Tile.cpp
-         View.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\World.cpp"
          World.cpp
      1>..\..\jni\application\Winter War Files\World.cpp(57): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
      1>..\..\jni\application\Winter War Files\World.cpp(58): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-         bootstrap.cpp
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(342): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(342): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(346): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(346): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(350): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(350): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(354): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(354): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(360): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-         Generating Code...
      1>h:\eecs494finalproject\zenilib\jni\application\winter war files\world.cpp(123): warning C4715: 'World::get_tile' : not all control paths return a value
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\x32\game.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\bin\x32 local_SDLmain.lib zeni_rest.lib zeni_graphics.lib zeni_net.lib zeni_core.lib zeni_audio.lib zeni.lib local_SDL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"obj\x32\Release\game.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"H:\EECS494FinalProject\zenilib\bin\x32\game.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\x32\game.lib" /MACHINE:X86 obj\x32\Release\bootstrap.obj
@@ -101,4 +57,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:01:34.77
+Time Elapsed 00:00:08.26
