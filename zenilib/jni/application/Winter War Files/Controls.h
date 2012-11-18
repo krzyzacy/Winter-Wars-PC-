@@ -1,5 +1,7 @@
 #pragma once
 
+#include <zenilib.h>
+
 enum Input_Action	{
 	PRESS_A, RELEASE_A, R_TRIG, L_TRIG, PRESS_B, RSTICK_X, RSTICK_Y, LSTICK_X, LSTICK_Y
 };
@@ -10,12 +12,11 @@ class Controls
 public:
 	Controls(bool inverted_ = false);
 	~Controls(void);
+	
 
-	void take_input();
+	bool take_input(const SDL_Event &event);
+	bool take_input(const Zeni::Zeni_Input_ID &Zid, const float &confidence, const int &action);
 
-	void pass_actions();
-
-	void clear_direction();
 //private:
 	
 	struct Inputs	{

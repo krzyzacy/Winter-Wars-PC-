@@ -51,8 +51,7 @@ private:
 	Color m_prev_clear_color;
 
 	void on_event(const SDL_Event &event);
-	void on_event(const Zeni_Input_ID &, const float &confidence, const int &action);
-
+	void on_event(const Zeni_Input_ID &Zid, const float &confidence, const int &action);
 
 
 	void on_push();
@@ -62,7 +61,6 @@ private:
   
 	//Not compatible with Gamestate_II, not sure how to translate yet
 	//void on_mouse_motion(const SDL_MouseMotionEvent &event);
-
 
 	void perform_logic();
 

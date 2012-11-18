@@ -27,7 +27,6 @@ Play_State_Base::Play_State_Base()	:
 
 
 		//Control Stuff (presently for one controller)
-		
 		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_X), LSTICK_X);
 		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_Y), LSTICK_Y);
 		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_THUMB_X), RSTICK_X);
@@ -60,7 +59,6 @@ void Play_State_Base::on_pop()	{
 
 void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {
 		switch(event.keysym.sym) {
-		
 		  default:
 			Gamestate_II::on_key(event); // Let Gamestate_II handle it
 			break;
@@ -68,76 +66,13 @@ void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {
 } 
 
 void Play_State_Base::on_event(const SDL_Event &event)	{
-		//Yes I realize this does nothing right now, but it is where
-		//we can incorporate the keyboard (for hacks)
-		switch(event.key.keysym.sym)	{
-		case SDLK_UP:
-			test.input.left_x = 1.0 * (event.type == SDL_KEYDOWN);
-			break;
-		case SDLK_DOWN:
-			test.input.left_x = -1 * (event.type == SDL_KEYDOWN);
-			break;
-		case SDLK_LEFT:
-			test.input.left_y = 1 * (event.type == SDL_KEYDOWN);
-			break;
-		case SDLK_RIGHT:
-			test.input.left_y = -1 * (event.type == SDL_KEYDOWN);
-			break;
-
-
-		case SDLK_w:
-			test.input.left_x = 1 * (event.type == SDL_KEYDOWN);
-			break;
-		case SDLK_s:
-			test.input.left_x = -1 * (event.type == SDL_KEYDOWN);
-			break;
-		case SDLK_d:
-			test.input.left_y = -1 * (event.type == SDL_KEYDOWN);
-			break;
-		case SDLK_a:
-			test.input.left_y = 1 * (event.type == SDL_KEYDOWN);
-			break;
-
-		case SDLK_SPACE:
-			test.input.jump = event.type == SDL_KEYDOWN;
-
-		default:
+		if(!test.take_input(event))
 			Gamestate_II::on_event(event);
-			break;
-		}
 }
 	
 void Play_State_Base::on_event(const Zeni_Input_ID &Zid, const float &confidence, const int &action)	{
-		switch(action)	{
-
-		case L_TRIG:
-			//currently left trigger pressed so do something
-			/*test.input.build_view = true;
-			test.input.jump = true;*/
-			break;
-		/*case R_TRIG:
-			
-			break;
-*/
-		
-		case RSTICK_X:
-			test.input.right_x = confidence;
-			break;
-		case RSTICK_Y:
-			test.input.right_y = confidence;
-			break;
-		case LSTICK_X:
-			test.input.left_x = confidence;
-			break;
-		case LSTICK_Y:
-			test.input.left_y = confidence;
-			break;
-
-		default:
+		if(!test.take_input(Zid, confidence, action))
 			Gamestate_II::on_event(Zid, confidence, action);
-			break;
-		}
-
 }
 
 /*void Play_State_Base::on_mouse_motion(const SDL_MouseMotionEvent &event) {
@@ -166,7 +101,7 @@ void Play_State_Base::perform_logic()
 	
 
 	Rend.move_strafe(time_step, 100, Vector3f(test.input.left_x, test.input.left_y, 0));
-	//test.clear_direction();
+
 
 }
 
