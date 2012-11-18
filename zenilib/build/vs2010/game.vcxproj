@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0C849327-4FCC-96BE-50E5-1B0F034E775E}</ProjectGuid>
+    <ProjectGuid>{DC97B0E1-E68D-F843-BFE1-E668BB739FD6}</ProjectGuid>
     <RootNamespace>game</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
@@ -89,8 +89,7 @@
       <SmallerTypeCheck>true</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader></PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <ProgramDataBaseFileName>$(OutDir)game.pdb</ProgramDataBaseFileName>
@@ -122,8 +121,7 @@
       <SmallerTypeCheck>true</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader></PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ProgramDataBaseFileName>$(OutDir)game.pdb</ProgramDataBaseFileName>
@@ -154,11 +152,9 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader></PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat>
-      </DebugInformationFormat>
+      <DebugInformationFormat></DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_WINDOWS;WIN32;_CRT_SECURE_NO_DEPRECATE;NDEBUG;DISABLE_CPP11;GLEW_NO_GLU;DISABLE_CG;ZLIB_DLL;OGG_DLL=__declspec(dllimport);VORBIS_DLL=__declspec(dllimport);VORBISFILE_DLL=__declspec(dllimport);LIB3DSAPI=__declspec(dllimport);TINYXML_DLL=__declspec(dllimport);TINYXML_EXT=extern;ZENI_DLL=__declspec(dllimport);ZENI_EXT=extern;ZENI_AUDIO_DLL=__declspec(dllimport);ZENI_AUDIO_EXT=extern;ZENI_CORE_DLL=__declspec(dllimport);ZENI_CORE_EXT=extern;ZENI_GRAPHICS_DLL=__declspec(dllimport);ZENI_GRAPHICS_EXT=extern;ZENI_NET_DLL=__declspec(dllimport);ZENI_NET_EXT=extern;ZENI_REST_DLL=__declspec(dllimport);ZENI_REST_EXT=extern;ENABLE_XINPUT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -176,8 +172,7 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy ..\..\dev\pc_ ..\.. /E /Y
-xcopy ..\..\jni\external\bin\x32 ..\..\bin\x32 /E /Y</Command>
+      <Command>xcopy ..\..\dev\pc_ ..\.. /E /Y&#x0D;&#x0A;xcopy ..\..\jni\external\bin\x32 ..\..\bin\x32 /E /Y</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -189,11 +184,9 @@ xcopy ..\..\jni\external\bin\x32 ..\..\bin\x32 /E /Y</Command>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader></PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat>
-      </DebugInformationFormat>
+      <DebugInformationFormat></DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_WINDOWS;WIN32;_CRT_SECURE_NO_DEPRECATE;NDEBUG;X64;DISABLE_CPP11;GLEW_NO_GLU;DISABLE_CG;ZLIB_DLL;OGG_DLL=__declspec(dllimport);VORBIS_DLL=__declspec(dllimport);VORBISFILE_DLL=__declspec(dllimport);LIB3DSAPI=__declspec(dllimport);TINYXML_DLL=__declspec(dllimport);TINYXML_EXT=extern;ZENI_DLL=__declspec(dllimport);ZENI_EXT=extern;ZENI_AUDIO_DLL=__declspec(dllimport);ZENI_AUDIO_EXT=extern;ZENI_CORE_DLL=__declspec(dllimport);ZENI_CORE_EXT=extern;ZENI_GRAPHICS_DLL=__declspec(dllimport);ZENI_GRAPHICS_EXT=extern;ZENI_NET_DLL=__declspec(dllimport);ZENI_NET_EXT=extern;ZENI_REST_DLL=__declspec(dllimport);ZENI_REST_EXT=extern;ENABLE_XINPUT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -211,18 +204,18 @@ xcopy ..\..\jni\external\bin\x32 ..\..\bin\x32 /E /Y</Command>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy ..\..\dev\pc_ ..\.. /E /Y
-xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
+      <Command>xcopy ..\..\dev\pc_ ..\.. /E /Y&#x0D;&#x0A;xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Collidable.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Component_Shape.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Composite_Shape.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Controls.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Game_Model.h" />
-    <ClInclude Include="..\..\jni\application\Winter War Files\Collidable.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Moveable.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Permanent.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Play_State_Base.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Player.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Player_View.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Seen_Object.h" />
@@ -250,6 +243,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Event.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\File_Ops.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Hash_Map.h" />
+    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\macosx_zeni.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Matrix4f.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Quaternion.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Quit_Event.h" />
@@ -263,13 +257,12 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Vector2f.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Vector3f.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\XML.h" />
-    <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\macosx_zeni.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\zeni_audio.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\AL\al.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\AL\alc.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\AL\alext.h" />
-    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\AL\efx-creative.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\AL\efx.h" />
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\AL\efx-creative.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\Zeni\Sound.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\Zeni\Sound_Buffer.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_audio\Zeni\Sound_Renderer.h" />
@@ -326,9 +319,9 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Texture.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Textures.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Triangle.h" />
+    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Vertex_Buffer.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Vertex2f.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Vertex3f.h" />
-    <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Vertex_Buffer.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Video.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Video_DX9.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni_graphics\Zeni\Video_GL.h" />
@@ -349,6 +342,10 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\Zeni\Widget_Gamestate.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\jni\application\Winter War Files\bootstrap.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Collidable.cpp">
+    </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Component_Shape.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Composite_Shape.cpp">
@@ -357,16 +354,18 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Game_Model.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Collidable.cpp">
-    </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Moveable.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Permanent.cpp">
     </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Play_State_Base.cpp">
+    </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Player.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Player_View.cpp" />
-    <ClCompile Include="..\..\jni\application\Winter War Files\Seen_Object.cpp" />
+    <ClCompile Include="..\..\jni\application\Winter War Files\Player_View.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Seen_Object.cpp">
+    </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Shape.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Snowball.cpp">
@@ -383,13 +382,6 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\World.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\bootstrap.cpp">
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\assets\config\textures.xml" />
-    <None Include="ClassDiagram11.cd" />
-    <None Include="ClassDiagram12.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
