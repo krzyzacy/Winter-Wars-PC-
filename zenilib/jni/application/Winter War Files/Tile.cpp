@@ -22,6 +22,11 @@ bool Tile::has_building()	{
 }
 
 const model_key_t Tile::get_model_name() const	{
+
+	return "simpletile";
+
+	/*
+
 	switch (covering)	{
 	case SOFT_SNOW:
 		//return "soft_snow"
@@ -36,6 +41,8 @@ const model_key_t Tile::get_model_name() const	{
 		return "";
 		break;
 	}
+
+	*/
 
 }
 

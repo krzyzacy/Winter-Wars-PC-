@@ -1,5 +1,7 @@
 #include "Play_State_Base.h"
 
+#include "Game_Model.h"
+
 Play_State_Base::Play_State_Base()	:
 	time_passed(0.0f)
 	, m_next(false)
@@ -11,18 +13,19 @@ Play_State_Base::Play_State_Base()	:
 	,Rend3(Point3f(0,0,50))
 	,Rend4(Point3f(10,10,20))
 	,test()
+	
 {
 		set_pausable(true);
 		PlayTime.start();
-		view.add_renderable(&Rend);
-		view.add_player_view(new Player_View(&Rend));
-		view.add_renderable(&Rend2);
-		view.add_player_view(new Player_View(&Rend2));
-		view.add_renderable(&Rend3);
-		view.add_player_view(new Player_View(&Rend3));
-		view.add_renderable(&Rend4);
-		view.add_player_view(new Player_View(&Rend4));
-		view.add_renderable(&Perm);
+		Game_Model::get().get_View()->add_renderable(&Rend);
+		Game_Model::get().get_View()->add_player_view(new Player_View(&Rend));
+		Game_Model::get().get_View()->add_renderable(&Rend2);
+		Game_Model::get().get_View()->add_player_view(new Player_View(&Rend2));
+		Game_Model::get().get_View()->add_renderable(&Rend3);
+		Game_Model::get().get_View()->add_player_view(new Player_View(&Rend3));
+		Game_Model::get().get_View()->add_renderable(&Rend4);
+		Game_Model::get().get_View()->add_player_view(new Player_View(&Rend4));
+//		Game_Model::get().get_View()->add_renderable(&Perm);
 
 
 
@@ -107,5 +110,5 @@ void Play_State_Base::perform_logic()
 
 void Play_State_Base::render()	{
 	Video &vr = get_Video();	
-	view.render();
+	Game_Model::get().get_View()->render();
 }

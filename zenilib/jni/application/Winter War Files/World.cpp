@@ -1,10 +1,17 @@
 #include "World.h"
+#include "Game_Model.h"
 
-World::World( const int width__,
+World::World( View *view_,
+			const int width__,
 		   const int height__,
 		   const float hex_length__
-		)
+		) :
+	map(height__, vector<Tile *>(width__, 0) ),
+	view(view_)
 {
+
+
+
 	tile_size = hex_length__;
 
 	float tR = sqrt(3.0f) * tile_size / 2;
@@ -21,7 +28,11 @@ World::World( const int width__,
 			center.y = h * (tH + tS) + tS;
 			center.z = 0.0f;
 			
-			map[h][w] = new Tile(center);
+			Tile* tmp;
+			tmp = new Tile(center);
+			map[h][w] = tmp;
+
+			view->add_renderable(map[h][w]);
 
 		}
 	}
@@ -110,3 +121,4 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 		}
 	}
 }
+
