@@ -70,9 +70,41 @@ void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {
 void Play_State_Base::on_event(const SDL_Event &event)	{
 		//Yes I realize this does nothing right now, but it is where
 		//we can incorporate the keyboard (for hacks)
+		switch(event.key.keysym.sym)	{
+		case SDLK_UP:
+			test.input.left_x = 1.0 * (event.type == SDL_KEYDOWN);
+			break;
+		case SDLK_DOWN:
+			test.input.left_x = -1 * (event.type == SDL_KEYDOWN);
+			break;
+		case SDLK_LEFT:
+			test.input.left_y = 1 * (event.type == SDL_KEYDOWN);
+			break;
+		case SDLK_RIGHT:
+			test.input.left_y = -1 * (event.type == SDL_KEYDOWN);
+			break;
 
+
+		case SDLK_w:
+			test.input.left_x = 1 * (event.type == SDL_KEYDOWN);
+			break;
+		case SDLK_s:
+			test.input.left_x = -1 * (event.type == SDL_KEYDOWN);
+			break;
+		case SDLK_d:
+			test.input.left_y = -1 * (event.type == SDL_KEYDOWN);
+			break;
+		case SDLK_a:
+			test.input.left_y = 1 * (event.type == SDL_KEYDOWN);
+			break;
+
+		case SDLK_SPACE:
+			test.input.jump = event.type == SDL_KEYDOWN;
+
+		default:
 			Gamestate_II::on_event(event);
-
+			break;
+		}
 }
 	
 void Play_State_Base::on_event(const Zeni_Input_ID &Zid, const float &confidence, const int &action)	{
@@ -80,13 +112,13 @@ void Play_State_Base::on_event(const Zeni_Input_ID &Zid, const float &confidence
 
 		case L_TRIG:
 			//currently left trigger pressed so do something
-			test.input.build_view = true;
-			test.input.jump = true;
+			/*test.input.build_view = true;
+			test.input.jump = true;*/
 			break;
-		case R_TRIG:
+		/*case R_TRIG:
 			
 			break;
-
+*/
 		
 		case RSTICK_X:
 			test.input.right_x = confidence;
@@ -131,14 +163,14 @@ void Play_State_Base::perform_logic()
 
 	Rend.adjust_pitch(test.input.right_y/100.0f);
 	Rend.turn_left(test.input.right_x/100.0f);
+	
 
 	Rend.move_strafe(time_step, 100, Vector3f(test.input.left_x, test.input.left_y, 0));
-	
+	//test.clear_direction();
 
 }
 
 void Play_State_Base::render()	{
 	Video &vr = get_Video();	
-	if(test.input.jump)
-		view.render();
+	view.render();
 }

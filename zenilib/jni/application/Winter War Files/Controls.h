@@ -15,6 +15,7 @@ public:
 
 	void pass_actions();
 
+	void clear_direction();
 //private:
 	
 	struct Inputs	{
