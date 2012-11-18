@@ -1,11 +1,17 @@
 #pragma once
 
 class View;
+class World;
 
 class Game_Model
 {
 public:
-	Game_Model(void);
+	static Game_Model &get()
+	{
+		static Game_Model m;
+		return m;
+	}
+	
 	~Game_Model(void);
 
 	void update();
@@ -14,7 +20,9 @@ public:
 		{return view;}
 
 private:
+	Game_Model(void);
 	View *view;
+	World *world;
 
 };
 
