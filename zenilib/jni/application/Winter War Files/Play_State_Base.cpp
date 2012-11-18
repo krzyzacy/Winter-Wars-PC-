@@ -13,6 +13,7 @@ Play_State_Base::Play_State_Base()	:
 	,test()
 {
 		set_pausable(true);
+		PlayTime.start();
 		view.add_renderable(&Rend);
 		view.add_player_view(new Player_View(&Rend));
 		view.add_renderable(&Rend2);
@@ -26,8 +27,17 @@ Play_State_Base::Play_State_Base()	:
 
 
 		//Control Stuff (presently for one controller)
-		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_TRIGGER), 1);
-		set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, Joysticks::BUTTON_A), 2);
+		
+		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_X), LSTICK_X);
+		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_THUMB_Y), LSTICK_Y);
+		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_THUMB_X), RSTICK_X);
+		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_THUMB_Y), RSTICK_Y);
+		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_LEFT_TRIGGER), L_TRIG);
+		set_action(Zeni_Input_ID(SDL_JOYAXISMOTION, Joysticks::AXIS_RIGHT_TRIGGER), R_TRIG);
+
+		set_action(Zeni_Input_ID(SDL_JOYBUTTONUP, Joysticks::BUTTON_A), RELEASE_A);
+		set_action(Zeni_Input_ID(SDL_JOYBUTTONDOWN, Joysticks::BUTTON_A), PRESS_A);
+
 }
 
 Play_State_Base::~Play_State_Base()	 {
@@ -60,21 +70,35 @@ void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {
 void Play_State_Base::on_event(const SDL_Event &event)	{
 		//Yes I realize this does nothing right now, but it is where
 		//we can incorporate the keyboard (for hacks)
-		Gamestate_II::on_event(event);
+
+			Gamestate_II::on_event(event);
 
 }
 	
 void Play_State_Base::on_event(const Zeni_Input_ID &Zid, const float &confidence, const int &action)	{
 		switch(action)	{
 
-		case 1:
+		case L_TRIG:
 			//currently left trigger pressed so do something
 			test.input.build_view = true;
 			test.input.jump = true;
 			break;
-		case 2:
-			//A button currently (will change to enums)
-			test.input.jump = false;
+		case R_TRIG:
+			
+			break;
+
+		
+		case RSTICK_X:
+			test.input.right_x = confidence;
+			break;
+		case RSTICK_Y:
+			test.input.right_y = confidence;
+			break;
+		case LSTICK_X:
+			test.input.left_x = confidence;
+			break;
+		case LSTICK_Y:
+			test.input.left_y = confidence;
 			break;
 
 		default:
@@ -100,6 +124,17 @@ void Play_State_Base::on_event(const Zeni_Input_ID &Zid, const float &confidence
 
 void Play_State_Base::perform_logic()	
 {
+	const float frametime_passed = PlayTime.seconds();
+	const float currentStep = frametime_passed - time_passed;
+	time_passed = frametime_passed;
+	time_step = currentStep;
+
+	Rend.adjust_pitch(test.input.right_y/100.0f);
+	Rend.turn_left(test.input.right_x/100.0f);
+
+	Rend.move_strafe(time_step, 100, Vector3f(test.input.left_x, test.input.left_y, 0));
+	
+
 }
 
 void Play_State_Base::render()	{

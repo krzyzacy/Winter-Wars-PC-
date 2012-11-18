@@ -1,5 +1,10 @@
 #pragma once
 
+enum Input_Action	{
+	PRESS_A, RELEASE_A, R_TRIG, L_TRIG, PRESS_B, RSTICK_X, RSTICK_Y, LSTICK_X, LSTICK_Y
+};
+
+
 class Controls
 {
 public:

@@ -45,7 +45,9 @@ private:
 	//For now  
 	Controls test;
 
+	Chronometer<Time> PlayTime;
   float time_passed;
+	float time_step;
 	Color m_prev_clear_color;
 
 	void on_event(const SDL_Event &event);
