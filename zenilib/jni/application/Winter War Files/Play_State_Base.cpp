@@ -106,7 +106,7 @@ void Play_State_Base::perform_logic()
 
 	Game_Model::get().get_player(0)->move_strafe(time_step, 100, Vector3f(test.input.left_x, test.input.left_y, 0));
 
-
+	Game_Model::get().update();
 }
 
 void Play_State_Base::render()	{

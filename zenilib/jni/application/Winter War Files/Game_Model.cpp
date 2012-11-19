@@ -10,22 +10,16 @@
 
 using namespace Zeni;
 
-// REMOVE THESE LATER
-#include "Permanent.h"
-
 
 
 Game_Model::Game_Model(void) :
 	view(new View()), world(new World(view))
-		, Perm(new Permanent(Point3f(30,10,0), Vector3f(2,2,2)))
-
 {
 	start_up();
 }
 
 void Game_Model::start_up()
 {
-
 		Point3f p_points[] = {Point3f(1,0,20)
 			,Point3f(10,30,100) ,Point3f(0,0,50), Point3f(10,10,20)};
 
@@ -35,6 +29,8 @@ void Game_Model::start_up()
 			players.push_back(p);
 			view->add_renderable(p);
 			view->add_player_view(new Player_View(p));
+			colliders.push_back(p);
+			movers.push_back(p);
 		}
 		
 //		view->add_renderable(&Perm);
@@ -50,7 +46,17 @@ Game_Model::~Game_Model(void)
 void Game_Model::update()
 {	
 
+	check_collisions();
+}
 
+void Game_Model::check_collisions()
+{
+	for (size_t i = 0 ; i < movers.size() ; i++)
+		for (size_t j = 0 ; j < colliders.size() ; j++)
+		{
+			table.handle_collision(movers[i]->get_ID()
+				, colliders[j]->get_ID(), movers[i], colliders[j]);
+		}
 }
 
 void Game_Model::render() const

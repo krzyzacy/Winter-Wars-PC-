@@ -22,16 +22,16 @@ private:
 	typedef void (Collision_Table::*fxn_ptr_t)(Collidable*, Collidable*);
 	std::vector<std::vector<fxn_ptr_t> > table;
 
-	void collideBB(Snowball*, Snowball*);
-	void collidePB(Player*, Snowball*);
-	void collideBP(Snowball*, Player*);
-	void collidePP(Player*, Player*);
-	void collideWB(Permanent*, Snowball*);
-	void collidePW(Player*, Permanent*);
-	void collideWP(Permanent*, Player*);
-	void collideBW(Snowball*, Permanent*);
-	void collideWW(Permanent*, Permanent*);
-	void collideWG(Permanent*, Collidable*);
+	void collideSnowballSnowball(Snowball*, Snowball*);
+	void collidePlayerSnowball(Player*, Snowball*);
+	void collideSnowballPlayer(Snowball*, Player*);
+	void collidePlayerPlayer(Player*, Player*);
+	void collidePermanentSnowball(Permanent*, Snowball*);
+	void collidePlayerPermanent(Player*, Permanent*);
+	void collidePermanentPlayer(Permanent*, Player*);
+	void collideSnowballPermanent(Snowball*, Permanent*);
+	void collidePermanentPermanent(Permanent*, Permanent*);
+	void collidePermanentG(Permanent*, Collidable*);
 
 
 };

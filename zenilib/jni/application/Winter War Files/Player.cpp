@@ -4,6 +4,8 @@
 
 using namespace Zeni;
 
+const int Player::player_ID_c = 1;
+
 Player::Player(const Zeni::Point3f &center_) 
 	: Moveable(center_), m_camera(center_)
 {

@@ -3,12 +3,13 @@
 #include <zenilib.h>
 #include <vector>
 
+#include "Collision_Table.h"
+
 class View;
 class World;
 class Player;
-
-// Remove These later!
-class Permanent;
+class Moveable;
+class Collidable;
 
 class Game_Model
 {
@@ -32,10 +33,13 @@ private:
 	Game_Model(void);
 	View *view;
 	World *world;
-
+	Collision_Table table;
 
 	std::vector<Player*> players; 
-
-	Permanent *Perm;
+	std::vector<Moveable*> movers; 
+	std::vector<Collidable*> colliders;
+	
+	// Functions
+	void check_collisions();
 };
 
