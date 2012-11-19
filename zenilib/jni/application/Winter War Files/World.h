@@ -1,10 +1,12 @@
 #pragma once
 
 #include <vector>
-#include "View.h"
-#include "Tile.h"
 
-using namespace std;
+#include <zenilib.h>
+
+class View;
+class Tile;
+
 
 class World
 {
@@ -22,7 +24,7 @@ public:
 
 private:
 
-	vector< vector<Tile *> > map;
+	std::vector< std::vector<Tile *> > map;
 	View *view;
 	int map_width;                   // number of tiles in a row
 	int map_height;                  // number of tiles in a column

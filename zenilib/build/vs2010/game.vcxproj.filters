@@ -61,51 +61,18 @@
     <Filter Include="jni\external\zenilib\zeni_rest\Zeni">
       <UniqueIdentifier>{8BADBB4F-7B4A-074A-98AA-58BE9016005D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="jni\application\Winter War Files\Game Object">
+      <UniqueIdentifier>{f7c75244-18d7-4ddf-9466-11f644579638}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\application\Winter War Files\MVC">
+      <UniqueIdentifier>{76e2e694-7926-4d8c-b6a2-1aaa638d3ca8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\application\Winter War Files\Shape">
+      <UniqueIdentifier>{8ad53683-a4e8-4ee4-ad44-4ff162ef7e91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Collidable.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Component_Shape.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Composite_Shape.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Controls.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Game_Model.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Moveable.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Permanent.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\Play_State_Base.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Player.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Player_View.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Seen_Object.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Shape.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Snowball.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Snowman.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Structure.h">
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\Team.h">
@@ -115,9 +82,6 @@
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\Utility.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\View.h">
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\World.h">
@@ -459,54 +423,63 @@
     <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\Zeni\Widget_Gamestate.h">
       <Filter>jni\external\zenilib\zeni_rest\Zeni</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Collidable.h">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Moveable.h">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Permanent.h">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Player.h">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Snowball.h">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Snowman.h">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Structure.h">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Controls.h">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Game_Model.h">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Player_View.h">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Seen_Object.h">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\View.h">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Component_Shape.h">
+      <Filter>jni\application\Winter War Files\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Composite_Shape.h">
+      <Filter>jni\application\Winter War Files\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Shape.h">
+      <Filter>jni\application\Winter War Files\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Object_factory.h">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Collision_Table.h">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\bootstrap.cpp">
       <Filter>jni\application\Winter War Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Collidable.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Component_Shape.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Composite_Shape.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Controls.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Game_Model.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Moveable.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Permanent.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Play_State_Base.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Player.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Player_View.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Seen_Object.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Shape.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Snowball.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Snowman.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Structure.cpp">
       <Filter>jni\application\Winter War Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
@@ -515,11 +488,59 @@
     <ClCompile Include="..\..\jni\application\Winter War Files\Tile.cpp">
       <Filter>jni\application\Winter War Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\View.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\World.cpp">
       <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Collidable.cpp">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Moveable.cpp">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Permanent.cpp">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Player.cpp">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Snowball.cpp">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Snowman.cpp">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Structure.cpp">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Controls.cpp">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Game_Model.cpp">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Player_View.cpp">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Seen_Object.cpp">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\View.cpp">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Component_Shape.cpp">
+      <Filter>jni\application\Winter War Files\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Composite_Shape.cpp">
+      <Filter>jni\application\Winter War Files\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Shape.cpp">
+      <Filter>jni\application\Winter War Files\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Object_factory.cpp">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Collision_Table.cpp">
+      <Filter>jni\application\Winter War Files\Game Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

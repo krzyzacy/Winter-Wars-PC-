@@ -217,11 +217,13 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\jni\application\Winter War Files\Collidable.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Collision_Table.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Component_Shape.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Composite_Shape.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Controls.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Game_Model.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Moveable.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Object_factory.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Permanent.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Play_State_Base.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Player.h" />
@@ -354,6 +356,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Collidable.cpp">
     </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Collision_Table.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Component_Shape.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Composite_Shape.cpp">
@@ -364,6 +367,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Moveable.cpp">
     </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Object_factory.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Permanent.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Play_State_Base.cpp">
@@ -392,7 +396,9 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\assets\config\textures.xml" />
+    <None Include="..\..\assets\config\textures.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

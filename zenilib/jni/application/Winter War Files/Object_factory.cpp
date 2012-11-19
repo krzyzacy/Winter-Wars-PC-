@@ -2,37 +2,35 @@
 
 #include <zenilib.h>
 
-#include "Game_Object.h"
+#include "Collidable.h"
 #include "Player.h"
-#include "Utility.h"
 
 #include "Game_Model.h"
-
-#include "Player.h"
-#include "Target.h"
 
 #include <vector>
 
 using namespace Zeni;
 
 
-Game_Object *create_ob(const String& type, const Point2f &init)
+Player *create_player(const Point3f &init)
 {
 	int lowest_area = 1;
-
+	/*
 	if (Game_Model::get().difficulty < 3)
 		lowest_area = 3;	
 
 	else if (Game_Model::get().difficulty == 3)
 		lowest_area = 2;
+	*/
 
-	if (type == "Player")
+//	if (type == "Player")
 		return new Player(init);
 	
-	else
-		throw Error("Trying to create object of unknown type!");
+//	else
+//		throw Error("Trying to create object of unknown type!");
 }
 
+/*
 Game_Object *create_target(const String& type, const Point3f &init)
 {
 	int lowest_area = 1;
@@ -47,8 +45,9 @@ Game_Object *create_target(const String& type, const Point3f &init)
 	else
 		throw Error("Trying to create object of unknown type!");
 }
+*/
 
-
+/*
 Game_Object *get_rand_target()
 {
 	Random r;
@@ -84,3 +83,4 @@ Game_Object *get_rand_target()
 			break;
 	}
 }
+*/

@@ -1,5 +1,10 @@
 #include "World.h"
+
 #include "Game_Model.h"
+#include "View.h"
+#include "Tile.h"
+
+using namespace std;
 
 World::World( View *view_,
 			const int width__,
