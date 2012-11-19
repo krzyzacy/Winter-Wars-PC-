@@ -66,7 +66,12 @@ The following things are unsupported:
     <filepath>textures/floor.png</filepath>
     <tile>1</tile>
   </FLOOR.PNG>
-
+  
+  <BUBBLE.PNG>
+    <filepath>textures/crate_light.png</filepath>
+    <tile>1</tile>
+  </BUBBLE.PNG>
+  
   <TOXIC.PNG>
     <filepath>textures/toxic.png</filepath>
     <tile>1</tile>

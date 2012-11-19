@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -89,7 +89,8 @@
       <SmallerTypeCheck>true</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader></PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <ProgramDataBaseFileName>$(OutDir)game.pdb</ProgramDataBaseFileName>
@@ -121,7 +122,8 @@
       <SmallerTypeCheck>true</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader></PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ProgramDataBaseFileName>$(OutDir)game.pdb</ProgramDataBaseFileName>
@@ -152,9 +154,11 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader></PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_WINDOWS;WIN32;_CRT_SECURE_NO_DEPRECATE;NDEBUG;DISABLE_CPP11;GLEW_NO_GLU;DISABLE_CG;ZLIB_DLL;OGG_DLL=__declspec(dllimport);VORBIS_DLL=__declspec(dllimport);VORBISFILE_DLL=__declspec(dllimport);LIB3DSAPI=__declspec(dllimport);TINYXML_DLL=__declspec(dllimport);TINYXML_EXT=extern;ZENI_DLL=__declspec(dllimport);ZENI_EXT=extern;ZENI_AUDIO_DLL=__declspec(dllimport);ZENI_AUDIO_EXT=extern;ZENI_CORE_DLL=__declspec(dllimport);ZENI_CORE_EXT=extern;ZENI_GRAPHICS_DLL=__declspec(dllimport);ZENI_GRAPHICS_EXT=extern;ZENI_NET_DLL=__declspec(dllimport);ZENI_NET_EXT=extern;ZENI_REST_DLL=__declspec(dllimport);ZENI_REST_EXT=extern;ENABLE_XINPUT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -172,7 +176,8 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy ..\..\dev\pc_ ..\.. /E /Y&#x0D;&#x0A;xcopy ..\..\jni\external\bin\x32 ..\..\bin\x32 /E /Y</Command>
+      <Command>xcopy ..\..\dev\pc_ ..\.. /E /Y
+xcopy ..\..\jni\external\bin\x32 ..\..\bin\x32 /E /Y</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -184,9 +189,11 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader></PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_WINDOWS;WIN32;_CRT_SECURE_NO_DEPRECATE;NDEBUG;X64;DISABLE_CPP11;GLEW_NO_GLU;DISABLE_CG;ZLIB_DLL;OGG_DLL=__declspec(dllimport);VORBIS_DLL=__declspec(dllimport);VORBISFILE_DLL=__declspec(dllimport);LIB3DSAPI=__declspec(dllimport);TINYXML_DLL=__declspec(dllimport);TINYXML_EXT=extern;ZENI_DLL=__declspec(dllimport);ZENI_EXT=extern;ZENI_AUDIO_DLL=__declspec(dllimport);ZENI_AUDIO_EXT=extern;ZENI_CORE_DLL=__declspec(dllimport);ZENI_CORE_EXT=extern;ZENI_GRAPHICS_DLL=__declspec(dllimport);ZENI_GRAPHICS_EXT=extern;ZENI_NET_DLL=__declspec(dllimport);ZENI_NET_EXT=extern;ZENI_REST_DLL=__declspec(dllimport);ZENI_REST_EXT=extern;ENABLE_XINPUT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -204,7 +211,8 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy ..\..\dev\pc_ ..\.. /E /Y&#x0D;&#x0A;xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
+      <Command>xcopy ..\..\dev\pc_ ..\.. /E /Y
+xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -382,6 +390,9 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\World.cpp">
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\assets\config\textures.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
