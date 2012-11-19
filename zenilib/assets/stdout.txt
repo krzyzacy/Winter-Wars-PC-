@@ -1,1 +1,3 @@
 Initializing OpenGL
+Initializing OpenGL
+Initializing OpenGL

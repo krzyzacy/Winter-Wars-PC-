@@ -21,8 +21,14 @@ public:
 
 	virtual const model_key_t get_model_name() const;
 
+
+	/*Note to Sen: I changed the default value of tile so I could change the size. 
+		I think the world should choose the tile size though since we want to make the world
+		so that no matter how large the tiles are, the world will still look correct
+	*/
+
 	Tile(const Zeni::Point3f &center__ = Zeni::Point3f(0.0f,0.0f,0.0f),
-		 const Zeni::Vector3f &scale__ = Zeni::Vector3f(1.0f,1.0f,1.0f) 
+		 const Zeni::Vector3f &scale__ = Zeni::Vector3f(20.0f,20.0f,2.0f) 
 		);
 	~Tile(void);
 

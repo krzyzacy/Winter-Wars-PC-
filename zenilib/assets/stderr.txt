@@ -1,4 +1,4 @@
-User-specific config file loaded from '\\storage.adsroot.itcs.umich.edu\home\profiles\CLSE2012\AppData\zenilib\config/zenilib.xml'.
+User-specific config file loaded from 'C:\Users\Akira\AppData\Roaming\zenilib\config/zenilib.xml'.
 zenilib App Info    : Loading asset from file 'icons/icon.png'.
 zenilib App Debug   : Loading config/textures.xml
 zenilib App Info    : Loading asset from file 'textures/crate_light.png'.
@@ -13,7 +13,7 @@ zenilib App Info    : Loading asset from file 'textures/i.png'.
 zenilib App Info    : Loading asset from file 'textures/a.png'.
 zenilib App Debug   : Loaded config/textures.xml
 zenilib App Debug   : Loading config/fonts.xml
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.896667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 0.835000
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -21,7 +21,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.896667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 0.835000
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -29,7 +29,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.896667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 0.835000
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -37,7 +37,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 92.000000, ratio 1.896667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 92.000000, ratio 0.835000
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -45,7 +45,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 46.000000, ratio 1.896667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 46.000000, ratio 0.835000
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -53,7 +53,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 23.000000, ratio 1.896667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 23.000000, ratio 0.835000
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -66,6 +66,130 @@ zenilib App Debug   : Loading config/sounds.xml
 zenilib App Debug   : Loaded config/sounds.xml
 zenilib App Debug   : Loading config/colors.xml
 zenilib App Debug   : Loaded config/colors.xml
+zenilib App Debug   : Loading config/textures.xml
+zenilib App Info    : Loading asset from file 'textures/crate_light.png'.
+zenilib App Info    : Loading asset from file 'textures/crate_light.png'.
+zenilib App Info    : Loading asset from file 'textures/snow.png'.
+zenilib App Info    : Loading asset from file 'textures/blue.png'.
+zenilib App Info    : Loading asset from file 'textures/snow.png'.
+zenilib App Info    : Loading asset from file 'textures/floor.png'.
+zenilib App Info    : Loading asset from file 'textures/toxic.png'.
+zenilib App Info    : Loading asset from file 'textures/blue.png'.
+zenilib App Info    : Loading asset from file 'textures/i.png'.
+zenilib App Info    : Loading asset from file 'textures/a.png'.
+zenilib App Debug   : Loaded config/textures.xml
+zenilib App Debug   : Loading config/fonts.xml
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.155000
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.155000
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.155000
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 92.000000, ratio 1.155000
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 46.000000, ratio 1.155000
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 23.000000, ratio 1.155000
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Loaded config/fonts.xml
+zenilib App Debug   : Loading config/textures.xml
+zenilib App Info    : Loading asset from file 'textures/crate_light.png'.
+zenilib App Info    : Loading asset from file 'textures/crate_light.png'.
+zenilib App Info    : Loading asset from file 'textures/snow.png'.
+zenilib App Info    : Loading asset from file 'textures/blue.png'.
+zenilib App Info    : Loading asset from file 'textures/snow.png'.
+zenilib App Info    : Loading asset from file 'textures/floor.png'.
+zenilib App Info    : Loading asset from file 'textures/toxic.png'.
+zenilib App Info    : Loading asset from file 'textures/blue.png'.
+zenilib App Info    : Loading asset from file 'textures/i.png'.
+zenilib App Info    : Loading asset from file 'textures/a.png'.
+zenilib App Debug   : Loaded config/textures.xml
+zenilib App Debug   : Loading config/fonts.xml
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.413333
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.413333
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.413333
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 92.000000, ratio 1.413333
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 46.000000, ratio 1.413333
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 23.000000, ratio 1.413333
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Loaded config/fonts.xml
 Printing all possible error strings:
 SDL       : no error
 SDL_net   : no error

@@ -41,7 +41,10 @@ void View::add_player_view(Player_View *pv)
 
 void View::render() const
 {	
-	Point2f topLeft(0, 0), middle(1920/2, 1200/2), bottomRight(1920,1200), ySize(0, 1200/2), xSize(1920/2, 0);
+	int width = get_Window().get_width();
+	int height = get_Window().get_height();
+
+	Point2f topLeft(0, 0), middle(width/2, height/2), bottomRight(width,height), ySize(0, height/2), xSize(width/2, 0);
 
 	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(1200.0f, 720.0f)), true);
 	
