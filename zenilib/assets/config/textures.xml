@@ -86,11 +86,32 @@ The following things are unsupported:
     <filepath>textures/i.png</filepath>
     <tile>1</tile>
   </I.PNG>
+  
   <AZURE.PNG>
     <filepath>textures/a.png</filepath>
     <tile>1</tile>
   </AZURE.PNG>
 
+  <WOOL.PNG>
+    <filepath>textures/WOOL.png</filepath>
+    <tile>1</tile>
+  </WOOL.PNG>
+
+  <WOOL1.PNG>
+    <filepath>textures/WOOL1.png</filepath>
+    <tile>1</tile>
+  </WOOL1.PNG>
+
+  <NEWWOOL.PNG>
+    <filepath>textures/NEWWOOL.png</filepath>
+    <tile>1</tile>
+  </NEWWOOL.PNG>
+
+  <BLUECLOTH.PNG>
+    <filepath>textures/BLUECLOTH.png</filepath>
+    <tile>1</tile>
+  </BLUECLOTH.PNG>
+  
   <!--
   <one>
     <is_sprite>0</is_sprite>
