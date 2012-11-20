@@ -79,10 +79,14 @@ void Play_State_Base::perform_logic()
 	for(int i = 0; i < 4; i++)	
 		controllers[i]->adjust_Cam(Game_Model::get().get_player(i));
 
+	//update gravity, is complicated and depends on world.
 
-//	Game_Model::get().get_player(0)->move_strafe(time_step, 100, Vector3f(test.input.move_x, test.input.move_y, 0));
+	//update player velocity/movement
+	for(int i = 0; i < 4; i++)
+		Game_Model::get().get_player(i)->calculate_movement(controllers[i]->give_movement());
 
-	Game_Model::get().update();
+	//updates all positions
+	Game_Model::get().update(time_step);
 }
 
 void Play_State_Base::render()	{

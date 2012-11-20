@@ -2,6 +2,7 @@
 
 #include <zenilib.h>
 
+using namespace std;
 using namespace Zeni;
 
 const int Player::player_ID_c = 1;
@@ -30,6 +31,20 @@ void Player::turn_left(float theta) {
 	m_camera.turn_left_xy(theta);
 }
 
+void Player::update(const float time)	{
+	m_camera.position += velocity * time;
+}
 
+void Player::calculate_movement(const Vector2f &input_vel)	{
+	//Here is where the magic happens for player
+	//input_vel represents joystick desire of where player wants to go
+	Vector3f POV_face = m_camera.get_forward().get_ij().normalize();
+	Vector3f POV_left = m_camera.get_left().get_ij().normalize();
+
+	//Adding Ice effects later, for now straight up movement
+
+	velocity = (POV_face * input_vel.y * standard_speed) + (POV_left * input_vel.x * standard_speed);
+	
+}
 
 

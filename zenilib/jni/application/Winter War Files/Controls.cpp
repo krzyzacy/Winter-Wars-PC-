@@ -81,12 +81,12 @@ bool Controls::HandleJoy(const SDL_JoyAxisEvent &event)	{
 	case 0:		//Left Stick left-right
 		if(abs(event.value) < Stick_sensitivity)
 			Val = 0;
-		input.Move.x = Val;
+		input.Move.x = -Val;
 		break;
 	case 1:		//Left Stick up_down
 		if(abs(event.value) < Stick_sensitivity)
 			Val = 0;
-		input.Move.y = Val;
+		input.Move.y = -Val;
 		break;
 	case 4:		//Right Stick left-right
 		if(abs(event.value) < Stick_sensitivity)
@@ -179,14 +179,19 @@ void Controls::adjust_Cam(Player* Tron)	{
 	Tron->turn_left(input.Cam.x/Cam_factor);
 }
 
+Vector2f Controls::give_movement()	{
+	Vector2f normal_move = input.Move;
+	return normal_move.normalize();
+}
+
 string Controls::give_stick_status()	{
-	string status = "Cam_X: "; 
+	string status = "Move_X: "; 
 	ostringstream ss;
-	ss << input.Cam.x;
+	ss << input.Move.x;
 	status += ss.str();
 	ss.str("");
-	status += " Cam_Y: ";
-	ss << input.Cam.y;
+	status += " Move_Y: ";
+	ss << input.Move.y;
 	status += ss.str();
 	ss.str("");
 	return status;

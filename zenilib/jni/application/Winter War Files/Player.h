@@ -3,6 +3,8 @@
 
 class Collision_Table;
 
+
+
 class Player :
 	public Moveable
 {
@@ -15,12 +17,12 @@ public:
 	void adjust_pitch(float phi);
 
 // Moving Functions
-	void move_forward(float force);
-	void move_left(float force);
+	void calculate_movement(const Zeni::Vector2f &input_vel);
 
 // Actions
 	void throw_ball();
 
+	void update(const float time);
 
 // Getters
 	const Zeni::Camera &get_camera() const

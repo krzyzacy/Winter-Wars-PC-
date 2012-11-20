@@ -4,6 +4,8 @@
 
 const float Cam_factor = 3276800;
 const int Stick_sensitivity = 8000;
+const float Move_factor = 32768;
+
 
 class Player;
 
@@ -25,6 +27,8 @@ public:
 	void adjust_Cam(Player* Tron);
 
 	void set_inverted(bool invert);
+
+	Zeni::Vector2f give_movement();
 
 private:
 	struct Inputs	{

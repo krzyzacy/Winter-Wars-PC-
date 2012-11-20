@@ -15,6 +15,11 @@ Moveable::~Moveable(void)
 {
 }
 
+void Moveable::gravity(const float time)	{
+	if(!is_on_ground())	
+		velocity += grav_accel * time * time;
+}
+
 void Moveable::update(const float time)	{
 	center += velocity * time;
 	
