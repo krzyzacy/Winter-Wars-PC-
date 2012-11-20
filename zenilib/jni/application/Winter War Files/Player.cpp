@@ -30,10 +30,6 @@ void Player::turn_left(float theta) {
 	m_camera.turn_left_xy(theta);
 }
 
-void Player::move_strafe(float time, float spd, Vector3f XYDir)	{
-	center += XYDir * time * spd;
-	m_camera.position += XYDir * time * spd;
 
-}
 
 

@@ -22,7 +22,7 @@ public:
 	
 	~Game_Model(void);
 
-	void update();
+	void update(const float time);
 	void render() const;
 	void start_up();
 	

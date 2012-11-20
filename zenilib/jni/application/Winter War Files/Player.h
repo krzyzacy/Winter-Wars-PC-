@@ -18,8 +18,6 @@ public:
 	void move_forward(float force);
 	void move_left(float force);
 
-	void move_strafe(float time, float spd, Zeni::Vector3f XYDir);
-
 // Actions
 	void throw_ball();
 

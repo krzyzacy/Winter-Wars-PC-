@@ -8,6 +8,7 @@
 
 #include <zenilib.h>
 
+using namespace std;
 using namespace Zeni;
 
 
@@ -43,8 +44,10 @@ Game_Model::~Game_Model(void)
 	delete view;
 }
 
-void Game_Model::update()
+void Game_Model::update(const float time)
 {	
+	for(vector<Moveable*>::iterator it = movers.begin(); it != movers.end(); ++it)
+		(*it)->update(time);
 
 	check_collisions();
 }
