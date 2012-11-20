@@ -34,28 +34,22 @@ private:
 	float time_passed;
 	float time_step;
 	
-	//vector<Controls*> controllers;
-	//For now  
-	Controls test;
+	
+	vector<Controls*> controllers;
 	
 	Color m_prev_clear_color;
 
-	void on_event(const SDL_Event &event);
-//	void on_event(const Zeni_Input_ID &Zid, const float &confidence, const int &action);
-
 	void on_joy_axis(const SDL_JoyAxisEvent &event);
-	void on_joy_ball(const SDL_JoyBallEvent &event); 
 	void on_joy_hat(const SDL_JoyHatEvent &event);
 	void on_joy_button(const SDL_JoyButtonEvent &event);
-
+	
+	void on_key(const SDL_KeyboardEvent &event);
+ 	void on_mouse_motion(const SDL_MouseMotionEvent &event);
 
 	void on_push();
 	void on_pop();
 
-	void on_key(const SDL_KeyboardEvent &event);
-  
 	
-	void on_mouse_motion(const SDL_MouseMotionEvent &event);
 
 	void perform_logic();
 
