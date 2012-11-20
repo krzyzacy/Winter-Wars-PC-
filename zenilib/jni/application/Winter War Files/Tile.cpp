@@ -2,13 +2,17 @@
 #include "Structure.h"
 
 Tile::Tile(const Zeni::Point3f &center__,
-		   const Zeni::Vector3f &scale__
+		   const Zeni::Vector3f &scale__,
+		   const int col__,
+		   const int row__
 		)	:
 	covering(HARD_SNOW),
 	Building(0)
 {
 	this->center = center__;
 	this->size = scale__;
+	this->col = col__;
+	this->row = row__;
 }
 
 

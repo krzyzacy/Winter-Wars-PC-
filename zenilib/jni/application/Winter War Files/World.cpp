@@ -35,7 +35,8 @@ World::World( View *view_,
 			
 			float scale_size = 2*tile_size;
 			Tile* tmp;
-			tmp = new Tile(center,Zeni::Vector3f(scale_size,scale_size,scale_size));
+			tmp = new Tile(center,Zeni::Vector3f(scale_size,scale_size,scale_size),w,h);
+
 			map[h][w] = tmp;
 
 			view->add_renderable(map[h][w]);
