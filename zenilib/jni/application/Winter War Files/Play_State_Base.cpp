@@ -36,9 +36,9 @@ void Play_State_Base::on_pop()	{
 }
 
 void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {
-	if(!controllers[0]->take_keyboard_input(event, 0)	||
-			!controllers[1]->take_keyboard_input(event, 1))
-				Gamestate_Base::on_key(event); // Let Gamestate_Base handle it
+	controllers[0]->take_keyboard_input(event, 0);
+	controllers[1]->take_keyboard_input(event, 1);
+	Gamestate_Base::on_key(event); // Let Gamestate_Base handle it
 } 
 
 void Play_State_Base::on_mouse_motion(const SDL_MouseMotionEvent &event) {

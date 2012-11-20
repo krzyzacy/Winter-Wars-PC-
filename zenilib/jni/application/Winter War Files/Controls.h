@@ -2,7 +2,7 @@
 
 #include <zenilib.h>
 
-const float Cam_factor = 3276800;
+const float Cam_factor = 3276800/4;
 const int Stick_sensitivity = 8000;
 const float Move_factor = 32768;
 

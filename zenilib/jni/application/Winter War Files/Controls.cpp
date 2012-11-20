@@ -26,16 +26,16 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 		if(which == 0)	{
 			switch(event.keysym.sym)	{
 			case SDLK_w:
-				input.Move.x = 1 * (event.type == SDL_KEYDOWN);
+				input.Move.y = 1 * (event.type == SDL_KEYDOWN);
 				break;
 			case SDLK_s:
-				input.Move.x = -1 * (event.type == SDL_KEYDOWN);
-				break;
-			case SDLK_d:
 				input.Move.y = -1 * (event.type == SDL_KEYDOWN);
 				break;
+			case SDLK_d:
+				input.Move.x = -1 * (event.type == SDL_KEYDOWN);
+				break;
 			case SDLK_a:
-				input.Move.y = 1 * (event.type == SDL_KEYDOWN);
+				input.Move.x = 1 * (event.type == SDL_KEYDOWN);
 				break;
 				
 			default:
@@ -45,19 +45,17 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 		}
 		else if(which == 1)	{
 			switch(event.keysym.sym)	{
-			case SDLK_SPACE:
-				input.jump = event.type == SDL_KEYDOWN;
 			case SDLK_UP:
-				input.Move.x = 1.0 * (event.type == SDL_KEYDOWN);
-				break;
-			case SDLK_DOWN:
-				input.Move.x = -1 * (event.type == SDL_KEYDOWN);
-				break;
-			case SDLK_LEFT:
 				input.Move.y = 1 * (event.type == SDL_KEYDOWN);
 				break;
-			case SDLK_RIGHT:
+			case SDLK_DOWN:
 				input.Move.y = -1 * (event.type == SDL_KEYDOWN);
+				break;
+			case SDLK_LEFT:
+				input.Move.x = 1 * (event.type == SDL_KEYDOWN);
+				break;
+			case SDLK_RIGHT:
+				input.Move.x = -1 * (event.type == SDL_KEYDOWN);
 				break;
 			default:
 				Handled_Input = false;
