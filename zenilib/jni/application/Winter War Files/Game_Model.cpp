@@ -49,6 +49,9 @@ void Game_Model::update(const float time)
 	for(vector<Moveable*>::iterator it = movers.begin(); it != movers.end(); ++it)
 		(*it)->update(time);
 
+	for(vector<Player*>::iterator it = players.begin(); it != players.end(); ++it)
+		(*it)->update(time);
+
 	check_collisions();
 }
 

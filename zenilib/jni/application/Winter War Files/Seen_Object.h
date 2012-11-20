@@ -27,6 +27,7 @@ public:
 
 	virtual const model_key_t get_model_name() const = 0;
 
+	bool is_on_ground();
 
 protected:
 	Zeni::Point3f center;

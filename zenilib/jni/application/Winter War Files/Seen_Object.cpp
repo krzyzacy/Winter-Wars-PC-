@@ -31,3 +31,10 @@ void Seen_Object::render(Model *model) const
 
     model->render();
 }
+
+bool Seen_Object::is_on_ground()	{
+	//return true if Object is on the ground
+	//will probably move
+	return true;
+}
+
