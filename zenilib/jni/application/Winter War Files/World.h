@@ -20,6 +20,13 @@ public:
 
 	Tile * get_tile(const Zeni::Point3f &position);
 
+	Tile * player_is_looking_at(Zeni::Point3f &player_pos, Zeni::Vector3f look_dir);
+
+	//change input type if you want, or make multiple types
+	bool is_adjacent(Tile* A, Tile* B);
+
+	//Boundary check?
+
 	// view or model?
 
 private:

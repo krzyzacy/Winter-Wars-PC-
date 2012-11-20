@@ -21,6 +21,7 @@ public:
 
 	virtual const model_key_t get_model_name() const;
 
+	//Height related stuff
 
 	/*Note to Sen: I changed the default value of tile so I could change the size. 
 		I think the world should choose the tile size though since we want to make the world
