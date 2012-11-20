@@ -78,7 +78,7 @@ void Collision_Table::collideSnowballPlayer(Snowball* b1, Player* p1)
 
 void Collision_Table::collidePlayerPlayer(Player* , Player* )
 {
-	throw Error("");
+	
 }
 
 void Collision_Table::collidePermanentSnowball(Permanent* w1, Snowball* ob2)

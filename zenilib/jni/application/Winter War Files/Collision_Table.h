@@ -22,6 +22,8 @@ private:
 	typedef void (Collision_Table::*fxn_ptr_t)(Collidable*, Collidable*);
 	std::vector<std::vector<fxn_ptr_t> > table;
 
+	// these functions should check to see if the objects are colliding
+	// and then handle the collision if they are
 	void collideSnowballSnowball(Snowball*, Snowball*);
 	void collidePlayerSnowball(Player*, Snowball*);
 	void collideSnowballPlayer(Snowball*, Player*);
