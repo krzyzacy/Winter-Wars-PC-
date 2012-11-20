@@ -107,10 +107,10 @@ The following things are unsupported:
     <tile>1</tile>
   </NEWWOOL.PNG>
 
-  <BLUECLOTH.PNG>
-    <filepath>textures/BLUECLOTH.png</filepath>
+  <BLCLOTH.PNG>
+    <filepath>textures/BLCLOTH.png</filepath>
     <tile>1</tile>
-  </BLUECLOTH.PNG>
+  </BLCLOTH.PNG>
 
   <!--
   <one>
