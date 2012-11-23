@@ -76,9 +76,14 @@ void Collision_Table::collideSnowballPlayer(Snowball* b1, Player* p1)
 	collidePlayerSnowball(p1,b1);
 }
 
-void Collision_Table::collidePlayerPlayer(Player* , Player* )
+void Collision_Table::collidePlayerPlayer(Player* p1, Player* p2)
 {
-	
+	// if no collision, return
+//	if (!p1->body->intersects(p2->body))
+//		return ;
+
+
+
 }
 
 void Collision_Table::collidePermanentSnowball(Permanent* w1, Snowball* ob2)

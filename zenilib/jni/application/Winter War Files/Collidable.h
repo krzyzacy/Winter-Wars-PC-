@@ -11,8 +11,10 @@ public:
 	Collidable(void);
 	virtual ~Collidable(void);
 
-private:
+	virtual void update(){}
 
+private:
+	virtual void create_body(){}
 	
 	// Collison Stuff
 	const static int collidable_ID_c;

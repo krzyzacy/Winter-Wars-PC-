@@ -15,16 +15,21 @@ Moveable::~Moveable(void)
 {
 }
 
-void Moveable::gravity(const float time)	{
+void Moveable::gravity(float time)	{
 	if(!is_on_ground())	
 		velocity += grav_accel * time * time;
 }
 
-void Moveable::update(const float time)	{
+void Moveable::update(float time)	{
 	center += velocity * time;
 	
 }
 
 void Moveable::set_velocity(const Vector3f vel)	{
 	velocity = vel;
+}
+
+void Moveable::accelerate(const Vector3f &acc)
+{
+	accel += acc;
 }

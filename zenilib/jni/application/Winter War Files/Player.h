@@ -39,6 +39,8 @@ private:
 
 
 	// Collison Stuff
+	Zeni::Collision::Capsule *body;
+
 	const static int player_ID_c;
 	friend Collision_Table;
 };
