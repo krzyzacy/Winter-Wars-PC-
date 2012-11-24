@@ -331,35 +331,7 @@ private:
 	
 	void render_controls(int y)
 {
-	int y_incr = 45;
 
-	int screen_x_c = 300;
-
-	Color col = Color(1.0,1.0,1,1);
-
-	get_Fonts()["medium"].render_text(
-		""
-			, Point2f(screen_x_c + 10, y), col);
-
-	get_Fonts()["small"].render_text(
-		"Move: W A S D"
-			, Point2f(screen_x_c + 20, y_incr + y), col);
-
-	get_Fonts()["small"].render_text(
-		"Shoot Soap: Left Mouse Button"
-			, Point2f(screen_x_c + 10, y_incr*2 + y), col);
-			
-	get_Fonts()["small"].render_text(
-		"Camera: Mouse"
-			, Point2f(screen_x_c + 10, y_incr*3 + y), col);
-
-	col = Color();
-
-	get_Fonts()["small"].render_text(
-		"Clean the water to get Points!\nGet as many points as possible before time runs out.\nThe longer you hold down soap, the larger the bubbles get.\nWhen your bubbles touches toxins, you will get points and the soap will decrease in size.\nTry hitting more than one toxin with the same soap for more points!\n"
-			, Point2f(0 + 10, y_incr*8 + y), col);
-
-	
 }
   void on_key(const SDL_KeyboardEvent &event) {
     if(event.keysym.sym == SDLK_ESCAPE && event.state == SDL_PRESSED)

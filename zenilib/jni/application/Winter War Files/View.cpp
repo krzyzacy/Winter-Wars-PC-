@@ -78,7 +78,11 @@ void View::render_world() const
 // Render a single object
 void View::render_renderable(const Seen_Object *to_rend) const
 {
-	Zeni::Model *m = model_map.find(to_rend->get_model_name())->second; 
-	to_rend->render(m);
+	map<model_key_t, Model *>::const_iterator mIt = model_map.find(to_rend->get_model_name()); 
+
+	if (mIt == model_map.end())
+		throw Error(("Model " + to_rend->get_model_name() + " does not exist.").data());
+
+	to_rend->render(mIt->second);
 }
 

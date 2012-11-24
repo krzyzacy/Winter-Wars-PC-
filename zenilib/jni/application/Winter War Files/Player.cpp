@@ -1,11 +1,16 @@
 #include "Player.h"
 
+#include "Game_Model.h"
+#include "Snowball.h"
+
 #include <zenilib.h>
 
 using namespace std;
 using namespace Zeni;
 
 const int Player::player_ID_c = 1;
+
+const float standard_speed = 100;
 
 Player::Player(const Zeni::Point3f &center_) 
 	: Moveable(center_), m_camera(center_)
@@ -31,8 +36,20 @@ void Player::turn_left(float theta) {
 	m_camera.turn_left_xy(theta);
 }
 
-void Player::update(const float time)	{
+void Player::update(const float &time)	{
+	Moveable::update(time);
+
 	m_camera.position += velocity * time;
+}
+
+
+void Player::throw_ball()
+{
+	Snowball *sb = new Snowball(center+m_camera.get_forward());
+
+	sb->get_thrown(m_camera.get_forward(), 100);
+
+	Game_Model::get().add_moveable(sb);
 }
 
 void Player::calculate_movement(const Vector2f &input_vel)	{

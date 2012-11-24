@@ -22,7 +22,7 @@ public:
 // Actions
 	void throw_ball();
 
-	void update(const float time);
+	void update(const float &time);
 
 // Getters
 	const Zeni::Camera &get_camera() const

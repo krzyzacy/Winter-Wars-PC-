@@ -22,12 +22,14 @@ public:
 	
 	~Game_Model(void);
 
-	void update(const float time);
+	void update(const float &time);
 	void render() const;
 	void start_up();
 	
 	Player *get_player(int i)
 		{return players.at(i);}
+
+	void add_moveable(Moveable *);
 
 private:
 	Game_Model(void);
@@ -36,8 +38,12 @@ private:
 	Collision_Table table;
 
 	std::vector<Player*> players; 
-	std::vector<Moveable*> movers; 
-	std::vector<Collidable*> colliders;
+
+	typedef std::set<Moveable*> moveable_list_t;
+	moveable_list_t movers; 
+	
+	typedef std::set<Collidable*> collidable_list_t;
+	collidable_list_t colliders;
 	
 	// Functions
 	void check_collisions();

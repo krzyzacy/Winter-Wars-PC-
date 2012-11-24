@@ -19,8 +19,8 @@ Snowball::~Snowball(void)
 {
 }
 
-void Snowball::update(float time)
-{
+void Snowball::update(const float &time)
+{	
 	if (in_air)
 	{
 		Moveable::update(time);
@@ -31,9 +31,9 @@ void Snowball::update(float time)
 	}
 }
 
-void Snowball::get_thrown(const Vector3f &dir)
+void Snowball::get_thrown(const Vector3f &dir, const float &force)
 {
 	in_air = true;
 
-	accelerate(dir*2);
+	accelerate(dir*force);
 }

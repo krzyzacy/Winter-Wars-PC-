@@ -3,8 +3,8 @@
 #include "Collidable.h"
 #include "Seen_Object.h"
 
-const float standard_speed = 100;
-const Zeni::Vector3f grav_accel(0.0f, 0.0f, -9.8f);
+// moved consts to cpp file to keep them local to moveable,
+//  no reason to include them everywhere
 
 class Moveable :
 	public Collidable, public Seen_Object
@@ -14,7 +14,7 @@ public:
               const Zeni::Vector3f &size_ = Zeni::Vector3f(1,1,1));
 	~Moveable(void);
 
-	void update(float time);
+	virtual void update(const float &time) = 0;
 
 	void gravity(float time);
 
@@ -26,6 +26,8 @@ public:
 
 protected:
 	Zeni::Vector3f velocity;
+	
+private:
 	Zeni::Vector3f accel;
 };
 

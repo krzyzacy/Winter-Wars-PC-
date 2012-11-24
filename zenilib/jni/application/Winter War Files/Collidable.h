@@ -11,7 +11,7 @@ public:
 	Collidable(void);
 	virtual ~Collidable(void);
 
-	virtual void update(){}
+	virtual void update(const float &) = 0;
 
 private:
 	virtual void create_body(){}
