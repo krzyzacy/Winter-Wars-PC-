@@ -7,7 +7,8 @@ using namespace std;
 using namespace Zeni;
 
 Controls::Controls(bool inverted_)	:
-	inverted(inverted_)
+	inverted(inverted_),
+	Shoot(CHILL)
 {
 }
 
@@ -37,6 +38,8 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 			case SDLK_a:
 				input.Move.x = 1 * (event.type == SDL_KEYDOWN);
 				break;
+			case SDLK_RETURN:
+				input.shoot = event.state == SDL_PRESSED;
 				
 			default:
 				Handled_Input = false;
@@ -97,14 +100,16 @@ bool Controls::HandleJoy(const SDL_JoyAxisEvent &event)	{
 		input.Cam.y = (!inverted - inverted) * Val;
 		break;
 	case 5:		//Left Trigger
-		if(Val > 1)
+		if(Val > Trig_sensitivity)
 			input.build_view = true;
 		else
 			input.build_view = false;
 		break;
 	case 2:		//Right Trigger
-			if(Val > 0) //Anything greater than 0 represents a press (32768 is max)
+			if(Val > Trig_sensitivity) //Anything greater than 0 represents a press (32768 is max)
 				input.shoot = true;
+			else 
+				input.shoot = false;
 		break;
 	default:
 		Handled_Input = false;
@@ -163,6 +168,9 @@ bool Controls::HandleJoy(const SDL_JoyButtonEvent &event)	{
 		//Respawn?
 		break;
 	case 7:	//Start Button (Gamestate_Base Handles this for pause only if joymouse enabled)
+		get_Game().joy_mouse.enabled = true;
+		Handled_Input = false;
+		break;
 	case 8:	//Click left joystick down
 	case 9:	//Click right joystick down
 	default:
@@ -182,16 +190,65 @@ Vector2f Controls::give_movement()	{
 	return normal_move.normalize();
 }
 
+void Controls::interact_with_player(Player* Tron, const float &time)	{
+	//First deal with shooting state
+	switch(Shoot)		{
+	case CHILL:
+		//Check for charge command, else do nothing
+		if(input.shoot)
+			Shoot = CHARGING;
+		break;
+	case CHARGING:
+		Tron->charge_ball(time);
+		if(!input.shoot)
+			Shoot = FIRE;
+		break;
+	case FIRE:
+		Tron->throw_ball();
+		Shoot = CHILL;
+		break;
+	default:
+		Shoot = CHILL;
+		break;
+	}
+
+//Then deal with buttons, might have to split off here
+	//Then Deal with jump?	(requires player/world info (is in air))
+	//Then deal with pack(Absorb snow) (requires world info)
+	//Deal with mini-map view
+	//deal with build view
+	
+	if(input.pack)
+		Tron->pack_snow(time);
+
+	//Chell = Tron;
+	
+}
+
 string Controls::give_stick_status()	{
-	string status = "Move_X: "; 
+	string status = ""; 
 	ostringstream ss;
-	ss << input.Move.x;
-	status += ss.str();
-	ss.str("");
-	status += " Move_Y: ";
-	ss << input.Move.y;
-	status += ss.str();
-	ss.str("");
+	//ss << input.Move.x;
+	//status += ss.str();
+	//ss.str("");
+	//status += " Move_Y: ";
+	//ss << input.Move.y;
+	//status += ss.str();
+	//ss.str("");
+
+	//status = "Snow: ";
+	//ss << Chell->Snow_in_Pack;
+	//status += ss.str();
+	//ss.str("");
+	//status += " radius: ";
+	//ss << Chell->current_radius;
+	//status += ss.str();
+	//ss.str("");
+	//status += "Shoot state: ";
+	//ss << Shoot;
+	//status += ss.str();
+	//ss.str("");
+
 	return status;
 }
 

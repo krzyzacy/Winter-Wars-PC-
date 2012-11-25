@@ -37,6 +37,7 @@ void Moveable::update(const float &time)	{
 	center += velocity * time;
 
 	// reset accel
+	// This gives everything acceleration pulses.
 	accel = Vector3f();
 }
 

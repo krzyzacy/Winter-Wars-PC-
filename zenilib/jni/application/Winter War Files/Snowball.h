@@ -32,6 +32,9 @@ public:
 private:
 	bool in_air;
 	Player *owner;
+
+	Zeni::Chronometer<Zeni::Time> Lifespan;
+	bool damage_dealt;
 	
 	// Collison Stuff
 	const static int snowball_ID_c;

@@ -13,7 +13,8 @@ const int Player::player_ID_c = 1;
 const float standard_speed = 100;
 
 Player::Player(const Zeni::Point3f &center_) 
-	: Moveable(center_), m_camera(center_)
+	: Moveable(center_), m_camera(center_),
+	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount)
 {
 }
 
@@ -38,18 +39,38 @@ void Player::turn_left(float theta) {
 
 void Player::update(const float &time)	{
 	Moveable::update(time);
-
 	m_camera.position += velocity * time;
 }
 
 
 void Player::throw_ball()
 {
-	Snowball *sb = new Snowball(center+m_camera.get_forward());
+	if(current_radius > 0)	{
+		Snowball *sb = new Snowball(center+m_camera.get_forward(), 
+																Vector3f(current_radius, current_radius,current_radius));
+		sb->get_thrown(m_camera.get_forward(), 100);
+		current_radius = 0;
+		Game_Model::get().add_moveable(sb);
+	}
+	//if radius is 0, means out of snow, and therefore don't throw
+}
 
-	sb->get_thrown(m_camera.get_forward(), 100);
+void Player::charge_ball(const float &time)	{
+	//This represents when the player is "packing" snow into a ball
+		if(Snow_in_Pack <= 0)		
+			Snow_in_Pack = 0;
+		else	{
+			current_radius += charge_rate * time;
+			Snow_in_Pack -= charge_rate *time;
+		}
+}
 
-	Game_Model::get().add_moveable(sb);
+void Player::pack_snow(const float &time)	{
+	//This will change, but exists for now as a simple test function
+	if(Snow_in_Pack >= Max_Snow_Amount)
+		Snow_in_Pack = Max_Snow_Amount;
+	else
+		Snow_in_Pack += pack_rate * time;
 }
 
 void Player::calculate_movement(const Vector2f &input_vel)	{

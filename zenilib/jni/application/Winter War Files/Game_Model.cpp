@@ -50,7 +50,7 @@ void Game_Model::update(const float &time)
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); ++it)
 		(*it)->update(time);
 
-	get_player(0)->throw_ball();
+	//get_player(0)->throw_ball();
 
 	check_collisions();
 }
@@ -79,3 +79,5 @@ void Game_Model::add_moveable(Moveable *m)
 	colliders.insert(m);
 	view->add_renderable(m);
 }
+
+

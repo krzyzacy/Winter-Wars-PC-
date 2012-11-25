@@ -61,15 +61,16 @@ void Play_State_Base::on_joy_hat(const SDL_JoyHatEvent &event)	{
 }
 
 void Play_State_Base::on_joy_button(const SDL_JoyButtonEvent &event)	{
-	if(!controllers[event.which]->HandleJoy(event))	{}
+	if(!controllers[event.which]->HandleJoy(event))	{
 		Gamestate_Base::on_joy_button(event);
+		get_Game().joy_mouse.enabled = false;
+	}
 }
 
 
 
 void Play_State_Base::perform_logic()	
 {
-	
 	const float frametime_passed = PlayTime.seconds();
 	const float currentStep = frametime_passed - time_passed;
 	time_passed = frametime_passed;
@@ -79,11 +80,17 @@ void Play_State_Base::perform_logic()
 	for(int i = 0; i < 4; i++)	
 		controllers[i]->adjust_Cam(Game_Model::get().get_player(i));
 
+	for(int i = 0; i < 4; i++)
+		controllers[i]->interact_with_player(Game_Model::get().get_player(i), time_step);
+	
+	
 	//update gravity, is complicated and depends on world.
 
 	//update player velocity/movement
 	for(int i = 0; i < 4; i++)
 		Game_Model::get().get_player(i)->calculate_movement(controllers[i]->give_movement());
+
+	
 
 	//updates all positions
 	Game_Model::get().update(time_step);

@@ -10,6 +10,7 @@ class World;
 class Player;
 class Moveable;
 class Collidable;
+class Snowball;
 
 class Game_Model
 {
@@ -30,6 +31,8 @@ public:
 		{return players.at(i);}
 
 	void add_moveable(Moveable *);
+
+	void add_snowball(Snowball *);
 
 private:
 	Game_Model(void);

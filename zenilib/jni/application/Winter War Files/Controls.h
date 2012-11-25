@@ -2,12 +2,18 @@
 
 #include <zenilib.h>
 
+
 const float Cam_factor = 3276800/4;
 const int Stick_sensitivity = 8000;
+const int Trig_sensitivity = 5000;
 const float Move_factor = 32768;
 
 
 class Player;
+
+enum	Shooting_State	{
+		CHILL, CHARGING, FIRE
+};
 
 
 class Controls
@@ -24,13 +30,20 @@ public:
 	bool HandleJoy(const SDL_JoyHatEvent &event);
 	bool HandleJoy(const SDL_JoyButtonEvent &event);
 
+	/*		This function translates most control inputs into actions
+		Doesn't handle joystics, might split up into buttons and triggers*/
+	void interact_with_player(Player* Tron, const float &time);
+
+	/* Adjust player view using right stick	*/
 	void adjust_Cam(Player* Tron);
 
+	/*	Sets inverted if the player changes options menu (options to be implemented */
 	void set_inverted(bool invert);
 
 	Zeni::Vector2f give_movement();
 
 private:
+
 	struct Inputs	{
 		Inputs()	: jump(false), pack(false), mini_map(false), shoot(false), 
 			build_view(false), Cam(0.0f, 0.0f), Move(0.0f, 0.0f)		{}
@@ -47,6 +60,11 @@ private:
 	} input;
 
 	bool inverted;
+
+	Shooting_State	Shoot;
+
+	//Temp Pointer (or not????)
+	//Player * Chell;
 
 };
 
