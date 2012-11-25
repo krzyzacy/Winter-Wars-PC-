@@ -1,4 +1,4 @@
-﻿Build started 2012/11/24 22:05:28.
+﻿Build started 2012/11/25 15:06:20.
      1>Project "H:\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "obj\x32\Release\game.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -21,8 +21,7 @@
          ..\..\jni\external\bin\x32\vccorlib110.dll
          6 File(s) copied
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Collidable.cpp" "..\..\jni\application\Winter War Files\Collision_Table.cpp" "..\..\jni\application\Winter War Files\Controls.cpp" "..\..\jni\application\Winter War Files\Game_Model.cpp" "..\..\jni\application\Winter War Files\Moveable.cpp" "..\..\jni\application\Winter War Files\Object_factory.cpp" "..\..\jni\application\Winter War Files\Permanent.cpp" "..\..\jni\application\Winter War Files\Play_State_Base.cpp" "..\..\jni\application\Winter War Files\Player.cpp" "..\..\jni\application\Winter War Files\Player_View.cpp" "..\..\jni\application\Winter War Files\Snowball.cpp" "..\..\jni\application\Winter War Files\Snowman.cpp" "..\..\jni\application\Winter War Files\Structure.cpp" "..\..\jni\application\Winter War Files\Tile.cpp" "..\..\jni\application\Winter War Files\View.cpp" "..\..\jni\application\Winter War Files\World.cpp" "..\..\jni\application\Winter War Files\bootstrap.cpp"
-         Collidable.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Collision_Table.cpp" "..\..\jni\application\Winter War Files\Controls.cpp" "..\..\jni\application\Winter War Files\Game_Model.cpp" "..\..\jni\application\Winter War Files\Moveable.cpp" "..\..\jni\application\Winter War Files\Object_factory.cpp" "..\..\jni\application\Winter War Files\Permanent.cpp" "..\..\jni\application\Winter War Files\Play_State_Base.cpp" "..\..\jni\application\Winter War Files\Player.cpp" "..\..\jni\application\Winter War Files\Player_View.cpp" "..\..\jni\application\Winter War Files\Seen_Object.cpp" "..\..\jni\application\Winter War Files\Snowball.cpp" "..\..\jni\application\Winter War Files\Snowman.cpp" "..\..\jni\application\Winter War Files\Structure.cpp" "..\..\jni\application\Winter War Files\Tile.cpp" "..\..\jni\application\Winter War Files\View.cpp" "..\..\jni\application\Winter War Files\World.cpp" "..\..\jni\application\Winter War Files\bootstrap.cpp"
          Collision_Table.cpp
      1>..\..\jni\application\Winter War Files\Collision_Table.cpp(64): warning C4100: 'b2' : unreferenced formal parameter
      1>..\..\jni\application\Winter War Files\Collision_Table.cpp(64): warning C4100: 'b1' : unreferenced formal parameter
@@ -35,21 +34,20 @@
      1>..\..\jni\application\Winter War Files\Collision_Table.cpp(102): warning C4100: 'w1' : unreferenced formal parameter
      1>..\..\jni\application\Winter War Files\Collision_Table.cpp(102): warning C4100: 'ob2' : unreferenced formal parameter
          Controls.cpp
-     1>..\..\jni\application\Winter War Files\Controls.cpp(29): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(32): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(35): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(38): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(49): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(52): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Controls.cpp(30): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Controls.cpp(33): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Controls.cpp(36): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Controls.cpp(39): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
      1>..\..\jni\application\Winter War Files\Controls.cpp(55): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
      1>..\..\jni\application\Winter War Files\Controls.cpp(58): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(82): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(87): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(92): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(97): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Controls.cpp(61): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Controls.cpp(64): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Controls.cpp(88): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Controls.cpp(93): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Controls.cpp(98): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Controls.cpp(103): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
          Game_Model.cpp
          Moveable.cpp
-     1>..\..\jni\application\Winter War Files\Moveable.cpp(21): warning C4100: 'time' : unreferenced formal parameter
          Object_factory.cpp
      1>..\..\jni\application\Winter War Files\Object_factory.cpp(17): warning C4189: 'lowest_area' : local variable is initialized but not referenced
          Permanent.cpp
@@ -57,13 +55,14 @@
      1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(27): warning C4305: 'argument' : truncation from 'double' to 'const float'
      1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(27): warning C4305: 'argument' : truncation from 'double' to 'const float'
      1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(27): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(97): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(97): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(98): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(98): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(98): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(106): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(106): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(107): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(107): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(107): warning C4305: 'argument' : truncation from 'double' to 'const float'
          Player.cpp
          Player_View.cpp
+         Seen_Object.cpp
          Snowball.cpp
          Snowman.cpp
          Structure.cpp
@@ -116,4 +115,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:01:17.36
+Time Elapsed 00:01:53.68
