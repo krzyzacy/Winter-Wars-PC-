@@ -50,6 +50,7 @@ World::~World(void)
 {
 }
 
+
 Tile* World::get_tile(const Zeni::Point3f &position){
 	float xr = position.x;
 	float yr = position.y;
@@ -127,5 +128,17 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 			}
 		}
 	}
+}
+
+bool World::is_adjacent(Tile* A, Tile* B){
+	int row_A = A->get_row();
+	int row_B = B->get_row();
+	int col_A = A->get_col();
+	int col_B = B->get_col();
+
+	if(abs(row_A - row_B) > 1 || abs(col_A - col_B) > 1)
+		return false;
+
+	/* todo.. missed my map.. */
 }
 
