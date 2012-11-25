@@ -227,7 +227,7 @@ void Controls::interact_with_player(Player* Tron, const float &time)	{
 	if(input.jump)
 		Tron->jump();
 
-	//Chell = Tron;
+	Chell = Tron;
 	
 }
 
@@ -242,18 +242,18 @@ string Controls::give_stick_status()	{
 	//status += ss.str();
 	//ss.str("");
 
-	//status = "Snow: ";
-	//ss << Chell->Snow_in_Pack;
-	//status += ss.str();
-	//ss.str("");
-	//status += " radius: ";
-	//ss << Chell->current_radius;
-	//status += ss.str();
-	//ss.str("");
+	status = "Snow: ";
+	ss << Chell->Snow_in_Pack;
+	status += ss.str();
+	ss.str("");
+	status += " radius: ";
+	ss << Chell->current_radius;
+	status += ss.str();
+	ss.str("");
 	//status += "Shoot state: ";
 	//ss << Shoot;
 	//status += ss.str();
-	//ss.str("");
+	ss.str("");
 
 	return status;
 }

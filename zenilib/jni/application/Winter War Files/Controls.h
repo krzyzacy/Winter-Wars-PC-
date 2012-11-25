@@ -64,7 +64,7 @@ private:
 	Shooting_State	Shoot;
 
 	//Temp Pointer (or not????)
-	//Player * Chell;
+	Player * Chell;
 
 };
 

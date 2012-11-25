@@ -40,7 +40,8 @@ public:
 	virtual int get_ID() const 
 		{return player_ID_c;}
 
-private:
+//private: &&& only temporary
+public:
 	Zeni::Camera m_camera;
 
 	//Snowball Stuff
