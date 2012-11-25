@@ -80,4 +80,22 @@ void Game_Model::add_moveable(Moveable *m)
 	view->add_renderable(m);
 }
 
+void Game_Model::remove_moveable(Moveable *m)	{
+		movers.erase(m);
+		colliders.erase(m);
+		view->remove_renderable(m);
+		delete m;
+}
+
+void Game_Model::Clean_Moving_dead()	{
+	list<Moveable*> Trash;
+	for(moveable_list_t::iterator it = movers.begin(); it != movers.end(); ++it)	{
+		if(!(*it)->is_alive())
+			Trash.push_back(*it);
+	}
+
+	for(list<Moveable*>::iterator it = Trash.begin(); it != Trash.end(); ++it)	
+		remove_moveable(*it);
+}
+
 

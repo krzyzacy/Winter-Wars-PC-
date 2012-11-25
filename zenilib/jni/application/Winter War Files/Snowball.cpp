@@ -36,6 +36,7 @@ void Snowball::update(const float &time)
 		damage_dealt = true;
 		Moveable::set_velocity(Vector3f());
 		Lifespan.stop();
+		alive = false;
 	}
 }
 

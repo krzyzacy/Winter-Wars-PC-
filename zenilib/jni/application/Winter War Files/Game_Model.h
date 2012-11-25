@@ -32,7 +32,10 @@ public:
 
 	void add_moveable(Moveable *);
 
-	void add_snowball(Snowball *);
+	void remove_moveable(Moveable *);
+
+	/*Goes through Moveables and removes "dead" ones*/
+	void Clean_Moving_dead();
 
 private:
 	Game_Model(void);
@@ -50,5 +53,6 @@ private:
 	
 	// Functions
 	void check_collisions();
+
 };
 

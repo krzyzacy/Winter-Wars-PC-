@@ -26,6 +26,7 @@ public:
 	void charge_ball(const float &time);
 	/*Takes snow from ground into pack, may need information from world)*/
 	void pack_snow(const float &time);
+	void jump();
 
 	void update(const float &time);
 

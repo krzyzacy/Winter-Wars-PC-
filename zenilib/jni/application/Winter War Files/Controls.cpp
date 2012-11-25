@@ -40,7 +40,10 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 				break;
 			case SDLK_RETURN:
 				input.shoot = event.state == SDL_PRESSED;
-				
+				break;
+			case SDLK_SPACE:
+				input.jump = event.type == SDL_KEYDOWN;
+				break;
 			default:
 				Handled_Input = false;
 				break;
@@ -220,6 +223,9 @@ void Controls::interact_with_player(Player* Tron, const float &time)	{
 	
 	if(input.pack)
 		Tron->pack_snow(time);
+
+	if(input.jump)
+		Tron->jump();
 
 	//Chell = Tron;
 	

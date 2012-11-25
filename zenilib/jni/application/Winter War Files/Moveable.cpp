@@ -18,15 +18,11 @@ Moveable::~Moveable(void)
 {
 }
 
-void Moveable::gravity(float time)	{
-	
-	// if on ground
-	
-		// have a function that derived classes can impliment
-		// what to do if on ground.. see Template Design pattern
-	
-	// else
-		accelerate(grav_accel);
+void Moveable::gravity()	{
+	if(!is_on_ground())
+		accel += grav_accel;
+	else
+		accel = Vector3f();
 }
 
 void Moveable::update(const float &time)	{
@@ -36,9 +32,14 @@ void Moveable::update(const float &time)	{
 	velocity += accel * time;
 	center += velocity * time;
 
+	if(is_on_ground() && accel.z != 0)	{
+		accel = Vector3f();
+		velocity = Vector3f();
+	}
+
 	// reset accel
 	// This gives everything acceleration pulses.
-	accel = Vector3f();
+	//accel = Vector3f();
 }
 
 void Moveable::set_velocity(const Vector3f vel)	{

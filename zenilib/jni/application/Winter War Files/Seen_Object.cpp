@@ -34,7 +34,11 @@ void Seen_Object::render(Model *model) const
 
 bool Seen_Object::is_on_ground()	{
 	//return true if Object is on the ground
-	//will probably move
-	return true;
+	if(center.z <= 5 && center.z)
+		return true;
+	return false;
 }
 
+bool Seen_Object::is_alive()	{
+	return alive;
+}

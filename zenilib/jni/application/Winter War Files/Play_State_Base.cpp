@@ -83,8 +83,9 @@ void Play_State_Base::perform_logic()
 	for(int i = 0; i < 4; i++)
 		controllers[i]->interact_with_player(Game_Model::get().get_player(i), time_step);
 	
-	
-	//update gravity, is complicated and depends on world.
+	//for(int i = 0; i < 4; i++)
+	//	Game_Model::get().get_player(i)->gravity(time_step);
+	//
 
 	//update player velocity/movement
 	for(int i = 0; i < 4; i++)
@@ -94,6 +95,7 @@ void Play_State_Base::perform_logic()
 
 	//updates all positions
 	Game_Model::get().update(time_step);
+	Game_Model::get().Clean_Moving_dead();
 }
 
 void Play_State_Base::render()	{

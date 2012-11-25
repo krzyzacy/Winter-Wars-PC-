@@ -80,9 +80,20 @@ void Player::calculate_movement(const Vector2f &input_vel)	{
 	Vector3f POV_left = m_camera.get_left().get_ij().normalize();
 
 	//Adding Ice effects later, for now straight up movement
+	float zvel = velocity.z;
+	velocity = (POV_face * input_vel.y) + (POV_left * input_vel.x);
+	velocity *= standard_speed;
 
-	velocity = (POV_face * input_vel.y * standard_speed) + (POV_left * input_vel.x * standard_speed);
-	
+	//float friction; //&&& This will be an input later, or determined based on input
+	//velocity *= friction;
+	//&&& And also may use a new velocity as a temporary velocity
+
+	velocity.z = zvel;
 }
 
+void Player::jump()	{
+	if(is_on_ground())
+		velocity += Vector3f(0,0,50);
+	gravity();
+}
 

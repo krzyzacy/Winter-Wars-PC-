@@ -29,10 +29,13 @@ public:
 
 	bool is_on_ground();
 
+	bool is_alive();
+
 protected:
 	Zeni::Point3f center;
 	Zeni::Vector3f size;
   Zeni::Quaternion rotation;
-
+	
+	bool alive;
 };
 

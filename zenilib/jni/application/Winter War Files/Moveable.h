@@ -16,7 +16,7 @@ public:
 
 	virtual void update(const float &time) = 0;
 
-	void gravity(float time);
+	void gravity();
 
 
 	//This will change, but simple version for now
@@ -27,7 +27,7 @@ public:
 protected:
 	Zeni::Vector3f velocity;
 	
-private:
+
 	Zeni::Vector3f accel;
 };
 
