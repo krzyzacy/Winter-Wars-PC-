@@ -34,7 +34,7 @@ public:
 	*/
 
 	Tile(const Zeni::Point3f &center__ = Zeni::Point3f(0.0f,0.0f,0.0f),
-		 const Zeni::Vector3f &scale__ = Zeni::Vector3f(20.0f,20.0f,2.0f),
+		 const Zeni::Vector3f &scale__ = Zeni::Vector3f(20.0f,20.0f,20.0f),
 		 const int col__ = 0,
 		 const int row__ = 0
 		);

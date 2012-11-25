@@ -63,7 +63,7 @@ void View::render_player(int player, const Point2f &topLeft, const Point2f &bott
 	//set 2d to be inside the player's view
 
 	// render the player's hud
-	player_views[player]->render_hud();
+	player_views[player]->render_hud(topLeft,bottomRight);
 }
 
 // Renders the entire list of renderables to Video
