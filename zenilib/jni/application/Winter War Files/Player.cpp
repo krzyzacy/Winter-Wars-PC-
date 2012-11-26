@@ -16,6 +16,7 @@ Player::Player(const Zeni::Point3f &center_)
 	: Moveable(center_), m_camera(center_),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount)
 {
+	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
 }
 
 
