@@ -6,6 +6,12 @@
 using namespace std;
 using namespace Zeni;
 
+const float Cam_factor = 3276800/4;
+const int Stick_sensitivity = 8000;
+const int Trig_sensitivity = 5000;
+const float Move_factor = 32768;
+
+
 Controls::Controls(bool inverted_)	:
 	inverted(inverted_),
 	Shoot(CHILL)
@@ -224,6 +230,8 @@ void Controls::interact_with_player(Player* Tron, const float &time)	{
 	if(input.pack)
 		Tron->pack_snow(time);
 
+	//Add a jump clock to this (make it like mario, long hold means longer jump)
+	//First jetpack mode
 	if(input.jump)
 		Tron->jump();
 

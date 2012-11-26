@@ -46,12 +46,18 @@ void View::render() const
 
 	Point2f topLeft(0, 0), middle(width/2, height/2), bottomRight(width,height), ySize(0, height/2), xSize(width/2, 0);
 
-	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(1200.0f, 720.0f)), true);
-	
+
 	render_player(0, topLeft, middle);
 	render_player(1, topLeft+xSize, middle+xSize);
 	render_player(2, topLeft+ySize, middle+ySize);
 	render_player(3, middle, bottomRight);
+
+	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(width, height)), true);
+	
+	render_player_hud(0, topLeft, middle);
+	render_player_hud(1, topLeft+xSize, middle+xSize);
+	render_player_hud(2, topLeft+ySize, middle+ySize);
+	render_player_hud(3, middle, bottomRight);
 	
 }
 
@@ -60,11 +66,14 @@ void View::render_player(int player, const Point2f &topLeft, const Point2f &bott
 	player_views[player]->set_camera(topLeft,bottomRight);
 	render_world();
 
-	//set 2d to be inside the player's view
+}
 
+void View::render_player_hud(int player, const Point2f &topLeft, const Point2f &bottomRight) const
+{	
 	// render the player's hud
 	player_views[player]->render_hud(topLeft,bottomRight);
 }
+
 
 // Renders the entire list of renderables to Video
 void View::render_world() const 
