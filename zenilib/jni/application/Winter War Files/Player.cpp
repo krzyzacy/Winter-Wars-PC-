@@ -40,7 +40,7 @@ void Player::turn_left(float theta) {
 
 void Player::update(const float &time)	{
 	Moveable::update(time);
-	m_camera.position += velocity * time;
+	m_camera.position = center;
 }
 
 
@@ -95,6 +95,6 @@ void Player::calculate_movement(const Vector2f &input_vel)	{
 void Player::jump()	{
 	if(is_on_ground())
 		velocity += Vector3f(0,0,50);
-	gravity();
+
 }
 

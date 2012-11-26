@@ -27,19 +27,19 @@ void Moveable::gravity()	{
 
 void Moveable::update(const float &time)	{
 	
-	// gravity(time);
+	gravity();
 
 	velocity += accel * time;
 	center += velocity * time;
 
+
+	// this wont work if we add non vertical acceleration,
+	// we need to only reset z to 0
 	if(is_on_ground() && accel.z != 0)	{
 		accel = Vector3f();
 		velocity = Vector3f();
 	}
 
-	// reset accel
-	// This gives everything acceleration pulses.
-	//accel = Vector3f();
 }
 
 void Moveable::set_velocity(const Vector3f vel)	{

@@ -23,7 +23,7 @@ Game_Model::Game_Model(void) :
 void Game_Model::start_up()
 {
 		Point3f p_points[] = {Point3f(1,0,20)
-			,Point3f(10,30,100) ,Point3f(0,0,50), Point3f(10,10,20)};
+			,Point3f(100,300,100) ,Point3f(500,100,50), Point3f(100,100,20)};
 
 		for (int i = 0 ; i < 4 ; i++)
 		{
