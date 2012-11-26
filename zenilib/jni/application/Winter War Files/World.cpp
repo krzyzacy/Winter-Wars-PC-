@@ -141,6 +141,17 @@ bool World::is_adjacent(Tile* A, Tile* B){
 	if(abs(row_A - row_B) > 1 || abs(col_A - col_B) > 1)
 		return false;
 
-	/* todo.. missed my map.. */
+	if(row_A % 2 == 0){
+		if(col_B - col_A == 1)
+			return false;
+	}
+	
+	if(row_A % 2 == 1){
+		if(col_A - col_B == 1)
+			return false;
+	}
+	
+	
+	return true;
 }
 
