@@ -3,6 +3,7 @@
 #include <vector>
 
 #include <zenilib.h>
+#include <list>
 
 class View;
 class Tile;
@@ -26,7 +27,9 @@ public:
 	bool is_adjacent(Tile* A, Tile* B);
 
 	//Boundary check?
-
+	
+	/*Returns the six adjacent tiles to Central
+	std::list<Tile*> Get_Family(Tile *Central);
 	// view or model?
 
 private:
