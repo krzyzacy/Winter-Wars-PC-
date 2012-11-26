@@ -31,7 +31,7 @@ World::World( View *view_,
 			if(h % 2 == 1) center.x += tR;
 			
 			center.y = h * (tH + tS) + tS;
-			center.z = 0.0f;
+			center.z = - 30.0f;
 			
 			float scale_size = 2*tile_size;
 			Tile* tmp;
