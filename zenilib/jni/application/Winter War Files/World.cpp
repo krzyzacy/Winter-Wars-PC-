@@ -7,9 +7,9 @@
 using namespace std;
 
 World::World( View *view_,
-			const int width__,
-		   const int height__,
-		   const float hex_length__
+		const int width__,
+		const int height__,
+		const float hex_length__
 		) :
 	map(height__, vector<Tile *>(width__, 0) ),
 	view(view_)
