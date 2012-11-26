@@ -83,9 +83,6 @@ void Play_State_Base::perform_logic()
 	for(int i = 0; i < 4; i++)
 		controllers[i]->interact_with_player(Game_Model::get().get_player(i), time_step);
 	
-	//for(int i = 0; i < 4; i++)
-	//	Game_Model::get().get_player(i)->gravity(time_step);
-	//
 
 	//update player velocity/movement
 	for(int i = 0; i < 4; i++)

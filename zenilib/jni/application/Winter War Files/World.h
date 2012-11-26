@@ -28,7 +28,7 @@ public:
 
 	//Boundary check?
 	
-	/*Returns the six adjacent tiles to Central
+	/*Returns the six adjacent tiles to Central*/
 	std::list<Tile*> Get_Family(Tile *Central);
 	// view or model?
 
