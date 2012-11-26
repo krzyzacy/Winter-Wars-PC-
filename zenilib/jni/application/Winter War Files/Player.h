@@ -52,7 +52,7 @@ public:
 	float Snow_in_Pack; 
 
 	// Collison Stuff
-	Zeni::Collision::Capsule body;
+	Zeni::Collision::Sphere body;
 
 	const static int player_ID_c;
 	friend Collision_Table;

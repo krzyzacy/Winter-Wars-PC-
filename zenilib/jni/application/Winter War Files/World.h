@@ -28,7 +28,7 @@ public:
 
 	//Boundary check?
 	
-	/*Returns the six adjacent tiles to Central
+	/*Returns the six adjacent tiles to Central*/
 	std::list<Tile*> Get_Family(Tile *Central);
 	// view or model?
 
@@ -38,7 +38,7 @@ private:
 	View *view;
 	int map_width;                   // number of tiles in a row
 	int map_height;                  // number of tiles in a column
-	float tile_size;                   // size of a tile
+	float tile_size;                 // size of a tile
 	
 		
 };

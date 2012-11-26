@@ -15,6 +15,8 @@ using namespace Zeni;
 
 const int num_Obs_c = 3;
 
+bool collided = false;
+
 Collision_Table::Collision_Table()
 	: table(num_Obs_c, vector<fxn_ptr_t>(num_Obs_c, (fxn_ptr_t)0))
 {
@@ -81,7 +83,9 @@ void Collision_Table::collidePlayerPlayer(Player* p1, Player* p2)
 	//if no collision, return
 	if (!p1->body.intersects(p2->body) || p1 == p2)
 		return;
-	throw Error("Collided!");
+	else
+		collided = true;
+
 }
 
 void Collision_Table::collidePermanentSnowball(Permanent* w1, Snowball* ob2)
