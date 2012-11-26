@@ -29,6 +29,9 @@ public:
 	const model_key_t get_model_name() const
 		{return "snowball";}
 
+// Collision Body
+	void create_body();
+
 private:
 	bool in_air;
 	Player *owner;
@@ -39,5 +42,7 @@ private:
 	// Collison Stuff
 	const static int snowball_ID_c;
 	friend Collision_Table;
+
+	Zeni::Collision::Sphere body;
 };
 

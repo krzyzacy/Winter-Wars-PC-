@@ -47,3 +47,8 @@ void Snowball::get_thrown(const Vector3f &dir, const float &force)
 	//accelerate(dir*force);
 	Moveable::set_velocity(dir*force);
 }
+
+void Snowball::create_body()
+{
+	body = Zeni::Collision::Sphere(center, size.z);
+}

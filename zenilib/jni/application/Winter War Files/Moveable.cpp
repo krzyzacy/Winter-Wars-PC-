@@ -27,6 +27,8 @@ void Moveable::gravity()	{
 
 void Moveable::update(const float &time)	{
 	
+	Collidable::update(time);
+
 	gravity();
 
 	velocity += accel * time;
