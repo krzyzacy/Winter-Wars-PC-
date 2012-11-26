@@ -98,3 +98,7 @@ void Player::jump()	{
 
 }
 
+void Player::create_body()
+{
+	body = Zeni::Collision::Capsule(center + Vector3f(0, 0, 0.25*size.z), center - Vector3f(0, 0, 0.25*size.z), 0.25*size.z);
+}

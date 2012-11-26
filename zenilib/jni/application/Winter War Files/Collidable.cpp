@@ -6,7 +6,11 @@ Collidable::Collidable(void)
 {
 }
 
-
 Collidable::~Collidable(void)
 {
+}
+
+void Collidable::update(const float&)
+{
+	create_body();
 }

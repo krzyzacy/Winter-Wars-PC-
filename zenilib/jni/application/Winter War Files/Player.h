@@ -40,6 +40,9 @@ public:
 	virtual int get_ID() const 
 		{return player_ID_c;}
 
+// Collision Body
+	void create_body();
+
 //private: &&& only temporary
 public:
 	Zeni::Camera m_camera;
@@ -49,7 +52,7 @@ public:
 	float Snow_in_Pack; 
 
 	// Collison Stuff
-	Zeni::Collision::Capsule *body;
+	Zeni::Collision::Capsule body;
 
 	const static int player_ID_c;
 	friend Collision_Table;
