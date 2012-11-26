@@ -111,7 +111,31 @@ The following things are unsupported:
     <filepath>textures/BLCLOTH.png</filepath>
     <tile>1</tile>
   </BLCLOTH.PNG>
-
+  
+  <BoyBlueRegular>
+    <filepath>textures/2DTextures/Avatars/BoyBlueRegular.png</filepath>
+    <tile>0</tile>
+  </BoyBlueRegular>
+  
+  <Heart>
+    <filepath>textures/2DTextures/HUDSprites/Heart.png</filepath>
+    <tile>0</tile>
+  </Heart>
+  
+  <IceBlock>
+    <filepath>textures/2DTextures/HUDSprites/IceBlock.png</filepath>
+    <tile>0</tile>
+  </IceBlock>
+  
+  <Snowball>
+    <filepath>textures/2DTextures/HUDSprites/Snowball.png</filepath>
+    <tile>0</tile>
+  </Snowball>
+  
+  <Frame>
+    <filepath>textures/2DTextures/HUDSprites/Frame.png</filepath>
+    <tile>0</tile>
+  </Frame>
   <!--
   <one>
     <is_sprite>0</is_sprite>
