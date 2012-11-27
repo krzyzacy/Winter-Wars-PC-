@@ -90,4 +90,15 @@ Only TrueType fonts are supported.
         </virtual_screen>
     </cat>
     
+    <resource>
+        <filepath>fonts/FZMWFont.TTF</filepath>
+        <height>20</height>
+        <bold>1</bold>
+        <italics>0</italics>
+        <virtual_screen>
+            <width>800</width>
+            <height>600</height>
+        </virtual_screen>
+    </resource>
+    
 </Fonts>
