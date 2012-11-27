@@ -92,7 +92,7 @@ Only TrueType fonts are supported.
     
     <resource>
         <filepath>fonts/FZMWFont.TTF</filepath>
-        <height>14</height>
+        <height>20</height>
         <bold>1</bold>
         <italics>0</italics>
         <virtual_screen>
