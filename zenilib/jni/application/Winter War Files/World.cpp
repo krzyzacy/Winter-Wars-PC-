@@ -78,7 +78,9 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 				if(sec_y != 0)
 					return map[sec_y - 1][sec_x];
 				else
-					cerr << "not a valid coordination" << endl;
+					return NULL;
+					//cerr << "not a valid coordination" << endl;
+					
 			}
 			else
 				return map[sec_y][sec_x];
@@ -88,6 +90,7 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 				if(sec_y != 0 && sec_x != 0)
 					return map[sec_y - 1][sec_x - 1];
 				else
+					return NULL;
 					cerr << "not a valid coordination" << endl;
 			}
 		}
@@ -101,7 +104,8 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 					if(sec_y != 0)
 						return map[sec_y - 1][sec_x];
 					else
-						cerr << "not a valid coordination" << endl;
+						return NULL;
+						//cerr << "not a valid coordination" << endl;
 				}
 				else
 					return map[sec_y][sec_x];
@@ -112,20 +116,23 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 				if(sec_x != 0)
 					return map[sec_y][sec_x - 1];
 				else
-					cerr << "not a valid coordination" << endl;
+					return NULL;
+					//cerr << "not a valid coordination" << endl;
 			}
 			else{
 				if(yr < (- xr / sqrt(3.0f)) + tH ){
 					if(sec_x != 0)
 						return map[sec_y][sec_x - 1];
 					else
-						cerr << "not a valid coordination" << endl;
+						return NULL;
+						//cerr << "not a valid coordination" << endl;
 				}
 				else{
 					if(sec_y != 0)
 						return map[sec_y - 1][sec_x];
 					else
-						cerr << "not a valid coordination" << endl;
+						return NULL;
+						//cerr << "not a valid coordination" << endl;
 				}
 			}
 		}
@@ -150,7 +157,6 @@ bool World::is_adjacent(Tile* A, Tile* B){
 		if(col_A - col_B == 1)
 			return false;
 	}
-	
 	
 	return true;
 }
