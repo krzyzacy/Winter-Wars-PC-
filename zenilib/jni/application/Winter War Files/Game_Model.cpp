@@ -4,6 +4,7 @@
 #include "Object_factory.h"
 
 #include "Player.h"
+#include "Team.h"
 #include "Player_View.h"
 #include "Snowball.h"
 
@@ -25,6 +26,12 @@ void Game_Model::start_up()
 		Point3f p_points[] = {Point3f(1,0,20)
 			,Point3f(100,300,100) ,Point3f(500,100,50), Point3f(100,100,20)};
 
+		//&&& This is the team set up, for now it's hard coded to 2, 
+		//but when we add the menu, should be easy to extend for up to 4 teams
+		teams.push_back(create_team(world->get_next_Base_Tile()));
+		teams.push_back(create_team(world->get_next_Base_Tile()));
+
+
 		for (int i = 0 ; i < 4 ; i++)
 		{
 			Player *p = create_player(p_points[i]);
@@ -33,6 +40,15 @@ void Game_Model::start_up()
 			view->add_player_view(new Player_View(p));
 			colliders.insert(p);
 			movers.insert(p);
+			//This will also change based on the menu set up
+			if(i <= 1)	{
+				teams[0]->add_player(p);
+				p->set_Team(teams[0]);
+			}
+			else	{
+				teams[1]->add_player(p);
+				p->set_Team(teams[1]);
+			}
 		}
 		
 		PlayTime.start();
@@ -42,6 +58,14 @@ void Game_Model::start_up()
 
 Game_Model::~Game_Model(void)
 {
+	//Everything is a collidable in all the other lists, so this represents all things
+	//besides seen objects, which hopefully no overlap??? View must destroy those
+	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); ++it)
+		delete (*it);
+
+	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)	
+		delete (*it);
+
 	delete world;
 	delete view;
 }
@@ -110,4 +134,10 @@ float Game_Model::get_time_step()	{
 	return time_step;
 }
 
+void Game_Model::Kill_me(Moveable *Deadman)	{
+		movers.erase(Deadman);
+		colliders.erase(Deadman);
+		view->remove_renderable(Deadman);
+		delete Deadman;
+}
 

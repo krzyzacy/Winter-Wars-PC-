@@ -8,9 +8,10 @@
 class View;
 class World;
 class Player;
+class Team;
 class Moveable;
 class Collidable;
-class Snowball;
+
 
 class Game_Model
 {
@@ -30,6 +31,12 @@ public:
 	Player *get_player(int i)
 		{return players.at(i);}
 
+	Team *get_team(int i)
+		{return	teams.at(i);}
+
+	World	*get_World()
+		{return world;}
+
 	void add_moveable(Moveable *);
 
 	void remove_moveable(Moveable *);
@@ -37,8 +44,13 @@ public:
 	/*Goes through Moveables and removes "dead" ones*/
 	void Clean_Moving_dead();
 
+	/*When an object has determined it's time to die, call this function
+	Is not meant for players*/
+	void Kill_me(Moveable *);
+
 	float get_time_step();
 
+	//&&&Cannot remain here
 	Collision_Table table;		
 private:
 	Zeni::Chronometer<Zeni::Time> PlayTime;
@@ -49,7 +61,8 @@ private:
 	View *view;
 	World *world;
 
-	std::vector<Player*> players; 
+	std::vector<Player*>	players; 
+	std::vector<Team*>		teams;
 
 	typedef std::set<Moveable*> moveable_list_t;
 	moveable_list_t movers; 

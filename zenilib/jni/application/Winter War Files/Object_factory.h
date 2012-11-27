@@ -5,10 +5,12 @@
 #include <zenilib.h>
 
 class Player;
-
+class Team;
+class Tile;
 
 // not very useful now....
 Player *create_player(const Zeni::Point3f &init_position);
+Team	*create_team(Tile * Base_Tile);
 
 //Collidable *create_target(const Zeni::String& type, const Zeni::Point3f &init_position);
 

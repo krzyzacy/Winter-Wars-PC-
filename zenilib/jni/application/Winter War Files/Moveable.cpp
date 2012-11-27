@@ -4,7 +4,7 @@ using namespace std;
 using namespace Zeni;
 
 
-const Zeni::Vector3f grav_accel(0.0f, 0.0f, -125.0f);
+const Zeni::Vector3f grav_accel(0.0f, 0.0f, -250.0f);
 
 Moveable::Moveable(const Point3f &center_, const Vector3f &size_ ) :
 	Seen_Object(center_, size_)

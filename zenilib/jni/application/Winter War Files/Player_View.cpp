@@ -37,8 +37,10 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 	const Point2f p_ul(topLeft.x + unit_px * 175, topLeft.y + unit_px * 95);
 	const Point2f p_ll(topLeft.x + unit_px * 175, topLeft.y + unit_px * 125);
-	const Point2f p_lr(topLeft.x + unit_px * (175 + player->Snow_in_Pack / 10), topLeft.y + unit_px * 125);
-	const Point2f p_ur(topLeft.x + unit_px * (175 + player->Snow_in_Pack / 10), topLeft.y + unit_px * 95);
+	//Hey Sen, I messed with this, trying to incorporate constants from Player, Seems sort of not adjustable the way I did it
+	//So if you come up with a better way awesome
+	const Point2f p_lr(topLeft.x + unit_px * (175 + player->get_Snow() / (Max_Snow_Amount/150)), topLeft.y + unit_px * 125);
+	const Point2f p_ur(topLeft.x + unit_px * (175 + player->get_Snow() / (Max_Snow_Amount/150)), topLeft.y + unit_px * 95);
 
 	Colors &cr = get_Colors();
 

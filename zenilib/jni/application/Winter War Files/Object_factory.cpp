@@ -4,6 +4,7 @@
 
 #include "Collidable.h"
 #include "Player.h"
+#include "Team.h"
 
 #include "Game_Model.h"
 
@@ -14,8 +15,8 @@ using namespace Zeni;
 
 Player *create_player(const Point3f &init)
 {
-	int lowest_area = 1;
 	/*
+	int lowest_area = 1;
 	if (Game_Model::get().difficulty < 3)
 		lowest_area = 3;	
 
@@ -28,6 +29,10 @@ Player *create_player(const Point3f &init)
 	
 //	else
 //		throw Error("Trying to create object of unknown type!");
+}
+
+Team *create_team(Tile * Base_Tile)	{
+	return new Team(Base_Tile);
 }
 
 /*

@@ -155,3 +155,8 @@ bool World::is_adjacent(Tile* A, Tile* B){
 	return true;
 }
 
+//&&& Sen if you could make this give the corners, in some sort of order that'd be cool
+Tile * World::get_next_Base_Tile()	{
+	return 0;
+}
+
