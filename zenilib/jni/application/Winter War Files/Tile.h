@@ -38,6 +38,8 @@ public:
 		 const int col__ = 0,
 		 const int row__ = 0
 		);
+	Tile(const Tile &rhs);
+	Tile & operator=(const Tile &rhs);
 	~Tile(void);
 
 

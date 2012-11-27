@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "World.h"
 #include "Game_Model.h"
+#include "Tile.h"
 
 #include <zenilib.h>
 
@@ -28,9 +29,11 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 //	get_Video().set_2d(std::make_pair(topLeft,bottomRight), true);
 
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
-	get_Fonts()["resource"].render_text("Player.x = " + itoa(player->get_camera().position.x) + " Player.y = " + itoa(player->get_camera().position.y) ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 300),Color(0x99660099));
-	Tile* testtile = Game_Model::get().get_World()->get_tile(player->get_camera().position);
-	//get_Fonts()["resource"].render_text("Tile.col = " + itoa(testtile->get) + " Tile.row = " + itoa(player->get_camera().position.y) ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 300),Color(0x99660099));
+	get_Fonts()["resource"].render_text("Player.x = " + ftoa(player->get_camera().position.x) + " Player.y = " + itoa(player->get_camera().position.y) ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 300),Color(0x99660099));
+	//Tile* testtile = Game_Model::get().get_World()->get_tile(player->get_camera().position);
+	//Tile* testtile = Game_Model::get().get_World()->get_tile(Point3f(100,100,10));
+	//get_Fonts()["cat"].render_text("Tile_size = " + itoa(testtile->get_col()) + " Tile.row = " + itoa(testtile->get_row()) ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 400),Color(0x99660099));
+	//get_Fonts()["cat"].render_text("Tile.col = " + itoa(testtile->get_col()) + " Tile.row = " + itoa(testtile->get_row()) ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 400),Color(0x99660099));
 
 	render_image("Frame",topLeft,Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 500));
 	render_image("BoyBlueRegular",Point2f(topLeft.x + unit_px * 15, topLeft.y + unit_px * 10), Point2f(topLeft.x + unit_px * 105, topLeft.y + unit_px * 100));

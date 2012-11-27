@@ -15,6 +15,30 @@ Tile::Tile(const Zeni::Point3f &center__,
 	this->row = row__;
 }
 
+Tile::Tile(const Tile &rhs
+		)	:
+	covering(rhs.covering),
+	Building(rhs.Building)
+{
+	this->center = rhs.center;
+	this->size = rhs.size;
+	this->col = rhs.col;
+	this->row = rhs.row;
+}
+
+Tile & Tile::operator=(const Tile &rhs
+		)
+{
+	this->covering = rhs.covering;
+	this->Building = rhs.Building;
+	this->center = rhs.center;
+	this->size = rhs.size;
+	this->col = rhs.col;
+	this->row = rhs.row;
+
+	return *this;
+}
+
 
 Tile::~Tile(void)
 {

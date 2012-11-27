@@ -71,14 +71,14 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 	yr -= sec_y * (tS + tH);
 
 	if(sec_y % 2 == 0){ // odd row, section A
-		if(yr > tH)
+		if(yr >= tH)
 			return map[sec_y][sec_x];
-		else if(xr > tR){
-			if(yr > ((- sqrt(3.0f) / 3) * (xr - tR) + tH) ){
+		else if(xr >= tR){
+			if(yr >= ((- sqrt(3.0f) / 3) * (xr - tR) + tH) ){
 				if(sec_y != 0)
 					return map[sec_y - 1][sec_x];
 				else
-					return NULL;
+					return map[1][1];
 					//cerr << "not a valid coordination" << endl;
 					
 			}
@@ -86,25 +86,27 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 				return map[sec_y][sec_x];
 		}
 		else{
-			if(sqrt(3.0f) * yr > xr){
+			if(sqrt(3.0f) * yr >= xr){
 				if(sec_y != 0 && sec_x != 0)
 					return map[sec_y - 1][sec_x - 1];
 				else
-					return NULL;
-					cerr << "not a valid coordination" << endl;
+					return map[1][1];
+					//cerr << "not a valid coordination" << endl;
 			}
+			else
+				return map[sec_y][sec_x];
 		}
 	}
 	else{ // even row, section B
-		if(xr > tR){
-			if(yr < tH)
+		if(xr >= tR){
+			if(yr <= tH)
 				return map[sec_y][sec_x];
 			else{
-				if( sqrt(3.0f) * yr > (xr - tR)){
+				if( sqrt(3.0f) * yr >= (xr - tR)){
 					if(sec_y != 0)
 						return map[sec_y - 1][sec_x];
 					else
-						return NULL;
+						return map[1][1];
 						//cerr << "not a valid coordination" << endl;
 				}
 				else
@@ -112,11 +114,11 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 			}
 		}
 		else{
-			if(yr < tH){
+			if(yr <= tH){
 				if(sec_x != 0)
 					return map[sec_y][sec_x - 1];
 				else
-					return NULL;
+					return map[1][1];
 					//cerr << "not a valid coordination" << endl;
 			}
 			else{
@@ -124,14 +126,14 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 					if(sec_x != 0)
 						return map[sec_y][sec_x - 1];
 					else
-						return NULL;
+						return map[1][1];
 						//cerr << "not a valid coordination" << endl;
 				}
 				else{
 					if(sec_y != 0)
 						return map[sec_y - 1][sec_x];
 					else
-						return NULL;
+						return map[1][1];
 						//cerr << "not a valid coordination" << endl;
 				}
 			}
