@@ -50,7 +50,7 @@ public:
 
 	float get_Snow() const {return Snow_in_Pack;}
 	float get_Health() const {return health;}
-	float get_Team_Blocks() const;
+	int get_Team_Blocks() const;
 
 // Collision Body
 	void create_body();

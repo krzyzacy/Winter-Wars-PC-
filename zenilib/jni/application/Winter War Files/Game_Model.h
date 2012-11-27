@@ -11,6 +11,7 @@ class Player;
 class Team;
 class Moveable;
 class Collidable;
+class Structure;
 
 
 class Game_Model
@@ -46,7 +47,8 @@ public:
 
 	/*When an object has determined it's time to die, call this function
 	Is not meant for players*/
-	void Kill_me(Moveable *);
+	void Kill_me(Snowball *);
+	void Kill_me(Structure *);
 
 	float get_time_step();
 

@@ -58,7 +58,7 @@ void Player::throw_ball()		{
 	if(current_radius > 0)	{
 		Snowball *sb = new Snowball(center+m_camera.get_forward(), 
 																Vector3f(current_radius, current_radius,current_radius));
-		sb->get_thrown(m_camera.get_forward(), 100);
+		sb->get_thrown(m_camera.get_forward());
 		current_radius = 0;
 		Game_Model::get().add_moveable(sb);
 	}
@@ -144,6 +144,6 @@ void Player::create_body()
 	body = Zeni::Collision::Capsule(center + Vector3f(0, 0 , size.z*0.5), center - Vector3f(0, 0, size.z*0.5), size.z*3.5);
 }
 
-float Player::get_Team_Blocks() const	{
+int Player::get_Team_Blocks() const	{
 	return myTeam->get_Resources();
 }

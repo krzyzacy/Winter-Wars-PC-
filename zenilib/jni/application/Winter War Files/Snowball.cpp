@@ -1,18 +1,22 @@
 #include "Snowball.h"
+#include "Game_Model.h"
 
 #include <zenilib.h>
 
 const int Snowball::snowball_ID_c = 2;
+
+const float Launch_Speed = 300;
 
 using namespace Zeni;
 
 Snowball::Snowball(const Zeni::Point3f &center_,
               const Zeni::Vector3f &size_) :
 	Moveable(center_, size_)	
-	, in_air(true), damage_dealt(false)
+	, damage_dealt(false), damage(size_.magnitude())
 //	, owner(p)
 {
 	Lifespan.start();
+
 }
 
 
@@ -22,30 +26,44 @@ Snowball::~Snowball(void)
 
 void Snowball::update(const float &time)
 {	
-	if (in_air)
+	if (!is_on_ground())
 	{
 		Moveable::update(time);
 	}
 	else
 	{
-	
+		damage_dealt = true;
+		alive = false;
+		set_velocity(Vector3f());
 	}
 
 	//Temporary, so we don't have infinite snowballs flying around chewing up resources
-	if(Lifespan.seconds() > 10)	{
+	if(Lifespan.seconds() > 10 || damage_dealt)	{
 		damage_dealt = true;
 		Moveable::set_velocity(Vector3f());
 		Lifespan.stop();
 		alive = false;
+		perform_contact_effects();
+		//Game_Model::get().Kill_me(this); Can't do this
 	}
 }
 
-void Snowball::get_thrown(const Vector3f &dir, const float &force)
+void Snowball::get_thrown(const Vector3f &dir)
 {
-	in_air = true;
-
 	//accelerate(dir*force);
-	Moveable::set_velocity(dir*force);
+	Moveable::set_velocity(dir*Launch_Speed);
+}
+
+float Snowball::deal_damage()	{
+	if(!damage_dealt)	{
+		damage_dealt = true;
+		return damage;
+	}
+	return 0;
+}
+
+void Snowball::perform_contact_effects()	{
+	//Add cool shit to the game model here, possibly sound effects
 }
 
 void Snowball::create_body()

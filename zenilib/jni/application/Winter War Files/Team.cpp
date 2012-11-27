@@ -9,7 +9,7 @@ using namespace Zeni;
 
 
 Team::Team(Tile* BaseTile)	:
-	Base(BaseTile), Ice_Blocks(0.0f), intake_rate(0.0f)
+	Base(BaseTile), Ice_Blocks(0), intake_rate(0.0f)
 {
 }
 
