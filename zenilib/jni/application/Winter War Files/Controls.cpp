@@ -274,4 +274,3 @@ string Controls::give_stick_status()	{
 	return status;
 }
 
-

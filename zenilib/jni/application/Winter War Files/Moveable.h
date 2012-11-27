@@ -28,6 +28,6 @@ protected:
 	Zeni::Vector3f velocity;
 	
 
+
 	//Zeni::Vector3f accel;
 };
-
