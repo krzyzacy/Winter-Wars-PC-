@@ -22,7 +22,7 @@ const Vector3f jump_vec(0,0,500);
 
 
 Player::Player(const Zeni::Point3f &center_) 
-	: Moveable(center_), m_camera(center_),
+	: Moveable(center_), m_camera(center_, Quaternion(), 3.5f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	myTeam(0), Jumping(ON_GROUND)
 {
@@ -141,7 +141,7 @@ void Player::jump()	{
 
 void Player::create_body()
 {
-	body = Zeni::Collision::Capsule(center + Vector3f(0, 0 , size.z*0.25), center - Vector3f(0, 0, size.z*0.25), size.z*0.5);
+	body = Zeni::Collision::Capsule(center + Vector3f(0, 0 , size.z*0.5), center - Vector3f(0, 0, size.z*0.5), size.z*3.5);
 }
 
 float Player::get_Team_Blocks() const	{

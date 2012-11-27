@@ -23,8 +23,7 @@ Game_Model::Game_Model(void) :
 
 void Game_Model::start_up()
 {
-		Point3f p_points[] = {Point3f(1,0,20)
-			,Point3f(100,300,100) ,Point3f(500,100,50), Point3f(100,100,20)};
+		Point3f p_points[] = { Point3f(100, 100, 10), Point3f(100, 500,10) ,Point3f(500, 500, 10), Point3f( 500, 100, 10)};
 
 		//&&& This is the team set up, for now it's hard coded to 2, 
 		//but when we add the menu, should be easy to extend for up to 4 teams
