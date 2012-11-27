@@ -27,7 +27,6 @@ void Controls::set_inverted(bool invert)	{
 }
 
 bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int which)	{
-	//MOVE?RENAME FOR KEYBOARD
 		//we can incorporate the keyboard (for hacks)
 		bool Handled_Input = true;
 		if(which == 0)	{
@@ -43,6 +42,15 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 				break;
 			case SDLK_a:
 				input.Move.x = 1 * (event.type == SDL_KEYDOWN);
+				break;
+			case SDLK_e:
+				input.pack = event.state == SDL_PRESSED;
+				break;
+			case SDLK_b:
+				input.build_view = event.state == SDL_PRESSED;
+				break;
+			case SDLK_m:
+				input.mini_map = event.state == SDL_PRESSED;
 				break;
 			case SDLK_RETURN:
 				input.shoot = event.state == SDL_PRESSED;
