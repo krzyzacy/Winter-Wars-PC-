@@ -29,12 +29,7 @@ public:
 	~Play_State_Base();
 
 
-private:
-	Zeni::Chronometer<Zeni::Time> PlayTime;
-	float time_passed;
-	float time_step;
-	
-	
+private:		
 	vector<Controls*> controllers;
 	
 	Color m_prev_clear_color;
@@ -48,8 +43,6 @@ private:
 
 	void on_push();
 	void on_pop();
-
-	
 
 	void perform_logic();
 

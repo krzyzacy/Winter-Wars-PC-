@@ -18,9 +18,12 @@ public:
 		(this->*table.at(i).at(j))(A,B);
 	}
 
+	bool get_collided() { return collided;}
 private:
 	typedef void (Collision_Table::*fxn_ptr_t)(Collidable*, Collidable*);
 	std::vector<std::vector<fxn_ptr_t> > table;
+
+	bool collided;
 
 	// these functions should check to see if the objects are colliding
 	// and then handle the collision if they are
@@ -34,6 +37,5 @@ private:
 	void collideSnowballPermanent(Snowball*, Permanent*);
 	void collidePermanentPermanent(Permanent*, Permanent*);
 	void collidePermanentG(Permanent*, Collidable*);
-
 
 };

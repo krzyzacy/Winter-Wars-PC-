@@ -23,7 +23,7 @@ public:
 	
 	~Game_Model(void);
 
-	void update(const float &time);
+	void update();
 	void render() const;
 	void start_up();
 	
@@ -37,11 +37,17 @@ public:
 	/*Goes through Moveables and removes "dead" ones*/
 	void Clean_Moving_dead();
 
+	float get_time_step();
+
+	Collision_Table table;		
 private:
+	Zeni::Chronometer<Zeni::Time> PlayTime;
+	float time_passed;
+	float time_step;
+
 	Game_Model(void);
 	View *view;
 	World *world;
-	Collision_Table table;
 
 	std::vector<Player*> players; 
 

@@ -15,12 +15,10 @@ using namespace Zeni;
 
 const int num_Obs_c = 3;
 
-bool collided = false;
-
 Collision_Table::Collision_Table()
 	: table(num_Obs_c, vector<fxn_ptr_t>(num_Obs_c, (fxn_ptr_t)0))
 {
-
+	collided = false;
 	table.at(Snowball::snowball_ID_c).at(Collidable::collidable_ID_c) = 0;
 
 	table.at(Snowball::snowball_ID_c).at(Snowball::snowball_ID_c) =
@@ -83,9 +81,13 @@ void Collision_Table::collidePlayerPlayer(Player* p1, Player* p2)
 	//if no collision, return
 	if (!p1->body.intersects(p2->body) || p1 == p2)
 		return;
-	else
+	else 
+		{
 		collided = true;
+		p1->center = p1->center - 2*(p2->center - p1->center);
+		p2->center = p2->center + 2*(p2->center - p1->center);
 
+		}
 }
 
 void Collision_Table::collidePermanentSnowball(Permanent* w1, Snowball* ob2)

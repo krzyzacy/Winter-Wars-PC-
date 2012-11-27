@@ -13,7 +13,9 @@ public:
 
 	virtual void update(const float &) = 0;
 
+
 private:
+
 	virtual void create_body() {}
 	
 	// Collison Stuff

@@ -4,11 +4,12 @@ using namespace std;
 using namespace Zeni;
 
 
-const Zeni::Vector3f grav_accel(0.0f, 0.0f, -125.0f);
+const Zeni::Vector3f grav_accel(0.0f, 0.0f, -9.8f);
 
 Moveable::Moveable(const Point3f &center_, const Vector3f &size_ ) :
 	Seen_Object(center_, size_)
 	, velocity(Vector3f())
+	, accel(Vector3f())
 {
 }
 
@@ -17,36 +18,37 @@ Moveable::~Moveable(void)
 {
 }
 
-void Moveable::gravity(const float &time)	{
+void Moveable::gravity()	{
 	if(!is_on_ground())
-		velocity += grav_accel * time;
-	else if(velocity.z < 0)
-		velocity.z = 0;
+		accel += grav_accel;
+	else
+		accel = Vector3f();
 }
 
 void Moveable::update(const float &time)	{
+	
 	Collidable::update(time);
 
-	gravity(time);
+	gravity();
+
+	velocity += accel * time;
 	center += velocity * time;
+
+
+	// this wont work if we add non vertical acceleration,
+	// we need to only reset z to 0
+	if(is_on_ground() && accel.z != 0)	{
+		accel = Vector3f();
+		velocity = Vector3f();
+	}
+
 }
 
-void Moveable::set_velocity(const Vector3f &vel)	{
+void Moveable::set_velocity(const Vector3f vel)	{
 	velocity = vel;
 }
 
-void Moveable::accelerate(const Vector3f &acc, const float &time)	{
-	velocity += acc * time;
+void Moveable::accelerate(const Vector3f &acc)
+{
+	accel += acc;
 }
-
-/*
-	//if(is_on_ground())
-	//	velocity += Vector3f(0,0,50);
-	
-	accelerate(jump_vec,time);
-	
-
-const Vector3f jump_vec(0,0,400);
-
-*/
-

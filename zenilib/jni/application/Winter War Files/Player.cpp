@@ -74,7 +74,7 @@ void Player::pack_snow(const float &time)	{
 		Snow_in_Pack += pack_rate * time;
 }
 
-void Player::calculate_movement(const Vector2f &input_vel)	{
+ void Player::calculate_movement(const Vector2f &input_vel)	{
 	//Here is where the magic happens for player
 	//input_vel represents joystick desire of where player wants to go
 	Vector3f POV_face = m_camera.get_forward().get_ij().normalize();
