@@ -68,7 +68,7 @@ The following things are unsupported:
   </FLOOR.PNG>
   
   <BUBBLE.PNG>
-    <filepath>textures/hardsnow_tile.png</filepath>
+    <filepath>textures/2DTextures/HUDSprites/Heart.png</filepath>
     <tile>1</tile>
   </BUBBLE.PNG>
   
