@@ -15,7 +15,7 @@ using namespace Zeni;
 
 
 Game_Model::Game_Model(void) :
-	view(new View()), world(new World(view))
+	view(new View()), world(new World(view)), time_passed(0.0f), time_step(0.0f)
 {
 	start_up();
 }
@@ -35,6 +35,7 @@ void Game_Model::start_up()
 			movers.insert(p);
 		}
 		
+		PlayTime.start();
 //		view->add_renderable(&Perm);
 
 }
@@ -45,10 +46,17 @@ Game_Model::~Game_Model(void)
 	delete view;
 }
 
-void Game_Model::update(const float &time)
+void Game_Model::update()
 {	
+	const float frametime_passed = PlayTime.seconds();
+	const float currentStep = frametime_passed - time_passed;
+	time_passed = frametime_passed;
+	time_step = currentStep;
+
+
+
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); ++it)
-		(*it)->update(time);
+		(*it)->update(time_step);
 
 	//get_player(0)->throw_ball();
 
@@ -96,6 +104,10 @@ void Game_Model::Clean_Moving_dead()	{
 
 	for(list<Moveable*>::iterator it = Trash.begin(); it != Trash.end(); ++it)	
 		remove_moveable(*it);
+}
+
+float Game_Model::get_time_step()	{
+	return time_step;
 }
 
 

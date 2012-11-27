@@ -11,6 +11,8 @@ using namespace Zeni;
 const int Player::player_ID_c = 1;
 
 const float standard_speed = 100;
+const Vector3f jump_vec(0,0,400);
+
 
 Player::Player(const Zeni::Point3f &center_) 
 	: Moveable(center_), m_camera(center_),
@@ -93,9 +95,7 @@ void Player::pack_snow(const float &time)	{
 }
 
 void Player::jump()	{
-	if(is_on_ground())
-		velocity += Vector3f(0,0,50);
-
+	accelerate(jump_vec, Game_Model::get().get_time_step());
 }
 
 void Player::create_body()

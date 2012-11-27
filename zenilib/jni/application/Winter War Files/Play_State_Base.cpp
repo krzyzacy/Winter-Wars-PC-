@@ -4,10 +4,9 @@
 
 Play_State_Base::Play_State_Base()	:
 	m_prev_clear_color(get_Video().get_clear_Color())
-	, time_passed(0.0f)
 	
 {
-		PlayTime.start();
+		
 		set_pausable(true);
 		for(int i = 0; i < 4; i++)	{
 			controllers.push_back(new Controls());
@@ -71,17 +70,11 @@ void Play_State_Base::on_joy_button(const SDL_JoyButtonEvent &event)	{
 
 void Play_State_Base::perform_logic()	
 {
-	const float frametime_passed = PlayTime.seconds();
-	const float currentStep = frametime_passed - time_passed;
-	time_passed = frametime_passed;
-	time_step = currentStep;
-
-
 	for(int i = 0; i < 4; i++)	
 		controllers[i]->adjust_Cam(Game_Model::get().get_player(i));
 
 	for(int i = 0; i < 4; i++)
-		controllers[i]->interact_with_player(Game_Model::get().get_player(i), time_step);
+		controllers[i]->interact_with_player(Game_Model::get().get_player(i), Game_Model::get().get_time_step());
 	
 
 	//update player velocity/movement
@@ -91,7 +84,7 @@ void Play_State_Base::perform_logic()
 	
 
 	//updates all positions
-	Game_Model::get().update(time_step);
+	Game_Model::get().update();
 	Game_Model::get().Clean_Moving_dead();
 }
 
