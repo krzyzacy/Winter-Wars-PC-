@@ -49,28 +49,103 @@ bool Tile::has_building()	{
 	return !(Building == 0);
 }
 
+void Tile::set_team(TEAM_INDEX teamid){
+	team = teamid;
+}
+void Tile::set_covering(TILE_TYPE coverid){
+	covering = coverid;
+}
+
 const model_key_t Tile::get_model_name() const	{
 
-	return "simpletile";
-
-	/*
-
-	switch (covering)	{
-	case SOFT_SNOW:
-		//return "soft_snow"
+	switch (team){
+		case NEUTRAL:
+			switch (covering){
+				case SOFT_SNOW:
+					return "neutralsoftsnowtile";
+					break;
+				case HARD_SNOW:
+					return "neutralhardsnowtile";
+					break;
+				case ICE:
+					return "neutralicetile";
+					break;
+				default:
+					return "";
+					break;
+			}
 		break;
-	case HARD_SNOW:
-		//return "hard_snow"
-		break;
-	case ICE:
-		//return "ICE 
-		break;
-	default:
-		return "";
-		break;
+			break;
+		case GREEN:
+			switch (covering){
+				case SOFT_SNOW:
+					return "greensoftsnowtile";
+					break;
+				case HARD_SNOW:
+					return "greenhardsnowtile";
+					break;
+				case ICE:
+					return "greenicetile";
+					break;
+				default:
+					return "";
+					break;
+			}
+			break;
+		case RED:
+			switch (covering){
+				case SOFT_SNOW:
+					return "redsoftsnowtile";
+					break;
+				case HARD_SNOW:
+					return "redhardsnowtile";
+					break;
+				case ICE:
+					return "redicetile";
+					break;
+				default:
+					return "";
+					break;
+			}
+			break;
+		case BLUE:
+			switch (covering){
+				case SOFT_SNOW:
+					return "bluesoftsnowtile";
+					break;
+				case HARD_SNOW:
+					return "bluehardsnowtile";
+					break;
+				case ICE:
+					return "blueicetile";
+					break;
+				default:
+					return "";
+					break;
+			}
+			break;
+		case ORANGE:
+			switch (covering){
+				case SOFT_SNOW:
+					return "orangesoftsnowtile";
+					break;
+				case HARD_SNOW:
+					return "orangehardsnowtile";
+					break;
+				case ICE:
+					return "orangeicetile";
+					break;
+				default:
+					return "";
+					break;
+			}
+			break;
+		default:
+			return "";
+			break;
 	}
 
-	*/
+
 
 }
 
