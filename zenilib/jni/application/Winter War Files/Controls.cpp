@@ -14,7 +14,8 @@ const float Move_factor = 32768;
 
 Controls::Controls(bool inverted_)	:
 	inverted(inverted_),
-	Shoot(CHILL)
+	Shoot(CHILL),
+	Mouse_Camera(0)
 {
 }
 
@@ -29,6 +30,23 @@ void Controls::set_inverted(bool invert)	{
 bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int which)	{
 		//we can incorporate the keyboard (for hacks)
 		bool Handled_Input = true;
+		switch(event.keysym.sym)	{
+		case SDLK_1:
+			Mouse_Camera = 0;
+			break;
+		case SDLK_2:
+			Mouse_Camera = 1;
+			break;
+		case SDLK_3:
+			Mouse_Camera = 2;
+			break;
+		case SDLK_4:
+			Mouse_Camera = 3;
+			break;
+		default:
+			break;
+		}
+
 		if(which == 0)	{
 			switch(event.keysym.sym)	{
 			case SDLK_w:
@@ -52,11 +70,11 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 			case SDLK_m:
 				input.mini_map = event.state == SDL_PRESSED;
 				break;
-			case SDLK_RETURN:
-				input.shoot = event.state == SDL_PRESSED;
+			case SDLK_LSHIFT:
+				input.jump = event.type == SDL_KEYDOWN;
 				break;
 			case SDLK_SPACE:
-				input.jump = event.type == SDL_KEYDOWN;
+				input.shoot = event.state == SDL_PRESSED;
 				break;
 			default:
 				Handled_Input = false;
@@ -76,6 +94,15 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 				break;
 			case SDLK_RIGHT:
 				input.Move.x = -1 * Move_factor* (event.type == SDL_KEYDOWN);
+				break;
+			case SDLK_RSHIFT:
+				input.jump = event.state == SDL_PRESSED;
+				break;
+			case SDLK_RETURN:
+				input.shoot = event.state == SDL_PRESSED;
+				break;
+			case SDLK_BACKSPACE:
+				input.pack = event.state == SDL_PRESSED;
 				break;
 			default:
 				Handled_Input = false;
@@ -274,4 +301,10 @@ string Controls::give_stick_status()	{
 
 	return status;
 }
+
+
+int Controls::get_cam_to_adjust()	{
+	return Mouse_Camera;
+}
+
 

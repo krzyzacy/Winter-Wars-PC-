@@ -31,6 +31,8 @@ public:
 	/* Adjust player view using right stick	*/
 	void adjust_Cam(Player* Tron);
 
+	int get_cam_to_adjust();
+
 	/*	Sets inverted if the player changes options menu (options to be implemented */
 	void set_inverted(bool invert);
 
@@ -56,6 +58,7 @@ private:
 	bool inverted;
 
 	Shooting_State	Shoot;
+	int Mouse_Camera;
 
 	//Temp Pointer (or not????)
 	Player * Chell;

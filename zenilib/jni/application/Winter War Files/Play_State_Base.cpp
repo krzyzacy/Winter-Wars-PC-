@@ -40,13 +40,10 @@ void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {
 	Gamestate_Base::on_key(event); // Let Gamestate_Base handle it
 } 
 
-void Play_State_Base::on_mouse_motion(const SDL_MouseMotionEvent &event) {
-			
-	for (int i = 0 ; i < 4 ; i++)
-	{
-		Game_Model::get().get_player(i)->adjust_pitch(event.yrel / 500.0f);
-		Game_Model::get().get_player(i)->turn_left(-event.xrel / 500.0f);    
-	}
+void Play_State_Base::on_mouse_motion(const SDL_MouseMotionEvent &event) {	
+	int i = controllers[0]->get_cam_to_adjust();
+	Game_Model::get().get_player(i)->adjust_pitch(event.yrel / 500.0f);
+	Game_Model::get().get_player(i)->turn_left(-event.xrel / 500.0f);    
 }
 
 void Play_State_Base::on_joy_axis(const SDL_JoyAxisEvent &event)	{
