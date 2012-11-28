@@ -32,16 +32,16 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 		if(which == 0)	{
 			switch(event.keysym.sym)	{
 			case SDLK_w:
-				input.Move.y = 1 * (event.type == SDL_KEYDOWN);
+				input.Move.y = 1 * Move_factor * (event.type == SDL_KEYDOWN);
 				break;
 			case SDLK_s:
-				input.Move.y = -1 * (event.type == SDL_KEYDOWN);
+				input.Move.y = -1 * Move_factor* (event.type == SDL_KEYDOWN);
 				break;
 			case SDLK_d:
-				input.Move.x = -1 * (event.type == SDL_KEYDOWN);
+				input.Move.x = -1 * Move_factor* (event.type == SDL_KEYDOWN);
 				break;
 			case SDLK_a:
-				input.Move.x = 1 * (event.type == SDL_KEYDOWN);
+				input.Move.x = 1 * Move_factor* (event.type == SDL_KEYDOWN);
 				break;
 			case SDLK_e:
 				input.pack = event.state == SDL_PRESSED;
@@ -66,16 +66,16 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 		else if(which == 1)	{
 			switch(event.keysym.sym)	{
 			case SDLK_UP:
-				input.Move.y = 1 * (event.type == SDL_KEYDOWN);
+				input.Move.y = 1 * Move_factor * (event.type == SDL_KEYDOWN);
 				break;
 			case SDLK_DOWN:
-				input.Move.y = -1 * (event.type == SDL_KEYDOWN);
+				input.Move.y = -1 * Move_factor * (event.type == SDL_KEYDOWN);
 				break;
 			case SDLK_LEFT:
-				input.Move.x = 1 * (event.type == SDL_KEYDOWN);
+				input.Move.x = 1 * Move_factor * (event.type == SDL_KEYDOWN);
 				break;
 			case SDLK_RIGHT:
-				input.Move.x = -1 * (event.type == SDL_KEYDOWN);
+				input.Move.x = -1 * Move_factor* (event.type == SDL_KEYDOWN);
 				break;
 			default:
 				Handled_Input = false;
@@ -203,8 +203,9 @@ void Controls::adjust_Cam(Player* Tron)	{
 }
 
 Vector2f Controls::give_movement()	{
-	Vector2f normal_move = input.Move;
-	return normal_move.normalize();
+	//Vector2f normal_move = input.Move;
+	//return normal_move.normalize();
+	return input.Move;
 }
 
 void Controls::interact_with_player(Player* Tron, const float &time)	{
