@@ -16,21 +16,21 @@ View::View(void)
 	//model_map["simpletile"] = new Zeni::Model("models/simpletile.3ds");
 	model_map["world"] = new Zeni::Model("models/world2.3ds");
 	model_map["player"] = new Zeni::Model("models/blueplayer.3ds");
-	model_map["neutralsoftsnowtile"] = new Zeni::Model("models/neutralsoftsnowtile.3ds");
-	model_map["neutralhardsnowtile"] = new Zeni::Model("models/neutralhardsnowtile.3ds");
-	model_map["neutralicetile"] = new Zeni::Model("models/neutralicetile.3ds");
-	model_map["greensoftsnowtile"] = new Zeni::Model("models/greensoftsnowtile.3ds");
-	model_map["greenhardsnowtile"] = new Zeni::Model("models/greenhardsnowtile.3ds");
-	model_map["greenicetile"] = new Zeni::Model("models/greenicetile.3ds");
-	model_map["redsoftsnowtile"] = new Zeni::Model("models/redsoftsnowtile.3ds");
-	model_map["redhardsnowtile"] = new Zeni::Model("models/redhardsnowtile.3ds");
-	model_map["redicetile"] = new Zeni::Model("models/redicetile.3ds");
-	model_map["bluesoftsnowtile"] = new Zeni::Model("models/bluesoftsnowtile.3ds");
-	model_map["bluehardsnowtile"] = new Zeni::Model("models/bluehardsnowtile.3ds");
-	model_map["blueicetile"] = new Zeni::Model("models/blueicetile.3ds");
-	model_map["orangesoftsnowtile"] = new Zeni::Model("models/orangesoftsnowtile.3ds");
-	model_map["orangehardsnowtile"] = new Zeni::Model("models/orangehardsnowtile.3ds");
-	model_map["orangeicetile"] = new Zeni::Model("models/orangeicetile.3ds");
+	model_map["neutralsoftsnowtile"] = new Zeni::Model("models/softsnow/neutralsoftsnowtile.3ds");
+	model_map["neutralhardsnowtile"] = new Zeni::Model("models/hardsnow/neutralhardsnowtile.3ds");
+	model_map["neutralicetile"] = new Zeni::Model("models/ice/neutralicetile.3ds");
+	model_map["greensoftsnowtile"] = new Zeni::Model("models/softsnow/greensoftsnowtile.3ds");
+	model_map["greenhardsnowtile"] = new Zeni::Model("models/hardsnow/greenhardsnowtile.3ds");
+	model_map["greenicetile"] = new Zeni::Model("models/ice/greenicetile.3ds");
+	model_map["redsoftsnowtile"] = new Zeni::Model("models/softsnow/redsoftsnowtile.3ds");
+	model_map["redhardsnowtile"] = new Zeni::Model("models/hardsnow/redhardsnowtile.3ds");
+	model_map["redicetile"] = new Zeni::Model("models/ice/redicetile.3ds");
+	model_map["bluesoftsnowtile"] = new Zeni::Model("models/softsnow/bluesoftsnowtile.3ds");
+	model_map["bluehardsnowtile"] = new Zeni::Model("models/hardsnow/bluehardsnowtile.3ds");
+	model_map["blueicetile"] = new Zeni::Model("models/ice/blueicetile.3ds");
+	model_map["orangesoftsnowtile"] = new Zeni::Model("models/softsnow/orangesoftsnowtile.3ds");
+	model_map["orangehardsnowtile"] = new Zeni::Model("models/hardsnow/orangehardsnowtile.3ds");
+	model_map["orangeicetile"] = new Zeni::Model("models/ice/orangeicetile.3ds");
 
 }
 
