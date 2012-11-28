@@ -31,9 +31,12 @@ public:
 
 	bool is_alive();
 
+	Zeni::Point3f get_bottom_center() const;
+	Zeni::Point3f get_top_center() const;
+
 protected:
 	Zeni::Point3f center;
-	Zeni::Vector3f size;
+	Zeni::Vector3f size; // TopRightcorner-to-LowerLeftcorner
     Zeni::Quaternion rotation;
 	
 	bool alive;

@@ -1,6 +1,9 @@
 #include "Seen_Object.h"
 
 #include <zenilib.h>
+#include "Game_Model.h"
+#include "World.h"
+#include "Tile.h"
 
 using namespace Zeni;
 
@@ -34,11 +37,24 @@ void Seen_Object::render(Model *model) const
 
 bool Seen_Object::is_on_ground()	{
 	//return true if Object is on the ground
-	if(center.z <= 5 && center.z)
+
+	// if my bottom is less than the top of the tile im one
+	if(get_bottom_center().z <= 0)//Game_Model::get().get_World()->get_tile(center)->get_top_center().z)
 		return true;
+
 	return false;
 }
 
 bool Seen_Object::is_alive()	{
 	return alive;
+}
+
+Point3f	Seen_Object::get_bottom_center() const
+{
+	return Point3f(center.x, center.y, center.z - size.z/2);
+}
+
+Point3f	Seen_Object::get_top_center() const
+{
+	return Point3f(center.x, center.y, center.z + size.z/2);
 }

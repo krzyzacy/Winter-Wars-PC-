@@ -76,13 +76,52 @@ The following things are unsupported:
     <filepath>textures/3Dtextures/Player/BLCLOTH.png</filepath>
     <tile>1</tile>
   </BLCLOTH.PNG>
-<!--  
-  <WOOL.PNG>
-    <filepath>textures/3Dtextures/Player/WOOL.png</filepath>
+  
+<!--  SOFT SNOW TILE TEXTURES  -->
+  <SOFTSNOW.PNG>
+    <filepath>textures/3Dtextures/Tile/SOFTSNOW.png</filepath>
     <tile>1</tile>
-  </WOOL.PNG>
-  -->
-  <FACE.PNG>
+  </SOFTSNOW.PNG>
+
+  <SOFTCLIF.PNG>
+    <filepath>textures/3Dtextures/Tile/SOFTCLIF.png</filepath>
+    <tile>1</tile>
+  </SOFTCLIF.PNG>
+
+  <!--  HARD SNOW TILE TEXTURES  -->  
+  
+  <HARDSNOW.PNG>
+    <filepath>textures/3Dtextures/Tile/HARDSNOW.png</filepath>
+    <tile>1</tile>
+  </HARDSNOW.PNG>
+
+  <HARDCLIF.PNG>
+    <filepath>textures/3Dtextures/Tile/HARDCLIF.png</filepath>
+    <tile>1</tile>
+  </HARDCLIF.PNG>
+
+    <!--  ICE TILE TEXTURES  -->
+  <ICE.PNG>
+    <filepath>textures/3Dtextures/Tile/ICE.png</filepath>
+    <tile>1</tile>
+  </ICE.PNG>
+
+  <ICECLIFF.PNG>
+    <filepath>textures/3Dtextures/Tile/ICECLIFF.png</filepath>
+    <tile>1</tile>
+  </ICECLIFF.PNG>
+
+  <GCLIFF.PNG>
+    <filepath>textures/3Dtextures/Tile/GCLIFF.png</filepath>
+    <tile>1</tile>
+  </GCLIFF.PNG>
+
+  <CLIFF.PNG>
+    <filepath>textures/3Dtextures/Tile/CLIFF.png</filepath>
+    <tile>1</tile>
+  </CLIFF.PNG>  
+  
+      <FACE.PNG>
     <filepath>textures/3Dtextures/Player/FACE.png</filepath>
     <tile>1</tile>   
   </FACE.PNG>
