@@ -1,7 +1,8 @@
 #include "Tile.h"
 #include "Structure.h"
 
-Tile::Tile(const Zeni::Point3f &center__,
+Tile::Tile(const float tile_size__,
+		   const Zeni::Point3f &center__,
 		   const Zeni::Vector3f &scale__,
 		   const int col__,
 		   const int row__
@@ -9,6 +10,7 @@ Tile::Tile(const Zeni::Point3f &center__,
 	covering(HARD_SNOW),
 	Building(0)
 {
+	this->tile_size = tile_size__;
 	this->center = center__;
 	this->size = scale__;
 	this->col = col__;
@@ -18,7 +20,8 @@ Tile::Tile(const Zeni::Point3f &center__,
 Tile::Tile(const Tile &rhs
 		)	:
 	covering(rhs.covering),
-	Building(rhs.Building)
+	Building(rhs.Building),
+	tile_size(rhs.tile_size)
 {
 	this->center = rhs.center;
 	this->size = rhs.size;
@@ -29,6 +32,7 @@ Tile::Tile(const Tile &rhs
 Tile & Tile::operator=(const Tile &rhs
 		)
 {
+	this->tile_size = rhs.tile_size;
 	this->covering = rhs.covering;
 	this->Building = rhs.Building;
 	this->center = rhs.center;
@@ -47,6 +51,10 @@ Tile::~Tile(void)
 
 bool Tile::has_building()	{
 	return !(Building == 0);
+}
+
+void Tile::set_height(float height__){
+	this->center.z += height__;
 }
 
 void Tile::set_team(TEAM_INDEX teamid){

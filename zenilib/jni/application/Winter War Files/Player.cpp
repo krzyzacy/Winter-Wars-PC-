@@ -1,6 +1,8 @@
 #include "Player.h"
 
 #include "Game_Model.h"
+#include "World.h"
+#include "Tile.h"
 #include "Snowball.h"
 #include "Team.h"
 
@@ -25,7 +27,7 @@ const float  Stick_Accel = 200;
 
 
 Player::Player(const Zeni::Point3f &center_) 
-	: Moveable(center_), m_camera(center_, Quaternion(), 3.5f),
+	: Moveable(center_ /*, Vector3f(150.0f,150.0f,150.0f)*/), m_camera(center_, Quaternion(), 3.5f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	myTeam(0), Jumping(ON_GROUND)
 {
@@ -52,7 +54,19 @@ void Player::turn_left(float theta) {
 }
 
 void Player::update(const float &time)	{
+	
+	Point3f backup = center;
 	Moveable::update(time);
+	if (Game_Model::get().get_World()->get_tile(center) == NULL){
+		center.x = backup.x;
+		center.y = backup.y;
+	}
+	else if (Game_Model::get().get_World()->get_tile(center)->get_height() >= center.z - 30.0f){
+		center.x = backup.x;
+		center.y = backup.y;
+	}
+	
+
 	m_camera.position = center;
 }
 

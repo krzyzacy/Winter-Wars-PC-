@@ -21,12 +21,17 @@ class Tile :
 	TEAM_INDEX team;
 	int col;
 	int row;
+	float tile_size;
 
 public:
 
 	int get_col(){ return col; }
 	int get_row(){ return row; }
+	float get_height() {return center.z + tile_size; }
+	TEAM_INDEX get_team() {return team; }
+	TILE_TYPE get_covering() {return covering; }
 
+	void set_height(float height__);
 	void set_team(TEAM_INDEX teamid);
 	void set_covering(TILE_TYPE coverid);
 
@@ -41,7 +46,8 @@ public:
 		so that no matter how large the tiles are, the world will still look correct
 	*/
 
-	Tile(const Zeni::Point3f &center__ = Zeni::Point3f(0.0f,0.0f,0.0f),
+	Tile(const float tile_size__,
+		 const Zeni::Point3f &center__ = Zeni::Point3f(0.0f,0.0f,0.0f),
 		 const Zeni::Vector3f &scale__ = Zeni::Vector3f(20.0f,20.0f,20.0f),
 		 const int col__ = 0,
 		 const int row__ = 0

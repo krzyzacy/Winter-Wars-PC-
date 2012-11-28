@@ -15,7 +15,7 @@ public:
 	World( View *view_,
 		   const int width__ = 15,
 		   const int height__ = 14,
-		   const float hex_length__ = 40.0f
+		   const float hex_length__ = 100.0f
 		);
 	~World(void);
 

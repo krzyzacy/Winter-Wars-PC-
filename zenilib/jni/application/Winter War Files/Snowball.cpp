@@ -1,5 +1,7 @@
 #include "Snowball.h"
 #include "Game_Model.h"
+#include "World.h"
+#include "Tile.h"
 
 #include <zenilib.h>
 
@@ -28,7 +30,14 @@ void Snowball::update(const float &time)
 {	
 	if (!is_on_ground())
 	{
+		Point3f backup = center;
 		Moveable::update(time);
+		if (Game_Model::get().get_World()->get_tile(center) == NULL){
+			alive = false;
+		}
+		else if (Game_Model::get().get_World()->get_tile(center)->get_height() >= center.z - 30.0f){
+			alive = false;
+		}
 	}
 	else
 	{

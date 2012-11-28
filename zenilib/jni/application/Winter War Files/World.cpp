@@ -31,13 +31,13 @@ World::World( View *view_,
 			if(h % 2 == 1) center.x += tR;
 			
 			center.y = h * (tH + tS) + tS;
-			center.z = - 60.0f;
+			center.z = 0.0f + (rand() % 2) * 30 ;
 			if(h == 0 || h == height__-1 || w == 0 || w == width__-1)
-				center.z = 10.0f;
+				center.z = tile_size;
 			
 			float scale_size = 2.0*tile_size;
 			Tile* tmp;
-			tmp = new Tile(center,Zeni::Vector3f(scale_size,scale_size,scale_size),w,h);
+			tmp = new Tile(tile_size,center,Zeni::Vector3f(scale_size,scale_size,scale_size),w,h);
 
 			int randomteam = rand() % 5;
 			int randomcover = rand() % 3;

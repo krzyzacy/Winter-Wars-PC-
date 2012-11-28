@@ -1,4 +1,7 @@
 #include "Moveable.h"
+#include "World.h"
+#include "Game_Model.h"
+#include "Tile.h"
 
 using namespace std;
 using namespace Zeni;
@@ -28,7 +31,9 @@ void Moveable::update(const float &time)	{
 	Collidable::update(time);
 
 	gravity(time);
+
 	center += velocity * time;
+	
 }
 
 void Moveable::set_velocity(const Vector3f &vel)	{
