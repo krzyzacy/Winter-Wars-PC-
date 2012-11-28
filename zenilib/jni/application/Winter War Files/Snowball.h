@@ -7,6 +7,8 @@
 class Collision_Table;
 class Player;
 
+extern const float Launch_Speed;
+
 
 class Snowball :
 	public Moveable
@@ -19,9 +21,11 @@ public:
 	
 	void update(const float &time);
 
-	void grow(const float &time);
+	void get_thrown(const Zeni::Vector3f &dir);
 
-	void get_thrown(const Zeni::Vector3f &dir, const float &force);
+	float deal_damage();
+
+	void perform_contact_effects();
 
 	virtual int get_ID() const 
 		{return snowball_ID_c;}
@@ -33,11 +37,11 @@ public:
 	void create_body();
 
 private:
-	bool in_air;
 	Player *owner;
 
 	Zeni::Chronometer<Zeni::Time> Lifespan;
 	bool damage_dealt;
+	float damage;
 	
 	// Collison Stuff
 	const static int snowball_ID_c;

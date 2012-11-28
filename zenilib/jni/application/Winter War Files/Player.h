@@ -10,6 +10,8 @@ extern const float packing_rate;					//Rate at which snowball is packed
 extern const float snow_depletion_rate;		//Rate at which snow is consumed while packing
 extern const float snow_absorbtion_rate;	//Rate of filling snow meter from tile
 
+extern const int Max_Stick_Input;
+
 enum Jump_State	{
 	ON_GROUND, BOOST, FALLING_WITH_STYLE, JET_PACK
 };
@@ -50,7 +52,7 @@ public:
 
 	float get_Snow() const {return Snow_in_Pack;}
 	float get_Health() const {return health;}
-	float get_Team_Blocks() const;
+	int get_Team_Blocks() const;
 
 // Collision Body
 	void create_body();

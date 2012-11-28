@@ -71,6 +71,26 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Avatars/BoyBlueRegular.png</filepath>
     <tile>1</tile>
   </BUBBLE.PNG>
+
+  <BLCLOTH.PNG>
+    <filepath>textures/3Dtextures/Player/BLCLOTH.png</filepath>
+    <tile>1</tile>
+  </BLCLOTH.PNG>
+<!--  
+  <WOOL.PNG>
+    <filepath>textures/3Dtextures/Player/WOOL.png</filepath>
+    <tile>1</tile>
+  </WOOL.PNG>
+  -->
+  <FACE.PNG>
+    <filepath>textures/3Dtextures/Player/FACE.png</filepath>
+    <tile>1</tile>   
+  </FACE.PNG>
+  
+  <MITT.PNG>
+    <filepath>textures/3Dtextures/Player/MITT.png</filepath>
+    <tile>1</tile>
+  </MITT.PNG>
   
   <TOXIC.PNG>
     <filepath>textures/toxic.png</filepath>
@@ -107,10 +127,6 @@ The following things are unsupported:
     <tile>1</tile>
   </NEWWOOL.PNG>
 
-  <BLCLOTH.PNG>
-    <filepath>textures/BLCLOTH.png</filepath>
-    <tile>1</tile>
-  </BLCLOTH.PNG>
   
   <BoyBlueRegular>
     <filepath>textures/2DTextures/Avatars/BoyBlueRegular.png</filepath>

@@ -18,7 +18,10 @@ const float packing_rate = 2;
 const float snow_depletion_rate = 20;
 const float snow_absorbtion_rate = 50;
 
+const int Max_Stick_Input	= 32768;
+
 const Vector3f jump_vec(0,0,500);
+const float  Stick_Accel = 200;
 
 
 Player::Player(const Zeni::Point3f &center_) 
@@ -58,7 +61,7 @@ void Player::throw_ball()		{
 	if(current_radius > 0)	{
 		Snowball *sb = new Snowball(center+m_camera.get_forward(), 
 																Vector3f(current_radius, current_radius,current_radius));
-		sb->get_thrown(m_camera.get_forward(), 100);
+		sb->get_thrown(m_camera.get_forward());
 		current_radius = 0;
 		Game_Model::get().add_moveable(sb);
 	}
@@ -91,16 +94,36 @@ void Player::pack_snow()	{
 	Vector3f POV_face = m_camera.get_forward().get_ij().normalize();
 	Vector3f POV_left = m_camera.get_left().get_ij().normalize();
 
-	//Adding Ice effects later, for now straight up movement
 	float zvel = velocity.z;
-	velocity = (POV_face * input_vel.y) + (POV_left * input_vel.x);
-	velocity *= standard_speed;
+	Vector3f New_vel(velocity);
+	Vector3f Input_Vel_Max = (standard_speed * POV_face * input_vel.y/Max_Stick_Input) +
+													(standard_speed * POV_left * input_vel.x/Max_Stick_Input);
+	//Now the clever shit
+	Vector2f dir = input_vel;
+	dir.normalize();
+	Vector3f Input_Accel_Dir(dir.x, dir.y, 0);
+	//&&& ICE AND FRICTION FACTOR HERE, WILL NEED GET TILE
+	const float friction = 1;	//0 to 1, will be an input laters
+	float grip = Stick_Accel * friction;
+	Input_Accel_Dir *= grip;
+	New_vel += Input_Accel_Dir * Game_Model::get().get_time_step();
 
-	//float friction; //&&& This will be an input later, or determined based on input
-	//velocity *= friction;
-	//&&& And also may use a new velocity as a temporary velocity
+	//HOW TO IMPLEMENT INPUT_VEL_MAX AS LIMIT??
+	float diff = abs(New_vel.magnitude() - Input_Vel_Max.magnitude());
+	if(diff <= 100 || diff > 5000 || Input_Vel_Max.magnitude() == 0)
+		New_vel = Input_Vel_Max;
 
+	velocity = New_vel;
 	velocity.z = zvel;
+
+	//OLD WAY
+	//Adding Ice effects later, for now straight up movement
+	//float zvel = velocity.z;
+	//velocity = (POV_face * input_vel.y) + (POV_left * input_vel.x);
+	//velocity *= standard_speed;
+	//velocity.z = zvel;
+	
+	
 }
 
  
@@ -144,6 +167,6 @@ void Player::create_body()
 	body = Zeni::Collision::Capsule(center + Vector3f(0, 0 , size.z*0.5), center - Vector3f(0, 0, size.z*0.5), size.z*3.5);
 }
 
-float Player::get_Team_Blocks() const	{
+int Player::get_Team_Blocks() const	{
 	return myTeam->get_Resources();
 }

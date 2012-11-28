@@ -7,6 +7,7 @@
 #include "Team.h"
 #include "Player_View.h"
 #include "Snowball.h"
+#include "Structure.h"
 
 #include <zenilib.h>
 
@@ -133,8 +134,15 @@ float Game_Model::get_time_step()	{
 	return time_step;
 }
 
-void Game_Model::Kill_me(Moveable *Deadman)	{
-		movers.erase(Deadman);
+void Game_Model::Kill_me(Snowball *Deadman)	{
+		//movers.erase(Deadman);
+		//colliders.erase(Deadman);
+		//view->remove_renderable(Deadman);
+		//delete Deadman;
+}
+
+void Game_Model::Kill_me(Structure *Deadman)	{
+		//This will need to touch world in some way, as structures will be in world also
 		colliders.erase(Deadman);
 		view->remove_renderable(Deadman);
 		delete Deadman;

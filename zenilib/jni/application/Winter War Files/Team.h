@@ -24,13 +24,13 @@ public:
 	void add_tile(Tile *);
 	void remove_tile(Tile *);
 
-	float get_Resources()	const {return Ice_Blocks;}
+	int get_Resources()	const {return Ice_Blocks;}
 
 private:
 	//list of players
 	std::vector<Player*>	members;
 	//Resource value
-	float Ice_Blocks;
+	int Ice_Blocks;
 	float intake_rate;
 
 	//Class network (new Class)
