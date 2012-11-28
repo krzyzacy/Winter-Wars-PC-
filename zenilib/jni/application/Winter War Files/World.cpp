@@ -27,7 +27,7 @@ World::World( View *view_,
 		for(int w = 0; w < width__; w++){
 
 			Zeni::Point3f center;
-			center.x = w * tR * 2;
+			center.x = w * tR * 2 + tR;
 			if(h % 2 == 1) center.x += tR;
 			
 			center.y = h * (tH + tS) + tS;
@@ -35,10 +35,23 @@ World::World( View *view_,
 			if(h == 0 || h == height__-1 || w == 0 || w == width__-1)
 				center.z = 10.0f;
 			
-			float scale_size = 2*tile_size;
+			float scale_size = 2.0*tile_size;
 			Tile* tmp;
 			tmp = new Tile(center,Zeni::Vector3f(scale_size,scale_size,scale_size),w,h);
 
+			int randomteam = rand() % 5;
+			int randomcover = rand() % 3;
+
+			if(randomteam == 0) tmp->set_team(NEUTRAL);
+			if(randomteam == 1) tmp->set_team(GREEN);
+			if(randomteam == 2) tmp->set_team(RED);
+			if(randomteam == 3) tmp->set_team(BLUE);
+			if(randomteam == 4) tmp->set_team(ORANGE);
+
+			if(randomcover == 0) tmp->set_covering(SOFT_SNOW);
+			if(randomcover == 1) tmp->set_covering(HARD_SNOW);
+			if(randomcover == 2) tmp->set_covering(ICE);
+			
 			map[h][w] = tmp;
 
 			view->add_renderable(map[h][w]);
@@ -74,11 +87,11 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 		if(yr >= tH)
 			return map[sec_y][sec_x];
 		else if(xr >= tR){
-			if(yr >= ((- sqrt(3.0f) / 3) * (xr - tR) + tH) ){
+			if(yr <= (sqrt(3.0f) / 3 ) * (xr - tR) ){
 				if(sec_y != 0)
 					return map[sec_y - 1][sec_x];
 				else
-					return map[1][1];
+					return NULL;
 					//cerr << "not a valid coordination" << endl;
 					
 			}
@@ -86,11 +99,11 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 				return map[sec_y][sec_x];
 		}
 		else{
-			if(sqrt(3.0f) * yr >= xr){
+			if(yr <= (-(sqrt(3.0f) * xr)/3 + tH)){
 				if(sec_y != 0 && sec_x != 0)
 					return map[sec_y - 1][sec_x - 1];
 				else
-					return map[1][1];
+					return NULL;
 					//cerr << "not a valid coordination" << endl;
 			}
 			else
@@ -99,14 +112,14 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 	}
 	else{ // even row, section B
 		if(xr >= tR){
-			if(yr <= tH)
+			if(yr >= tH)
 				return map[sec_y][sec_x];
 			else{
-				if( sqrt(3.0f) * yr >= (xr - tR)){
+				if(yr <= (-(sqrt(3.0f) * (xr - tR))/3 + tH)){
 					if(sec_y != 0)
 						return map[sec_y - 1][sec_x];
 					else
-						return map[1][1];
+						return NULL;
 						//cerr << "not a valid coordination" << endl;
 				}
 				else
@@ -114,26 +127,26 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 			}
 		}
 		else{
-			if(yr <= tH){
+			if(yr >= tH){
 				if(sec_x != 0)
 					return map[sec_y][sec_x - 1];
 				else
-					return map[1][1];
+					return NULL;
 					//cerr << "not a valid coordination" << endl;
 			}
 			else{
-				if(yr < (- xr / sqrt(3.0f)) + tH ){
+				if(yr <= (sqrt(3.0f) / 3 ) * xr ){
 					if(sec_x != 0)
-						return map[sec_y][sec_x - 1];
+						return map[sec_y - 1][sec_x];
 					else
-						return map[1][1];
+						return NULL;
 						//cerr << "not a valid coordination" << endl;
 				}
 				else{
 					if(sec_y != 0)
-						return map[sec_y - 1][sec_x];
+						return map[sec_y][sec_x - 1];
 					else
-						return map[1][1];
+						return NULL;
 						//cerr << "not a valid coordination" << endl;
 				}
 			}

@@ -7,6 +7,10 @@ enum TILE_TYPE	{
 	SOFT_SNOW, HARD_SNOW, ICE
 };
 
+enum TEAM_INDEX{
+	NEUTRAL, GREEN, RED, BLUE, ORANGE
+};
+
 class Structure;
 
 class Tile :
@@ -14,6 +18,7 @@ class Tile :
 {
 	TILE_TYPE	covering;
 	Structure* Building;
+	TEAM_INDEX team;
 	int col;
 	int row;
 
@@ -21,6 +26,9 @@ public:
 
 	int get_col(){ return col; }
 	int get_row(){ return row; }
+
+	void set_team(TEAM_INDEX teamid);
+	void set_covering(TILE_TYPE coverid);
 
 	bool has_building();
 
