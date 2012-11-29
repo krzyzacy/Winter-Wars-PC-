@@ -70,6 +70,10 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 	float xr = position.x;
 	float yr = position.y;
 
+	if(xr < 0 || yr < 0){
+		return NULL;
+	}
+
 	float tR = sqrt(3.0f) * tile_size / 2;
 	float tS = tile_size;
 	float tH = tile_size / 2; 
@@ -175,6 +179,11 @@ bool World::is_adjacent(Tile* A, Tile* B){
 	
 	return true;
 }
+
+//std::list<Tile*> World::Get_Family(Tile *Central){
+	//std::list<Tile *> ret;
+
+//}
 
 //&&& Sen if you could make this give the corners, in some sort of order that'd be cool
 Tile * World::get_next_Base_Tile()	{
