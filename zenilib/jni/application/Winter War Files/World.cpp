@@ -159,6 +159,10 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 	}
 }
 
+Tile * World::get_tile(int row, int col){
+	return map[row][col];
+}
+
 bool World::is_adjacent(Tile* A, Tile* B){
 	int row_A = A->get_row();
 	int row_B = B->get_row();
