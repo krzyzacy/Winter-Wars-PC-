@@ -51,9 +51,9 @@ void Snowball::hit_tile()
 
 void Snowball::on_ground()
 {
-//	damage_dealt = true;
-//	alive = false;
-//	set_velocity(Vector3f());
+	damage_dealt = true;
+	alive = false;
+	set_velocity(Vector3f());
 }
 
 void Snowball::get_thrown(const Vector3f &dir)

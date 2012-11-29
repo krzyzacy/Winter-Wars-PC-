@@ -80,17 +80,19 @@ void Collision_Table::collidePlayerPlayer(Player* p1, Player* p2)
 {
 	//if no collision, return
 	if (!p1->body.intersects(p2->body) || p1 == p2)
-		{
 		return;
-		}
-	else 
-		{
-		collided = true;
+
+
+	collided = true;
+
+//	p1->hit_tile();
+//	p2->hit_tile();
+
 		//p1->accelerate(Vector3f(0,0,1)*40, Game_Model::get().get_time_step());
-		p1->accelerate(500*Vector3f(p1->center - p2->center), Game_Model::get().get_time_step());
+		p1->accelerate(50*Vector3f(p1->center - p2->center), Game_Model::get().get_time_step());
 //		p1->center = p1->center - 2*(p2->center - p1->center);
 //		p2->center = p2->center + 2*(p2->center - p1->center);
-		}
+
 }
 
 void Collision_Table::collidePermanentSnowball(Permanent* w1, Snowball* ob2)
