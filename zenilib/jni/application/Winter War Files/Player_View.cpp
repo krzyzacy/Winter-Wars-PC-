@@ -29,7 +29,7 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 //	get_Video().set_2d(std::make_pair(topLeft,bottomRight), true);
 
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
-	get_Fonts()["resource"].render_text("Player.size.z = " + ftoa(player->get_bottom_center().z) ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 250),Color(0x99660099));
+	get_Fonts()["resource"].render_text("Player.lookat.x = " + ftoa(player->get_camera().get_forward().x) + "Player.lookat.y = " + ftoa(player->get_camera().get_forward().y) ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 250),Color(0x99660099));
 	Tile* testtile = Game_Model::get().get_World()->get_tile(player->get_camera().position);
 
 	get_Fonts()["resource"].render_text("Tile.row = " + itoa(testtile->get_row()) + " Tile.col = " + itoa(testtile->get_col()) ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 450),Color(0x99660099));

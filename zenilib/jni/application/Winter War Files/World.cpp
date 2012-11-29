@@ -260,6 +260,26 @@ Tile * World::player_is_looking_at(Point3f &player_pos, Vector3f look_Dir)	{
 	//&&& Basic for now, to allow for testing
 	//If the player is "looking" to far away, like level across the board, then
 	//just return the tile next to them in that direction
+
+	if(look_Dir.x >= sqrt(3.0f) / 2){ // right
+		return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() + 1];
+	}
+	else if(look_Dir.x <= - sqrt(3.0f) / 2){ // left
+		return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() - 1];
+	}
+	else if((look_Dir.x <= sqrt(3.0f) / 2 || look_Dir.x >= 0) && look_Dir.y <= 0 ){ // upright
+		//return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() - 1];
+	}
+	else if((look_Dir.x <= sqrt(3.0f) / 2 || look_Dir.x >= 0) && look_Dir.y >= 0 ){ // upleft
+		//return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() - 1];
+	}
+	else if((look_Dir.x >= - sqrt(3.0f) / 2 || look_Dir.x <= 0) && look_Dir.y <= 0 ){ // lowerleft
+		//return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() - 1];
+	}
+	else if((look_Dir.x >= - sqrt(3.0f) / 2 || look_Dir.x <= 0) && look_Dir.y >= 0 ){ // lowerleft
+		//return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() - 1];
+	}
+
 	return get_tile(player_pos);
 }
 
