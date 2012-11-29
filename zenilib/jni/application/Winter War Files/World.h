@@ -20,6 +20,7 @@ public:
 	~World(void);
 
 	Tile * get_tile(const Zeni::Point3f &position);
+	Tile * get_tile(int row, int col);
 
 	Tile * player_is_looking_at(Zeni::Point3f &player_pos, Zeni::Vector3f look_dir);
 
