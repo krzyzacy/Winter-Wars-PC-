@@ -1,7 +1,5 @@
 #include "Snowball.h"
 #include "Game_Model.h"
-#include "World.h"
-#include "Tile.h"
 
 #include <zenilib.h>
 
@@ -27,24 +25,8 @@ Snowball::~Snowball(void)
 }
 
 void Snowball::update(const float &time)
-{	
-	if (!is_on_ground())
-	{
-		Point3f backup = center;
-		Moveable::update(time);
-		if (Game_Model::get().get_World()->get_tile(center) == NULL){
-			alive = false;
-		}
-		else if (Game_Model::get().get_World()->get_tile(center)->get_height() >= center.z - 30.0f){
-			alive = false;
-		}
-	}
-	else
-	{
-		damage_dealt = true;
-		alive = false;
-		set_velocity(Vector3f());
-	}
+{
+	Moveable::update(time);
 
 	//Temporary, so we don't have infinite snowballs flying around chewing up resources
 	if(Lifespan.seconds() > 10 || damage_dealt)	{
@@ -55,6 +37,23 @@ void Snowball::update(const float &time)
 		perform_contact_effects();
 		//Game_Model::get().Kill_me(this); Can't do this
 	}
+}
+
+void Snowball::off_map()
+{
+	alive = false;
+}
+
+void Snowball::hit_tile()
+{
+	alive = false;
+}
+
+void Snowball::on_ground()
+{
+//	damage_dealt = true;
+//	alive = false;
+//	set_velocity(Vector3f());
 }
 
 void Snowball::get_thrown(const Vector3f &dir)

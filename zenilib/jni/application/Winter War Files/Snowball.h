@@ -15,7 +15,7 @@ class Snowball :
 {
 public:
 	Snowball(const Zeni::Point3f &center_,
-              const Zeni::Vector3f &size_ = Zeni::Vector3f(10,10,10));
+              const Zeni::Vector3f &size_ = Zeni::Vector3f(1,1,1));
 
 	~Snowball(void);
 	
@@ -43,6 +43,10 @@ private:
 	bool damage_dealt;
 	float damage;
 	
+	virtual void off_map();
+	virtual void hit_tile();
+	virtual void on_ground();
+
 	// Collison Stuff
 	const static int snowball_ID_c;
 	friend Collision_Table;

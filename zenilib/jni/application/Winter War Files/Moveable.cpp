@@ -23,17 +23,25 @@ Moveable::~Moveable(void)
 void Moveable::gravity(const float &time)	{
 	if(!is_on_ground())
 		velocity += grav_accel * time;
-	else if(velocity.z < 0)
-		velocity.z = 0;
+	else
+		on_ground();
+
 }
 
 void Moveable::update(const float &time)	{
 	Collidable::update(time);
 
 	gravity(time);
+	
 
 	center += velocity * time;
-	
+
+	if (Game_Model::get().get_World()->get_tile(center) == NULL){
+		off_map();
+	}
+	else if (Game_Model::get().get_World()->get_tile(center)->get_height() >= center.z - 30.0f){
+		hit_tile();
+	}
 }
 
 void Moveable::set_velocity(const Vector3f &vel)	{

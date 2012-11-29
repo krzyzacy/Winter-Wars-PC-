@@ -65,9 +65,14 @@ private:
 	float Snow_in_Pack; 
 	float health;
 	Team * myTeam;
+	Zeni::Point3f backup;
 
 	Jump_State	Jumping;
 	Zeni::Chronometer<Zeni::Time> AirTime;
+
+	virtual void off_map();
+	virtual void hit_tile();
+	virtual void on_ground();
 
 	// Collison Stuff
 	Zeni::Collision::Capsule body;

@@ -1,8 +1,6 @@
 #include "Player.h"
 
 #include "Game_Model.h"
-#include "World.h"
-#include "Tile.h"
 #include "Snowball.h"
 #include "Team.h"
 
@@ -16,7 +14,7 @@ const float standard_speed = 100;
 
 const float Max_Snow_Amount = 100;
 extern const float Max_Player_Health = 100;
-const float packing_rate = 2;
+const float packing_rate = 20;
 const float snow_depletion_rate = 20;
 const float snow_absorbtion_rate = 50;
 
@@ -54,27 +52,35 @@ void Player::turn_left(float theta) {
 }
 
 void Player::update(const float &time)	{
+	backup = center;
 	
-	Point3f backup = center;
 	Moveable::update(time);
-	if (Game_Model::get().get_World()->get_tile(center) == NULL){
-		center.x = backup.x;
-		center.y = backup.y;
-	}
-	else if (Game_Model::get().get_World()->get_tile(center)->get_height() >= center.z - 30.0f){
-		center.x = backup.x;
-		center.y = backup.y;
-	}
-	
 
 	m_camera.position = center;
 }
 
+void Player::off_map()
+{
+	center.x = backup.x;
+	center.y = backup.y;
+}
+
+void Player::hit_tile()
+{
+	center.x = backup.x;
+	center.y = backup.y;
+}
+
+void Player::on_ground()
+{
+	if(velocity.z < 0)
+		velocity.z = 0;
+}
 
 void Player::throw_ball()		{
 	if(current_radius > 0)	{
 		Snowball *sb = new Snowball(center+m_camera.get_forward(), 
-																Vector3f(current_radius, current_radius,current_radius));
+										Vector3f(current_radius, current_radius,current_radius));
 		sb->get_thrown(m_camera.get_forward());
 		current_radius = 0;
 		Game_Model::get().add_moveable(sb);

@@ -166,6 +166,16 @@ The following things are unsupported:
     <tile>1</tile>
   </NEWWOOL.PNG>
 
+
+  <LEATHER.PNG>
+    <filepath>textures/3DTextures/Player/LEATHER.png</filepath>
+    <tile>1</tile>
+  </LEATHER.PNG>
+
+  <BLONDECU.PNG>
+    <filepath>textures/3DTextures/Player/BLONDECUR.png</filepath>
+    <tile>1</tile>
+  </BLONDECU.PNG>  
   
   <BoyBlueRegular>
     <filepath>textures/2DTextures/Avatars/BoyBlueRegular.png</filepath>

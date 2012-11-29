@@ -15,7 +15,7 @@ public:
 	~Moveable(void);
 
 	virtual void update(const float &time) = 0;
-
+	
 	void gravity(const float &time);
 
 
@@ -25,9 +25,12 @@ public:
 	void accelerate(const Zeni::Vector3f &, const float &time);
 
 protected:
-	Zeni::Vector3f velocity;
+	Zeni::Vector3f velocity;	
 	
+	// template functions that happen during update
+	// derived classes define 
+	virtual void off_map() = 0;
+	virtual void hit_tile() = 0;
+	virtual void on_ground() = 0;
 
-
-	//Zeni::Vector3f accel;
 };
