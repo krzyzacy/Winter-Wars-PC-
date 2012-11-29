@@ -1,15 +1,18 @@
 #pragma once
 
 #include "Seen_Object.h"
+#include "Team.h"
+#include "Structure.h"
 #include <Zeni/Vector3f.h>
 
 enum TILE_TYPE	{
 	SOFT_SNOW, HARD_SNOW, ICE
 };
 
-enum TEAM_INDEX{
-	NEUTRAL, GREEN, RED, BLUE, ORANGE
-};
+//Defined in Team.h
+//enum TEAM_INDEX	{
+//	NEUTRAL, GREEN, RED, BLUE, ORANGE
+//};
 
 class Structure;
 
@@ -36,6 +39,7 @@ public:
 	void set_covering(TILE_TYPE coverid);
 
 	bool has_building();
+	void build_structure(Structure_Type buildtype, TEAM_INDEX new_color);
 
 	virtual const model_key_t get_model_name() const;
 

@@ -3,6 +3,8 @@
 #include "Game_Model.h"
 #include "Snowball.h"
 #include "Team.h"
+#include "World.h"
+#include "Tile.h"
 
 #include <zenilib.h>
 
@@ -10,7 +12,7 @@ using namespace std;
 using namespace Zeni;
 
 const int Player::player_ID_c = 1;
-const float standard_speed = 100;
+const float standard_speed = 150;
 
 const float Max_Snow_Amount = 100;
 extern const float Max_Player_Health = 100;
@@ -19,6 +21,8 @@ const float snow_depletion_rate = 20;
 const float snow_absorbtion_rate = 50;
 
 const int Max_Stick_Input	= 32768;
+const float Building_Recharge_Time = 2;
+const float Tile_Move_Speed = 20;
 
 const Vector3f jump_vec(0,0,500);
 const float  Stick_Accel = 200;
@@ -27,7 +31,7 @@ const float  Stick_Accel = 200;
 Player::Player(const Zeni::Point3f &center_) 
 	: Moveable(center_ , Vector3f(20.0f,20.0f,20.0f)), m_camera(center_, Quaternion(), 3.5f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
-	myTeam(0), Jumping(ON_GROUND)
+	myTeam(0), Jumping(ON_GROUND), Builder(REST), view_open(false), Selection(NOTHING)
 {
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
 }
@@ -116,6 +120,11 @@ void Player::pack_snow()	{
  void Player::calculate_movement(const Vector2f &input_vel)	{
 	//Here is where the magic happens for player
 	//input_vel represents joystick desire of where player wants to go
+	if(view_open)	{
+		velocity = Vector3f();
+		return;
+	}
+
 	Vector3f POV_face = m_camera.get_forward().get_ij().normalize();
 	Vector3f POV_left = m_camera.get_left().get_ij().normalize();
 
@@ -148,12 +157,9 @@ void Player::pack_snow()	{
 	//velocity *= standard_speed;
 	//velocity.z = zvel;
 	
-	
 }
-
  
-
-
+ 
 void Player::jump()	{
 	switch(Jumping)	{
 	case ON_GROUND:
@@ -185,6 +191,95 @@ void Player::jump()	{
 		break;
 	}
 	
+}
+
+void Player::handle_build_menu(bool pressed, const Vector2f &norml_stick)	{
+	switch(Builder)	{
+	case REST:
+		if(pressed)	
+			Builder = SELECT_BUILDING;
+			//Now bring up the mini-map
+		break;
+	case SELECT_BUILDING:
+		if(!pressed)	{
+			Selection = select_type(norml_stick);
+			if(Selection == NOTHING)
+				Builder = REST;
+			else
+				Builder = CREATE_BUILDING;
+		}
+		break;
+	case CREATE_BUILDING:
+		//Magic
+		if(create_building(Selection))	{
+			Builder = RECHARGE_BUILD;
+			BuildTime.start();
+		}
+		else
+			Builder = REST;
+
+		Selection = NOTHING;
+		break;
+	case RECHARGE_BUILD:
+		if(BuildTime.seconds() > Building_Recharge_Time)	{
+			BuildTime.stop();
+			BuildTime.reset();
+			Builder = REST;
+		}
+	}
+}
+
+void Player::determine_active_view(bool build, bool mini)	{
+	if(build == true || mini == true)
+		view_open = true;
+	else
+		view_open = false;
+}
+
+Structure_Type Player::select_type(const Vector2f &stick)	{
+	return SNOWMAN;
+	//if(stick.magnitude() == 0)
+	//	return NOTHING;
+	//else	{
+	//	//&&&Eventually do math, based on the tan2 function used in proj1
+	//	return SNOWMAN;
+	//}
+}
+
+bool Player::create_building(Structure_Type Building)	{
+	//Returns true if building was created, false if unable
+	//This is where all the shit happens
+	
+	//First get tile in question
+	Tile *t = Game_Model::get().get_World()->player_is_looking_at(center, m_camera.get_forward());
+	//Check for build conditions (expand)
+		//If nothing has been built on it, (no one owns it), is adjacent to your network, and have enough ice blocks
+
+	//Tile - build_struct(structure_Type)
+	t->build_structure(Building, myTeam->get_Team_Index());
+	myTeam->add_tile(t);
+	return false;
+}
+
+void Player::jet_pack_mode(bool state)	{
+	if(state) //Super easy to add as a power up
+		Jumping = JET_PACK;
+	else if(Jumping == JET_PACK)
+		Jumping = FALLING_WITH_STYLE;
+}
+
+void Player::raise_tile()	{
+	//Add restrictions and shit to this later
+	//height, ownership etc.
+	Tile* t = Game_Model::get().get_World()->get_tile(center);
+	t->set_height(Game_Model::get().get_time_step() * Tile_Move_Speed);
+	center.z += Game_Model::get().get_time_step() * Tile_Move_Speed;
+}
+
+void Player::lower_tile()	{
+	Tile* t = Game_Model::get().get_World()->get_tile(center);
+	t->set_height(-1 * Game_Model::get().get_time_step() * Tile_Move_Speed);
+	center.z -= Game_Model::get().get_time_step() * Tile_Move_Speed;
 }
 
 void Player::create_body()

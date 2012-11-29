@@ -10,6 +10,7 @@ enum	Shooting_State	{
 };
 
 
+
 class Controls
 {
 public:
@@ -42,13 +43,18 @@ private:
 
 	struct Inputs	{
 		Inputs()	: jump(false), pack(false), mini_map(false), shoot(false), 
-			build_view(false), Cam(0.0f, 0.0f), Move(0.0f, 0.0f)		{}
+			build_view(false), Cam(0.0f, 0.0f), Move(0.0f, 0.0f), RSHOLDER(false),
+			Tile_up(false), Tile_down(false)		{}
 
 		bool jump;				//A button
 		bool pack;				//B button
 		bool mini_map;		//left shoulder
 		bool shoot;				//Right trigger
 		bool build_view;	//left trigger
+
+		bool RSHOLDER;		//&&&Right shoulder, only temporary
+		bool Tile_up;
+		bool Tile_down;
 
 		Zeni::Vector2f		Cam;
 		Zeni::Vector2f		Move;
@@ -59,6 +65,8 @@ private:
 
 	Shooting_State	Shoot;
 	int Mouse_Camera;
+
+	
 
 	//Temp Pointer (or not????)
 	Player * Chell;

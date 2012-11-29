@@ -1,5 +1,6 @@
 #pragma once
 #include "Moveable.h"
+#include "Structure.h"
 
 class Collision_Table;
 class Team;
@@ -10,10 +11,16 @@ extern const float packing_rate;					//Rate at which snowball is packed
 extern const float snow_depletion_rate;		//Rate at which snow is consumed while packing
 extern const float snow_absorbtion_rate;	//Rate of filling snow meter from tile
 
+extern const float Building_Recharge_Time;
 extern const int Max_Stick_Input;
+extern const float Tile_Move_Speed;
 
 enum Jump_State	{
 	ON_GROUND, BOOST, FALLING_WITH_STYLE, JET_PACK
+};
+
+enum Build_State	{
+		REST, SELECT_BUILDING, CREATE_BUILDING, RECHARGE_BUILD
 };
 
 
@@ -37,6 +44,14 @@ public:
 	/*Takes snow from ground into pack, may need information from world)*/
 	void pack_snow();
 	void jump();
+	void jet_pack_mode(bool state);
+	void handle_build_menu(bool trig_pressed, const Zeni::Vector2f &norml_stick);
+	void determine_active_view(bool build, bool mini);
+	bool create_building(Structure_Type	Building);
+	
+	void raise_tile();
+	void lower_tile();
+
 
 	void update(const float &time);
 
@@ -56,6 +71,8 @@ public:
 	float get_Health() const {return health;}
 	int get_Team_Blocks() const;
 
+	Structure_Type	select_type(const Zeni::Vector2f &stick);
+
 // Collision Body
 	void create_body();
 
@@ -66,11 +83,18 @@ private:
 	float current_radius;
 	float Snow_in_Pack; 
 	float health;
+
 	Team * myTeam;
 	Zeni::Point3f backup;
 
 	Jump_State	Jumping;
 	Zeni::Chronometer<Zeni::Time> AirTime;
+
+	Build_State	Builder;
+	Zeni::Chronometer<Zeni::Time> BuildTime;
+	Structure_Type Selection;
+
+	bool view_open;
 
 	virtual void off_map();
 	virtual void hit_tile();

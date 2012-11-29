@@ -5,6 +5,7 @@
 #include "Tile.h"
 
 using namespace std;
+using namespace Zeni;
 
 World::World( View *view_,
 		const int width__,
@@ -244,5 +245,12 @@ std::list<Tile*> World::Get_Family(Tile *Central){
 //&&& Sen if you could make this give the corners, in some sort of order that'd be cool
 Tile * World::get_next_Base_Tile()	{
 	return 0;
+}
+
+Tile * World::player_is_looking_at(Point3f &player_pos, Vector3f look_Dir)	{
+	//&&& Basic for now, to allow for testing
+	//If the player is "looking" to far away, like level across the board, then
+	//just return the tile next to them in that direction
+	return get_tile(player_pos);
 }
 

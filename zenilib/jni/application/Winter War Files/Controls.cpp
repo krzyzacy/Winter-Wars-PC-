@@ -170,13 +170,21 @@ bool Controls::HandleJoy(const SDL_JoyHatEvent &event)	{
 	switch(event.value)	{
 	//case SDL_HAT_LEFTUP:
 	case SDL_HAT_UP:    
-		Handled_Input = true;
+		input.Tile_up = true;
+		input.Tile_down = false;
+		break;
 	//case SDL_HAT_RIGHTUP:
 	//case SDL_HAT_LEFT:     
-	//case SDL_HAT_CENTERED:
+	case SDL_HAT_CENTERED:
+		input.Tile_up = false;
+		input.Tile_down = false;
+		break;
 	//case SDL_HAT_RIGHT:
 	//case SDL_HAT_LEFTDOWN:
-	//case SDL_HAT_DOWN:    
+	case SDL_HAT_DOWN:    
+		input.Tile_down = true;
+		input.Tile_up = false;
+		break;
 	//case SDL_HAT_RIGHTDOWN:
 	default:
 		Handled_Input = false;
@@ -206,7 +214,7 @@ bool Controls::HandleJoy(const SDL_JoyButtonEvent &event)	{
 		input.mini_map = event.state == SDL_PRESSED;
 		break;
 	case 5: //Right Shoulder
-
+		input.RSHOLDER = event.state == SDL_PRESSED;
 		break;
 	case 6:	//Back button 
 		//Respawn?
@@ -256,23 +264,27 @@ void Controls::interact_with_player(Player* Tron, const float &time)	{
 		Shoot = CHILL;
 		break;
 	}
-
-//Then deal with buttons, might have to split off here
-	//Then Deal with jump?	(requires player/world info (is in air))
-	//Then deal with pack(Absorb snow) (requires world info)
-	//Deal with mini-map view
-	//deal with build view
 	
 	if(input.pack)
 		Tron->pack_snow();
 
-	//Add a jump clock to this (make it like mario, long hold means longer jump)
-	//First jetpack mode
 	if(input.jump)
 		Tron->jump();
 
+	Tron->determine_active_view(input.build_view, input.mini_map);
+
+	Vector2f norml(input.Move);
+	Tron->handle_build_menu(input.build_view, norml.normalize());
+
+	Tron->jet_pack_mode(input.RSHOLDER);
+
+	if(input.Tile_up)
+		Tron->raise_tile();
+
+	if(input.Tile_down)
+		Tron->lower_tile();
+
 	Chell = Tron;
-	
 }
 
 string Controls::give_stick_status()	{

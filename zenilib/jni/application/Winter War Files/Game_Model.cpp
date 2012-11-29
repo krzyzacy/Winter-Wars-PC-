@@ -30,7 +30,8 @@ void Game_Model::start_up()
 		//but when we add the menu, should be easy to extend for up to 4 teams
 		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams.push_back(create_team(world->get_next_Base_Tile()));
-
+		teams[0]->set_Team_Color(BLUE);
+		teams[1]->set_Team_Color(RED);
 
 		for (int i = 0 ; i < 4 ; i++)
 		{
@@ -81,6 +82,9 @@ void Game_Model::update()
 
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); ++it)
 		(*it)->update(time_step);
+
+	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)
+		(*it)->update();
 
 	//get_player(0)->throw_ball();
 

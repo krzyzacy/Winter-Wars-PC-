@@ -157,3 +157,9 @@ const model_key_t Tile::get_model_name() const	{
 
 }
 
+void Tile::build_structure(Structure_Type buildtype, TEAM_INDEX new_color)	{
+	//Do something with the object factory and structure here
+	team = new_color;
+
+}
+
