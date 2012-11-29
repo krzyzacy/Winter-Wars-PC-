@@ -7,13 +7,15 @@
 class Player;
 class Team;
 class Tile;
+class Structure;
+
 
 // not very useful now....
 Player *create_player(const Zeni::Point3f &init_position);
 Team	*create_team(Tile * Base_Tile);
 
-//Collidable *create_target(const Zeni::String& type, const Zeni::Point3f &init_position);
+// Figure out tile and team from player!!
+Structure *create_structure(const std::string &type, Player *player, const Zeni::Point3f &init_position);
 
-//Collidable *get_rand_target();
 
 #endif

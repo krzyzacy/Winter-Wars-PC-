@@ -15,7 +15,7 @@ public:
 
 
 private:
-
+	// make pure after putting in permanant!!!
 	virtual void create_body() {}
 	
 	// Collison Stuff
