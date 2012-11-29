@@ -44,6 +44,6 @@ private:
 	int map_width;                   // #col
 	int map_height;                  // #row
 	float tile_size;                 // size of a tile
-	
+	int cur_team_count;
 		
 };
