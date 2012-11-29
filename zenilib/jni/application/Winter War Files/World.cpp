@@ -180,11 +180,62 @@ bool World::is_adjacent(Tile* A, Tile* B){
 	return true;
 }
 
+
+/* haven't tested.. should be working.. */
 std::list<Tile*> World::Get_Family(Tile *Central){
 	std::list<Tile *> ret;
 
+	if(Central->get_col() != 0)
+		ret.push_back(map[Central->get_row()][Central->get_col() + 1]);
+
+	if(Central->get_col() != map_width)
+		ret.push_back(map[Central->get_row()][Central->get_col() - 1]);
+
 	if(Central->get_row() % 2 == 0){
-	
+		if(Central->get_row() == 0){
+			if(Central->get_col() == 0){
+				ret.push_back(map[Central->get_row() + 1][Central->get_col()]);
+			}
+			else{
+				ret.push_back(map[Central->get_row() + 1][Central->get_col()]);
+				ret.push_back(map[Central->get_row() + 1][Central->get_col() - 1]);
+			}
+		}
+		else{
+			if(Central->get_col() == 0){
+				ret.push_back(map[Central->get_row() - 1][Central->get_col()]);
+				ret.push_back(map[Central->get_row() + 1][Central->get_col()]);
+			}
+			else{
+				ret.push_back(map[Central->get_row() - 1][Central->get_col()]);
+				ret.push_back(map[Central->get_row() - 1][Central->get_col() - 1]);
+				ret.push_back(map[Central->get_row() + 1][Central->get_col()]);
+				ret.push_back(map[Central->get_row() + 1][Central->get_col() - 1]);
+			}
+		}
+	}
+	else{
+		if(Central->get_row() == map_height){
+			if(Central->get_col() == map_width){
+				ret.push_back(map[Central->get_row() - 1][Central->get_col()]);
+			}
+			else{
+				ret.push_back(map[Central->get_row() - 1][Central->get_col()]);
+				ret.push_back(map[Central->get_row() - 1][Central->get_col() + 1]);
+			}
+		}
+		else{
+			if(Central->get_col() == map_width){
+				ret.push_back(map[Central->get_row() - 1][Central->get_col()]);
+				ret.push_back(map[Central->get_row() + 1][Central->get_col()]);
+			}
+			else{
+				ret.push_back(map[Central->get_row() - 1][Central->get_col()]);
+				ret.push_back(map[Central->get_row() - 1][Central->get_col() + 1]);
+				ret.push_back(map[Central->get_row() + 1][Central->get_col()]);
+				ret.push_back(map[Central->get_row() + 1][Central->get_col() + 1]);
+			}
+		}
 	}
 
 	return ret;

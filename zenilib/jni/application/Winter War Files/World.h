@@ -40,8 +40,8 @@ private:
 
 	std::vector< std::vector<Tile *> > map;
 	View *view;
-	int map_width;                   // number of tiles in a row
-	int map_height;                  // number of tiles in a column
+	int map_width;                   // #col
+	int map_height;                  // #row
 	float tile_size;                 // size of a tile
 	
 		
