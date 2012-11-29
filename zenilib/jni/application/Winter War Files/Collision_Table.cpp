@@ -13,7 +13,7 @@
 using namespace std;
 using namespace Zeni;
 
-const int num_Obs_c = 3;
+const int num_Obs_c = 4;
 
 Collision_Table::Collision_Table()
 	: table(num_Obs_c, vector<fxn_ptr_t>(num_Obs_c, (fxn_ptr_t)0))

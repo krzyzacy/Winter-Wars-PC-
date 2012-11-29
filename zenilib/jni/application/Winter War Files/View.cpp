@@ -13,9 +13,11 @@ using namespace std;
 View::View(void)
 {
 	model_map["snowball"] = new Zeni::Model("models/snowball.3ds");
-	//model_map["simpletile"] = new Zeni::Model("models/simpletile.3ds");
-	model_map["world"] = new Zeni::Model("models/world2.3ds");
+	
+// Players
 	model_map["player"] = new Zeni::Model("models/blueplayer.3ds");
+	
+// Tiles
 	model_map["neutralsoftsnowtile"] = new Zeni::Model("models/softsnow/neutralsoftsnowtile.3ds");
 	model_map["neutralhardsnowtile"] = new Zeni::Model("models/hardsnow/neutralhardsnowtile.3ds");
 	model_map["neutralicetile"] = new Zeni::Model("models/ice/neutralicetile.3ds");
@@ -31,7 +33,9 @@ View::View(void)
 	model_map["orangesoftsnowtile"] = new Zeni::Model("models/softsnow/orangesoftsnowtile.3ds");
 	model_map["orangehardsnowtile"] = new Zeni::Model("models/hardsnow/orangehardsnowtile.3ds");
 	model_map["orangeicetile"] = new Zeni::Model("models/ice/orangeicetile.3ds");
-
+	
+// Structures	
+	model_map["snowman"] = new Zeni::Model("models/blueplayer.3ds");
 }
 
 View::~View(void)
