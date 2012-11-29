@@ -248,7 +248,12 @@ std::list<Tile*> World::Get_Family(Tile *Central){
 
 //&&& Sen if you could make this give the corners, in some sort of order that'd be cool
 Tile * World::get_next_Base_Tile()	{
-	return 0;
+	if(cur_team_count == 0) return map[1][1];
+	else if(cur_team_count == 1) return map[map_height - 1][map_width - 1];
+	else if(cur_team_count == 2) return map[map_height - 1][1];
+	else if(cur_team_count == 3) return map[1][map_width - 1];
+	
+	cur_team_count ++;
 }
 
 Tile * World::player_is_looking_at(Point3f &player_pos, Vector3f look_Dir)	{
