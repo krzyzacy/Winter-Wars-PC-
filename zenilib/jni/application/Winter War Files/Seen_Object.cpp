@@ -40,8 +40,8 @@ bool Seen_Object::is_on_ground()	{
 
 	// if my bottom is less than the top of the tile im one
 	// MAGIC NUMBER 35.0 here, modify when model fixed.
-	// also @ player.cpp line 64.
-	if(get_bottom_center().z <= Game_Model::get().get_World()->get_tile(center)->get_top_center().z + 35.0f)
+	// also @ moveable.cpp line 64.
+	if(get_bottom_center().z <= Game_Model::get().get_World()->get_tile(center)->get_top_center().z + 10.0f)
 		return true;
 
 	return false;

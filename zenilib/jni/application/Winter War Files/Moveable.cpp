@@ -39,7 +39,7 @@ void Moveable::update(const float &time)	{
 	if (Game_Model::get().get_World()->get_tile(center) == NULL){
 		off_map();
 	}
-	else if (Game_Model::get().get_World()->get_tile(center)->get_height() >= center.z - 30.0f){
+	else if (Game_Model::get().get_World()->get_tile(center)->get_height() >= get_bottom_center().z + 10.0f){
 		hit_tile();
 	}
 }

@@ -31,9 +31,9 @@ World::World( View *view_,
 			if(h % 2 == 1) center.x += tR;
 			
 			center.y = h * (tH + tS) + tS;
-			center.z = 0.0f + (rand() % 2) * 30 ;
+			center.z = 0.0f + (rand() % 3) * 25 ;
 			if(h == 0 || h == height__-1 || w == 0 || w == width__-1)
-				center.z = tile_size;
+				center.z = tile_size * 1.8;
 			
 			float scale_size = 2.0*tile_size;
 			Tile* tmp;
@@ -180,10 +180,15 @@ bool World::is_adjacent(Tile* A, Tile* B){
 	return true;
 }
 
-//std::list<Tile*> World::Get_Family(Tile *Central){
-	//std::list<Tile *> ret;
+std::list<Tile*> World::Get_Family(Tile *Central){
+	std::list<Tile *> ret;
 
-//}
+	if(Central->get_row() % 2 == 0){
+	
+	}
+
+	return ret;
+}
 
 //&&& Sen if you could make this give the corners, in some sort of order that'd be cool
 Tile * World::get_next_Base_Tile()	{
