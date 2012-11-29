@@ -16,7 +16,7 @@ World::World( View *view_,
 	view(view_)
 {
 
-
+	cur_team_count = 0;
 
 	tile_size = hex_length__;
 
