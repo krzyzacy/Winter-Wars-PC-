@@ -77,9 +77,14 @@ void Player::on_ground()
 		velocity.z = 0;
 }
 
+void Player::get_damaged(float damage)
+{
+	health -= damage;
+}
+
 void Player::throw_ball()		{
 	if(current_radius > 0)	{
-		Snowball *sb = new Snowball(center+m_camera.get_forward(), 
+		Snowball *sb = new Snowball(this, center+m_camera.get_forward(), 
 										Vector3f(current_radius, current_radius,current_radius));
 		sb->get_thrown(m_camera.get_forward());
 		current_radius = 0;

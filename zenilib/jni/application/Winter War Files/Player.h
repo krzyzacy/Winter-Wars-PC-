@@ -40,6 +40,8 @@ public:
 
 	void update(const float &time);
 
+	void get_damaged(float damage);
+
 // Getters
 	const Zeni::Camera &get_camera() const
 		{return m_camera;}

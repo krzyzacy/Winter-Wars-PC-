@@ -14,7 +14,7 @@ class Snowball :
 	public Moveable
 {
 public:
-	Snowball(const Zeni::Point3f &center_,
+	Snowball(const Player *p, const Zeni::Point3f &center_,
               const Zeni::Vector3f &size_ = Zeni::Vector3f(1,1,1));
 
 	~Snowball(void);
@@ -37,7 +37,7 @@ public:
 	void create_body();
 
 private:
-	Player *owner;
+	const Player *owner;
 
 	Zeni::Chronometer<Zeni::Time> Lifespan;
 	bool damage_dealt;
