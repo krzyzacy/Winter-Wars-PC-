@@ -262,24 +262,73 @@ Tile * World::player_is_looking_at(Point3f &player_pos, Vector3f look_Dir)	{
 	//just return the tile next to them in that direction
 
 	if(look_Dir.x >= sqrt(3.0f) / 2){ // right
-		return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() + 1];
+		if(get_tile(player_pos)->get_col() != map_width)
+			return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() + 1];
+		else
+			return NULL;
 	}
 	else if(look_Dir.x <= - sqrt(3.0f) / 2){ // left
-		return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() - 1];
+		if(get_tile(player_pos)->get_col() != 0)
+			return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() - 1];
+		else
+			return NULL;
 	}
 	else if((look_Dir.x <= sqrt(3.0f) / 2 || look_Dir.x >= 0) && look_Dir.y <= 0 ){ // upright
-		//return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() - 1];
+		if(get_tile(player_pos)->get_row() == 0)
+			return NULL;
+		else if(get_tile(player_pos)->get_row() % 2 == 1){
+			if(get_tile(player_pos)->get_col() == map_width){
+				return NULL;
+			}
+			else{
+				return map[get_tile(player_pos)->get_row() - 1][get_tile(player_pos)->get_col() + 1];
+			}
+		}
+		else
+			return map[get_tile(player_pos)->get_row() - 1][get_tile(player_pos)->get_col()];	
 	}
-	else if((look_Dir.x <= sqrt(3.0f) / 2 || look_Dir.x >= 0) && look_Dir.y >= 0 ){ // upleft
-		//return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() - 1];
+	else if((look_Dir.x >= - sqrt(3.0f) / 2 || look_Dir.x <= 0) && look_Dir.y <= 0 ){ // upleft
+		if(get_tile(player_pos)->get_row() == 0)
+			return NULL;
+		else if(get_tile(player_pos)->get_row() % 2 == 0){
+			if(get_tile(player_pos)->get_col() == 0){
+				return NULL;
+			}
+			else{
+				return map[get_tile(player_pos)->get_row() - 1][get_tile(player_pos)->get_col() - 1];
+			}
+		}
+		else
+			return map[get_tile(player_pos)->get_row() - 1][get_tile(player_pos)->get_col()];
 	}
-	else if((look_Dir.x >= - sqrt(3.0f) / 2 || look_Dir.x <= 0) && look_Dir.y <= 0 ){ // lowerleft
-		//return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() - 1];
+	else if((look_Dir.x <= sqrt(3.0f) / 2 || look_Dir.x >= 0) && look_Dir.y >= 0 ){ // lowerright
+		if(get_tile(player_pos)->get_row() == map_height)
+			return NULL;
+		else if(get_tile(player_pos)->get_row() % 2 == 1){
+			if(get_tile(player_pos)->get_col() == map_width){
+				return NULL;
+			}
+			else{
+				return map[get_tile(player_pos)->get_row() + 1][get_tile(player_pos)->get_col() + 1];
+			}
+		}
+		else
+			return map[get_tile(player_pos)->get_row() + 1][get_tile(player_pos)->get_col()];
+			
 	}
 	else if((look_Dir.x >= - sqrt(3.0f) / 2 || look_Dir.x <= 0) && look_Dir.y >= 0 ){ // lowerleft
-		//return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() - 1];
+		if(get_tile(player_pos)->get_row() == map_height)
+			return NULL;
+		else if(get_tile(player_pos)->get_row() % 2 == 0){
+			if(get_tile(player_pos)->get_col() == 0){
+				return NULL;
+			}
+			else{
+				return map[get_tile(player_pos)->get_row() + 1][get_tile(player_pos)->get_col() - 1];
+			}
+		}
+		else
+			return map[get_tile(player_pos)->get_row() + 1][get_tile(player_pos)->get_col()];
 	}
-
-	return get_tile(player_pos);
 }
 
