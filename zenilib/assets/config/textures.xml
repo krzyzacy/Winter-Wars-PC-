@@ -175,7 +175,13 @@ The following things are unsupported:
   <BLONDECU.PNG>
     <filepath>textures/3DTextures/Player/BLONDECUR.png</filepath>
     <tile>1</tile>
-  </BLONDECU.PNG>  
+  </BLONDECU.PNG>
+
+  <BLONDE.PNG>
+    <filepath>textures/3DTextures/Player/BLONDE.png</filepath>
+    <tile>1</tile>
+  </BLONDE.PNG>
+  
   
   <BoyBlueRegular>
     <filepath>textures/2DTextures/Avatars/BoyBlueRegular.png</filepath>
