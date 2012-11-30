@@ -265,22 +265,24 @@ void Controls::interact_with_player(Player* Tron, const float &time)	{
 		break;
 	}
 	
+	//packing
 	if(input.pack)
 		Tron->pack_snow();
 
+	//jumping
 	if(input.jump)
 		Tron->jump();
 
+	//Alternate Views and Building Menu
 	Tron->determine_active_view(input.build_view, input.mini_map);
-
 	Vector2f norml(input.Move);
-	Tron->handle_build_menu(input.build_view, norml.normalize());
-
+	Tron->handle_build_menu(norml.normalize());
+	
+	//Hacks, for debugging purposes, although would be a good power-up
 	Tron->jet_pack_mode(input.RSHOLDER);
 
 	if(input.Tile_up)
 		Tron->raise_tile();
-
 	if(input.Tile_down)
 		Tron->lower_tile();
 

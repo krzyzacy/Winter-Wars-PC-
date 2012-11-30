@@ -13,6 +13,7 @@ using namespace Zeni;
 
 const int Player::player_ID_c = 1;
 const float standard_speed = 150;
+const float turn_speed = 2;
 
 const float Max_Snow_Amount = 100;
 extern const float Max_Player_Health = 100;
@@ -21,19 +22,22 @@ const float snow_depletion_rate = 20;
 const float snow_absorbtion_rate = 50;
 
 const int Max_Stick_Input	= 32768;
-const float Building_Recharge_Time = 2;
-const float Tile_Move_Speed = 20;
+const float Building_Recharge_Time = 4;
+const float Tile_Move_Speed = 50;
 
 const Vector3f jump_vec(0,0,500);
 const float  Stick_Accel = 200;
 
 
 Player::Player(const Zeni::Point3f &center_) 
-	: Moveable(center_ , Vector3f(20.0f,20.0f,20.0f)), m_camera(center_, Quaternion(), 3.5f),
+	: Moveable(center_ , Vector3f(20.0f,20.0f,20.0f)), m_camera(center_, Quaternion(), 5.0f, 2000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
-	myTeam(0), Jumping(ON_GROUND), Builder(REST), view_open(false), Selection(NOTHING)
+	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false), Selection(NOTHING),
+	stick_theta(0.0f)
 {
+	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
+	//rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0, 0);
 }
 
 
@@ -52,7 +56,13 @@ void Player::adjust_pitch(float phi) {
 }
 
 void Player::turn_left(float theta) {
-	m_camera.turn_left_xy(theta);
+		m_camera.turn_left_xy(theta*turn_speed);
+		//Quaternion LR_Only = m_camera.orientation;
+		//Here take out pitch and roll	
+		//LR_Only *= Quaternion(1,0,0); Doesn't work, think we need math
+		//rotation = LR_Only + Quaternion (Global::pi_over_two, 0, 0);
+		//Pre render?
+		rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0,0);
 }
 
 void Player::update(const float &time)	{
@@ -61,6 +71,7 @@ void Player::update(const float &time)	{
 	Moveable::update(time);
 
 	m_camera.position = center;
+	
 }
 
 void Player::off_map()
@@ -84,6 +95,7 @@ void Player::on_ground()
 void Player::get_damaged(float damage)
 {
 	health -= damage;
+	//Add respawn stuff / checks here 
 }
 
 void Player::throw_ball()		{
@@ -120,8 +132,8 @@ void Player::pack_snow()	{
  void Player::calculate_movement(const Vector2f &input_vel)	{
 	//Here is where the magic happens for player
 	//input_vel represents joystick desire of where player wants to go
-	if(view_open)	{
-		velocity = Vector3f();
+	if(mini_open || build_open)	{
+		velocity = Vector3f(0,0, velocity.z);
 		return;
 	}
 
@@ -193,15 +205,15 @@ void Player::jump()	{
 	
 }
 
-void Player::handle_build_menu(bool pressed, const Vector2f &norml_stick)	{
+void Player::handle_build_menu(const Vector2f &norml_stick)	{
 	switch(Builder)	{
 	case REST:
-		if(pressed)	
+		if(build_open)	
 			Builder = SELECT_BUILDING;
-			//Now bring up the mini-map
+			//Now bring up the build selection map
 		break;
 	case SELECT_BUILDING:
-		if(!pressed)	{
+		if(!build_open)	{
 			Selection = select_type(norml_stick);
 			if(Selection == NOTHING)
 				Builder = REST;
@@ -210,7 +222,6 @@ void Player::handle_build_menu(bool pressed, const Vector2f &norml_stick)	{
 		}
 		break;
 	case CREATE_BUILDING:
-		//Magic
 		if(create_building(Selection))	{
 			Builder = RECHARGE_BUILD;
 			BuildTime.start();
@@ -221,44 +232,68 @@ void Player::handle_build_menu(bool pressed, const Vector2f &norml_stick)	{
 		Selection = NOTHING;
 		break;
 	case RECHARGE_BUILD:
-		if(BuildTime.seconds() > Building_Recharge_Time)	{
+		if(BuildTime.seconds() >= Building_Recharge_Time)	{
 			BuildTime.stop();
 			BuildTime.reset();
 			Builder = REST;
 		}
+		break;
+	default:
+		Builder = REST;
+		break;
 	}
 }
 
 void Player::determine_active_view(bool build, bool mini)	{
-	if(build == true || mini == true)
-		view_open = true;
-	else
-		view_open = false;
+	mini_open = mini;
+	build_open = build && !mini;
 }
 
 Structure_Type Player::select_type(const Vector2f &stick)	{
-	return SNOWMAN;
-	//if(stick.magnitude() == 0)
-	//	return NOTHING;
-	//else	{
-	//	//&&&Eventually do math, based on the tan2 function used in proj1
-	//	return SNOWMAN;
-	//}
+	if(stick.magnitude() == 0	||
+		(stick.x < 0.1 && stick.x > -0.1 && stick.y < 0.1 && stick.y > -0.1))
+		return NOTHING;
+
+	float mytheta = atan2(-stick.y, stick.x);
+	if(mytheta < 0)
+		mytheta += 2*Global::pi;
+
+	stick_theta = mytheta;
+		//changes the stick input into an angle ,
+	//the we define the type by region of angle
+
+	//Joystick points right
+	if(stick_theta > Global::three_pi_over_two + Global::pi/4 &&
+			stick_theta < Global::pi/4)
+			return SNOWMAN;
+	//Up
+	if(stick_theta < Global::pi - Global::pi/4 &&
+		stick_theta > Global::pi/4)
+		return FORT;
+
+	//Left
+	if(stick_theta < Global::pi + Global::pi/4 &&
+		stick_theta > Global::pi_over_two + Global::pi/4)
+		return SNOW_FACTORY;
+
+	//Down
+	if(stick_theta < Global::three_pi_over_two + Global::pi/4 && 
+		stick_theta > Global::three_pi_over_two - Global::pi/4)
+		return HEALING_POOL;
 }
 
 bool Player::create_building(Structure_Type Building)	{
 	//Returns true if building was created, false if unable
-	//This is where all the shit happens
-	
+		
 	//First get tile in question
 	Tile *t = Game_Model::get().get_World()->player_is_looking_at(center, m_camera.get_forward());
+	
 	//Check for build conditions (expand)
 		//If nothing has been built on it, (no one owns it), is adjacent to your network, and have enough ice blocks
 
-	//Tile - build_struct(structure_Type)
-	t->build_structure(Building, myTeam->get_Team_Index());
+	t->build_structure(Building, myTeam);
 	myTeam->add_tile(t);
-	return false;
+	return true;
 }
 
 void Player::jet_pack_mode(bool state)	{

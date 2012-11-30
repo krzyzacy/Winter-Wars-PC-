@@ -152,3 +152,16 @@ void Game_Model::Kill_me(Structure *Deadman)	{
 		delete Deadman;
 }
 
+void Game_Model::add_structure(Structure* S)	{
+	colliders.insert(S);
+	structures.insert(S);
+	view->add_renderable(S);
+}
+
+void Game_Model::remove_structure(Structure* S)	{
+	colliders.erase(S);
+	structures.erase(S);
+	view->remove_renderable(S);
+	delete S;
+}
+

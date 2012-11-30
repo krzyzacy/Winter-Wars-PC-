@@ -45,11 +45,13 @@ public:
 	void pack_snow();
 	void jump();
 	void jet_pack_mode(bool state);
-	void handle_build_menu(bool trig_pressed, const Zeni::Vector2f &norml_stick);
+	
+	void handle_build_menu(const Zeni::Vector2f &norml_stick);
 	void determine_active_view(bool build, bool mini);
 	
-	/* To whomever in charge of player: How can I tell the difference between the building view and minimap view? I temporarily added this function to test the minimap. -Sen*/
-	bool get_mini_view() const {return view_open; };
+	bool get_mini_view() const {return mini_open;}
+	bool get_build_view() const {return (build_open && !mini_open);}
+	float get_stick_choice() const {return stick_theta;}
 	bool create_building(Structure_Type	Building);
 	
 	void raise_tile();
@@ -96,8 +98,10 @@ private:
 	Build_State	Builder;
 	Zeni::Chronometer<Zeni::Time> BuildTime;
 	Structure_Type Selection;
+	float stick_theta;
 
-	bool view_open;
+	bool mini_open;
+	bool build_open;
 
 	virtual void off_map();
 	virtual void hit_tile();

@@ -1,5 +1,11 @@
 #include "Tile.h"
 #include "Structure.h"
+#include "Object_factory.h"
+#include "Team.h"
+#include "Game_Model.h"
+
+using namespace Zeni;
+using namespace std;
 
 Tile::Tile(const float tile_size__,
 		   const Zeni::Point3f &center__,
@@ -157,9 +163,14 @@ const model_key_t Tile::get_model_name() const	{
 
 }
 
-void Tile::build_structure(Structure_Type buildtype, TEAM_INDEX new_color)	{
-	//Do something with the object factory and structure here
-	team = new_color;
+Point3f Tile::get_structure_bottom_pt()	{
+	return Point3f(center.x, center.y, get_height());
+}
 
+void Tile::build_structure(Structure_Type buildtype, Team* new_team)	{
+	//Do something with the object factory and structure here
+	team = new_team->get_Team_Index();
+	Building = create_structure(buildtype, get_structure_bottom_pt(), new_team);
+	Game_Model::get().add_structure(Building);
 }
 

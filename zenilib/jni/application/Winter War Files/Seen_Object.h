@@ -37,7 +37,7 @@ public:
 protected:
 	Zeni::Point3f center;
 	Zeni::Vector3f size; // TopRightcorner-to-LowerLeftcorner
-    Zeni::Quaternion rotation;
+  Zeni::Quaternion rotation;
 	
 	bool alive;
 };

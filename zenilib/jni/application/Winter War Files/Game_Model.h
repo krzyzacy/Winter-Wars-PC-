@@ -39,8 +39,10 @@ public:
 		{return world;}
 
 	void add_moveable(Moveable *);
-
 	void remove_moveable(Moveable *);
+
+	void add_structure(Structure *);
+	void remove_structure(Structure *);
 
 	/*Goes through Moveables and removes "dead" ones*/
 	void Clean_Moving_dead();
@@ -71,6 +73,8 @@ private:
 	
 	typedef std::set<Collidable*> collidable_list_t;
 	collidable_list_t colliders;
+
+	std::set<Structure*>	structures;
 	
 	// Functions
 	void check_collisions();

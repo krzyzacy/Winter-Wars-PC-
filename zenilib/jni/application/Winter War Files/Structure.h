@@ -10,10 +10,18 @@
 
 // THIS IS AWFUL!!!!!!!!!
 // Delete this now!!!! USe the object factory to create it.  Minimize work in player.cpp
+
+//This works though. 
+//	I know it's sinful, but it will suffice for now. Besides I don't see a way around it with what I need it to do
+//	at least for now, probably one will become clear soon enough.
 enum Structure_Type	{
 	NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL
 };
 
+
+enum	Universal_State	{
+	PRESENT_MODE, BUILT, DAMAGED, DESTROYED
+};
 
 class Team;
 class Collision_Table;
@@ -34,8 +42,13 @@ private:
 	// Stuff every structure needs... 
 	
 	// State?  Building -> Built -> Damaged? -> Destroyed??
+	//Would the damaged state look different? like a broken version of the model???
+	//could be cool
 	
-	// Health?
+protected:
+	float Health;
+	Universal_State Status;
+	bool Connected_to_Team;
 
 	// maybe Collision capsule??? If each structure needs Collision Object, 
 	// Collision table becomes much more complicated to code

@@ -10,8 +10,8 @@ Structure::Structure(Team *team,
 			const Zeni::Point3f &position_,
 			float radius
 			) :
-	Seen_Object(position_, Vector3f(1,1,1)*radius), 
-	owner(team)
+	Seen_Object(position_, Vector3f(1,1,1)*radius),
+	owner(team), Health(100.0), Status(PRESENT_MODE), Connected_to_Team(true)
 {
 }
 
@@ -22,7 +22,7 @@ Structure::~Structure(void)
 
 void Structure::update(const float &time)
 {
-
+	Collidable::update(time);
 }
 
 void Structure::create_body()

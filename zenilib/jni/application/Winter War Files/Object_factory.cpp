@@ -8,6 +8,11 @@
 
 #include "Game_Model.h"
 
+#include "Fortress.h"
+#include "Healing_Pool.h"
+#include "Snow_Factory.h"
+#include "Snowman.h"
+
 #include <vector>
 
 using namespace Zeni;
@@ -89,3 +94,23 @@ Game_Object *get_rand_target()
 	}
 }
 */
+
+Structure *create_structure(int type, Point3f &pos_, Team* team_)	{
+	//For now assuming all are the same but later could change it
+	pos_.z += 10;
+	switch(type)	{
+	case SNOWMAN:
+		return new Snowman(team_, pos_);		
+	case FORT:
+		return new Fortress(team_, pos_);
+	case SNOW_FACTORY:
+		return new Snow_Factory(team_, pos_);
+	case HEALING_POOL:
+		return new Healing_Pool(team_, pos_);
+	default:
+		return new Fortress(team_, pos_);
+		break;
+	}
+}
+
+

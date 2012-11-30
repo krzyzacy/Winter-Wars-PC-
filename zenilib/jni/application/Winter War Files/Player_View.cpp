@@ -79,6 +79,10 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 	get_Video().render(healthbar);
 
+
+	//Hey Sen, I added a get_build_view for when the build menu should be up
+	//Also theres a get_stick_choice() that returns the angle the joystick is making
+	//If you want, you can use that you show which building the player is selecting when it's open
 	if( player->get_mini_view() ){
 		render_minimap(topLeft, bottomRight);
 	}

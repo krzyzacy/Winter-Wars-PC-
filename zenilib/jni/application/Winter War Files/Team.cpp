@@ -58,7 +58,7 @@ void Team::set_Team_Color(TEAM_INDEX in)	{
 
 void Team::add_tile(Tile *t)	{
 	Network.insert(t);
-	//do the stuff for add adjacent members
+	//do the stuff for add adjacent members(cycle through family and add
 }
 
 void Team::remove_tile(Tile *t)	{

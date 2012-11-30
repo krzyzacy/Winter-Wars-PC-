@@ -33,13 +33,16 @@ public:
 	float get_height() {return center.z + tile_size; }
 	TEAM_INDEX get_team() {return team; }
 	TILE_TYPE get_covering() {return covering; }
+	Zeni::Point3f get_structure_bottom_pt();
+
 
 	void set_height(float height__);
 	void set_team(TEAM_INDEX teamid);
 	void set_covering(TILE_TYPE coverid);
+	
 
 	bool has_building();
-	void build_structure(Structure_Type buildtype, TEAM_INDEX new_color);
+	void build_structure(Structure_Type buildtype, Team* new_color);
 
 	virtual const model_key_t get_model_name() const;
 
