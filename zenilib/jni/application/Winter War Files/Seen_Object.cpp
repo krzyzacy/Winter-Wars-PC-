@@ -26,6 +26,7 @@ void Seen_Object::render(Model *model) const
 	if (!model)
 		throw Error("Trying to render NULL Model!");
 
+	
 	const std::pair<Vector3f, float> rot = rotation.get_rotation();
 
     model->set_translate(center);
