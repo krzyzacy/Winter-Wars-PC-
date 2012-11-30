@@ -21,8 +21,10 @@ public:
 
 	Tile * get_tile(const Zeni::Point3f &position);
 	Tile * get_tile(int row, int col);
+	int get_width(){return map_width; };
+	int get_height(){return map_height; };
 
-	Tile * player_is_looking_at(Zeni::Point3f &player_pos, Zeni::Vector3f look_dir);
+	Tile * player_is_looking_at(const Zeni::Point3f &player_pos, Zeni::Vector3f look_dir);
 
 	//change input type if you want, or make multiple types
 	bool is_adjacent(Tile* A, Tile* B);
@@ -35,6 +37,7 @@ public:
 
 	//Called during set up, gives next Tile that represents the base
 	Tile* get_next_Base_Tile();
+	
 
 
 private:

@@ -30,9 +30,16 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 	get_Fonts()["resource"].render_text("Player.lookat.x = " + ftoa(player->get_camera().get_forward().x) + "Player.lookat.y = " + ftoa(player->get_camera().get_forward().y) ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 250),Color(0x99660099));
-	Tile* testtile = Game_Model::get().get_World()->get_tile(player->get_camera().position);
-
-	get_Fonts()["resource"].render_text("Tile.row = " + itoa(testtile->get_row()) + " Tile.col = " + itoa(testtile->get_col()) ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 450),Color(0x99660099));
+	Tile* testtile = Game_Model::get().get_World()->player_is_looking_at(player->get_camera().position,player->get_camera().get_forward());
+	Tile* curtile = Game_Model::get().get_World()->get_tile(player->get_camera().position);
+	
+	if(testtile != NULL && curtile != NULL){
+		get_Fonts()["resource"].render_text("stand.row = " + itoa(curtile->get_row()) + " stand.col = " + itoa(curtile->get_col()) ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 400),Color(0x99660099));
+		get_Fonts()["resource"].render_text("lookat.row = " + itoa(testtile->get_row()) + " lookat.col = " + itoa(testtile->get_col()) ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 450),Color(0x99660099));
+	}
+	else{
+		get_Fonts()["resource"].render_text(" out of bound! " ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 450),Color(0x99660099));
+	}
 
 	render_image("Frame",topLeft,Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 500));
 	render_image("BoyBlueRegular",Point2f(topLeft.x + unit_px * 15, topLeft.y + unit_px * 10), Point2f(topLeft.x + unit_px * 105, topLeft.y + unit_px * 100));
@@ -72,4 +79,30 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 	get_Video().render(healthbar);
 
+	if( player->get_mini_view() ){
+		render_minimap(topLeft, bottomRight);
+	}
+
+}
+
+void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRight){
+	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
+	float ratio = 7.0f;
+
+	Point2f tile_pos(Game_Model::get().get_World()->get_tile(0, 0)->get_top_center().x, Game_Model::get().get_World()->get_tile(0, 0)->get_top_center().y);
+	get_Fonts()["resource"].render_text("<|Espionage Center|>" ,Point2f(topLeft.x + unit_px * 330, topLeft.y + unit_px * 30),Color(0x99660099));
+	//render_image("Heart",Point2f(topLeft.x + tile_pos.x, topLeft.y + tile_pos.y),Point2f(topLeft.x + tile_pos.x + unit_px * 50, topLeft.y + tile_pos.y + unit_px * 50));
+
+	for(int row = 0; row < Game_Model::get().get_World()->get_height(); row++){
+		for(int col = 0; col < Game_Model::get().get_World()->get_width(); col++){
+			
+			Point2f tile_pos(Game_Model::get().get_World()->get_tile(row, col)->get_top_center().x, Game_Model::get().get_World()->get_tile(row, col)->get_top_center().y);
+
+			tile_pos.x /= ratio;
+			tile_pos.y /= ratio;
+
+			render_image("Tile2DRegular",Point2f(topLeft.x + tile_pos.x + unit_px * 200, topLeft.y + tile_pos.y + unit_px * 50),Point2f(topLeft.x + tile_pos.x + unit_px * 257, topLeft.y + tile_pos.y + unit_px * 107));
+		
+		}
+	}
 }

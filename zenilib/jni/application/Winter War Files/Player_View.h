@@ -15,6 +15,8 @@ public:
 
 	void render_hud(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
 
+	void render_minimap(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
+
 private:
 	const Player *player;
 

@@ -3,7 +3,7 @@
 #include "Seen_Object.h"
 #include "Team.h"
 #include "Structure.h"
-#include <Zeni/Vector3f.h>
+#include <zenilib.h>
 
 enum TILE_TYPE	{
 	SOFT_SNOW, HARD_SNOW, ICE

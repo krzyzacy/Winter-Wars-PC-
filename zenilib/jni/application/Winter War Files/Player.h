@@ -47,6 +47,9 @@ public:
 	void jet_pack_mode(bool state);
 	void handle_build_menu(bool trig_pressed, const Zeni::Vector2f &norml_stick);
 	void determine_active_view(bool build, bool mini);
+	
+	/* To whomever in charge of player: How can I tell the difference between the building view and minimap view? I temporarily added this function to test the minimap. -Sen*/
+	bool get_mini_view(){return view_open; };
 	bool create_building(Structure_Type	Building);
 	
 	void raise_tile();

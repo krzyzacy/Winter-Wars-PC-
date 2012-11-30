@@ -207,6 +207,12 @@ The following things are unsupported:
     <filepath>textures/2DTextures/HUDSprites/Frame.png</filepath>
     <tile>0</tile>
   </Frame>
+
+  <Tile2DRegular>
+    <filepath>textures/2DTextures/Minimap/Regular_hexagon.png</filepath>
+    <tile>0</tile>
+  </Tile2DRegular>
+  
   <!--
   <one>
     <is_sprite>0</is_sprite>

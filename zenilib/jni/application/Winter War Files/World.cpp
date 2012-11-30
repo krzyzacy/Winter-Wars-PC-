@@ -15,7 +15,8 @@ World::World( View *view_,
 	map(height__, vector<Tile *>(width__, 0) ),
 	view(view_)
 {
-
+	map_width = width__;
+	map_height = height__;
 	cur_team_count = 0;
 
 	tile_size = hex_length__;
@@ -97,7 +98,6 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 					return map[sec_y - 1][sec_x];
 				else
 					return NULL;
-					//cerr << "not a valid coordination" << endl;
 					
 			}
 			else
@@ -109,7 +109,6 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 					return map[sec_y - 1][sec_x - 1];
 				else
 					return NULL;
-					//cerr << "not a valid coordination" << endl;
 			}
 			else
 				return map[sec_y][sec_x];
@@ -125,7 +124,6 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 						return map[sec_y - 1][sec_x];
 					else
 						return NULL;
-						//cerr << "not a valid coordination" << endl;
 				}
 				else
 					return map[sec_y][sec_x];
@@ -137,7 +135,6 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 					return map[sec_y][sec_x - 1];
 				else
 					return NULL;
-					//cerr << "not a valid coordination" << endl;
 			}
 			else{
 				if(yr <= (sqrt(3.0f) / 3 ) * xr ){
@@ -145,14 +142,12 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 						return map[sec_y - 1][sec_x];
 					else
 						return NULL;
-						//cerr << "not a valid coordination" << endl;
 				}
 				else{
 					if(sec_y != 0)
 						return map[sec_y][sec_x - 1];
 					else
 						return NULL;
-						//cerr << "not a valid coordination" << endl;
 				}
 			}
 		}
@@ -193,7 +188,7 @@ std::list<Tile*> World::Get_Family(Tile *Central){
 	if(Central->get_col() != 0)
 		ret.push_back(map[Central->get_row()][Central->get_col() + 1]);
 
-	if(Central->get_col() != map_width)
+	if(Central->get_col() != map_width - 1)
 		ret.push_back(map[Central->get_row()][Central->get_col() - 1]);
 
 	if(Central->get_row() % 2 == 0){
@@ -221,7 +216,7 @@ std::list<Tile*> World::Get_Family(Tile *Central){
 	}
 	else{
 		if(Central->get_row() == map_height){
-			if(Central->get_col() == map_width){
+			if(Central->get_col() == map_width - 1){
 				ret.push_back(map[Central->get_row() - 1][Central->get_col()]);
 			}
 			else{
@@ -230,7 +225,7 @@ std::list<Tile*> World::Get_Family(Tile *Central){
 			}
 		}
 		else{
-			if(Central->get_col() == map_width){
+			if(Central->get_col() == map_width - 1){
 				ret.push_back(map[Central->get_row() - 1][Central->get_col()]);
 				ret.push_back(map[Central->get_row() + 1][Central->get_col()]);
 			}
@@ -250,19 +245,19 @@ std::list<Tile*> World::Get_Family(Tile *Central){
 Tile * World::get_next_Base_Tile()	{
 	
 	if(++cur_team_count == 1) return map[1][1];
-	else if(++cur_team_count == 2) return map[map_height - 1][map_width - 1];
-	else if(++cur_team_count == 3) return map[map_height - 1][1];
-	else if(++cur_team_count == 4) return map[1][map_width - 1];
+	else if(++cur_team_count == 2) return map[map_height - 2][map_width - 2];
+	else if(++cur_team_count == 3) return map[map_height - 2][1];
+	else if(++cur_team_count == 4) return map[1][map_width - 2];
 	
 }
 
-Tile * World::player_is_looking_at(Point3f &player_pos, Vector3f look_Dir)	{
+Tile * World::player_is_looking_at(const Point3f &player_pos, Vector3f look_Dir)	{
 	//&&& Basic for now, to allow for testing
 	//If the player is "looking" to far away, like level across the board, then
 	//just return the tile next to them in that direction
 
 	if(look_Dir.x >= sqrt(3.0f) / 2){ // right
-		if(get_tile(player_pos)->get_col() != map_width)
+		if(get_tile(player_pos)->get_col() != map_width - 1)
 			return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() + 1];
 		else
 			return NULL;
@@ -273,11 +268,11 @@ Tile * World::player_is_looking_at(Point3f &player_pos, Vector3f look_Dir)	{
 		else
 			return NULL;
 	}
-	else if((look_Dir.x <= sqrt(3.0f) / 2 || look_Dir.x >= 0) && look_Dir.y <= 0 ){ // upright
+	else if((look_Dir.x <= sqrt(3.0f) / 2 && look_Dir.x >= 0) && look_Dir.y <= 0 ){ // upright
 		if(get_tile(player_pos)->get_row() == 0)
 			return NULL;
 		else if(get_tile(player_pos)->get_row() % 2 == 1){
-			if(get_tile(player_pos)->get_col() == map_width){
+			if(get_tile(player_pos)->get_col() == map_width - 1){
 				return NULL;
 			}
 			else{
@@ -287,7 +282,7 @@ Tile * World::player_is_looking_at(Point3f &player_pos, Vector3f look_Dir)	{
 		else
 			return map[get_tile(player_pos)->get_row() - 1][get_tile(player_pos)->get_col()];	
 	}
-	else if((look_Dir.x >= - sqrt(3.0f) / 2 || look_Dir.x <= 0) && look_Dir.y <= 0 ){ // upleft
+	else if((look_Dir.x >= - sqrt(3.0f) / 2 && look_Dir.x <= 0) && look_Dir.y <= 0 ){ // upleft
 		if(get_tile(player_pos)->get_row() == 0)
 			return NULL;
 		else if(get_tile(player_pos)->get_row() % 2 == 0){
@@ -301,11 +296,11 @@ Tile * World::player_is_looking_at(Point3f &player_pos, Vector3f look_Dir)	{
 		else
 			return map[get_tile(player_pos)->get_row() - 1][get_tile(player_pos)->get_col()];
 	}
-	else if((look_Dir.x <= sqrt(3.0f) / 2 || look_Dir.x >= 0) && look_Dir.y >= 0 ){ // lowerright
+	else if((look_Dir.x <= sqrt(3.0f) / 2 && look_Dir.x >= 0) && look_Dir.y >= 0 ){ // lowerright
 		if(get_tile(player_pos)->get_row() == map_height)
 			return NULL;
 		else if(get_tile(player_pos)->get_row() % 2 == 1){
-			if(get_tile(player_pos)->get_col() == map_width){
+			if(get_tile(player_pos)->get_col() == map_width - 1){
 				return NULL;
 			}
 			else{
@@ -316,7 +311,7 @@ Tile * World::player_is_looking_at(Point3f &player_pos, Vector3f look_Dir)	{
 			return map[get_tile(player_pos)->get_row() + 1][get_tile(player_pos)->get_col()];
 			
 	}
-	else if((look_Dir.x >= - sqrt(3.0f) / 2 || look_Dir.x <= 0) && look_Dir.y >= 0 ){ // lowerleft
+	else if((look_Dir.x >= - sqrt(3.0f) / 2 && look_Dir.x <= 0) && look_Dir.y >= 0 ){ // lowerleft
 		if(get_tile(player_pos)->get_row() == map_height)
 			return NULL;
 		else if(get_tile(player_pos)->get_row() % 2 == 0){
