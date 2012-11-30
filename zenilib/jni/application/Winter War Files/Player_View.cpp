@@ -3,6 +3,7 @@
 #include "World.h"
 #include "Game_Model.h"
 #include "Tile.h"
+#include "string.h"
 
 #include <zenilib.h>
 
@@ -102,10 +103,34 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 			
 			Point2f tile_pos(Game_Model::get().get_World()->get_tile(row, col)->get_top_center().x, Game_Model::get().get_World()->get_tile(row, col)->get_top_center().y);
 
+			String tile_name = "Tile2D";
+
+			switch (Game_Model::get().get_World()->get_tile(row, col)->get_team()){
+				case NEUTRAL:
+					tile_name += "Neutral";
+					break;
+				case BLUE:
+					tile_name += "Blue";
+					break;
+				case GREEN:
+					tile_name += "Green";
+					break;
+				case RED:
+					tile_name += "Red";
+					break;
+				case ORANGE:
+					tile_name += "Orange";
+					break;
+				default:
+					tile_name += "Regular";
+					break;
+
+			}
+
 			tile_pos.x /= ratio;
 			tile_pos.y /= ratio;
 
-			render_image("Tile2DRegular",Point2f(topLeft.x + tile_pos.x + unit_px * 200, topLeft.y + tile_pos.y + unit_px * 50),Point2f(topLeft.x + tile_pos.x + unit_px * 257, topLeft.y + tile_pos.y + unit_px * 107));
+			render_image(tile_name,Point2f(topLeft.x + tile_pos.x + unit_px * 200, topLeft.y + tile_pos.y + unit_px * 50),Point2f(topLeft.x + tile_pos.x + unit_px * 257, topLeft.y + tile_pos.y + unit_px * 107));
 		
 		}
 	}

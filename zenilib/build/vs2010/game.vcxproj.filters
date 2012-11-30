@@ -70,6 +70,9 @@
     <Filter Include="jni\application\Winter War Files\Shape">
       <UniqueIdentifier>{8ad53683-a4e8-4ee4-ad44-4ff162ef7e91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="jni\application\Winter War Files\Game Object\Structures">
+      <UniqueIdentifier>{121e2a71-b43d-49e3-87ad-12c532ff33ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\jni\application\Winter War Files\Play_State_Base.h">
@@ -438,12 +441,6 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Snowball.h">
       <Filter>jni\application\Winter War Files\Game Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Snowman.h">
-      <Filter>jni\application\Winter War Files\Game Object</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Structure.h">
-      <Filter>jni\application\Winter War Files\Game Object</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\Controls.h">
       <Filter>jni\application\Winter War Files\MVC</Filter>
     </ClInclude>
@@ -473,6 +470,21 @@
     </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\Collision_Table.h">
       <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Snow_Factory.h">
+      <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Fortress.h">
+      <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Structure.h">
+      <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Snowman.h">
+      <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Healing_Pool.h">
+      <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -506,12 +518,6 @@
     <ClCompile Include="..\..\jni\application\Winter War Files\Snowball.cpp">
       <Filter>jni\application\Winter War Files\Game Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Snowman.cpp">
-      <Filter>jni\application\Winter War Files\Game Object</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Structure.cpp">
-      <Filter>jni\application\Winter War Files\Game Object</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Controls.cpp">
       <Filter>jni\application\Winter War Files\MVC</Filter>
     </ClCompile>
@@ -541,6 +547,21 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Collision_Table.cpp">
       <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Snow_Factory.cpp">
+      <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Fortress.cpp">
+      <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Structure.cpp">
+      <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Snowman.cpp">
+      <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Healing_Pool.cpp">
+      <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

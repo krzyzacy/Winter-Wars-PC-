@@ -221,7 +221,9 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Component_Shape.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Composite_Shape.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Controls.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Fortress.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Game_Model.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Healing_Pool.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Moveable.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Object_factory.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Permanent.h" />
@@ -232,6 +234,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Shape.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Snowball.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Snowman.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Snow_Factory.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Structure.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Team.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Tile.h" />
@@ -363,8 +366,10 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Controls.cpp">
     </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Fortress.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Game_Model.cpp">
     </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Healing_Pool.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Moveable.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Object_factory.cpp" />
@@ -384,6 +389,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Snowman.cpp">
     </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Snow_Factory.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Structure.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
