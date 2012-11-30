@@ -5,7 +5,7 @@
 class Collidable;
 class Snowball;
 class Player;
-class Permanent;
+class Structure;
 
 
 class Collision_Table
@@ -31,11 +31,11 @@ private:
 	void collidePlayerSnowball(Player*, Snowball*);
 	void collideSnowballPlayer(Snowball*, Player*);
 	void collidePlayerPlayer(Player*, Player*);
-	void collidePermanentSnowball(Permanent*, Snowball*);
-	void collidePlayerPermanent(Player*, Permanent*);
-	void collidePermanentPlayer(Permanent*, Player*);
-	void collideSnowballPermanent(Snowball*, Permanent*);
-	void collidePermanentPermanent(Permanent*, Permanent*);
-	void collidePermanentG(Permanent*, Collidable*);
+	void collideStructureSnowball(Structure*, Snowball*);
+	void collidePlayerStructure(Player*, Structure*);
+	void collideStructurePlayer(Structure*, Player*);
+	void collideSnowballStructure(Snowball*, Structure*);
+	void collideStructureStructure(Structure*, Structure*);
+	void collideStructureG(Structure*, Collidable*);
 
 };

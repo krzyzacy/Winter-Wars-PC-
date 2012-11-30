@@ -4,7 +4,7 @@
 
 #include "Collidable.h"
 #include "Player.h"
-#include "Permanent.h"
+#include "Structure.h"
 #include "Snowball.h"
 
 #include <vector>
@@ -26,12 +26,12 @@ Collision_Table::Collision_Table()
 
 	table.at(Snowball::snowball_ID_c).at(Player::player_ID_c) = 
 		(fxn_ptr_t)&Collision_Table::collideSnowballPlayer;
-/*
+
 	table.at(Snowball::snowball_ID_c).push_back(
-		(fxn_ptr_t)&Collision_Table::collideSnowballPermanent);
+		(fxn_ptr_t)&Collision_Table::collideSnowballStructure);
 
 
-*/
+
 	
 	table.at(Player::player_ID_c).push_back(NULL);
 
@@ -40,24 +40,24 @@ Collision_Table::Collision_Table()
 
 	table.at(Player::player_ID_c).at(Player::player_ID_c) = 
 		(fxn_ptr_t)&Collision_Table::collidePlayerPlayer;
-/*
+
 	table.at(Player::player_ID_c).push_back(
-		(fxn_ptr_t)&Collision_Table::collidePlayerPermanent);
+		(fxn_ptr_t)&Collision_Table::collidePlayerStructure);
 
 
-	/*
+
 	
-	table.at(Permanent::target_ID_c).push_back(NULL);
+	table.at(Structure::structure_ID_c).push_back(NULL);
 
-	table.at(Permanent::target_ID_c).push_back(
-		(fxn_ptr_t)&Collision_Table::collidePermanentSnowball);
+	table.at(Structure::structure_ID_c).push_back(
+		(fxn_ptr_t)&Collision_Table::collideStructureSnowball);
 
-	table.at(Permanent::target_ID_c).push_back(
-		(fxn_ptr_t)&Collision_Table::collidePermanentPlayer);
+	table.at(Structure::structure_ID_c).push_back(
+		(fxn_ptr_t)&Collision_Table::collideStructurePlayer);
 
-	table.at(Permanent::target_ID_c).push_back(
-		(fxn_ptr_t)&Collision_Table::collidePermanentPermanent);		
-*/
+	table.at(Structure::structure_ID_c).push_back(
+		(fxn_ptr_t)&Collision_Table::collideStructureStructure);		
+
 }
 
 
@@ -97,27 +97,27 @@ void Collision_Table::collidePlayerPlayer(Player* p1, Player* p2)
 
 }
 
-void Collision_Table::collidePermanentSnowball(Permanent* w1, Snowball* ob2)
+void Collision_Table::collideStructureSnowball(Structure* w1, Snowball* ob2)
 {	
-	collideSnowballPermanent(ob2, w1);
+	collideSnowballStructure(ob2, w1);
 }
 
-void Collision_Table::collidePlayerPermanent(Player *ob2, Permanent *w1)
+void Collision_Table::collidePlayerStructure(Player *ob2, Structure *w1)
 {	
 
 }
 
-void Collision_Table::collidePermanentPlayer(Permanent* w1, Player* ob2)
+void Collision_Table::collideStructurePlayer(Structure* w1, Player* ob2)
 {
-	collidePlayerPermanent(ob2, w1);
+	collidePlayerStructure(ob2, w1);
 }
 
-void Collision_Table::collideSnowballPermanent(Snowball *ob2, Permanent *w1)
+void Collision_Table::collideSnowballStructure(Snowball *ob2, Structure *w1)
 {
 
 }
 
-void Collision_Table::collidePermanentPermanent(Permanent*, Permanent*)
+void Collision_Table::collideStructureStructure(Structure*, Structure*)
 {
 
 }
