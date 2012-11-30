@@ -92,7 +92,7 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRight){
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
-	float ratio = 7.0f;
+	float ratio = 4.85f;
 
 	Point2f tile_pos(Game_Model::get().get_World()->get_tile(0, 0)->get_top_center().x, Game_Model::get().get_World()->get_tile(0, 0)->get_top_center().y);
 	get_Fonts()["resource"].render_text("<|Espionage Center|>" ,Point2f(topLeft.x + unit_px * 370, topLeft.y + unit_px * 30),Color(0x99660099));
@@ -130,8 +130,12 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 			tile_pos.x /= ratio;
 			tile_pos.y /= ratio;
 
-			render_image(tile_name,Point2f(topLeft.x + tile_pos.x + unit_px * 200, topLeft.y + tile_pos.y + unit_px * 50),Point2f(topLeft.x + tile_pos.x + unit_px * 257, topLeft.y + tile_pos.y + unit_px * 107));
+			render_image(tile_name,Point2f(topLeft.x + tile_pos.x * unit_px + unit_px * 200, topLeft.y + tile_pos.y * unit_px + unit_px * 50),Point2f(topLeft.x + tile_pos.x * unit_px + unit_px * 257, topLeft.y + tile_pos.y * unit_px + unit_px * 107));
 		
 		}
 	}
+
+	Point2f player_pos(player->get_camera().position.x / ratio,player->get_camera().position.y / ratio);
+	render_image("Heart",Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 180.0f, topLeft.y + player_pos.y * unit_px + 14.0f * unit_px),Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 237, topLeft.y + player_pos.y * unit_px + unit_px * 71));
+
 }
