@@ -212,6 +212,31 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Minimap/Regular_hexagon.png</filepath>
     <tile>0</tile>
   </Tile2DRegular>
+
+  <Tile2DNeutral>
+    <filepath>textures/2DTextures/Minimap/Neutral_hexagon.png</filepath>
+    <tile>0</tile>
+  </Tile2DNeutral>
+
+  <Tile2DGreen>
+    <filepath>textures/2DTextures/Minimap/Green_hexagon.png</filepath>
+    <tile>0</tile>
+  </Tile2DGreen>
+
+  <Tile2DBlue>
+    <filepath>textures/2DTextures/Minimap/Blue_hexagon.png</filepath>
+    <tile>0</tile>
+  </Tile2DBlue>
+
+  <Tile2DRed>
+    <filepath>textures/2DTextures/Minimap/Red_hexagon.png</filepath>
+    <tile>0</tile>
+  </Tile2DRed>
+
+  <Tile2DOrange>
+    <filepath>textures/2DTextures/Minimap/Orange_hexagon.png</filepath>
+    <tile>0</tile>
+  </Tile2DOrange>
   
   <!--
   <one>
