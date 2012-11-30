@@ -90,7 +90,7 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 	float ratio = 7.0f;
 
 	Point2f tile_pos(Game_Model::get().get_World()->get_tile(0, 0)->get_top_center().x, Game_Model::get().get_World()->get_tile(0, 0)->get_top_center().y);
-	get_Fonts()["resource"].render_text("<|Espionage Center|>" ,Point2f(topLeft.x + unit_px * 330, topLeft.y + unit_px * 30),Color(0x99660099));
+	get_Fonts()["resource"].render_text("<|Espionage Center|>" ,Point2f(topLeft.x + unit_px * 370, topLeft.y + unit_px * 30),Color(0x99660099));
 	//render_image("Heart",Point2f(topLeft.x + tile_pos.x, topLeft.y + tile_pos.y),Point2f(topLeft.x + tile_pos.x + unit_px * 50, topLeft.y + tile_pos.y + unit_px * 50));
 
 	for(int row = 0; row < Game_Model::get().get_World()->get_height(); row++){
