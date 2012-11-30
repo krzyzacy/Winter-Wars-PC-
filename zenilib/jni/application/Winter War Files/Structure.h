@@ -32,11 +32,14 @@ class Structure :
 public:
 	Structure(Team *team,
 			const Zeni::Point3f &position_,
-			float radius_from_tile_center = 10.0f
+			float radius_from_tile_center = 100.0f
             );
 	~Structure(void);
 
 	void update(const float&);
+
+	int get_ID() const 
+		{return structure_ID_c;}
 
 private:
 	// Stuff every structure needs... 

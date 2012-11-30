@@ -27,13 +27,13 @@ Collision_Table::Collision_Table()
 	table.at(Snowball::snowball_ID_c).at(Player::player_ID_c) = 
 		(fxn_ptr_t)&Collision_Table::collideSnowballPlayer;
 
-	table.at(Snowball::snowball_ID_c).push_back(
-		(fxn_ptr_t)&Collision_Table::collideSnowballStructure);
+	table.at(Snowball::snowball_ID_c).at(Structure::structure_ID_c) = 
+		(fxn_ptr_t)&Collision_Table::collideSnowballStructure;
 
 
 
 	
-	table.at(Player::player_ID_c).push_back(NULL);
+	table.at(Player::player_ID_c).at(Collidable::collidable_ID_c) = 0;
 
 	table.at(Player::player_ID_c).at(Snowball::snowball_ID_c) =
 		(fxn_ptr_t)&Collision_Table::collidePlayerSnowball;
@@ -41,22 +41,22 @@ Collision_Table::Collision_Table()
 	table.at(Player::player_ID_c).at(Player::player_ID_c) = 
 		(fxn_ptr_t)&Collision_Table::collidePlayerPlayer;
 
-	table.at(Player::player_ID_c).push_back(
-		(fxn_ptr_t)&Collision_Table::collidePlayerStructure);
+	table.at(Player::player_ID_c).at(Structure::structure_ID_c) = 
+		(fxn_ptr_t)&Collision_Table::collidePlayerStructure;
 
 
 
 	
-	table.at(Structure::structure_ID_c).push_back(NULL);
+	table.at(Structure::structure_ID_c).at(Collidable::collidable_ID_c) = 0;
 
-	table.at(Structure::structure_ID_c).push_back(
-		(fxn_ptr_t)&Collision_Table::collideStructureSnowball);
+	table.at(Structure::structure_ID_c).at(Player::player_ID_c) = 
+		(fxn_ptr_t)&Collision_Table::collideStructureSnowball;
 
-	table.at(Structure::structure_ID_c).push_back(
-		(fxn_ptr_t)&Collision_Table::collideStructurePlayer);
+	table.at(Structure::structure_ID_c).at(Snowball::snowball_ID_c) = 
+		(fxn_ptr_t)&Collision_Table::collideStructurePlayer;
 
-	table.at(Structure::structure_ID_c).push_back(
-		(fxn_ptr_t)&Collision_Table::collideStructureStructure);		
+	table.at(Structure::structure_ID_c).at(Structure::structure_ID_c) = 
+		(fxn_ptr_t)&Collision_Table::collideStructureStructure;		
 
 }
 

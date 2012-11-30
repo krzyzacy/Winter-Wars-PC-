@@ -36,9 +36,9 @@ View::View(void)
 	
 // Structures	
 	model_map["snowman"] = new Zeni::Model("models/blueplayer.3ds");
-	//model_map["healingpool"] = new Zeni::Model("models/");
-	//model_map["snowfactory"] = new Zeni::Model("models/");
-	//model_map["fortress"] = new Zeni::Model("models/");
+	model_map["healingpool"] = new Zeni::Model("models/blueplayer.3ds");
+	model_map["snowfactory"] = new Zeni::Model("models/blueplayer.3ds");
+	model_map["fortress"] = new Zeni::Model("models/blueplayer.3ds");
 }
 
 View::~View(void)
