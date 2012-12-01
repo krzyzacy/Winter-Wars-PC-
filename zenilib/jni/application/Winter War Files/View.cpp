@@ -35,10 +35,26 @@ View::View(void)
 	model_map["orangeicetile"] = new Zeni::Model("models/ice/orangeicetile.3ds");
 	
 // Structures	
-	model_map["snowman"] = new Zeni::Model("models/blueplayer.3ds");
-	model_map["healingpool"] = new Zeni::Model("models/blueplayer.3ds");
-	model_map["snowfactory"] = new Zeni::Model("models/blueplayer.3ds");
-	model_map["fortress"] = new Zeni::Model("models/blueplayer.3ds");
+	model_map["blue_fort"] = new Zeni::Model("models/fortress/fortressblue.3ds");
+	model_map["green_fort"] = new Zeni::Model("models/fortress/fortressgreen.3ds");
+	model_map["red_fort"] = new Zeni::Model("models/fortress/fortressred.3ds");
+	model_map["orange_fort"] = new Zeni::Model("models/fortress/fortressorange.3ds");
+
+	model_map["blue_snowman"] = new Zeni::Model("models/snowman/bluesnowman.3ds");
+	model_map["green_snowman"] = new Zeni::Model("models/snowman/greensnowman.3ds");
+	model_map["red_snowman"] = new Zeni::Model("models/snowman/redsnowman.3ds");
+	model_map["orange_snowman"] = new Zeni::Model("models/snowman/orangesnowman.3ds");
+
+	model_map["blue_snowfactory"] = new Zeni::Model("models/snowfactory/bluesnowfactory.3ds");
+	model_map["green_snowfactory"] = new Zeni::Model("models/snowfactory/greensnowfactory.3ds");
+	model_map["red_snowfactory"] = new Zeni::Model("models/snowfactory/redsnowfactory.3ds");
+	model_map["orange_snowfactory"] = new Zeni::Model("models/snowfactory/orangesnowfactory.3ds");
+
+	model_map["blue_healingpool"] = new Zeni::Model("models/healingpool/bluehealingpool.3ds");
+	model_map["green_healingpool"] = new Zeni::Model("models/healingpool/greenhealingpool.3ds");
+	model_map["red_healingpool"] = new Zeni::Model("models/healingpool/redhealingpool.3ds");
+	model_map["orange_healingpool"] = new Zeni::Model("models/healingpool/orangehealingpool.3ds");
+
 }
 
 View::~View(void)

@@ -22,7 +22,7 @@ const float snow_depletion_rate = 20;
 const float snow_absorbtion_rate = 50;
 
 const int Max_Stick_Input	= 32768;
-const float Building_Recharge_Time = 4;
+const float Building_Recharge_Time = 1;
 const float Tile_Move_Speed = 50;
 
 const Vector3f jump_vec(0,0,500);
@@ -254,7 +254,7 @@ Structure_Type Player::select_type(const Vector2f &stick)	{
 		(stick.x < 0.1 && stick.x > -0.1 && stick.y < 0.1 && stick.y > -0.1))
 		return NOTHING;
 
-	float mytheta = atan2(-stick.y, stick.x);
+	float mytheta = atan2(stick.y, stick.x);
 	if(mytheta < 0)
 		mytheta += 2*Global::pi;
 
@@ -263,7 +263,7 @@ Structure_Type Player::select_type(const Vector2f &stick)	{
 	//the we define the type by region of angle
 
 	//Joystick points right
-	if(stick_theta > Global::three_pi_over_two + Global::pi/4 &&
+	if(	stick_theta > Global::three_pi_over_two + Global::pi/4 ||
 			stick_theta < Global::pi/4)
 			return SNOWMAN;
 	//Up

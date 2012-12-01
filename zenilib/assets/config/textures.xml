@@ -76,8 +76,98 @@ The following things are unsupported:
     <filepath>textures/3Dtextures/Player/BLCLOTH.png</filepath>
     <tile>1</tile>
   </BLCLOTH.PNG>
+
+  <!--  FORTRESS TEXTURES  -->
+  <FORTICE.PNG>
+    <filepath>textures/3Dtextures/Fort/FORTICE.png</filepath>
+    <tile>1</tile>
+  </FORTICE.PNG>
+
+  <FWINDOW.PNG>
+    <filepath>textures/3Dtextures/Fort/FWINDOW.png</filepath>
+    <tile>1</tile>
+  </FWINDOW.PNG>
+
+  <!--  SNOWMAN TEXTURES -->
+  <SNOW3.PNG>
+    <filepath>textures/3Dtextures/Snowman/SNOW3.png</filepath>
+    <tile>1></tile>
+  </SNOW3.PNG>
+  <SNOWMARM.PNG>
+    <filepath>textures/3Dtextures/Snowman/SNOWMARM.png</filepath>
+    <tile>1></tile>
+  </SNOWMARM.PNG>
   
-<!--  SOFT SNOW TILE TEXTURES  -->
+  <!-- FACTORY TEXTURES -->
+  <METAL.PNG>
+    <filepath>textures/3Dtextures/Factory/Metal.png</filepath>
+    <tile>1></tile>
+  </METAL.PNG>
+  
+  <!-- HEALING POOL -->
+  <BLROOF.PNG>
+    <filepath>textures/3DTextures/HealingPool/BLROOF.png</filepath>
+    <tile>1</tile>
+  </BLROOF.PNG>
+  <GROOF.PNG>
+    <filepath>textures/3DTextures/HealingPool/GROOF.png</filepath>
+    <tile>1</tile>
+  </GROOF.PNG>
+  <OROOF.PNG>
+    <filepath>textures/3DTextures/HealingPool/OROOF.png</filepath>
+    <tile>1</tile>
+  </OROOF.PNG>
+  <RROOF.PNG>
+    <filepath>textures/3DTextures/HealingPool/RROOF.png</filepath>
+    <tile>1</tile>
+  </RROOF.PNG>
+  <HPCORNER.PNG>
+    <filepath>textures/3DTextures/HealingPool/HPCORNER.png</filepath>
+    <tile>1</tile>
+  </HPCORNER.PNG>
+  <HPWALL.PNG>
+    <filepath>textures/3DTextures/HealingPool/HPWALL.png</filepath>
+    <tile>1</tile>
+  </HPWALL.PNG>
+  <WATER.PNG>
+    <filepath>textures/3DTextures/HealingPool/Water.png</filepath>
+    <tile>1</tile>
+  </WATER.PNG>
+  
+  <!--  CLOTH TEXTURES  -->
+
+  <GCLOTH.PNG>
+    <filepath>textures/3Dtextures/Clothes/GCLOTH.png</filepath>
+    <tile>1></tile>
+  </GCLOTH.PNG>
+  <OCLOTH.PNG>
+    <filepath>textures/3Dtextures/Clothes/OCLOTH.png</filepath>
+    <tile>1></tile>
+  </OCLOTH.PNG>
+  <RCLOTH.PNG>
+    <filepath>textures/3Dtextures/Clothes/RCLOTH.png</filepath>
+    <tile>1></tile>
+  </RCLOTH.PNG>
+  
+  <!--  WRAPPING TEXTURES  -->
+  <BWRAP.PNG>
+    <filepath>textures/3Dtextures/Wrapping/BWRAP.png</filepath>
+    <tile>1</tile>
+  </BWRAP.PNG>
+  <GWRAP.PNG>
+    <filepath>textures/3Dtextures/Wrapping/GWRAP.png</filepath>
+    <tile>1</tile>
+  </GWRAP.PNG>
+  <OWRAP.PNG>
+    <filepath>textures/3Dtextures/Wrapping/OWRAP.png</filepath>
+    <tile>1</tile>
+  </OWRAP.PNG>
+  <RWRAP.PNG>
+    <filepath>textures/3Dtextures/Wrapping/RWRAP.png</filepath>
+    <tile>1</tile>
+  </RWRAP.PNG>
+  
+  <!--  SOFT SNOW TILE TEXTURES  -->
   <SOFTSNOW.PNG>
     <filepath>textures/3Dtextures/Tile/SOFTSNOW.png</filepath>
     <tile>1</tile>
@@ -263,4 +353,5 @@ The following things are unsupported:
     </file>
   </sprite_token>
   -->
+
 </Textures>

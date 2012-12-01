@@ -30,8 +30,12 @@ void Game_Model::start_up()
 		//but when we add the menu, should be easy to extend for up to 4 teams
 		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams.push_back(create_team(world->get_next_Base_Tile()));
+		teams.push_back(create_team(world->get_next_Base_Tile()));
+		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams[0]->set_Team_Color(BLUE);
 		teams[1]->set_Team_Color(RED);
+		teams[2]->set_Team_Color(GREEN);
+		teams[3]->set_Team_Color(ORANGE);
 
 		for (int i = 0 ; i < 4 ; i++)
 		{
@@ -42,14 +46,16 @@ void Game_Model::start_up()
 			colliders.insert(p);
 			movers.insert(p);
 			//This will also change based on the menu set up
-			if(i <= 1)	{
-				teams[0]->add_player(p);
-				p->set_Team(teams[0]);
-			}
-			else	{
-				teams[1]->add_player(p);
-				p->set_Team(teams[1]);
-			}
+			//if(i <= 1)	{
+			//	teams[0]->add_player(p);
+			//	p->set_Team(teams[0]);
+			//}
+			//else	{
+			//	teams[1]->add_player(p);
+			//	p->set_Team(teams[1]);
+			//}
+			teams[i]->add_player(p);
+			p->set_Team(teams[i]);
 		}
 		
 		PlayTime.start();
