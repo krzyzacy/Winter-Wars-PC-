@@ -4,6 +4,7 @@
 #include "Game_Model.h"
 #include "World.h"
 #include "Tile.h"
+#include "Animator.h"
 
 using namespace Zeni;
 
@@ -26,7 +27,11 @@ void Seen_Object::render(Model *model) const
 	if (!model)
 		throw Error("Trying to render NULL Model!");
 
-	
+	if (get_animator())
+	{
+		get_animator()->animate(model);
+	}
+
 	const std::pair<Vector3f, float> rot = rotation.get_rotation();
 
     model->set_translate(center);

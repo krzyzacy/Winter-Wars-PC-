@@ -5,6 +5,8 @@
 #include "Team.h"
 #include "World.h"
 #include "Object_factory.h"
+#include "PlayerAnimator.h"
+#include "PlayerAnimators.h"
 
 #include <zenilib.h>
 
@@ -33,7 +35,7 @@ Player::Player(const Zeni::Point3f &center_)
 	: Moveable(center_ , Vector3f(20.0f,20.0f,20.0f)), m_camera(center_, Quaternion(), 5.0f, 2000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false), Selection(NOTHING),
-	stick_theta(0.0f)
+	stick_theta(0.0f), animation_state(new Standing())
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
@@ -138,6 +140,8 @@ void Player::pack_snow()	{
 		return;
 	}
 
+	switch_state(MOVE);
+
 	Vector3f POV_face = m_camera.get_forward().get_ij().normalize();
 	Vector3f POV_left = m_camera.get_left().get_ij().normalize();
 
@@ -206,7 +210,6 @@ void Player::jump()	{
 }
 
 void Player::handle_build_menu(const Vector2f &norml_stick)	{
-	select_type(norml_stick);
 	switch(Builder)	{
 	case REST:
 		if(build_open)	
@@ -257,27 +260,27 @@ Structure_Type Player::select_type(const Vector2f &stick)	{
 
 	float mytheta = atan2(stick.y, stick.x);
 	if(mytheta < 0)
-		mytheta += 2 * Global::pi;
+		mytheta += 2*Global::pi;
 
 	stick_theta = mytheta;
 		//changes the stick input into an angle ,
 	//the we define the type by region of angle
 
-	//Joystick points left
+	//Joystick points right
 	if(	stick_theta > Global::three_pi_over_two + Global::pi/4 ||
 			stick_theta < Global::pi/4)
 			return SNOWMAN;
-	//Down
+	//Up
 	if(stick_theta < Global::pi - Global::pi/4 &&
 		stick_theta > Global::pi/4)
 		return FORT;
 
-	//Right
+	//Left
 	if(stick_theta < Global::pi + Global::pi/4 &&
 		stick_theta > Global::pi_over_two + Global::pi/4)
 		return SNOW_FACTORY;
 
-	//Up
+	//Down
 	if(stick_theta < Global::three_pi_over_two + Global::pi/4 && 
 		stick_theta > Global::three_pi_over_two - Global::pi/4)
 		return HEALING_POOL;
@@ -331,4 +334,25 @@ bool Player::vibrate_feedback()	{
 		return true;
 
 	return false;
+}
+
+
+const model_key_t Player::get_model_name() const
+{
+	return /*teamname + */ animation_state->get_model_name();
+}
+
+Animator *Player::get_animator() const
+{
+	return animation_state;
+}
+
+void Player::switch_state(PlayerEvent_e pevent)
+{
+	PlayerAnimator *next = animation_state->get_next(pevent);
+	if (next)
+	{
+		delete animation_state;
+		animation_state = next;
+	}
 }

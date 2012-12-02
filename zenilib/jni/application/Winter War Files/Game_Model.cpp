@@ -40,7 +40,7 @@ void Game_Model::start_up()
 
 		for (int i = 0 ; i < 4 ; i++)
 		{
-			Player *p = create_player(p_points[i]);
+			Player *p = create_player(teams[i]);
 			players.push_back(p);
 			view->add_renderable(p);
 			view->add_player_view(new Player_View(p));
@@ -56,7 +56,7 @@ void Game_Model::start_up()
 			//	p->set_Team(teams[1]);
 			//}
 			teams[i]->add_player(p);
-			p->set_Team(teams[i]);
+			
 		}
 		
 		PlayTime.start();
