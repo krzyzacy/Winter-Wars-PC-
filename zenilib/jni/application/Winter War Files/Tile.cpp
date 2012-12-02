@@ -7,6 +7,10 @@
 using namespace Zeni;
 using namespace std;
 
+const float Max_Tile_Height = 75;
+const float Min_Tile_Height = -50;
+
+
 Tile::Tile(const float tile_size__,
 		   const Zeni::Point3f &center__,
 		   const Zeni::Vector3f &scale__,
@@ -59,8 +63,25 @@ bool Tile::has_building()	{
 	return !(Building == 0);
 }
 
-void Tile::set_height(float height__){
-	this->center.z += height__;
+bool Tile::set_height(float height__){
+	if((get_height() == Max_Tile_Height && height__ > 0) 
+		|| (get_height() == Min_Tile_Height && height__ < 0))
+		return false;
+
+	center.z += height__;
+	if(has_building())	
+		Building->change_height(height__);
+	
+	if(get_height() > Max_Tile_Height)	{
+		if(has_building()) Building->change_height(-abs(get_height() - Max_Tile_Height));
+		center.z = Max_Tile_Height - tile_size;
+	}
+	if(get_height() < Min_Tile_Height)	{
+		if(has_building()) Building->change_height(abs(Min_Tile_Height - get_height()));
+		center.z = Min_Tile_Height - tile_size;
+	}
+	
+	return true;
 }
 
 void Tile::set_team(TEAM_INDEX teamid){
@@ -163,14 +184,19 @@ const model_key_t Tile::get_model_name() const	{
 
 }
 
-Point3f Tile::get_structure_bottom_pt()	{
+Point3f Tile::get_structure_base()	{
 	return Point3f(center.x, center.y, get_height());
 }
 
-void Tile::build_structure(Structure_Type buildtype, Team* new_team)	{
-	//Do something with the object factory and structure here
+void Tile::build_structure(Structure* S, Team* new_team)	{
 	team = new_team->get_Team_Index();
-	Building = create_structure(buildtype, get_structure_bottom_pt(), new_team);
-	Game_Model::get().add_structure(Building);
+	Building = S;
+}
+
+void Tile::destroy_structure()	{
+	//Will add more here later, but tile should be interface for interacting with a structure
+	Structure* S = Building;
+	Building = 0;
+	Game_Model::get().remove_structure(S);
 }
 

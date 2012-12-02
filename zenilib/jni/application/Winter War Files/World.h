@@ -29,6 +29,9 @@ public:
 	//change input type if you want, or make multiple types
 	bool is_adjacent(Tile* A, Tile* B);
 
+	void raise_tile(Zeni::Point3f location);
+	void lower_tile(Zeni::Point3f location);
+
 	//Boundary check?
 	
 	/*Returns the six adjacent tiles to Central*/

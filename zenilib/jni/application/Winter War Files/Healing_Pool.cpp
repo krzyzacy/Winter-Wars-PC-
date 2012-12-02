@@ -1,10 +1,11 @@
 #include "Healing_Pool.h"
 #include "Team.h"
 
-Healing_Pool::Healing_Pool(Team *team,
-			const Zeni::Point3f &position_) :
-	Structure(team, position_)
+Healing_Pool::Healing_Pool(Team *team, Tile* tile_,
+				const Zeni::Point3f &base_) :
+	Structure(team, tile_, base_)
 {
+	center.z -= 22;
 }
 
 

@@ -1,9 +1,9 @@
 #include "Snow_Factory.h"
 #include "Team.h"
 
-Snow_Factory::Snow_Factory(Team *team,
-			const Zeni::Point3f &position_) :
-	Structure(team, position_)
+Snow_Factory::Snow_Factory(Team *team, Tile* tile_,
+				const Zeni::Point3f &base_) :
+	Structure(team, tile_, base_)
 {
 }
 

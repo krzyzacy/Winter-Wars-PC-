@@ -4,8 +4,8 @@
 class Healing_Pool : public Structure
 {
 public:
-	Healing_Pool(Team *team,
-			const Zeni::Point3f &position_);
+	Healing_Pool(Team *team, Tile* tile_,
+				const Zeni::Point3f &base_);
 	~Healing_Pool(void);
 
 	void update(const float&);

@@ -1,10 +1,11 @@
 #include "Fortress.h"
 #include "Team.h"
 
-Fortress::Fortress(Team *team,
-			const Zeni::Point3f &position_) :
-	Structure(team, position_)
+Fortress::Fortress(Team *team, Tile* tile_,
+				const Zeni::Point3f &base_) :
+	Structure(team, tile_, base_)
 {
+	center.z += 26;
 }
 
 Fortress::~Fortress(void)

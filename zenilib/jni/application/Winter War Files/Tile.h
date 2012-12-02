@@ -14,6 +14,10 @@ enum TILE_TYPE	{
 //	NEUTRAL, GREEN, RED, BLUE, ORANGE
 //};
 
+//measured from the base of the 
+extern const float Max_Tile_Height;
+extern const float Min_Tile_Height;
+
 class Structure;
 
 class Tile :
@@ -33,16 +37,17 @@ public:
 	float get_height() {return center.z + tile_size; }
 	TEAM_INDEX get_team() {return team; }
 	TILE_TYPE get_covering() {return covering; }
-	Zeni::Point3f get_structure_bottom_pt();
+	Zeni::Point3f get_structure_base();
 
 
-	void set_height(float height__);
+	bool set_height(float height__);
 	void set_team(TEAM_INDEX teamid);
 	void set_covering(TILE_TYPE coverid);
 	
-
+	//Building related
 	bool has_building();
-	void build_structure(Structure_Type buildtype, Team* new_color);
+	void build_structure(Structure* buildtype, Team* new_color);
+	void destroy_structure();
 
 	virtual const model_key_t get_model_name() const;
 

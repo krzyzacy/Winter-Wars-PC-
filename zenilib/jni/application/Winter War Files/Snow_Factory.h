@@ -4,8 +4,8 @@
 class Snow_Factory : public Structure
 {
 public:
-	Snow_Factory(Team *team,
-			const Zeni::Point3f &position_);
+	Snow_Factory(Team *team, Tile* tile_,
+				const Zeni::Point3f &base_);
 	~Snow_Factory(void);
 
 	void update(const float&);

@@ -4,8 +4,8 @@
 class Snowman : public Structure
 {
 public:
-	Snowman(Team *team,
-			const Zeni::Point3f &position_);
+	Snowman(Team *team, Tile* tile_,
+				const Zeni::Point3f &base_);
 	~Snowman(void);
 
 	void update(const float&);

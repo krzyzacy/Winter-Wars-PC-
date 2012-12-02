@@ -14,7 +14,7 @@ enum	Shooting_State	{
 class Controls
 {
 public:
-	Controls(bool inverted_ = false);
+	Controls(bool inverted_ = false, int which_id_ = 0);
 	~Controls(void);
 	
 	std::string give_stick_status();
@@ -43,7 +43,7 @@ private:
 
 	struct Inputs	{
 		Inputs()	: jump(false), pack(false), mini_map(false), shoot(false), 
-			build_view(false), Cam(0.0f, 0.0f), Move(0.0f, 0.0f), RSHOLDER(false),
+			build_view(false), Cam(0.0f, 0.0f), Move(0.0f, 0.0f), RSHOULDER(false),
 			Tile_up(false), Tile_down(false)		{}
 
 		bool jump;				//A button
@@ -52,7 +52,7 @@ private:
 		bool shoot;				//Right trigger
 		bool build_view;	//left trigger
 
-		bool RSHOLDER;		//&&&Right shoulder, only temporary
+		bool RSHOULDER;		//&&&Right shoulder, only temporary
 		bool Tile_up;
 		bool Tile_down;
 
@@ -66,7 +66,7 @@ private:
 	Shooting_State	Shoot;
 	int Mouse_Camera;
 
-	
+	int which_id;
 
 	//Temp Pointer (or not????)
 	Player * Chell;

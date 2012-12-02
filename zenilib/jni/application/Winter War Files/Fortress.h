@@ -4,8 +4,8 @@
 class Fortress : public Structure
 {
 public:
-	Fortress(Team *team,
-			const Zeni::Point3f &position_);
+	Fortress(Team *team, Tile* tile_,
+				const Zeni::Point3f &base_);
 	~Fortress(void);
 
 	void update(const float&);

@@ -4,7 +4,7 @@
 #include "Snowball.h"
 #include "Team.h"
 #include "World.h"
-#include "Tile.h"
+#include "Object_factory.h"
 
 #include <zenilib.h>
 
@@ -23,7 +23,7 @@ const float snow_absorbtion_rate = 50;
 
 const int Max_Stick_Input	= 32768;
 const float Building_Recharge_Time = 1;
-const float Tile_Move_Speed = 50;
+
 
 const Vector3f jump_vec(0,0,500);
 const float  Stick_Accel = 200;
@@ -95,7 +95,8 @@ void Player::on_ground()
 void Player::get_damaged(float damage)
 {
 	health -= damage;
-	//Add respawn stuff / checks here 
+	//Add respawn stuff / checks here / and the suprise
+	ShakeTime.start();
 }
 
 void Player::throw_ball()		{
@@ -132,7 +133,7 @@ void Player::pack_snow()	{
  void Player::calculate_movement(const Vector2f &input_vel)	{
 	//Here is where the magic happens for player
 	//input_vel represents joystick desire of where player wants to go
-	if(mini_open || build_open)	{
+	if(mini_open)	{
 		velocity = Vector3f(0,0, velocity.z);
 		return;
 	}
@@ -170,7 +171,6 @@ void Player::pack_snow()	{
 	//velocity.z = zvel;
 	
 }
- 
  
 void Player::jump()	{
 	switch(Jumping)	{
@@ -285,14 +285,12 @@ Structure_Type Player::select_type(const Vector2f &stick)	{
 bool Player::create_building(Structure_Type Building)	{
 	//Returns true if building was created, false if unable
 		
-	//First get tile in question
 	Tile *t = Game_Model::get().get_World()->player_is_looking_at(center, m_camera.get_forward());
-	
-	//Check for build conditions (expand)
-		//If nothing has been built on it, (no one owns it), is adjacent to your network, and have enough ice blocks
+	//Checks if the tile can be built upon
+	if(!myTeam->tile_is_ready(t, Building))
+		return false;
 
-	t->build_structure(Building, myTeam);
-	myTeam->add_tile(t);
+	Game_Model::get().add_structure(create_structure(Building, t, myTeam));
 	return true;
 }
 
@@ -305,16 +303,12 @@ void Player::jet_pack_mode(bool state)	{
 
 void Player::raise_tile()	{
 	//Add restrictions and shit to this later
-	//height, ownership etc.
-	Tile* t = Game_Model::get().get_World()->get_tile(center);
-	t->set_height(Game_Model::get().get_time_step() * Tile_Move_Speed);
-	center.z += Game_Model::get().get_time_step() * Tile_Move_Speed;
+	//wnership etc.
+	Game_Model::get().get_World()->raise_tile(center);
 }
 
 void Player::lower_tile()	{
-	Tile* t = Game_Model::get().get_World()->get_tile(center);
-	t->set_height(-1 * Game_Model::get().get_time_step() * Tile_Move_Speed);
-	center.z -= Game_Model::get().get_time_step() * Tile_Move_Speed;
+	Game_Model::get().get_World()->lower_tile(center);
 }
 
 void Player::create_body()
@@ -325,4 +319,15 @@ void Player::create_body()
 
 int Player::get_Team_Blocks() const	{
 	return myTeam->get_Resources();
+}
+
+bool Player::vibrate_feedback()	{
+	if(ShakeTime.seconds() > 0.4)	{
+		ShakeTime.stop();
+		ShakeTime.reset();
+	}
+	if(ShakeTime.seconds() > 0)
+		return true;
+
+	return false;
 }

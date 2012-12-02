@@ -1,10 +1,11 @@
 #include "Snowman.h"
 #include "Team.h"
 
-Snowman::Snowman(Team *team,
-			const Zeni::Point3f &position_) :
-	Structure(team, position_)
+Snowman::Snowman(Team *team, Tile* tile_,
+				const Zeni::Point3f &base_) :
+	Structure(team, tile_, base_)
 {
+	center.z -= 8;
 }
 
 

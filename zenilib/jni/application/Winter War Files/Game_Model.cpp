@@ -26,15 +26,16 @@ void Game_Model::start_up()
 {
 		Point3f p_points[] = { Point3f(100, 100, 300), Point3f(100, 200,300) ,Point3f(1300, 1300, 300), Point3f( 100, 300, 300)};
 
-		//&&& This is the team set up, for now it's hard coded to 2, 
-		//but when we add the menu, should be easy to extend for up to 4 teams
+		
+		//when we add the menu, should be easy to extend for up to 4 teams
+		//hopefully
 		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams.push_back(create_team(world->get_next_Base_Tile()));
-		teams[0]->set_Team_Color(BLUE);
+		teams[0]->set_Team_Color(GREEN);
 		teams[1]->set_Team_Color(RED);
-		teams[2]->set_Team_Color(GREEN);
+		teams[2]->set_Team_Color(BLUE);
 		teams[3]->set_Team_Color(ORANGE);
 
 		for (int i = 0 ; i < 4 ; i++)

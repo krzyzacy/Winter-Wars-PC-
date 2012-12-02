@@ -5,6 +5,7 @@
 #include "Collidable.h"
 #include "Player.h"
 #include "Team.h"
+#include "Tile.h"
 
 #include "Game_Model.h"
 
@@ -13,14 +14,48 @@
 #include "Snow_Factory.h"
 #include "Snowman.h"
 
-#include <vector>
 
+#include <vector>
 using namespace Zeni;
 
 
 Player *create_player(const Point3f &init)
 {
-	/*
+		return new Player(init);
+}
+
+Team *create_team(Tile * Base_Tile)	{
+	return new Team(Base_Tile);
+}
+
+Structure *create_structure(int type, Tile* ti, Team* team_)	{
+	//Creates the structure object, and modifies relevant tile
+	Structure * st = 0;
+	Point3f base = ti->get_structure_base();
+	switch(type)	{
+	case SNOWMAN:
+		st =  new Snowman(team_, ti, base);		
+		break;
+	case FORT:
+		st =  new Fortress(team_, ti, base);
+		break;
+	case SNOW_FACTORY:
+		st =  new Snow_Factory(team_, ti, base);
+		break;
+	case HEALING_POOL:
+		st =  new Healing_Pool(team_, ti, base);
+		break;
+	default:
+		st =  new Fortress(team_, ti, base);
+		break;
+	}
+
+	ti->build_structure(st, team_);
+	return st;
+}
+
+
+/*
 	int lowest_area = 1;
 	if (Game_Model::get().difficulty < 3)
 		lowest_area = 3;	
@@ -30,15 +65,10 @@ Player *create_player(const Point3f &init)
 	*/
 
 //	if (type == "Player")
-		return new Player(init);
-	
+
 //	else
 //		throw Error("Trying to create object of unknown type!");
-}
 
-Team *create_team(Tile * Base_Tile)	{
-	return new Team(Base_Tile);
-}
 
 /*
 Game_Object *create_target(const String& type, const Point3f &init)
@@ -94,23 +124,3 @@ Game_Object *get_rand_target()
 	}
 }
 */
-
-Structure *create_structure(int type, Point3f &pos_, Team* team_)	{
-	//For now assuming all are the same but later could change it
-	pos_.z += 10;
-	switch(type)	{
-	case SNOWMAN:
-		return new Snowman(team_, pos_);		
-	case FORT:
-		return new Fortress(team_, pos_);
-	case SNOW_FACTORY:
-		return new Snow_Factory(team_, pos_);
-	case HEALING_POOL:
-		return new Healing_Pool(team_, pos_);
-	default:
-		return new Fortress(team_, pos_);
-		break;
-	}
-}
-
-

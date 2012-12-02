@@ -5,19 +5,12 @@
 #include <zenilib.h>
 
 //These enums represnt the different types of buildings for now
-//Will eventually be able to plug these into create_structure
-//From object factory, hopefully anyway
 
-// THIS IS AWFUL!!!!!!!!!
-// Delete this now!!!! USe the object factory to create it.  Minimize work in player.cpp
-
-//This works though. 
-//	I know it's sinful, but it will suffice for now. Besides I don't see a way around it with what I need it to do
-//	at least for now, probably one will become clear soon enough.
 enum Structure_Type	{
 	NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL
 };
 
+const int Build_Cost[5] = { 0, 300, 100, 200, 400 };
 
 enum	Universal_State	{
 	PRESENT_MODE, BUILT, DAMAGED, DESTROYED
@@ -25,18 +18,19 @@ enum	Universal_State	{
 
 class Team;
 class Collision_Table;
+class Tile;
 
 class Structure :
 	public Collidable, public Seen_Object
 {
 public:
-	Structure(Team *team,
-			const Zeni::Point3f &position_,
-			float radius_from_tile_center = 100.0f
-            );
+	Structure(Team *team, Tile* tile_,
+				const Zeni::Point3f &base_,	 float radius = 100.0f);
 	~Structure(void);
 
 	void update(const float&);
+
+	void change_height(const float &delta);
 
 	int get_ID() const 
 		{return structure_ID_c;}
@@ -60,7 +54,7 @@ protected:
 
 	Team *owner;
 
-	// Maybe Tile?
+	Tile *hex;
 
 	
 	void create_body();

@@ -1,5 +1,7 @@
 #include "Controls.h"
 #include "Player.h"
+#include "Zeni/Joysticks.h"
+
 
 #include <sstream>
 
@@ -12,10 +14,11 @@ const int Trig_sensitivity = 5000;
 const float Move_factor = 32768;
 
 
-Controls::Controls(bool inverted_)	:
+Controls::Controls(bool inverted_, int which_id_)	:
 	inverted(inverted_),
 	Shoot(CHILL),
-	Mouse_Camera(0)
+	Mouse_Camera(0),
+	which_id(which_id_)
 {
 }
 
@@ -214,7 +217,7 @@ bool Controls::HandleJoy(const SDL_JoyButtonEvent &event)	{
 		input.mini_map = event.state == SDL_PRESSED;
 		break;
 	case 5: //Right Shoulder
-		input.RSHOLDER = event.state == SDL_PRESSED;
+		input.RSHOULDER = event.state == SDL_PRESSED;
 		break;
 	case 6:	//Back button 
 		//Respawn?
@@ -233,6 +236,9 @@ bool Controls::HandleJoy(const SDL_JoyButtonEvent &event)	{
 }
 
 void Controls::adjust_Cam(Player* Tron)	{
+	if(Tron->get_build_view())
+		return;
+
 	Tron->adjust_pitch(input.Cam.y/Cam_factor);
 	Tron->turn_left(input.Cam.x/Cam_factor);
 }
@@ -275,16 +281,34 @@ void Controls::interact_with_player(Player* Tron, const float &time)	{
 
 	//Alternate Views and Building Menu
 	Tron->determine_active_view(input.build_view, input.mini_map);
-	Vector2f norml(input.Move);
+	Vector2f norml(input.Cam);
 	Tron->handle_build_menu(norml.normalize());
 	
 	//Hacks, for debugging purposes, although would be a good power-up
-	Tron->jet_pack_mode(input.RSHOLDER);
+	Tron->jet_pack_mode(input.RSHOULDER);
 
 	if(input.Tile_up)
 		Tron->raise_tile();
 	if(input.Tile_down)
 		Tron->lower_tile();
+
+	float lef = 20;
+	float rig = 20;
+	if(input.Tile_up)	{
+		lef += 10;
+		rig += 10;
+	}
+	if(input.Tile_down)	{
+		lef -= 10;
+		rig -= 10;
+	}
+
+	//HUZZAHH!!!! I FOUND THE FUCKING VIBRATION! BOOM! PLAYER FEED BACK!
+	if(Tron->vibrate_feedback())	
+		Joysticks::get().set_xinput_vibration(which_id, 20, 20);
+	else
+		Joysticks::get().set_xinput_vibration(which_id, 0, 0);
+
 
 	Chell = Tron;
 }

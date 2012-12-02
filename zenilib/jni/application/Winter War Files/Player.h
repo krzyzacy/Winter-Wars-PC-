@@ -4,6 +4,7 @@
 
 class Collision_Table;
 class Team;
+class Tile;
 
 extern const float Max_Snow_Amount;	
 extern const float Max_Player_Health;
@@ -56,13 +57,17 @@ public:
 	
 	void raise_tile();
 	void lower_tile();
+	void change_z(const float &delta)	{center.z += delta;}
 
 
 	void update(const float &time);
 
 	void get_damaged(float damage);
+	bool vibrate_feedback();
 
 // Getters
+	const Zeni::Point3f &get_posistion() const {return center;}
+
 	const Zeni::Camera &get_camera() const
 		{return m_camera;}
 
@@ -99,6 +104,8 @@ private:
 	Zeni::Chronometer<Zeni::Time> BuildTime;
 	Structure_Type Selection;
 	float stick_theta;
+
+	Zeni::Chronometer<Zeni::Time> ShakeTime;
 
 	bool mini_open;
 	bool build_open;

@@ -3,9 +3,12 @@
 #include "Game_Model.h"
 #include "View.h"
 #include "Tile.h"
+#include "Player.h"
 
 using namespace std;
 using namespace Zeni;
+
+const float Tile_Move_Speed = 50;
 
 World::World( View *view_,
 		const int width__,
@@ -243,11 +246,19 @@ std::list<Tile*> World::Get_Family(Tile *Central){
 
 //&&& Sen if you could make this give the corners, in some sort of order that'd be cool
 Tile * World::get_next_Base_Tile()	{
-	
-	if(++cur_team_count == 1) return map[1][1];
-	else if(++cur_team_count == 2) return map[map_height - 2][map_width - 2];
-	else if(++cur_team_count == 3) return map[map_height - 2][1];
-	else if(++cur_team_count == 4) return map[1][map_width - 2];
+	cur_team_count++;
+	switch(cur_team_count)	{
+	case 1:
+		return map[1][1];
+	case 2:
+		return map[map_height - 2][map_width - 2];
+	case 3:
+		return map[map_height - 2][1];
+	case 4:
+		return map[1][map_width - 2];
+	default:
+		return 0;
+	}
 	
 }
 
@@ -324,6 +335,29 @@ Tile * World::player_is_looking_at(const Point3f &player_pos, Vector3f look_Dir)
 		}
 		else
 			return map[get_tile(player_pos)->get_row() + 1][get_tile(player_pos)->get_col()];
+	}
+}
+
+void World::raise_tile(Point3f location)	{
+	//Add ownership restrictions to this later
+	Tile* ti = get_tile(location);
+	float delta = Game_Model::get().get_time_step() * Tile_Move_Speed;
+	if(ti->set_height(delta))	{
+		for(int i = 0; i < 4; i++)	{
+			if(get_tile(Game_Model::get().get_player(i)->get_posistion()) == ti)
+				Game_Model::get().get_player(i)->change_z(delta);
+		}
+	}
+}
+
+void World::lower_tile(Point3f location)	{
+	Tile* ti = get_tile(location);
+	float delta = Game_Model::get().get_time_step() * Tile_Move_Speed;
+	if(ti->set_height(-delta))	{
+		for(int i = 0; i < 4; i++)	{
+			if(get_tile(Game_Model::get().get_player(i)->get_posistion()) == ti)
+				Game_Model::get().get_player(i)->change_z(-delta);
+		}
 	}
 }
 

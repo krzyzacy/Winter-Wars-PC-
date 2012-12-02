@@ -9,7 +9,7 @@ Play_State_Base::Play_State_Base()	:
 		
 		set_pausable(true);
 		for(int i = 0; i < 4; i++)	{
-			controllers.push_back(new Controls());
+			controllers.push_back(new Controls(false, i));
 		}
 		
 }

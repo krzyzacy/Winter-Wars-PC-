@@ -34,6 +34,9 @@ public:
 	bool is_in_network(Tile *);
 	bool is_adjacent_to_network(Tile *);
 
+	//Building related
+	bool tile_is_ready(Tile * candidate, int type);
+
 	//Set Up and utility
 	int get_Resources()	const {return Ice_Blocks;}
 	void set_Team_Color(TEAM_INDEX in);

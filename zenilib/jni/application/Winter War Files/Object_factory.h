@@ -17,6 +17,6 @@ Team	*create_team(Tile * Base_Tile);
 // Figure out tile and team from player
 
 //Structure *create_structure(const std::string &type, Player *player, const Zeni::Point3f &init_position);
-Structure *create_structure(int type, Zeni::Point3f &pos_, Team* team_);
+Structure *create_structure(int type, Tile* ti, Team* team_);
 
 #endif
