@@ -36,26 +36,29 @@ World::World( View *view_,
 			if(h % 2 == 1) center.x += tR;
 			
 			center.y = h * (tH + tS) + tS;
-			center.z = 0.0f + (rand() % 3) * 25 ;
+			center.z = 0.0f;
 			if(h == 0 || h == height__-1 || w == 0 || w == width__-1)
 				center.z = tile_size * 1.8;
 			
 			float scale_size = 2.0*tile_size;
 			Tile* tmp;
 			tmp = new Tile(tile_size,center,Zeni::Vector3f(scale_size,scale_size,scale_size),w,h);
-
-			int randomteam = rand() % 5;
+			
 			int randomcover = rand() % 3;
+			/*
+			int randomteam = rand() % 5;
 
 			if(randomteam == 0) tmp->set_team(NEUTRAL);
 			if(randomteam == 1) tmp->set_team(GREEN);
 			if(randomteam == 2) tmp->set_team(RED);
 			if(randomteam == 3) tmp->set_team(BLUE);
 			if(randomteam == 4) tmp->set_team(ORANGE);
-
+			*/
 			if(randomcover == 0) tmp->set_covering(SOFT_SNOW);
 			if(randomcover == 1) tmp->set_covering(HARD_SNOW);
 			if(randomcover == 2) tmp->set_covering(ICE);
+
+			tmp->set_team(NEUTRAL);
 			
 			map[h][w] = tmp;
 

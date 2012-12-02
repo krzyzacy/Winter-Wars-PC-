@@ -17,6 +17,8 @@ public:
 
 	void render_minimap(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
 
+	void render_build(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
+
 private:
 	const Player *player;
 

@@ -5,6 +5,8 @@
 #include "Team.h"
 #include "World.h"
 #include "Object_factory.h"
+#include "PlayerAnimator.h"
+#include "PlayerAnimators.h"
 
 #include <zenilib.h>
 
@@ -33,7 +35,7 @@ Player::Player(const Zeni::Point3f &center_)
 	: Moveable(center_ , Vector3f(20.0f,20.0f,20.0f)), m_camera(center_, Quaternion(), 5.0f, 2000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false), Selection(NOTHING),
-	stick_theta(0.0f)
+	stick_theta(0.0f), animation_state(new Standing())
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
@@ -137,6 +139,8 @@ void Player::pack_snow()	{
 		velocity = Vector3f(0,0, velocity.z);
 		return;
 	}
+
+	switch_state(MOVE);
 
 	Vector3f POV_face = m_camera.get_forward().get_ij().normalize();
 	Vector3f POV_left = m_camera.get_left().get_ij().normalize();
@@ -330,4 +334,25 @@ bool Player::vibrate_feedback()	{
 		return true;
 
 	return false;
+}
+
+
+const model_key_t Player::get_model_name() const
+{
+	return /*teamname + */ animation_state->get_model_name();
+}
+
+Animator *Player::get_animator() const
+{
+	return animation_state;
+}
+
+void Player::switch_state(PlayerEvent_e pevent)
+{
+	PlayerAnimator *next = animation_state->get_next(pevent);
+	if (next)
+	{
+		delete animation_state;
+		animation_state = next;
+	}
 }
