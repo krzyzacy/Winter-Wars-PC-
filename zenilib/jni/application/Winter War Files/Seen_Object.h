@@ -11,6 +11,8 @@ A Seen_Object object is an object that can be
 #include <zenilib.h>
 #include <string>
 
+class Animator;
+
 typedef std::string model_key_t;
 
 class Seen_Object
@@ -37,8 +39,12 @@ public:
 protected:
 	Zeni::Point3f center;
 	Zeni::Vector3f size; // TopRightcorner-to-LowerLeftcorner
-  Zeni::Quaternion rotation;
+	Zeni::Quaternion rotation;
 	
 	bool alive;
+
+private:	
+	virtual Animator *get_animator() const
+		{return 0;} //default no animator
 };
 
