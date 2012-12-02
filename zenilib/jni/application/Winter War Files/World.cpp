@@ -18,8 +18,8 @@ World::World( View *view_,
 	map(height__, vector<Tile *>(width__, 0) ),
 	view(view_)
 {
-	map_width = width__;
-	map_height = height__;
+	map_width = width__ - 1;
+	map_height = height__ - 1;
 	cur_team_count = 0;
 
 	tile_size = hex_length__;
@@ -28,8 +28,8 @@ World::World( View *view_,
 	float tS = tile_size;
 	float tH = tile_size / 2; 
 
-	for(int h = 0; h < height__; h++){
-		for(int w = 0; w < width__; w++){
+	for(int h = 0; h < map_height; h++){
+		for(int w = 0; w < map_width; w++){
 
 			Zeni::Point3f center;
 			center.x = w * tR * 2 + tR;
@@ -37,7 +37,7 @@ World::World( View *view_,
 			
 			center.y = h * (tH + tS) + tS;
 			center.z = 0.0f;
-			if(h == 0 || h == height__-1 || w == 0 || w == width__-1)
+			if(h == 0 || h == map_height - 1 || w == 0 || w == map_width - 1)
 				center.z = tile_size * 1.8;
 			
 			float scale_size = 2.0*tile_size;
@@ -92,22 +92,26 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 	int sec_x = xr / (2 * tR);
 	int sec_y = yr / (tS + tH);
 
+	if((sec_y % 2 == 0 && sec_x >= map_width) || sec_x > map_width || sec_y >= map_height)
+		return NULL;
+
 	xr -= sec_x * 2 * tR;
 	yr -= sec_y * (tS + tH);
 
 	if(sec_y % 2 == 0){ // odd row, section A
-		if(yr >= tH)
-			return map[sec_y][sec_x];
+		if(yr >= tH){
+				return map[sec_y][sec_x];
+		}
 		else if(xr >= tR){
 			if(yr <= (sqrt(3.0f) / 3 ) * (xr - tR) ){
 				if(sec_y != 0)
 					return map[sec_y - 1][sec_x];
 				else
 					return NULL;
-					
 			}
-			else
-				return map[sec_y][sec_x];
+			else{
+					return map[sec_y][sec_x];
+			}
 		}
 		else{
 			if(yr <= (-(sqrt(3.0f) * xr)/3 + tH)){
@@ -116,23 +120,33 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 				else
 					return NULL;
 			}
-			else
-				return map[sec_y][sec_x];
+			else{
+					return map[sec_y][sec_x];
+			}
 		}
 	}
-	else{ // even row, section B
+	else{ // even row, section B (sec_y == map_height - 1 == 13)
 		if(xr >= tR){
-			if(yr >= tH)
-				return map[sec_y][sec_x];
+			if(yr >= tH){
+					if(sec_x != map_width){
+						return map[sec_y][sec_x];
+					}
+					else
+						return NULL;
+			}
 			else{
 				if(yr <= (-(sqrt(3.0f) * (xr - tR))/3 + tH)){
-					if(sec_y != 0)
+					if(sec_y != 0 && sec_x != map_width)
 						return map[sec_y - 1][sec_x];
 					else
 						return NULL;
 				}
-				else
-					return map[sec_y][sec_x];
+				else{
+					//if(sec_x != map_width)
+						return map[sec_y][sec_x];
+					//else
+						//return NULL;
+				}
 			}
 		}
 		else{
@@ -144,13 +158,13 @@ Tile* World::get_tile(const Zeni::Point3f &position){
 			}
 			else{
 				if(yr <= (sqrt(3.0f) / 3 ) * xr ){
-					if(sec_x != 0)
+					if(sec_y != 0 && sec_x != map_width)
 						return map[sec_y - 1][sec_x];
 					else
 						return NULL;
 				}
 				else{
-					if(sec_y != 0)
+					if(sec_x != 0)
 						return map[sec_y][sec_x - 1];
 					else
 						return NULL;
@@ -339,6 +353,8 @@ Tile * World::player_is_looking_at(const Point3f &player_pos, Vector3f look_Dir)
 		else
 			return map[get_tile(player_pos)->get_row() + 1][get_tile(player_pos)->get_col()];
 	}
+	else
+		return NULL;
 }
 
 void World::raise_tile(Point3f location)	{
