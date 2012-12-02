@@ -4,8 +4,6 @@
 
 #include "Seen_Object.h"
 
-//enum PlayerEvent_e{MOVE, JUMP, THROW, PACK, STAND, SCOOP, DIE};
-
 class Jumping : public PlayerAnimator
 {	
 public:
@@ -27,7 +25,7 @@ private:
 class Throwing : public PlayerAnimator
 {	
 public:
-	Throwing() : ThrowFrame(1.0f), Frame(1) {}
+	Throwing() : ThrowFrame(1.0f), Frame(1), finished(false) {}
 	/* choose the frame to currently render and set it */
 	void animate(Zeni::Model *);
 
@@ -40,6 +38,7 @@ public:
 private:
 	float ThrowFrame;
 	int Frame;
+	bool finished;
 };
 
 class Packing : public PlayerAnimator

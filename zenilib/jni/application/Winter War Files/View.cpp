@@ -18,8 +18,12 @@ View::View(void)
 	model_map["player"] = new Zeni::Model("models/blueplayer.3ds");
 
 // Player animation
-	model_map["player_walk"] = new Zeni::Model("models/player/bluegirl/bluegirlwalking.3ds");
+	model_map["player_walk"] = new Zeni::Model("models/player/bluegirl/bluegirlrunning.3ds");
 	model_map["player_stand"] = new Zeni::Model("models/player/bluegirl/bluegirlstanding.3ds");	
+	model_map["player_pack"] = new Zeni::Model("models/player/bluegirl/bluegirlpacking.3ds");
+	model_map["player_scoop"] = new Zeni::Model("models/player/bluegirl/bluegirlscooping.3ds");	
+	model_map["player_throw"] = new Zeni::Model("models/player/bluegirl/bluegirlthrowing.3ds");
+	model_map["player_die"] = new Zeni::Model("models/player/bluegirl/bluegirldying.3ds");	
 
 // Tiles
 	model_map["neutralsoftsnowtile"] = new Zeni::Model("models/softsnow/neutralsoftsnowtile.3ds");

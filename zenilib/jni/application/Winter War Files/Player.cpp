@@ -97,6 +97,9 @@ void Player::on_ground()
 void Player::get_damaged(float damage)
 {
 	health -= damage;
+
+	if (health < 0)
+		switch_state(DIE);
 	//Add respawn stuff / checks here / and the suprise
 	ShakeTime.start();
 }
@@ -108,6 +111,7 @@ void Player::throw_ball()		{
 		sb->get_thrown(m_camera.get_forward());
 		current_radius = 0;
 		Game_Model::get().add_moveable(sb);
+		switch_state(THROW);
 	}
 	//if radius is 0, means out of snow, and therefore don't throw
 }
@@ -117,19 +121,24 @@ void Player::charge_ball()	{
 	const float time = Game_Model::get().get_time_step();
 		if(Snow_in_Pack <= 0)		
 			Snow_in_Pack = 0;
-		else	{
+		else
+		{
 			current_radius += packing_rate * time;
 			Snow_in_Pack -= snow_depletion_rate * time;
+			switch_state(PACK);
 		}
 }
 
 void Player::pack_snow()	{
 	//This will change, but exists for now as a simple test function
+	switch_state(SCOOP);
+
 	const float time = Game_Model::get().get_time_step();
 	if(Snow_in_Pack >= Max_Snow_Amount)
 		Snow_in_Pack = Max_Snow_Amount;
 	else
 		Snow_in_Pack += snow_absorbtion_rate * time;
+
 }
 
  void Player::calculate_movement(const Vector2f &input_vel)	{
@@ -139,8 +148,6 @@ void Player::pack_snow()	{
 		velocity = Vector3f(0,0, velocity.z);
 		return;
 	}
-
-	switch_state(WALK);
 
 	Vector3f POV_face = m_camera.get_forward().get_ij().normalize();
 	Vector3f POV_left = m_camera.get_left().get_ij().normalize();
@@ -166,6 +173,11 @@ void Player::pack_snow()	{
 
 	velocity = New_vel;
 	velocity.z = zvel;
+
+	if (velocity.x == 0 && velocity.y == 0)
+		switch_state(STAND);
+	else
+		switch_state(WALK);
 
 	//OLD WAY
 	//Adding Ice effects later, for now straight up movement
