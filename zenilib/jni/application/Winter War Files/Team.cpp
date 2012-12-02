@@ -31,8 +31,8 @@ Point3f Team::get_spawn_point()	const	{
 	float x = rand()%10;
 	float y = rand()%10;
 	Point3f Spawn = Base->get_structure_base() + Vector3f(0,0,25);
-	//Spawn.x += x;
-	//Spawn.y += y;
+	Spawn.x += x;
+	Spawn.y += y;
 	return Spawn;
 }
 

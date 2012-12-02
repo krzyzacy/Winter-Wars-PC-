@@ -21,6 +21,7 @@ enum	Universal_State	{
 class Team;
 class Collision_Table;
 class Tile;
+class Snowball;
 
 class Structure :
 	public Collidable, public Seen_Object
@@ -34,6 +35,9 @@ public:
 
 	void change_height(const float &delta);
 
+	void receive_hit(Snowball *S); 
+
+	
 	int get_ID() const 
 		{return structure_ID_c;}
 
@@ -60,6 +64,7 @@ protected:
 
 	
 	void create_body();
+	Zeni::Collision::Capsule body;
 		
 	// Collison Stuff
 	const static int structure_ID_c;

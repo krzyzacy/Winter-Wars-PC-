@@ -28,7 +28,8 @@ void Structure::update(const float &time)
 
 void Structure::create_body()
 {
-
+	body = Zeni::Collision::Capsule(center + Vector3f(0, 0 , size.z*0.5)
+		, center - Vector3f(0, 0, size.z*0.5), size.z*0.5);
 }
 
 void Structure::change_height(const float &delta)	{
