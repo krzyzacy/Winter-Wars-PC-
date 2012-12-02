@@ -2,7 +2,9 @@
 #include "World.h"
 #include "Tile.h"
 #include "Player.h"
+#include "Structure.h"
 #include "Game_Model.h"
+#include "Object_factory.h"
 
 
 using namespace std;
@@ -22,6 +24,16 @@ Team::~Team(void)
 
 void Team::add_player(Player *p)	{
 	members.push_back(p);
+	p->set_Team(this);
+}
+
+Point3f Team::get_spawn_point()	const	{
+	float x = rand()%10;
+	float y = rand()%10;
+	Point3f Spawn = Base->get_structure_base() + Vector3f(0,0,25);
+	//Spawn.x += x;
+	//Spawn.y += y;
+	return Spawn;
 }
 
 void Team::update()	{
@@ -55,6 +67,9 @@ void Team::update()	{
 void Team::set_Team_Color(TEAM_INDEX in)	{
 	Team_Color = in;
 	add_tile(Base);
+	Base->set_covering(SOFT_SNOW);
+	Base->set_team(Team_Color);
+	Game_Model::get().add_structure(create_structure(HEALING_POOL, Base, this));
 }
 
 void Team::add_tile(Tile *t)	{

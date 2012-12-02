@@ -11,7 +11,7 @@ class Structure;
 
 
 // not very useful now....
-Player *create_player(const Zeni::Point3f &init_position);
+Player *create_player(Team* team_);
 Team	*create_team(Tile * Base_Tile);
 
 // Figure out tile and team from player

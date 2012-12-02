@@ -19,9 +19,10 @@
 using namespace Zeni;
 
 
-Player *create_player(const Point3f &init)
+Player *create_player(Team* team_)
 {
-		return new Player(init);
+	
+	return new Player(team_->get_spawn_point());
 }
 
 Team *create_team(Tile * Base_Tile)	{
