@@ -206,6 +206,7 @@ void Player::jump()	{
 }
 
 void Player::handle_build_menu(const Vector2f &norml_stick)	{
+	select_type(norml_stick);
 	switch(Builder)	{
 	case REST:
 		if(build_open)	
@@ -256,27 +257,27 @@ Structure_Type Player::select_type(const Vector2f &stick)	{
 
 	float mytheta = atan2(stick.y, stick.x);
 	if(mytheta < 0)
-		mytheta += 2*Global::pi;
+		mytheta += 2 * Global::pi;
 
 	stick_theta = mytheta;
 		//changes the stick input into an angle ,
 	//the we define the type by region of angle
 
-	//Joystick points right
+	//Joystick points left
 	if(	stick_theta > Global::three_pi_over_two + Global::pi/4 ||
 			stick_theta < Global::pi/4)
 			return SNOWMAN;
-	//Up
+	//Down
 	if(stick_theta < Global::pi - Global::pi/4 &&
 		stick_theta > Global::pi/4)
 		return FORT;
 
-	//Left
+	//Right
 	if(stick_theta < Global::pi + Global::pi/4 &&
 		stick_theta > Global::pi_over_two + Global::pi/4)
 		return SNOW_FACTORY;
 
-	//Down
+	//Up
 	if(stick_theta < Global::three_pi_over_two + Global::pi/4 && 
 		stick_theta > Global::three_pi_over_two - Global::pi/4)
 		return HEALING_POOL;
