@@ -271,7 +271,11 @@ The following things are unsupported:
     <filepath>textures/3DTextures/Player/BLONDE.png</filepath>
     <tile>1</tile>
   </BLONDE.PNG>
-  
+
+  <REGFACE.PNG>
+    <filepath>textures/3DTextures/Player/REGFACE.png</filepath>
+    <tile>1</tile>
+  </REGFACE.PNG>
   
   <BoyBlueRegular>
     <filepath>textures/2DTextures/Avatars/BoyBlueRegular.png</filepath>

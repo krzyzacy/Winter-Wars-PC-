@@ -16,7 +16,11 @@ View::View(void)
 	
 // Players
 	model_map["player"] = new Zeni::Model("models/blueplayer.3ds");
-	
+
+// Player animation
+	model_map["player_walk"] = new Zeni::Model("models/player/bluegirl/bluegirlwalking.3ds");
+	model_map["player_stand"] = new Zeni::Model("models/player/bluegirl/bluegirlstanding.3ds");	
+
 // Tiles
 	model_map["neutralsoftsnowtile"] = new Zeni::Model("models/softsnow/neutralsoftsnowtile.3ds");
 	model_map["neutralhardsnowtile"] = new Zeni::Model("models/hardsnow/neutralhardsnowtile.3ds");

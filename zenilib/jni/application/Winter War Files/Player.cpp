@@ -140,7 +140,7 @@ void Player::pack_snow()	{
 		return;
 	}
 
-	switch_state(MOVE);
+	switch_state(WALK);
 
 	Vector3f POV_face = m_camera.get_forward().get_ij().normalize();
 	Vector3f POV_left = m_camera.get_left().get_ij().normalize();

@@ -73,6 +73,9 @@
     <Filter Include="jni\application\Winter War Files\Game Object\Structures">
       <UniqueIdentifier>{121e2a71-b43d-49e3-87ad-12c532ff33ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="jni\application\Winter War Files\Animators">
+      <UniqueIdentifier>{da7a1d53-ace9-4086-b553-51ed997decaa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\jni\application\Winter War Files\Play_State_Base.h">
@@ -486,6 +489,15 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Healing_Pool.h">
       <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Animator.h">
+      <Filter>jni\application\Winter War Files\Animators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\PlayerAnimator.h">
+      <Filter>jni\application\Winter War Files\Animators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\PlayerAnimators.h">
+      <Filter>jni\application\Winter War Files\Animators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\bootstrap.cpp">
@@ -562,6 +574,9 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Healing_Pool.cpp">
       <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\PlayerAnimators.cpp">
+      <Filter>jni\application\Winter War Files\Animators</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
