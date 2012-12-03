@@ -276,6 +276,11 @@ The following things are unsupported:
     <filepath>textures/3DTextures/Player/REGFACE.png</filepath>
     <tile>1</tile>
   </REGFACE.PNG>
+  
+  <BoyBlueRegular>
+    <filepath>textures/2DTextures/Avatars/BoyBlueRegular.png</filepath>
+    <tile>0</tile>
+  </BoyBlueRegular>
 
   <GTHWFACE.PNG>
     <filepath>textures/3DTextures/Player/GTHWFACE.png</filepath>
@@ -283,15 +288,9 @@ The following things are unsupported:
   </GTHWFACE.PNG>
 
   <FNTFACE.PNG>
-    <filepath>textures/3DTextures/Player/FNTFACE.png</filepath>
+    <filepath>textures/3DTextures/Player/FNTFACE.png</filepath>   
     <tile>1</tile>
   </FNTFACE.PNG>
-
-
-  <BoyBlueRegular>
-    <filepath>textures/2DTextures/Avatars/BoyBlueRegular.png</filepath>
-    <tile>0</tile>
-  </BoyBlueRegular>
   
   <Heart>
     <filepath>textures/2DTextures/HUDSprites/Heart.png</filepath>
@@ -369,6 +368,13 @@ The following things are unsupported:
     <filepath>textures/2DTextures/BuildSprites/SnowmanBuild.png</filepath>
     <tile>0</tile>
   </Snowman2D>
+
+  <!-- Title Screen -->
+  <Titlescreen>
+    <filepath>textures/2DTextures/Titlescreen/titlescreen.png</filepath>
+    <tile>0</tile>
+  </Titlescreen>
+  
     
   
   <!--
