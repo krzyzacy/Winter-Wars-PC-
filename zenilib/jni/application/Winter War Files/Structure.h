@@ -7,7 +7,7 @@
 //These enums represnt the different types of buildings for now
 
 enum Structure_Type	{
-	NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL
+	NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL, TREE
 };
 
 const int Build_Cost[5] = { 0, 300, 100, 200, 400 };

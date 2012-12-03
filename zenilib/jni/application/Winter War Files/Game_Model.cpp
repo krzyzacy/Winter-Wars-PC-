@@ -54,6 +54,9 @@ void Game_Model::start_up()
 			teams[i]->add_player(p);			
 		}
 		
+		// Place Tree
+		create_structure(TREE, world->get_center_Tile(), NULL);
+
 	PlayTime.reset();
 		PlayTime.start();
 //		view->add_renderable(&Perm);

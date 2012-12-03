@@ -13,6 +13,7 @@
 #include "Healing_Pool.h"
 #include "Snow_Factory.h"
 #include "Snowman.h"
+#include "Tree.h"
 
 
 #include <vector>
@@ -46,6 +47,10 @@ Structure *create_structure(int type, Tile* ti, Team* team_)	{
 	case HEALING_POOL:
 		st =  new Healing_Pool(team_, ti, base);
 		break;
+	case TREE:
+		st = new Tree(team_, ti, base);
+		break;
+
 	default:
 		st =  new Fortress(team_, ti, base);
 		break;

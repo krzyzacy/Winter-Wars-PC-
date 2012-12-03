@@ -62,6 +62,12 @@ View::View(void)
 	model_map["green_healingpool"] = new Zeni::Model("models/healingpool/greenhealingpool.3ds");
 	model_map["red_healingpool"] = new Zeni::Model("models/healingpool/redhealingpool.3ds");
 	model_map["orange_healingpool"] = new Zeni::Model("models/healingpool/orangehealingpool.3ds");
+	
+	model_map["blue_tree"] = new Zeni::Model("models/fortress/fortressblue.3ds");
+	model_map["green_tree"] = new Zeni::Model("models/fortress/fortressgreen.3ds");
+	model_map["red_tree"] = new Zeni::Model("models/fortress/fortressred.3ds");
+	model_map["orange_tree"] = new Zeni::Model("models/fortress/fortressorange.3ds");
+	model_map["neutral_tree"] = new Zeni::Model("models/fortress/fortressred.3ds");
 
 }
 
