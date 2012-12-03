@@ -24,9 +24,7 @@ Game_Model::Game_Model(void) :
 
 void Game_Model::start_up()
 {
-		Point3f p_points[] = { Point3f(100, 100, 300), Point3f(100, 200,300) ,Point3f(1300, 1300, 300), Point3f( 100, 300, 300)};
-
-		
+				
 		//when we add the menu, should be easy to extend for up to 4 teams
 		//hopefully
 		teams.push_back(create_team(world->get_next_Base_Tile()));

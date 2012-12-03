@@ -28,11 +28,12 @@ void Team::add_player(Player *p)	{
 }
 
 Point3f Team::get_spawn_point()	const	{
-	float x = rand()%10;
-	float y = rand()%10;
-	Point3f Spawn = Base->get_structure_base() + Vector3f(0,0,25);
+	float x = rand()%20;
+	float y = rand()%20;
+	Point3f Spawn = Base->get_structure_base();
 	Spawn.x += x;
 	Spawn.y += y;
+	Spawn.z += 150;
 	return Spawn;
 }
 

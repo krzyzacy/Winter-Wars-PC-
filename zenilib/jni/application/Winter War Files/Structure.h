@@ -37,13 +37,12 @@ public:
 
 	void receive_hit(Snowball *S); 
 
+	void perform_destruction_effects();
 	
 	int get_ID() const 
 		{return structure_ID_c;}
 
 private:
-	// Stuff every structure needs... 
-	
 	// State?  Building -> Built -> Damaged? -> Destroyed??
 	//Would the damaged state look different? like a broken version of the model???
 	//could be cool

@@ -222,6 +222,7 @@ void Player::jump()	{
 }
 
 void Player::handle_build_menu(const Vector2f &norml_stick)	{
+	select_type(norml_stick);
 	switch(Builder)	{
 	case REST:
 		if(build_open)	
