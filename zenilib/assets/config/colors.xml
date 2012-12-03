@@ -56,10 +56,10 @@ element in your game to enable easy skinning.
     <blue>0.0</blue>
   </configurator_bg>
   <default_button_bg_normal>
-    <alpha>1.0</alpha>
-    <red>1.0</red>
-    <green>1.0</green>
-    <blue>0.0</blue>
+    <alpha>0.9</alpha>
+    <red>0.445</red>
+    <green>0.781</green>
+    <blue>0.710</blue>
   </default_button_bg_normal>
   <default_button_bg_clicked>
     <alpha>1.0</alpha>
@@ -69,8 +69,8 @@ element in your game to enable easy skinning.
   </default_button_bg_clicked>
   <default_button_bg_hovered_strayed>
     <alpha>1.0</alpha>
-    <red>1.0</red>
-    <green>1.0</green>
+    <red>0.445</red>
+    <green>0.781</green>
     <blue>0.5</blue>
   </default_button_bg_hovered_strayed>
   <default_button_text_normal>
