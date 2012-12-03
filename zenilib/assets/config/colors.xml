@@ -44,10 +44,10 @@ element in your game to enable easy skinning.
     <blue>0.0</blue>
   </title_bg>
   <title_text>
-    <alpha>1.0</alpha>
+    <alpha>0.8</alpha>
     <red>1.0</red>
-    <green>1.0</green>
-    <blue>1.0</blue>
+    <green>0.1</green>
+    <blue>0.1</blue>
   </title_text>
   <configurator_bg>
     <alpha>1.0</alpha>
