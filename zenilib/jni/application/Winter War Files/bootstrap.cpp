@@ -346,6 +346,22 @@ private:
   }
 };
 
+class Title_State_Custom : public Title_State<Play_State_Base, Instructions_State>{
+
+	public:
+		Title_State_Custom()
+		: Title_State<Play_State_Base, Instructions_State>("")
+		{
+			m_widgets.unlend_Widget(title);
+		}
+
+		void render() {
+			Title_State<Play_State_Base, Instructions_State>::render();
+
+			render_image("Titlescreen", Point2f(0.0f,0.0f), Point2f(1024.0f,1024.0f));
+		}
+};
+
 class Bootstrap {
   class Gamestate_One_Initializer : public Gamestate_Zero_Initializer {
     virtual Gamestate_Base * operator()() {
@@ -358,10 +374,10 @@ class Bootstrap {
       get_Sounds();
       get_Game().joy_mouse.enabled = true;
 
-
+	  return new Title_State_Custom();
 	  //Old state
     //return new Title_State<Play_State, Instructions_State>("Winter Wars\n");
-	  return new Title_State<Play_State_Base, Instructions_State>("Winter Wars\n");
+	  //return new Title_State<Play_State_Base, Instructions_State>("Winter Wars\n");
     }
   } m_goi;
 
