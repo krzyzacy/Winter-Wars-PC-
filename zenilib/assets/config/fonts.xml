@@ -38,7 +38,7 @@ Only TrueType fonts are supported.
     </virtual_screen>
   </system_36_500x600>
   <system_36_800x600>
-    <filepath>fonts/FORGOTTE.TTF</filepath>
+    <filepath>fonts/FZMWFont.TTF</filepath>
     <height>36</height>
     <bold>0</bold>
     <italics>0</italics>
