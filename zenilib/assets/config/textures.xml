@@ -282,31 +282,66 @@ The following things are unsupported:
     <tile>0</tile>
   </BoyBlueRegular>
 
+  <BoyGreenRegular>
+    <filepath>textures/2DTextures/Avatars/BoyGreenRegular.png</filepath>
+    <tile>0</tile>
+  </BoyGreenRegular>
+
+  <BoyRedRegular>
+    <filepath>textures/2DTextures/Avatars/BoyRedRegular.png</filepath>
+    <tile>0</tile>
+  </BoyRedRegular>
+
+  <BoyPurpleRegular>
+    <filepath>textures/2DTextures/Avatars/BoyPurpleRegular.png</filepath>
+    <tile>0</tile>
+  </BoyPurpleRegular>
+
+  <GirlBlueRegular>
+    <filepath>textures/2DTextures/Avatars/GirlBlueRegular.png</filepath>
+    <tile>0</tile>
+  </GirlBlueRegular>
+
+  <GirlGreenRegular>
+    <filepath>textures/2DTextures/Avatars/GirlGreenRegular.png</filepath>
+    <tile>0</tile>
+  </GirlGreenRegular>
+
+  <GirlRedRegular>
+    <filepath>textures/2DTextures/Avatars/GirlRedRegular.png</filepath>
+    <tile>0</tile>
+  </GirlRedRegular>
+
+  <GirlPurpleRegular>
+    <filepath>textures/2DTextures/Avatars/GirlPurpleRegular.png</filepath>
+    <tile>0</tile>
+  </GirlPurpleRegular>
+
   <GTHWFACE.PNG>
     <filepath>textures/3DTextures/Player/GTHWFACE.png</filepath>
     <tile>1</tile>
   </GTHWFACE.PNG>
 
   <FNTFACE.PNG>
-    <filepath>textures/3DTextures/Player/FNTFACE.png</filepath>   
+    <filepath>textures/3DTextures/Player/FNTFACE.png</filepath>
     <tile>1</tile>
   </FNTFACE.PNG>
-  
+
   <Heart>
     <filepath>textures/2DTextures/HUDSprites/Heart.png</filepath>
     <tile>0</tile>
   </Heart>
-  
+
   <IceBlock>
     <filepath>textures/2DTextures/HUDSprites/IceBlock.png</filepath>
     <tile>0</tile>
   </IceBlock>
-  
+
   <Snowball>
     <filepath>textures/2DTextures/HUDSprites/Snowball.png</filepath>
     <tile>0</tile>
   </Snowball>
-  
+
   <Frame>
     <filepath>textures/2DTextures/HUDSprites/Frame.png</filepath>
     <tile>0</tile>
@@ -342,13 +377,13 @@ The following things are unsupported:
     <tile>0</tile>
   </Tile2DOrange>
 
-  
+
   <!-- building view -->
   <BuildManu2D>
     <filepath>textures/2DTextures/BuildSprites/buildView.png</filepath>
     <tile>0</tile>
   </BuildManu2D>
-  
+
   <Factory2D>
     <filepath>textures/2DTextures/BuildSprites/FactoryBuild.png</filepath>
     <tile>0</tile>
@@ -374,9 +409,14 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Titlescreen/titlescreen.png</filepath>
     <tile>0</tile>
   </Titlescreen>
-  
-    
-  
+
+  <Teamselect>
+    <filepath>textures/2DTextures/Titlescreen/teamselect.png</filepath>
+    <tile>0</tile>
+  </Teamselect>
+
+
+
   <!--
   <one>
     <is_sprite>0</is_sprite>
@@ -402,5 +442,8 @@ The following things are unsupported:
     </file>
   </sprite_token>
   -->
+
+
+
 
 </Textures>

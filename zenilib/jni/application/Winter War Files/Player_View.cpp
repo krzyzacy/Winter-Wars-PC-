@@ -92,6 +92,8 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 		render_build(topLeft, bottomRight);
 	}
 
+	render_image("BuildManu2D",Point2f(topLeft.x + unit_px * 460, topLeft.y + unit_px * 280), Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 320));
+
 }
 
 void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRight){

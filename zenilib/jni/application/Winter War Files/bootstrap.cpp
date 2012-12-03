@@ -15,6 +15,8 @@
 
 #include "Play_State_Base.h"
 
+#include "String.h"
+
 #if defined(_DEBUG) && defined(_WINDOWS)
 #define DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #define new DEBUG_NEW
@@ -346,17 +348,107 @@ private:
   }
 };
 
-class Title_State_Custom : public Title_State<Play_State_Base, Instructions_State>{
+class Team_Select_State : public Widget_Gamestate {
+    Team_Select_State(const Team_Select_State &);
+    Team_Select_State operator=(const Team_Select_State &);
+    
+public:
+    Team_Select_State()
+    : Widget_Gamestate(make_pair(Point2f(0.0f, 0.0f), Point2f(960.0f, 600.0f)))
+    {
+        player1_team_state = 0;
+		player1_gender_state = 0;
+		player1_cursor = 0;
+		player1_gender = "Boy";
+		player1_team = "Blue";
+    }
+    
+private:
+    void on_key(const SDL_KeyboardEvent &event) {
+        if(event.keysym.sym == SDLK_ESCAPE && event.state == SDL_PRESSED){
+            get_Game().pop_state();
+        }
+        else if(event.keysym.sym == SDLK_UP && event.state == SDL_PRESSED){
+			if(player1_cursor == 1)
+				player1_cursor = 0;
+        }
+        else if(event.keysym.sym == SDLK_DOWN && event.state == SDL_PRESSED){
+			if(player1_cursor == 0)
+				player1_cursor = 1;
+        }
+		else if(event.keysym.sym == SDLK_LEFT && event.state == SDL_PRESSED){
+			if(player1_cursor == 0){
+				player1_gender_state = (player1_gender_state - 1) % 2;
+			}
+			else{
+				player1_team_state = (player1_team_state - 1) % 4;
+			}
+        }
+		else if(event.keysym.sym == SDLK_RIGHT && event.state == SDL_PRESSED){
+			if(player1_cursor == 0){
+				player1_gender_state = (player1_gender_state + 1) % 2;
+			}
+			else{
+				player1_team_state = (player1_team_state + 1) % 4;
+			}
+        }
+        else if(event.keysym.sym == SDLK_RETURN && event.state == SDL_PRESSED){
+			get_Game().pop_state();
+			get_Game().push_state(new Play_State_Base());
+        }
+    }
+    
+    void render() {
+        Widget_Gamestate::render();
+        
+		render_image("Teamselect", Point2f(0.0f,0.0f), Point2f(1024.0f,1024.0f));
+		get_Fonts()["system_36_800x600"].render_text("Player 1" ,Point2f(300, 30), Color(0x99FF1111));
+		get_Fonts()["system_36_800x600"].render_text("Player 2" ,Point2f(780, 30), Color(0x99FF1111));
+		get_Fonts()["system_36_800x600"].render_text("Player 3" ,Point2f(300, 330), Color(0x99FF1111));
+		get_Fonts()["system_36_800x600"].render_text("Player 4" ,Point2f(780, 330), Color(0x99FF1111));
+
+		if(player1_gender_state == 0)
+			player1_gender = "Boy";
+		else
+			player1_gender = "Girl";
+
+		if(player1_team_state == 0)
+			player1_team = "Blue";
+		else if(player1_team_state == 1)
+			player1_team = "Green";
+		else if(player1_team_state == 2)
+			player1_team = "Red";
+		else
+			player1_team = "Purple";
+
+		render_image("Snowball",Point2f(215.0f, 65.0f + 40.0f * player1_cursor), Point2f(245.0f, 95.0f + 40.0f * player1_cursor));
+		get_Fonts()["system_36_800x600"].render_text("Gender: -> " + player1_gender ,Point2f(250, 70), Color(0x99FF1111));
+		get_Fonts()["system_36_800x600"].render_text("Team: -> " + player1_team ,Point2f(250, 110), Color(0x99FF1111));
+		render_image(player1_gender + player1_team + "Regular", Point2f(48,48),Point2f(208,208));
+
+
+		get_Fonts()["system_36_800x600"].render_text("Press Enter to continue" ,Point2f(600, 565), Color(0x99FF3333));
+    }
+    
+    int player1_team_state;
+	int player1_gender_state;
+	int player1_cursor;
+	String player1_gender;
+	String player1_team;
+};
+
+class Title_State_Custom : public Title_State<Team_Select_State, Instructions_State>{
 
 	public:
 		Title_State_Custom()
-		: Title_State<Play_State_Base, Instructions_State>("")
+		: Title_State<Team_Select_State, Instructions_State>("")
 		{
 			m_widgets.unlend_Widget(title);
 		}
 
 		void render() {
-			Title_State<Play_State_Base, Instructions_State>::render();
+			Title_State<Team_Select_State, Instructions_State>::render();
+			//get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(960.0f, 600.0f)), true);
 
 			render_image("Titlescreen", Point2f(0.0f,0.0f), Point2f(1024.0f,1024.0f));
 		}
