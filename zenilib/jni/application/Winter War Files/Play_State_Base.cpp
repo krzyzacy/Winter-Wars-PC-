@@ -25,6 +25,7 @@ void Play_State_Base::on_push()	{
 		get_Window().mouse_grab(true);
 		get_Video().set_clear_Color(Color(0,.1,.1,.1));
 		get_Game().joy_mouse.enabled = false;
+		Game_Model::get().start_up();
 }
 
 void Play_State_Base::on_pop()	{
@@ -32,6 +33,7 @@ void Play_State_Base::on_pop()	{
 		get_Window().mouse_grab(false);
 		get_Video().set_clear_Color(m_prev_clear_color);
     //get_Game().joy_mouse.enabled = true;
+		Game_Model::get().finish();
 }
 
 void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {

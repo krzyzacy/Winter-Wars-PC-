@@ -28,6 +28,7 @@ public:
 	void update();
 	void render() const;
 	void start_up();
+	void finish();
 	
 	Player *get_player(int i)
 		{return players.at(i);}
@@ -35,7 +36,7 @@ public:
 	Team *get_team(int i)
 		{return	teams.at(i);}
 
-	World	*get_World()
+	World* get_World()
 		{return world;}
 
 	void add_moveable(Moveable *);
@@ -61,7 +62,8 @@ private:
 	float time_passed;
 	float time_step;
 
-	Game_Model(void);
+	Game_Model(void); //cant create any instances
+
 	View *view;
 	World *world;
 

@@ -16,15 +16,20 @@ using namespace Zeni;
 
 
 
-Game_Model::Game_Model(void) :
-	view(new View()), world(new World(view)), time_passed(0.0f), time_step(0.0f)
+Game_Model::Game_Model(void)
 {
-	start_up();
+
 }
 
 void Game_Model::start_up()
 {
-				
+		view = (new View());
+		world = (new World(view));
+		time_passed = (0.0f); 
+		time_step = (0.0f);	
+		
+		// Teams should be created in the menu!!!
+
 		//when we add the menu, should be easy to extend for up to 4 teams
 		//hopefully
 		teams.push_back(create_team(world->get_next_Base_Tile()));
@@ -44,36 +49,44 @@ void Game_Model::start_up()
 			view->add_player_view(new Player_View(p));
 			colliders.insert(p);
 			movers.insert(p);
-			//This will also change based on the menu set up
-			//if(i <= 1)	{
-			//	teams[0]->add_player(p);
-			//	p->set_Team(teams[0]);
-			//}
-			//else	{
-			//	teams[1]->add_player(p);
-			//	p->set_Team(teams[1]);
-			//}
-			teams[i]->add_player(p);
-			
+
+
+			teams[i]->add_player(p);			
 		}
 		
+	PlayTime.reset();
 		PlayTime.start();
 //		view->add_renderable(&Perm);
 
 }
 
-Game_Model::~Game_Model(void)
+void Game_Model::finish()
 {
 	//Everything is a collidable in all the other lists, so this represents all things
-	//besides seen objects, which hopefully no overlap??? View must destroy those
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); ++it)
 		delete (*it);
 
+	delete world; //destroys tiles too
+	delete view;	
+
+	movers.clear();
+	colliders.clear();
+	structures.clear();
+
+	// if we want to cfreate players and teams outside of this
+	// cant clear players and team too
+	players.clear();
+
 	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)	
 		delete (*it);
+	teams.clear();
+	
+	PlayTime.reset();
+}
 
-	delete world;
-	delete view;
+Game_Model::~Game_Model(void)
+{
+	finish();
 }
 
 void Game_Model::update()
@@ -90,9 +103,7 @@ void Game_Model::update()
 
 	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)
 		(*it)->update();
-
-	//get_player(0)->throw_ball();
-
+	
 	check_collisions();
 }
 
