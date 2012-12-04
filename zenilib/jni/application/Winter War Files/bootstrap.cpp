@@ -370,6 +370,10 @@ public:
 		player_render_offset[2] = Point2f(0,300);
 		player_render_offset[3] = Point2f(480,300);
 
+		get_Game().joy_mouse.enabled = false;
+		get_Window().mouse_hide(true);
+		get_Window().mouse_grab(true);
+
     }
     
 private:
@@ -398,10 +402,10 @@ private:
 			
 				case SDL_HAT_LEFT:
 					if(player_cursor[event.which] == 0){
-						player_gender_state[event.which] = (player_gender_state[event.which] - 1) % 2;
+						player_gender_state[event.which] = (player_gender_state[event.which] + 1) % 2;
 					}
 					else{
-						player_team_state[event.which] = (player_team_state[event.which] - 1) % 4;
+						player_team_state[event.which] = (player_team_state[event.which] + 3) % 4;
 					}
 					break;
 
@@ -506,11 +510,11 @@ private:
 				render_image("Snowball",Point2f(235.0f + player_render_offset[player_idx].x, 67.0f + 42.0f * player_cursor[player_idx] + player_render_offset[player_idx].y), Point2f(265.0f + player_render_offset[player_idx].x, 97.0f + 40.0f * player_cursor[player_idx] + player_render_offset[player_idx].y));
 				get_Fonts()["system_26_800x600"].render_text("Gender: -> " + player_gender[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 72 + player_render_offset[player_idx].y), Color(0x99FF1111));
 				get_Fonts()["system_26_800x600"].render_text("Team: -> " + player_team[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 112 + player_render_offset[player_idx].y), Color(0x99FF1111));
-				render_image(player_gender[player_idx] + player_team[player_idx] + "Regular", Point2f(95 + player_render_offset[player_idx].x,125 + player_render_offset[player_idx].y),Point2f(228 + player_render_offset[player_idx].x,258 + player_render_offset[player_idx].y));
+				render_image(player_gender[player_idx] + player_team[player_idx] + "Regular", Point2f(55 + player_render_offset[player_idx].x,125 + player_render_offset[player_idx].y),Point2f(188 + player_render_offset[player_idx].x,258 + player_render_offset[player_idx].y));
 			}
 
 			if(player_state[player_idx] >= 2){
-				get_Fonts()["system_36_800x600"].render_text(" READY! " + player_gender[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 170 + player_render_offset[player_idx].y), Color(0x99FF0000));
+				get_Fonts()["system_36_800x600"].render_text(" READY! " ,Point2f(270 + player_render_offset[player_idx].x, 170 + player_render_offset[player_idx].y), Color(0x99FF0000));
 			}
 		}
 
