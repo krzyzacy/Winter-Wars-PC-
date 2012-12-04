@@ -189,7 +189,7 @@ Point3f Tile::get_structure_base()	{
 }
 
 void Tile::build_structure(Structure* S, Team* new_team)	{
-	if(team)
+	if(new_team)
 		team = new_team->get_Team_Index();
 	Building = S;
 }

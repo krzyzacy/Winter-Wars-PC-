@@ -19,14 +19,41 @@ View::View(void)
 	model_map["player"] = new Zeni::Model("models/blueplayer.3ds");
 
 // Player animation
-	model_map["player_walk"] = new Zeni::Model("models/player/bluegirl/bluegirlwalking.3ds");
-	model_map["player_jump"] = new Zeni::Model("models/player/bluegirl/bluegirljumping.3ds");
-	model_map["player_stand"] = new Zeni::Model("models/player/bluegirl/bluegirlstanding.3ds");	
-	model_map["player_pack"] = new Zeni::Model("models/player/bluegirl/bluegirlpacking.3ds");
-	model_map["player_scoop"] = new Zeni::Model("models/player/bluegirl/bluegirlscooping.3ds");	
-	model_map["player_throw"] = new Zeni::Model("models/player/bluegirl/bluegirlthrowing.3ds");
-	model_map["player_flinch"] = new Zeni::Model("models/player/bluegirl/bluegirlflinching.3ds");	
-	model_map["player_die"] = new Zeni::Model("models/player/bluegirl/bluegirldying.3ds");	
+	model_map["bluegirlplayer_walk"] = new Zeni::Model("models/player/bluegirl/bluegirlwalking.3ds");
+	model_map["bluegirlplayer_jump"] = new Zeni::Model("models/player/bluegirl/bluegirljumping.3ds");
+	model_map["bluegirlplayer_stand"] = new Zeni::Model("models/player/bluegirl/bluegirlstanding.3ds");	
+	model_map["bluegirlplayer_pack"] = new Zeni::Model("models/player/bluegirl/bluegirlpacking.3ds");
+	model_map["bluegirlplayer_scoop"] = new Zeni::Model("models/player/bluegirl/bluegirlscooping.3ds");	
+	model_map["bluegirlplayer_throw"] = new Zeni::Model("models/player/bluegirl/bluegirlthrowing.3ds");
+	model_map["bluegirlplayer_flinch"] = new Zeni::Model("models/player/bluegirl/bluegirlflinching.3ds");	
+	model_map["bluegirlplayer_die"] = new Zeni::Model("models/player/bluegirl/bluegirldying.3ds");	
+	
+	model_map["greengirlplayer_walk"] = new Zeni::Model("models/player/greengirl/greengirlwalking.3ds");
+	model_map["greengirlplayer_jump"] = new Zeni::Model("models/player/greengirl/greengirljumping.3ds");
+	model_map["greengirlplayer_stand"] = new Zeni::Model("models/player/greengirl/greengirlstanding.3ds");	
+	model_map["greengirlplayer_pack"] = new Zeni::Model("models/player/greengirl/greengirlpacking.3ds");
+	model_map["greengirlplayer_scoop"] = new Zeni::Model("models/player/greengirl/greengirlscooping.3ds");	
+	model_map["greengirlplayer_throw"] = new Zeni::Model("models/player/greengirl/greengirlthrowing.3ds");
+	model_map["greengirlplayer_flinch"] = new Zeni::Model("models/player/greengirl/greengirlflinching.3ds");	
+	model_map["greengirlplayer_die"] = new Zeni::Model("models/player/greengirl/greengirldying.3ds");	
+
+	model_map["orangegirlplayer_walk"] = new Zeni::Model("models/player/orangegirl/orangegirlwalking.3ds");
+	model_map["orangegirlplayer_jump"] = new Zeni::Model("models/player/orangegirl/orangegirljumping.3ds");
+	model_map["orangegirlplayer_stand"] = new Zeni::Model("models/player/orangegirl/orangegirlstanding.3ds");	
+	model_map["orangegirlplayer_pack"] = new Zeni::Model("models/player/orangegirl/orangegirlpacking.3ds");
+	model_map["orangegirlplayer_scoop"] = new Zeni::Model("models/player/orangegirl/orangegirlscooping.3ds");	
+	model_map["orangegirlplayer_throw"] = new Zeni::Model("models/player/orangegirl/orangegirlthrowing.3ds");
+	model_map["orangegirlplayer_flinch"] = new Zeni::Model("models/player/orangegirl/orangegirlflinching.3ds");	
+	model_map["orangegirlplayer_die"] = new Zeni::Model("models/player/orangegirl/orangegirldying.3ds");	
+
+	model_map["redgirlplayer_walk"] = new Zeni::Model("models/player/redgirl/redgirlwalking.3ds");
+	model_map["redgirlplayer_jump"] = new Zeni::Model("models/player/redgirl/redgirljumping.3ds");
+	model_map["redgirlplayer_stand"] = new Zeni::Model("models/player/redgirl/redgirlstanding.3ds");	
+	model_map["redgirlplayer_pack"] = new Zeni::Model("models/player/redgirl/redgirlpacking.3ds");
+	model_map["redgirlplayer_scoop"] = new Zeni::Model("models/player/redgirl/redgirlscooping.3ds");	
+	model_map["redgirlplayer_throw"] = new Zeni::Model("models/player/redgirl/redgirlthrowing.3ds");
+	model_map["redgirlplayer_flinch"] = new Zeni::Model("models/player/redgirl/redgirlflinching.3ds");	
+	model_map["redgirlplayer_die"] = new Zeni::Model("models/player/redgirl/redgirldying.3ds");	
 
 // Tiles
 	model_map["neutralsoftsnowtile"] = new Zeni::Model("models/softsnow/neutralsoftsnowtile.3ds");

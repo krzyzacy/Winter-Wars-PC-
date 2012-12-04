@@ -18,7 +18,7 @@ const float standard_speed = 200;
 const float turn_speed = 2;
 
 const float Max_Snow_Amount = 100;
-extern const float Max_Player_Health = 100;
+const float Max_Player_Health = 100;
 const float packing_rate = 20;
 const float snow_depletion_rate = 20;
 const float snow_absorbtion_rate = 50;
@@ -32,14 +32,15 @@ const float  Stick_Accel = 1000;
 
 
 Player::Player(const Zeni::Point3f &center_) 
-	: Moveable(center_ , Vector3f(40.0f,40.0f,40.0f)), m_camera(center_, Quaternion(), 5.0f, 2000.0f),
+	: Moveable(center_ , Vector3f(20.0f,20.0f,20.0f)), m_camera(center_, Quaternion(), 5.0f, 2000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false), Selection(NOTHING),
-	stick_theta(0.0f), animation_state(new Standing())
+	stick_theta(0.0f), animation_state(new Standing()), dead_mode(false)
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
 	//rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0, 0);
+	//rotation += Quaternion(Global::pi_over_two, 0,0);
 }
 
 
@@ -57,24 +58,41 @@ void Player::adjust_pitch(float phi) {
       m_camera.orientation = backup;
 }
 
-void Player::turn_left(float theta) {
-		m_camera.turn_left_xy(theta*turn_speed);
-		//Quaternion LR_Only = m_camera.orientation;
-		//Here take out pitch and roll	
-		//LR_Only *= Quaternion(1,0,0); Doesn't work, think we need math
-		//rotation = LR_Only + Quaternion (Global::pi_over_two, 0, 0);
-		//Pre render?
-		rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0,0);
+void Player::turn_left(float theta) {	
+	Vector3f Old = m_camera.get_forward().get_ij();
+	m_camera.turn_left_xy(theta*turn_speed);
+	rotation *= m_camera.orientation.Vector3f_to_Vector3f(m_camera.get_forward().get_ij(), Old);
 }
 
 void Player::update(const float &time)	{
 	backup = center;
 	
-	Moveable::update(time);
+	if(Deathklok.seconds() > 6)
+		respawn();
 
+	if(is_player_KO())
+		return;
+
+	Moveable::update(time);
 	m_camera.position = center;
 	
+
 }
+
+void Player::player_death()	{
+	Deathklok.start();
+	dead_mode = true;
+}
+
+void Player::respawn()	{
+	Deathklok.stop();
+	Deathklok.reset();
+	dead_mode = false;
+	health = Max_Player_Health;
+	Snow_in_Pack = Max_Snow_Amount;
+	center = myTeam->get_spawn_point();
+}
+
 
 void Player::off_map()
 {
@@ -98,8 +116,10 @@ void Player::get_damaged(float damage)
 {
 	health -= damage;
 
-	if (health < 0)
+	if (health < 0)	{
 		switch_state(DIE);
+		player_death();
+	}
 	else
 		switch_state(FLINCH);
 	//Add respawn stuff / checks here / and the suprise
@@ -107,6 +127,8 @@ void Player::get_damaged(float damage)
 }
 
 void Player::throw_ball()		{
+	if(is_player_KO())
+		return;
 	if(current_radius > 0)	{
 		Snowball *sb = new Snowball(this, center+m_camera.get_forward(), 
 										Vector3f(current_radius, current_radius,current_radius));
@@ -119,6 +141,8 @@ void Player::throw_ball()		{
 }
 
 void Player::charge_ball()	{
+	if(is_player_KO())
+		return;
 	//This represents when the player is "packing" snow into a ball
 	const float time = Game_Model::get().get_time_step();
 		if(Snow_in_Pack <= 0)		
@@ -132,6 +156,8 @@ void Player::charge_ball()	{
 }
 
 void Player::pack_snow()	{
+	if(is_player_KO())
+		return;
 	//This will change, but exists for now as a simple test function
 	if (is_on_ground())
 		switch_state(SCOOP);
@@ -145,6 +171,9 @@ void Player::pack_snow()	{
 }
 
  void Player::calculate_movement(const Vector2f &input_vel)	{
+	 if(is_player_KO())
+		return;
+
 	//input_vel is joystick values, from 0 to 32768
 	if(mini_open)	{	//Mini-map is open stop moving
 		velocity = Vector3f(0,0, velocity.z);
@@ -209,6 +238,8 @@ void Player::pack_snow()	{
  }
  
 void Player::jump()	{
+	if(is_player_KO())
+		return;
 	switch(Jumping)	{
 	case ON_GROUND:
 		switch_state(JUMP);
@@ -249,6 +280,10 @@ void Player::jump()	{
 }
 
 void Player::handle_build_menu(const Vector2f &norml_stick)	{
+	if(is_player_KO())	{
+		Builder = REST;
+		return;
+	}
 	select_type(norml_stick);
 	switch(Builder)	{
 	case REST:
@@ -379,7 +414,27 @@ bool Player::vibrate_feedback()	{
 
 const model_key_t Player::get_model_name() const
 {
-	return /*teamname + */ animation_state->get_model_name();
+	string Teamname;
+	switch(myTeam->get_Team_Index())	{
+	case GREEN:
+		Teamname = "green";
+		break;
+	case RED:
+		Teamname = "red";
+		break;
+	case BLUE:
+		Teamname = "blue";
+		break;
+	case ORANGE:
+		Teamname = "orange";
+		break;
+	default:
+		Teamname = "blue";
+		break;
+	}
+
+	//return animation_state->get_model_name();
+	return Teamname + "girl" + animation_state->get_model_name();
 }
 
 Animator *Player::get_animator() const
