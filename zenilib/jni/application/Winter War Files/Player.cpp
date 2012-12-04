@@ -434,7 +434,7 @@ const model_key_t Player::get_model_name() const
 	}
 
 	//return animation_state->get_model_name();
-	return Teamname + "boy" + animation_state->get_model_name();
+	return Teamname + "girl" + animation_state->get_model_name();
 }
 
 Animator *Player::get_animator() const

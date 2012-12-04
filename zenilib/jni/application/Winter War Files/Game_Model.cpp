@@ -40,7 +40,7 @@ void Game_Model::start_up(const std::vector<String> &genders_, const std::vector
 
 
 	for(int i = 0; i < 4; i++){
-		Player *p = create_player(teams[colors_[i]], genders_[i]);
+		Player *p = create_player(teams[colors_[i]], "Girl");//genders_[i]);
 		//Player *p = create_player(teams[i], "Girl");
 		add_player(p);
 	}

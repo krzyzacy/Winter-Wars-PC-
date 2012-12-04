@@ -23,6 +23,12 @@ using namespace Zeni;
 Player *create_player(Team* team_,const Zeni::String &gender)
 {
 	Player* player = new Player(team_->get_spawn_point());
+	
+	if (gender == "Boy")
+		player->set_Gender("boy");
+	else if (gender == "Girl")
+		player->set_Gender("girl");
+	
 	team_->add_player(player);
 	return player;
 }

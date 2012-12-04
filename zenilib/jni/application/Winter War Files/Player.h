@@ -34,6 +34,7 @@ public:
 	~Player(void);
 
 	void set_Team(Team *myTeam_)	{myTeam = myTeam_;}
+	void set_Gender(const std::string &gender_) {gender = gender_;}
 
 // camera functions
 	void turn_left(float theta);
@@ -101,6 +102,8 @@ private:
 	float current_radius;
 	float Snow_in_Pack; 
 	float health;
+
+	std::string gender;
 
 	Team * myTeam;
 	Zeni::Point3f backup;
