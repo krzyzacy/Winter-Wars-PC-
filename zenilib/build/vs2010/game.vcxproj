@@ -241,6 +241,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Structure.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Team.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Tile.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Tree.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Utility.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\View.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\World.h" />
@@ -400,6 +401,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Tile.cpp">
     </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Tree.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\View.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\World.cpp">
