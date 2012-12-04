@@ -96,6 +96,9 @@ bool Team::tile_is_ready(Tile * cand, int type)	{
 		cand->destroy_structure();
 		return true;
 	}
+	//Do a check here for the center tile
+	//Return false if you can build on it because don't want to let game_obejct create structure
+
 
 	//This code handles neutral tiles and enemy tiles
 	if(!cand->has_building() && is_adjacent_to_network(cand))	{

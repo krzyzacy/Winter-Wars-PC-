@@ -41,6 +41,7 @@ public:
 
 // Moving Functions
 	void calculate_movement(const Zeni::Vector2f &input_vel);
+	void push_away_from(Zeni::Point3f &obstacle, const float force = 100);
 
 // Actions
 	void throw_ball();
