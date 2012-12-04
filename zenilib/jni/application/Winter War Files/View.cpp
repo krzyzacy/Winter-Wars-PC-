@@ -2,6 +2,7 @@
 
 #include "Seen_Object.h"
 #include "Player_View.h"
+#include "Player.h"
 
 #include <functional>
 #include <zenilib.h>
@@ -115,8 +116,12 @@ void View::render() const
 	
 }
 
+Player_View *cur_View; // The current player we are viewing
+				// DONT TOUCH IF YOU DON"T KNOW WHAT YOU ARE DOING!
+
 void View::render_player(int player, const Point2f &topLeft, const Point2f &bottomRight) const
 {	
+	cur_View = player_views[player];  // this is the cur player
 	player_views[player]->set_camera(topLeft,bottomRight);
 	render_world();
 
@@ -145,6 +150,10 @@ void View::render_renderable(const Seen_Object *to_rend) const
 
 	if (mIt == model_map.end())
 		throw Error(("Model " + to_rend->get_model_name() + " does not exist.").data());
+	
+	// don't render the current player
+	if (cur_View->get_player() == to_rend)
+		return;
 
 	to_rend->render(mIt->second);
 }

@@ -44,7 +44,7 @@ void Game_Model::start_up()
 
 		for (int i = 0 ; i < 4 ; i++)
 		{
-			Player *p = create_player(teams[i]);
+			Player *p = create_player(teams[i], "Female");
 			players.push_back(p);
 			view->add_renderable(p);
 			view->add_player_view(new Player_View(p));

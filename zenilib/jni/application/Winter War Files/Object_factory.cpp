@@ -20,7 +20,7 @@
 using namespace Zeni;
 
 
-Player *create_player(Team* team_)
+Player *create_player(Team* team_,const std::string &gender)
 {
 	
 	return new Player(team_->get_spawn_point());

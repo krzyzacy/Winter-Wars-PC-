@@ -19,6 +19,9 @@ public:
 
 	void render_build(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
 
+	const Player *get_player() const 
+		{return player;}
+
 private:
 	const Player *player;
 

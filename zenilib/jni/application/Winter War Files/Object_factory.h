@@ -9,14 +9,12 @@ class Team;
 class Tile;
 class Structure;
 
+// gender can be "MALE" or "FEMALE"
+Player *create_player(Team* team_, const std::string &gender);
 
-// not very useful now....
-Player *create_player(Team* team_);
 Team	*create_team(Tile * Base_Tile);
 
-// Figure out tile and team from player
-
-//Structure *create_structure(const std::string &type, Player *player, const Zeni::Point3f &init_position);
+// creates a structure and adds it to the tile
 Structure *create_structure(int type, Tile* ti, Team* team_);
 
 #endif

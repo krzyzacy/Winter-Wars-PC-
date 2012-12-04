@@ -5,7 +5,7 @@
 
 const int Snowball::snowball_ID_c = 2;
 
-const float Launch_Speed = 300;
+const float Launch_Speed = 600;
 
 using namespace Zeni;
 
@@ -46,14 +46,14 @@ void Snowball::off_map()
 
 void Snowball::hit_tile()
 {
-	alive = false;
+//	alive = false;
 }
 
 void Snowball::on_ground()
 {
-	damage_dealt = true;
-	alive = false;
-	set_velocity(Vector3f());
+//	damage_dealt = true;
+//	alive = false;
+//	set_velocity(Vector3f());
 }
 
 void Snowball::get_thrown(const Vector3f &dir)
