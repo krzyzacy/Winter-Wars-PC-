@@ -29,6 +29,7 @@ void Game_Model::start_up()
 		time_step = (0.0f);	
 		
 		// Teams should be created in the menu!!!
+		//Teams should be selected in the menu. Model creates all its own stuff
 
 		//when we add the menu, should be easy to extend for up to 4 teams
 		//hopefully
@@ -55,9 +56,9 @@ void Game_Model::start_up()
 		}
 		
 		// Place Tree
-		create_structure(TREE, world->get_center_Tile(), NULL);
+		add_structure(create_structure(TREE, world->get_center_Tile(), NULL));
 
-	PlayTime.reset();
+		PlayTime.reset();
 		PlayTime.start();
 //		view->add_renderable(&Perm);
 
