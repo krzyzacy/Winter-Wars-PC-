@@ -16,6 +16,9 @@
 #include "Play_State_Base.h"
 
 #include "String.h"
+#include <vector>
+#include "Team.h"
+#include "Object_factory.h"
 
 #if defined(_DEBUG) && defined(_WINDOWS)
 #define DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
@@ -374,6 +377,10 @@ public:
 		get_Window().mouse_hide(true);
 		get_Window().mouse_grab(true);
 
+		loading = false;
+		start_game = 0.0f;
+	
+
     }
     
 private:
@@ -386,7 +393,7 @@ private:
 				player_state[0] ++;
 			else{
 				get_Game().pop_state();
-				get_Game().push_state(new Play_State_Base());
+				get_Game().push_state(new Play_State_Base(genders_, colors_));
 			}
 		}
     }
@@ -436,10 +443,8 @@ private:
 					if(event.state == SDL_PRESSED)	{
 						if(player_state[0] != 3)
 							player_state[0] ++;
-						else{
-							get_Game().pop_state();
-							get_Game().push_state(new Play_State_Base());
-						}
+						else
+							loading = true;
 					}
 					break;
 				case 1: // B
@@ -474,6 +479,29 @@ private:
     
 	void perform_logic(){
 
+		if(start_game > 100.0f){
+
+			for(int player_idx = 0; player_idx < 4; player_idx ++){
+				genders_.push_back(player_gender[player_idx]);
+					if(player_team[player_idx] == "Blue"){
+						colors_.push_back(0);
+					if(player_team[player_idx] == "Green"){
+						colors_.push_back(1);
+					}
+					if(player_team[player_idx] == "Red"){
+						colors_.push_back(2);
+					}
+					if(player_team[player_idx] == "Purple"){
+						colors_.push_back(3);
+					}
+				}
+			}
+
+			get_Game().pop_state();
+			get_Game().push_state(new Play_State_Base(genders_, colors_));
+		}
+
+
 		for(int player_idx = 0; player_idx < 4; player_idx ++){
 			if(player_gender_state[player_idx] == 0)
 				player_gender[player_idx] = "Boy";
@@ -493,14 +521,12 @@ private:
 
     void render() {
         Widget_Gamestate::render();
-        
+
 		render_image("Teamselect", Point2f(0.0f,0.0f), Point2f(1024.0f,1024.0f));
 		get_Fonts()["system_36_800x600"].render_text("Player 1" ,Point2f(270, 30), Color(0x99FF1111));
 		get_Fonts()["system_36_800x600"].render_text("Player 2" ,Point2f(750, 30), Color(0x99FF1111));
 		get_Fonts()["system_36_800x600"].render_text("Player 3" ,Point2f(270, 330), Color(0x99FF1111));
 		get_Fonts()["system_36_800x600"].render_text("Player 4" ,Point2f(750, 330), Color(0x99FF1111));
-
-
 
 		for(int player_idx = 0; player_idx < 4; player_idx ++){
 
@@ -514,12 +540,17 @@ private:
 			}
 
 			if(player_state[player_idx] >= 2){
-				get_Fonts()["system_36_800x600"].render_text(" READY! " ,Point2f(270 + player_render_offset[player_idx].x, 170 + player_render_offset[player_idx].y), Color(0x99FF0000));
+				//render_image("Ready",Point2f(100.0f + player_render_offset[player_idx].x, 70.0f + player_render_offset[player_idx].y), Point2f(430.0f + player_render_offset[player_idx].x, 400.0f + player_render_offset[player_idx].y));
 			}
 		}
 
 
 		get_Fonts()["system_36_800x600"].render_text("Press Enter to continue" ,Point2f(600, 565), Color(0x99FF3333));
+
+		if(loading){
+			render_image("Loading", Point2f(0.0f,0.0f), Point2f(1024.0f,1024.0f));
+			start_game += 1.0f;
+		}
     }
     
 	int player_state[4];
@@ -530,6 +561,11 @@ private:
 	String player_team[4];
 
 	Point2f player_render_offset[4];
+	bool loading;
+	float start_game;
+
+	vector<int> colors_;
+	vector<Zeni::String> genders_;
 	//Point2f player_render_base;
 };
 

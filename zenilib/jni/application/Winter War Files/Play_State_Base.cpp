@@ -9,10 +9,10 @@
 #include "Permanent.h"
 #include "Team.h"
 
-Play_State_Base::Play_State_Base(const vector<Team*>& teams_)	:
-	m_prev_clear_color(get_Video().get_clear_Color())
-		teams(teams_)
-	
+Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<int> &colors_)	:
+	m_prev_clear_color(get_Video().get_clear_Color()),
+	genders(genders_),
+	teams(colors_)
 {		
 		set_pausable(true);
 		for(int i = 0; i < 4; i++)	{
@@ -32,7 +32,7 @@ void Play_State_Base::on_push()	{
 		get_Window().mouse_grab(true);
 		get_Video().set_clear_Color(Color(0,.1,.1,.1));
 		get_Game().joy_mouse.enabled = false;
-		Game_Model::get().start_up(teams_);
+		Game_Model::get().start_up(genders, teams);
 }
 
 void Play_State_Base::on_pop()	{

@@ -2,6 +2,7 @@
 
 #include <zenilib.h>
 #include <vector>
+#include <String>
 
 #include "Collision_Table.h"
 
@@ -27,7 +28,7 @@ public:
 
 	void update();
 	void render() const;
-	void start_up(const vector<Team*>& teams_);
+	void start_up(const std::vector<Zeni::String> &genders_, const std::vector<int> &colors_);
 	void finish();
 	
 	Player *get_player(int i)

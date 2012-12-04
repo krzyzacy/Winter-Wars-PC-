@@ -20,10 +20,11 @@
 using namespace Zeni;
 
 
-Player *create_player(Team* team_,const std::string &gender)
+Player *create_player(Team* team_,const Zeni::String &gender)
 {
-	
-	return new Player(team_->get_spawn_point());
+	Player* player = new Player(team_->get_spawn_point());
+	team_->add_player(player);
+	return player;
 }
 
 Team *create_team(Tile * Base_Tile)	{

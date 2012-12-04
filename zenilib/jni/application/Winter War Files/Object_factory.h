@@ -9,8 +9,8 @@ class Team;
 class Tile;
 class Structure;
 
-// gender can be "MALE" or "FEMALE"
-Player *create_player(Team* team_, const std::string &gender);
+// gender can be "Boy" or "Girl"
+Player *create_player(Team* team_, const Zeni::String &gender);
 
 Team	*create_team(Tile * Base_Tile);
 

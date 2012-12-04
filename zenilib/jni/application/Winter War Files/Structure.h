@@ -39,7 +39,7 @@ public:
 
 	void perform_destruction_effects();
 
-	virtual int get_resourses_needed();
+	//virtual int get_resourses_needed();
 	
 	int get_ID() const 
 		{return structure_ID_c;}

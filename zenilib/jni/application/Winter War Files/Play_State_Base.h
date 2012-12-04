@@ -22,13 +22,14 @@ class Play_State_Base : public Gamestate_Base		{
   Play_State_Base operator=(const Play_State_Base &);
  
 public:
-	Play_State_Base(const vector<Team*>& teams_);
+	Play_State_Base(const vector<String> &genders_, const vector<int> &colors_);
 	~Play_State_Base();
 
 
 private:		
 	vector<Controls*> controllers;
-	vector<Team*> teams;
+	vector<int> teams;
+	vector<Zeni::String> genders;
 
 	Color m_prev_clear_color;
 

@@ -21,14 +21,14 @@ Game_Model::Game_Model(void)
 
 }
 
-void Game_Model::start_up(const vector<Team*>& teams_)
+void Game_Model::start_up(const std::vector<String> &genders_, const std::vector<int> &colors_)
 {
 		view = (new View());
 		world = (new World(view));
 		time_passed = (0.0f); 
 		time_step = (0.0f);	
 		
-/*
+
 		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams.push_back(create_team(world->get_next_Base_Tile()));
@@ -37,21 +37,12 @@ void Game_Model::start_up(const vector<Team*>& teams_)
 		teams[1]->set_Team_Color(RED);
 		teams[2]->set_Team_Color(BLUE);
 		teams[3]->set_Team_Color(ORANGE);
-			Player *p = create_player(teams[i], "Female");
 
-			teams[i]->add_player(p);	
-*/
 
-	teams = teams_;
-
-	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)	
-	{
-		Player *p;
-		for (int i = 0 ; (p = ((*it)->get_player(i))) != NULL ; i++)
-		{
-			add_player(p);		
-		}
-	}	
+	for(int i = 0; i < 4; i++){
+		Player *p = create_player(teams[colors_[i]], genders_[i]);
+		add_player(p);
+	}
 
 		// Place Tree
 		add_structure(create_structure(TREE, world->get_center_Tile(), NULL));
