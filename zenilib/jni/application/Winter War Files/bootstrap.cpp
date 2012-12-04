@@ -356,11 +356,20 @@ public:
     Team_Select_State()
     : Widget_Gamestate(make_pair(Point2f(0.0f, 0.0f), Point2f(960.0f, 600.0f)))
     {
-        player1_team_state = 0;
-		player1_gender_state = 0;
-		player1_cursor = 0;
-		player1_gender = "Boy";
-		player1_team = "Blue";
+		for(int player_idx = 0; player_idx < 4; player_idx ++){
+			player_state[player_idx] = 0;
+			player_team_state[player_idx] = 0;
+			player_gender_state[player_idx]  = 0;
+			player_cursor[player_idx]  = 0;
+			player_gender[player_idx]  = "Boy";
+			player_team[player_idx]  = "Blue";
+		}
+
+		player_render_offset[0] = Point2f(0,0);
+		player_render_offset[1] = Point2f(480,0);
+		player_render_offset[2] = Point2f(0,300);
+		player_render_offset[3] = Point2f(480,300);
+
     }
     
 private:
@@ -368,73 +377,156 @@ private:
         if(event.keysym.sym == SDLK_ESCAPE && event.state == SDL_PRESSED){
             get_Game().pop_state();
         }
-        else if(event.keysym.sym == SDLK_UP && event.state == SDL_PRESSED){
-			if(player1_cursor == 1)
-				player1_cursor = 0;
-        }
-        else if(event.keysym.sym == SDLK_DOWN && event.state == SDL_PRESSED){
-			if(player1_cursor == 0)
-				player1_cursor = 1;
-        }
-		else if(event.keysym.sym == SDLK_LEFT && event.state == SDL_PRESSED){
-			if(player1_cursor == 0){
-				player1_gender_state = (player1_gender_state - 1) % 2;
-			}
-			else{
-				player1_team_state = (player1_team_state - 1) % 4;
-			}
-        }
-		else if(event.keysym.sym == SDLK_RIGHT && event.state == SDL_PRESSED){
-			if(player1_cursor == 0){
-				player1_gender_state = (player1_gender_state + 1) % 2;
-			}
-			else{
-				player1_team_state = (player1_team_state + 1) % 4;
-			}
-        }
         else if(event.keysym.sym == SDLK_RETURN && event.state == SDL_PRESSED){
-			get_Game().pop_state();
-			get_Game().push_state(new Play_State_Base());
-        }
+			if(player_state[0] != 3)
+				player_state[0] ++;
+			else{
+				get_Game().pop_state();
+				get_Game().push_state(new Play_State_Base());
+			}
+		}
     }
+
+	void on_joy_hat(const SDL_JoyHatEvent &event) {
+		
+		if(player_state[event.which] == 1) {
+			switch(event.value){
+				case SDL_HAT_UP:    
+					if(player_cursor[event.which] == 1)
+						player_cursor[event.which] = 0;
+					break;
+			
+				case SDL_HAT_LEFT:
+					if(player_cursor[event.which] == 0){
+						player_gender_state[event.which] = (player_gender_state[event.which] - 1) % 2;
+					}
+					else{
+						player_team_state[event.which] = (player_team_state[event.which] - 1) % 4;
+					}
+					break;
+
+				case SDL_HAT_RIGHT:
+					if(player_cursor[event.which] == 0){
+						player_gender_state[event.which] = (player_gender_state[event.which] + 1) % 2;
+					}
+					else{
+						player_team_state[event.which] = (player_team_state[event.which] + 1) % 4;
+					}
+					break;
+				case SDL_HAT_DOWN:
+					if(player_cursor[event.which] == 0)
+						player_cursor[event.which] = 1;
+					break;
+				//case SDL_HAT_RIGHTDOWN:
+				default:
+					break;
+			}
+		}
+
+	}
+
+	void on_joy_button(const SDL_JoyButtonEvent &event){
+		if(event.which == 0){ // player_1
+			switch(event.button){
+				case 0: // A
+					if(event.state == SDL_PRESSED)	{
+						if(player_state[0] != 3)
+							player_state[0] ++;
+						else{
+							get_Game().pop_state();
+							get_Game().push_state(new Play_State_Base());
+						}
+					}
+					break;
+				case 1: // B
+					if(event.state == SDL_PRESSED)	{
+						if(player_state[0] != 0)
+						player_state[0] --;
+					}
+					break;
+				default:
+					break;
+			}
+		}
+		else{ // player_2 - 4
+			switch(event.button){
+				case 0: // A
+					if(event.state == SDL_PRESSED)	{
+						if(player_state[event.which] != 2)
+							player_state[event.which] ++;
+					}
+					break;
+				case 1: // B
+					if(event.state == SDL_PRESSED)	{
+						if(player_state[event.which] != 0)
+							player_state[event.which] --;
+					}
+					break;
+				default:
+					break;
+			}
+		}
+	}
     
+	void perform_logic(){
+
+		for(int player_idx = 0; player_idx < 4; player_idx ++){
+			if(player_gender_state[player_idx] == 0)
+				player_gender[player_idx] = "Boy";
+			else
+				player_gender[player_idx] = "Girl";
+
+			if(player_team_state[player_idx] == 0)
+				player_team[player_idx] = "Blue";
+			else if(player_team_state[player_idx] == 1)
+				player_team[player_idx] = "Green";
+			else if(player_team_state[player_idx] == 2)
+				player_team[player_idx] = "Red";
+			else
+				player_team[player_idx] = "Purple";
+		}
+	}
+
     void render() {
         Widget_Gamestate::render();
         
 		render_image("Teamselect", Point2f(0.0f,0.0f), Point2f(1024.0f,1024.0f));
-		get_Fonts()["system_36_800x600"].render_text("Player 1" ,Point2f(300, 30), Color(0x99FF1111));
-		get_Fonts()["system_36_800x600"].render_text("Player 2" ,Point2f(780, 30), Color(0x99FF1111));
-		get_Fonts()["system_36_800x600"].render_text("Player 3" ,Point2f(300, 330), Color(0x99FF1111));
-		get_Fonts()["system_36_800x600"].render_text("Player 4" ,Point2f(780, 330), Color(0x99FF1111));
+		get_Fonts()["system_36_800x600"].render_text("Player 1" ,Point2f(270, 30), Color(0x99FF1111));
+		get_Fonts()["system_36_800x600"].render_text("Player 2" ,Point2f(750, 30), Color(0x99FF1111));
+		get_Fonts()["system_36_800x600"].render_text("Player 3" ,Point2f(270, 330), Color(0x99FF1111));
+		get_Fonts()["system_36_800x600"].render_text("Player 4" ,Point2f(750, 330), Color(0x99FF1111));
 
-		if(player1_gender_state == 0)
-			player1_gender = "Boy";
-		else
-			player1_gender = "Girl";
 
-		if(player1_team_state == 0)
-			player1_team = "Blue";
-		else if(player1_team_state == 1)
-			player1_team = "Green";
-		else if(player1_team_state == 2)
-			player1_team = "Red";
-		else
-			player1_team = "Purple";
 
-		render_image("Snowball",Point2f(215.0f, 65.0f + 40.0f * player1_cursor), Point2f(245.0f, 95.0f + 40.0f * player1_cursor));
-		get_Fonts()["system_36_800x600"].render_text("Gender: -> " + player1_gender ,Point2f(250, 70), Color(0x99FF1111));
-		get_Fonts()["system_36_800x600"].render_text("Team: -> " + player1_team ,Point2f(250, 110), Color(0x99FF1111));
-		render_image(player1_gender + player1_team + "Regular", Point2f(48,48),Point2f(208,208));
+		for(int player_idx = 0; player_idx < 4; player_idx ++){
+
+			render_image("Wanted",Point2f(-40.0f + player_render_offset[player_idx].x, 0.0f + player_render_offset[player_idx].y), Point2f(290.0f + player_render_offset[player_idx].x, 330.0f + player_render_offset[player_idx].y));
+
+			if(player_state[player_idx] != 0){
+				render_image("Snowball",Point2f(235.0f + player_render_offset[player_idx].x, 67.0f + 42.0f * player_cursor[player_idx] + player_render_offset[player_idx].y), Point2f(265.0f + player_render_offset[player_idx].x, 97.0f + 40.0f * player_cursor[player_idx] + player_render_offset[player_idx].y));
+				get_Fonts()["system_26_800x600"].render_text("Gender: -> " + player_gender[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 72 + player_render_offset[player_idx].y), Color(0x99FF1111));
+				get_Fonts()["system_26_800x600"].render_text("Team: -> " + player_team[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 112 + player_render_offset[player_idx].y), Color(0x99FF1111));
+				render_image(player_gender[player_idx] + player_team[player_idx] + "Regular", Point2f(95 + player_render_offset[player_idx].x,125 + player_render_offset[player_idx].y),Point2f(228 + player_render_offset[player_idx].x,258 + player_render_offset[player_idx].y));
+			}
+
+			if(player_state[player_idx] >= 2){
+				get_Fonts()["system_36_800x600"].render_text(" READY! " + player_gender[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 170 + player_render_offset[player_idx].y), Color(0x99FF0000));
+			}
+		}
 
 
 		get_Fonts()["system_36_800x600"].render_text("Press Enter to continue" ,Point2f(600, 565), Color(0x99FF3333));
     }
     
-    int player1_team_state;
-	int player1_gender_state;
-	int player1_cursor;
-	String player1_gender;
-	String player1_team;
+	int player_state[4];
+    int player_team_state[4];
+	int player_gender_state[4];
+	int player_cursor[4];
+	String player_gender[4];
+	String player_team[4];
+
+	Point2f player_render_offset[4];
+	//Point2f player_render_base;
 };
 
 class Title_State_Custom : public Title_State<Team_Select_State, Instructions_State>{
