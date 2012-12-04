@@ -28,7 +28,7 @@ const float Building_Recharge_Time = 1;
 
 
 const Vector3f jump_vec(0,0,500);
-const float  Stick_Accel = 2000;
+const float  Stick_Accel = 1000;
 
 
 Player::Player(const Zeni::Point3f &center_) 
@@ -100,6 +100,8 @@ void Player::get_damaged(float damage)
 
 	if (health < 0)
 		switch_state(DIE);
+	else
+		switch_state(FLINCH);
 	//Add respawn stuff / checks here / and the suprise
 	ShakeTime.start();
 }
@@ -131,7 +133,8 @@ void Player::charge_ball()	{
 
 void Player::pack_snow()	{
 	//This will change, but exists for now as a simple test function
-	switch_state(SCOOP);
+	if (is_on_ground())
+		switch_state(SCOOP);
 
 	const float time = Game_Model::get().get_time_step();
 	if(Snow_in_Pack >= Max_Snow_Amount)
@@ -177,7 +180,7 @@ void Player::pack_snow()	{
 											
 	//How much the player can control the new direction is also effected by friction
 	Input_Accel_Dir *= Stick_Accel * friction;
-	New_vel *= (1 - friction/15);
+	New_vel *= (1 - friction/20);
 	New_vel += Input_Accel_Dir * Game_Model::get().get_time_step();
 
 	
@@ -190,9 +193,9 @@ void Player::pack_snow()	{
 	velocity.z = zvel;
 
 	//Animations
-	if (velocity.x == 0 && velocity.y == 0)
+	if (velocity.x == 0 && velocity.y == 0 && is_on_ground())
 		switch_state(STAND);
-	else
+	else if ((velocity.x != 0 || velocity.y != 0) && is_on_ground())
 		switch_state(WALK);
 	
 }
@@ -208,11 +211,15 @@ void Player::pack_snow()	{
 void Player::jump()	{
 	switch(Jumping)	{
 	case ON_GROUND:
+		switch_state(JUMP);
 		AirTime.start();
 		accelerate(jump_vec, Game_Model::get().get_time_step());
 		Jumping = BOOST;
 		break;
 	case BOOST:
+		{
+		switch_state(JUMP);
+		animation_state->proceed();
 		if(AirTime.seconds() <= 0.4)	
 			accelerate(jump_vec, Game_Model::get().get_time_step());
 		else	{
@@ -221,10 +228,13 @@ void Player::jump()	{
 			AirTime.reset();
 		}
 		break;
+		}
 	case FALLING_WITH_STYLE:
+		{
 		if(is_on_ground())
 			Jumping = ON_GROUND;
 		break;
+		}
 	case JET_PACK:
 		accelerate(jump_vec, Game_Model::get().get_time_step());
 		break;

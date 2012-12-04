@@ -7,7 +7,7 @@
 class Jumping : public PlayerAnimator
 {	
 public:
-	Jumping() : JumpFrame(1.0f), Frame(1) {}
+	Jumping() : JumpFrame(1.0f), Frame(1), falling(false) {}
 	/* choose the frame to currently render and set it */
 	void animate(Zeni::Model *);
 
@@ -17,7 +17,10 @@ public:
 	/* return the model key */
 	model_key_t get_model_name();
 
+	void proceed() { falling = true; }
+
 private:
+	bool falling;
 	float JumpFrame;
 	int Frame; 
 };
@@ -111,6 +114,25 @@ public:
 
 private:
 	float ScoopFrame;
+	int Frame;
+};
+
+class Flinching : public PlayerAnimator
+{	
+public:
+	Flinching() : FlinchFrame(1.0f), Frame(0), finished(false) {}
+	/* choose the frame to currently render and set it */
+	void animate(Zeni::Model *);
+
+	/* get the next state based on what event happened */
+	PlayerAnimator *get_next(PlayerEvent_e);
+	
+	/* return the model key */
+	model_key_t get_model_name();
+
+private:
+	bool finished;
+	float FlinchFrame;
 	int Frame;
 };
 

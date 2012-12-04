@@ -21,7 +21,7 @@ PlayerAnimator * Walking::get_next(PlayerEvent_e pevent)
 			return NULL;
 			break;
 		case JUMP:
-			return NULL;
+			return new Jumping();
 			break;
 		case THROW:
 			return NULL;
@@ -34,6 +34,9 @@ PlayerAnimator * Walking::get_next(PlayerEvent_e pevent)
 			break;
 		case SCOOP:
 			return new Scooping();
+			break;
+		case FLINCH:
+			return new Flinching();
 			break;
 		case DIE:
 			return new Dying();
@@ -49,10 +52,80 @@ model_key_t Walking::get_model_name()
 	return "player_walk";
 }
 
+//JUMPING
+void Jumping::animate(Zeni::Model *model)
+{
+
+	if (Frame < 25)
+		{
+		JumpFrame += Game_Model::get().get_time_step()*10;
+		Frame = JumpFrame;
+		model->set_keyframe(Frame);
+		}
+	
+	if (Frame >= 25 && !falling)
+		model->set_keyframe(25);
+	else if (Frame >=25 && falling)
+		{
+		JumpFrame += Game_Model::get().get_time_step()*10;
+		Frame = JumpFrame;
+		model->set_keyframe(Frame);
+		}
+	else {}
+}
+
+PlayerAnimator * Jumping::get_next(PlayerEvent_e pevent)
+{
+	if (!falling)
+		return NULL;
+	else
+		{
+		switch (pevent)
+			{
+			case WALK:
+				return new Walking();
+				break;
+			case JUMP:
+				return new Jumping();
+				break;
+			case THROW:
+				return NULL;
+				break;
+			case PACK:
+				return new Packing();
+				break;
+			case STAND:
+				return new Standing();
+				break;
+			case SCOOP:
+				return new Scooping();
+				break;
+			case FLINCH:
+				return new Flinching();
+				break;
+			case DIE:
+				return new Dying();
+				break;
+			default:
+				return NULL;
+				break;
+			}
+		}
+}
+	
+model_key_t Jumping::get_model_name()
+{
+	return "player_jump";
+}
+
+
 // STANDING
 void Standing::animate(Zeni::Model *model)
 {
-
+	StandFrame += Game_Model::get().get_time_step()*10;
+	Frame = StandFrame;
+	Frame = (Frame % 50) + 1;
+	model->set_keyframe(Frame);
 }
 
 PlayerAnimator *Standing::get_next(PlayerEvent_e pevent)
@@ -63,7 +136,7 @@ PlayerAnimator *Standing::get_next(PlayerEvent_e pevent)
 			return new Walking();
 			break;
 		case JUMP:
-			return NULL;
+			return new Jumping();
 			break;
 		case THROW:
 			return NULL;
@@ -76,6 +149,9 @@ PlayerAnimator *Standing::get_next(PlayerEvent_e pevent)
 			break;
 		case SCOOP:
 			return new Scooping();
+			break;
+		case FLINCH:
+			return new Flinching();
 			break;
 		case DIE:
 			return new Dying();
@@ -123,6 +199,9 @@ PlayerAnimator * Packing::get_next(PlayerEvent_e pevent)
 		case SCOOP:
 			return NULL;
 			break;
+		case FLINCH:
+			return new Flinching();
+			break;
 		case DIE:
 			return new Dying();
 			break;
@@ -154,7 +233,7 @@ PlayerAnimator * Scooping::get_next(PlayerEvent_e pevent)
 			return new Walking();
 			break;
 		case JUMP:
-			return NULL;
+			return new Jumping();
 			break;
 		case THROW:
 			return NULL;
@@ -167,6 +246,9 @@ PlayerAnimator * Scooping::get_next(PlayerEvent_e pevent)
 			break;
 		case SCOOP:
 			return NULL;
+			break;
+		case FLINCH:
+			return new Flinching();
 			break;
 		case DIE:
 			return new Dying();
@@ -211,7 +293,7 @@ PlayerAnimator * Throwing::get_next(PlayerEvent_e pevent)
 			if (!finished)
 				return NULL;
 			else
-				return new Standing();
+				return new Jumping();
 			break;
 		case THROW:
 			return NULL;
@@ -228,6 +310,9 @@ PlayerAnimator * Throwing::get_next(PlayerEvent_e pevent)
 		case SCOOP:
 			return NULL;
 			break;
+		case FLINCH:
+			return NULL;
+			break;
 		case DIE:
 			return new Dying();
 			break;
@@ -240,6 +325,95 @@ PlayerAnimator * Throwing::get_next(PlayerEvent_e pevent)
 model_key_t Throwing::get_model_name()
 {
 	return "player_throw";
+}
+
+//FLINCHING
+void Flinching::animate(Zeni::Model *model)
+{
+	FlinchFrame += Game_Model::get().get_time_step()*12;
+	Frame = FlinchFrame;
+	if (Frame == 50)
+		{
+		finished = true;
+		model->set_keyframe(50);
+		}
+	else
+		model->set_keyframe(Frame);
+}
+
+PlayerAnimator * Flinching::get_next(PlayerEvent_e pevent)
+{
+	if (!finished)
+		{
+		switch (pevent)
+			{
+			case WALK:
+				return NULL;
+				break;
+			case JUMP:
+				return NULL;
+				break;
+			case THROW:
+				return NULL;
+				break;
+			case PACK:
+				return NULL;
+				break;
+			case STAND:
+				return NULL;
+				break;
+			case SCOOP:
+				return NULL;
+				break;
+			case FLINCH:
+				return NULL;
+				break;
+			case DIE:
+				return new Dying();
+				break;
+			default:
+				return NULL;
+				break;
+			}
+		}
+	else
+		{
+		switch (pevent)
+			{
+			case WALK:
+				return new Walking();
+				break;
+			case JUMP:
+				return new Jumping();
+				break;
+			case THROW:
+				return new Throwing();
+				break;
+			case PACK:
+				return new Packing();
+				break;
+			case STAND:
+				return new Standing();
+				break;
+			case SCOOP:
+				return new Scooping();
+				break;
+			case FLINCH:
+				return new Flinching();
+				break;
+			case DIE:
+				return new Dying();
+				break;
+			default:
+				return NULL;
+				break;
+			}
+		}
+}
+	
+model_key_t Flinching::get_model_name()
+{
+	return "player_flinch";
 }
 
 //DYING
@@ -275,8 +449,11 @@ PlayerAnimator * Dying::get_next(PlayerEvent_e pevent)
 		case SCOOP:
 			return NULL;
 			break;
+		case FLINCH:
+			return NULL;
+			break;
 		case DIE:
-			return new Dying();
+			return NULL;
 			break;
 		default:
 			return NULL;

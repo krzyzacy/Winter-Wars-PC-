@@ -2,7 +2,7 @@
 
 #include "Animator.h"
 
-enum PlayerEvent_e{WALK, JUMP, THROW, PACK, STAND, SCOOP, DIE};
+enum PlayerEvent_e{WALK, JUMP, THROW, PACK, STAND, SCOOP, FLINCH, DIE};
 
 class PlayerAnimator : public Animator
 {
@@ -15,6 +15,8 @@ public:
 
 	/* return the model key */
 	virtual model_key_t get_model_name() = 0;
+
+	virtual void proceed() {}
 
 };
 
