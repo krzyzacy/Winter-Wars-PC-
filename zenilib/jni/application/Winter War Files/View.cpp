@@ -27,6 +27,15 @@ View::View(void)
 	model_map["bluegirlplayer_throw"] = new Zeni::Model("models/player/bluegirl/bluegirlthrowing.3ds");
 	model_map["bluegirlplayer_flinch"] = new Zeni::Model("models/player/bluegirl/bluegirlflinching.3ds");	
 	model_map["bluegirlplayer_die"] = new Zeni::Model("models/player/bluegirl/bluegirldying.3ds");	
+
+	model_map["blueboyplayer_walk"] = new Zeni::Model("models/player/blueboy/blueboywalking.3ds");
+	model_map["blueboyplayer_jump"] = new Zeni::Model("models/player/blueboy/blueboyjumping.3ds");
+	model_map["blueboyplayer_stand"] = new Zeni::Model("models/player/blueboy/blueboystanding.3ds");	
+	model_map["blueboyplayer_pack"] = new Zeni::Model("models/player/blueboy/blueboypacking.3ds");
+	model_map["blueboyplayer_scoop"] = new Zeni::Model("models/player/blueboy/blueboyscooping.3ds");	
+	model_map["blueboyplayer_throw"] = new Zeni::Model("models/player/blueboy/blueboythrowing.3ds");
+	model_map["blueboyplayer_flinch"] = new Zeni::Model("models/player/blueboy/blueboyflinching.3ds");	
+	model_map["blueboyplayer_die"] = new Zeni::Model("models/player/blueboy/blueboydying.3ds");
 	
 	model_map["greengirlplayer_walk"] = new Zeni::Model("models/player/greengirl/greengirlwalking.3ds");
 	model_map["greengirlplayer_jump"] = new Zeni::Model("models/player/greengirl/greengirljumping.3ds");
@@ -37,6 +46,15 @@ View::View(void)
 	model_map["greengirlplayer_flinch"] = new Zeni::Model("models/player/greengirl/greengirlflinching.3ds");	
 	model_map["greengirlplayer_die"] = new Zeni::Model("models/player/greengirl/greengirldying.3ds");	
 
+	model_map["greenboyplayer_walk"] = new Zeni::Model("models/player/greenboy/greenboywalking.3ds");
+	model_map["greenboyplayer_jump"] = new Zeni::Model("models/player/greenboy/greenboyjumping.3ds");
+	model_map["greenboyplayer_stand"] = new Zeni::Model("models/player/greenboy/greenboystanding.3ds");	
+	model_map["greenboyplayer_pack"] = new Zeni::Model("models/player/greenboy/greenboypacking.3ds");
+	model_map["greenboyplayer_scoop"] = new Zeni::Model("models/player/greenboy/greenboyscooping.3ds");	
+	model_map["greenboyplayer_throw"] = new Zeni::Model("models/player/greenboy/greenboythrowing.3ds");
+	model_map["greenboyplayer_flinch"] = new Zeni::Model("models/player/greenboy/greenboyflinching.3ds");	
+	model_map["greenboyplayer_die"] = new Zeni::Model("models/player/greenboy/greenboydying.3ds");	
+
 	model_map["orangegirlplayer_walk"] = new Zeni::Model("models/player/orangegirl/orangegirlwalking.3ds");
 	model_map["orangegirlplayer_jump"] = new Zeni::Model("models/player/orangegirl/orangegirljumping.3ds");
 	model_map["orangegirlplayer_stand"] = new Zeni::Model("models/player/orangegirl/orangegirlstanding.3ds");	
@@ -46,6 +64,15 @@ View::View(void)
 	model_map["orangegirlplayer_flinch"] = new Zeni::Model("models/player/orangegirl/orangegirlflinching.3ds");	
 	model_map["orangegirlplayer_die"] = new Zeni::Model("models/player/orangegirl/orangegirldying.3ds");	
 
+	model_map["orangeboyplayer_walk"] = new Zeni::Model("models/player/orangeboy/orangeboywalking.3ds");
+	model_map["orangeboyplayer_jump"] = new Zeni::Model("models/player/orangeboy/orangeboyjumping.3ds");
+	model_map["orangeboyplayer_stand"] = new Zeni::Model("models/player/orangeboy/orangeboystanding.3ds");	
+	model_map["orangeboyplayer_pack"] = new Zeni::Model("models/player/orangeboy/orangeboypacking.3ds");
+	model_map["orangeboyplayer_scoop"] = new Zeni::Model("models/player/orangeboy/orangeboyscooping.3ds");	
+	model_map["orangeboyplayer_throw"] = new Zeni::Model("models/player/orangeboy/orangeboythrowing.3ds");
+	model_map["orangeboyplayer_flinch"] = new Zeni::Model("models/player/orangeboy/orangeboyflinching.3ds");	
+	model_map["orangeboyplayer_die"] = new Zeni::Model("models/player/orangeboy/orangeboydying.3ds");	
+
 	model_map["redgirlplayer_walk"] = new Zeni::Model("models/player/redgirl/redgirlwalking.3ds");
 	model_map["redgirlplayer_jump"] = new Zeni::Model("models/player/redgirl/redgirljumping.3ds");
 	model_map["redgirlplayer_stand"] = new Zeni::Model("models/player/redgirl/redgirlstanding.3ds");	
@@ -54,6 +81,15 @@ View::View(void)
 	model_map["redgirlplayer_throw"] = new Zeni::Model("models/player/redgirl/redgirlthrowing.3ds");
 	model_map["redgirlplayer_flinch"] = new Zeni::Model("models/player/redgirl/redgirlflinching.3ds");	
 	model_map["redgirlplayer_die"] = new Zeni::Model("models/player/redgirl/redgirldying.3ds");	
+
+	model_map["redboyplayer_walk"] = new Zeni::Model("models/player/redboy/redboywalking.3ds");
+	model_map["redboyplayer_jump"] = new Zeni::Model("models/player/redboy/redboyjumping.3ds");
+	model_map["redboyplayer_stand"] = new Zeni::Model("models/player/redboy/redboystanding.3ds");	
+	model_map["redboyplayer_pack"] = new Zeni::Model("models/player/redboy/redboypacking.3ds");
+	model_map["redboyplayer_scoop"] = new Zeni::Model("models/player/redboy/redboyscooping.3ds");	
+	model_map["redboyplayer_throw"] = new Zeni::Model("models/player/redboy/redboythrowing.3ds");
+	model_map["redboyplayer_flinch"] = new Zeni::Model("models/player/redboy/redboyflinching.3ds");	
+	model_map["redboyplayer_die"] = new Zeni::Model("models/player/redboy/redboydying.3ds");	
 
 // Tiles
 	model_map["neutralsoftsnowtile"] = new Zeni::Model("models/softsnow/neutralsoftsnowtile.3ds");

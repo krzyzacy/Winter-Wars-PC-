@@ -267,6 +267,11 @@ The following things are unsupported:
     <tile>1</tile>
   </BLONDECU.PNG>
 
+  <BRUNETTE.PNG>
+    <filepath>textures/3DTextures/Player/BRUNETTE.png</filepath>
+    <tile>1</tile>
+  </BRUNETTE.PNG>
+
   <BLONDE.PNG>
     <filepath>textures/3DTextures/Player/BLONDE.png</filepath>
     <tile>1</tile>
@@ -282,6 +287,11 @@ The following things are unsupported:
     <tile>1</tile>
   </GTIRFACE.PNG>
 
+  <BTIRFACE.PNG>
+    <filepath>textures/3DTextures/Player/BTIRFACE.png</filepath>
+    <tile>1</tile>
+  </BTIRFACE.PNG>
+  
   <BoyBlueRegular>
     <filepath>textures/2DTextures/Avatars/BoyBlueRegular.png</filepath>
     <tile>0</tile>

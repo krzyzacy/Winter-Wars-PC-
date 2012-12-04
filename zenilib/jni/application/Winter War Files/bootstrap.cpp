@@ -514,7 +514,7 @@ private:
 			else if(player_team_state[player_idx] == 2)
 				player_team[player_idx] = "Blue";
 			else
-				player_team[player_idx] = "Orange";
+				player_team[player_idx] = "Purple";
 		}
 	}
 
