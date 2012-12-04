@@ -21,18 +21,14 @@ Game_Model::Game_Model(void)
 
 }
 
-void Game_Model::start_up()
+void Game_Model::start_up(const vector<Team*>& teams_)
 {
 		view = (new View());
 		world = (new World(view));
 		time_passed = (0.0f); 
 		time_step = (0.0f);	
 		
-		// Teams should be created in the menu!!!
-		//Teams should be selected in the menu. Model creates all its own stuff
-
-		//when we add the menu, should be easy to extend for up to 4 teams
-		//hopefully
+/*
 		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams.push_back(create_team(world->get_next_Base_Tile()));
@@ -41,20 +37,22 @@ void Game_Model::start_up()
 		teams[1]->set_Team_Color(RED);
 		teams[2]->set_Team_Color(BLUE);
 		teams[3]->set_Team_Color(ORANGE);
-
-		for (int i = 0 ; i < 4 ; i++)
-		{
 			Player *p = create_player(teams[i], "Female");
-			players.push_back(p);
-			view->add_renderable(p);
-			view->add_player_view(new Player_View(p));
-			colliders.insert(p);
-			movers.insert(p);
 
+			teams[i]->add_player(p);	
+*/
 
-			teams[i]->add_player(p);			
+	teams = teams_;
+
+	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)	
+	{
+		Player *p;
+		for (int i = 0 ; (p = ((*it)->get_player(i))) != NULL ; i++)
+		{
+			add_player(p);		
 		}
-		
+	}	
+
 		// Place Tree
 		add_structure(create_structure(TREE, world->get_center_Tile(), NULL));
 
@@ -62,6 +60,15 @@ void Game_Model::start_up()
 		PlayTime.start();
 //		view->add_renderable(&Perm);
 
+}
+
+void Game_Model::add_player(Player *p)
+{
+	players.push_back(p);
+	view->add_renderable(p);
+	view->add_player_view(new Player_View(p));
+	colliders.insert(p);
+	movers.insert(p);
 }
 
 void Game_Model::finish()

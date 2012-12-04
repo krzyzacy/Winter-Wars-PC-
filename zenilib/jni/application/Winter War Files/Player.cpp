@@ -32,7 +32,7 @@ const float  Stick_Accel = 1000;
 
 
 Player::Player(const Zeni::Point3f &center_) 
-	: Moveable(center_ , Vector3f(20.0f,20.0f,20.0f)), m_camera(center_, Quaternion(), 5.0f, 2000.0f),
+	: Moveable(center_ , Vector3f(40.0f,40.0f,40.0f)), m_camera(center_, Quaternion(), 5.0f, 2000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false), Selection(NOTHING),
 	stick_theta(0.0f), animation_state(new Standing())

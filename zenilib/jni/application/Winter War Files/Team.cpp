@@ -21,6 +21,14 @@ Team::Team(Tile* BaseTile)	:
 Team::~Team(void)
 {
 }
+// returns null if index == number of players
+Player *Team::get_player(int index)
+{
+	if (index >= members.size())
+		return NULL;
+
+	return members.at(index);
+}
 
 void Team::add_player(Player *p)	{
 	members.push_back(p);

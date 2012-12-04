@@ -8,11 +8,8 @@
 //I did not modify the relevant code, and I copy and pasted it here, but essentially 
 //the play_state in bootstrap is disconnected
 
-#include "Controls.h"
-#include "View.h"
-#include "Player.h"
-#include "Player_View.h"
-#include "Permanent.h"
+class Controls;
+class Team;
 
 
 using namespace std;
@@ -25,13 +22,14 @@ class Play_State_Base : public Gamestate_Base		{
   Play_State_Base operator=(const Play_State_Base &);
  
 public:
-	Play_State_Base();
+	Play_State_Base(const vector<Team*>& teams_);
 	~Play_State_Base();
 
 
 private:		
 	vector<Controls*> controllers;
-	
+	vector<Team*> teams;
+
 	Color m_prev_clear_color;
 
 	void on_joy_axis(const SDL_JoyAxisEvent &event);

@@ -27,7 +27,7 @@ public:
 
 	void update();
 	void render() const;
-	void start_up();
+	void start_up(const vector<Team*>& teams_);
 	void finish();
 	
 	Player *get_player(int i)
@@ -38,6 +38,8 @@ public:
 
 	World* get_World()
 		{return world;}
+
+	void add_player(Player *);
 
 	void add_moveable(Moveable *);
 	void remove_moveable(Moveable *);

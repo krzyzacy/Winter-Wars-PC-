@@ -43,6 +43,9 @@ public:
 	TEAM_INDEX get_Team_Index()	{return Team_Color;}
 	Zeni::Point3f get_spawn_point() const;
 
+	// returns null if index == number of players
+	Player *get_player(int index);
+
 private:
 	//list of players
 	std::vector<Player*>	members;
