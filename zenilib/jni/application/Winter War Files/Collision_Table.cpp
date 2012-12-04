@@ -87,17 +87,8 @@ void Collision_Table::collidePlayerPlayer(Player* p1, Player* p2)
 	if (!p1->body.intersects(p2->body) || p1 == p2)
 		return;
 
-
-	collided = true;
-
-	//Need to put this as bounce into player eventually, but i dont have the mutex lock right now
-	Vector3f rebound(p1->center - p2->center);
-	rebound.z = 0;
-	p1->accelerate(800 * rebound, Game_Model::get().get_time_step());
-	p2->accelerate(-800 * rebound, Game_Model::get().get_time_step());
-//	p1->center = p1->center - 2*(p2->center - p1->center);
-//	p2->center = p2->center + 2*(p2->center - p1->center);
-
+	p1->push_away_from(p2->center, 200);
+	p2->push_away_from(p1->center, 200);
 }
 
 void Collision_Table::collideStructureSnowball(Structure* w1, Snowball* ob2)
