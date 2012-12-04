@@ -47,6 +47,16 @@ Only TrueType fonts are supported.
       <height>600</height>
     </virtual_screen>
   </system_36_800x600>
+  <system_26_800x600>
+    <filepath>fonts/FZMWFont.TTF</filepath>
+    <height>26</height>
+    <bold>0</bold>
+    <italics>0</italics>
+    <virtual_screen>
+      <width>800</width>
+      <height>600</height>
+    </virtual_screen>
+  </system_26_800x600>
   <title>
     <filepath>fonts/FORGOTTE.TTF</filepath>
     <height>92</height>
