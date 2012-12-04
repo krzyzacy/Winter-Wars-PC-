@@ -65,6 +65,11 @@ public:
 
 
 	void update(const float &time);
+	void player_death();
+	void respawn();
+	bool is_player_KO() {return dead_mode;}
+
+
 
 	void get_damaged(float damage);
 	bool vibrate_feedback();
@@ -109,9 +114,12 @@ private:
 	float stick_theta;
 
 	Zeni::Chronometer<Zeni::Time> ShakeTime;
+	Zeni::Chronometer<Zeni::Time> Deathklok;
+
 
 	bool mini_open;
 	bool build_open;
+	bool dead_mode;
 
 	virtual void off_map();
 	virtual void hit_tile();
