@@ -392,8 +392,7 @@ private:
 			if(player_state[0] != 3)
 				player_state[0] ++;
 			else{
-				get_Game().pop_state();
-				get_Game().push_state(new Play_State_Base(genders_, colors_));
+				loading = true;
 			}
 		}
     }
@@ -479,19 +478,19 @@ private:
     
 	void perform_logic(){
 
-		if(start_game > 100.0f){
+		if(start_game > 5.0f){
 
 			for(int player_idx = 0; player_idx < 4; player_idx ++){
 				genders_.push_back(player_gender[player_idx]);
-					if(player_team[player_idx] == "Blue"){
-						colors_.push_back(0);
 					if(player_team[player_idx] == "Green"){
+						colors_.push_back(0);
+					if(player_team[player_idx] == "Red"){
 						colors_.push_back(1);
 					}
-					if(player_team[player_idx] == "Red"){
+					if(player_team[player_idx] == "Blue"){
 						colors_.push_back(2);
 					}
-					if(player_team[player_idx] == "Purple"){
+					if(player_team[player_idx] == "Orange"){
 						colors_.push_back(3);
 					}
 				}
@@ -509,13 +508,13 @@ private:
 				player_gender[player_idx] = "Girl";
 
 			if(player_team_state[player_idx] == 0)
-				player_team[player_idx] = "Blue";
-			else if(player_team_state[player_idx] == 1)
 				player_team[player_idx] = "Green";
-			else if(player_team_state[player_idx] == 2)
+			else if(player_team_state[player_idx] == 1)
 				player_team[player_idx] = "Red";
+			else if(player_team_state[player_idx] == 2)
+				player_team[player_idx] = "Blue";
 			else
-				player_team[player_idx] = "Purple";
+				player_team[player_idx] = "Orange";
 		}
 	}
 
@@ -540,7 +539,7 @@ private:
 			}
 
 			if(player_state[player_idx] >= 2){
-				//render_image("Ready",Point2f(100.0f + player_render_offset[player_idx].x, 70.0f + player_render_offset[player_idx].y), Point2f(430.0f + player_render_offset[player_idx].x, 400.0f + player_render_offset[player_idx].y));
+				render_image("Ready",Point2f(100.0f + player_render_offset[player_idx].x, 70.0f + player_render_offset[player_idx].y), Point2f(430.0f + player_render_offset[player_idx].x, 400.0f + player_render_offset[player_idx].y));
 			}
 		}
 
