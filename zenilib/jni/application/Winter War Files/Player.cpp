@@ -14,7 +14,7 @@ using namespace std;
 using namespace Zeni;
 
 const int Player::player_ID_c = 1;
-const float standard_speed = 150;
+const float standard_speed = 200;
 const float turn_speed = 2;
 
 const float Max_Snow_Amount = 100;
@@ -28,7 +28,7 @@ const float Building_Recharge_Time = 1;
 
 
 const Vector3f jump_vec(0,0,500);
-const float  Stick_Accel = 200;
+const float  Stick_Accel = 1000;
 
 
 Player::Player(const Zeni::Point3f &center_) 
@@ -142,51 +142,68 @@ void Player::pack_snow()	{
 }
 
  void Player::calculate_movement(const Vector2f &input_vel)	{
-	//Here is where the magic happens for player
-	//input_vel represents joystick desire of where player wants to go
-	if(mini_open)	{
+	//input_vel is joystick values, from 0 to 32768
+	if(mini_open)	{	//Mini-map is open stop moving
 		velocity = Vector3f(0,0, velocity.z);
 		return;
 	}
 
+	//Set up, get Camera Vectors and create variables
 	Vector3f POV_face = m_camera.get_forward().get_ij().normalize();
 	Vector3f POV_left = m_camera.get_left().get_ij().normalize();
-
-	float zvel = velocity.z;
+		//The new velocity
 	Vector3f New_vel(velocity);
-	Vector3f Input_Vel_Max = (standard_speed * POV_face * input_vel.y/Max_Stick_Input) +
-													(standard_speed * POV_left * input_vel.x/Max_Stick_Input);
-	//Now the clever shit
-	Vector2f dir = input_vel;
-	dir.normalize();
-	Vector3f Input_Accel_Dir(dir.x, dir.y, 0);
-	//&&& ICE AND FRICTION FACTOR HERE, WILL NEED GET TILE
-	const float friction = 1;	//0 to 1, will be an input laters
-	float grip = Stick_Accel * friction;
-	Input_Accel_Dir *= grip;
+		//The maximum speed allowed, based on how far joystick is pushed
+	Vector3f Input_Vel_Max = standard_speed * (( POV_face * input_vel.y/Max_Stick_Input) + (POV_left * input_vel.x/Max_Stick_Input));
+
+	//Force Z movement to be independent
+	float zvel = velocity.z;
+	New_vel.z = 0;
+	Input_Vel_Max.z = 0;
+
+	//friction coefficent
+	float friction = 0.20;	
+	//0 to 1, will be determined by tile type eventually
+	//(0 represents frictionless environment), (1 immovable environment)
+
+
+	Vector3f dir(Input_Vel_Max - New_vel);		//Determine vector difference of current v, and player desired v
+	Vector3f Input_Accel_Dir(dir.normalize());	//The acceleration vector, based on above
+	
+	if(Input_Vel_Max.magnitude() == 0)	{
+		Input_Accel_Dir = Vector3f();		//If Player isn't pushing on stick, don't change velocity at all.
+		New_vel *= (1 - friction);			//And do a more powerful effect of friction
+	}
+											
+	//How much the player can control the new direction is also effected by friction
+	Input_Accel_Dir *= Stick_Accel * friction;
+	New_vel *= (1 - friction/20);
 	New_vel += Input_Accel_Dir * Game_Model::get().get_time_step();
 
-	//HOW TO IMPLEMENT INPUT_VEL_MAX AS LIMIT??
-	float diff = abs(New_vel.magnitude() - Input_Vel_Max.magnitude());
-	if(diff <= 100 || diff > 5000 || Input_Vel_Max.magnitude() == 0)
+	
+	//If the speed is close to player desired, then just set it to player desired speed
+	if(abs(New_vel.magnitude() - Input_Vel_Max.magnitude()) < 1)
 		New_vel = Input_Vel_Max;
 
+	//Update Variables
 	velocity = New_vel;
 	velocity.z = zvel;
 
+	//Animations
 	if (velocity.x == 0 && velocity.y == 0)
 		switch_state(STAND);
 	else
 		switch_state(WALK);
-
-	//OLD WAY
-	//Adding Ice effects later, for now straight up movement
-	//float zvel = velocity.z;
-	//velocity = (POV_face * input_vel.y) + (POV_left * input_vel.x);
-	//velocity *= standard_speed;
-	//velocity.z = zvel;
 	
 }
+
+ void Player::push_away_from(Point3f &P, const float force)	{
+	 Vector3f shove(center - P);
+	 shove.z = 0;
+	 shove *= force;
+	 set_velocity(Vector3f(0,0, velocity.z));
+	 accelerate(shove, Game_Model::get().get_time_step());
+ }
  
 void Player::jump()	{
 	switch(Jumping)	{
