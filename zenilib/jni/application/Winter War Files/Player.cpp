@@ -28,7 +28,7 @@ const float Building_Recharge_Time = 1;
 
 
 const Vector3f jump_vec(0,0,500);
-const float  Stick_Accel = 1000;
+const float  Stick_Accel = 2000;
 
 
 Player::Player(const Zeni::Point3f &center_) 
@@ -177,7 +177,7 @@ void Player::pack_snow()	{
 											
 	//How much the player can control the new direction is also effected by friction
 	Input_Accel_Dir *= Stick_Accel * friction;
-	New_vel *= (1 - friction/20);
+	New_vel *= (1 - friction/15);
 	New_vel += Input_Accel_Dir * Game_Model::get().get_time_step();
 
 	
