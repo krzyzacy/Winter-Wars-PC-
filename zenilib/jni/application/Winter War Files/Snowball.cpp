@@ -1,5 +1,6 @@
 #include "Snowball.h"
 #include "Game_Model.h"
+#include "Player.h"
 
 #include <zenilib.h>
 
@@ -23,12 +24,17 @@ Snowball::~Snowball(void)
 {
 }
 
+int Snowball::get_Team_Index()	{
+	return owner->get_Team_Index();
+}
+
+
 void Snowball::update(const float &time)
 {
 	Moveable::update(time);
 
 	if(damage_dealt)
-		size *= 0.99;
+		size *= 0.95;
 
 	//Temporary, so we don't have infinite snowballs flying around chewing up resources
 	if(Lifespan.seconds() > 15 || Melting.seconds() > 3)	{		

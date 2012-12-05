@@ -21,7 +21,7 @@ const float Max_Snow_Amount = 100;
 const float Max_Player_Health = 100;
 const float packing_rate = 25;
 const float snow_depletion_rate = 20;
-const float snow_absorbtion_rate = 50;
+const float snow_absorbtion_rate = 75;
 
 const int Max_Stick_Input	= 32768;
 const float Building_Recharge_Time = 1;
@@ -92,6 +92,7 @@ void Player::respawn()	{
 	health = Max_Player_Health;
 	Snow_in_Pack = Max_Snow_Amount;
 	center = myTeam->get_spawn_point();
+	switch_state(RESPAWN);
 }
 
 
@@ -164,8 +165,13 @@ void Player::pack_snow()	{
 	if(is_player_KO())
 		return;
 	//This will change, but exists for now as a simple test function
-	if (is_on_ground())
-		switch_state(SCOOP);
+	if (!is_on_ground())
+		return;
+
+	if(!Game_Model::get().get_World()->allowed_to_scoop(center))
+		return;
+
+	switch_state(SCOOP);
 
 	const float time = Game_Model::get().get_time_step();
 	if(Snow_in_Pack >= Max_Snow_Amount)
@@ -173,6 +179,10 @@ void Player::pack_snow()	{
 	else
 		Snow_in_Pack += snow_absorbtion_rate * time;
 
+}
+
+void Player::stop_scooping()	{
+	switch_state(WALK);
 }
 
  void Player::calculate_movement(const Vector2f &input_vel)	{
@@ -462,3 +472,9 @@ void Player::healing_waters(float health_up)	{
 	if(health > Max_Player_Health)
 		health = Max_Player_Health;
 }
+
+int Player::get_Team_Index() const	{
+	return myTeam->get_Team_Index();
+}
+
+

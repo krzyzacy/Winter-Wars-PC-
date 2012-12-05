@@ -418,6 +418,20 @@ float World::get_friction_coeff(Point3f &spot)	{
 	}
 }
 
+bool World::allowed_to_scoop(Point3f &pos_)	{
+	Tile *t = get_tile(pos_);
+	switch(t->get_covering())	{
+	case SOFT_SNOW:
+		return true;
+	case HARD_SNOW:
+	case ICE:
+	default:
+		return false;
+		break;
+	}
+}
+
+
 /* returns height of ground at that location*/
 float World::get_ground_height(Zeni::Point3f location)
 {

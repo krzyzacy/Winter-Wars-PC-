@@ -455,6 +455,9 @@ PlayerAnimator * Dying::get_next(PlayerEvent_e pevent)
 		case DIE:
 			return NULL;
 			break;
+		case RESPAWN:
+			return new Standing();
+			break;
 		default:
 			return NULL;
 			break;

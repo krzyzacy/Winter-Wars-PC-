@@ -29,6 +29,8 @@ public:
 
 	void perform_contact_effects();
 
+	int get_Team_Index();
+
 	virtual int get_ID() const 
 		{return snowball_ID_c;}
 

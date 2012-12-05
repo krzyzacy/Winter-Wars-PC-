@@ -39,7 +39,7 @@ void Play_State_Base::on_pop()	{
 		get_Window().mouse_hide(false);
 		get_Window().mouse_grab(false);
 		get_Video().set_clear_Color(m_prev_clear_color);
-    //get_Game().joy_mouse.enabled = true;
+    get_Game().joy_mouse.enabled = true;
 		Game_Model::get().finish();
 }
 

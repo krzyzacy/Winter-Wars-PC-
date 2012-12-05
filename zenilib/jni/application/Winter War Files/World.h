@@ -33,6 +33,7 @@ public:
 	void lower_tile(Zeni::Point3f location);
 
 	float get_friction_coeff(Zeni::Point3f &spot);
+	bool allowed_to_scoop(Zeni::Point3f &pos_);
 
 	//Boundary check?
 	

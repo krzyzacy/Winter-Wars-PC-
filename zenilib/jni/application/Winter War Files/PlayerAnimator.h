@@ -2,7 +2,7 @@
 
 #include "Animator.h"
 
-enum PlayerEvent_e{WALK, JUMP, THROW, PACK, STAND, SCOOP, FLINCH, DIE};
+enum PlayerEvent_e{WALK, JUMP, THROW, PACK, STAND, SCOOP, FLINCH, DIE, RESPAWN};
 
 class PlayerAnimator : public Animator
 {

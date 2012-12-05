@@ -274,6 +274,8 @@ void Controls::interact_with_player(Player* Tron, const float &time)	{
 	//packing
 	if(input.pack)
 		Tron->pack_snow();
+	else
+		Tron->stop_scooping();
 
 	//jumping
 	if(input.jump)

@@ -50,6 +50,7 @@ public:
 	void charge_ball();
 	/*Takes snow from ground into pack, may need information from world)*/
 	void pack_snow();
+	void stop_scooping();
 	void jump();
 	void jet_pack_mode(bool state);
 	
@@ -91,8 +92,12 @@ public:
 	float get_Health() const {return health;}
 	int get_Team_Blocks() const;
 	float get_time_until_respawn()	{return Respawn_Time - Deathklok.seconds();	}
+	int get_Team_Index() const;
+	std::string get_gender() const	{return gender;}
 
 	Structure_Type	select_type(const Zeni::Vector2f &stick);
+
+
 
 // Collision Body
 	void create_body();
