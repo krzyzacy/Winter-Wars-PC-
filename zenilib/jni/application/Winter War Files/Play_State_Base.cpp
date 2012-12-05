@@ -91,7 +91,7 @@ void Play_State_Base::perform_logic()
 
 	//updates all positions
 	Game_Model::get().update();
-	Game_Model::get().Clean_Moving_dead();
+	Game_Model::get().Clean_dead();
 }
 
 void Play_State_Base::render()	{

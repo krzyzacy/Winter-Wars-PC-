@@ -54,14 +54,7 @@ void Game_Model::start_up(const std::vector<String> &genders_, const std::vector
 
 }
 
-void Game_Model::add_player(Player *p)
-{
-	players.push_back(p);
-	view->add_renderable(p);
-	view->add_player_view(new Player_View(p));
-	colliders.insert(p);
-	movers.insert(p);
-}
+
 
 void Game_Model::finish()
 {
@@ -100,13 +93,13 @@ void Game_Model::update()
 	time_step = currentStep;
 
 
-
-	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); ++it)
+	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); it++)
 		(*it)->update(time_step);
 
 	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)
 		(*it)->update();
-	
+
+
 	check_collisions();
 }
 
@@ -128,47 +121,24 @@ void Game_Model::render() const
 	view->render();
 }
 
+float Game_Model::get_time_step()	{
+	return time_step;
+}
+
+void Game_Model::add_player(Player *p)
+{
+	players.push_back(p);
+	view->add_renderable(p);
+	view->add_player_view(new Player_View(p));
+	colliders.insert(p);
+	movers.insert(p);
+}
+
 void Game_Model::add_moveable(Moveable *m)
 {
 	movers.insert(m);
 	colliders.insert(m);
 	view->add_renderable(m);
-}
-
-void Game_Model::remove_moveable(Moveable *m)	{
-		movers.erase(m);
-		colliders.erase(m);
-		view->remove_renderable(m);
-		delete m;
-}
-
-void Game_Model::Clean_Moving_dead()	{
-	list<Moveable*> Trash;
-	for(moveable_list_t::iterator it = movers.begin(); it != movers.end(); ++it)	{
-		if(!(*it)->is_alive())
-			Trash.push_back(*it);
-	}
-
-	for(list<Moveable*>::iterator it = Trash.begin(); it != Trash.end(); ++it)	
-		remove_moveable(*it);
-}
-
-float Game_Model::get_time_step()	{
-	return time_step;
-}
-
-void Game_Model::Kill_me(Snowball *Deadman)	{
-		//movers.erase(Deadman);
-		//colliders.erase(Deadman);
-		//view->remove_renderable(Deadman);
-		//delete Deadman;
-}
-
-void Game_Model::Kill_me(Structure *Deadman)	{
-		//This will need to touch world in some way, as structures will be in world also
-		colliders.erase(Deadman);
-		view->remove_renderable(Deadman);
-		delete Deadman;
 }
 
 void Game_Model::add_structure(Structure* S)	{
@@ -177,10 +147,45 @@ void Game_Model::add_structure(Structure* S)	{
 	view->add_renderable(S);
 }
 
-void Game_Model::remove_structure(Structure* S)	{
-	colliders.erase(S);
-	structures.erase(S);
-	view->remove_renderable(S);
-	delete S;
+
+void Game_Model::Clean_dead()	{
+		// Runs through destructable objects to check if they have died
+		//places them in trash list if they have
+		for(moveable_list_t::iterator it = movers.begin(); it != movers.end(); ++it)	{
+			if(!(*it)->is_alive())
+				m_deletion_list.push_back(*it);
+		}
+
+		for(set<Structure*>::iterator it = structures.begin(); it != structures.end(); ++it)		{
+			if(!(*it)->is_alive())
+				s_deletion_list.push_back(*it);
+		}
+		//one more loop for visual effects, if neccessary
+
+		//Clean trash
+		for(list<Moveable*>::iterator it = m_deletion_list.begin(); it != m_deletion_list.end(); ++it)	
+				remove_from_model(*it);
+
+		for(list<Structure*>::iterator it = s_deletion_list.begin(); it != s_deletion_list.end(); ++it)		
+				remove_from_model(*it);
+		
+		m_deletion_list.clear();
+		s_deletion_list.clear();
 }
+
+
+void Game_Model::remove_from_model(Moveable* Z)	{
+	movers.erase(Z);
+	colliders.erase(Z);
+	view->remove_renderable(Z);
+	delete Z;
+}
+
+void Game_Model::remove_from_model(Structure* Z)	{
+	colliders.erase(Z);
+	structures.erase(Z);
+	view->remove_renderable(Z);
+	delete Z;
+}
+
 

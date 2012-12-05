@@ -33,15 +33,14 @@ void Snowball::update(const float &time)
 		damage_dealt = true;
 		Moveable::set_velocity(Vector3f());
 		Lifespan.stop();
-		alive = false;
+		mark_for_deletion();
 		perform_contact_effects();
-		//Game_Model::get().Kill_me(this); Can't do this
 	}
 }
 
 void Snowball::off_map()
 {
-	alive = false;
+	mark_for_deletion();
 }
 
 void Snowball::hit_tile()

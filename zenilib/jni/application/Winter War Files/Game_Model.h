@@ -6,6 +6,7 @@
 
 #include "Collision_Table.h"
 
+class Seen_Object;
 class View;
 class World;
 class Player;
@@ -41,20 +42,12 @@ public:
 		{return world;}
 
 	void add_player(Player *);
-
 	void add_moveable(Moveable *);
-	void remove_moveable(Moveable *);
-
 	void add_structure(Structure *);
-	void remove_structure(Structure *);
 
-	/*Goes through Moveables and removes "dead" ones*/
-	void Clean_Moving_dead();
-
-	/*When an object has determined it's time to die, call this function
-	Is not meant for players*/
-	void Kill_me(Snowball *);
-	void Kill_me(Structure *);
+	/*Goes through all objects(collidables) and deletes them if they have been 
+	marked fr deletion*/
+	void Clean_dead();
 
 	float get_time_step();
 
@@ -66,6 +59,8 @@ private:
 	float time_step;
 
 	Game_Model(void); //cant create any instances
+	
+	void check_collisions();
 
 	View *view;
 	World *world;
@@ -75,14 +70,18 @@ private:
 
 	typedef std::set<Moveable*> moveable_list_t;
 	moveable_list_t movers; 
-	
 	typedef std::set<Collidable*> collidable_list_t;
 	collidable_list_t colliders;
-
 	std::set<Structure*>	structures;
+
+	//std::set<Seen_Object*> vis_effects;
 	
-	// Functions
-	void check_collisions();
+
+	void remove_from_model(Moveable* zombie);
+	void remove_from_model(Structure* zombie);
+	std::list<Moveable*> m_deletion_list;
+	std::list<Structure*> s_deletion_list;
+	
 
 };
 

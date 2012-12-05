@@ -47,23 +47,27 @@ Point3f Team::get_spawn_point()	const	{
 
 void Team::update()	{
 	//First do stuff based on the network from the last step
+	if(Base->get_covering() != SOFT_SNOW)
+		Base->set_covering(SOFT_SNOW);
+
 	if(ResourceTime.seconds() > 1)	{
 		Ice_Blocks += intake_rate;
 		ResourceTime.reset();
-	}
-	intake_rate = 0;
-	for(set<Tile*>::iterator it = Network.begin(); it != Network.end(); ++it)	{
-		switch((*it)->get_covering())	{
-		case SOFT_SNOW:
-			intake_rate += 50;
-			break;
-		case HARD_SNOW:
-			intake_rate += 30;
-			break;
-		case ICE:
-			break;
-		default:
-			break;
+	
+		intake_rate = 0;
+		for(set<Tile*>::iterator it = Network.begin(); it != Network.end(); ++it)	{
+			switch((*it)->get_covering())	{
+			case SOFT_SNOW:
+				intake_rate += 50;
+				break;
+			case HARD_SNOW:
+				intake_rate += 30;
+				break;
+			case ICE:
+				break;
+			default:
+				break;
+			}
 		}
 	}
 	
@@ -83,6 +87,7 @@ void Team::set_Team_Color(TEAM_INDEX in)	{
 
 void Team::add_tile(Tile *t)	{
 	Network.insert(t);
+	Adjacent_Tiles.insert(t);
 	//do the stuff for add adjacent members(cycle through family and add
 	World *w = Game_Model::get().get_World();
 	list<Tile*> family = w->Get_Family(t);
@@ -91,8 +96,13 @@ void Team::add_tile(Tile *t)	{
 }
 
 void Team::remove_tile(Tile *t)	{
+	if(t == Base)	{
+		t->set_team(Team_Color);
+		return;
+	}
+
 	Network.erase(t);
-	Adjacent_Tiles.erase(t);
+	//Adjacent_Tiles.erase(t);
 	Disconnected_Tiles.erase(t);
 }
 
@@ -106,6 +116,12 @@ bool Team::tile_is_ready(Tile * cand, int type)	{
 	}
 	//Do a check here for the center tile
 	//Return false if you can build on it because don't want to let game_obejct create structure
+	if(Game_Model::get().get_World()->get_center_Tile() == cand)	{
+		//%%%%% Install something related to victory conditions here
+		if(is_adjacent_to_network(cand))
+			add_tile(cand);
+		return false; //becasue you can't build on it
+	}
 
 
 	//This code handles neutral tiles and enemy tiles

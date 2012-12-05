@@ -30,25 +30,30 @@ void Structure::receive_hit(Snowball* S)	{
 
 void Structure::update(const float &time)
 {
-	Collidable::update(time);
+	//Structures don't move, so their body doen't need to be changed.
+	//Collidable::update(time);
 	if(Status == DESTROYED)	{
 		perform_destruction_effects();
-		owner->remove_tile(hex);
 		hex->destroy_structure();
+		owner->remove_tile(hex);
 	}
 }
 
 void Structure::perform_destruction_effects()	{
-
+	
 
 }
 
-void Structure::create_body()
-{
-	body = Zeni::Collision::Capsule(center + Vector3f(0, 0 , size.z)
-		, center - Vector3f(0, 0, size.z), size.z);
+void Structure::create_body()		{
+	Point3f Top = Seen_Object::get_top_center();
+	Point3f Bot = Seen_Object::get_bottom_center();
+	body = Zeni::Collision::Capsule(Top, Bot, size.z/2);
 }
 
 void Structure::change_height(const float &delta)	{
 	center.z += delta;
 }
+
+
+
+

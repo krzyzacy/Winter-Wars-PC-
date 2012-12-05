@@ -57,7 +57,7 @@ World::World( View *view_,
 			if(randomcover == 0) tmp->set_covering(SOFT_SNOW);
 			if(randomcover == 1) tmp->set_covering(HARD_SNOW);
 			if(randomcover == 2) tmp->set_covering(ICE);
-			tmp->set_covering(ICE);
+			//tmp->set_covering(ICE);
 
 
 			tmp->set_team(NEUTRAL);

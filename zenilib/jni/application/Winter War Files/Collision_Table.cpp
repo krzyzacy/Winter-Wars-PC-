@@ -102,6 +102,10 @@ void Collision_Table::collidePlayerStructure(Player *ob2, Structure *w1)
 	/*Vector3f rebound(ob2->center - w1->center);
 	rebound.z = 0;
 	ob2->accelerate(800 * rebound, Game_Model::get().get_time_step());*/
+	if(!ob2->body.intersects(w1->body))
+		return;
+
+	ob2->push_away_from(w1->center, 10);
 }
 
 void Collision_Table::collideStructurePlayer(Structure* w1, Player* ob2)

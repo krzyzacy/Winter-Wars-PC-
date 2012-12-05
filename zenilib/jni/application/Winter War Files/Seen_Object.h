@@ -31,7 +31,9 @@ public:
 
 	bool is_on_ground();
 
+	/*returns true if this object is not supposed to be deleted*/
 	bool is_alive();
+	void mark_for_deletion();
 
 	Zeni::Point3f get_bottom_center() const;
 	Zeni::Point3f get_top_center() const;
@@ -41,10 +43,10 @@ protected:
 	Zeni::Vector3f size; // TopRightcorner-to-LowerLeftcorner
 	Zeni::Quaternion rotation;
 	
-	bool alive;
-
 private:	
 	virtual Animator *get_animator() const
 		{return 0;} //default no animator
+
+	bool marked_for_deletion;
 };
 

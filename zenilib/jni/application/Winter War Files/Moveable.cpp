@@ -52,13 +52,3 @@ void Moveable::accelerate(const Vector3f &acc, const float &time)	{
 	velocity += acc * time;
 }
 
-/*
-	//if(is_on_ground())
-	//	velocity += Vector3f(0,0,50);
-	
-	accelerate(jump_vec,time);
-	
-
-const Vector3f jump_vec(0,0,400);
-
-*/

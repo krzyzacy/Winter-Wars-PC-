@@ -13,6 +13,6 @@ public:
 	const model_key_t get_model_name() const;
 
 private:
-	// Stuff?
 
+	void create_body();
 };

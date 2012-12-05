@@ -12,11 +12,18 @@ Seen_Object::Seen_Object(const Zeni::Point3f &center_,
               const Zeni::Vector3f &size_,
               const Zeni::Quaternion &theta_ 
 			  )	:
-center(center_), size(size_), rotation(theta_)
+center(center_), size(size_), rotation(theta_), marked_for_deletion(false)
 {
 
 }
 
+void Seen_Object::mark_for_deletion()	{
+	marked_for_deletion = true;
+}
+
+bool Seen_Object::is_alive()	{
+	return !marked_for_deletion;
+}
 
 Seen_Object::~Seen_Object(void)
 {
@@ -53,9 +60,7 @@ bool Seen_Object::is_on_ground()	{
 	return false;
 }
 
-bool Seen_Object::is_alive()	{
-	return alive;
-}
+
 
 Point3f	Seen_Object::get_bottom_center() const
 {

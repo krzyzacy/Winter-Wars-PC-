@@ -7,8 +7,8 @@
 using namespace Zeni;
 using namespace std;
 
-const float Max_Tile_Height = 250;
-const float Min_Tile_Height = 100;
+const float Max_Tile_Height = 175;
+const float Min_Tile_Height = 50;
 
 
 Tile::Tile(const float tile_size__,
@@ -196,8 +196,9 @@ void Tile::build_structure(Structure* S, Team* new_team)	{
 
 void Tile::destroy_structure()	{
 	//Will add more here later, but tile should be interface for interacting with a structure
-	Structure* S = Building;
+	if(has_building())
+		Building->mark_for_deletion();
+	team = NEUTRAL;
 	Building = 0;
-	Game_Model::get().remove_structure(S);
 }
 
