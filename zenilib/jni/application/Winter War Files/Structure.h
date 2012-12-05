@@ -42,7 +42,7 @@ public:
 
 	void perform_destruction_effects();
 
-	//virtual int get_resourses_needed();
+	virtual void handle_player_in_range(Team* color, Zeni::Collision::Capsule &person)	{}
 	
 	int get_ID() const 
 		{return structure_ID_c;}

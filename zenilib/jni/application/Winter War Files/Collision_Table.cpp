@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Structure.h"
 #include "Snowball.h"
+#include "Team.h"
 
 #include <vector>
 #include <zenilib.h>
@@ -99,11 +100,11 @@ void Collision_Table::collideStructureSnowball(Structure* w1, Snowball* ob2)
 void Collision_Table::collidePlayerStructure(Player *ob2, Structure *w1)
 {	
 	//Structure player collision resolution
-	//May require more complications due to nature of snowman, but that is okay
-	//I'm thinking a second body for snowman,
+	
+	w1->handle_player_in_range(ob2->myTeam, ob2->body);
+
 	if(!ob2->body.intersects(w1->body))
 		return;
-
 	w1->handle_player_collision(ob2);
 }
 

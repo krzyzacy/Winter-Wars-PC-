@@ -18,6 +18,8 @@ public:
               const Zeni::Vector3f &size_ = Zeni::Vector3f(1,1,1));
 
 	~Snowball(void);
+
+	bool Snow_man_Generated()	{return (owner == 0);}
 	
 	void update(const float &time);
 

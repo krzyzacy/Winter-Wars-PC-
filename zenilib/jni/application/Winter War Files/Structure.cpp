@@ -24,6 +24,9 @@ Structure::~Structure(void)
 }
 
 void Structure::receive_hit(Snowball* S)	{
+	if(S->Snow_man_Generated())
+		return;
+
 	Health -= S->deal_damage();
 	if(Health < 0)
 		Status = DESTROYED;
