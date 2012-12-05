@@ -2,6 +2,7 @@
 #include "Snowball.h"
 #include "Team.h"
 #include "Tile.h"
+#include "Player.h"
 
 using namespace Zeni;
 
@@ -42,6 +43,12 @@ void Structure::update(const float &time)
 void Structure::perform_destruction_effects()	{
 	
 
+}
+
+void Structure::handle_player_collision(Player *P)	{
+	//Should be overwritten by each
+	//However fort and factory, for now do the same thing
+	P->push_away_from(center, 25);
 }
 
 void Structure::create_body()		{

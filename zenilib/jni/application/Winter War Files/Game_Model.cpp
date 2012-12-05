@@ -9,6 +9,8 @@
 #include "Snowball.h"
 #include "Structure.h"
 
+#include "Tile.h"
+
 #include <zenilib.h>
 
 using namespace std;
@@ -99,6 +101,12 @@ void Game_Model::update()
 	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)
 		(*it)->update();
 
+
+	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)	{
+		if((*it)->Is_Tree_Claimed())
+			world->raise_tile(world->get_center_Tile()->get_structure_base());
+		//get_Game().pop_state(); Do something to win
+	}
 
 	check_collisions();
 }

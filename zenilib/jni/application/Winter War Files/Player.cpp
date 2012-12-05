@@ -19,7 +19,7 @@ const float turn_speed = 2;
 
 const float Max_Snow_Amount = 100;
 const float Max_Player_Health = 100;
-const float packing_rate = 20;
+const float packing_rate = 25;
 const float snow_depletion_rate = 20;
 const float snow_absorbtion_rate = 50;
 
@@ -28,7 +28,7 @@ const float Building_Recharge_Time = 1;
 
 
 const Vector3f jump_vec(0,0,500);
-const float  Stick_Accel = 1000;
+const float  Stick_Accel = 1200;
 
 
 Player::Player(const Zeni::Point3f &center_) 
@@ -117,6 +117,7 @@ void Player::get_damaged(float damage)
 	health -= damage;
 
 	if (health < 0)	{
+		health = 0;
 		switch_state(DIE);
 		player_death();
 	}
@@ -450,4 +451,10 @@ void Player::switch_state(PlayerEvent_e pevent)
 		delete animation_state;
 		animation_state = next;
 	}
+}
+
+void Player::healing_waters(float health_up)	{
+	health += health_up;
+	if(health > Max_Player_Health)
+		health = Max_Player_Health;
 }

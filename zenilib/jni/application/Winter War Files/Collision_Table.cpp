@@ -98,14 +98,13 @@ void Collision_Table::collideStructureSnowball(Structure* w1, Snowball* ob2)
 
 void Collision_Table::collidePlayerStructure(Player *ob2, Structure *w1)
 {	
-	//Do structure collision resolution here, need to work on that bounce back function
-	/*Vector3f rebound(ob2->center - w1->center);
-	rebound.z = 0;
-	ob2->accelerate(800 * rebound, Game_Model::get().get_time_step());*/
+	//Structure player collision resolution
+	//May require more complications due to nature of snowman, but that is okay
+	//I'm thinking a second body for snowman,
 	if(!ob2->body.intersects(w1->body))
 		return;
 
-	ob2->push_away_from(w1->center, 10);
+	w1->handle_player_collision(ob2);
 }
 
 void Collision_Table::collideStructurePlayer(Structure* w1, Player* ob2)

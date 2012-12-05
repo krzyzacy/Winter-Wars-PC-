@@ -12,7 +12,7 @@ enum Structure_Type	{
 
 const int Build_Cost[5] = { 0, 300, 100, 200, 400 };
 
-const float Struct_Integrity[5] = {1, 50, 200, 20, 100};
+const float Struct_Integrity[5] = {1, 50, 150, 20, 100};
 
 enum	Universal_State	{
 	PRESENT_MODE, BUILT, DAMAGED, DESTROYED
@@ -22,6 +22,7 @@ class Team;
 class Collision_Table;
 class Tile;
 class Snowball;
+class Player;
 
 class Structure :
 	public Collidable, public Seen_Object
@@ -36,6 +37,8 @@ public:
 	void change_height(const float &delta);
 
 	void receive_hit(Snowball *S); 
+
+	virtual void handle_player_collision(Player *P);
 
 	void perform_destruction_effects();
 

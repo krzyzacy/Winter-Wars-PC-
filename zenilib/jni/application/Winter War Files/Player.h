@@ -69,7 +69,7 @@ public:
 	void player_death();
 	void respawn();
 	bool is_player_KO() {return dead_mode;}
-
+	void healing_waters(float health_up);
 
 
 	void get_damaged(float damage);

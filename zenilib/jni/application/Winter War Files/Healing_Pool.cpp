@@ -1,8 +1,12 @@
 #include "Healing_Pool.h"
 #include "Team.h"
+#include "Player.h"
+#include "Game_Model.h"
 
 using namespace std;
 using namespace Zeni;
+
+const float Healing_rate = 30;
 
 Healing_Pool::Healing_Pool(Team *team, Tile* tile_,
 				const Zeni::Point3f &base_) :
@@ -21,6 +25,10 @@ Healing_Pool::~Healing_Pool(void)
 void Healing_Pool::update(const float &time)
 {
 	Structure::update(time);
+}
+
+void Healing_Pool::handle_player_collision(Player *P)	{
+	P->healing_waters(Healing_rate * Game_Model::get().get_time_step());
 }
 
 const model_key_t Healing_Pool::get_model_name() const 

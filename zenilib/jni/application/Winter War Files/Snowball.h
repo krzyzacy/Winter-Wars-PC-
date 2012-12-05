@@ -40,6 +40,7 @@ private:
 	const Player *owner;
 
 	Zeni::Chronometer<Zeni::Time> Lifespan;
+	Zeni::Chronometer<Zeni::Time> Melting;
 	bool damage_dealt;
 	float damage;
 	

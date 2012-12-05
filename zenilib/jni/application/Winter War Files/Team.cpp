@@ -118,8 +118,11 @@ bool Team::tile_is_ready(Tile * cand, int type)	{
 	//Return false if you can build on it because don't want to let game_obejct create structure
 	if(Game_Model::get().get_World()->get_center_Tile() == cand)	{
 		//%%%%% Install something related to victory conditions here
-		if(is_adjacent_to_network(cand))
+		if(is_adjacent_to_network(cand))	{//Doesn't care about who has it currently, any can claim it
 			add_tile(cand);
+			cand->set_team(Team_Color);
+			Start_Victory_Countdown();
+		}
 		return false; //becasue you can't build on it
 	}
 
@@ -145,4 +148,13 @@ bool Team::is_in_network(Tile *t)	{
 
 void Team::check_connectivity()	{
 
+}
+
+
+void Team::Start_Victory_Countdown()	{
+
+}
+
+bool Team::Is_Tree_Claimed()	{
+	return Network.count(Game_Model::get().get_World()->get_center_Tile());
 }

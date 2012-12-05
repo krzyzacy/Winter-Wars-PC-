@@ -5,18 +5,17 @@
 
 const int Snowball::snowball_ID_c = 2;
 
-const float Launch_Speed = 600;
+const float Launch_Speed = 700;
 
 using namespace Zeni;
 
 Snowball::Snowball(const Player *p, const Zeni::Point3f &center_,
               const Zeni::Vector3f &size_) :
 	Moveable(center_, size_)	
-	, damage_dealt(false), damage(size_.magnitude())
+	, damage_dealt(false), damage(size_.magnitude() * 1.2)
 	, owner(p)
 {
 	Lifespan.start();
-
 }
 
 
@@ -28,13 +27,12 @@ void Snowball::update(const float &time)
 {
 	Moveable::update(time);
 
+	if(damage_dealt)
+		size *= 0.99;
+
 	//Temporary, so we don't have infinite snowballs flying around chewing up resources
-	if(Lifespan.seconds() > 10 || damage_dealt)	{
-		damage_dealt = true;
-		Moveable::set_velocity(Vector3f());
-		Lifespan.stop();
+	if(Lifespan.seconds() > 15 || Melting.seconds() > 3)	{		
 		mark_for_deletion();
-		perform_contact_effects();
 	}
 }
 
@@ -64,6 +62,10 @@ void Snowball::get_thrown(const Vector3f &dir)
 float Snowball::deal_damage()	{
 	if(!damage_dealt)	{
 		damage_dealt = true;
+		Lifespan.stop();
+		Melting.start();
+		Moveable::set_velocity(Vector3f());
+		perform_contact_effects();
 		return damage;
 	}
 	return 0;
