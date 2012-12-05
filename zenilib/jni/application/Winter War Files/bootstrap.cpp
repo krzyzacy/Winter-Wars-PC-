@@ -189,17 +189,17 @@ private:
 
 			for(int player_idx = 0; player_idx < 4; player_idx ++){
 				genders_.push_back(player_gender[player_idx]);
-					if(player_team[player_idx] == "Green"){
-						colors_.push_back(0);
-					if(player_team[player_idx] == "Red"){
-						colors_.push_back(1);
-					}
-					if(player_team[player_idx] == "Blue"){
-						colors_.push_back(2);
-					}
-					if(player_team[player_idx] == "Orange"){
-						colors_.push_back(3);
-					}
+				if(player_team[player_idx] == "Green"){
+					colors_.push_back(0);
+				}
+				if(player_team[player_idx] == "Red"){
+					colors_.push_back(1);
+				}
+				if(player_team[player_idx] == "Blue"){
+					colors_.push_back(2);
+				}
+				if(player_team[player_idx] == "Orange"){
+					colors_.push_back(3);
 				}
 			}
 
