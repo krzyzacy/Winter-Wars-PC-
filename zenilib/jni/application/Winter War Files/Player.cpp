@@ -194,7 +194,7 @@ void Player::pack_snow()	{
 	Input_Vel_Max.z = 0;
 
 	//friction coefficent
-	float friction = 0.20;	
+	float friction = Game_Model::get().get_World()->get_friction_coeff(center);
 	//0 to 1, will be determined by tile type eventually
 	//(0 represents frictionless environment), (1 immovable environment)
 

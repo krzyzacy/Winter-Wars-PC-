@@ -32,7 +32,7 @@ public:
 	void raise_tile(Zeni::Point3f location);
 	void lower_tile(Zeni::Point3f location);
 
-	float get_friction_coeff(Zeni::Point3f spot);
+	float get_friction_coeff(Zeni::Point3f &spot);
 
 	//Boundary check?
 	

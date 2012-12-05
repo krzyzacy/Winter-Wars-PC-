@@ -57,6 +57,8 @@ World::World( View *view_,
 			if(randomcover == 0) tmp->set_covering(SOFT_SNOW);
 			if(randomcover == 1) tmp->set_covering(HARD_SNOW);
 			if(randomcover == 2) tmp->set_covering(ICE);
+			tmp->set_covering(ICE);
+
 
 			tmp->set_team(NEUTRAL);
 			
@@ -380,3 +382,15 @@ void World::lower_tile(Point3f location)	{
 	}
 }
 
+float World::get_friction_coeff(Point3f &spot)	{
+	Tile *t = get_tile(spot);
+	switch(t->get_covering())	{
+	case SOFT_SNOW:
+	case HARD_SNOW:
+		return 0.2;
+	case ICE:
+		return 0.01;
+	default:
+		return 0.2;
+	}
+}
