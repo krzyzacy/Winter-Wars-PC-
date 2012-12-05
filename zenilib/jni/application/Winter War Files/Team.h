@@ -53,6 +53,7 @@ private:
 	int Ice_Blocks;
 	int intake_rate;
 	Zeni::Chronometer<Zeni::Time> ResourceTime;
+	Zeni::Chronometer<Zeni::Time> WinTimer;
 
 	TEAM_INDEX	Team_Color;
 

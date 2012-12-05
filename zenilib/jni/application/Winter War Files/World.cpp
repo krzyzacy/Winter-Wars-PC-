@@ -389,7 +389,7 @@ float World::get_friction_coeff(Point3f &spot)	{
 	case HARD_SNOW:
 		return 0.2;
 	case ICE:
-		return 0.01;
+		return 0.05;
 	default:
 		return 0.2;
 	}

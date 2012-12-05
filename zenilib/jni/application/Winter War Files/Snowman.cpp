@@ -33,13 +33,13 @@ void Snowman::update(const float &time)
 	Structure::update(time);
 	//Magic happens here, need to decide how this will works, def statemachine
 
-	if(reload_time.seconds() > 0.05)	{
+	if(reload_time.seconds() > 0.5)	{
 		Point3f aim = targets.front();
 		targets.pop_front();
 		Point3f Origin = right_launch;
 		if(left) Origin = left_launch;
 		Snowball* sb = new Snowball(0, Origin, Snow_size);
-		sb->get_thrown(Origin - aim);
+		sb->get_thrown(aim - Origin);
 		Game_Model::get().add_moveable(sb);
 		left = !left;
 		reload_time.reset();
@@ -74,7 +74,7 @@ void Snowman::handle_player_in_range(Team *t, Collision::Capsule &person)	{
 		return;
 	
 	//Target the player if targeting threshold has passed
-	if(targeting_delay.seconds() > 0.05)	{
+	if(targeting_delay.seconds() > 0.5)	{
 		targets.push_back(person.get_end_point_a());
 		targeting_delay.reset();
 	}

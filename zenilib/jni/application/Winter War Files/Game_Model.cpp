@@ -43,8 +43,8 @@ void Game_Model::start_up(const std::vector<String> &genders_, const std::vector
 
 
 	for(int i = 0; i < 4; i++){
-		//Player *p = create_player(teams[colors_[i]], genders_[i]);
-		Player *p = create_player(teams[i], genders_[i]);
+		Player *p = create_player(teams[colors_[i]], genders_[i]);
+		//Player *p = create_player(teams[i], genders_[i]);
 		add_player(p);
 	}
 
@@ -107,7 +107,8 @@ void Game_Model::update()
 		if((*it)->Is_Tree_Claimed())
 		{
 			world->raise_tile(world->get_center_Tile()->get_structure_base());
-			win_time = PlayTime.seconds() + 10.0f;
+			if(win_time >= 10000.0f)
+				win_time = PlayTime.seconds() + 10.0f;
 		}	
 	}
 
