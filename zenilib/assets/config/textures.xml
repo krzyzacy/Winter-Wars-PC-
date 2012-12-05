@@ -444,6 +444,11 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Titlescreen/loading.png</filepath>
     <tile>0</tile>
   </Loading>
+  
+  <Death>
+    <filepath>textures/2DTextures/Titlescreen/deathscreen.png</filepath>
+    <tile>0</tile>
+  </Death>
 
 
 
