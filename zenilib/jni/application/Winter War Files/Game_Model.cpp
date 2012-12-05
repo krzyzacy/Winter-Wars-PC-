@@ -29,6 +29,7 @@ void Game_Model::start_up(const std::vector<String> &genders_, const std::vector
 		world = (new World(view));
 		time_passed = (0.0f); 
 		time_step = (0.0f);	
+		win_time = (10000.0f);
 		
 
 		teams.push_back(create_team(world->get_next_Base_Tile()));
@@ -42,8 +43,8 @@ void Game_Model::start_up(const std::vector<String> &genders_, const std::vector
 
 
 	for(int i = 0; i < 4; i++){
-		Player *p = create_player(teams[colors_[i]], "Girl");//genders_[i]);
-		//Player *p = create_player(teams[i], "Girl");
+		//Player *p = create_player(teams[colors_[i]], genders_[i]);
+		Player *p = create_player(teams[i], genders_[i]);
 		add_player(p);
 	}
 
@@ -104,11 +105,19 @@ void Game_Model::update()
 
 	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)	{
 		if((*it)->Is_Tree_Claimed())
+		{
 			world->raise_tile(world->get_center_Tile()->get_structure_base());
-		//get_Game().pop_state(); Do something to win
+			win_time = PlayTime.seconds() + 10.0f;
+		}	
 	}
 
+
+
+
 	check_collisions();
+
+	
+	Game_Model::get().Clean_dead();
 }
 
 void Game_Model::check_collisions()
@@ -122,6 +131,16 @@ void Game_Model::check_collisions()
 			table.handle_collision((*it)->get_ID(), (*jt)->get_ID()
 				, *it, *jt);
 		}
+}
+
+
+// returns true if some team has won
+bool Game_Model::win()
+{
+	if (win_time < PlayTime.seconds())
+		return true;
+	else 
+		return false;
 }
 
 void Game_Model::render() const

@@ -110,6 +110,9 @@ void Player::on_ground()
 {
 	if(velocity.z < 0)
 		velocity.z = 0;
+
+	// set them on the ground
+	center.z = Game_Model::get().get_World()->get_ground_height(center) + size.z/2 + 10.0f;
 }
 
 void Player::get_damaged(float damage)
@@ -435,7 +438,7 @@ const model_key_t Player::get_model_name() const
 	}
 
 	//return animation_state->get_model_name();
-	return Teamname + "girl" + animation_state->get_model_name();
+	return Teamname + gender + animation_state->get_model_name();
 }
 
 Animator *Player::get_animator() const

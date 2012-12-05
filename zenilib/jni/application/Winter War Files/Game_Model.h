@@ -31,6 +31,9 @@ public:
 	void render() const;
 	void start_up(const std::vector<Zeni::String> &genders_, const std::vector<int> &colors_);
 	void finish();
+
+	// returns true if some team has won
+	bool win();
 	
 	Player *get_player(int i)
 		{return players.at(i);}
@@ -57,6 +60,7 @@ private:
 	Zeni::Chronometer<Zeni::Time> PlayTime;
 	float time_passed;
 	float time_step;
+	float win_time; //set to 10000.0f to mean no one claimed tree
 
 	Game_Model(void); //cant create any instances
 	

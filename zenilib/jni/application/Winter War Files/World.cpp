@@ -394,3 +394,10 @@ float World::get_friction_coeff(Point3f &spot)	{
 		return 0.2;
 	}
 }
+
+/* returns height of ground at that location*/
+float World::get_ground_height(Zeni::Point3f location)
+{
+	return get_tile(location)->get_height();
+
+}

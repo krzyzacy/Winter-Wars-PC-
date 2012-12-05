@@ -44,7 +44,8 @@ public:
 	Tile* get_next_Base_Tile();
 	Tile* get_center_Tile() {return map[6][7]; };
 	
-
+	/* returns height of ground at that location*/
+	float get_ground_height(Zeni::Point3f location);
 
 private:
 
