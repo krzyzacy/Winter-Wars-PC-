@@ -17,6 +17,7 @@ extern const float snow_absorbtion_rate;	//Rate of filling snow meter from tile
 extern const float Building_Recharge_Time;
 extern const int Max_Stick_Input;
 extern const float Tile_Move_Speed;
+extern const float Respawn_Time;
 
 enum Jump_State	{
 	ON_GROUND, BOOST, FALLING_WITH_STYLE, JET_PACK
@@ -89,6 +90,7 @@ public:
 	float get_Snow() const {return Snow_in_Pack;}
 	float get_Health() const {return health;}
 	int get_Team_Blocks() const;
+	float get_time_until_respawn()	{return Respawn_Time - Deathklok.seconds();	}
 
 	Structure_Type	select_type(const Zeni::Vector2f &stick);
 

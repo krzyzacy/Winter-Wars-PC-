@@ -25,6 +25,7 @@ const float snow_absorbtion_rate = 50;
 
 const int Max_Stick_Input	= 32768;
 const float Building_Recharge_Time = 1;
+const float Respawn_Time = 6;
 
 
 const Vector3f jump_vec(0,0,500);
@@ -67,7 +68,7 @@ void Player::turn_left(float theta) {
 void Player::update(const float &time)	{
 	backup = center;
 	
-	if(Deathklok.seconds() > 6)
+	if(Deathklok.seconds() > Respawn_Time)
 		respawn();
 
 	if(is_player_KO())
@@ -213,7 +214,7 @@ void Player::pack_snow()	{
 											
 	//How much the player can control the new direction is also effected by friction
 	Input_Accel_Dir *= Stick_Accel * friction;
-	New_vel *= (1 - friction/20);
+	New_vel *= (1 - friction/15);
 	New_vel += Input_Accel_Dir * Game_Model::get().get_time_step();
 
 	

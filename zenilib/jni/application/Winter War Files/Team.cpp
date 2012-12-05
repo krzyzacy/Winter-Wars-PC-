@@ -152,7 +152,7 @@ void Team::check_connectivity()	{
 
 
 void Team::Start_Victory_Countdown()	{
-
+	WinTimer.start();
 }
 
 bool Team::Is_Tree_Claimed()	{
