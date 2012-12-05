@@ -96,7 +96,7 @@ private:
             get_Game().pop_state();
         }
         else if(event.keysym.sym == SDLK_RETURN && event.state == SDL_PRESSED){
-			if(player_state[0] != 3)
+			if(player_state[0] != 2)
 				player_state[0] ++;
 			else{
 				loading = true;
@@ -147,7 +147,7 @@ private:
 			switch(event.button){
 				case 0: // A
 					if(event.state == SDL_PRESSED)	{
-						if(player_state[0] != 3)
+						if(player_state[0] != 2)
 							player_state[0] ++;
 						else
 							loading = true;
