@@ -39,13 +39,37 @@ World::World( View *view_,
 			center.z = 0.0f;
 			if(h == 0 || h == map_height - 1 || w == 0 || w == map_width - 1)
 				center.z = tile_size * 1.8;
+
+			if((abs(6 - h) + abs(7 - w)) < 4){
+				center.z += 0.6 * tile_size;
+			}
+			else if((abs(6 - h) + abs(7 - w)) < 7){
+				center.z += 0.2 * tile_size;
+			}
 			
 			float scale_size = 2.0*tile_size;
 			Tile* tmp;
 			tmp = new Tile(tile_size,center,Zeni::Vector3f(scale_size,scale_size,scale_size),w,h);
-			
-			int randomcover = rand() % 3;
+
+			if((abs(6 - h) + abs(7 - w)) < 4){
+				tmp->set_covering(ICE);
+			}
+			else if((abs(6 - h) + abs(7 - w)) < 7){
+				int randomcover = rand() % 3;
+
+				if(randomcover == 0) tmp->set_covering(SOFT_SNOW);
+				if(randomcover == 1) tmp->set_covering(HARD_SNOW);
+				if(randomcover == 2) tmp->set_covering(ICE);
+			}
+			else{
+				int randomcover = rand() % 2;
+				if(randomcover == 0) tmp->set_covering(SOFT_SNOW);
+				if(randomcover == 1) tmp->set_covering(HARD_SNOW);
+			}
+
 			/*
+			int randomcover = rand() % 3;
+			
 			int randomteam = rand() % 5;
 
 			if(randomteam == 0) tmp->set_team(NEUTRAL);
@@ -53,12 +77,11 @@ World::World( View *view_,
 			if(randomteam == 2) tmp->set_team(RED);
 			if(randomteam == 3) tmp->set_team(BLUE);
 			if(randomteam == 4) tmp->set_team(ORANGE);
-			*/
 			if(randomcover == 0) tmp->set_covering(SOFT_SNOW);
 			if(randomcover == 1) tmp->set_covering(HARD_SNOW);
 			if(randomcover == 2) tmp->set_covering(ICE);
 			//tmp->set_covering(ICE);
-
+			*/
 
 			tmp->set_team(NEUTRAL);
 			
