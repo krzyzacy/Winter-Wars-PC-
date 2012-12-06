@@ -47,8 +47,11 @@ zenilib App Info    : Loading asset from file 'textures/WOOL1.png'.
 zenilib App Info    : Loading asset from file 'textures/NEWWOOL.png'.
 zenilib App Info    : Loading asset from file 'textures/3DTextures/Player/LEATHER.png'.
 zenilib App Info    : Loading asset from file 'textures/3DTextures/Player/BLONDECUR.png'.
+zenilib App Info    : Loading asset from file 'textures/3DTextures/Player/BRUNETTE.png'.
 zenilib App Info    : Loading asset from file 'textures/3DTextures/Player/BLONDE.png'.
 zenilib App Info    : Loading asset from file 'textures/3DTextures/Player/REGFACE.png'.
+zenilib App Info    : Loading asset from file 'textures/3DTextures/Player/GTIRFACE.png'.
+zenilib App Info    : Loading asset from file 'textures/3DTextures/Player/BTIRFACE.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyBlueRegular.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyGreenRegular.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyRedRegular.png'.
@@ -59,6 +62,8 @@ zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlR
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlPurpleRegular.png'.
 zenilib App Info    : Loading asset from file 'textures/3DTextures/Player/GTHWFACE.png'.
 zenilib App Info    : Loading asset from file 'textures/3DTextures/Player/FNTFACE.png'.
+zenilib App Info    : Loading asset from file 'textures/3DTextures/ChristmasTree/BARK.png'.
+zenilib App Info    : Loading asset from file 'textures/3DTextures/ChristmasTree/LEAVES.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/HUDSprites/Heart.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/HUDSprites/IceBlock.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/HUDSprites/Snowball.png'.
@@ -69,6 +74,8 @@ zenilib App Info    : Loading asset from file 'textures/2DTextures/Minimap/Green
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Minimap/Blue_hexagon.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Minimap/Red_hexagon.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Minimap/Orange_hexagon.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Minimap/Christmastree_hexagon.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Minimap/Cliff_hexagon.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/BuildSprites/buildView.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/BuildSprites/FactoryBuild.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/BuildSprites/FortressBuild.png'.
@@ -76,9 +83,14 @@ zenilib App Info    : Loading asset from file 'textures/2DTextures/BuildSprites/
 zenilib App Info    : Loading asset from file 'textures/2DTextures/BuildSprites/SnowmanBuild.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/titlescreen.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/teamselect.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/wanted.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/ready.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/loading.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/deathscreen.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/alert.png'.
 zenilib App Debug   : Loaded config/textures.xml
 zenilib App Debug   : Loading config/fonts.xml
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.896667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 2.000000
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -86,7 +98,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.896667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 2.000000
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -94,7 +106,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 1.896667
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 2.000000
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -102,31 +114,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 92.000000, ratio 1.896667
-zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
-zenilib App Debug   : FT_Init_FreeType(...) success.
-zenilib App Debug   : FT_Open_Face(...) success.
-zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
-zenilib App Debug   : Generating Texture from glyphs.
-zenilib App Debug   : Calling FT_Done_Face(...).
-zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 46.000000, ratio 1.896667
-zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
-zenilib App Debug   : FT_Init_FreeType(...) success.
-zenilib App Debug   : FT_Open_Face(...) success.
-zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
-zenilib App Debug   : Generating Texture from glyphs.
-zenilib App Debug   : Calling FT_Done_Face(...).
-zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 23.000000, ratio 1.896667
-zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
-zenilib App Debug   : FT_Init_FreeType(...) success.
-zenilib App Debug   : FT_Open_Face(...) success.
-zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
-zenilib App Debug   : Generating Texture from glyphs.
-zenilib App Debug   : Calling FT_Done_Face(...).
-zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 56.000000, ratio 1.896667
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 26.000000, ratio 2.000000
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -134,7 +122,31 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 1.896667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 92.000000, ratio 2.000000
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 46.000000, ratio 2.000000
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 23.000000, ratio 2.000000
+zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 56.000000, ratio 2.000000
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -142,7 +154,23 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 20.000000, ratio 1.896667
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 100.000000, ratio 2.000000
+zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 2.000000
+zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 20.000000, ratio 2.000000
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -159,4 +187,4 @@ Printing all possible error strings:
 SDL       : no error
 SDL_net   : no error
 OpenGL    : no error
-OpenAL    : OpenAL not initialized
+OpenAL    : AL_NO_ERROR

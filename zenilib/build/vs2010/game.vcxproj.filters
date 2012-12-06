@@ -501,6 +501,12 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Tree.h">
       <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\StructureAnimator.h">
+      <Filter>jni\application\Winter War Files\Animators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\StructureAnimators.h">
+      <Filter>jni\application\Winter War Files\Animators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\bootstrap.cpp">
@@ -583,6 +589,9 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Tree.cpp">
       <Filter>jni\application\Winter War Files\Game Object\Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\StructureAnimators.cpp">
+      <Filter>jni\application\Winter War Files\Animators</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
