@@ -129,26 +129,33 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 
 			String tile_name = "Tile2D";
 
-			switch (Game_Model::get().get_World()->get_tile(row, col)->get_team()){
-				case NEUTRAL:
-					tile_name += "Neutral";
-					break;
-				case BLUE:
-					tile_name += "Blue";
-					break;
-				case GREEN:
-					tile_name += "Green";
-					break;
-				case RED:
-					tile_name += "Red";
-					break;
-				case ORANGE:
-					tile_name += "Orange";
-					break;
-				default:
-					tile_name += "Regular";
-					break;
-
+			if(row == 0 || col == 0 || row == Game_Model::get().get_World()->get_height() - 1 || col == Game_Model::get().get_World()->get_width() - 1){
+				tile_name += "Cliff";
+			}
+			else if(row == 6 && col == 7){
+				tile_name += "ChristmasTree";
+			}
+			else{
+				switch (Game_Model::get().get_World()->get_tile(row, col)->get_team()){
+					case NEUTRAL:
+						tile_name += "Neutral";
+						break;
+					case BLUE:
+						tile_name += "Blue";
+						break;
+					case GREEN:
+						tile_name += "Green";
+						break;
+					case RED:
+						tile_name += "Red";
+						break;
+					case ORANGE:
+						tile_name += "Orange";
+						break;
+					default:
+						tile_name += "Regular";
+						break;
+				}
 			}
 
 			tile_pos.x /= ratio;
