@@ -23,7 +23,9 @@ public:
 	//Victory Stuf
 	bool Is_Tree_Claimed();
 	void Start_Victory_Countdown();
-	bool Hail_to_the_Victors();	//Tells the rest of the game we've won
+	void Stop_Victory_Countdown();
+	bool win();	//Tells the rest of the game we've won
+	float time_till_win();
 
 	//Network related
 	void update();
@@ -49,9 +51,11 @@ public:
 private:
 	//list of players
 	std::vector<Player*>	members;
+
 	//Resource value
 	int Ice_Blocks;
 	int intake_rate;
+
 	Zeni::Chronometer<Zeni::Time> ResourceTime;
 	Zeni::Chronometer<Zeni::Time> WinTimer;
 
@@ -65,7 +69,7 @@ private:
 
 	Tile* Base;
 
-
+	
 
 
 };
