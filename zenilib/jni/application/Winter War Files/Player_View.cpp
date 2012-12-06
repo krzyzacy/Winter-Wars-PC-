@@ -95,12 +95,12 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 	else{
 
 		if( player->get_mini_view() ){
-			render_death(topLeft, bottomRight);
-			//render_minimap(topLeft, bottomRight);
+			//render_death(topLeft, bottomRight);
+			render_minimap(topLeft, bottomRight);
 		}
 		else if( player->get_build_view() ){
-			//render_build(topLeft, bottomRight);
-			render_tree_claimed(topLeft, bottomRight);
+			render_build(topLeft, bottomRight);
+			//render_tree_claimed(topLeft, bottomRight);
 		}
 		else{
 			render_image("BuildManu2D",Point2f(topLeft.x + unit_px * 460, topLeft.y + unit_px * 280), Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 320));
@@ -219,7 +219,7 @@ void Player_View::render_death(const Point2f &topLeft, const Point2f &bottomRigh
 void Player_View::render_tree_claimed(const Point2f &topLeft, const Point2f &bottomRight){
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 
-	render_image("Alert",Point2f(topLeft.x + unit_px * 280, topLeft.y + unit_px * 150),Point2f(topLeft.x + unit_px * 680, topLeft.y + unit_px * 550));
-	get_Fonts()["cat"].render_text("5" ,Point2f(topLeft.x + unit_px * 450, topLeft.y + unit_px * 50), Color(0xFFFF0000));
+	render_image("Alert",Point2f(topLeft.x + unit_px * 250, topLeft.y + unit_px * 120),Point2f(topLeft.x + unit_px * 710, topLeft.y + unit_px * 580));
+	get_Fonts()["cat_100"].render_text(itoa((int)player->get_team()->time_till_win()) ,Point2f(topLeft.x + unit_px * 420, topLeft.y + unit_px * 50), Color(0xFFFF0000));
 
 }
