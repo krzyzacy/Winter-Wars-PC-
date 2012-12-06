@@ -107,8 +107,6 @@ void Game_Model::update()
 		if((*it)->Is_Tree_Claimed())
 		{
 			world->raise_tile(world->get_center_Tile()->get_structure_base());
-			if(win_time >= 10000.0f)
-				win_time = PlayTime.seconds() + 10.0f;
 		}	
 	}
 
@@ -138,10 +136,11 @@ void Game_Model::check_collisions()
 // returns true if some team has won
 bool Game_Model::win()
 {
-	if (win_time < PlayTime.seconds())
-		return true;
-	else 
-		return false;
+	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)	{
+		if ((*it)->win())
+			return true;
+	}
+	return false;
 }
 
 void Game_Model::render() const

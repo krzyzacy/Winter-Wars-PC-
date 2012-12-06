@@ -17,10 +17,11 @@ Team::Team(Tile* BaseTile)	:
 	ResourceTime.start();
 }
 
-
 Team::~Team(void)
 {
+
 }
+
 // returns null if index == number of players
 Player *Team::get_player(int index)
 {
@@ -110,7 +111,7 @@ bool Team::tile_is_ready(Tile * cand, int type)	{
 			//If nothing has been built on it, (no one owns it), 
 	//is adjacent to your network, and have enough ice blocks
 	//If you already own this tile, then it assumes you are switching the building type
-	if(is_in_network(cand))	{
+	if(is_in_network(cand) && cand != Game_Model::get().get_World()->get_center_Tile())	{
 		cand->destroy_structure();
 		return true;
 	}
@@ -154,6 +155,24 @@ void Team::check_connectivity()	{
 void Team::Start_Victory_Countdown()	{
 	WinTimer.start();
 }
+
+void Team::Stop_Victory_Countdown()	{
+	WinTimer.stop();
+	WinTimer.reset();
+}
+	
+bool Team::win()
+{
+	if (time_till_win() <= 0)
+		return true;
+	return false;
+}
+
+float Team::time_till_win()
+{
+	return 10 - WinTimer.seconds();
+}
+
 
 bool Team::Is_Tree_Claimed()	{
 	return Network.count(Game_Model::get().get_World()->get_center_Tile());
