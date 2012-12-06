@@ -3,8 +3,9 @@
 
 Tree::Tree(Team *team, Tile* tile_,
 				const Zeni::Point3f &base_) :
-	Structure(team, tile_, base_)
+	Structure(team, tile_, base_, 200)
 {
+	
 }
 
 

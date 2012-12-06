@@ -336,12 +336,22 @@ The following things are unsupported:
     <filepath>textures/3DTextures/Player/GTHWFACE.png</filepath>
     <tile>1</tile>
   </GTHWFACE.PNG>
-
+  
   <FNTFACE.PNG>
     <filepath>textures/3DTextures/Player/FNTFACE.png</filepath>
     <tile>1</tile>
   </FNTFACE.PNG>
 
+  <BARK.PNG>
+    <filepath>textures/3DTextures/ChristmasTree/BARK.png</filepath>
+    <tile>1</tile>
+  </BARK.PNG>
+
+  <LEAVES.PNG>
+    <filepath>textures/3DTextures/ChristmasTree/LEAVES.png</filepath>
+    <tile>1</tile>
+  </LEAVES.PNG>
+  
   <Heart>
     <filepath>textures/2DTextures/HUDSprites/Heart.png</filepath>
     <tile>0</tile>

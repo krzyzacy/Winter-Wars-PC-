@@ -198,7 +198,7 @@ private:
 				if(player_team[player_idx] == "Blue"){
 					colors_.push_back(2);
 				}
-				if(player_team[player_idx] == "Orange"){
+				if(player_team[player_idx] == "Purple"){
 					colors_.push_back(3);
 				}
 			}
