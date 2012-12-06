@@ -401,6 +401,16 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Minimap/Orange_hexagon.png</filepath>
     <tile>0</tile>
   </Tile2DOrange>
+  
+  <Tile2DChristmasTree>
+    <filepath>textures/2DTextures/Minimap/Christmastree_hexagon.png</filepath>
+    <tile>0</tile>
+  </Tile2DChristmasTree>
+  
+  <Tile2DCliff>
+    <filepath>textures/2DTextures/Minimap/Cliff_hexagon.png</filepath>
+    <tile>0</tile>
+  </Tile2DCliff>
 
 
   <!-- building view -->
