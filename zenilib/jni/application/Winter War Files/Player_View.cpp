@@ -84,15 +84,33 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 	//Hey Sen, I added a get_build_view for when the build menu should be up
 	//Also theres a get_stick_choice() that returns the angle the joystick is making
 	//If you want, you can use that you show which building the player is selecting when it's open
-	if( player->get_mini_view() ){
-		render_minimap(topLeft, bottomRight);
+
+	if( player->get_team()->Is_Tree_Claimed()){
+		render_tree_claimed(topLeft, bottomRight);
 	}
 
-	if( player->get_build_view() ){
-		render_build(topLeft, bottomRight);
+	if( player->get_time_until_respawn() < 6.0f){
+		render_death(topLeft, bottomRight);
+	}
+	else{
+
+		if( player->get_mini_view() ){
+			render_death(topLeft, bottomRight);
+			//render_minimap(topLeft, bottomRight);
+		}
+		else if( player->get_build_view() ){
+			//render_build(topLeft, bottomRight);
+			render_tree_claimed(topLeft, bottomRight);
+		}
+		else{
+			render_image("BuildManu2D",Point2f(topLeft.x + unit_px * 460, topLeft.y + unit_px * 280), Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 320));
+		}
+
 	}
 
-	render_image("BuildManu2D",Point2f(topLeft.x + unit_px * 460, topLeft.y + unit_px * 280), Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 320));
+	
+
+	
 
 }
 
@@ -149,44 +167,59 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRight){
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 
-	render_image("BuildManu2D",Point2f(topLeft.x + unit_px * 400, topLeft.y + unit_px * 220), Point2f(topLeft.x + unit_px * 560, topLeft.y + unit_px * 370));
+	render_image("BuildManu2D",Point2f(topLeft.x + unit_px * 380, topLeft.y + unit_px * 200), Point2f(topLeft.x + unit_px * 580, topLeft.y + unit_px * 400));
 
 	float stick_theta = player->get_stick_choice();
 
 	//Joystick points Left
 	if(	stick_theta > Global::three_pi_over_two + Global::pi/4 ||
 			stick_theta < Global::pi/4){
-		render_image("Fortress2D",Point2f(topLeft.x + unit_px * 450, topLeft.y + unit_px * 375), Point2f(topLeft.x + unit_px * 510, topLeft.y + unit_px * 435));
-		render_image("Factory2D",Point2f(topLeft.x + unit_px * 555, topLeft.y + unit_px * 270), Point2f(topLeft.x + unit_px * 615, topLeft.y + unit_px * 330));
-		render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 450, topLeft.y + unit_px * 165), Point2f(topLeft.x + unit_px * 510, topLeft.y + unit_px * 225));
-		render_image("Snowman2D",Point2f(topLeft.x + unit_px * 285, topLeft.y + unit_px * 240), Point2f(topLeft.x + unit_px * 405, topLeft.y + unit_px * 360));
+		render_image("Fortress2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 495));
+		render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 675, topLeft.y + unit_px * 350));
+		render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 105), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 205));
+		render_image("Snowman2D",Point2f(topLeft.x + unit_px * 225, topLeft.y + unit_px * 220), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 380));
 	}
 
 	//Down
 	if(stick_theta < Global::pi - Global::pi/4 &&
 		stick_theta > Global::pi/4){
-		render_image("Snowman2D",Point2f(topLeft.x + unit_px * 345, topLeft.y + unit_px * 270), Point2f(topLeft.x + unit_px * 405, topLeft.y + unit_px * 330));
-		render_image("Factory2D",Point2f(topLeft.x + unit_px * 555, topLeft.y + unit_px * 270), Point2f(topLeft.x + unit_px * 615, topLeft.y + unit_px * 330));
-		render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 450, topLeft.y + unit_px * 165), Point2f(topLeft.x + unit_px * 510, topLeft.y + unit_px * 225));
-		render_image("Fortress2D",Point2f(topLeft.x + unit_px * 420, topLeft.y + unit_px * 375), Point2f(topLeft.x + unit_px * 540, topLeft.y + unit_px * 495));
+		render_image("Snowman2D",Point2f(topLeft.x + unit_px * 285, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 350));
+		render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 675, topLeft.y + unit_px * 350));
+		render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 105), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 205));
+		render_image("Fortress2D",Point2f(topLeft.x + unit_px * 400, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 560, topLeft.y + unit_px * 555));
 	}
 
 	//Right
 	if(stick_theta < Global::pi + Global::pi/4 &&
 		stick_theta > Global::pi_over_two + Global::pi/4){
-		render_image("Snowman2D",Point2f(topLeft.x + unit_px * 345, topLeft.y + unit_px * 270), Point2f(topLeft.x + unit_px * 405, topLeft.y + unit_px * 330));
-		render_image("Fortress2D",Point2f(topLeft.x + unit_px * 450, topLeft.y + unit_px * 375), Point2f(topLeft.x + unit_px * 510, topLeft.y + unit_px * 435));
-		render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 450, topLeft.y + unit_px * 165), Point2f(topLeft.x + unit_px * 510, topLeft.y + unit_px * 225));
-		render_image("Factory2D",Point2f(topLeft.x + unit_px * 555, topLeft.y + unit_px * 240), Point2f(topLeft.x + unit_px * 675, topLeft.y + unit_px * 360));
+		render_image("Snowman2D",Point2f(topLeft.x + unit_px * 285, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 350));
+		render_image("Fortress2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 495));
+		render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 105), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 205));
+		render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 220), Point2f(topLeft.x + unit_px * 735, topLeft.y + unit_px * 380));
 	}
 
 	//Up
 	if(stick_theta < Global::three_pi_over_two + Global::pi/4 && 
 		stick_theta > Global::three_pi_over_two - Global::pi/4){
-		render_image("Snowman2D",Point2f(topLeft.x + unit_px * 345, topLeft.y + unit_px * 270), Point2f(topLeft.x + unit_px * 405, topLeft.y + unit_px * 330));
-		render_image("Fortress2D",Point2f(topLeft.x + unit_px *450, topLeft.y + unit_px * 375), Point2f(topLeft.x + unit_px * 510, topLeft.y + unit_px * 435));
-		render_image("Factory2D",Point2f(topLeft.x + unit_px * 555, topLeft.y + unit_px * 270), Point2f(topLeft.x + unit_px * 615, topLeft.y + unit_px * 330));
-		render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 420, topLeft.y + unit_px * 125), Point2f(topLeft.x + unit_px * 540, topLeft.y + unit_px * 225));
+		render_image("Snowman2D",Point2f(topLeft.x + unit_px * 285, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 350));
+		render_image("Fortress2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 495));
+		render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 675, topLeft.y + unit_px * 350));
+		render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 400, topLeft.y + unit_px * 45), Point2f(topLeft.x + unit_px * 560, topLeft.y + unit_px * 205));
 	}
+
+}
+void Player_View::render_death(const Point2f &topLeft, const Point2f &bottomRight){
+	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
+
+	render_image("Death",topLeft,Point2f(topLeft.x + unit_px * 1024, topLeft.y + unit_px * 960));
+	get_Fonts()["system_36_800x600"].render_text("...Respawn in " + itoa((int)player->get_time_until_respawn()) + " seconds..." ,Point2f(topLeft.x + unit_px * 300, topLeft.y + unit_px * 400), Color(0x99FF1111));
+
+}
+
+void Player_View::render_tree_claimed(const Point2f &topLeft, const Point2f &bottomRight){
+	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
+
+	render_image("Alert",Point2f(topLeft.x + unit_px * 280, topLeft.y + unit_px * 150),Point2f(topLeft.x + unit_px * 680, topLeft.y + unit_px * 550));
+	get_Fonts()["cat"].render_text("5" ,Point2f(topLeft.x + unit_px * 450, topLeft.y + unit_px * 50), Color(0xFFFF0000));
 
 }
