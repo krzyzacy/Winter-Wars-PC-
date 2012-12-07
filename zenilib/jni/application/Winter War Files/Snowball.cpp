@@ -59,10 +59,10 @@ void Snowball::on_ground()
 //	set_velocity(Vector3f());
 }
 
-void Snowball::get_thrown(const Vector3f &dir)
+void Snowball::get_thrown(const Vector3f &dir, const float &spd)
 {
 	//accelerate(dir*force);
-	Moveable::set_velocity(dir*Launch_Speed);
+	Moveable::set_velocity(dir*spd);
 }
 
 float Snowball::deal_damage()	{

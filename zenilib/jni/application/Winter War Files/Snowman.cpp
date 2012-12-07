@@ -36,26 +36,24 @@ void Snowman::update(const float &time)
 
 	switch_state(SM_STAND);
 
-	if(reload_time.seconds() > 0.5)	{
+if(!targets.empty() && reload_time.seconds() > 0.5)	{
 		Point3f aim = targets.front();
 		targets.pop_front();
 		Point3f Origin = right_launch;
-		if(left)
-			{
-			Origin = left_launch;
-			switch_state(SM_THROWL);
-			}
-		else
-			{
-			switch_state(SM_THROWL);
-			}
+		if(left) Origin = left_launch;
 		Snowball* sb = new Snowball(0, Origin, Snow_size);
-		sb->get_thrown(aim - Origin);
+		Vector3f sight_line(aim - Origin);
+		//sight_line.z += 20;
+		//sb->get_thrown(aim - Origin);
+		sb->get_thrown(sight_line.normalize(), 600);
 		Game_Model::get().add_moveable(sb);
+		if(left)
+			switch_state(SM_THROWL);
+		else
+			switch_state(SM_THROWL);
 		left = !left;
 		reload_time.reset();
 	}
-
 	
 }
 
@@ -84,8 +82,8 @@ const model_key_t Snowman::get_model_name() const
 
 void Snowman::handle_player_in_range(Team *t, Collision::Capsule &person)	{
 	//Could add velocity stuff later, to predict motion, but fuck it for
-	//if(t->get_Team_Index() == hex->get_team())
-	//	return;
+	if(t->get_Team_Index() == hex->get_team())
+		return;
 
 	if(!person.intersects(field))
 		return;
@@ -102,7 +100,7 @@ void Snowman::create_body()		{
 	Point3f Bot = Seen_Object::get_bottom_center();
 	body = Zeni::Collision::Capsule(Top, Bot, size.z/4);
 
-	field = Zeni::Collision::Capsule(Top += Vector3f(0,0, 20), Bot, 200);
+	field = Zeni::Collision::Capsule(Top += Vector3f(0,0, 20), Bot, 500);
 
 }
 
@@ -110,3 +108,4 @@ Animator *Snowman::get_animator() const
 {
 	return animation_state;
 }
+

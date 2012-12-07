@@ -23,7 +23,7 @@ public:
 	
 	void update(const float &time);
 
-	void get_thrown(const Zeni::Vector3f &dir);
+	void get_thrown(const Zeni::Vector3f &dir, const float &spd = Launch_Speed);
 
 	float deal_damage();
 
