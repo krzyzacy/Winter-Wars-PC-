@@ -91,7 +91,7 @@ private:
 class Factory_spin : public StructureAnimator
 {	
 public:
-	Factory_spin() : FSFrame(1.0f), Frame(1) {}
+	Factory_spin() : FSFrame(1.0f), Frame(1), finished(false) {}
 	/* choose the frame to currently render and set it */
 	void animate(Zeni::Model *);
 
@@ -102,6 +102,26 @@ public:
 	model_key_t get_model_name();
 
 private:
+	bool finished;
+	float FSFrame;
+	int Frame; 
+};
+
+class Factory_stop : public StructureAnimator
+{	
+public:
+	Factory_stop() : FSFrame(1.0f), Frame(1), finished(false) {}
+	/* choose the frame to currently render and set it */
+	void animate(Zeni::Model *);
+
+	/* get the next state based on what event happened */
+	StructureAnimator *get_next(StructureEvent_e);
+	
+	/* return the model key */
+	model_key_t get_model_name();
+
+private:
+	bool finished;
 	float FSFrame;
 	int Frame; 
 };

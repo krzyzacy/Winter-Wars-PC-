@@ -29,5 +29,8 @@ private:
 	
 	void create_body();
 	Zeni::Collision::Capsule field;
+
+	// Animation
+	Animator *get_animator() const;
 };
 

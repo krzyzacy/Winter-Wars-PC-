@@ -33,7 +33,7 @@ const float  Stick_Accel = 1200;
 
 
 Player::Player(const Zeni::Point3f &center_) 
-	: Moveable(center_ , Vector3f(20.0f,20.0f,20.0f)), m_camera(center_, Quaternion(), 5.0f, 2000.0f),
+	: Moveable(center_ , Vector3f(30.0f,30.0f,30.0f)), m_camera(center_, Quaternion(), 5.0f, 2000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false), Selection(NOTHING),
 	stick_theta(0.0f), animation_state(new Standing()), dead_mode(false)
@@ -182,7 +182,7 @@ void Player::pack_snow()	{
 }
 
 void Player::stop_scooping()	{
-	switch_state(WALK);
+//	switch_state(STAND);
 }
 
  void Player::calculate_movement(const Vector2f &input_vel)	{
@@ -265,7 +265,6 @@ void Player::jump()	{
 	case BOOST:
 		{
 		switch_state(JUMP);
-		animation_state->proceed();
 		if(AirTime.seconds() <= 0.4)	
 			accelerate(jump_vec, Game_Model::get().get_time_step());
 		else	{

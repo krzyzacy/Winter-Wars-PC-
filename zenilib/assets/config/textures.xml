@@ -93,6 +93,17 @@ The following things are unsupported:
     <filepath>textures/3Dtextures/Snowman/SNOW3.png</filepath>
     <tile>1></tile>
   </SNOW3.PNG>
+
+  <SNOW2.PNG>
+    <filepath>textures/3Dtextures/Snowman/SNOW2.png</filepath>
+    <tile>1></tile>
+  </SNOW2.PNG>
+
+  <SNOW1.PNG>
+    <filepath>textures/3Dtextures/Snowman/SNOW1.png</filepath>
+    <tile>1></tile>
+  </SNOW1.PNG>
+  
   <SNOWMARM.PNG>
     <filepath>textures/3Dtextures/Snowman/SNOWMARM.png</filepath>
     <tile>1></tile>
@@ -103,32 +114,48 @@ The following things are unsupported:
     <filepath>textures/3Dtextures/Factory/Metal.png</filepath>
     <tile>1></tile>
   </METAL.PNG>
+
+  <DMETAL.PNG>
+    <filepath>textures/3Dtextures/Factory/DMETAL.png</filepath>
+    <tile>1></tile>
+  </DMETAL.PNG>
+
+  <DARKMETA.PNG>
+    <filepath>textures/3Dtextures/Factory/DARKMETA.png</filepath>
+    <tile>1></tile>
+  </DARKMETA.PNG>  
   
   <!-- HEALING POOL -->
   <BLROOF.PNG>
     <filepath>textures/3DTextures/HealingPool/BLROOF.png</filepath>
     <tile>1</tile>
   </BLROOF.PNG>
+  
   <GROOF.PNG>
     <filepath>textures/3DTextures/HealingPool/GROOF.png</filepath>
     <tile>1</tile>
   </GROOF.PNG>
+  
   <OROOF.PNG>
     <filepath>textures/3DTextures/HealingPool/OROOF.png</filepath>
     <tile>1</tile>
   </OROOF.PNG>
+  
   <RROOF.PNG>
     <filepath>textures/3DTextures/HealingPool/RROOF.png</filepath>
     <tile>1</tile>
   </RROOF.PNG>
+  
   <HPCORNER.PNG>
     <filepath>textures/3DTextures/HealingPool/HPCORNER.png</filepath>
     <tile>1</tile>
   </HPCORNER.PNG>
+  
   <HPWALL.PNG>
     <filepath>textures/3DTextures/HealingPool/HPWALL.png</filepath>
     <tile>1</tile>
   </HPWALL.PNG>
+  
   <WATER.PNG>
     <filepath>textures/3DTextures/HealingPool/Water.png</filepath>
     <tile>1</tile>

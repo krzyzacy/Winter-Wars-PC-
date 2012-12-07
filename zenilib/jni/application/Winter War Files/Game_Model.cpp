@@ -110,9 +110,6 @@ void Game_Model::update()
 		}	
 	}
 
-
-
-
 	check_collisions();
 
 	

@@ -129,20 +129,42 @@ model_key_t Snowman_thwl::get_model_name()
 
 void Factory_spin::animate(Zeni::Model *model)
 {
-	FSFrame += Game_Model::get().get_time_step()*10;
+	FSFrame += Game_Model::get().get_time_step()*4;
 	Frame = FSFrame;
 	Frame = (Frame % 50) + 1;
+	if (Frame > 50)	finished = true;
 	model->set_keyframe(Frame);
 }
 
 StructureAnimator *Factory_spin::get_next(StructureEvent_e sevent)
 {
-	return NULL;
+	if (finished)
+		return new Factory_stop();
 }
 	
 model_key_t Factory_spin::get_model_name()
 {
 	return "factory_spin";
+}
+
+void Factory_stop::animate(Zeni::Model *model)
+{
+	FSFrame += Game_Model::get().get_time_step()*4;
+	Frame = FSFrame;
+	if (Frame > 50)	finished = true;
+	Frame = (Frame % 50) + 1;
+	model->set_keyframe(Frame);
+}
+
+StructureAnimator *Factory_stop::get_next(StructureEvent_e sevent)
+{
+	if (finished)
+		return new Factory_spin();
+}
+	
+model_key_t Factory_stop::get_model_name()
+{
+	return "factory_stop";
 }
 
 /*---------------------------------------------
@@ -151,7 +173,7 @@ model_key_t Factory_spin::get_model_name()
 
 void Pool_stand::animate(Zeni::Model *model)
 {
-	PSFrame += Game_Model::get().get_time_step()*10;
+	PSFrame += Game_Model::get().get_time_step()*5;
 	Frame = PSFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -180,7 +202,7 @@ model_key_t Pool_stand::get_model_name()
 
 void Pool_heal::animate(Zeni::Model *model)
 {
-	PHFrame += Game_Model::get().get_time_step()*10;
+	PHFrame += Game_Model::get().get_time_step()*5;
 	Frame = PHFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);

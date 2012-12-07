@@ -12,6 +12,7 @@ Healing_Pool::Healing_Pool(Team *team, Tile* tile_,
 				const Zeni::Point3f &base_) :
 	Structure(team, tile_, base_)
 {
+	animation_state = new Pool_stand();
 	center.z -= 22;
 	create_body();
 	Health = Struct_Integrity[HEALING_POOL];
@@ -28,24 +29,31 @@ void Healing_Pool::update(const float &time)
 }
 
 void Healing_Pool::handle_player_collision(Player *P)	{
+	switch_state(POOL_HEAL);
 	P->healing_waters(Healing_rate * Game_Model::get().get_time_step());
 }
 
 const model_key_t Healing_Pool::get_model_name() const 
 {
+	string Teamname;
 	switch(owner->get_Team_Index())	{
 	case BLUE:
-		return ("blue_healingpool");
+		Teamname = "blue";
+		break;
 	case GREEN:
-		return ("green_healingpool");
+		Teamname = "green";
+		break;
 	case RED:
-		return ("red_healingpool");
+		Teamname = "red";
+		break;
 	case ORANGE:
-		return ("orange_healingpool");
+		Teamname = "orange";
+		break;
 	default:
-		return ("blue_healingpool");
+		Teamname = "blue";
 		break;
 	}
+	return Teamname + animation_state->get_model_name();
 }
 
 void Healing_Pool::create_body()		{
@@ -53,4 +61,9 @@ void Healing_Pool::create_body()		{
 	Top.z - 10;
 	Point3f Bot = Seen_Object::get_bottom_center();
 	body = Zeni::Collision::Capsule(Top, Bot, size.z/2);
+}
+
+Animator *Healing_Pool::get_animator() const
+{
+	return animation_state;
 }

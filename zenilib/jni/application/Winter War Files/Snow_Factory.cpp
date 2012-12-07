@@ -18,6 +18,8 @@ Snow_Factory::Snow_Factory(Team *team, Tile* tile_,
 	}
 	hex->set_covering(SOFT_SNOW);
 	Health = Struct_Integrity[SNOW_FACTORY];
+
+	animation_state = new Factory_spin();
 }
 
 
@@ -39,21 +41,26 @@ void Snow_Factory::update(const float &time)
 
 const model_key_t Snow_Factory::get_model_name() const 
 {
+	string Teamname;
 		switch(owner->get_Team_Index())	{
 	case BLUE:
-		return ("blue_snowfactory");
+		Teamname = "blue";
+		break;
 	case GREEN:
-		return ("green_snowfactory");
+		Teamname = "green";
+		break;
 	case RED:
-		return ("red_snowfactory");
+		Teamname = "red";
+		break;
 	case ORANGE:
-		return ("orange_snowfactory");
+		Teamname = "orange";
+		break;
 	default:
-		return ("blue_snowfactory");
+		Teamname = "blue";
 		break;
 	}
+	return Teamname + animation_state->get_model_name();
 }
-
 
 void Snow_Factory::create_body()	{
 	Point3f Top = Seen_Object::get_top_center();
@@ -61,4 +68,7 @@ void Snow_Factory::create_body()	{
 	body = Zeni::Collision::Capsule(Top, Bot, size.z/3);
 }
 
-
+Animator *Snow_Factory::get_animator() const
+{
+	return animation_state;
+}

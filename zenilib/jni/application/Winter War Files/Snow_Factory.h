@@ -12,7 +12,11 @@ public:
 
 	const model_key_t get_model_name() const;
 
+	Animator* get_animator();
+
 private:
+
+	Animator *get_animator() const;
 	
 	void create_body();
 };

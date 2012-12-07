@@ -109,31 +109,61 @@ View::View(void)
 	model_map["orangeicetile"] = new Zeni::Model("models/ice/orangeicetile.3ds");
 	
 // Structures	
+	//Fortress Animations
 	model_map["blue_fort"] = new Zeni::Model("models/fortress/fortressblue.3ds");
 	model_map["green_fort"] = new Zeni::Model("models/fortress/fortressgreen.3ds");
 	model_map["red_fort"] = new Zeni::Model("models/fortress/fortressred.3ds");
 	model_map["orange_fort"] = new Zeni::Model("models/fortress/fortressorange.3ds");
 
-	model_map["blue_snowman"] = new Zeni::Model("models/snowman/bluesnowman.3ds");
-	model_map["green_snowman"] = new Zeni::Model("models/snowman/greensnowman.3ds");
-	model_map["red_snowman"] = new Zeni::Model("models/snowman/redsnowman.3ds");
-	model_map["orange_snowman"] = new Zeni::Model("models/snowman/orangesnowman.3ds");
+	//Snowman Animations
+	model_map["bluesnowman_stand"] = new Zeni::Model("models/snowman/bluesnowman/bluesnowmanstanding.3ds");
+	model_map["greensnowman_stand"] = new Zeni::Model("models/snowman/greensnowman/greensnowmanstanding.3ds");
+	model_map["redsnowman_stand"] = new Zeni::Model("models/snowman/redsnowman/redsnowmanstanding.3ds");
+	model_map["orangesnowman_stand"] = new Zeni::Model("models/snowman/orangesnowman/orangesnowmanstanding.3ds");
 
+	model_map["bluesnowman_throw_left"] = new Zeni::Model("models/snowman/bluesnowman/bluesnowmanthrowingleft.3ds");
+	model_map["greensnowman_throw_left"] = new Zeni::Model("models/snowman/greensnowman/greensnowmanthrowingleft.3ds");
+	model_map["redsnowman_throw_left"] = new Zeni::Model("models/snowman/redsnowman/redsnowmanthrowingleft.3ds");
+	model_map["orangesnowman_throw_left"] = new Zeni::Model("models/snowman/orangesnowman/orangesnowmanthrowingleft.3ds");
+
+	model_map["bluesnowman_throw_right"] = new Zeni::Model("models/snowman/bluesnowman/bluesnowmanthrowingright.3ds");
+	model_map["greensnowman_throw_right"] = new Zeni::Model("models/snowman/greensnowman/greensnowmanthrowingright.3ds");
+	model_map["redsnowman_throw_right"] = new Zeni::Model("models/snowman/redsnowman/redsnowmanthrowingright.3ds");
+	model_map["orangesnowman_throw_right"] = new Zeni::Model("models/snowman/orangesnowman/orangesnowmanthrowingright.3ds");
+/*
 	model_map["blue_snowfactory"] = new Zeni::Model("models/snowfactory/bluesnowfactory.3ds");
 	model_map["green_snowfactory"] = new Zeni::Model("models/snowfactory/greensnowfactory.3ds");
 	model_map["red_snowfactory"] = new Zeni::Model("models/snowfactory/redsnowfactory.3ds");
 	model_map["orange_snowfactory"] = new Zeni::Model("models/snowfactory/orangesnowfactory.3ds");
+*/
+	//Factory Animation
+	model_map["bluefactory_spin"] = new Zeni::Model("models/snowfactory/bluesnowfactoryspin.3ds");
+	model_map["greenfactory_spin"] = new Zeni::Model("models/snowfactory/greensnowfactoryspin.3ds");
+	model_map["redfactory_spin"] = new Zeni::Model("models/snowfactory/redsnowfactoryspin.3ds");
+	model_map["orangefactory_spin"] = new Zeni::Model("models/snowfactory/orangesnowfactoryspin.3ds");
 
-	model_map["blue_healingpool"] = new Zeni::Model("models/healingpool/bluehealingpool.3ds");
-	model_map["green_healingpool"] = new Zeni::Model("models/healingpool/greenhealingpool.3ds");
-	model_map["red_healingpool"] = new Zeni::Model("models/healingpool/redhealingpool.3ds");
-	model_map["orange_healingpool"] = new Zeni::Model("models/healingpool/orangehealingpool.3ds");
+	//Healing Pool Animation
+	model_map["bluehealing_pool_stand"] = new Zeni::Model("models/healingpool/bluehealingpool.3ds");
+	model_map["greenhealing_pool_stand"] = new Zeni::Model("models/healingpool/greenhealingpool.3ds");
+	model_map["redhealing_pool_stand"] = new Zeni::Model("models/healingpool/redhealingpool.3ds");
+	model_map["orangehealing_pool_stand"] = new Zeni::Model("models/healingpool/orangehealingpool.3ds");
 	
-	model_map["blue_tree"] = new Zeni::Model("models/chirstmastree/christmastreeblueowned.3ds");
-	model_map["green_tree"] = new Zeni::Model("models/chirstmastree/christmastreegreenowned.3ds");
-	model_map["red_tree"] = new Zeni::Model("models/chirstmastree/christmastreeredowned.3ds");
-	model_map["orange_tree"] = new Zeni::Model("models/chirstmastree/christmastreeorangeowned.3ds");
-	model_map["neutral_tree"] = new Zeni::Model("models/chirstmastree/christmastreeunowned.3ds");
+	model_map["bluehealing_pool_heal"] = new Zeni::Model("models/healingpool/bluehealingpoolhealing.3ds");
+	model_map["greenhealing_pool_heal"] = new Zeni::Model("models/healingpool/greenhealingpoolhealing.3ds");
+	model_map["redhealing_pool_heal"] = new Zeni::Model("models/healingpool/redhealingpoolhealing.3ds");
+	model_map["orangehealing_pool_heal"] = new Zeni::Model("models/healingpool/orangehealingpoolhealing.3ds");
+
+	//Christmas Tree Animations
+	model_map["bluetree_unowned"] = new Zeni::Model("models/chirstmastree/christmastreeblueowned1.3ds");
+	model_map["greentree_unowned"] = new Zeni::Model("models/chirstmastree/christmastreegreenowned1.3ds");
+	model_map["redtree_unowned"] = new Zeni::Model("models/chirstmastree/christmastreeredowned.3ds");
+	model_map["orangetree_unowned"] = new Zeni::Model("models/chirstmastree/christmastreeorangeowned.3ds");
+	model_map["tree_unowned"] = new Zeni::Model("models/chirstmastree/christmastreeunowned.3ds");
+
+	model_map["bluetree_owned"] = new Zeni::Model("models/chirstmastree/christmastreeblueowned1.3ds");
+	model_map["greentree_owned"] = new Zeni::Model("models/chirstmastree/christmastreegreenowned1.3ds");
+	model_map["redtree_owned"] = new Zeni::Model("models/chirstmastree/christmastreeredowned.3ds");
+	model_map["orangetree_owned"] = new Zeni::Model("models/chirstmastree/christmastreeorangeowned.3ds");
 
 }
 

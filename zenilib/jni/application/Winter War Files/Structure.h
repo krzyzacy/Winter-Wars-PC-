@@ -1,6 +1,8 @@
 #pragma once
 #include "Collidable.h"
 #include "Seen_Object.h"
+#include "StructureAnimator.h"
+#include "StructureAnimators.h"
 
 #include <zenilib.h>
 
@@ -23,6 +25,8 @@ class Collision_Table;
 class Tile;
 class Snowball;
 class Player;
+class StructureAnimator;
+enum StructureEvent_e;
 
 class Structure :
 	public Collidable, public Seen_Object
@@ -65,7 +69,6 @@ protected:
 	Team *owner;
 
 	Tile *hex;
-
 	
 	void create_body();
 	Zeni::Collision::Capsule body;
@@ -73,6 +76,11 @@ protected:
 	// Collison Stuff
 	const static int structure_ID_c;
 	friend Collision_Table;
+
+	// Animation
+	StructureAnimator *animation_state;
+	virtual Animator *get_animator() const;
+	virtual void switch_state(StructureEvent_e);
 
 };
 

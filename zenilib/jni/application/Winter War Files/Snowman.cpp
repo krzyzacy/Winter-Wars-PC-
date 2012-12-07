@@ -14,6 +14,7 @@ Snowman::Snowman(Team *team, Tile* tile_,
 				const Zeni::Point3f &base_) :
 	Structure(team, tile_, base_), left(true)
 {
+	animation_state = new Snowman_stand();
 	center.z -= 8;
 	create_body();
 	Health = Struct_Integrity[SNOWMAN];
@@ -33,11 +34,21 @@ void Snowman::update(const float &time)
 	Structure::update(time);
 	//Magic happens here, need to decide how this will works, def statemachine
 
+	switch_state(SM_STAND);
+
 	if(reload_time.seconds() > 0.5)	{
 		Point3f aim = targets.front();
 		targets.pop_front();
 		Point3f Origin = right_launch;
-		if(left) Origin = left_launch;
+		if(left)
+			{
+			Origin = left_launch;
+			switch_state(SM_THROWL);
+			}
+		else
+			{
+			switch_state(SM_THROWL);
+			}
 		Snowball* sb = new Snowball(0, Origin, Snow_size);
 		sb->get_thrown(aim - Origin);
 		Game_Model::get().add_moveable(sb);
@@ -50,19 +61,25 @@ void Snowman::update(const float &time)
 
 const model_key_t Snowman::get_model_name() const 
 {
+	string Teamname;
 	switch(owner->get_Team_Index())	{
 	case BLUE:
-		return ("blue_snowman");
+		Teamname = "blue";
+		break;
 	case GREEN:
-		return ("green_snowman");
+		Teamname = "green";
+		break;
 	case RED:
-		return ("red_snowman");
+		Teamname = "red";
+		break;
 	case ORANGE:
-		return ("orange_snowman");
+		Teamname = "orange";
+		break;
 	default:
-		return ("blue_snowman");
+		Teamname = "blue";
 		break;
 	}
+	return Teamname + animation_state->get_model_name();
 }
 
 void Snowman::handle_player_in_range(Team *t, Collision::Capsule &person)	{
@@ -87,4 +104,9 @@ void Snowman::create_body()		{
 
 	field = Zeni::Collision::Capsule(Top += Vector3f(0,0, 20), Bot, 200);
 
+}
+
+Animator *Snowman::get_animator() const
+{
+	return animation_state;
 }

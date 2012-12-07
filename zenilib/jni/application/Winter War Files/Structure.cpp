@@ -69,6 +69,16 @@ void Structure::change_height(const float &delta)	{
 	center.z += delta;
 }
 
+Animator *Structure::get_animator() const {
+	return 0;
+}
 
-
-
+void Structure::switch_state(StructureEvent_e sevent)
+{
+	StructureAnimator *next = animation_state->get_next(sevent);
+	if (next)
+	{
+		delete animation_state;
+		animation_state = next;
+	}
+}

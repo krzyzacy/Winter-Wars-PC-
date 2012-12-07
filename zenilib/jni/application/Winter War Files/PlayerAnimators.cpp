@@ -56,60 +56,45 @@ model_key_t Walking::get_model_name()
 void Jumping::animate(Zeni::Model *model)
 {
 
-	if (Frame < 25)
-		{
-		JumpFrame += Game_Model::get().get_time_step()*10;
-		Frame = JumpFrame;
+	JumpFrame += Game_Model::get().get_time_step()*10;
+	Frame = JumpFrame;
+	if (JumpFrame < 50)
 		model->set_keyframe(Frame);
-		}
-	
-	if (Frame >= 25 && !falling)
-		model->set_keyframe(25);
-	else if (Frame >=25 && falling)
-		{
-		JumpFrame += Game_Model::get().get_time_step()*10;
-		Frame = JumpFrame;
-		model->set_keyframe(Frame);
-		}
-	else {}
+	else
+		model->set_keyframe(50);
 }
 
 PlayerAnimator * Jumping::get_next(PlayerEvent_e pevent)
 {
-	if (!falling)
-		return NULL;
-	else
+	switch (pevent)
 		{
-		switch (pevent)
-			{
-			case WALK:
-				return new Walking();
-				break;
-			case JUMP:
-				return new Jumping();
-				break;
-			case THROW:
-				return NULL;
-				break;
-			case PACK:
-				return new Packing();
-				break;
-			case STAND:
-				return new Standing();
-				break;
-			case SCOOP:
-				return new Scooping();
-				break;
-			case FLINCH:
-				return new Flinching();
-				break;
-			case DIE:
-				return new Dying();
-				break;
-			default:
-				return NULL;
-				break;
-			}
+		case WALK:
+			return new Walking();
+			break;
+		case JUMP:
+			return NULL;
+			break;
+		case THROW:
+			return NULL;
+			break;
+		case PACK:
+			return new Packing();
+			break;
+		case STAND:
+			return new Standing();
+			break;
+		case SCOOP:
+			return new Scooping();
+			break;
+		case FLINCH:
+			return new Flinching();
+			break;
+		case DIE:
+			return new Dying();
+			break;
+		default:
+			return NULL;
+			break;
 		}
 }
 	

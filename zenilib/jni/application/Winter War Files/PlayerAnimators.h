@@ -7,7 +7,7 @@
 class Jumping : public PlayerAnimator
 {	
 public:
-	Jumping() : JumpFrame(1.0f), Frame(1), falling(false) {}
+	Jumping() : JumpFrame(1.0f), Frame(1) {}
 	/* choose the frame to currently render and set it */
 	void animate(Zeni::Model *);
 
@@ -17,10 +17,7 @@ public:
 	/* return the model key */
 	model_key_t get_model_name();
 
-	void proceed() { falling = true; }
-
 private:
-	bool falling;
 	float JumpFrame;
 	int Frame; 
 };
