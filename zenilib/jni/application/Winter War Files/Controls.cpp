@@ -50,6 +50,7 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 			break;
 		}
 
+
 		if(which == 0)	{
 			switch(event.keysym.sym)	{
 			case SDLK_w:
@@ -83,6 +84,14 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 				Handled_Input = false;
 				break;
 			}
+
+			if(input.build_view)	{
+				input.Cam.x = input.Move.x;
+				input.Cam.y = input.Move.y;				
+				input.Move.x = 0;
+				input.Move.y = 0;
+			}
+		
 		}
 		else if(which == 1)	{
 			switch(event.keysym.sym)	{

@@ -34,6 +34,12 @@ public:
 
 	int get_cam_to_adjust();
 
+	void reset_Cam()	{
+		input.Cam.x = 0;
+		input.Cam.y = 0;
+	}
+
+
 	/*	Sets inverted if the player changes options menu (options to be implemented */
 	void set_inverted(bool invert);
 
