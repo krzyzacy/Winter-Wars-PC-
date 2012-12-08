@@ -38,13 +38,13 @@ element in your game to enable easy skinning.
     <blue>1.0</blue>
   </console_border>
   <title_bg>
-    <alpha>1.0</alpha>
+    <alpha>0.1</alpha>
     <red>0.0</red>
     <green>0.0</green>
     <blue>0.0</blue>
   </title_bg>
   <title_text>
-    <alpha>0.8</alpha>
+    <alpha>0.1</alpha>
     <red>1.0</red>
     <green>0.1</green>
     <blue>0.1</blue>
@@ -56,19 +56,19 @@ element in your game to enable easy skinning.
     <blue>0.0</blue>
   </configurator_bg>
   <default_button_bg_normal>
-    <alpha>0.9</alpha>
+    <alpha>0.1</alpha>
     <red>0.445</red>
     <green>0.781</green>
     <blue>0.710</blue>
   </default_button_bg_normal>
   <default_button_bg_clicked>
-    <alpha>1.0</alpha>
+    <alpha>0.1</alpha>
     <red>1.0</red>
     <green>1.0</green>
     <blue>1.0</blue>
   </default_button_bg_clicked>
   <default_button_bg_hovered_strayed>
-    <alpha>1.0</alpha>
+    <alpha>0.1</alpha>
     <red>0.445</red>
     <green>0.781</green>
     <blue>0.5</blue>
