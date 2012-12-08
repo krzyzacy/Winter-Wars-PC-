@@ -15,7 +15,7 @@ public:
 
 	void render_hud(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
 
-	void render_minimap(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
+	void render_minimap(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight, const std::string avartar);
 
 	void render_build(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
 

@@ -129,7 +129,7 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 	//Also theres a get_stick_choice() that returns the angle the joystick is making
 	//If you want, you can use that you show which building the player is selecting when it's open
 
-	if( player->get_team()->Is_Tree_Claimed()){
+	if( /*player->get_team()->Is_Tree_Claimed()*/ Game_Model::get().time_till_win() < time_to_win_c ){
 		render_tree_claimed(topLeft, bottomRight);
 	}
 
@@ -140,7 +140,7 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 		if( player->get_mini_view() ){
 			//render_death(topLeft, bottomRight);
-			render_minimap(topLeft, bottomRight);
+			render_minimap(topLeft, bottomRight, gender+team+status );
 		}
 		else if( player->get_build_view() ){
 			render_build(topLeft, bottomRight);
@@ -158,7 +158,7 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 }
 
-void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRight){
+void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRight, std::string avartar){
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 	float ratio = 4.85f;
 
@@ -211,7 +211,7 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 	}
 
 	Point2f player_pos(player->get_camera().position.x / ratio,player->get_camera().position.y / ratio);
-	render_image("Heart",Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 180.0f, topLeft.y + player_pos.y * unit_px + 14.0f * unit_px),Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 237, topLeft.y + player_pos.y * unit_px + unit_px * 71));
+	render_image((Zeni::String)avartar,Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 195.0f, topLeft.y + player_pos.y * unit_px + 80.0f * unit_px),Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 235, topLeft.y + player_pos.y * unit_px + unit_px * 120));
 
 }
 
