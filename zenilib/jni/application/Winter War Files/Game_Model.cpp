@@ -17,6 +17,7 @@ using namespace std;
 using namespace Zeni;
 
 
+const float time_to_win_c = 10.0f; //max time it should take to win
 
 Game_Model::Game_Model(void)
 {
@@ -30,7 +31,6 @@ void Game_Model::start_up(const std::vector<String> &genders_, const std::vector
 		time_passed = (0.0f); 
 		time_step = (0.0f);	
 		win_time = (10000.0f);
-		
 
 		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams.push_back(create_team(world->get_next_Base_Tile()));
@@ -106,6 +106,7 @@ void Game_Model::update()
 	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)	{
 		if((*it)->Is_Tree_Claimed())
 		{
+
 			world->raise_tile(world->get_center_Tile()->get_structure_base());
 		}	
 	}
@@ -115,6 +116,22 @@ void Game_Model::update()
 	
 	Game_Model::get().Clean_dead();
 }
+
+/*set the time to win and the team to win*/
+void Game_Model::tree_claimed(const Team *team)
+{
+	// if no team owns the tree
+	if (!team)
+	{
+		win_time = 10000.0f;
+		return ;
+	}
+
+	// team wants to own the tree
+	win_time = PlayTime.seconds() + time_to_win_c;
+
+}
+
 
 void Game_Model::check_collisions()
 {
@@ -133,10 +150,9 @@ void Game_Model::check_collisions()
 // returns true if some team has won
 bool Game_Model::win()
 {
-	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)	{
-		if ((*it)->win())
+	if (time_till_win() <= 0)
 			return true;
-	}
+
 	return false;
 }
 
@@ -212,4 +228,7 @@ void Game_Model::remove_from_model(Structure* Z)	{
 	delete Z;
 }
 
-
+float Game_Model::time_till_win()
+{
+	return win_time - PlayTime.seconds();
+}

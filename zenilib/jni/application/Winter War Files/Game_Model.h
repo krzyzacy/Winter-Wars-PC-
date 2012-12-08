@@ -15,6 +15,7 @@ class Moveable;
 class Collidable;
 class Structure;
 
+extern const float time_to_win_c; //max time it should take to win
 
 class Game_Model
 {
@@ -34,7 +35,14 @@ public:
 
 	// returns true if some team has won
 	bool win();
-	
+
+	/*set the time to win and the team to win*/
+	void tree_claimed(const Team *);
+
+
+	/* return time until someone wins */
+	float time_till_win();
+
 	Player *get_player(int i)
 		{return players.at(i);}
 
@@ -60,6 +68,7 @@ private:
 	Zeni::Chronometer<Zeni::Time> PlayTime;
 	float time_passed;
 	float time_step;
+
 	float win_time; //set to 10000.0f to mean no one claimed tree
 
 	Game_Model(void); //cant create any instances

@@ -1,11 +1,19 @@
 #include "Tree.h"
 #include "Team.h"
 
+#include "Game_Model.h"
+
 Tree::Tree(Team *team, Tile* tile_,
 				const Zeni::Point3f &base_) :
 	Structure(team, tile_, base_, 200)
-{
-	animation_state = new Tree_unowned();
+{	
+	if (!owner)
+		animation_state = new Tree_unowned();
+	else
+		animation_state = new Tree_owned();
+
+
+	Game_Model::get().tree_claimed(owner);
 }
 
 
@@ -15,10 +23,7 @@ Tree::~Tree(void)
 
 void Tree::update(const float &time)
 {
-	if (!owner)
-		switch_state(TREE_UNOWNED);
-	else
-		switch_state(TREE_OWNED);
+
 }
 
 const model_key_t Tree::get_model_name() const 
