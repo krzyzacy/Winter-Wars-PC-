@@ -12,7 +12,7 @@ Healing_Pool::Healing_Pool(Team *team, Tile* tile_,
 				const Zeni::Point3f &base_) :
 	Structure(team, tile_, base_)
 {
-	animation_state = new Pool_stand();
+	animation_state = new Pool_heal();
 	center.z -= 22;
 	create_body();
 	Health = Struct_Integrity[HEALING_POOL];
@@ -29,7 +29,7 @@ void Healing_Pool::update(const float &time)
 }
 
 void Healing_Pool::handle_player_collision(Player *P)	{
-	switch_state(POOL_HEAL);
+//	switch_state(POOL_HEAL);
 	P->healing_waters(Healing_rate * Game_Model::get().get_time_step());
 }
 

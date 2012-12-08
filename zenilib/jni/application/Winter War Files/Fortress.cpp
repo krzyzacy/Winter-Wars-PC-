@@ -1,5 +1,6 @@
 #include "Fortress.h"
 #include "Team.h"
+#include "Player.h"
 
 using namespace std;
 using namespace Zeni;
@@ -15,6 +16,12 @@ Fortress::Fortress(Team *team, Tile* tile_,
 
 Fortress::~Fortress(void)
 {
+}
+
+void Fortress::handle_player_collision(Player *P)
+{
+	if (P->get_team() != owner)
+		Structure::handle_player_collision(P);
 }
 
 void Fortress::update(const float &time)

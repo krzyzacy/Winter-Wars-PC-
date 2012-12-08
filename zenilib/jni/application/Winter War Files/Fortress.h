@@ -9,6 +9,8 @@ public:
 	~Fortress(void);
 
 	void update(const float&);
+	
+	void handle_player_collision(Player *P);
 
 	const model_key_t get_model_name() const;
 
