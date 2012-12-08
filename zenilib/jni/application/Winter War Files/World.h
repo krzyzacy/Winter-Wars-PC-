@@ -8,6 +8,8 @@
 class View;
 class Tile;
 
+extern const float Ice_friction;
+extern const float Norml_friction;
 
 class World
 {

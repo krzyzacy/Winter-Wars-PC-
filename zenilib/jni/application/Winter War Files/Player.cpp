@@ -15,7 +15,7 @@ using namespace Zeni;
 
 const int Player::player_ID_c = 1;
 const float standard_speed = 200;
-const float turn_speed = 2;
+const float turn_speed = 40;
 
 const float Max_Snow_Amount = 100;
 const float Max_Player_Health = 100;
@@ -40,6 +40,7 @@ Player::Player(const Zeni::Point3f &center_)
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
+	rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0,0);
 	//rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0, 0);
 	//rotation += Quaternion(Global::pi_over_two, 0,0);
 }
@@ -60,9 +61,12 @@ void Player::adjust_pitch(float phi) {
 }
 
 void Player::turn_left(float theta) {	
-	Vector3f Old = m_camera.get_forward().get_ij();
-	m_camera.turn_left_xy(theta*turn_speed);
-	rotation *= m_camera.orientation.Vector3f_to_Vector3f(m_camera.get_forward().get_ij(), Old);
+	//Vector3f Old = m_camera.get_forward().get_ij();
+	float angle = theta * turn_speed * Game_Model::get().get_time_step();
+
+	m_camera.turn_left_xy(angle);
+	//rotation *= m_camera.orientation.Vector3f_to_Vector3f(m_camera.get_forward().get_ij(), Old);
+	rotation *= rotation.Axis_Angle(Vector3f(0,0,10) , angle);
 }
 
 void Player::update(const float &time)	{
@@ -235,7 +239,10 @@ void Player::stop_scooping()	{
 	
 	if(Input_Vel_Max.magnitude() == 0)	{
 		Input_Accel_Dir = Vector3f();		//If Player isn't pushing on stick, don't change velocity at all.
-		New_vel *= (1 - friction);			//And do a more powerful effect of friction
+		if(friction == Ice_friction) 
+			New_vel *= (1 - friction/5);			//And do a more powerful effect of friction
+		else
+			New_vel *= (1 - friction);	
 	}
 											
 	//How much the player can control the new direction is also effected by friction

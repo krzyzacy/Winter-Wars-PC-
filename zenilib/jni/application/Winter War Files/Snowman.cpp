@@ -90,7 +90,8 @@ void Snowman::handle_player_in_range(Team *t, Collision::Capsule &person)	{
 	
 	//Target the player if targeting threshold has passed
 	if(targeting_delay.seconds() > 0.5)	{
-		targets.push_back(person.get_end_point_a());
+		Point3f head = person.get_end_point_a() + Vector3f(0,0,20);
+		targets.push_back(head);
 		targeting_delay.reset();
 	}
 }
@@ -100,7 +101,7 @@ void Snowman::create_body()		{
 	Point3f Bot = Seen_Object::get_bottom_center();
 	body = Zeni::Collision::Capsule(Top, Bot, size.z/4);
 
-	field = Zeni::Collision::Capsule(Top += Vector3f(0,0, 20), Bot, 500);
+	field = Zeni::Collision::Capsule(Top + Vector3f(0,0, 20), Bot, 500);
 
 }
 

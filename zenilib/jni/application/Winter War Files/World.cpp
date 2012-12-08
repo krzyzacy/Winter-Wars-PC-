@@ -8,6 +8,11 @@
 using namespace std;
 using namespace Zeni;
 
+
+
+const float Ice_friction = 0.05;
+const float Norml_friction = 0.2;
+
 const float Tile_Move_Speed = 50;
 
 World::World( View *view_,
@@ -410,11 +415,11 @@ float World::get_friction_coeff(Point3f &spot)	{
 	switch(t->get_covering())	{
 	case SOFT_SNOW:
 	case HARD_SNOW:
-		return 0.2;
+		return Norml_friction;
 	case ICE:
-		return 0.05;
+		return Ice_friction;
 	default:
-		return 0.2;
+		return Norml_friction;
 	}
 }
 
