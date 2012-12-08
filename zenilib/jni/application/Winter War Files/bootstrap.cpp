@@ -37,6 +37,7 @@ public:
   Instructions_State()
     : Widget_Gamestate(make_pair(Point2f(0.0f, 0.0f), Point2f(800.0f, 600.0f)))
   {
+	  state = 0;
   }
 
 private:
@@ -48,14 +49,30 @@ private:
   void on_key(const SDL_KeyboardEvent &event) {
     if(event.keysym.sym == SDLK_ESCAPE && event.state == SDL_PRESSED)
       get_Game().pop_state();
+	if(event.keysym.sym == SDLK_RETURN && event.state == SDL_PRESSED){
+			state ++;
+		if(state == 2)
+			get_Game().pop_state();
+	}
+
   }
 
   void render() {
     Widget_Gamestate::render();
 
+	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(1024.0f, 1024.0f)), true);
+	if(state == 0){
+		render_image("Instructions", Point2f(0.0f,256.0f), Point2f(1024.0f,768.0f));
+	}
+
+	if(state == 1){
+		render_image("Controls", Point2f(0.0f,256.0f), Point2f(1024.0f,768.0f));
+	}
   
 	render_controls(0);
   }
+
+  int state;
 };
 
 class Team_Select_State : public Widget_Gamestate {
@@ -95,6 +112,30 @@ private:
         if(event.keysym.sym == SDLK_ESCAPE && event.state == SDL_PRESSED){
             get_Game().pop_state();
         }
+		else if(event.keysym.sym == SDLK_w && event.state == SDL_PRESSED){
+			if(player_cursor[0] == 1)
+				player_cursor[0] = 0;
+		}
+		else if(event.keysym.sym == SDLK_s && event.state == SDL_PRESSED){
+			if(player_cursor[0] == 0)
+				player_cursor[0] = 1;
+		}
+		else if(event.keysym.sym == SDLK_a && event.state == SDL_PRESSED){
+			if(player_cursor[0] == 0){
+				player_gender_state[0] = (player_gender_state[0] + 1) % 2;
+			}
+			else{
+				player_team_state[0] = (player_team_state[0] + 3) % 4;
+			}
+		}
+		else if(event.keysym.sym == SDLK_d && event.state == SDL_PRESSED){
+			if(player_cursor[0] == 0){
+				player_gender_state[0] = (player_gender_state[0] + 1) % 2;
+			}
+			else{
+				player_team_state[0] = (player_team_state[0] + 1) % 4;
+			}
+		}
         else if(event.keysym.sym == SDLK_RETURN && event.state == SDL_PRESSED){
 			if(player_state[0] != 2)
 				player_state[0] ++;
@@ -198,7 +239,7 @@ private:
 				if(player_team[player_idx] == "Blue"){
 					colors_.push_back(2);
 				}
-				if(player_team[player_idx] == "Purple"){
+				if(player_team[player_idx] == "Orange"){
 					colors_.push_back(3);
 				}
 			}
@@ -221,7 +262,7 @@ private:
 			else if(player_team_state[player_idx] == 2)
 				player_team[player_idx] = "Blue";
 			else
-				player_team[player_idx] = "Purple";
+				player_team[player_idx] = "Orange";
 		}
 	}
 

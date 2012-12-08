@@ -30,6 +30,8 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 //	get_Video().set_2d(std::make_pair(topLeft,bottomRight), true);
 
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
+	
+	/*
 	get_Fonts()["resource"].render_text("mini = " + itoa(player->get_mini_view()) + " build = " + itoa(player->get_build_view()) ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 250),Color(0x99660099));
 	Tile* testtile = Game_Model::get().get_World()->player_is_looking_at(player->get_camera().position,player->get_camera().get_forward());
 	Tile* curtile = Game_Model::get().get_World()->get_tile(player->get_camera().position);
@@ -41,35 +43,77 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 	else{
 		get_Fonts()["resource"].render_text(" out of bound! " ,Point2f(topLeft.x + unit_px * 5, topLeft.y + unit_px * 450),Color(0x99660099));
 	}
+	*/
 
-	render_image("Frame",topLeft,Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 500));
-	render_image("BoyBlueRegular",Point2f(topLeft.x + unit_px * 15, topLeft.y + unit_px * 10), Point2f(topLeft.x + unit_px * 105, topLeft.y + unit_px * 100));
-	render_image("IceBlock",Point2f(topLeft.x + unit_px * 15, topLeft.y + unit_px * 95), Point2f(topLeft.x + unit_px * 45, topLeft.y + unit_px * 125));
-	render_image("Heart",Point2f(topLeft.x + unit_px * 126, topLeft.y + unit_px * 25), Point2f(topLeft.x + unit_px * 171, topLeft.y + unit_px * 70));
-	render_image("Snowball",Point2f(topLeft.x + unit_px * 130, topLeft.y + unit_px * 85), Point2f(topLeft.x + unit_px * 170, topLeft.y + unit_px * 125));
+	
+	std::string gender = "Girl";
+	std::string team = "Blue";
+	std::string status = "Regular";
+	
+	if(player->get_gender() == "boy")
+		gender = "Boy";
+	if(player->get_gender() == "girl")
+		gender = "Girl";
 
-	get_Fonts()["resource"].render_text(itoa((int)player->get_Team_Blocks()), Point2f(topLeft.x + unit_px * 48, topLeft.y + unit_px * 95),Color(0x99220022));
+	if(player->get_team()->get_Team_Index() == 1)
+		team = "Green";
+	else if(player->get_team()->get_Team_Index() == 2)
+		team = "Red";
+	else if(player->get_team()->get_Team_Index() == 3)
+		team = "Blue";
+	else if(player->get_team()->get_Team_Index() == 4)
+		team = "Orange";
 
-	const Point2f p_ul(topLeft.x + unit_px * 175, topLeft.y + unit_px * 95);
-	const Point2f p_ll(topLeft.x + unit_px * 175, topLeft.y + unit_px * 125);
-	const Point2f p_lr(topLeft.x + unit_px * (175 + player->get_Snow() / (Max_Snow_Amount/150)), topLeft.y + unit_px * 125);
-	const Point2f p_ur(topLeft.x + unit_px * (175 + player->get_Snow() / (Max_Snow_Amount/150)), topLeft.y + unit_px * 95);
+	if(player->is_player_KO()){
+		status = "Fainted";
+	}
+	else if(player->get_hit_timer() >= 1.0f){
+		status = "Hit";
+	}
+	else if(player->is_packing()){
+		status = "Packing";
+	}
+	else if(player->get_throw_timer() >= 1.0f){
+		status = "Throwing";
+	}
+	else if(player->get_Health() <= 30.0f){
+		status = "Tired";
+	}
+
+
+	//if()
+
+	render_image("AvartarFrame",topLeft,Point2f(topLeft.x + unit_px * 200, topLeft.y + unit_px * 200));
+	render_image("BuildingFrame",Point2f(bottomRight.x - unit_px * 270, topLeft.y),Point2f(bottomRight.x, topLeft.y + unit_px * 270));
+	render_image("PriceBox",Point2f(bottomRight.x - unit_px * 90, topLeft.y + unit_px * 5),Point2f(bottomRight.x - unit_px * 5, topLeft.y + unit_px * 90));
+	render_image((Zeni::String)gender+(Zeni::String)team+(Zeni::String)status,Point2f(topLeft.x + unit_px * 10, topLeft.y + unit_px * 10), Point2f(topLeft.x + unit_px * 120, topLeft.y + unit_px * 120));
+	render_image("IceBlock",Point2f(topLeft.x + unit_px * 410, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 450, topLeft.y + unit_px * 45));
+	get_Fonts()["cat_24"].render_text(itoa((int)player->get_Team_Blocks()), Point2f(topLeft.x + unit_px * 452, topLeft.y + unit_px * 12),Color(0x99FF1111));
+	render_image("Heart",Point2f(topLeft.x + unit_px * 180, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 220, topLeft.y + unit_px * 45));
+	render_image("Snowball",Point2f(topLeft.x + unit_px * 515, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 555, topLeft.y + unit_px * 45));
+
+	
+
+	const Point2f p_ul(topLeft.x + unit_px * 560, topLeft.y + unit_px * 15);
+	const Point2f p_ll(topLeft.x + unit_px * 560, topLeft.y + unit_px * 35);
+	const Point2f p_lr(topLeft.x + unit_px * (560 + player->get_Snow() / (Max_Snow_Amount/150)), topLeft.y + unit_px * 35);
+	const Point2f p_ur(topLeft.x + unit_px * (560 + player->get_Snow() / (Max_Snow_Amount/150)), topLeft.y + unit_px * 15);
 
 	Colors &cr = get_Colors();
 
-	Vertex2f_Color snowbar_ul(p_ul,cr["blue"]);
-	Vertex2f_Color snowbar_ll(p_ll,cr["blue"]);
-	Vertex2f_Color snowbar_lr(p_lr,cr["white"]);
-	Vertex2f_Color snowbar_ur(p_ur,cr["white"]);
+	Vertex2f_Color snowbar_ul(p_ul,cr["white"]);
+	Vertex2f_Color snowbar_ll(p_ll,cr["white"]);
+	Vertex2f_Color snowbar_lr(p_lr,cr["lightblue"]);
+	Vertex2f_Color snowbar_ur(p_ur,cr["lightblue"]);
 
 	Quadrilateral<Vertex2f_Color> snowbar(snowbar_ul, snowbar_ll, snowbar_lr, snowbar_ur);
 
 	get_Video().render(snowbar);
 
-	const Point2f h_ul(topLeft.x + unit_px * 175, topLeft.y + unit_px * 40);
-	const Point2f h_ll(topLeft.x + unit_px * 175, topLeft.y + unit_px * 70);
-	const Point2f h_lr(topLeft.x + unit_px * (175 + player->get_Health() / (Max_Player_Health/150)), topLeft.y + unit_px * 70);
-	const Point2f h_ur(topLeft.x + unit_px * (175 + player->get_Health() / (Max_Player_Health/150)), topLeft.y + unit_px * 40);
+	const Point2f h_ul(topLeft.x + unit_px * 225, topLeft.y + unit_px * 15);
+	const Point2f h_ll(topLeft.x + unit_px * 225, topLeft.y + unit_px * 35);
+	const Point2f h_lr(topLeft.x + unit_px * (225 + player->get_Health() / (Max_Player_Health/150)), topLeft.y + unit_px * 35);
+	const Point2f h_ur(topLeft.x + unit_px * (225 + player->get_Health() / (Max_Player_Health/150)), topLeft.y + unit_px * 15);
 
 	Vertex2f_Color healthbar_ul(h_ul,cr["red"]);
 	Vertex2f_Color healthbar_ll(h_ll,cr["red"]);
@@ -119,7 +163,7 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 	float ratio = 4.85f;
 
 	Point2f tile_pos(Game_Model::get().get_World()->get_tile(0, 0)->get_top_center().x, Game_Model::get().get_World()->get_tile(0, 0)->get_top_center().y);
-	get_Fonts()["system_36_800x600"].render_text("<|Espionage Center|>" ,Point2f(topLeft.x + unit_px * 320, topLeft.y + unit_px * 30),Color(0x99FF0000));
+	get_Fonts()["system_36_800x600"].render_text("<|Espionage Center|>" ,Point2f(topLeft.x + unit_px * 320, topLeft.y + unit_px * 70),Color(0x99FF0000));
 	//render_image("Heart",Point2f(topLeft.x + tile_pos.x, topLeft.y + tile_pos.y),Point2f(topLeft.x + tile_pos.x + unit_px * 50, topLeft.y + tile_pos.y + unit_px * 50));
 
 	for(int row = 0; row < Game_Model::get().get_World()->get_height(); row++){
@@ -161,7 +205,7 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 			tile_pos.x /= ratio;
 			tile_pos.y /= ratio;
 
-			render_image(tile_name,Point2f(topLeft.x + tile_pos.x * unit_px + unit_px * 200, topLeft.y + tile_pos.y * unit_px + unit_px * 50),Point2f(topLeft.x + tile_pos.x * unit_px + unit_px * 257, topLeft.y + tile_pos.y * unit_px + unit_px * 107));
+			render_image(tile_name,Point2f(topLeft.x + tile_pos.x * unit_px + unit_px * 200, topLeft.y + tile_pos.y * unit_px + unit_px * 90),Point2f(topLeft.x + tile_pos.x * unit_px + unit_px * 257, topLeft.y + tile_pos.y * unit_px + unit_px * 147));
 		
 		}
 	}
@@ -174,44 +218,72 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRight){
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 
-	render_image("BuildManu2D",Point2f(topLeft.x + unit_px * 380, topLeft.y + unit_px * 200), Point2f(topLeft.x + unit_px * 580, topLeft.y + unit_px * 400));
+	//render_image("BuildManu2D",Point2f(topLeft.x + unit_px * 380, topLeft.y + unit_px * 200), Point2f(topLeft.x + unit_px * 580, topLeft.y + unit_px * 400));
 
 	float stick_theta = player->get_stick_choice();
 
 	//Joystick points Left
 	if(	stick_theta > Global::three_pi_over_two + Global::pi/4 ||
 			stick_theta < Global::pi/4){
-		render_image("Fortress2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 495));
-		render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 675, topLeft.y + unit_px * 350));
-		render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 105), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 205));
-		render_image("Snowman2D",Point2f(topLeft.x + unit_px * 225, topLeft.y + unit_px * 220), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 380));
+		//render_image("Fortress2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 495));
+		//render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 675, topLeft.y + unit_px * 350));
+		//render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 105), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 205));
+		//render_image("Snowman2D",Point2f(topLeft.x + unit_px * 225, topLeft.y + unit_px * 220), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 380));
+
+		render_image("HealingPool2D",Point2f(bottomRight.x - unit_px * 175, topLeft.y + unit_px * 10),Point2f(bottomRight.x - unit_px * 125, topLeft.y + unit_px * 60));
+		render_image("Fortress2D",Point2f(bottomRight.x - unit_px * 60, topLeft.y + unit_px * 125),Point2f(bottomRight.x - unit_px * 10, topLeft.y + unit_px * 175));
+		render_image("Snowman2D",Point2f(bottomRight.x - unit_px * 158, topLeft.y + unit_px * 32),Point2f(bottomRight.x - unit_px * 32, topLeft.y + unit_px * 158));
+
+		get_Fonts()["cat_24"].render_text("200", Point2f(bottomRight.x - unit_px * 50, topLeft.y + unit_px * 10),Color(0xCCFF2222));
+		//render_image("Snowman2D",Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 1), Point2f(topLeft.x + unit_px * 800, topLeft.y + unit_px * 301));
 	}
 
 	//Down
 	if(stick_theta < Global::pi - Global::pi/4 &&
 		stick_theta > Global::pi/4){
-		render_image("Snowman2D",Point2f(topLeft.x + unit_px * 285, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 350));
-		render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 675, topLeft.y + unit_px * 350));
-		render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 105), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 205));
-		render_image("Fortress2D",Point2f(topLeft.x + unit_px * 400, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 560, topLeft.y + unit_px * 555));
+		//render_image("Snowman2D",Point2f(topLeft.x + unit_px * 285, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 350));
+		//render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 675, topLeft.y + unit_px * 350));
+		//render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 105), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 205));
+		//render_image("Fortress2D",Point2f(topLeft.x + unit_px * 400, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 560, topLeft.y + unit_px * 555));
+
+		render_image("Snowman2D",Point2f(bottomRight.x - unit_px * 175, topLeft.y + unit_px * 10),Point2f(bottomRight.x - unit_px * 125, topLeft.y + unit_px * 60));
+		render_image("Factory2D",Point2f(bottomRight.x - unit_px * 60, topLeft.y + unit_px * 125),Point2f(bottomRight.x - unit_px * 10, topLeft.y + unit_px * 175));
+		render_image("Fortress2D",Point2f(bottomRight.x - unit_px * 158, topLeft.y + unit_px * 32),Point2f(bottomRight.x - unit_px * 32, topLeft.y + unit_px * 158));
+
+		get_Fonts()["cat_24"].render_text("200", Point2f(bottomRight.x - unit_px * 50, topLeft.y + unit_px * 10),Color(0xCCFF2222));
+		//render_image("Fortress2D",Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 1), Point2f(topLeft.x + unit_px * 800, topLeft.y + unit_px * 301));
 	}
 
 	//Right
 	if(stick_theta < Global::pi + Global::pi/4 &&
 		stick_theta > Global::pi_over_two + Global::pi/4){
-		render_image("Snowman2D",Point2f(topLeft.x + unit_px * 285, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 350));
-		render_image("Fortress2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 495));
-		render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 105), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 205));
-		render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 220), Point2f(topLeft.x + unit_px * 735, topLeft.y + unit_px * 380));
+		//render_image("Snowman2D",Point2f(topLeft.x + unit_px * 285, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 350));
+		//render_image("Fortress2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 495));
+		//render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 105), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 205));
+		//render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 220), Point2f(topLeft.x + unit_px * 735, topLeft.y + unit_px * 380));
+
+		render_image("Fortress2D",Point2f(bottomRight.x - unit_px * 175, topLeft.y + unit_px * 10),Point2f(bottomRight.x - unit_px * 125, topLeft.y + unit_px * 60));
+		render_image("HealingPool2D",Point2f(bottomRight.x - unit_px * 60, topLeft.y + unit_px * 125),Point2f(bottomRight.x - unit_px * 10, topLeft.y + unit_px * 175));
+		render_image("Factory2D",Point2f(bottomRight.x - unit_px * 158, topLeft.y + unit_px * 32),Point2f(bottomRight.x - unit_px * 32, topLeft.y + unit_px * 158));
+
+		get_Fonts()["cat_24"].render_text("200", Point2f(bottomRight.x - unit_px * 50, topLeft.y + unit_px * 10),Color(0xCCFF2222));
+		//render_image("Factory2D",Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 1), Point2f(topLeft.x + unit_px * 800, topLeft.y + unit_px * 301));
 	}
 
 	//Up
 	if(stick_theta < Global::three_pi_over_two + Global::pi/4 && 
 		stick_theta > Global::three_pi_over_two - Global::pi/4){
-		render_image("Snowman2D",Point2f(topLeft.x + unit_px * 285, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 350));
-		render_image("Fortress2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 495));
-		render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 675, topLeft.y + unit_px * 350));
-		render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 400, topLeft.y + unit_px * 45), Point2f(topLeft.x + unit_px * 560, topLeft.y + unit_px * 205));
+		//render_image("Snowman2D",Point2f(topLeft.x + unit_px * 285, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 350));
+		//render_image("Fortress2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 495));
+		//render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 675, topLeft.y + unit_px * 350));
+		//render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 400, topLeft.y + unit_px * 45), Point2f(topLeft.x + unit_px * 560, topLeft.y + unit_px * 205));
+
+		render_image("Factory2D",Point2f(bottomRight.x - unit_px * 175, topLeft.y + unit_px * 10),Point2f(bottomRight.x - unit_px * 125, topLeft.y + unit_px * 60));
+		render_image("Snowman2D",Point2f(bottomRight.x - unit_px * 60, topLeft.y + unit_px * 125),Point2f(bottomRight.x - unit_px * 10, topLeft.y + unit_px * 175));
+		render_image("HealingPool2D",Point2f(bottomRight.x - unit_px * 158, topLeft.y + unit_px * 32),Point2f(bottomRight.x - unit_px * 32, topLeft.y + unit_px * 158));
+
+		get_Fonts()["cat_24"].render_text("200", Point2f(bottomRight.x - unit_px * 50, topLeft.y + unit_px * 10),Color(0xCCFF2222));
+		//render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 1), Point2f(topLeft.x + unit_px * 800, topLeft.y + unit_px * 301));
 	}
 
 }

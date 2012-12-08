@@ -339,6 +339,11 @@ The following things are unsupported:
     <tile>0</tile>
   </BoyPurpleRegular>
 
+  <BoyOrangeRegular>
+    <filepath>textures/2DTextures/Avatars/BoyOrangeRegular.png</filepath>
+    <tile>0</tile>
+  </BoyOrangeRegular>
+
   <GirlBlueRegular>
     <filepath>textures/2DTextures/Avatars/GirlBlueRegular.png</filepath>
     <tile>0</tile>
@@ -358,6 +363,251 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Avatars/GirlPurpleRegular.png</filepath>
     <tile>0</tile>
   </GirlPurpleRegular>
+
+  <GirlOrangeRegular>
+    <filepath>textures/2DTextures/Avatars/GirlOrangeRegular.png</filepath>
+    <tile>0</tile>
+  </GirlOrangeRegular>
+
+  <BoyBluePacking>
+    <filepath>textures/2DTextures/Avatars/BoyBluePacking.png</filepath>
+    <tile>0</tile>
+  </BoyBluePacking>
+
+  <BoyGreenPacking>
+    <filepath>textures/2DTextures/Avatars/BoyGreenPacking.png</filepath>
+    <tile>0</tile>
+  </BoyGreenPacking>
+
+  <BoyRedPacking>
+    <filepath>textures/2DTextures/Avatars/BoyRedPacking.png</filepath>
+    <tile>0</tile>
+  </BoyRedPacking>
+
+  <BoyPurplePacking>
+    <filepath>textures/2DTextures/Avatars/BoyPurplePacking.png</filepath>
+    <tile>0</tile>
+  </BoyPurplePacking>
+
+  <BoyOrangePacking>
+    <filepath>textures/2DTextures/Avatars/BoyOrangePacking.png</filepath>
+    <tile>0</tile>
+  </BoyOrangePacking>
+
+  <GirlBluePacking>
+    <filepath>textures/2DTextures/Avatars/GirlBluePacking.png</filepath>
+    <tile>0</tile>
+  </GirlBluePacking>
+
+  <GirlGreenPacking>
+    <filepath>textures/2DTextures/Avatars/GirlGreenPacking.png</filepath>
+    <tile>0</tile>
+  </GirlGreenPacking>
+
+  <GirlRedPacking>
+    <filepath>textures/2DTextures/Avatars/GirlRedPacking.png</filepath>
+    <tile>0</tile>
+  </GirlRedPacking>
+
+  <GirlPurplePacking>
+    <filepath>textures/2DTextures/Avatars/GirlPurplePacking.png</filepath>
+    <tile>0</tile>
+  </GirlPurplePacking>
+
+  <GirlOrangePacking>
+    <filepath>textures/2DTextures/Avatars/GirlOrangePacking.png</filepath>
+    <tile>0</tile>
+  </GirlOrangePacking>
+
+  <BoyBlueHit>
+    <filepath>textures/2DTextures/Avatars/BoyBlueHit.png</filepath>
+    <tile>0</tile>
+  </BoyBlueHit>
+
+  <BoyGreenHit>
+    <filepath>textures/2DTextures/Avatars/BoyGreenHit.png</filepath>
+    <tile>0</tile>
+  </BoyGreenHit>
+
+  <BoyRedHit>
+    <filepath>textures/2DTextures/Avatars/BoyRedHit.png</filepath>
+    <tile>0</tile>
+  </BoyRedHit>
+
+  <BoyOrangeHit>
+    <filepath>textures/2DTextures/Avatars/BoyOrangeHit.png</filepath>
+    <tile>0</tile>
+  </BoyOrangeHit>
+
+  <GirlBlueHit>
+    <filepath>textures/2DTextures/Avatars/GirlBlueHit.png</filepath>
+    <tile>0</tile>
+  </GirlBlueHit>
+
+  <GirlGreenHit>
+    <filepath>textures/2DTextures/Avatars/GirlGreenHit.png</filepath>
+    <tile>0</tile>
+  </GirlGreenHit>
+
+  <GirlRedHit>
+    <filepath>textures/2DTextures/Avatars/GirlRedHit.png</filepath>
+    <tile>0</tile>
+  </GirlRedHit>
+
+  <GirlOrangeHit>
+    <filepath>textures/2DTextures/Avatars/GirlOrangeHit.png</filepath>
+    <tile>0</tile>
+  </GirlOrangeHit>
+
+  <BoyBlueFainted>
+    <filepath>textures/2DTextures/Avatars/BoyBlueFainted.png</filepath>
+    <tile>0</tile>
+  </BoyBlueFainted>
+
+  <BoyGreenFainted>
+    <filepath>textures/2DTextures/Avatars/BoyGreenFainted.png</filepath>
+    <tile>0</tile>
+  </BoyGreenFainted>
+
+  <BoyRedFainted>
+    <filepath>textures/2DTextures/Avatars/BoyRedFainted.png</filepath>
+    <tile>0</tile>
+  </BoyRedFainted>
+
+  <BoyPurpleFainted>
+    <filepath>textures/2DTextures/Avatars/BoyPurpleFainted.png</filepath>
+    <tile>0</tile>
+  </BoyPurpleFainted>
+
+  <BoyOrangeFainted>
+    <filepath>textures/2DTextures/Avatars/BoyOrangeFainted.png</filepath>
+    <tile>0</tile>
+  </BoyOrangeFainted>
+
+  <GirlBlueFainted>
+    <filepath>textures/2DTextures/Avatars/GirlBlueFainted.png</filepath>
+    <tile>0</tile>
+  </GirlBlueFainted>
+
+  <GirlGreenFainted>
+    <filepath>textures/2DTextures/Avatars/GirlGreenFainted.png</filepath>
+    <tile>0</tile>
+  </GirlGreenFainted>
+
+  <GirlRedFainted>
+    <filepath>textures/2DTextures/Avatars/GirlRedFainted.png</filepath>
+    <tile>0</tile>
+  </GirlRedFainted>
+
+  <GirlPurpleFainted>
+    <filepath>textures/2DTextures/Avatars/GirlPurpleFainted.png</filepath>
+    <tile>0</tile>
+  </GirlPurpleFainted>
+
+  <GirlOrangeFainted>
+    <filepath>textures/2DTextures/Avatars/GirlOrangeFainted.png</filepath>
+    <tile>0</tile>
+  </GirlOrangeFainted>
+
+  <BoyBlueThrowing>
+    <filepath>textures/2DTextures/Avatars/BoyBlueThrowing.png</filepath>
+    <tile>0</tile>
+  </BoyBlueThrowing>
+
+  <BoyGreenThrowing>
+    <filepath>textures/2DTextures/Avatars/BoyGreenThrowing.png</filepath>
+    <tile>0</tile>
+  </BoyGreenThrowing>
+
+  <BoyRedThrowing>
+    <filepath>textures/2DTextures/Avatars/BoyRedThrowing.png</filepath>
+    <tile>0</tile>
+  </BoyRedThrowing>
+
+  <BoyPurpleThrowing>
+    <filepath>textures/2DTextures/Avatars/BoyPurpleThrowing.png</filepath>
+    <tile>0</tile>
+  </BoyPurpleThrowing>
+
+  <BoyOrangeThrowing>
+    <filepath>textures/2DTextures/Avatars/BoyOrangeThrowing.png</filepath>
+    <tile>0</tile>
+  </BoyOrangeThrowing>
+
+  <GirlBlueThrowing>
+    <filepath>textures/2DTextures/Avatars/GirlBlueThrowing.png</filepath>
+    <tile>0</tile>
+  </GirlBlueThrowing>
+
+  <GirlGreenThrowing>
+    <filepath>textures/2DTextures/Avatars/GirlGreenThrowing.png</filepath>
+    <tile>0</tile>
+  </GirlGreenThrowing>
+
+  <GirlRedThrowing>
+    <filepath>textures/2DTextures/Avatars/GirlRedThrowing.png</filepath>
+    <tile>0</tile>
+  </GirlRedThrowing>
+
+  <GirlPurpleThrowing>
+    <filepath>textures/2DTextures/Avatars/GirlPurpleThrowing.png</filepath>
+    <tile>0</tile>
+  </GirlPurpleThrowing>
+
+  <GirlOrangeThrowing>
+    <filepath>textures/2DTextures/Avatars/GirlOrangeThrowing.png</filepath>
+    <tile>0</tile>
+  </GirlOrangeThrowing>
+
+  <BoyBlueTired>
+    <filepath>textures/2DTextures/Avatars/BoyBlueTired.png</filepath>
+    <tile>0</tile>
+  </BoyBlueTired>
+
+  <BoyGreenTired>
+    <filepath>textures/2DTextures/Avatars/BoyGreenTired.png</filepath>
+    <tile>0</tile>
+  </BoyGreenTired>
+
+  <BoyRedTired>
+    <filepath>textures/2DTextures/Avatars/BoyRedTired.png</filepath>
+    <tile>0</tile>
+  </BoyRedTired>
+
+  <BoyPurpleTired>
+    <filepath>textures/2DTextures/Avatars/BoyPurpleTired.png</filepath>
+    <tile>0</tile>
+  </BoyPurpleTired>
+
+  <BoyOrangeTired>
+    <filepath>textures/2DTextures/Avatars/BoyOrangeTired.png</filepath>
+    <tile>0</tile>
+  </BoyOrangeTired>
+
+  <GirlBlueTired>
+    <filepath>textures/2DTextures/Avatars/GirlBlueTired.png</filepath>
+    <tile>0</tile>
+  </GirlBlueTired>
+
+  <GirlGreenTired>
+    <filepath>textures/2DTextures/Avatars/GirlGreenTired.png</filepath>
+    <tile>0</tile>
+  </GirlGreenTired>
+
+  <GirlRedTired>
+    <filepath>textures/2DTextures/Avatars/GirlRedTired.png</filepath>
+    <tile>0</tile>
+  </GirlRedTired>
+
+  <GirlPurpleTired>
+    <filepath>textures/2DTextures/Avatars/GirlPurpleTired.png</filepath>
+    <tile>0</tile>
+  </GirlPurpleTired>
+
+  <GirlOrangeTired>
+    <filepath>textures/2DTextures/Avatars/GirlOrangeTired.png</filepath>
+    <tile>0</tile>
+  </GirlOrangeTired>
 
   <GTHWFACE.PNG>
     <filepath>textures/3DTextures/Player/GTHWFACE.png</filepath>
@@ -502,8 +752,30 @@ The following things are unsupported:
     <tile>0</tile>
   </Alert>
 
+  <Controls>
+    <filepath>textures/2DTextures/InstructionState/WWControls.png</filepath>
+    <tile>0</tile>
+  </Controls>
 
+  <Instructions>
+    <filepath>textures/2DTextures/InstructionState/WWInstructions.png</filepath>
+    <tile>0</tile>
+  </Instructions>
 
+  <AvartarFrame>
+    <filepath>textures/2DTextures/HUDSprites/AvartarFrame.png</filepath>
+    <tile>0</tile>
+  </AvartarFrame>
+
+  <BuildingFrame>
+    <filepath>textures/2DTextures/HUDSprites/BuildingFrame.png</filepath>
+    <tile>0</tile>
+  </BuildingFrame>
+
+  <PriceBox>
+    <filepath>textures/2DTextures/HUDSprites/PriceBox.png</filepath>
+    <tile>0</tile>
+  </PriceBox>
   <!--
   <one>
     <is_sprite>0</is_sprite>

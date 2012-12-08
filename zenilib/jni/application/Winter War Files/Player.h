@@ -36,6 +36,7 @@ public:
 
 	void set_Team(Team *myTeam_)	{myTeam = myTeam_;}
 	void set_Gender(const std::string &gender_) {gender = gender_;}
+	std::string get_Gender() const {return gender;}
 
 // camera functions
 	void turn_left(float theta);
@@ -70,7 +71,7 @@ public:
 	void update(const float &time);
 	void player_death();
 	void respawn();
-	bool is_player_KO() {return dead_mode;}
+	bool is_player_KO() const {return dead_mode;}
 	void healing_waters(float health_up);
 
 
@@ -97,6 +98,11 @@ public:
 	Team * get_team() const {return myTeam;}
 
 	Structure_Type	select_type(const Zeni::Vector2f &stick);
+
+// HUD stuff
+	float get_hit_timer() const {return hit_timer;}
+	float get_throw_timer() const {return throw_timer;}
+	bool is_packing() const { return current_radius > 0.0f? true : false ;}
 
 
 
@@ -131,6 +137,9 @@ private:
 	bool mini_open;
 	bool build_open;
 	bool dead_mode;
+
+	float hit_timer;
+	float throw_timer;
 
 	virtual void off_map();
 	virtual void hit_tile();

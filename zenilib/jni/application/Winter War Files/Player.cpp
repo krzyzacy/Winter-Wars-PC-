@@ -35,7 +35,7 @@ const float  Stick_Accel = 1200;
 Player::Player(const Zeni::Point3f &center_) 
 	: Moveable(center_ , Vector3f(30.0f,30.0f,30.0f)), m_camera(center_, Quaternion(), 5.0f, 2000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
-	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false), Selection(NOTHING),
+	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false),hit_timer(0.0f),throw_timer(0.0f),Selection(NOTHING),
 	stick_theta(0.0f), animation_state(new Standing()), dead_mode(false)
 {
 	//field of view in y
@@ -76,6 +76,18 @@ void Player::update(const float &time)	{
 
 	Moveable::update(time);
 	m_camera.position = center;
+
+	if(hit_timer >= 1.0f){
+		hit_timer += time;
+		if(hit_timer > 2.0f)
+			hit_timer = 0.0f;
+	}
+
+	if(throw_timer >= 1.0f){
+		throw_timer += time;
+		if(throw_timer > 2.0f)
+			throw_timer = 0.0f;
+	}
 	
 
 }
@@ -126,8 +138,10 @@ void Player::get_damaged(float damage)
 		switch_state(DIE);
 		player_death();
 	}
-	else
+	else{
+		hit_timer = 1.0f;
 		switch_state(FLINCH);
+	}
 	//Add respawn stuff / checks here / and the suprise
 	ShakeTime.start();
 }
@@ -142,6 +156,8 @@ void Player::throw_ball()		{
 		current_radius = 0;
 		Game_Model::get().add_moveable(sb);
 		switch_state(THROW);
+
+		throw_timer = 1.0f;
 	}
 	//if radius is 0, means out of snow, and therefore don't throw
 }
