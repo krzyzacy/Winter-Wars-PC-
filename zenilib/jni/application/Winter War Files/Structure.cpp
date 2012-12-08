@@ -46,11 +46,26 @@ void Structure::update(const float &time)
 		hex->destroy_structure();
 		owner->remove_tile(hex);
 	}
+
+	if(Isolation_Clock.seconds() > 20)	{
+		Status == DESTROYED;
+	}
+
+}
+
+void Structure::begin_isolation()	{
+	Connected_to_Team = false;
+	Isolation_Clock.start();
+}
+
+void Structure::reintegrate()	{
+	Connected_to_Team = true;
+	Isolation_Clock.stop();
+	Isolation_Clock.reset();
 }
 
 void Structure::perform_destruction_effects()	{
 	
-
 }
 
 void Structure::handle_player_collision(Player *P)	{

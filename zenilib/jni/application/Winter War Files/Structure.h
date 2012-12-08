@@ -46,6 +46,9 @@ public:
 
 	void perform_destruction_effects();
 
+	void begin_isolation();
+	void reintegrate();
+
 	virtual void handle_player_in_range(Team* color, Zeni::Collision::Capsule &person)	{}
 	
 	int get_ID() const 
@@ -69,6 +72,8 @@ protected:
 	Team *owner;
 
 	Tile *hex;
+
+	Zeni::Chronometer<Zeni::Time> Isolation_Clock;
 	
 	void create_body();
 	Zeni::Collision::Capsule body;

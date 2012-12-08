@@ -12,7 +12,8 @@ using namespace Zeni;
 
 
 Team::Team(Tile* BaseTile)	:
-	Base(BaseTile), Ice_Blocks(1000), intake_rate(1), Team_Color(NEUTRAL)
+	Base(BaseTile), Ice_Blocks(1000), intake_rate(1), Team_Color(NEUTRAL), 
+	network_unstable(false)
 {
 	ResourceTime.start();
 }
@@ -50,6 +51,13 @@ void Team::update()	{
 	//First do stuff based on the network from the last step
 	if(Base->get_covering() != SOFT_SNOW)
 		Base->set_covering(SOFT_SNOW);
+
+	if(network_unstable)	{
+		//check_connectivity();
+		//Deactivate_disconnected();
+		//network_unstable = false;
+	}
+
 
 	if(ResourceTime.seconds() > 1)	{
 		Ice_Blocks += intake_rate;
@@ -103,8 +111,7 @@ void Team::remove_tile(Tile *t)	{
 	}
 
 	Network.erase(t);
-	//Adjacent_Tiles.erase(t);
-	Disconnected_Tiles.erase(t);
+	network_unstable = true;
 }
 
 bool Team::tile_is_ready(Tile * cand, int type)	{
@@ -150,9 +157,101 @@ bool Team::is_in_network(Tile *t)	{
 }
 
 void Team::check_connectivity()	{
+	set<Tile*> connected;
+	connected.insert(Base);
+	set<Tile*> maybe_connected;
+	bool next_slice = false;
+	bool add_col = false;
+	int last_col = Base->get_col();
+	World* W = Game_Model::get().get_World();
+	Tile* Act = 0;
+
+	for(int row = Base->get_row() + 1; row < W->get_height() - 1;)	{
+		for(int col = Base->get_col(); col < W->get_width() - 1;)		{
+			Act = W->get_tile(row, col);
+			if(Act->has_building() && Act->get_team() == Team_Color)	{
+				list<Tile*> family = W->Get_Family(Act);
+				for(list<Tile*>::iterator it = family.begin(); it != family.end(); it++)	{
+					if(connected.count(*it))	
+						connected.insert(Act);
+				}
+				//if not connected but has building add to maybe connected
+				if(connected.count(Act) == 0) 
+					maybe_connected.insert(Act);
+
+			}
+			
+			
+			//Moving in a diagonal pattern by dependednt on base
+			if(Base->get_row() == 1 && Base->get_col() == 1)	{
+				if(next_slice)	{
+					row = Base->get_row();
+					col = ++last_col;
+				}
+				else	{
+					row++;
+					if(add_col)	{
+						col++;
+						add_col = false;
+					}
+					else
+						add_col = true;
+				}
+			}
+			else	{//Other bases don't work for now
+				row = W->get_height();
+				col = W->get_width();
+				return;	//because I haven't written movement for other teams
+			}
+		}
+	}
+
+
+	bool graph_changed = true;
+		//Preliminary idea of cycling through list only if it changes, and adding if any family is connected
+	while(graph_changed)	{
+		graph_changed = false;
+		list<Tile*> changes;
+		for(set<Tile*>::iterator it = maybe_connected.begin(); it != maybe_connected.end(); ++it)	{
+			list<Tile*> fam = W->Get_Family(*it);
+			for(list<Tile*>::iterator fit = fam.begin(); fit != fam.end(); ++fit)	{
+				if(connected.count(*fit))	{
+					changes.push_back(*it);
+					Network.insert(*it);
+					graph_changed = true;
+				}
+			}
+		}
+
+		for(list<Tile*>::iterator cit = changes.begin(); cit != changes.end(); ++cit)	
+			maybe_connected.erase(*cit);
+
+	}
+	//Resolution
+
+	Network.clear();
+	Adjacent_Tiles.clear();
+	Disconnected_Tiles.clear();
+	Network = connected;
+	//Disconnected_Tiles = maybe_connected;
+	for(set<Tile*>::iterator it = Network.begin(); it != Network.end(); ++it)	{
+		list<Tile*> family = W->Get_Family(*it);
+		Adjacent_Tiles.insert(*it);
+		for(list<Tile*>::iterator fit = family.begin(); fit != family.end(); ++it)	
+			Adjacent_Tiles.insert(*fit);
+	}
 
 }
 
+void Team::Deactivate_disconnected()	{
+	for(set<Tile*>::iterator it = Disconnected_Tiles.begin(); it != Disconnected_Tiles.end(); ++it)	
+		(*it)->get_building()->begin_isolation();
+}
+
+void Team::reintegrate_connected()	{
+	for(set<Tile*>::iterator it = Network.begin(); it != Network.end(); ++it)	
+		(*it)->get_building()->reintegrate();
+}
 
 void Team::Start_Victory_Countdown()	{
 	WinTimer.start();
@@ -172,7 +271,7 @@ bool Team::win()
 
 float Team::time_till_win()
 {
-	return 10 - WinTimer.seconds();
+	return 20 - WinTimer.seconds();
 }
 
 

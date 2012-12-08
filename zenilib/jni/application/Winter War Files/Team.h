@@ -30,6 +30,8 @@ public:
 	//Network related
 	void update();
 	void check_connectivity();	//Deactivates tiles if they aren't connected
+	void Deactivate_disconnected();
+	void reintegrate_connected();
 	void add_tile(Tile *);
 	void remove_tile(Tile *);
 
@@ -51,6 +53,7 @@ public:
 private:
 	//list of players
 	std::vector<Player*>	members;
+	bool network_unstable;
 
 	//Resource value
 	int Ice_Blocks;
@@ -61,15 +64,12 @@ private:
 
 	TEAM_INDEX	Team_Color;
 
-	
+	//Holds tile information pertininet to team
 	std::set<Tile*>	Network;
 	std::set<Tile*> Adjacent_Tiles;
-		//Holds tile information pertininet to team
 	std::set<Tile*> Disconnected_Tiles;
 
 	Tile* Base;
-
-	
 
 
 };

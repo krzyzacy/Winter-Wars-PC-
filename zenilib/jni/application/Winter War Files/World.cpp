@@ -291,7 +291,7 @@ std::list<Tile*> World::Get_Family(Tile *Central){
 	return ret;
 }
 
-//&&& Sen if you could make this give the corners, in some sort of order that'd be cool
+
 Tile * World::get_next_Base_Tile()	{
 	cur_team_count++;
 	switch(cur_team_count)	{
@@ -442,4 +442,11 @@ float World::get_ground_height(Zeni::Point3f location)
 {
 	return get_tile(location)->get_height();
 
+}
+
+bool World::is_boundary_tile(Tile* t)	{
+	if(t->get_col() == 0 || t->get_col() == map_width - 1	
+		|| t->get_row() == 0 || t->get_row() == map_height - 1)
+		return true;
+	return false;
 }

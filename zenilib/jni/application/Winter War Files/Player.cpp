@@ -40,7 +40,7 @@ Player::Player(const Zeni::Point3f &center_)
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
-	rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0,0);
+	rotation = m_camera.orientation + Quaternion(Global::pi_over_two + Global::pi_over_two/2, 0,0);
 	//rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0, 0);
 	//rotation += Quaternion(Global::pi_over_two, 0,0);
 }

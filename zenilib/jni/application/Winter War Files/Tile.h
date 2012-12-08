@@ -49,6 +49,8 @@ public:
 	void build_structure(Structure* buildtype, Team* new_color);
 	void destroy_structure();
 
+	Structure* get_building()	{return Building;}
+
 	virtual const model_key_t get_model_name() const;
 
 	//Height related stuff

@@ -49,7 +49,7 @@ void Snowball::off_map()
 
 void Snowball::hit_tile()
 {
-//	alive = false;
+	deal_damage();
 }
 
 void Snowball::on_ground()

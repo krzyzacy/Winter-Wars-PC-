@@ -30,6 +30,7 @@ public:
 
 	//change input type if you want, or make multiple types
 	bool is_adjacent(Tile* A, Tile* B);
+	bool is_boundary_tile(Tile *t);
 
 	void raise_tile(Zeni::Point3f location);
 	void lower_tile(Zeni::Point3f location);
