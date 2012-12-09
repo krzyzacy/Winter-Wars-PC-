@@ -1,4 +1,4 @@
-﻿Build started 2012/12/05 20:54:57.
+﻿Build started 12/9/2012 3:48:37 PM.
      1>Project "H:\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "obj\x32\Release\game.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -21,122 +21,18 @@
          ..\..\jni\external\bin\x32\vccorlib110.dll
          6 File(s) copied
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Collision_Table.cpp" "..\..\jni\application\Winter War Files\Controls.cpp" "..\..\jni\application\Winter War Files\Fortress.cpp" "..\..\jni\application\Winter War Files\Game_Model.cpp" "..\..\jni\application\Winter War Files\Healing_Pool.cpp" "..\..\jni\application\Winter War Files\Moveable.cpp" "..\..\jni\application\Winter War Files\Object_factory.cpp" "..\..\jni\application\Winter War Files\Play_State_Base.cpp" "..\..\jni\application\Winter War Files\Player.cpp" "..\..\jni\application\Winter War Files\Player_View.cpp" "..\..\jni\application\Winter War Files\Seen_Object.cpp" "..\..\jni\application\Winter War Files\Snow_Factory.cpp" "..\..\jni\application\Winter War Files\Snowball.cpp" "..\..\jni\application\Winter War Files\Snowman.cpp" "..\..\jni\application\Winter War Files\Structure.cpp" "..\..\jni\application\Winter War Files\Team.cpp" "..\..\jni\application\Winter War Files\Tile.cpp" "..\..\jni\application\Winter War Files\Tree.cpp" "..\..\jni\application\Winter War Files\View.cpp" "..\..\jni\application\Winter War Files\World.cpp" "..\..\jni\application\Winter War Files\bootstrap.cpp"
-         Collision_Table.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\Collision_Table.cpp(65): warning C4100: 'b2' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\Collision_Table.cpp(65): warning C4100: 'b1' : unreferenced formal parameter
-         Controls.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\Controls.cpp(132): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(137): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(142): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(147): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Controls.cpp(252): warning C4100: 'time' : unreferenced formal parameter
-         Fortress.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-         Game_Model.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-         Healing_Pool.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\Healing_Pool.cpp(53): warning C4552: '-' : operator has no effect; expected operator with side-effect
-         Moveable.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-         Object_factory.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-         Play_State_Base.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(33): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(33): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(33): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(107): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(107): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(107): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(103): warning C4189: 'height' : local variable is initialized but not referenced
-     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(102): warning C4189: 'width' : local variable is initialized but not referenced
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Player.cpp"
          Player.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\Player.cpp(410): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Player.cpp(411): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Player.cpp(411): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-         Player_View.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-         Seen_Object.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-         Snow_Factory.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-         Snowball.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\Snowball.cpp(18): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Snowball.cpp(37): warning C4305: 'argument' : truncation from 'double' to 'const float'
-         Snowman.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\Snowman.cpp(68): warning C4100: 't' : unreferenced formal parameter
-         Structure.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\Structure.cpp(40): warning C4100: 'time' : unreferenced formal parameter
-         Team.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\Team.cpp(28): warning C4018: '>=' : signed/unsigned mismatch
-     1>..\..\jni\application\Winter War Files\Team.cpp(40): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Team.cpp(41): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\Team.cpp(145): warning C4800: 'unsigned int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>..\..\jni\application\Winter War Files\Team.cpp(149): warning C4800: 'unsigned int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>..\..\jni\application\Winter War Files\Team.cpp(180): warning C4800: 'unsigned int' : forcing value to bool 'true' or 'false' (performance warning)
-         Tile.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-         Tree.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\Tree.cpp(16): warning C4100: 'time' : unreferenced formal parameter
-         View.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\View.cpp(165): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\View.cpp(165): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\View.cpp(165): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\View.cpp(165): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\View.cpp(165): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\View.cpp(165): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\View.cpp(173): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-     1>..\..\jni\application\Winter War Files\View.cpp(173): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-         World.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\World.cpp(41): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\World.cpp(44): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\World.cpp(47): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\World.cpp(50): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>..\..\jni\application\Winter War Files\World.cpp(117): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>..\..\jni\application\Winter War Files\World.cpp(118): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>..\..\jni\application\Winter War Files\World.cpp(413): warning C4305: 'return' : truncation from 'double' to 'float'
-     1>..\..\jni\application\Winter War Files\World.cpp(415): warning C4305: 'return' : truncation from 'double' to 'float'
-     1>..\..\jni\application\Winter War Files\World.cpp(417): warning C4305: 'return' : truncation from 'double' to 'float'
-         Generating Code...
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\player.cpp(377): warning C4715: 'Player::select_type' : not all control paths return a value
-         Compiling...
-         bootstrap.cpp
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(45): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\bootstrap.cpp(44): warning C4100: 'y' : unreferenced formal parameter
-         Generating Code...
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(52): warning C4100: 'person' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(52): warning C4100: 'color' : unreferenced formal parameter
+     1>..\..\jni\application\Winter War Files\Player.cpp(144): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\jni\application\Winter War Files\Player.cpp(204): warning C4244: '+=' : conversion from 'const float' to 'int', possible loss of data
+     1>..\..\jni\application\Winter War Files\Player.cpp(462): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Player.cpp(463): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Player.cpp(463): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\player.cpp(429): warning C4715: 'Player::select_type' : not all control paths return a value
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\x32\game.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\bin\x32 local_SDLmain.lib zeni_rest.lib zeni_graphics.lib zeni_net.lib zeni_core.lib zeni_audio.lib zeni.lib local_SDL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"obj\x32\Release\game.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"H:\EECS494FinalProject\zenilib\bin\x32\game.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\x32\game.lib" /MACHINE:X86 obj\x32\Release\bootstrap.obj
          obj\x32\Release\Collidable.obj
@@ -176,4 +72,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:02:50.54
+Time Elapsed 00:00:12.96

@@ -20,9 +20,10 @@ const float up_look_speed = 20;
 
 const float Max_Snow_Amount = 100;
 const float Max_Player_Health = 100;
-const float packing_rate = 25;
-const float snow_depletion_rate = 20;
-const float snow_absorbtion_rate = 75;
+const float max_snowball_size = 25;		
+const float packing_rate = 25;			// Packing to snowball
+const float snow_depletion_rate = 25;	// Packing from pack
+const float snow_absorbtion_rate = 75;  // Scooping
 
 const int Max_Stick_Input	= 32768;
 const float Building_Recharge_Time = 1;
@@ -179,24 +180,32 @@ void Player::throw_ball() {
 
 }
 
+// PACK!!!
 void Player::charge_ball()	{
 	if(is_player_KO())
 		return;
 	//This represents when the player is "packing" snow into a ball
 	const float time = Game_Model::get().get_time_step();
-		if(Snow_in_Pack <= 0) 
-		{
-			add_message("Out of Ammo! Find SOFT SNOW and refill.");
-			Snow_in_Pack = 0;
-		}
-		else
-		{
-			current_radius += packing_rate * time;
-			stats.snow_used += packing_rate * time;
+
+	// not enough snow
+	if(Snow_in_Pack <= 0) 	{
+		add_message("Out of Ammo! Find SOFT SNOW and refill.");
+		Snow_in_Pack = 0;
+	}
+	
+	//Too big
+	else if (current_radius >= max_snowball_size)	{
+		current_radius = max_snowball_size;
+	}
+	
+	// lets grow it
+	else	{
+		current_radius += packing_rate * time;
+		stats.snow_used += packing_rate * time;
 			
-			Snow_in_Pack -= snow_depletion_rate * time;
-			switch_state(PACK);
-		}
+		Snow_in_Pack -= snow_depletion_rate * time;
+		switch_state(PACK);
+	}
 }
 
 // SCOOP!!!!

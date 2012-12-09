@@ -12,8 +12,12 @@ zenilib App Info    : Loading asset from file 'textures/3Dtextures/Player/BLCLOT
 zenilib App Info    : Loading asset from file 'textures/3Dtextures/Fort/FORTICE.png'.
 zenilib App Info    : Loading asset from file 'textures/3Dtextures/Fort/FWINDOW.png'.
 zenilib App Info    : Loading asset from file 'textures/3Dtextures/Snowman/SNOW3.png'.
+zenilib App Info    : Loading asset from file 'textures/3Dtextures/Snowman/SNOW2.png'.
+zenilib App Info    : Loading asset from file 'textures/3Dtextures/Snowman/SNOW1.png'.
 zenilib App Info    : Loading asset from file 'textures/3Dtextures/Snowman/SNOWMARM.png'.
 zenilib App Info    : Loading asset from file 'textures/3Dtextures/Factory/Metal.png'.
+zenilib App Info    : Loading asset from file 'textures/3Dtextures/Factory/DMETAL.png'.
+zenilib App Info    : Loading asset from file 'textures/3Dtextures/Factory/DARKMETA.png'.
 zenilib App Info    : Loading asset from file 'textures/3DTextures/HealingPool/BLROOF.png'.
 zenilib App Info    : Loading asset from file 'textures/3DTextures/HealingPool/GROOF.png'.
 zenilib App Info    : Loading asset from file 'textures/3DTextures/HealingPool/OROOF.png'.
@@ -56,10 +60,60 @@ zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyBl
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyGreenRegular.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyRedRegular.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyPurpleRegular.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyOrangeRegular.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlBlueRegular.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlGreenRegular.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlRedRegular.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlPurpleRegular.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlOrangeRegular.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyBluePacking.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyGreenPacking.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyRedPacking.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyPurplePacking.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyOrangePacking.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlBluePacking.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlGreenPacking.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlRedPacking.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlPurplePacking.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlOrangePacking.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyBlueHit.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyGreenHit.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyRedHit.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyOrangeHit.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlBlueHit.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlGreenHit.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlRedHit.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlOrangeHit.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyBlueFainted.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyGreenFainted.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyRedFainted.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyPurpleFainted.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyOrangeFainted.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlBlueFainted.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlGreenFainted.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlRedFainted.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlPurpleFainted.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlOrangeFainted.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyBlueThrowing.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyGreenThrowing.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyRedThrowing.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyPurpleThrowing.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyOrangeThrowing.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlBlueThrowing.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlGreenThrowing.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlRedThrowing.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlPurpleThrowing.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlOrangeThrowing.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyBlueTired.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyGreenTired.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyRedTired.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyPurpleTired.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyOrangeTired.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlBlueTired.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlGreenTired.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlRedTired.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlPurpleTired.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/GirlOrangeTired.png'.
 zenilib App Info    : Loading asset from file 'textures/3DTextures/Player/GTHWFACE.png'.
 zenilib App Info    : Loading asset from file 'textures/3DTextures/Player/FNTFACE.png'.
 zenilib App Info    : Loading asset from file 'textures/3DTextures/ChristmasTree/BARK.png'.
@@ -82,15 +136,22 @@ zenilib App Info    : Loading asset from file 'textures/2DTextures/BuildSprites/
 zenilib App Info    : Loading asset from file 'textures/2DTextures/BuildSprites/HealingpoolBuild.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/BuildSprites/SnowmanBuild.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/titlescreen.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/ts800.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/ts1920.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/teamselect.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/wanted.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/ready.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/loading.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/deathscreen.png'.
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Titlescreen/alert.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/InstructionState/WWControls.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/InstructionState/WWInstructions.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/HUDSprites/AvartarFrame.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/HUDSprites/BuildingFrame.png'.
+zenilib App Info    : Loading asset from file 'textures/2DTextures/HUDSprites/PriceBox.png'.
 zenilib App Debug   : Loaded config/textures.xml
 zenilib App Debug   : Loading config/fonts.xml
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 2.000000
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.913333
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -98,7 +159,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 2.000000
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.913333
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -106,7 +167,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 2.000000
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 1.913333
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -114,7 +175,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 26.000000, ratio 2.000000
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 26.000000, ratio 1.913333
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -122,7 +183,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 92.000000, ratio 2.000000
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 92.000000, ratio 1.913333
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -130,7 +191,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 46.000000, ratio 2.000000
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 46.000000, ratio 1.913333
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -138,7 +199,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 23.000000, ratio 2.000000
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 23.000000, ratio 1.913333
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -146,7 +207,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 56.000000, ratio 2.000000
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 56.000000, ratio 1.913333
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -154,7 +215,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 100.000000, ratio 2.000000
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 100.000000, ratio 1.913333
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -162,7 +223,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 2.000000
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 110.000000, ratio 1.913333
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -170,7 +231,39 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 20.000000, ratio 2.000000
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 1.913333
+zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 24.000000, ratio 1.913333
+zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 28.000000, ratio 1.913333
+zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 22.000000, ratio 1.913333
+zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
+zenilib App Debug   : FT_Init_FreeType(...) success.
+zenilib App Debug   : FT_Open_Face(...) success.
+zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
+zenilib App Debug   : Generating Texture from glyphs.
+zenilib App Debug   : Calling FT_Done_Face(...).
+zenilib App Debug   : Calling FT_Done_FreeType(...).
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 20.000000, ratio 1.913333
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -183,8 +276,7 @@ zenilib App Debug   : Loading config/sounds.xml
 zenilib App Debug   : Loaded config/sounds.xml
 zenilib App Debug   : Loading config/colors.xml
 zenilib App Debug   : Loaded config/colors.xml
-Printing all possible error strings:
-SDL       : no error
-SDL_net   : no error
-OpenGL    : no error
-OpenAL    : AL_NO_ERROR
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
