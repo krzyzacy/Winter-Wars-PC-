@@ -10,15 +10,23 @@ const float Launch_Speed = 700;
 
 using namespace Zeni;
 
-Snowball::Snowball(const Player *p, const Zeni::Point3f &center_,
+Snowball::Snowball(Player *p, const Zeni::Point3f &center_,
               const Zeni::Vector3f &size_) :
 	Moveable(center_, size_)	
 	, damage_dealt(false), damage(size_.magnitude() * 1.2)
-	, owner(p)
+	, owner(p), team(p->get_team())
 {
 	Lifespan.start();
 }
 
+Snowball::Snowball(Team *t, const Zeni::Point3f &center_,
+              const Zeni::Vector3f &size_) :
+	Moveable(center_, size_)	
+	, damage_dealt(false), damage(size_.magnitude() * 1.2)
+	, owner(0), team(t)
+{
+	Lifespan.start();
+}
 
 Snowball::~Snowball(void)
 {

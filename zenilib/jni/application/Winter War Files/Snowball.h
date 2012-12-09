@@ -6,6 +6,7 @@
 
 class Collision_Table;
 class Player;
+class Team;
 
 extern const float Launch_Speed;
 
@@ -14,8 +15,11 @@ class Snowball :
 	public Moveable
 {
 public:
-	Snowball(const Player *p, const Zeni::Point3f &center_,
+	Snowball(Player *p, const Zeni::Point3f &center_,
               const Zeni::Vector3f &size_ = Zeni::Vector3f(1,1,1));
+	Snowball(Team *t, const Zeni::Point3f &center_,
+              const Zeni::Vector3f &size_ = Zeni::Vector3f(1,1,1));
+
 
 	~Snowball(void);
 
@@ -41,7 +45,8 @@ public:
 	void create_body();
 
 private:
-	const Player *owner;
+	Player *owner;
+	Team *team;
 
 	Zeni::Chronometer<Zeni::Time> Lifespan;
 	Zeni::Chronometer<Zeni::Time> Melting;

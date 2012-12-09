@@ -40,7 +40,7 @@ public:
 
 	void change_height(const float &delta);
 
-	void receive_hit(Snowball *S); 
+	void receive_hit(float damage); 
 
 	virtual void handle_player_collision(Player *P);
 

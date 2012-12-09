@@ -23,16 +23,9 @@ Structure::~Structure(void)
 {
 }
 
-void Structure::receive_hit(Snowball* S)	{
-	if(S->Snow_man_Generated())
-		return;
-		
-	if(S->get_Team_Index() == hex->get_team())	{
-		S->deal_damage();
-		return;
-	}
+void Structure::receive_hit(float damage)	{
 
-	Health -= S->deal_damage();
+	Health -= damage;
 	if(Health < 0)
 		Status = DESTROYED;
 }
