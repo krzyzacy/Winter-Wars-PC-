@@ -113,7 +113,7 @@ void Game_Model::update()
 
 	check_collisions();
 
-	
+	global_message("I'm A Message!");
 	Game_Model::get().Clean_dead();
 }
 
