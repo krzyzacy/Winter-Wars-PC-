@@ -1,6 +1,7 @@
 #pragma once
 #include "Moveable.h"
 #include "Structure.h"
+#include <Zeni/Sound.h>
 
 class Collision_Table;
 class Team;
@@ -165,5 +166,7 @@ private:
 
 	const static int player_ID_c;
 	friend Collision_Table;
+
+	Zeni::Sound_Source * player_sound_test;
 };
 

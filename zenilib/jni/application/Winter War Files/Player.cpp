@@ -37,11 +37,13 @@ Player::Player(const Zeni::Point3f &center_)
 	: Moveable(center_ , Vector3f(30.0f,30.0f,30.0f)), m_camera(center_, Quaternion(), 5.0f, 2000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false),hit_timer(0.0f),throw_timer(0.0f),Selection(NOTHING),
-	stick_theta(0.0f), animation_state(new Standing()), dead_mode(false)
+	stick_theta(0.0f), animation_state(new Standing()), dead_mode(false),player_sound_test(new Zeni::Sound_Source(Zeni::get_Sounds()["meow"]))
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
 	rotation = m_camera.orientation + Quaternion(Global::pi_over_two + Global::pi_over_two/2, 0,0);
+
+	//player_sound_test = new Zeni::Sound_Source(Zeni::get_Sounds()["meow"]);
 	//rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0, 0);
 	//rotation += Quaternion(Global::pi_over_two, 0,0);
 }
@@ -145,6 +147,8 @@ void Player::get_damaged(float damage)
 	}
 	else{
 		hit_timer = 1.0f;
+		if(!player_sound_test->is_playing())
+			player_sound_test->play();
 		switch_state(FLINCH);
 	}
 	//Add respawn stuff / checks here / and the suprise
