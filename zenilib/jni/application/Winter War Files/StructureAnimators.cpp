@@ -61,7 +61,8 @@ model_key_t Snowman_stand::get_model_name()
 
 void Snowman_thwr::animate(Zeni::Model *model)
 {
-	SMFrame += Game_Model::get().get_time_step()*10;
+	SMFrame += Game_Model::get().get_time_step()*20;
+	if (SMFrame >= 50) finished = true;
 	Frame = SMFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -69,21 +70,33 @@ void Snowman_thwr::animate(Zeni::Model *model)
 
 StructureAnimator *Snowman_thwr::get_next(StructureEvent_e sevent)
 {
-	switch (sevent)
-	{
-		case SM_STAND:
-			return new Snowman_stand();
-			break;
-		case SM_THROWL:
-			return new Snowman_thwl();
-			break;
-		case SM_THROWR:
-			return NULL;
-			break;
-		default:
-			return NULL;
-			break;
-	}
+	if (finished)
+		{
+		switch (sevent)
+			{
+			case SM_STAND:
+				return new Snowman_stand();
+				break;
+			case SM_THROWR:
+				return new Snowman_thwr();
+				break;
+			default:
+				return NULL;
+				break;
+			}
+		}
+	else
+		{
+		switch (sevent)
+			{
+			case SM_THROWL:
+				return new Snowman_thwl();
+				break;
+			default:
+				return NULL;
+				break;
+			}
+		}
 }
 	
 model_key_t Snowman_thwr::get_model_name()
@@ -93,7 +106,8 @@ model_key_t Snowman_thwr::get_model_name()
 
 void Snowman_thwl::animate(Zeni::Model *model)
 {
-	SMFrame += Game_Model::get().get_time_step()*10;
+	SMFrame += Game_Model::get().get_time_step()*20;
+	if (SMFrame >= 50) finished = true;
 	Frame = SMFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -101,21 +115,33 @@ void Snowman_thwl::animate(Zeni::Model *model)
 
 StructureAnimator *Snowman_thwl::get_next(StructureEvent_e sevent)
 {
-	switch (sevent)
-	{
-		case SM_STAND:
-			return new Snowman_stand();
-			break;
-		case SM_THROWL:
-			return NULL;
-			break;
-		case SM_THROWR:
-			return new Snowman_thwr();
-			break;
-		default:
-			return NULL;
-			break;
-	}
+	if (finished)
+		{
+		switch (sevent)
+			{
+			case SM_STAND:
+				return new Snowman_stand();
+				break;
+			case SM_THROWR:
+				return new Snowman_thwr();
+				break;
+			default:
+				return NULL;
+				break;
+			}
+		}
+	else
+		{
+		switch (sevent)
+			{
+			case SM_THROWR:
+				return new Snowman_thwr();
+				break;
+			default:
+				return NULL;
+				break;
+			}
+		}
 }
 	
 model_key_t Snowman_thwl::get_model_name()

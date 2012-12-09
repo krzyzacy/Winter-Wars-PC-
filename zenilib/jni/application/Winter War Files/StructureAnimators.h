@@ -51,7 +51,7 @@ private:
 class Snowman_thwr : public StructureAnimator
 {	
 public:
-	Snowman_thwr() : SMFrame(1.0f), Frame(1) {}
+	Snowman_thwr() : SMFrame(1.0f), Frame(1), finished(false) {}
 	/* choose the frame to currently render and set it */
 	void animate(Zeni::Model *);
 
@@ -62,6 +62,7 @@ public:
 	model_key_t get_model_name();
 
 private:
+	bool finished;
 	float SMFrame;
 	int Frame; 
 };
@@ -69,7 +70,7 @@ private:
 class Snowman_thwl : public StructureAnimator
 {	
 public:
-	Snowman_thwl() : SMFrame(1.0f), Frame(1) {}
+	Snowman_thwl() : SMFrame(1.0f), Frame(1), finished(false) {}
 	/* choose the frame to currently render and set it */
 	void animate(Zeni::Model *);
 
@@ -80,6 +81,7 @@ public:
 	model_key_t get_model_name();
 
 private:
+	bool finished;
 	float SMFrame;
 	int Frame; 
 };

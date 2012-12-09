@@ -18,8 +18,8 @@ Snowman::Snowman(Team *team, Tile* tile_,
 	center.z -= 8;
 	create_body();
 	Health = Struct_Integrity[SNOWMAN];
-	left_launch = center - Vector3f(50, 0,0);
-	right_launch = center + Vector3f(50, 0,0);
+	left_launch = center - Vector3f(30, 0,-10);
+	right_launch = center + Vector3f(30, 0,10);
 	targeting_delay.start();
 	reload_time.start();
 }
@@ -34,6 +34,7 @@ void Snowman::update(const float &time)
 	Structure::update(time);
 	//Magic happens here, need to decide how this will works, def statemachine
 
+if(targets.empty())
 	switch_state(SM_STAND);
 
 if(!targets.empty() && reload_time.seconds() > 0.5)	{
@@ -48,7 +49,7 @@ if(!targets.empty() && reload_time.seconds() > 0.5)	{
 		sb->get_thrown(sight_line.normalize(), 600);
 		Game_Model::get().add_moveable(sb);
 		if(left)
-			switch_state(SM_THROWL);
+			switch_state(SM_THROWR);
 		else
 			switch_state(SM_THROWL);
 		left = !left;
