@@ -16,6 +16,7 @@ using namespace Zeni;
 const int Player::player_ID_c = 1;
 const float standard_speed = 200;
 const float turn_speed = 40;
+const float up_look_speed = 20;
 
 const float Max_Snow_Amount = 100;
 const float Max_Player_Health = 100;
@@ -54,7 +55,7 @@ void Player::adjust_pitch(float phi) {
     const Quaternion backup = m_camera.orientation;
     const Vector3f backup_up = m_camera.get_up();
 
-    m_camera.adjust_pitch(phi);
+    m_camera.adjust_pitch(phi * up_look_speed * Game_Model::get().get_time_step());
 
     if(m_camera.get_up().k < 0.0f && backup_up.k >= 0.0f)
       m_camera.orientation = backup;
