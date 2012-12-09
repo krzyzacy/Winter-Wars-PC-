@@ -232,3 +232,11 @@ float Game_Model::time_till_win()
 {
 	return win_time - PlayTime.seconds();
 }
+
+void Game_Model::global_message(const String &message)
+{	
+	for(int i = 0; i < 4; i++)
+	{
+		players[i]->add_message(message);
+	}
+}

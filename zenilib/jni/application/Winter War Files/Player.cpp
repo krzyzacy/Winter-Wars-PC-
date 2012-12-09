@@ -499,4 +499,18 @@ int Player::get_Team_Index() const	{
 	return myTeam->get_Team_Index();
 }
 
+void Player::add_message(const Zeni::String &msg)
+{
+	message = msg;
+}
 
+
+bool Player::has_message()
+{
+	return message != "";
+}
+
+Zeni::String Player::get_message()
+{
+	return message;
+}
