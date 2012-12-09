@@ -62,9 +62,11 @@ public:
 
 	float get_time_step();
 
-	//&&&Cannot remain here
-	Collision_Table table;		
+	void global_message(const Zeni::String &message);
+	
+	Collision_Table table;	
 private:
+	
 	Zeni::Chronometer<Zeni::Time> PlayTime;
 	float time_passed;
 	float time_step;

@@ -104,7 +104,15 @@ public:
 	float get_throw_timer() const {return throw_timer;}
 	bool is_packing() const { return current_radius > 0.0f? true : false ;}
 
+// Messages
+	/* Adds a message for the player */
+	void add_message(const Zeni::String &);
 
+	/* true if there is a message*/
+	bool has_message();
+
+	/* Gets most important message for player */
+	Zeni::String get_message();
 
 // Collision Body
 	void create_body();
@@ -133,6 +141,8 @@ private:
 	Zeni::Chronometer<Zeni::Time> ShakeTime;
 	Zeni::Chronometer<Zeni::Time> Deathklok;
 
+	/* "" if no message */
+	Zeni::String message;
 
 	bool mini_open;
 	bool build_open;
