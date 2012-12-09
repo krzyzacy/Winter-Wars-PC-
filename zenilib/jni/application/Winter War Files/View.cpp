@@ -110,10 +110,10 @@ View::View(void)
 	
 // Structures	
 	//Fortress Animations
-	model_map["bluefortress_spin"] = new Zeni::Model("models/fortress/fortressblue.3ds");
-	model_map["greenfortress_spin"] = new Zeni::Model("models/fortress/fortressgreen.3ds");
+	model_map["bluefortress_spin"] = new Zeni::Model("models/fortress/fortressbluespinning.3ds");
+	model_map["greenfortress_spin"] = new Zeni::Model("models/fortress/fortressgreenspinning.3ds");
 	model_map["redfortress_spin"] = new Zeni::Model("models/fortress/fortressredspinning.3ds");
-	model_map["orangefortress_spin"] = new Zeni::Model("models/fortress/fortressorange.3ds");
+	model_map["orangefortress_spin"] = new Zeni::Model("models/fortress/fortressorangespinning.3ds");
 
 	//Snowman Animations
 	model_map["bluesnowman_stand"] = new Zeni::Model("models/snowman/bluesnowman/bluesnowmanstanding.3ds");

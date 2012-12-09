@@ -205,6 +205,11 @@ The following things are unsupported:
     <tile>1</tile>
   </SOFTCLIF.PNG>
 
+  <NEWHARDS.PNG>
+    <filepath>textures/3Dtextures/Tile/NEWHARDS.png</filepath>
+    <tile>1</tile>
+  </NEWHARDS.PNG>
+  
   <!--  HARD SNOW TILE TEXTURES  -->  
   
   <HARDSNOW.PNG>
