@@ -12,6 +12,7 @@ Fortress::Fortress(Team *team, Tile* tile_,
 	center.z += 26;
 	create_body();
 	Health = Struct_Integrity[FORT];
+	animation_state = new Fort_spin();
 }
 
 Fortress::~Fortress(void)
@@ -31,19 +32,25 @@ void Fortress::update(const float &time)
 
 const model_key_t Fortress::get_model_name() const 
 {
+	string Teamname;
 	switch(owner->get_Team_Index())	{
 	case BLUE:
-		return ("blue_fort");
+		Teamname = "blue";
+		break;
 	case GREEN:
-		return ("green_fort");
+		Teamname = "green";
+		break;
 	case RED:
-		return ("red_fort");
+		Teamname = "red";
+		break;
 	case ORANGE:
-		return ("orange_fort");
+		Teamname = "orange";
+		break;
 	default:
-		return ("blue_fort");
+		Teamname = "blue";
 		break;
 	}
+	return Teamname + animation_state->get_model_name();
 }
 
 void Fortress::create_body()		{
@@ -52,3 +59,7 @@ void Fortress::create_body()		{
 	body = Zeni::Collision::Capsule(Top, Bot, size.z/2 + 3);
 }
 
+Animator *Fortress::get_animator() const
+{
+	return animation_state;
+}

@@ -5,7 +5,7 @@
 				FORTRESS
 ---------------------------------------------*/
 
-void Fort_stand::animate(Zeni::Model *model)
+void Fort_spin::animate(Zeni::Model *model)
 {
 	FSFrame += Game_Model::get().get_time_step()*10;
 	Frame = FSFrame;
@@ -13,14 +13,14 @@ void Fort_stand::animate(Zeni::Model *model)
 	model->set_keyframe(Frame);
 }
 
-StructureAnimator *Fort_stand::get_next(StructureEvent_e sevent)
+StructureAnimator *Fort_spin::get_next(StructureEvent_e sevent)
 {
 	return NULL;
 }
 	
-model_key_t Fort_stand::get_model_name()
+model_key_t Fort_spin::get_model_name()
 {
-	return "fortress_stand";
+	return "fortress_spin";
 }
 
 /*---------------------------------------------

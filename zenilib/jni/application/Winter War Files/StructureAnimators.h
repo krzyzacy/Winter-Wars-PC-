@@ -8,10 +8,10 @@
 				FORTRESS
 ---------------------------------------------*/
 
-class Fort_stand : public StructureAnimator
+class Fort_spin : public StructureAnimator
 {	
 public:
-	Fort_stand() : FSFrame(1.0f), Frame(1) {}
+	Fort_spin() : FSFrame(1.0f), Frame(1) {}
 	/* choose the frame to currently render and set it */
 	void animate(Zeni::Model *);
 
