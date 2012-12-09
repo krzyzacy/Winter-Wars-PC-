@@ -791,6 +791,11 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Background/aurora.png</filepath>
     <tile>0</tile>
   </Background>
+
+  <Nlight>
+    <filepath>textures/2DTextures/Background/Nlights.png</filepath>
+    <tile>0</tile>
+  </Nlight>
   <!--
   <one>
     <is_sprite>0</is_sprite>
