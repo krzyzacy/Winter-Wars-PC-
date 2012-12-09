@@ -214,8 +214,66 @@ Player_View *cur_View; // The current player we are viewing
 
 void View::render_player(int player, const Point2f &topLeft, const Point2f &bottomRight) const
 {	
+	Video &vr = get_Video();
+	//vr.set_3d(cur_View->get_player()->);
+
+	Vertex3f_Texture c_p0(Point3f(0.0f,0.0f,1000.0f),                             Point2f(0.0f, 0.0f));
+    Vertex3f_Texture c_p1(Point3f(0.0f,2500.0f,1000.0f),                             Point2f(0.0f, 1.0f));
+    Vertex3f_Texture c_p2(Point3f(2500.0f,2500.0f,1000.0f),                             Point2f(1.0f, 1.0f)); 
+    Vertex3f_Texture c_p3(Point3f(2500.0f,0.0f,1000.0f),                             Point2f(1.0f, 0.0f));
+    Material c_material("Nlight");
+      
+    Quadrilateral<Vertex3f_Texture> c_quad(c_p0, c_p1, c_p2, c_p3);
+    c_quad.fax_Material(&c_material);
+      
+    vr.render(c_quad);
+
+	for(int i = 0 ; i < 4; i++){
+		float xx, yy;
+		Material w_material("Background");
+
+		if(i == 0){
+			Vertex3f_Texture w_p0(Point3f(0.0f,0.0f,1000.0f),                             Point2f(0.0f, 0.0f));
+			Vertex3f_Texture w_p1(Point3f(0.0f,0.0f,-250.0f),                             Point2f(0.0f, 1.0f));
+			Vertex3f_Texture w_p2(Point3f(0.0f,2500.0f,-250.0f),                              Point2f(1.0f, 1.0f)); 
+			Vertex3f_Texture w_p3(Point3f(0.0f,2500.0f,1000.0f),                              Point2f(1.0f, 0.0f));
+			Quadrilateral<Vertex3f_Texture> w_quad(w_p0, w_p1, w_p2, w_p3);
+			w_quad.fax_Material(&w_material);
+			vr.render(w_quad);
+		}
+		else if(i == 1){
+			Vertex3f_Texture w_p0(Point3f(0.0f,2500.0f,1000.0f),                             Point2f(0.0f, 0.0f));
+			Vertex3f_Texture w_p1(Point3f(0.0f,2500.0f,-250.0f),                             Point2f(0.0f, 1.0f));
+			Vertex3f_Texture w_p2(Point3f(2500.0f,2500.0f,-250.0f),                              Point2f(1.0f, 1.0f)); 
+			Vertex3f_Texture w_p3(Point3f(2500.0f,2500.0f,1000.0f),                              Point2f(1.0f, 0.0f));
+			Quadrilateral<Vertex3f_Texture> w_quad(w_p0, w_p1, w_p2, w_p3);
+			w_quad.fax_Material(&w_material);
+			vr.render(w_quad);
+		}
+		else if(i == 2){
+			Vertex3f_Texture w_p0(Point3f(2500.0f,2500.0f,1000.0f),                             Point2f(0.0f, 0.0f));
+			Vertex3f_Texture w_p1(Point3f(2500.0f,2500.0f,-250.0f),                             Point2f(0.0f, 1.0f));
+			Vertex3f_Texture w_p2(Point3f(2500.0f,0.0f,-250.0f),                              Point2f(1.0f, 1.0f)); 
+			Vertex3f_Texture w_p3(Point3f(2500.0f,0.0f,1000.0f),                              Point2f(1.0f, 0.0f));
+			Quadrilateral<Vertex3f_Texture> w_quad(w_p0, w_p1, w_p2, w_p3);
+			w_quad.fax_Material(&w_material);
+			vr.render(w_quad);
+		}
+		else if(i == 3){
+			Vertex3f_Texture w_p0(Point3f(2500.0f,0.0f,1000.0f),                             Point2f(0.0f, 0.0f));
+			Vertex3f_Texture w_p1(Point3f(2500.0f,0.0f,-250.0f),                             Point2f(0.0f, 1.0f));
+			Vertex3f_Texture w_p2(Point3f(0.0f,0.0f,-250.0f),                              Point2f(1.0f, 1.0f)); 
+			Vertex3f_Texture w_p3(Point3f(0.0f,0.0f,1000.0f),                              Point2f(1.0f, 0.0f));
+			Quadrilateral<Vertex3f_Texture> w_quad(w_p0, w_p1, w_p2, w_p3);
+			w_quad.fax_Material(&w_material);
+			vr.render(w_quad);
+		}
+		
+	}
+
 	cur_View = player_views[player];  // this is the cur player
 	player_views[player]->set_camera(topLeft,bottomRight);
+
 	render_world();
 
 }

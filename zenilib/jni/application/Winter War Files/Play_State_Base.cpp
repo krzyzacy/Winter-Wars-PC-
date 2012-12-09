@@ -9,7 +9,7 @@
 #include "Permanent.h"
 #include "Team.h"
 
-Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<int> &colors_)	:
+Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<int> &colors_, const vector<int> &controls_)	:
 	m_prev_clear_color(get_Video().get_clear_Color()),
 	genders(genders_),
 	teams(colors_)
@@ -17,6 +17,8 @@ Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<in
 		set_pausable(true);
 		for(int i = 0; i < 4; i++)	{
 			controllers.push_back(new Controls(false, i));
+			if(controls_[i] == 1)
+				controllers[i]->set_inverted(true);
 		}
 		
 }
