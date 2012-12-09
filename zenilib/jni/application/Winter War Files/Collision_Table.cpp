@@ -7,6 +7,7 @@
 #include "Structure.h"
 #include "Snowball.h"
 #include "Team.h"
+#include "Effect.h"
 
 #include <vector>
 #include <zenilib.h>
@@ -95,6 +96,8 @@ void Collision_Table::collidePlayerSnowball(Player* p1, Snowball* b1)
 	
 	p1->get_damaged(damage_dealt);
 
+	Game_Model::get().add_effect(new Effect("explode", b1->center));
+
 	// if snowman shot it, don't add player stats
 	if (!b1->owner)
 		return;
@@ -158,6 +161,8 @@ void Collision_Table::collideSnowballStructure(Snowball *b2, Structure *w1)
 
 
 	w1->receive_hit(damage);
+
+	Game_Model::get().add_effect(new Effect("explode", b2->center));
 
 	if (!b2->owner)  //snowmen should damage other structures
 		return;		// but no stats

@@ -165,6 +165,8 @@ View::View(void)
 	model_map["redtree_owned"] = new Zeni::Model("models/chirstmastree/christmastreeredowned.3ds");
 	model_map["orangetree_owned"] = new Zeni::Model("models/chirstmastree/christmastreeorangeowned.3ds");
 
+	model_map["explode"] = new Zeni::Model("models/hiteffect/hiteffect.3ds");
+
 }
 
 View::~View(void)

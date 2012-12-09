@@ -23,7 +23,7 @@ const float Max_Player_Health = 100;
 const float max_snowball_size = 25;		
 const float packing_rate = 25;			// Packing to snowball
 const float snow_depletion_rate = 25;	// Packing from pack
-const float snow_absorbtion_rate = 75;  // Scooping
+const float snow_absorbtion_rate = 100;  // Scooping
 
 const int Max_Stick_Input	= 32768;
 const float Building_Recharge_Time = 1;
@@ -176,7 +176,6 @@ void Player::throw_ball() {
 	stats.thrown++;
 
 	throw_timer = 1.0f;
-	
 
 }
 

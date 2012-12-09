@@ -8,6 +8,11 @@ using namespace Zeni;
 
 const int Structure::structure_ID_c = 3;
 
+// NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL
+const int Build_Cost[5] = { 0, 300, 100, 200, 400 };
+
+const float Struct_Integrity[5] = {1, 50, 150, 20, 100};
+
 Structure::Structure(Team *team, Tile* tile_,
 				const Zeni::Point3f &position_,	 float radius) :
 	Seen_Object(position_, Vector3f(1,1,1)*radius),
@@ -40,8 +45,8 @@ void Structure::update(const float &time)
 		owner->remove_tile(hex);
 	}
 
-	if(Isolation_Clock.seconds() > 20)	{
-		Status == DESTROYED;
+	if(Isolation_Clock.seconds() > .5)	{
+		Status = DESTROYED;
 	}
 
 }

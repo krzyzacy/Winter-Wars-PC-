@@ -13,6 +13,7 @@ class Player;
 class Team;
 class Moveable;
 class Collidable;
+class Effect;
 class Structure;
 
 extern const float time_to_win_c; //max time it should take to win
@@ -55,6 +56,7 @@ public:
 	void add_player(Player *);
 	void add_moveable(Moveable *);
 	void add_structure(Structure *);
+	void add_effect(Effect *);
 
 	/*Goes through all objects(collidables) and deletes them if they have been 
 	marked fr deletion*/
@@ -89,7 +91,7 @@ private:
 	collidable_list_t colliders;
 	std::set<Structure*>	structures;
 
-	//std::set<Seen_Object*> vis_effects;
+	std::set<Effect*> effects;
 	
 
 	void remove_from_model(Moveable* zombie);
@@ -97,6 +99,8 @@ private:
 	std::list<Moveable*> m_deletion_list;
 	std::list<Structure*> s_deletion_list;
 	
+	void remove_from_model(Effect* zombie);
+	std::list<Effect*> e_deletion_list;
 
 };
 

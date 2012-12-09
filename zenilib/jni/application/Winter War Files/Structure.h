@@ -12,9 +12,9 @@ enum Structure_Type	{
 	NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL, TREE
 };
 
-const int Build_Cost[5] = { 0, 300, 100, 200, 400 };
+extern const int Build_Cost[5];
 
-const float Struct_Integrity[5] = {1, 50, 150, 20, 100};
+extern const float Struct_Integrity[5];
 
 enum	Universal_State	{
 	PRESENT_MODE, BUILT, DAMAGED, DESTROYED

@@ -23,7 +23,18 @@ Tree::~Tree(void)
 
 void Tree::update(const float &time)
 {
+	// if being removed from network
+	if(Isolation_Clock.seconds() > 0)
+	{
+		Isolation_Clock.reset();
 
+		owner->remove_tile(hex);
+
+		// reset to neutral
+		owner = 0;
+		Game_Model::get().tree_claimed(0);
+		animation_state = new Tree_unowned();
+	}
 }
 
 const model_key_t Tree::get_model_name() const 

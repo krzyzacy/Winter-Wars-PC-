@@ -7,13 +7,16 @@
 const int Snowball::snowball_ID_c = 2;
 
 const float Launch_Speed = 700;
+const float min_damage_c = 17.0f;
+//const float max_damage_c = 50.0f;
+const float size_decrease_c = .80f; //factor to multiply size by
 
 using namespace Zeni;
 
 Snowball::Snowball(Player *p, const Zeni::Point3f &center_,
               const Zeni::Vector3f &size_) :
 	Moveable(center_, size_)	
-	, damage_dealt(false), damage(size_.magnitude() * 1.2)
+	, damage_dealt(false), damage(size_.z + min_damage_c)
 	, owner(p), team(p->get_team())
 {
 	Lifespan.start();
@@ -22,7 +25,7 @@ Snowball::Snowball(Player *p, const Zeni::Point3f &center_,
 Snowball::Snowball(Team *t, const Zeni::Point3f &center_,
               const Zeni::Vector3f &size_) :
 	Moveable(center_, size_)	
-	, damage_dealt(false), damage(size_.magnitude() * 1.2)
+	, damage_dealt(false), damage(size_.z + min_damage_c)
 	, owner(0), team(t)
 {
 	Lifespan.start();
@@ -42,7 +45,7 @@ void Snowball::update(const float &time)
 	Moveable::update(time);
 
 	if(damage_dealt)
-		size *= 0.95;
+		size *= size_decrease_c;
 
 	//Temporary, so we don't have infinite snowballs flying around chewing up resources
 	if(Lifespan.seconds() > 15 || Melting.seconds() > 3)	{		

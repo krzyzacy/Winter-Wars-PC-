@@ -8,6 +8,7 @@
 #include "Player_View.h"
 #include "Snowball.h"
 #include "Structure.h"
+#include "Effect.h"
 
 #include "Tile.h"
 
@@ -65,6 +66,9 @@ void Game_Model::finish()
 	//Everything is a collidable in all the other lists, so this represents all things
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); ++it)
 		delete (*it);
+	
+	for(set<Effect*>::iterator it = effects.begin(); it != effects.end(); ++it)
+		delete (*it);
 
 	delete world; //destroys tiles too
 	delete view;	
@@ -72,6 +76,7 @@ void Game_Model::finish()
 	movers.clear();
 	colliders.clear();
 	structures.clear();
+	effects.clear();
 
 	// if we want to cfreate players and teams outside of this
 	// cant clear players and team too
@@ -187,6 +192,10 @@ void Game_Model::add_structure(Structure* S)	{
 	view->add_renderable(S);
 }
 
+void Game_Model::add_effect(Effect* S)	{
+	effects.insert(S);
+	view->add_renderable(S);
+}
 
 void Game_Model::Clean_dead()	{
 		// Runs through destructable objects to check if they have died
@@ -200,7 +209,11 @@ void Game_Model::Clean_dead()	{
 			if(!(*it)->is_alive())
 				s_deletion_list.push_back(*it);
 		}
-		//one more loop for visual effects, if neccessary
+
+		for(set<Effect*>::iterator it = effects.begin(); it != effects.end(); ++it)		{
+			if(!(*it)->is_alive())
+				e_deletion_list.push_back(*it);
+		}
 
 		//Clean trash
 		for(list<Moveable*>::iterator it = m_deletion_list.begin(); it != m_deletion_list.end(); ++it)	
@@ -208,15 +221,26 @@ void Game_Model::Clean_dead()	{
 
 		for(list<Structure*>::iterator it = s_deletion_list.begin(); it != s_deletion_list.end(); ++it)		
 				remove_from_model(*it);
+
+		for(list<Effect*>::iterator it = e_deletion_list.begin(); it != e_deletion_list.end(); ++it)	
+				remove_from_model(*it);
+
 		
 		m_deletion_list.clear();
 		s_deletion_list.clear();
+		e_deletion_list.clear();
 }
 
 
 void Game_Model::remove_from_model(Moveable* Z)	{
 	movers.erase(Z);
 	colliders.erase(Z);
+	view->remove_renderable(Z);
+	delete Z;
+}
+
+void Game_Model::remove_from_model(Effect* Z)	{
+	effects.erase(Z);
 	view->remove_renderable(Z);
 	delete Z;
 }
