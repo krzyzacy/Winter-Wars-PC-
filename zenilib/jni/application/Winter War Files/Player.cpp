@@ -157,21 +157,26 @@ void Player::get_damaged(float damage)
 	ShakeTime.start();
 }
 
-void Player::throw_ball()		{
+void Player::throw_ball() {
 	if(is_player_KO())
 		return;
-	if(current_radius > 0)	{
-		Snowball *sb = new Snowball(this, center+m_camera.get_forward(), 
-										Vector3f(current_radius, current_radius,current_radius));
-		sb->get_thrown(m_camera.get_forward());
-		current_radius = 0;
-		Game_Model::get().add_moveable(sb);
-		switch_state(THROW);
-		stats.thrown++;
-
-		throw_timer = 1.0f;
+	
+	if(current_radius <= 0)	{
+		//if radius is 0, means out of snow, and therefore don't throw
+		return;
 	}
-	//if radius is 0, means out of snow, and therefore don't throw
+	
+	Snowball *sb = new Snowball(this, center+m_camera.get_forward(), 
+									Vector3f(current_radius, current_radius,current_radius));
+	sb->get_thrown(m_camera.get_forward());
+	current_radius = 0;
+	Game_Model::get().add_moveable(sb);
+	switch_state(THROW);
+	stats.thrown++;
+
+	throw_timer = 1.0f;
+	
+
 }
 
 void Player::charge_ball()	{
@@ -179,8 +184,11 @@ void Player::charge_ball()	{
 		return;
 	//This represents when the player is "packing" snow into a ball
 	const float time = Game_Model::get().get_time_step();
-		if(Snow_in_Pack <= 0)		
+		if(Snow_in_Pack <= 0) 
+		{
+			add_message("Out of Ammo! Find SOFT SNOW and refill.");
 			Snow_in_Pack = 0;
+		}
 		else
 		{
 			current_radius += packing_rate * time;
@@ -514,16 +522,16 @@ int Player::get_Team_Index() const	{
 
 void Player::add_message(const Zeni::String &msg)
 {
-	message = msg;
+	message = Message(msg, 10, 3);
 }
 
 
 bool Player::has_message() const
 {
-	return message != "";
+	return !message.is_over();
 }
 
 Zeni::String Player::get_message() const
 {
-	return message;
+	return message.msg;
 }

@@ -28,7 +28,21 @@ enum Build_State	{
 		REST, SELECT_BUILDING, CREATE_BUILDING, RECHARGE_BUILD
 };
 
+struct Message
+{
+	Message(const Zeni::String &msg_ = "", int priority_ = 0, float time_ = -1) :
+		msg(msg_), priority(priority_), time(time_)
+		{timer.start();}
 
+	bool is_over() const
+		{ return (time - timer.seconds()) < 0;}
+
+	Zeni::String msg;
+private:
+	int priority;
+	Zeni::Chronometer<Zeni::Time> timer;
+	float time;
+};
 
 class Player :	public Moveable		{
 public:
@@ -163,7 +177,7 @@ private:
 	Zeni::Chronometer<Zeni::Time> Deathklok;
 
 	/* "" if no message */
-	Zeni::String message;
+	Message message;
 
 	bool mini_open;
 	bool build_open;

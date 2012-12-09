@@ -55,6 +55,7 @@ void Game_Model::start_up(const std::vector<String> &genders_, const std::vector
 		PlayTime.start();
 //		view->add_renderable(&Perm);
 
+		global_message("Build something on a tile next to you!");
 }
 
 
@@ -113,7 +114,6 @@ void Game_Model::update()
 
 	check_collisions();
 
-	global_message("I'm A Message!");
 	Game_Model::get().Clean_dead();
 }
 

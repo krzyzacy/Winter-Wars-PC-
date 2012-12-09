@@ -150,10 +150,12 @@ void Collision_Table::collideSnowballStructure(Snowball *b2, Structure *w1)
 	if (!b2->body.intersects(w1->body))
 		return;
 
-	int damage = b2->deal_damage();
 	
+	int damage = b2->deal_damage();
+
 	if (w1->Status == DESTROYED || b2->team == w1->owner)
 		return;
+
 
 	w1->receive_hit(damage);
 
@@ -170,5 +172,6 @@ void Collision_Table::collideSnowballStructure(Snowball *b2, Structure *w1)
 void Collision_Table::collideStructureStructure(Structure*, Structure*)
 {
 	//WAT. This cannot happen
+	// Explode Everything!
 }
 
