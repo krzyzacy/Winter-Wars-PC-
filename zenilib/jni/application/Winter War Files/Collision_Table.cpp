@@ -73,8 +73,40 @@ void Collision_Table::collidePlayerSnowball(Player* p1, Snowball* b1)
 	if (!p1->body.intersects(b1->body) || b1->owner == p1)
 		return;
 
-	p1->get_damaged(b1->deal_damage());
+	
+	//*// Friendly Fire
+	if (p1->get_team() == b1->team)
+	{
+		if (b1->owner) // not a snowman
+			b1->owner->stats.friendly_hit++;	
 
+		if (!b1->owner) // <-comment out for all friendly fire to go through
+			return;  // just pass through if thrown by snowman
+	}
+	//*/
+
+
+	// if the player's dead, don't continue
+	if (p1->is_player_KO())
+		return;
+	
+	//If we want to stop the snowball, move this above friendly fire
+	int damage_dealt = b1->deal_damage();  
+	
+	p1->get_damaged(damage_dealt);
+
+	// if snowman shot it, don't add player stats
+	if (!b1->owner)
+		return;
+
+	// tell the player that threw the ball that he made a hit
+	b1->owner->stats.hit++;
+	b1->owner->stats.damage_dealt += damage_dealt;
+
+	// he killed the player
+	if (p1->is_player_KO() )
+		b1->owner->stats.kills++;
+	
 }
 
 void Collision_Table::collideSnowballPlayer(Snowball* b1, Player* p1)
@@ -113,13 +145,26 @@ void Collision_Table::collideStructurePlayer(Structure* w1, Player* ob2)
 	collidePlayerStructure(ob2, w1);
 }
 
-void Collision_Table::collideSnowballStructure(Snowball *ob2, Structure *w1)
+void Collision_Table::collideSnowballStructure(Snowball *b2, Structure *w1)
 {
-	//Basically damage the structure, other than that, meh
-	if (!ob2->body.intersects(w1->body))
+	if (!b2->body.intersects(w1->body))
 		return;
 
-	w1->receive_hit(ob2);
+	int damage = b2->deal_damage();
+	
+	if (w1->Status == DESTROYED || b2->team == w1->owner)
+		return;
+
+	w1->receive_hit(damage);
+
+	if (!b2->owner)  //snowmen should damage other structures
+		return;		// but no stats
+	
+	b2->owner->stats.hit++;
+	b2->owner->stats.damage_dealt += damage;
+	
+	if (w1->Status == DESTROYED)
+		b2->owner->stats.destroyed++;
 }
 
 void Collision_Table::collideStructureStructure(Structure*, Structure*)

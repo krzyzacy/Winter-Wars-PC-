@@ -101,6 +101,7 @@ void Player::update(const float &time)	{
 
 void Player::player_death()	{
 	Deathklok.start();
+	stats.deaths++;
 	dead_mode = true;
 }
 
@@ -139,6 +140,7 @@ void Player::on_ground()
 void Player::get_damaged(float damage)
 {
 	health -= damage;
+	stats.damage_taken += damage;
 
 	if (health < 0)	{
 		health = 0;
@@ -165,6 +167,7 @@ void Player::throw_ball()		{
 		current_radius = 0;
 		Game_Model::get().add_moveable(sb);
 		switch_state(THROW);
+		stats.thrown++;
 
 		throw_timer = 1.0f;
 	}
@@ -181,14 +184,18 @@ void Player::charge_ball()	{
 		else
 		{
 			current_radius += packing_rate * time;
+			stats.snow_used += packing_rate * time;
+			
 			Snow_in_Pack -= snow_depletion_rate * time;
 			switch_state(PACK);
 		}
 }
 
+// SCOOP!!!!
 void Player::pack_snow()	{
 	if(is_player_KO())
 		return;
+
 	//This will change, but exists for now as a simple test function
 	if (!is_on_ground())
 		return;
@@ -344,6 +351,7 @@ void Player::handle_build_menu(const Vector2f &norml_stick)	{
 		break;
 	case CREATE_BUILDING:
 		if(create_building(Selection))	{
+			stats.built++;
 			Builder = RECHARGE_BUILD;
 			BuildTime.start();
 		}

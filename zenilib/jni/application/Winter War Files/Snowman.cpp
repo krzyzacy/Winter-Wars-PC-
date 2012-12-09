@@ -41,7 +41,7 @@ if(!targets.empty() && reload_time.seconds() > 0.5)	{
 		targets.pop_front();
 		Point3f Origin = right_launch;
 		if(left) Origin = left_launch;
-		Snowball* sb = new Snowball(0, Origin, Snow_size);
+		Snowball* sb = new Snowball(owner, Origin, Snow_size);
 		Vector3f sight_line(aim - Origin);
 		//sight_line.z += 20;
 		//sb->get_thrown(aim - Origin);

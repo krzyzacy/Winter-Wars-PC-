@@ -50,7 +50,7 @@ public:
 // Actions
 	void throw_ball();
 	void charge_ball();
-	/*Takes snow from ground into pack, may need information from world)*/
+	/*SCOOP - Takes snow from ground into pack*/
 	void pack_snow();
 	void stop_scooping();
 	void jump();
@@ -114,6 +114,26 @@ public:
 
 	/* Gets most important message for player */
 	Zeni::String get_message() const;
+
+// Stats
+	struct Stats
+	{
+		Stats () :
+			kills(0), deaths(0), thrown(0),
+			hit(0), friendly_hit(0),
+			snow_used(0), built(0), destroyed(0),
+			damage_taken(0), damage_dealt(0){}
+		int kills;
+		int deaths;
+		int thrown;
+		int hit;
+		int friendly_hit;
+		int snow_used;
+		int built;
+		int destroyed;
+		int damage_taken;
+		int damage_dealt;
+	}stats;
 
 // Collision Body
 	void create_body();
