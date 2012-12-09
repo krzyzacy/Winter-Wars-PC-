@@ -53,9 +53,9 @@ void Team::update()	{
 		Base->set_covering(SOFT_SNOW);
 
 	if(network_unstable)	{
-		//check_connectivity();
-		//Deactivate_disconnected();
-		//network_unstable = false;
+		check_connectivity();
+		Deactivate_disconnected();
+		network_unstable = false;
 	}
 
 
@@ -80,9 +80,6 @@ void Team::update()	{
 		}
 	}
 	
-	//check connectivity, updates the network and stuff, need base tile for this
-	//other stuff
-	//Go throught disconnected_tiles and make sure their structures are deactivated
 }
 
 
@@ -122,11 +119,16 @@ bool Team::tile_is_ready(Tile * cand, int type)	{
 		cand->destroy_structure();
 		return true;
 	}
+
+	//You can't build on boundary tiles
+	if(Game_Model::get().get_World()->is_boundary_tile(cand))
+		return false;
+
 	//Do a check here for the center tile
 	//Return false if you can build on it because don't want to let game_obejct create structure
 	if(Game_Model::get().get_World()->get_center_Tile() == cand)	{
 		//%%%%% Install something related to victory conditions here
-		if(is_adjacent_to_network(cand))	{//Doesn't care about who has it currently, any can claim it
+		if(is_adjacent_to_network(cand) && !(Network.count(cand) == 1))	{//Doesn't care about who has it currently, any can claim it
 			cand->destroy_structure();
 			Game_Model::get().add_structure(create_structure(TREE, cand, this));
 			add_tile(cand);
@@ -157,87 +159,65 @@ bool Team::is_in_network(Tile *t)	{
 }
 
 void Team::check_connectivity()	{
+	//Current system
+	//While(changed something)
+		//changed something = false
+		//Iterate through Owned Tiles
+			//if OwnedTiles@(current)->family ->has member in connected set
+				//Add OwnedTiles@(current) to connected set
+				//Change =  true
+		//Remove connected tiles we added from Owned Tiles set
+	//End While
+
+	//Alt version iterate through the connected set, which starts with base - intriguiing
+	//Start with connected set, and if a family member is owned by this team, then add it and iterate again
+	//well connected optimization
 	set<Tile*> connected;
 	connected.insert(Base);
-	set<Tile*> maybe_connected;
-	bool next_slice = false;
-	bool add_col = false;
-	int last_col = Base->get_col();
-	World* W = Game_Model::get().get_World();
-	Tile* Act = 0;
-
-	for(int row = Base->get_row() + 1; row < W->get_height() - 1;)	{
-		for(int col = Base->get_col(); col < W->get_width() - 1;)		{
-			Act = W->get_tile(row, col);
-			if(Act->has_building() && Act->get_team() == Team_Color)	{
-				list<Tile*> family = W->Get_Family(Act);
-				for(list<Tile*>::iterator it = family.begin(); it != family.end(); it++)	{
-					if(connected.count(*it))	
-						connected.insert(Act);
-				}
-				//if not connected but has building add to maybe connected
-				if(connected.count(Act) == 0) 
-					maybe_connected.insert(Act);
-
-			}
-			
-			
-			//Moving in a diagonal pattern by dependednt on base
-			if(Base->get_row() == 1 && Base->get_col() == 1)	{
-				if(next_slice)	{
-					row = Base->get_row();
-					col = ++last_col;
-				}
-				else	{
-					row++;
-					if(add_col)	{
-						col++;
-						add_col = false;
-					}
-					else
-						add_col = true;
-				}
-			}
-			else	{//Other bases don't work for now
-				row = W->get_height();
-				col = W->get_width();
-				return;	//because I haven't written movement for other teams
-			}
-		}
-	}
-
-
 	bool graph_changed = true;
-		//Preliminary idea of cycling through list only if it changes, and adding if any family is connected
+	World* W = Game_Model::get().get_World();
+	//This is the first way mentioned above
 	while(graph_changed)	{
 		graph_changed = false;
-		list<Tile*> changes;
-		for(set<Tile*>::iterator it = maybe_connected.begin(); it != maybe_connected.end(); ++it)	{
+		list<Tile*> changes;	//Tiles that are now in connected set
+		//Go through tiles that team is aware of as owning
+		for(set<Tile*>::iterator it = Network.begin(); it != Network.end(); ++it)	{
+			//Get the family of each owned tile
 			list<Tile*> fam = W->Get_Family(*it);
 			for(list<Tile*>::iterator fit = fam.begin(); fit != fam.end(); ++fit)	{
+				//If anyone in the family of this owned tile is connected to the base, then so is this tile
 				if(connected.count(*fit))	{
 					changes.push_back(*it);
-					Network.insert(*it);
-					graph_changed = true;
+					connected.insert(*it);
+					graph_changed = true;	
+					//The graph of connected tiles changed, so need to loop through any owned tiles again
+					//break;
+					//break because if one of the family member is in connected that's enough
 				}
 			}
 		}
-
-		for(list<Tile*>::iterator cit = changes.begin(); cit != changes.end(); ++cit)	
-			maybe_connected.erase(*cit);
-
+		//To remove those connected to base from network, because they are uninteresting now.
+		for(list<Tile*>::iterator cit = changes.begin(); cit != changes.end(); ++cit)		{
+			Network.erase(*cit);
+		}
+		changes.clear();
 	}
-	//Resolution
 
-	Network.clear();
-	Adjacent_Tiles.clear();
+	//Resolution
+		//At this point anything left in Network represents disconnected tiles
+		//Connected reresents the tiles connected to the base
+
 	Disconnected_Tiles.clear();
+	Disconnected_Tiles = Network;
+	Adjacent_Tiles.clear();
 	Network = connected;
-	//Disconnected_Tiles = maybe_connected;
+	
+	//Goes through all connected tiles and says that the ones next to them are adjacent, 
+	//Prevents you from building on places that are no longer adjacent, but once were
 	for(set<Tile*>::iterator it = Network.begin(); it != Network.end(); ++it)	{
 		list<Tile*> family = W->Get_Family(*it);
 		Adjacent_Tiles.insert(*it);
-		for(list<Tile*>::iterator fit = family.begin(); fit != family.end(); ++it)	
+		for(list<Tile*>::iterator fit = family.begin(); fit != family.end(); ++fit)	
 			Adjacent_Tiles.insert(*fit);
 	}
 
@@ -248,7 +228,7 @@ void Team::Deactivate_disconnected()	{
 		(*it)->get_building()->begin_isolation();
 }
 
-void Team::reintegrate_connected()	{
+void Team::reintegrate_connected()	{	//Currently not in use because instantly destroyed
 	for(set<Tile*>::iterator it = Network.begin(); it != Network.end(); ++it)	
 		(*it)->get_building()->reintegrate();
 }
@@ -278,3 +258,4 @@ float Team::time_till_win()
 bool Team::Is_Tree_Claimed()	{
 	return Network.count(Game_Model::get().get_World()->get_center_Tile());
 }
+
