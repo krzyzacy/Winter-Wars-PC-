@@ -722,6 +722,16 @@ The following things are unsupported:
     <tile>0</tile>
   </Titlescreen>
 
+  <ts800>
+    <filepath>textures/2DTextures/Titlescreen/ts800.png</filepath>
+    <tile>0</tile>
+  </ts800>
+
+  <ts1920>
+    <filepath>textures/2DTextures/Titlescreen/ts1920.png</filepath>
+    <tile>0</tile>
+  </ts1920>
+  
   <Teamselect>
     <filepath>textures/2DTextures/Titlescreen/teamselect.png</filepath>
     <tile>0</tile>
