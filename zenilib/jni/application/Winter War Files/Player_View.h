@@ -21,6 +21,8 @@ public:
 
 	void render_death(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
 
+	void render_message(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight, const Zeni::String message);
+
 	void render_tree_claimed(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
 
 	const Player *get_player() const 

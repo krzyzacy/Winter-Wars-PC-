@@ -506,12 +506,12 @@ void Player::add_message(const Zeni::String &msg)
 }
 
 
-bool Player::has_message()
+bool Player::has_message() const
 {
 	return message != "";
 }
 
-Zeni::String Player::get_message()
+Zeni::String Player::get_message() const
 {
 	return message;
 }

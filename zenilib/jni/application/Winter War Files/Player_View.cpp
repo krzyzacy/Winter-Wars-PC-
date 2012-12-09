@@ -152,6 +152,8 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 	}
 
+	if( player->has_message() )
+		render_message(topLeft, bottomRight, player->get_message());
 	
 
 	
@@ -295,10 +297,17 @@ void Player_View::render_death(const Point2f &topLeft, const Point2f &bottomRigh
 
 }
 
+void Player_View::render_message(const Point2f &topLeft, const Point2f &bottomRight, const Zeni::String message){
+	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
+
+	get_Fonts()["system_36_800x600"].render_text(message ,Point2f(topLeft.x + unit_px * 200, bottomRight.y - unit_px * 50), Color(0x99FF1111));
+
+}
+
 void Player_View::render_tree_claimed(const Point2f &topLeft, const Point2f &bottomRight){
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 
 	render_image("Alert",Point2f(topLeft.x + unit_px * 250, topLeft.y + unit_px * 120),Point2f(topLeft.x + unit_px * 710, topLeft.y + unit_px * 580));
-	get_Fonts()["cat_100"].render_text(itoa((int)player->get_team()->time_till_win()) ,Point2f(topLeft.x + unit_px * 440, topLeft.y + unit_px * 50), Color(0xFFFF0000));
+	get_Fonts()["cat_100"].render_text(itoa((int)Game_Model::get().time_till_win()) ,Point2f(topLeft.x + unit_px * 440, topLeft.y + unit_px * 50), Color(0xFFFF0000));
 
 }

@@ -326,10 +326,11 @@ class Title_State_Custom : public Title_State<Team_Select_State, Instructions_St
 		}
 
 		void render() {
+			render_image("ts800", Point2f(0.0f,0.0f), Point2f(1024.0f, 1024.0f));
 			Title_State<Team_Select_State, Instructions_State>::render();
-			//get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(960.0f, 600.0f)), true);
+			//get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(800.0f, 600.0f)), true);
 
-			render_image("Titlescreen", Point2f(0.0f,0.0f), Point2f(1024.0f,1024.0f));
+			get_Fonts()["cat_110"].render_text("Winter Wars" ,Point2f(190, 60), Color(0xFF33BBE8));
 		}
 };
 

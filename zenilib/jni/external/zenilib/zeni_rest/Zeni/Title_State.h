@@ -61,7 +61,7 @@ namespace Zeni {
 
     public:
       Play_Button()
-        : Text_Button(Point2f(0.5f, 250.0f), Point2f(300.0f, 300.0f),
+        : Text_Button(Point2f(250.0f, 250.0f), Point2f(550.0f, 300.0f),
                       "system_36_800x600", "Play")
       {
       }
@@ -77,7 +77,7 @@ namespace Zeni {
 
     public:
       Instructions_Button()
-        : Text_Button(Point2f(0.5f, 320.0f), Point2f(300.0f, 370.0f),
+        : Text_Button(Point2f(250.0f, 320.0f), Point2f(550.0f, 370.0f),
                       "system_36_800x600", "Instructions")
       {
       }
@@ -90,17 +90,17 @@ namespace Zeni {
 #ifndef ANDROID
     Popup_Menu_State::Configure_Video_Button configure_video_button;
 #endif
-    Popup_Menu_State::Sound_Check_Box sound_check_box;
+    //Popup_Menu_State::Sound_Check_Box sound_check_box;
     Popup_Menu_State::Quit_Button quit_button;
 
     Title_State(const String &title_)
       : Widget_Gamestate(std::make_pair(Point2f(0.0f, 0.0f), Point2f(800.0f, 600.0f))),
       title(title_),
 #ifndef ANDROID
-      configure_video_button(Point2f(0.5f, 390.0f), Point2f(300.0f, 440.0f)),
+      configure_video_button(Point2f(250.0f, 390.0f), Point2f(550.0f, 440.0f)),
 #endif
-      sound_check_box(Point2f(0.5f, 480.0f), Point2f(42.0f, 522.0f)),
-      quit_button(Point2f(175.0f, 470.0f), Point2f(300.0f, 530.0f))
+      //sound_check_box(Point2f(32.5f, 480.0f), Point2f(75.5f, 524.0f)),
+      quit_button(Point2f(325.0f, 470.0f), Point2f(475.0f, 530.0f))
     {
       m_widgets.lend_Widget(title);
       m_widgets.lend_Widget(play_button);
@@ -108,7 +108,7 @@ namespace Zeni {
 #ifndef ANDROID
       m_widgets.lend_Widget(configure_video_button);
 #endif
-      m_widgets.lend_Widget(sound_check_box);
+      //m_widgets.lend_Widget(sound_check_box);
       m_widgets.lend_Widget(quit_button);
 
       title.set_justify(ZENI_CENTER);

@@ -97,7 +97,7 @@ namespace Zeni {
       vr.set_2d(std::make_pair(Point2f(), Point2f(800.0f, 600.0f)));
 
       Color color = get_Colors()["title_bg"];
-      color.a = 0.5f;
+      color.a = 0.05f;
       Quadrilateral<Vertex2f_Color> quad(Vertex2f_Color(Point2f(), color),
                                          Vertex2f_Color(Point2f(0.0f, 600.0f), color),
                                          Vertex2f_Color(Point2f(800.0f, 600.0f), color),
@@ -203,21 +203,22 @@ namespace Zeni {
         const Point2f &ul = get_upper_left();
         const Point2f &lr = get_lower_right();
         Color bgc = cr["title_bg"];
-        bgc.a = 0.5f;
-
+        //bgc.a = 0.01f;
+		
         const float tw = font.get_text_width("Sound");
         const float tl = 0.2f * tw;
         const float tr = 1.4f * tw;
-        const Quadrilateral<Vertex2f_Color> bg(Vertex2f_Color(ul, bgc),
+        /*
+		const Quadrilateral<Vertex2f_Color> bg(Vertex2f_Color(ul, bgc),
                                                Vertex2f_Color(Point2f(ul.x, lr.y), bgc),
                                                Vertex2f_Color(Point2f(lr.x + tr, lr.y), bgc),
                                                Vertex2f_Color(Point2f(lr.x + tr, ul.y), bgc));
         vr.render(bg);
-
+		*/
         Check_Box::render_impl();
 
-        const Color fgc = cr["default_button_bg_normal"];
-        font.render_text("Sound",
+        const Color fgc = cr["default_button_text_normal"];
+        font.render_text("IF IT CHANGES",
                          Point2f(get_lower_right().x + 15.0f,
                                  0.5f * (get_lower_right().y + get_upper_left().y - font.get_text_height())),
                          fgc);

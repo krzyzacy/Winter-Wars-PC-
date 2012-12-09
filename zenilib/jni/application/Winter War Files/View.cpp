@@ -203,7 +203,7 @@ void View::render() const
 	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(width, height)), true);
 	
 	render_player_hud(0, topLeft, middle);
-	render_player_hud(1, topLeft+xSize, middle+xSize);
+	render_player_hud(1, topLeft+xSize, middle+xSize);          
 	render_player_hud(2, topLeft+ySize, middle+ySize);
 	render_player_hud(3, middle, bottomRight);
 	
@@ -230,6 +230,8 @@ void View::render_player_hud(int player, const Point2f &topLeft, const Point2f &
 // Renders the entire list of renderables to Video
 void View::render_world() const 
 {
+	// background
+
 	// pass each renderable into render_renderable
 	for_each(to_render.begin(), to_render.end(),
 		bind1st(mem_fun(&View::render_renderable), this));

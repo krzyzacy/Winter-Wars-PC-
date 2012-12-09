@@ -109,10 +109,10 @@ public:
 	void add_message(const Zeni::String &);
 
 	/* true if there is a message*/
-	bool has_message();
+	bool has_message() const;
 
 	/* Gets most important message for player */
-	Zeni::String get_message();
+	Zeni::String get_message() const;
 
 // Collision Body
 	void create_body();
