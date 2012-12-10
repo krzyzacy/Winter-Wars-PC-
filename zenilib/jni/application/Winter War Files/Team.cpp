@@ -55,6 +55,7 @@ void Team::update()	{
 	if(network_unstable)	{
 		check_connectivity();
 		Deactivate_disconnected();
+		Disconnected_Tiles.clear();
 		network_unstable = false;
 	}
 
@@ -174,6 +175,7 @@ void Team::check_connectivity()	{
 	//well connected optimization
 	set<Tile*> connected;
 	connected.insert(Base);
+	Network.erase(Base);
 	bool graph_changed = true;
 	World* W = Game_Model::get().get_World();
 	//This is the first way mentioned above
@@ -206,6 +208,7 @@ void Team::check_connectivity()	{
 	//Resolution
 		//At this point anything left in Network represents disconnected tiles
 		//Connected reresents the tiles connected to the base
+
 
 	Disconnected_Tiles.clear();
 	Disconnected_Tiles = Network;
