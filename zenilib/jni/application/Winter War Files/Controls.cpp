@@ -133,7 +133,6 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 		return Handled_Input;
 }
 
-
 bool Controls::HandleJoy(const SDL_JoyAxisEvent &event)	{
 	//This tracks the triggers and Joysticks
 	bool Handled_Input = true;
