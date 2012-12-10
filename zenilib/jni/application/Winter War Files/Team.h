@@ -50,6 +50,14 @@ public:
 	// returns null if index == number of players
 	Player *get_player(int index);
 
+	struct {
+		int total_resources;
+		int largest_network;
+		int tiles_lost;
+		int final_network;	
+	
+	} stats;
+
 private:
 	//list of players
 	std::vector<Player*>	members;
