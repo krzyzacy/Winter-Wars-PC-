@@ -9,7 +9,7 @@ using namespace Zeni;
 
 Snow_Factory::Snow_Factory(Team *team, Tile* tile_,
 				const Zeni::Point3f &base_) :
-	Structure(team, tile_, base_, 50.0f)
+	Structure(team, tile_, base_)
 {
 	create_body();
 	list<Tile*> family = Game_Model::get().get_World()->Get_Family(hex);
@@ -65,6 +65,7 @@ void Snow_Factory::update(const float &time)
 	if (Status == UNWRAP_MODE)
 		{
 		restore_default_size_and_position();
+		size /= 2;
 		Status = BUILT;
 		}
 

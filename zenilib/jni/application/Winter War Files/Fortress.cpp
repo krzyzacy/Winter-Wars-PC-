@@ -37,7 +37,8 @@ void Fortress::update(const float &time)
 	if (Status == UNWRAP_MODE)
 		{
 		restore_default_size_and_position();
-		center.z += 26;
+		size = size*0.75;
+		center.z += 12;
 		Status = BUILT;
 		}
 
