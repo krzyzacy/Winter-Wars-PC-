@@ -380,11 +380,38 @@ StructureAnimator *Present_wrapped::get_next(StructureEvent_e sevent)
 {
 	switch (sevent)
 	{
+		case FORT_SPIN:
+			return new Fort_spin();
+			break;
+		case FORT_ISO:
+			return new Fort_isolated();
+			break;
+		case SM_STAND:
+			return new Snowman_stand();
+			break;
+		case SM_THROWL:
+			return new Snowman_thwl();
+			break;
+		case SM_THROWR:
+			return new Snowman_thwr();
+			break;
+		case SM_ISO:
+			return new Snowman_isolated();
+			break;
+		case FAC_SPIN:
+			return new Factory_spin();
+			break;
+		case FAC_ISO:
+			return new Factory_isolated();
+			break;
+		case POOL_ISO:
+			return new Pool_isolated();
+			break;
+		case POOL_HEAL:
+			return new Pool_heal();
+			break;
 		case PRESENT_WRAP:
 			return NULL;
-			break;
-		case PRESENT_UNWRAP:
-			return new Present_unwrapped();
 			break;
 		default:
 			return NULL;

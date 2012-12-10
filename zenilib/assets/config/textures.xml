@@ -198,7 +198,11 @@ The following things are unsupported:
     <filepath>textures/3Dtextures/Wrapping/RWRAP.png</filepath>
     <tile>1</tile>
   </RWRAP.PNG>
-  
+  <PWRAP.PNG>
+    <filepath>textures/3Dtextures/Wrapping/PWRAP.png</filepath>
+    <tile>1</tile>
+  </PWRAP.PNG>
+
   <!--  SOFT SNOW TILE TEXTURES  -->
   <SOFTSNOW.PNG>
     <filepath>textures/3Dtextures/Tile/SOFTSNOW.png</filepath>

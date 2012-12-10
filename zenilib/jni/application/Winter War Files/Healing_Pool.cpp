@@ -12,8 +12,7 @@ Healing_Pool::Healing_Pool(Team *team, Tile* tile_,
 				const Zeni::Point3f &base_) :
 	Structure(team, tile_, base_)
 {
-	animation_state = new Pool_heal();
-	center.z -= 22;
+	animation_state = new Present_wrapped();
 	create_body();
 	Health = Struct_Integrity[HEALING_POOL];
 }
@@ -26,13 +25,30 @@ Healing_Pool::~Healing_Pool(void)
 void Healing_Pool::update(const float &time)
 {
 	Structure::update(time);
-	if (Connected_to_Team)
-		switch_state(POOL_HEAL);
-	else
-		switch_state(POOL_ISO);
+	if (Status == UNWRAP_MODE)
+		{
+		//Magic number shift height attempt
+		restore_default_size_and_position();
+		center.z -= 22;
+		Status = BUILT;
+		}
+
+	if (Status != PRESENT_MODE && Status != UNWRAP_MODE)
+		{
+		if (Connected_to_Team)
+			switch_state(POOL_HEAL);
+		else
+			switch_state(POOL_ISO);
+		}
 }
 
 void Healing_Pool::handle_player_collision(Player *P)	{
+	if (Status == PRESENT_MODE)
+		{
+		Structure::handle_player_collision(P);
+		return;
+		}
+
 	if (Connected_to_Team)
 		{
 		if (P->get_team() == owner)	

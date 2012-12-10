@@ -17,7 +17,7 @@ extern const int Build_Cost[5];
 extern const float Struct_Integrity[5];
 
 enum	Universal_State	{
-	PRESENT_MODE, BUILT, DAMAGED, DESTROYED
+	PRESENT_MODE, UNWRAP_MODE, BUILT, DAMAGED, DESTROYED
 };
 
 class Team;
@@ -56,6 +56,8 @@ public:
 
 	virtual bool is_snow_maker()	{return false;}
 
+	void save_position();
+
 private:
 	// State?  Building -> Built -> Damaged? -> Destroyed??
 	//Would the damaged state look different? like a broken version of the model???
@@ -66,6 +68,9 @@ protected:
 	Universal_State Status;
 	bool Connected_to_Team;
 
+	Zeni::Point3f default_position;
+	Zeni::Vector3f default_size;
+	float default_radius;
 	// maybe Collision capsule??? If each structure needs Collision Object, 
 	// Collision table becomes much more complicated to code
 	// But some effects might need players to run into them
@@ -76,7 +81,10 @@ protected:
 	Tile *hex;
 
 	Zeni::Chronometer<Zeni::Time> Isolation_Clock;
-	
+	//Present Stuff
+	Zeni::Chronometer<Zeni::Time> Present_Clock;	
+	bool opened;
+
 	void create_body();
 	Zeni::Collision::Capsule body;
 		
@@ -88,6 +96,8 @@ protected:
 	StructureAnimator *animation_state;
 	virtual Animator *get_animator() const;
 	virtual void switch_state(StructureEvent_e);
+
+	void restore_default_size_and_position();
 
 };
 

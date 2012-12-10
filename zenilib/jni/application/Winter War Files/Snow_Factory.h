@@ -16,6 +16,8 @@ public:
 
 	Animator* get_animator();
 
+	void set_proper_dimensions_and_position();
+
 private:
 
 	Animator *get_animator() const;

@@ -9,10 +9,9 @@ Fortress::Fortress(Team *team, Tile* tile_,
 				const Zeni::Point3f &base_) :
 	Structure(team, tile_, base_)
 {
-	center.z += 26;
 	create_body();
 	Health = Struct_Integrity[FORT];
-	animation_state = new Fort_spin();
+	animation_state = new Present_wrapped();
 }
 
 Fortress::~Fortress(void)
@@ -21,6 +20,12 @@ Fortress::~Fortress(void)
 
 void Fortress::handle_player_collision(Player *P)
 {
+	if (Status == PRESENT_MODE)
+		{
+		Structure::handle_player_collision(P);
+		return;
+		}
+
 	if (P->get_team() != owner)
 		Structure::handle_player_collision(P);
 }
@@ -28,10 +33,21 @@ void Fortress::handle_player_collision(Player *P)
 void Fortress::update(const float &time)
 {
 	Structure::update(time);
+
+	if (Status == UNWRAP_MODE)
+		{
+		restore_default_size_and_position();
+		center.z += 26;
+		Status = BUILT;
+		}
+
+	if (Status != PRESENT_MODE && Status != UNWRAP_MODE)
+	{
 	if (Connected_to_Team)
 		switch_state(FORT_SPIN);
 	else
 		switch_state(FORT_ISO);
+	}
 }
 
 const model_key_t Fortress::get_model_name() const 

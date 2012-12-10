@@ -18,4 +18,5 @@ private:
 	Animator *get_animator() const;
 
 	void create_body();
+
 };
