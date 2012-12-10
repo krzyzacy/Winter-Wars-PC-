@@ -218,6 +218,8 @@ void View::render_player(int player, const Point2f &topLeft, const Point2f &bott
 {	
 	Video &vr = get_Video();
 	//vr.set_3d(cur_View->get_player()->);
+	cur_View = player_views[player];  // this is the cur player
+	player_views[player]->set_camera(topLeft,bottomRight);
 
 	Vertex3f_Texture c_p0(Point3f(0.0f,0.0f,1000.0f),                             Point2f(0.0f, 0.0f));
     Vertex3f_Texture c_p1(Point3f(0.0f,2500.0f,1000.0f),                             Point2f(0.0f, 1.0f));
@@ -273,8 +275,7 @@ void View::render_player(int player, const Point2f &topLeft, const Point2f &bott
 		
 	}
 
-	cur_View = player_views[player];  // this is the cur player
-	player_views[player]->set_camera(topLeft,bottomRight);
+
 
 	render_world();
 

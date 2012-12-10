@@ -160,6 +160,11 @@ The following things are unsupported:
     <filepath>textures/3DTextures/HealingPool/Water.png</filepath>
     <tile>1</tile>
   </WATER.PNG>
+
+  <GLACIER.PNG>
+    <filepath>textures/3DTextures/Tile/GLACIER.png</filepath>
+    <tile>1</tile>
+  </GLACIER.PNG>
   
   <!--  CLOTH TEXTURES  -->
 
@@ -767,6 +772,25 @@ The following things are unsupported:
     <tile>0</tile>
   </Alert>
 
+  <Endscreen>
+    <filepath>textures/2DTextures/Titlescreen/Results.png</filepath>
+    <tile>0</tile>
+  </Endscreen>
+
+  <Control_1>
+    <filepath>textures/2DTextures/Titlescreen/Instructions1.png</filepath>
+    <tile>0</tile>
+  </Control_1>
+
+  <Control_2>
+    <filepath>textures/2DTextures/Titlescreen/Instructions2.png</filepath>
+    <tile>0</tile>
+  </Control_2>
+
+
+
+
+
   <Controls>
     <filepath>textures/2DTextures/InstructionState/WWControls.png</filepath>
     <tile>0</tile>
@@ -791,6 +815,11 @@ The following things are unsupported:
     <filepath>textures/2DTextures/HUDSprites/PriceBox.png</filepath>
     <tile>0</tile>
   </PriceBox>
+
+  <coin>
+    <filepath>textures/2DTextures/HUDSprites/quarter-coin-head.png</filepath>
+    <tile>0</tile>
+  </coin>
   
   <Background>
     <filepath>textures/2DTextures/Background/aurora.png</filepath>
@@ -801,6 +830,8 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Background/Nlights.png</filepath>
     <tile>0</tile>
   </Nlight>
+
+
   <!--
   <one>
     <is_sprite>0</is_sprite>

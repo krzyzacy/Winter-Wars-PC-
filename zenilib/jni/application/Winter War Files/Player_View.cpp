@@ -6,6 +6,7 @@
 #include "string.h"
 
 #include <zenilib.h>
+#include "Structure.h"
 
 using namespace Zeni;
 
@@ -85,10 +86,11 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 	render_image("AvartarFrame",topLeft,Point2f(topLeft.x + unit_px * 200, topLeft.y + unit_px * 200));
 	render_image("BuildingFrame",Point2f(bottomRight.x - unit_px * 270, topLeft.y),Point2f(bottomRight.x, topLeft.y + unit_px * 270));
-	render_image("PriceBox",Point2f(bottomRight.x - unit_px * 90, topLeft.y + unit_px * 5),Point2f(bottomRight.x - unit_px * 5, topLeft.y + unit_px * 90));
+	render_image("PriceBox",Point2f(bottomRight.x - unit_px * 100, topLeft.y + unit_px * 5),Point2f(bottomRight.x - unit_px * 5, topLeft.y + unit_px * 100));
 	render_image((Zeni::String)gender+(Zeni::String)team+(Zeni::String)status,Point2f(topLeft.x + unit_px * 10, topLeft.y + unit_px * 10), Point2f(topLeft.x + unit_px * 120, topLeft.y + unit_px * 120));
-	render_image("IceBlock",Point2f(topLeft.x + unit_px * 410, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 450, topLeft.y + unit_px * 45));
-	get_Fonts()["cat_24"].render_text(itoa((int)player->get_Team_Blocks()), Point2f(topLeft.x + unit_px * 452, topLeft.y + unit_px * 12),Color(0x99FF1111));
+	//render_image("IceBlock",Point2f(topLeft.x + unit_px * 410, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 450, topLeft.y + unit_px * 45));
+	render_image("coin",Point2f(bottomRight.x - unit_px * 91, topLeft.y + unit_px * 14),Point2f(bottomRight.x - unit_px * 71, topLeft.y + unit_px * 34));
+	get_Fonts()["cat_28"].render_text(itoa((int)player->get_Team_Blocks()), Point2f(bottomRight.x - unit_px * 70, topLeft.y + unit_px * 10),Color(0xCCFF1111));
 	render_image("Heart",Point2f(topLeft.x + unit_px * 180, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 220, topLeft.y + unit_px * 45));
 	render_image("Snowball",Point2f(topLeft.x + unit_px * 515, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 555, topLeft.y + unit_px * 45));
 
@@ -236,7 +238,7 @@ void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRigh
 		render_image("Fortress2D",Point2f(bottomRight.x - unit_px * 60, topLeft.y + unit_px * 125),Point2f(bottomRight.x - unit_px * 10, topLeft.y + unit_px * 175));
 		render_image("Snowman2D",Point2f(bottomRight.x - unit_px * 158, topLeft.y + unit_px * 32),Point2f(bottomRight.x - unit_px * 32, topLeft.y + unit_px * 158));
 
-		get_Fonts()["cat_24"].render_text("200", Point2f(bottomRight.x - unit_px * 50, topLeft.y + unit_px * 10),Color(0xCCFF2222));
+		get_Fonts()["cat_28"].render_text(itoa(Build_Cost[1]), Point2f(bottomRight.x - unit_px * 120, topLeft.y + unit_px * 152),Color(0xCCFF1111));
 		//render_image("Snowman2D",Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 1), Point2f(topLeft.x + unit_px * 800, topLeft.y + unit_px * 301));
 	}
 
@@ -252,7 +254,7 @@ void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRigh
 		render_image("Factory2D",Point2f(bottomRight.x - unit_px * 60, topLeft.y + unit_px * 125),Point2f(bottomRight.x - unit_px * 10, topLeft.y + unit_px * 175));
 		render_image("Fortress2D",Point2f(bottomRight.x - unit_px * 158, topLeft.y + unit_px * 32),Point2f(bottomRight.x - unit_px * 32, topLeft.y + unit_px * 158));
 
-		get_Fonts()["cat_24"].render_text("200", Point2f(bottomRight.x - unit_px * 50, topLeft.y + unit_px * 10),Color(0xCCFF2222));
+		get_Fonts()["cat_28"].render_text(itoa(Build_Cost[2]), Point2f(bottomRight.x - unit_px * 120, topLeft.y + unit_px * 152),Color(0xCCFF1111));
 		//render_image("Fortress2D",Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 1), Point2f(topLeft.x + unit_px * 800, topLeft.y + unit_px * 301));
 	}
 
@@ -268,7 +270,7 @@ void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRigh
 		render_image("HealingPool2D",Point2f(bottomRight.x - unit_px * 60, topLeft.y + unit_px * 125),Point2f(bottomRight.x - unit_px * 10, topLeft.y + unit_px * 175));
 		render_image("Factory2D",Point2f(bottomRight.x - unit_px * 158, topLeft.y + unit_px * 32),Point2f(bottomRight.x - unit_px * 32, topLeft.y + unit_px * 158));
 
-		get_Fonts()["cat_24"].render_text("200", Point2f(bottomRight.x - unit_px * 50, topLeft.y + unit_px * 10),Color(0xCCFF2222));
+		get_Fonts()["cat_28"].render_text(itoa(Build_Cost[3]), Point2f(bottomRight.x - unit_px * 120, topLeft.y + unit_px * 152),Color(0xCCFF1111));
 		//render_image("Factory2D",Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 1), Point2f(topLeft.x + unit_px * 800, topLeft.y + unit_px * 301));
 	}
 
@@ -284,7 +286,7 @@ void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRigh
 		render_image("Snowman2D",Point2f(bottomRight.x - unit_px * 60, topLeft.y + unit_px * 125),Point2f(bottomRight.x - unit_px * 10, topLeft.y + unit_px * 175));
 		render_image("HealingPool2D",Point2f(bottomRight.x - unit_px * 158, topLeft.y + unit_px * 32),Point2f(bottomRight.x - unit_px * 32, topLeft.y + unit_px * 158));
 
-		get_Fonts()["cat_24"].render_text("200", Point2f(bottomRight.x - unit_px * 50, topLeft.y + unit_px * 10),Color(0xCCFF2222));
+		get_Fonts()["cat_28"].render_text(itoa(Build_Cost[4]), Point2f(bottomRight.x - unit_px * 120, topLeft.y + unit_px * 152),Color(0xCCFF1111));
 		//render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 1), Point2f(topLeft.x + unit_px * 800, topLeft.y + unit_px * 301));
 	}
 

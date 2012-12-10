@@ -236,10 +236,10 @@ std::list<Tile*> World::Get_Family(Tile *Central){
 	std::list<Tile *> ret;
 
 	if(Central->get_col() != 0)
-		ret.push_back(map[Central->get_row()][Central->get_col() + 1]);
+		ret.push_back(map[Central->get_row()][Central->get_col() - 1]);
 
 	if(Central->get_col() != map_width - 1)
-		ret.push_back(map[Central->get_row()][Central->get_col() - 1]);
+		ret.push_back(map[Central->get_row()][Central->get_col() + 1]);
 
 	if(Central->get_row() % 2 == 0){
 		if(Central->get_row() == 0){
