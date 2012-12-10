@@ -74,7 +74,10 @@ void Collision_Table::collidePlayerSnowball(Player* p1, Snowball* b1)
 	if (!p1->body.intersects(b1->body) || b1->owner == p1)
 		return;
 
-	
+	if (b1->damage_dealt)
+		return;
+
+
 	//*// Friendly Fire
 	if (p1->get_team() == b1->team)
 	{
@@ -96,7 +99,7 @@ void Collision_Table::collidePlayerSnowball(Player* p1, Snowball* b1)
 	
 	p1->get_damaged(damage_dealt);
 
-	Game_Model::get().add_effect(new Effect("explode", b1->center));
+	Game_Model::get().add_effect(new Effect("explode", b1->center, Vector3f(10,10,10)*b1->size.z/4));
 
 	// if snowman shot it, don't add player stats
 	if (!b1->owner)
@@ -152,17 +155,18 @@ void Collision_Table::collideSnowballStructure(Snowball *b2, Structure *w1)
 {
 	if (!b2->body.intersects(w1->body))
 		return;
-
+	
+	if (b2->damage_dealt)
+		return;
 	
 	int damage = b2->deal_damage();
 
 	if (w1->Status == DESTROYED || b2->team == w1->owner)
 		return;
 
-
 	w1->receive_hit(damage);
 
-	Game_Model::get().add_effect(new Effect("explode", b2->center));
+	Game_Model::get().add_effect(new Effect("explode", b2->center, Vector3f(10,10,10)*b2->size.z/4));
 
 	if (!b2->owner)  //snowmen should damage other structures
 		return;		// but no stats
