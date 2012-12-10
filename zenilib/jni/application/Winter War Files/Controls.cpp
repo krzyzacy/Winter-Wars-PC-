@@ -18,7 +18,7 @@ Controls::Controls(bool inverted_, int which_id_)	:
 	inverted(inverted_),
 	Shoot(CHILL),
 	Mouse_Camera(0),
-	which_id(which_id_)
+	which_id(which_id_), left_last(false), right_last(false)
 {
 }
 
@@ -157,9 +157,9 @@ bool Controls::HandleJoy(const SDL_JoyAxisEvent &event)	{
 		break;
 	case 5:		//Left Trigger
 		if(Val > Trig_sensitivity)
-			input.build_view = true;
+			input.mini_map = true;
 		else
-			input.build_view = false;
+			input.mini_map = false;
 		break;
 	case 2:		//Right Trigger
 			if(Val > Trig_sensitivity) //Anything greater than 0 represents a press (32768 is max)
@@ -208,6 +208,8 @@ bool Controls::HandleJoy(const SDL_JoyHatEvent &event)	{
 bool Controls::HandleJoy(const SDL_JoyButtonEvent &event)	{	
 	//This tracks the buttons on the controller
 	//including the shoulders
+	input.LSHOULDER = false;
+	input.RSHOULDER = false;
 	bool Handled_Input = true;
 	switch(event.button)	{
 	case 0: //A Button
@@ -217,16 +219,30 @@ bool Controls::HandleJoy(const SDL_JoyButtonEvent &event)	{
 		input.pack = event.state == SDL_PRESSED;
 		break;
 	case 2:	//X Button
-		//No Function (Ice Pick)?
+		input.Build_Go = event.type == SDL_JOYBUTTONDOWN;
 		break;
 	case 3:	//Y Button
-		//No Funciton
+		input.jet_pack_mode = event.state == SDL_PRESSED;
 		break;
 	case 4:	//Left Shoulder
-		input.mini_map = event.state == SDL_PRESSED;
+		if(event.state == SDL_PRESSED && !left_last)	{
+			input.LSHOULDER = true;
+			left_last = true;
+		}
+		if(event.state == SDL_RELEASED)
+			left_last = false;
+		if(event.state == SDL_PRESSED)
+			left_last = true;
 		break;
 	case 5: //Right Shoulder
-		input.RSHOULDER = event.state == SDL_PRESSED;
+		if(event.state == SDL_PRESSED && !right_last)	{
+			input.RSHOULDER = true;
+			right_last = true;
+		}
+		if(event.state == SDL_RELEASED)
+			right_last = false;
+		if(event.state == SDL_PRESSED)
+			right_last = true;
 		break;
 	case 6:	//Back button 
 		//Respawn?
@@ -292,29 +308,26 @@ void Controls::interact_with_player(Player* Tron, const float &time)	{
 
 	//Alternate Views and Building Menu
 	Tron->determine_active_view(input.build_view, input.mini_map);
-	Vector2f norml(input.Cam);
-	Tron->handle_build_menu(norml.normalize());
+	//Vector2f norml(input.Cam);
+	//Tron->handle_build_menu(norml.normalize());
+	if(input.LSHOULDER || input.RSHOULDER)	{
+		Tron->handle_struct_type_change(input.LSHOULDER, input.RSHOULDER);
+		input.LSHOULDER = false;
+		input.RSHOULDER = false;
+	}
+	
+	Tron->Make_Building(input.Build_Go);
+
 	
 	//Hacks, for debugging purposes, although would be a good power-up
-	Tron->jet_pack_mode(input.RSHOULDER);
+	Tron->jet_pack_mode(input.jet_pack_mode);
 
 	if(input.Tile_up)
 		Tron->raise_tile();
 	if(input.Tile_down)
 		Tron->lower_tile();
 
-	float lef = 20;
-	float rig = 20;
-	if(input.Tile_up)	{
-		lef += 10;
-		rig += 10;
-	}
-	if(input.Tile_down)	{
-		lef -= 10;
-		rig -= 10;
-	}
-
-	//HUZZAHH!!!! I FOUND THE FUCKING VIBRATION! BOOM! PLAYER FEED BACK!
+	//Viration Calibration
 	if(Tron->vibrate_feedback())	
 		Joysticks::get().set_xinput_vibration(which_id, 20, 20);
 	else

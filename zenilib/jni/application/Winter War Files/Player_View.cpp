@@ -1,5 +1,6 @@
 #include "Player_View.h"
 #include "Player.h"
+#include "Structure.h"
 #include "World.h"
 #include "Game_Model.h"
 #include "Tile.h"
@@ -145,13 +146,13 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 			render_minimap(topLeft, bottomRight, gender+team+status );
 		}
 		else if( player->get_build_view() ){
-			render_build(topLeft, bottomRight);
 			//render_tree_claimed(topLeft, bottomRight);
 		}
 		else{
 			render_image("BuildManu2D",Point2f(topLeft.x + unit_px * 460, topLeft.y + unit_px * 280), Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 320));
 		}
 
+		render_build(topLeft, bottomRight);
 	}
 
 	if( player->has_message() )
@@ -225,10 +226,12 @@ void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRigh
 	//render_image("BuildManu2D",Point2f(topLeft.x + unit_px * 380, topLeft.y + unit_px * 200), Point2f(topLeft.x + unit_px * 580, topLeft.y + unit_px * 400));
 
 	float stick_theta = player->get_stick_choice();
+	Structure_Type choice = player->get_current_choice();
 
 	//Joystick points Left
-	if(	stick_theta > Global::three_pi_over_two + Global::pi/4 ||
-			stick_theta < Global::pi/4){
+	//if(	stick_theta > Global::three_pi_over_two + Global::pi/4 ||
+	//		stick_theta < Global::pi/4){
+	if(choice == SNOWMAN)	{
 		//render_image("Fortress2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 495));
 		//render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 675, topLeft.y + unit_px * 350));
 		//render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 105), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 205));
@@ -243,8 +246,9 @@ void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRigh
 	}
 
 	//Down
-	if(stick_theta < Global::pi - Global::pi/4 &&
-		stick_theta > Global::pi/4){
+	//if(stick_theta < Global::pi - Global::pi/4 &&
+	//	stick_theta > Global::pi/4){
+	if(choice == FORT)	{
 		//render_image("Snowman2D",Point2f(topLeft.x + unit_px * 285, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 350));
 		//render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 675, topLeft.y + unit_px * 350));
 		//render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 105), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 205));
@@ -259,8 +263,9 @@ void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRigh
 	}
 
 	//Right
-	if(stick_theta < Global::pi + Global::pi/4 &&
-		stick_theta > Global::pi_over_two + Global::pi/4){
+	//if(stick_theta < Global::pi + Global::pi/4 &&
+	//	stick_theta > Global::pi_over_two + Global::pi/4){
+	if(choice == SNOW_FACTORY)	{
 		//render_image("Snowman2D",Point2f(topLeft.x + unit_px * 285, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 350));
 		//render_image("Fortress2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 495));
 		//render_image("HealingPool2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 105), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 205));
@@ -275,8 +280,9 @@ void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRigh
 	}
 
 	//Up
-	if(stick_theta < Global::three_pi_over_two + Global::pi/4 && 
-		stick_theta > Global::three_pi_over_two - Global::pi/4){
+	//if(stick_theta < Global::three_pi_over_two + Global::pi/4 && 
+	//	stick_theta > Global::three_pi_over_two - Global::pi/4){
+	if(choice == HEALING_POOL)	{
 		//render_image("Snowman2D",Point2f(topLeft.x + unit_px * 285, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 385, topLeft.y + unit_px * 350));
 		//render_image("Fortress2D",Point2f(topLeft.x + unit_px * 430, topLeft.y + unit_px * 395), Point2f(topLeft.x + unit_px * 530, topLeft.y + unit_px * 495));
 		//render_image("Factory2D",Point2f(topLeft.x + unit_px * 575, topLeft.y + unit_px * 250), Point2f(topLeft.x + unit_px * 675, topLeft.y + unit_px * 350));

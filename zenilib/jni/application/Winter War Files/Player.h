@@ -25,7 +25,7 @@ enum Jump_State	{
 };
 
 enum Build_State	{
-		REST, SELECT_BUILDING, CREATE_BUILDING, RECHARGE_BUILD
+		REST, RECHARGE_BUILD
 };
 
 struct Message
@@ -70,13 +70,18 @@ public:
 	void jump();
 	void jet_pack_mode(bool state);
 	
-	void handle_build_menu(const Zeni::Vector2f &norml_stick);
+	//void handle_build_menu(const Zeni::Vector2f &norml_stick);
 	void determine_active_view(bool build, bool mini);
 	
 	bool get_mini_view() const {return mini_open;}
 	bool get_build_view() const {return (build_open && !mini_open);}
 	float get_stick_choice() const {return stick_theta;}
+
+	//Building Functions
+	Structure_Type get_current_choice()	const {return Selection;}
 	bool create_building(Structure_Type	Building);
+	void handle_struct_type_change(bool Left, bool Right);
+	void Make_Building(bool go);
 	
 	void raise_tile();
 	void lower_tile();
