@@ -53,7 +53,7 @@ void Structure::update(const float &time)
 	}
 	
 
-	if(Isolation_Clock.seconds() > 1)	{
+	if(Isolation_Clock.seconds() > 10)	{
 		Status = DESTROYED;
 	}
 

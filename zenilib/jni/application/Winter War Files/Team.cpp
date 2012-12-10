@@ -7,6 +7,7 @@
 #include "Object_factory.h"
 
 
+
 using namespace std;
 using namespace Zeni;
 
@@ -55,7 +56,7 @@ void Team::update()	{
 	if(network_unstable)	{
 		check_connectivity();
 		Deactivate_disconnected();
-		Disconnected_Tiles.clear();
+		reintegrate_connected();
 		network_unstable = false;
 	}
 
@@ -98,8 +99,13 @@ void Team::add_tile(Tile *t)	{
 	//do the stuff for add adjacent members(cycle through family and add
 	World *w = Game_Model::get().get_World();
 	list<Tile*> family = w->Get_Family(t);
-	for(list<Tile*>::iterator it = family.begin(); it != family.end(); it++)
+	for(list<Tile*>::iterator it = family.begin(); it != family.end(); it++)	{
 		Adjacent_Tiles.insert(*it);
+		if(Disconnected_Tiles.count(*it))	{
+			//if one of the adjacent tiles was disconnected then, it might have reconnected the others
+			network_unstable = true;
+		}
+	}
 }
 
 void Team::remove_tile(Tile *t)	{
@@ -109,6 +115,7 @@ void Team::remove_tile(Tile *t)	{
 	}
 
 	Network.erase(t);
+	Disconnected_Tiles.erase(t);
 	network_unstable = true;
 }
 
@@ -176,6 +183,10 @@ void Team::check_connectivity()	{
 	set<Tile*> connected;
 	connected.insert(Base);
 	Network.erase(Base);
+	//Add all disconnected tiles to netwrok, because they have this teams ownership, but aren't connected
+	for(set<Tile*>::iterator dit = Disconnected_Tiles.begin(); dit != Disconnected_Tiles.end(); ++dit)	
+		Network.insert(*dit);
+
 	bool graph_changed = true;
 	World* W = Game_Model::get().get_World();
 	//This is the first way mentioned above
