@@ -69,10 +69,16 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 				input.pack = event.state == SDL_PRESSED;
 				break;
 			case SDLK_b:
-				input.build_view = event.state == SDL_PRESSED;
+				input.Build_Go = event.state == SDL_PRESSED;
 				break;
 			case SDLK_m:
 				input.mini_map = event.state == SDL_PRESSED;
+				break;
+			case SDLK_n:
+				input.RSHOULDER = event.state == SDL_PRESSED;
+				break;
+			case SDLK_v:
+				input.LSHOULDER = event.state == SDL_PRESSED;
 				break;
 			case SDLK_LSHIFT:
 				input.jump = event.type == SDL_KEYDOWN;
