@@ -15,13 +15,54 @@ void Fort_spin::animate(Zeni::Model *model)
 
 StructureAnimator *Fort_spin::get_next(StructureEvent_e sevent)
 {
-	return NULL;
+	switch (sevent)
+	{
+		case FORT_SPIN:
+			return NULL;
+			break;
+		case FORT_ISO:
+			return new Fort_isolated();
+			break;
+		default:
+			return NULL;
+			break;
+	}
 }
 	
 model_key_t Fort_spin::get_model_name()
 {
 	return "fortress_spin";
 }
+
+void Fort_isolated::animate(Zeni::Model *model)
+{
+	FIFrame += Game_Model::get().get_time_step()*10;
+	Frame = FIFrame;
+	Frame = (Frame % 50) + 1;
+	model->set_keyframe(Frame);
+}
+
+StructureAnimator *Fort_isolated::get_next(StructureEvent_e sevent)
+{
+	switch (sevent)
+	{
+		case FORT_SPIN:
+			return new Fort_spin();
+			break;
+		case FORT_ISO:
+			return NULL;
+			break;
+		default:
+			return NULL;
+			break;
+	}
+}
+	
+model_key_t Fort_isolated::get_model_name()
+{
+	return "fortress_isolated";
+}
+
 
 /*---------------------------------------------
 				SNOWMAN
@@ -47,6 +88,9 @@ StructureAnimator *Snowman_stand::get_next(StructureEvent_e sevent)
 			break;
 		case SM_THROWR:
 			return new Snowman_thwr();
+			break;
+		case SM_ISO:
+			return new Snowman_isolated();
 			break;
 		default:
 			return NULL;
@@ -80,6 +124,9 @@ StructureAnimator *Snowman_thwr::get_next(StructureEvent_e sevent)
 			case SM_THROWR:
 				return new Snowman_thwr();
 				break;
+			case SM_ISO:
+				return new Snowman_isolated();
+				break;
 			default:
 				return NULL;
 				break;
@@ -91,6 +138,9 @@ StructureAnimator *Snowman_thwr::get_next(StructureEvent_e sevent)
 			{
 			case SM_THROWL:
 				return new Snowman_thwl();
+				break;
+			case SM_ISO:
+				return new Snowman_isolated();
 				break;
 			default:
 				return NULL;
@@ -125,6 +175,9 @@ StructureAnimator *Snowman_thwl::get_next(StructureEvent_e sevent)
 			case SM_THROWR:
 				return new Snowman_thwr();
 				break;
+			case SM_ISO:
+				return new Snowman_isolated();
+				break;
 			default:
 				return NULL;
 				break;
@@ -136,6 +189,9 @@ StructureAnimator *Snowman_thwl::get_next(StructureEvent_e sevent)
 			{
 			case SM_THROWR:
 				return new Snowman_thwr();
+				break;
+			case SM_ISO:
+				return new Snowman_isolated();
 				break;
 			default:
 				return NULL;
@@ -149,6 +205,41 @@ model_key_t Snowman_thwl::get_model_name()
 	return "snowman_throw_left";
 }
 
+void Snowman_isolated::animate(Zeni::Model *model)
+{
+	SIFrame += Game_Model::get().get_time_step()*20;
+	Frame = SIFrame;
+	Frame = (Frame % 50) + 1;
+	model->set_keyframe(Frame);
+}
+
+StructureAnimator *Snowman_isolated::get_next(StructureEvent_e sevent)
+{
+	switch (sevent)
+	{
+		case SM_STAND:
+			return new Snowman_stand();
+			break;
+		case SM_THROWL:
+			return new Snowman_thwl();
+			break;
+		case SM_THROWR:
+			return new Snowman_thwr();
+			break;
+		case SM_ISO:
+			return NULL;
+			break;
+		default:
+			return NULL;
+			break;
+	}
+}
+
+model_key_t Snowman_isolated::get_model_name()
+{
+	return "snowman_isolated";
+}
+
 /*---------------------------------------------
 				FACTORY
 ---------------------------------------------*/
@@ -158,62 +249,18 @@ void Factory_spin::animate(Zeni::Model *model)
 	FSFrame += Game_Model::get().get_time_step()*4;
 	Frame = FSFrame;
 	Frame = (Frame % 50) + 1;
-	if (Frame > 50)	finished = true;
 	model->set_keyframe(Frame);
 }
 
 StructureAnimator *Factory_spin::get_next(StructureEvent_e sevent)
 {
-	if (finished)
-		return new Factory_stop();
-}
-	
-model_key_t Factory_spin::get_model_name()
-{
-	return "factory_spin";
-}
-
-void Factory_stop::animate(Zeni::Model *model)
-{
-	FSFrame += Game_Model::get().get_time_step()*4;
-	Frame = FSFrame;
-	if (Frame > 50)	finished = true;
-	Frame = (Frame % 50) + 1;
-	model->set_keyframe(Frame);
-}
-
-StructureAnimator *Factory_stop::get_next(StructureEvent_e sevent)
-{
-	if (finished)
-		return new Factory_spin();
-}
-	
-model_key_t Factory_stop::get_model_name()
-{
-	return "factory_stop";
-}
-
-/*---------------------------------------------
-				HEALING POOL
----------------------------------------------*/
-
-void Pool_stand::animate(Zeni::Model *model)
-{
-	PSFrame += Game_Model::get().get_time_step()*5;
-	Frame = PSFrame;
-	Frame = (Frame % 50) + 1;
-	model->set_keyframe(Frame);
-}
-
-StructureAnimator *Pool_stand::get_next(StructureEvent_e sevent)
-{
 	switch (sevent)
 	{
-		case POOL_STAND:
+		case FAC_SPIN:
 			return NULL;
 			break;
-		case POOL_HEAL:
-			return new Pool_heal();
+		case FAC_ISO:
+			return new Factory_isolated();
 			break;
 		default:
 			return NULL;
@@ -221,10 +268,43 @@ StructureAnimator *Pool_stand::get_next(StructureEvent_e sevent)
 	}
 }
 	
-model_key_t Pool_stand::get_model_name()
+model_key_t Factory_spin::get_model_name()
 {
-	return "healing_pool_stand";
+	return "factory_spin";
 }
+
+void Factory_isolated::animate(Zeni::Model *model)
+{
+	FIFrame += Game_Model::get().get_time_step()*4;
+	Frame = FIFrame;
+	Frame = (Frame % 50) + 1;
+	model->set_keyframe(Frame);
+}
+
+StructureAnimator *Factory_isolated::get_next(StructureEvent_e sevent)
+{
+	switch (sevent)
+	{
+		case FAC_SPIN:
+			return new Factory_spin();
+			break;
+		case FAC_ISO:
+			return NULL;
+			break;
+		default:
+			return NULL;
+			break;
+	}
+}
+	
+model_key_t Factory_isolated::get_model_name()
+{
+	return "factory_isolated";
+}
+
+/*---------------------------------------------
+				HEALING POOL
+---------------------------------------------*/
 
 void Pool_heal::animate(Zeni::Model *model)
 {
@@ -238,8 +318,8 @@ StructureAnimator *Pool_heal::get_next(StructureEvent_e sevent)
 {
 	switch (sevent)
 	{
-		case POOL_STAND:
-			return new Pool_stand();
+		case POOL_ISO:
+			return new Pool_isolated();
 			break;
 		case POOL_HEAL:
 			return NULL;
@@ -253,6 +333,35 @@ StructureAnimator *Pool_heal::get_next(StructureEvent_e sevent)
 model_key_t Pool_heal::get_model_name()
 {
 	return "healing_pool_heal";
+}
+
+void Pool_isolated::animate(Zeni::Model *model)
+{
+	PIFrame += Game_Model::get().get_time_step()*5;
+	Frame = PIFrame;
+	Frame = (Frame % 50) + 1;
+	model->set_keyframe(Frame);
+}
+
+StructureAnimator *Pool_isolated::get_next(StructureEvent_e sevent)
+{
+	switch (sevent)
+	{
+		case POOL_ISO:
+			return NULL;
+			break;
+		case POOL_HEAL:
+			return new Pool_heal();
+			break;
+		default:
+			return NULL;
+			break;
+	}
+}
+	
+model_key_t Pool_isolated::get_model_name()
+{
+	return "healing_pool_isolated";
 }
 
 /*---------------------------------------------

@@ -28,6 +28,10 @@ void Fortress::handle_player_collision(Player *P)
 void Fortress::update(const float &time)
 {
 	Structure::update(time);
+	if (Connected_to_Team)
+		switch_state(FORT_SPIN);
+	else
+		switch_state(FORT_ISO);
 }
 
 const model_key_t Fortress::get_model_name() const 

@@ -45,7 +45,7 @@ void Structure::update(const float &time)
 		owner->remove_tile(hex);
 	}
 
-	if(Isolation_Clock.seconds() > .5)	{
+	if(Isolation_Clock.seconds() > 15)	{
 		Status = DESTROYED;
 	}
 

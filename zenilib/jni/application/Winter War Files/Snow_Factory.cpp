@@ -59,6 +59,12 @@ void Snow_Factory::update(const float &time)
 			}
 		}
 	}
+
+	if (Connected_to_Team)
+		switch_state(FAC_SPIN);
+	else
+		switch_state(FAC_ISO);
+
 	Structure::update(time);
 }
 
