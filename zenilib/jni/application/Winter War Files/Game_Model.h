@@ -35,14 +35,14 @@ public:
 	void finish();
 
 	// returns true if some team has won
-	bool win();
+	bool win() const;
 
 	/*set the time to win and the team to win*/
 	void tree_claimed(const Team *);
 
 
 	/* return time until someone wins */
-	float time_till_win();
+	float time_till_win() const;
 
 	Player *get_player(int i)
 		{return players.at(i);}

@@ -153,7 +153,7 @@ void Game_Model::check_collisions()
 
 
 // returns true if some team has won
-bool Game_Model::win()
+bool Game_Model::win() const
 {
 	if (time_till_win() <= 0)
 			return true;
@@ -252,7 +252,7 @@ void Game_Model::remove_from_model(Structure* Z)	{
 	delete Z;
 }
 
-float Game_Model::time_till_win()
+float Game_Model::time_till_win() const
 {
 	return win_time - PlayTime.seconds();
 }
