@@ -106,31 +106,31 @@ void End_Game_State::render() {
 	Colors &cr = get_Colors();
 	Video &vr = get_Video();
 	const Color winning_color = cr[winning_team];
-	const Color bgc = cr["default_button_bg_hovered_strayed"];
+	const Color bgc = cr["lightblueop"];
 
-	get_Fonts()["cat_100"].render_text("Team " + winning_team + " Win!" ,Point2f(700, 75), winning_color);
+	get_Fonts()["cat_110"].render_text("Team " + winning_team + " Win!" ,Point2f(690, 110), winning_color);
 
-	get_Fonts()["cat_100"].render_text("TEAM STATS" ,Point2f(150, 250), Color(0x99FF1111));
-	get_Fonts()["cat_100"].render_text("PLAYER STATS" ,Point2f(150, 600), Color(0x99FF1111));
+	get_Fonts()["cat_64"].render_text("TEAM STATS" ,Point2f(150, 320), Color(0x99FF1111));
+	get_Fonts()["cat_64"].render_text("PLAYER STATS" ,Point2f(150, 610), Color(0x99FF1111));
 
 	if(cursor == 0){
 		get_Fonts()["cat_100"].render_text("MANU" ,Point2f(500, 930), Color(0x9911FF11));
 		get_Fonts()["cat_100"].render_text("RESTART" ,Point2f(1200, 930), Color(0x99FF1111));
 
-		const Quadrilateral<Vertex2f_Color> bg( Vertex2f_Color(Point2f(480, 900), bgc),
-												Vertex2f_Color(Point2f(480, 1060), bgc),
-												Vertex2f_Color(Point2f(750, 1060), bgc),
-												Vertex2f_Color(Point2f(750, 900), bgc));
+		const Quadrilateral<Vertex2f_Color> bg( Vertex2f_Color(Point2f(480, 910), bgc),
+												Vertex2f_Color(Point2f(480, 1050), bgc),
+												Vertex2f_Color(Point2f(750, 1050), bgc),
+												Vertex2f_Color(Point2f(750, 910), bgc));
         vr.render(bg);
 	}
 	else if(cursor == 1){
 		get_Fonts()["cat_100"].render_text("MANU" ,Point2f(500, 930), Color(0x99FF1111));
 		get_Fonts()["cat_100"].render_text("RESTART" ,Point2f(1200, 930), Color(0x9911FF11));
 
-		const Quadrilateral<Vertex2f_Color> bg( Vertex2f_Color(Point2f(1180, 900), bgc),
-												Vertex2f_Color(Point2f(1180, 1060), bgc),
-												Vertex2f_Color(Point2f(1600, 1060), bgc),
-												Vertex2f_Color(Point2f(1600, 900), bgc));
+		const Quadrilateral<Vertex2f_Color> bg( Vertex2f_Color(Point2f(1180, 910), bgc),
+												Vertex2f_Color(Point2f(1180, 1050), bgc),
+												Vertex2f_Color(Point2f(1570, 1050), bgc),
+												Vertex2f_Color(Point2f(1570, 910), bgc));
         vr.render(bg);
 	}
 	

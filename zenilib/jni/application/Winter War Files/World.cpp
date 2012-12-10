@@ -251,6 +251,15 @@ std::list<Tile*> World::Get_Family(Tile *Central){
 				ret.push_back(map[Central->get_row() + 1][Central->get_col() - 1]);
 			}
 		}
+		else if(Central->get_row() == map_height - 1){
+			if(Central->get_col() == 0){
+				ret.push_back(map[Central->get_row() - 1][Central->get_col()]);
+			}
+			else{
+				ret.push_back(map[Central->get_row() - 1][Central->get_col()]);
+				ret.push_back(map[Central->get_row() - 1][Central->get_col() - 1]);
+			}
+		}
 		else{
 			if(Central->get_col() == 0){
 				ret.push_back(map[Central->get_row() - 1][Central->get_col()]);
@@ -265,7 +274,7 @@ std::list<Tile*> World::Get_Family(Tile *Central){
 		}
 	}
 	else{
-		if(Central->get_row() == map_height){
+		if(Central->get_row() == map_height - 1){
 			if(Central->get_col() == map_width - 1){
 				ret.push_back(map[Central->get_row() - 1][Central->get_col()]);
 			}

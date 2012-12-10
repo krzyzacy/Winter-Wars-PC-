@@ -292,7 +292,7 @@ private:
     void render() {
         Widget_Gamestate::render();
 
-		render_image("Teamselect", Point2f(0.0f,0.0f), Point2f(1024.0f,1024.0f));
+		render_image("ts1920", Point2f(0.0f,0.0f), Point2f(1024.0f,1024.0f));
 		get_Fonts()["system_36_800x600"].render_text("Player 1" ,Point2f(270, 30), Color(0x99FF1111));
 		get_Fonts()["system_36_800x600"].render_text("Player 2" ,Point2f(750, 30), Color(0x99FF1111));
 		get_Fonts()["system_36_800x600"].render_text("Player 3" ,Point2f(270, 330), Color(0x99FF1111));
@@ -357,7 +357,7 @@ class Title_State_Custom : public Title_State<Team_Select_State, Instructions_St
 			Title_State<Team_Select_State, Instructions_State>::render();
 			//get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(800.0f, 600.0f)), true);
 
-			get_Fonts()["cat_110"].render_text("Winter Wars" ,Point2f(190, 60), Color(0xFF33BBE8));
+			get_Fonts()["cat_110"].render_text("Winter Wars" ,Point2f(155, 60), Color(0xFF33BBE8));
 		}
 };
 
