@@ -66,7 +66,7 @@ void Game_Model::restart()
 	
 	for(int i = 0; i < players.size(); i++){
 		genders.push_back(String(players[i]->get_gender()));
-		colors.push_back(players[i]->get_team()->get_Team_Index()+1);
+		colors.push_back(players[i]->get_team()->get_Team_Index()-1);
 
 	}
 	
