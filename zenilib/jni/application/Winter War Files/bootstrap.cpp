@@ -197,7 +197,6 @@ private:
 					break;
 			}
 		}
-
 	}
 
 	void on_joy_button(const SDL_JoyButtonEvent &event){
@@ -263,7 +262,7 @@ private:
 				}
 			}
 
-			get_Game().pop_state();
+			//get_Game().pop_state();
 			get_Game().push_state(new Play_State_Base(genders_, colors_, controls_));
 		}
 

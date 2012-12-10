@@ -24,9 +24,9 @@ Player *create_player(Team* team_,const Zeni::String &gender)
 {
 	Player* player = new Player(team_->get_spawn_point());
 	
-	if (gender == "Boy")
+	if (gender == "Boy" || gender == "boy")
 		player->set_Gender("boy");
-	else if (gender == "Girl")
+	else if (gender == "Girl" || gender == "girl")
 		player->set_Gender("girl");
 	
 	team_->add_player(player);
