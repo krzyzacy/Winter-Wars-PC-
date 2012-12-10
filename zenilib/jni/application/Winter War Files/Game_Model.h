@@ -32,6 +32,7 @@ public:
 	void update();
 	void render() const;
 	void start_up(const std::vector<Zeni::String> &genders_, const std::vector<int> &colors_);
+	void restart();
 	void finish();
 
 	// returns true if some team has won

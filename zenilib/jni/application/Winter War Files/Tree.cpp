@@ -27,6 +27,7 @@ void Tree::update(const float &time)
 	if(Isolation_Clock.seconds() > 0)
 	{
 		Isolation_Clock.reset();
+		Isolation_Clock.stop();
 
 		owner->remove_tile(hex);
 

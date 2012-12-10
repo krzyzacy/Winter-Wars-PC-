@@ -25,7 +25,7 @@ Game_Model::Game_Model(void)
 
 }
 
-void Game_Model::start_up(const std::vector<String> &genders_, const std::vector<int> &colors_)
+void Game_Model::start_up(const vector<String> &genders_, const vector<int> &colors_)
 {
 		view = (new View());
 		world = (new World(view));
@@ -59,7 +59,22 @@ void Game_Model::start_up(const std::vector<String> &genders_, const std::vector
 		global_message("Build something on a tile next to you!");
 }
 
+void Game_Model::restart()
+{
 
+	vector<String> genders;
+	vector<int> colors;
+	
+	for(int i = 0; i < players.size(); i++){
+		genders.push_back(String(players[i]->get_gender()));
+		colors.push_back(players[i]->get_team()->get_Team_Index());
+
+	}
+	
+	finish();
+	start_up(genders, colors);
+
+}
 
 void Game_Model::finish()
 {
@@ -128,6 +143,7 @@ void Game_Model::tree_claimed(const Team *team)
 	// if no team owns the tree
 	if (!team)
 	{
+		world->get_center_Tile()->set_team(NEUTRAL);
 		win_time = 10000.0f;
 		return ;
 	}
