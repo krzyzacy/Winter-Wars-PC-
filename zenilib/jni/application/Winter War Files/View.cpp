@@ -191,6 +191,12 @@ View::View(void)
 	model_map["redpresent_unwrapped"] = new Zeni::Model("models/present/redpresentunwrapped.3ds");
 	model_map["orangepresent_unwrapped"] = new Zeni::Model("models/present/orangepresentunwrapped.3ds");
 
+	//Base
+	model_map["bluebase"] = new Zeni::Model("models/base/bluebase.3ds");
+	model_map["greenbase"] = new Zeni::Model("models/base/greenbase.3ds");
+	model_map["redbase"] = new Zeni::Model("models/base/redbase.3ds");
+	model_map["orangebase"] = new Zeni::Model("models/base/orangebase.3ds");
+
 	model_map["explode"] = new Zeni::Model("models/hiteffect/hiteffect.3ds");
 
 }
