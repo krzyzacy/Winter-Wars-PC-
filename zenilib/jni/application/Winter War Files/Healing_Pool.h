@@ -10,7 +10,7 @@ public:
 				const Zeni::Point3f &base_);
 	~Healing_Pool(void);
 
-	void update(const float&);
+	virtual void update(const float&);
 
 	void handle_player_collision(Player *P);
 

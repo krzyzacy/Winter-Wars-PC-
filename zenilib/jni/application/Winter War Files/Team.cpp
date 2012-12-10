@@ -11,7 +11,6 @@
 using namespace std;
 using namespace Zeni;
 
-
 Team::Team(Tile* BaseTile)	:
 	Base(BaseTile), Ice_Blocks(1000), intake_rate(1), Team_Color(NEUTRAL), 
 	network_unstable(false)
@@ -90,7 +89,7 @@ void Team::set_Team_Color(TEAM_INDEX in)	{
 	add_tile(Base);
 	Base->set_covering(SOFT_SNOW);
 	Base->set_team(Team_Color);
-	Game_Model::get().add_structure(create_structure(HEALING_POOL, Base, this));
+	Game_Model::get().add_structure(create_structure(BASE, Base, this));
 }
 
 void Team::add_tile(Tile *t)	{

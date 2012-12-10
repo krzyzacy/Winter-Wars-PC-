@@ -9,7 +9,7 @@
 //These enums represnt the different types of buildings for now
 
 enum Structure_Type	{
-	NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL, TREE
+	NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL, TREE, BASE
 };
 
 extern const int Build_Cost[5];

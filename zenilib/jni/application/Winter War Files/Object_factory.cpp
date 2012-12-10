@@ -14,6 +14,7 @@
 #include "Snow_Factory.h"
 #include "Snowman.h"
 #include "Tree.h"
+#include "Base.h"
 
 
 #include <vector>
@@ -57,7 +58,9 @@ Structure *create_structure(int type, Tile* ti, Team* team_)	{
 	case TREE:
 		st = new Tree(team_, ti, base);
 		break;
-
+	case BASE:
+		st = new Base(team_, ti, base);
+		break;
 	default:
 		st =  new Fortress(team_, ti, base);
 		break;
