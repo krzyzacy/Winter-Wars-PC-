@@ -8,6 +8,7 @@
 #include "Player_View.h"
 #include "Permanent.h"
 #include "Team.h"
+#include "End_Game_State.h"
 
 Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<int> &colors_, const vector<int> &controls_)	:
 	m_prev_clear_color(get_Video().get_clear_Color()),
@@ -95,8 +96,9 @@ void Play_State_Base::perform_logic()
 	//updates all positions
 	Game_Model::get().update();
 
-	if (Game_Model::get().win())		
-		get_Game().pop_state(); //Do something to win
+	if (Game_Model::get().win()){		
+		get_Game().push_state(new End_Game_State());
+	}
 }
 
 void Play_State_Base::render()	{
