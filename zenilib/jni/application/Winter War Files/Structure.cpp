@@ -14,7 +14,8 @@ const int Structure::structure_ID_c = 3;
 // NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL
 const int Build_Cost[5] = { 0, 3200, 1600, 2400, 800 };
 
-const float Struct_Integrity[5] = {1, 100, 300, 40, 200};
+//100, 300, 40, 200
+const float Struct_Integrity[5] = {1, 50, 300, 80, 100};
 
 Structure::Structure(Team *team, Tile* tile_,
 				const Zeni::Point3f &position_,	 float radius) :
@@ -25,6 +26,7 @@ Structure::Structure(Team *team, Tile* tile_,
 {
 	Present_Clock.start();
 }
+
 
 void Structure::save_position()
 {
@@ -105,7 +107,17 @@ void Structure::reintegrate()	{
 }
 
 void Structure::perform_destruction_effects()	{
-	
+	int quantity = rand()%8;
+	for(int i = 0; i < quantity; i++)	{
+		int neg = rand()%2;
+		if(neg == 0) neg = -1;
+		int neg1 = rand()%2;
+		if(neg1 == 0) neg1 = -1;
+		Vector3f offset(rand()%30*neg, rand()%30*neg1, rand()%30);
+		
+		Game_Model::get().add_effect(new Effect("explode", center + offset, Vector3f(10,10,10)*(rand()%5), 20));
+
+	}
 }
 
 void Structure::handle_player_collision(Player *P)	{
