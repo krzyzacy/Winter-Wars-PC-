@@ -25,17 +25,40 @@ Snow_Factory::Snow_Factory(Team *team, Tile* tile_,
 
 Snow_Factory::~Snow_Factory(void)
 {
-	list<Tile*> family = Game_Model::get().get_World()->Get_Family(hex);
-	for(list<Tile*>::iterator it = family.begin(); it != family.end(); ++it)	{
-		int randomcov = rand() %2;
-		if(randomcov == 0) (*it)->set_covering(ICE);
-		if(randomcov == 1) (*it)->set_covering(HARD_SNOW);
-	}
-	hex->set_covering(ICE);
+
 }
 
 void Snow_Factory::update(const float &time)
 {
+	if(Status == DESTROYED)	{
+		hex->set_covering(ICE);
+		//First sets the covering of all the tiles to randomly Ice or snow
+		list<Tile*> nuc_family = Game_Model::get().get_World()->Get_Family(hex);
+		for(list<Tile*>::iterator it = nuc_family.begin(); it != nuc_family.end(); ++it)	{
+			if((*it) == 0) continue;
+			int randomcov = rand() %2;
+			if(randomcov == 0) (*it)->set_covering(ICE);
+			if(randomcov == 1) (*it)->set_covering(HARD_SNOW);
+		}
+
+		//Then, iff they are double covered, turns back to soft snow
+		nuc_family.push_back(hex);
+		for(list<Tile*>::iterator it = nuc_family.begin(); it != nuc_family.end(); ++it)	{
+			if((*it) != hex && (*it)->has_building() && (*it)->get_building()->is_snow_maker())	{
+				(*it)->set_covering(SOFT_SNOW);
+				continue;
+			}
+			list<Tile*> ext_fam = Game_Model::get().get_World()->Get_Family(*it);
+			for(list<Tile*>::iterator efit = ext_fam.begin(); efit != ext_fam.end(); ++efit)	{
+				if((*efit) != hex && (*efit)->has_building())	{
+					if((*efit)->get_building()->is_snow_maker())	{
+						(*it)->set_covering(SOFT_SNOW);
+						break;
+					}
+				}
+			}
+		}
+	}
 	Structure::update(time);
 }
 

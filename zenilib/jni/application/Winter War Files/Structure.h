@@ -54,6 +54,8 @@ public:
 	int get_ID() const 
 		{return structure_ID_c;}
 
+	virtual bool is_snow_maker()	{return false;}
+
 private:
 	// State?  Building -> Built -> Damaged? -> Destroyed??
 	//Would the damaged state look different? like a broken version of the model???
