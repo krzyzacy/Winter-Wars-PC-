@@ -18,8 +18,8 @@ Snowman::Snowman(Team *team, Tile* tile_,
 	center.z -= 8;
 	create_body();
 	Health = Struct_Integrity[SNOWMAN];
-	left_launch = center - Vector3f(30, 0,-10);
-	right_launch = center + Vector3f(30, 0,10);
+	left_launch = center - Vector3f(50, 0,0);
+	right_launch = center + Vector3f(50, 0,0);
 	targeting_delay.start();
 	reload_time.start();
 }
@@ -34,28 +34,33 @@ void Snowman::update(const float &time)
 	Structure::update(time);
 	//Magic happens here, need to decide how this will works, def statemachine
 
-if(targets.empty())
-	switch_state(SM_STAND);
+	if (Connected_to_Team)
+		{
+		if(targets.empty())
+			switch_state(SM_STAND);
 
-if(!targets.empty() && reload_time.seconds() > 0.5)	{
-		Point3f aim = targets.front();
-		targets.pop_front();
-		Point3f Origin = right_launch;
-		if(left) Origin = left_launch;
-		Snowball* sb = new Snowball(owner, Origin, Snow_size);
-		Vector3f sight_line(aim - Origin);
-		//sight_line.z += 20;
-		//sb->get_thrown(aim - Origin);
-		sb->get_thrown(sight_line.normalize(), 600);
-		Game_Model::get().add_moveable(sb);
-		if(left)
-			switch_state(SM_THROWR);
-		else
-			switch_state(SM_THROWL);
-		left = !left;
-		reload_time.reset();
-	}
-	
+		if(!targets.empty() && reload_time.seconds() > 0.5)	{
+			Point3f aim = targets.front();
+			targets.pop_front();
+			Point3f Origin = right_launch;
+			if(left) Origin = left_launch;
+			Snowball* sb = new Snowball(owner, Origin, Snow_size);
+			Vector3f sight_line(aim - Origin);
+			//sight_line.z += 20;
+			//sb->get_thrown(aim - Origin);
+			sb->get_thrown(sight_line.normalize(), 600);
+			Game_Model::get().add_moveable(sb);
+			if(left)
+				switch_state(SM_THROWR);
+			else
+				switch_state(SM_THROWL);
+			left = !left;
+			reload_time.reset();
+			}
+		}
+	else
+		switch_state(SM_ISO);
+
 }
 
 const model_key_t Snowman::get_model_name() const 

@@ -26,15 +26,21 @@ Healing_Pool::~Healing_Pool(void)
 void Healing_Pool::update(const float &time)
 {
 	Structure::update(time);
+	if (Connected_to_Team)
+		switch_state(POOL_HEAL);
+	else
+		switch_state(POOL_ISO);
 }
 
 void Healing_Pool::handle_player_collision(Player *P)	{
-
-	if (P->get_team() == owner)	
-	{
-		//	switch_state(POOL_HEAL);
-		P->healing_waters(Healing_rate * Game_Model::get().get_time_step());
-	}
+	if (Connected_to_Team)
+		{
+		if (P->get_team() == owner)	
+			{
+			//	switch_state(POOL_HEAL);
+			P->healing_waters(Healing_rate * Game_Model::get().get_time_step());
+			}
+		}
 }
 
 const model_key_t Healing_Pool::get_model_name() const 

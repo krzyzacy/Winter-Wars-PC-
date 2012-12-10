@@ -26,6 +26,24 @@ private:
 	int Frame; 
 };
 
+class Fort_isolated : public StructureAnimator
+{	
+public:
+	Fort_isolated() : FIFrame(1.0f), Frame(1) {}
+	/* choose the frame to currently render and set it */
+	void animate(Zeni::Model *);
+
+	/* get the next state based on what event happened */
+	StructureAnimator *get_next(StructureEvent_e);
+	
+	/* return the model key */
+	model_key_t get_model_name();
+
+private:
+	float FIFrame;
+	int Frame; 
+};
+
 /*---------------------------------------------
 				SNOWMAN
 ---------------------------------------------*/
@@ -86,6 +104,24 @@ private:
 	int Frame; 
 };
 
+class Snowman_isolated : public StructureAnimator
+{	
+public:
+	Snowman_isolated() : SIFrame(1.0f), Frame(1) {}
+	/* choose the frame to currently render and set it */
+	void animate(Zeni::Model *);
+
+	/* get the next state based on what event happened */
+	StructureAnimator *get_next(StructureEvent_e);
+	
+	/* return the model key */
+	model_key_t get_model_name();
+
+private:
+	float SIFrame;
+	int Frame; 
+};
+
 /*---------------------------------------------
 				FACTORY
 ---------------------------------------------*/
@@ -109,10 +145,10 @@ private:
 	int Frame; 
 };
 
-class Factory_stop : public StructureAnimator
+class Factory_isolated : public StructureAnimator
 {	
 public:
-	Factory_stop() : FSFrame(1.0f), Frame(1), finished(false) {}
+	Factory_isolated() : FIFrame(1.0f), Frame(1), finished(false) {}
 	/* choose the frame to currently render and set it */
 	void animate(Zeni::Model *);
 
@@ -124,31 +160,13 @@ public:
 
 private:
 	bool finished;
-	float FSFrame;
+	float FIFrame;
 	int Frame; 
 };
 
 /*---------------------------------------------
 				HEALING POOL
 ---------------------------------------------*/
-
-class Pool_stand : public StructureAnimator
-{	
-public:
-	Pool_stand() : PSFrame(1.0f), Frame(1) {}
-	/* choose the frame to currently render and set it */
-	void animate(Zeni::Model *);
-
-	/* get the next state based on what event happened */
-	StructureAnimator *get_next(StructureEvent_e);
-	
-	/* return the model key */
-	model_key_t get_model_name();
-
-private:
-	float PSFrame;
-	int Frame; 
-};
 
 class Pool_heal : public StructureAnimator
 {	
@@ -165,6 +183,24 @@ public:
 
 private:
 	float PHFrame;
+	int Frame; 
+};
+
+class Pool_isolated : public StructureAnimator
+{	
+public:
+	Pool_isolated() : PIFrame(1.0f), Frame(1) {}
+	/* choose the frame to currently render and set it */
+	void animate(Zeni::Model *);
+
+	/* get the next state based on what event happened */
+	StructureAnimator *get_next(StructureEvent_e);
+	
+	/* return the model key */
+	model_key_t get_model_name();
+
+private:
+	float PIFrame;
 	int Frame; 
 };
 
