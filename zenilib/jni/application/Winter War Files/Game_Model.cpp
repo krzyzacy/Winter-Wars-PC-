@@ -61,17 +61,17 @@ void Game_Model::start_up(const vector<String> &genders_, const vector<int> &col
 
 void Game_Model::restart()
 {
-
 	vector<String> genders;
 	vector<int> colors;
 	
 	for(int i = 0; i < players.size(); i++){
 		genders.push_back(String(players[i]->get_gender()));
-		colors.push_back(players[i]->get_team()->get_Team_Index());
+		colors.push_back(players[i]->get_team()->get_Team_Index()+1);
 
 	}
 	
 	finish();
+
 	start_up(genders, colors);
 
 }
