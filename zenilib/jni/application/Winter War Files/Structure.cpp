@@ -18,7 +18,7 @@ const float Struct_Integrity[5] = {1, 50, 150, 20, 100};
 
 Structure::Structure(Team *team, Tile* tile_,
 				const Zeni::Point3f &position_,	 float radius) :
-	Seen_Object(position_ + Point3f(0, 0, 60), Vector3f(1.4,1.4,1.4)*radius),
+	Seen_Object(position_ + Point3f(0, 0, 40), Vector3f(1,1,1)*radius),
 	owner(team), Health(1), Status(PRESENT_MODE), 
 	Connected_to_Team(true), hex(tile_), opened(false),
 	default_position(position_), default_size(Vector3f(1,1,1)*radius), default_radius(radius)
@@ -65,9 +65,32 @@ void Structure::update(const float &time)
 
 	if (Status == UNWRAP_MODE)
 	{
-		Game_Model::get().add_effect(new Effect("bluepresent_unwrapped", center, size, 50));
+		switch(owner->get_Team_Index())	{
+			case BLUE:
+				{
+				Game_Model::get().add_effect(new Effect("bluepresent_unwrapped", center, size, 50));
+				break;
+				}
+		case GREEN:
+				{
+				Game_Model::get().add_effect(new Effect("greenpresent_unwrapped", center, size, 50));
+				break;
+				}
+		case RED:
+				{
+				Game_Model::get().add_effect(new Effect("redpresent_unwrapped", center, size, 50));
+				break;
+				}
+		case ORANGE:
+				{
+				Game_Model::get().add_effect(new Effect("orangepresent_unwrapped", center, size, 50));
+				break;
+				}
+		default:
+			Game_Model::get().add_effect(new Effect("bluepresent_unwrapped", center, size, 50));
+			break;
+		}
 	}
-
 }
 
 void Structure::begin_isolation()	{
