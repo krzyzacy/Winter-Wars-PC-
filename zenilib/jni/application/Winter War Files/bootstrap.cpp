@@ -51,7 +51,7 @@ private:
       get_Game().pop_state();
 	if(event.keysym.sym == SDLK_RETURN && event.state == SDL_PRESSED){
 			state ++;
-		if(state == 2)
+		if(state == 3)
 			get_Game().pop_state();
 	}
 
@@ -60,13 +60,16 @@ private:
   void render() {
     Widget_Gamestate::render();
 
-	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(1024.0f, 1024.0f)), true);
+	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(1920.0f, 1200.0f)), true);
 	if(state == 0){
-		render_image("Instructions", Point2f(0.0f,256.0f), Point2f(1024.0f,768.0f));
+		render_image("Instructions", Point2f(0.0f,0.0f), Point2f(1920.0f,1200.0f));
 	}
 
 	if(state == 1){
-		render_image("Controls", Point2f(0.0f,256.0f), Point2f(1024.0f,768.0f));
+		render_image("Control_1", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
+	}
+	if(state == 2){
+		render_image("Control_2", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
 	}
   
 	render_controls(0);
