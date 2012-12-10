@@ -9,7 +9,7 @@ class Effect : public Seen_Object
 {
 public:
 	Effect(const std::string &model_, const Zeni::Point3f &position_ = Zeni::Point3f(0,0,0),
-              const Zeni::Vector3f &size_ = Zeni::Vector3f(10,10,10));
+              const Zeni::Vector3f &size_ = Zeni::Vector3f(10,10,10), int frame_death_ = 20);
 	
 	~Effect();
 	
@@ -17,6 +17,7 @@ public:
 	
 	Animator *get_animator() const;
 private:
+	int frame_death;
 	std::string name;
 	EffectAnimator *effect_state;
 };

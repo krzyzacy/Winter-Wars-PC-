@@ -4,6 +4,9 @@
 #include "Tile.h"
 #include "Player.h"
 
+#include "Game_Model.h"
+#include "Effect.h"
+
 using namespace Zeni;
 
 const int Structure::structure_ID_c = 3;
@@ -15,7 +18,7 @@ const float Struct_Integrity[5] = {1, 50, 150, 20, 100};
 
 Structure::Structure(Team *team, Tile* tile_,
 				const Zeni::Point3f &position_,	 float radius) :
-	Seen_Object(position_ + Point3f(0, 0, 80), Vector3f(1,1,1.2)*radius*1.5),
+	Seen_Object(position_ + Point3f(0, 0, 60), Vector3f(1.4,1.4,1.4)*radius),
 	owner(team), Health(1), Status(PRESENT_MODE), 
 	Connected_to_Team(true), hex(tile_), opened(false),
 	default_position(position_), default_size(Vector3f(1,1,1)*radius), default_radius(radius)
@@ -48,6 +51,7 @@ void Structure::update(const float &time)
 		hex->destroy_structure();
 		owner->remove_tile(hex);
 	}
+	
 
 	if(Isolation_Clock.seconds() > 15)	{
 		Status = DESTROYED;
@@ -58,6 +62,11 @@ void Structure::update(const float &time)
 		opened = true; 
 		Status = UNWRAP_MODE;
 		}
+
+	if (Status == UNWRAP_MODE)
+	{
+		Game_Model::get().add_effect(new Effect("bluepresent_unwrapped", center, size, 50));
+	}
 
 }
 

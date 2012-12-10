@@ -19,7 +19,7 @@ Snow_Factory::Snow_Factory(Team *team, Tile* tile_,
 	hex->set_covering(SOFT_SNOW);
 	Health = Struct_Integrity[SNOW_FACTORY];
 
-	animation_state = new Factory_spin();
+	animation_state = new Present_wrapped();
 }
 
 
@@ -60,12 +60,21 @@ void Snow_Factory::update(const float &time)
 		}
 	}
 
-	if (Connected_to_Team)
-		switch_state(FAC_SPIN);
-	else
-		switch_state(FAC_ISO);
-
 	Structure::update(time);
+
+	if (Status == UNWRAP_MODE)
+		{
+		restore_default_size_and_position();
+		Status = BUILT;
+		}
+
+	if (Status != PRESENT_MODE && Status != UNWRAP_MODE)
+	{
+		if (Connected_to_Team)
+			switch_state(FAC_SPIN);
+		else
+			switch_state(FAC_ISO);
+	}
 }
 
 const model_key_t Snow_Factory::get_model_name() const 
