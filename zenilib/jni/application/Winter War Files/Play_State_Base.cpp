@@ -10,7 +10,7 @@
 #include "Team.h"
 #include "End_Game_State.h"
 
-Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<int> &colors_, const vector<int> &controls_)	:
+Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<int> &colors_, const vector<int> &controls_, const vector<int> &sensitivities_)	:
 	m_prev_clear_color(get_Video().get_clear_Color()),
 	genders(genders_),
 	teams(colors_)

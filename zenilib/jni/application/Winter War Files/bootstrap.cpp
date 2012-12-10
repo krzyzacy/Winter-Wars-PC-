@@ -91,6 +91,7 @@ public:
 			player_team_state[player_idx] = 0;
 			player_gender_state[player_idx]  = 0;
 			player_control_state[player_idx]  = 0;
+			player_sensitivity_state[player_idx]  = 5;
 			player_cursor[player_idx]  = 0;
 			player_gender[player_idx]  = "Boy";
 			player_team[player_idx]  = "Blue";
@@ -122,7 +123,7 @@ private:
 				player_cursor[0] --;
 		}
 		else if(event.keysym.sym == SDLK_s && event.state == SDL_PRESSED){
-			if(player_cursor[0] != 2)
+			if(player_cursor[0] != 3)
 				player_cursor[0] ++;
 		}
 		else if(event.keysym.sym == SDLK_a && event.state == SDL_PRESSED){
@@ -130,8 +131,11 @@ private:
 				player_gender_state[0] = (player_gender_state[0] + 1) % 2;
 			}
 			else if(player_cursor[event.which] == 2){
-						player_control_state[event.which] = (player_control_state[event.which] + 1) % 2;
-					}
+				player_control_state[event.which] = (player_control_state[event.which] + 1) % 2;
+			}
+			else if(player_cursor[event.which] == 3){
+				player_sensitivity_state[event.which] = (player_sensitivity_state[event.which] + 10) % 11;
+			}
 			else{
 				player_team_state[0] = (player_team_state[0] + 3) % 4;
 			}
@@ -141,8 +145,11 @@ private:
 				player_gender_state[0] = (player_gender_state[0] + 1) % 2;
 			}
 			else if(player_cursor[event.which] == 2){
-						player_control_state[event.which] = (player_control_state[event.which] + 1) % 2;
-					}
+				player_control_state[event.which] = (player_control_state[event.which] + 1) % 2;
+			}
+			else if(player_cursor[event.which] == 3){
+				player_sensitivity_state[event.which] = (player_sensitivity_state[event.which] + 1) % 11;
+			}
 			else{
 				player_team_state[0] = (player_team_state[0] + 1) % 4;
 			}
@@ -172,6 +179,9 @@ private:
 					else if(player_cursor[event.which] == 2){
 						player_control_state[event.which] = (player_control_state[event.which] + 1) % 2;
 					}
+					else if(player_cursor[event.which] == 3){
+						player_sensitivity_state[event.which] = (player_sensitivity_state[event.which] + 10) % 11;
+					}
 					else{
 						player_team_state[event.which] = (player_team_state[event.which] + 3) % 4;
 					}
@@ -184,12 +194,15 @@ private:
 					else if(player_cursor[event.which] == 2){
 						player_control_state[event.which] = (player_control_state[event.which] + 1) % 2;
 					}
+					else if(player_cursor[event.which] == 3){
+						player_sensitivity_state[event.which] = (player_sensitivity_state[event.which] + 1) % 11;
+					}
 					else{
 						player_team_state[event.which] = (player_team_state[event.which] + 1) % 4;
 					}
 					break;
 				case SDL_HAT_DOWN:
-					if(player_cursor[event.which] != 2)
+					if(player_cursor[event.which] != 3)
 						player_cursor[event.which] ++ ;
 					break;
 				//case SDL_HAT_RIGHTDOWN:
@@ -247,6 +260,7 @@ private:
 			for(int player_idx = 0; player_idx < 4; player_idx ++){
 				genders_.push_back(player_gender[player_idx]);
 				controls_.push_back(player_control_state[player_idx]);
+				sensitivities_.push_back(player_sensitivity_state[player_idx]);
 
 				if(player_team[player_idx] == "Green"){
 					colors_.push_back(0);
@@ -263,7 +277,7 @@ private:
 			}
 
 			//get_Game().pop_state();
-			get_Game().push_state(new Play_State_Base(genders_, colors_, controls_));
+			get_Game().push_state(new Play_State_Base(genders_, colors_, controls_, sensitivities_));
 		}
 
 
@@ -276,7 +290,7 @@ private:
 			if(player_control_state[player_idx] == 0)
 				player_control[player_idx] = "Normal";
 			else
-				player_control[player_idx] = "Inverted";
+				player_control[player_idx] = "Invert";
 
 			if(player_team_state[player_idx] == 0)
 				player_team[player_idx] = "Green";
@@ -286,6 +300,7 @@ private:
 				player_team[player_idx] = "Blue";
 			else
 				player_team[player_idx] = "Orange";
+
 		}
 	}
 
@@ -303,10 +318,11 @@ private:
 			render_image("Wanted",Point2f(-40.0f + player_render_offset[player_idx].x, 0.0f + player_render_offset[player_idx].y), Point2f(290.0f + player_render_offset[player_idx].x, 330.0f + player_render_offset[player_idx].y));
 
 			if(player_state[player_idx] != 0){
-				render_image("Snowball",Point2f(235.0f + player_render_offset[player_idx].x, 67.0f + 42.0f * player_cursor[player_idx] + player_render_offset[player_idx].y), Point2f(265.0f + player_render_offset[player_idx].x, 97.0f + 40.0f * player_cursor[player_idx] + player_render_offset[player_idx].y));
-				get_Fonts()["system_26_800x600"].render_text("Gender  >> " + player_gender[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 72 + player_render_offset[player_idx].y), Color(0x99FF1111));
-				get_Fonts()["system_26_800x600"].render_text("Team    >> " + player_team[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 112 + player_render_offset[player_idx].y), Color(0x99FF1111));
-				get_Fonts()["system_26_800x600"].render_text("Control >> " + player_control[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 152 + player_render_offset[player_idx].y), Color(0x99FF1111));
+				render_image("Snowball",Point2f(235.0f + player_render_offset[player_idx].x, 67.0f + 42.0f * player_cursor[player_idx] + player_render_offset[player_idx].y), Point2f(265.0f + player_render_offset[player_idx].x, 97.0f + 42.0f * player_cursor[player_idx] + player_render_offset[player_idx].y));
+				get_Fonts()["system_26_800x600"].render_text("Gender      >> " + player_gender[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 72 + player_render_offset[player_idx].y), Color(0x99FF1111));
+				get_Fonts()["system_26_800x600"].render_text("Team        >> " + player_team[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 114 + player_render_offset[player_idx].y), Color(0x99FF1111));
+				get_Fonts()["system_26_800x600"].render_text("Control     >> " + player_control[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 156 + player_render_offset[player_idx].y), Color(0x99FF1111));
+				get_Fonts()["system_26_800x600"].render_text("Sensitivity >> " + itoa(player_sensitivity_state[player_idx]) ,Point2f(270 + player_render_offset[player_idx].x, 198 + player_render_offset[player_idx].y), Color(0x99FF1111));
 				render_image(player_gender[player_idx] + player_team[player_idx] + "Regular", Point2f(55 + player_render_offset[player_idx].x,125 + player_render_offset[player_idx].y),Point2f(188 + player_render_offset[player_idx].x,258 + player_render_offset[player_idx].y));
 			}
 
@@ -328,6 +344,7 @@ private:
     int player_team_state[4];
 	int player_gender_state[4];
 	int player_control_state[4];
+	int player_sensitivity_state[4];
 	int player_cursor[4];
 	String player_gender[4];
 	String player_team[4];
@@ -340,6 +357,7 @@ private:
 	vector<int> colors_;
 	vector<Zeni::String> genders_;
 	vector<int> controls_;
+	vector<int> sensitivities_;
 	//Point2f player_render_base;
 };
 
