@@ -12,6 +12,7 @@ Tree::Tree(Team *team, Tile* tile_,
 	else
 		animation_state = new Tree_owned();
 
+	center.z += 60;
 
 	Game_Model::get().tree_claimed(owner);
 }

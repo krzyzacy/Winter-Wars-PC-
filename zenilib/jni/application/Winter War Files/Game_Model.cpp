@@ -18,7 +18,7 @@ using namespace std;
 using namespace Zeni;
 
 
-const float time_to_win_c = 10.0f; //max time it should take to win
+const float time_to_win_c = 20.0f; //max time it should take to win
 
 Game_Model::Game_Model(void)
 {

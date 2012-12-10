@@ -12,9 +12,9 @@ using namespace Zeni;
 const int Structure::structure_ID_c = 3;
 
 // NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL
-const int Build_Cost[5] = { 0, 300, 100, 200, 400 };
+const int Build_Cost[5] = { 0, 3200, 1600, 2400, 800 };
 
-const float Struct_Integrity[5] = {1, 50, 150, 20, 100};
+const float Struct_Integrity[5] = {1, 100, 300, 40, 200};
 
 Structure::Structure(Team *team, Tile* tile_,
 				const Zeni::Point3f &position_,	 float radius) :
@@ -53,7 +53,7 @@ void Structure::update(const float &time)
 	}
 	
 
-	if(Isolation_Clock.seconds() > 15)	{
+	if(Isolation_Clock.seconds() > 1)	{
 		Status = DESTROYED;
 	}
 
