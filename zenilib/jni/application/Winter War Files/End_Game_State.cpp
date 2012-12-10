@@ -81,36 +81,17 @@ void End_Game_State::render() {
 	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(1920.0f, 1200.0f)), true);
 	render_image("Endscreen", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
 
-	Zeni::String winning_team;
-	switch(Game_Model::get().get_World()->get_center_Tile()->get_team()){
-		case GREEN:
-			winning_team = "green";
-			break;
-
-		case RED:
-			winning_team = "red";
-			break;
-
-		case BLUE:
-			winning_team = "blue";
-			break;
-
-		case ORANGE:
-			winning_team = "orange";
-			break;
-
-		default:
-			break;
-	}
+	Team *winning_team = Game_Model::get().get_team(Game_Model::get().get_World()->get_center_Tile()->get_team());
+	
 
 	Colors &cr = get_Colors();
 	Video &vr = get_Video();
-	const Color winning_color = cr[winning_team];
+	const Color winning_color = cr[winning_team->get_name()];
 	const Color bgc = cr["lightblueop"];
 	const Color box = cr["console_border"];
 	const Color blk = cr["black"];
 
-	get_Fonts()["cat_110"].render_text("Team " + winning_team + " Win!" ,Point2f(690, 110), winning_color);
+	get_Fonts()["cat_110"].render_text( winning_team->get_name_Upper_Case() + " Team" + " Wins!" ,Point2f(690, 110), winning_color);
 	Font &font_36 = get_Fonts()["cat_36"];
 	Font &font_64 = get_Fonts()["cat_64"];
 
@@ -167,45 +148,59 @@ void End_Game_State::render() {
 	/*RENDER TEAM STATS*/
 	get_Fonts()["cat_64"].render_text("TEAM STATS" ,Point2f(50, 650), blk);
 
+
 	cur_width = font_64.get_text_width("TEAM STATS | ") + 50.0f + 30.0f;
 	int width_array[10];
 
 	width_array[0] = cur_width;
 	get_Fonts()["cat_36"].render_text("Final Network | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Final Network | "));
+	width_array[0] += (cur_width - width_array[0])/2;
 
 	width_array[1] = cur_width;
 	get_Fonts()["cat_36"].render_text("Largest Network | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Largest Network | "));
+	width_array[0] += (cur_width - width_array[0])/2;
 
 	width_array[2] = cur_width;
 	get_Fonts()["cat_36"].render_text("Tiles Lost | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Tiles Lost | "));
+	width_array[0] += (cur_width - width_array[0])/2;
 
 	width_array[3] = cur_width;
 	get_Fonts()["cat_36"].render_text("Gold Spent | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Gold Spent | "));
+	width_array[0] += (cur_width - width_array[0])/2;
 
 	width_array[4] = cur_width;
 	get_Fonts()["cat_36"].render_text("Snowmen | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Snowmen | "));
+	width_array[0] += (cur_width - width_array[0])/2;
 
 	width_array[5] = cur_width;
 	get_Fonts()["cat_36"].render_text("Forts | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Forts | "));
+	width_array[0] += (cur_width - width_array[0])/2;
 
 	width_array[6] = cur_width;
 	get_Fonts()["cat_36"].render_text("Factory | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Factory | "));
+	width_array[0] += (cur_width - width_array[0])/2;
 
 	width_array[7] = cur_width;
 	get_Fonts()["cat_36"].render_text("Healing Pools | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Healing Pools | "));
+	width_array[0] += (cur_width - width_array[0])/2;
 
 	for (int i = 0 ; i < 4; i++){
-		Team::Stats stat = Game_Model::get().get_team(i)->stats;
+		Team *team = Game_Model::get().get_team(i);
+		Team::Stats stat = team->stats;
 		cur_width = font_64.get_text_width("TEAM STATS | ") + 50.0f + 30.0f;
 		
+		
+	
+		get_Fonts()["cat_36"].render_text(team->get_name_Upper_Case() + " Team" ,Point2f(75, 700 + 50*i), blk);
+
 		get_Fonts()["cat_36"].render_text(itoa(stat.final_network) ,Point2f(width_array[0], 700 + 50 * i), blk);
 		get_Fonts()["cat_36"].render_text(itoa(stat.largest_network) ,Point2f(width_array[1], 700 + 50 * i), blk);
 		get_Fonts()["cat_36"].render_text(itoa(stat.tiles_lost) ,Point2f(width_array[2], 700 + 50 * i), blk);

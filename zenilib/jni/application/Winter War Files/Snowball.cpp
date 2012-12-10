@@ -7,8 +7,8 @@
 const int Snowball::snowball_ID_c = 2;
 
 const float Launch_Speed = 700;
-const float min_damage_c = 17.0f;
-//const float max_damage_c = 50.0f;
+const float min_damage_c = 15.0f; //15 = 6 hits, 12 = 8 hitstokill
+const float max_damage_c = 45.0f;
 const float size_decrease_c = .80f; //factor to multiply size by
 
 using namespace Zeni;
@@ -16,7 +16,9 @@ using namespace Zeni;
 Snowball::Snowball(Player *p, const Zeni::Point3f &center_,
               const Zeni::Vector3f &size_) :
 	Moveable(center_, size_)	
-	, damage_dealt(false), damage(size_.z + min_damage_c)
+	, damage_dealt(false), 
+	damage(((max_damage_c-min_damage_c)/(max_snowball_size - 4))*
+					(size_.z - 4) + min_damage_c)
 	, owner(p), team(p->get_team())
 {
 	Lifespan.start();

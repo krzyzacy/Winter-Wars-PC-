@@ -11,6 +11,7 @@ enum PlayerEvent_e;
 
 extern const float Max_Snow_Amount;	
 extern const float Max_Player_Health;
+extern const float max_snowball_size;	
 extern const float packing_rate;			//Rate at which snowball is packed
 extern const float snow_depletion_rate;		//Rate at which snow is consumed while packing
 extern const float snow_absorbtion_rate;	//Rate of filling snow meter from tile

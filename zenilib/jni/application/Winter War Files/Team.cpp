@@ -273,3 +273,50 @@ bool Team::Is_Tree_Claimed()	{
 	return Network.count(Game_Model::get().get_World()->get_center_Tile());
 }
 
+String Team::get_name()
+{
+	switch(get_Team_Index()){
+		case GREEN:
+			return "green";
+			break;
+
+		case RED:
+			return "red";
+			break;
+
+		case BLUE:
+			return  "blue";
+			break;
+
+		case ORANGE:
+			return "orange";
+			break;
+
+		default:
+			break;
+	}
+}
+
+String Team::get_name_Upper_Case()
+{
+		switch(get_Team_Index()){
+		case GREEN:
+			return "Green";
+			break;
+
+		case RED:
+			return "Red";
+			break;
+
+		case BLUE:
+			return  "Blue";
+			break;
+
+		case ORANGE:
+			return "Orange";
+			break;
+
+		default:
+			break;
+	}
+}

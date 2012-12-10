@@ -20,8 +20,8 @@ const float up_look_speed = 20;
 
 const float Max_Snow_Amount = 100;
 const float Max_Player_Health = 100;
-const float max_snowball_size = 25;		
-const float packing_rate = 25;			// Packing to snowball
+const float max_snowball_size = 50;		
+const float packing_rate = 50;			// Packing to snowball
 const float snow_depletion_rate = 25;	// Packing from pack
 const float snow_absorbtion_rate = 100;  // Scooping
 

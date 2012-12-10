@@ -50,6 +50,12 @@ public:
 	// returns null if index == number of players
 	Player *get_player(int index);
 
+	 // returns "orange", "blue", etc.
+	Zeni::String get_name();
+
+	// returns "Orange", "Blue"
+	Zeni::String get_name_Upper_Case();
+
 	struct Stats{
 		Stats() :
 			total_resources(0), largest_network(0), 
