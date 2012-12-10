@@ -65,7 +65,8 @@ void Snow_Factory::update(const float &time)
 	if (Status == UNWRAP_MODE)
 		{
 		restore_default_size_and_position();
-		size /= 2;
+		size = size*0.5;
+		center.z -= 30;
 		Status = BUILT;
 		}
 
