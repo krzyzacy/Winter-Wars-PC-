@@ -53,18 +53,17 @@ public:
 	struct Stats{
 		Stats() :
 			total_resources(0), largest_network(0), 
-			tiles_lost(0), final_network(0), resources_spent(0),
-			snowmen(0), forts(0), factories(0), pools(0)
-		{}
+			tiles_lost(0), final_network(0), resources_spent(0)
+		{
+			for (int i = 0 ; i < 5 ; i++)
+				structures[i] = 0;
+		}
 		int total_resources;
 		int largest_network;
 		int tiles_lost;
 		int final_network;	
 		int resources_spent;
-		int snowmen;
-		int forts;
-		int factories;
-		int pools;
+		int structures[5];
 	
 	} stats;
 
