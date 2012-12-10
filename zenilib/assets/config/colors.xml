@@ -141,9 +141,9 @@ element in your game to enable easy skinning.
     <red>0.543</red>
     <green>0.833</green>
     <blue>0.875</blue>
-  </lightblueop>
-    <lightblue>
-    <alpha>0.2</alpha>
+  </lightblue>
+  <lightblueop>
+    <alpha>0.3</alpha>
     <red>0.543</red>
     <green>0.833</green>
     <blue>0.875</blue>
