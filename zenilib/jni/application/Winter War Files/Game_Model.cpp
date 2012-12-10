@@ -106,7 +106,7 @@ void Game_Model::finish()
 
 Game_Model::~Game_Model(void)
 {
-	finish();
+//	finish();
 }
 
 void Game_Model::update()

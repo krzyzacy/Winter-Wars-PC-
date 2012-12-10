@@ -49,8 +49,8 @@ private:
 
 	struct Inputs	{
 		Inputs()	: jump(false), pack(false), mini_map(false), shoot(false), 
-			build_view(false), Cam(0.0f, 0.0f), Move(0.0f, 0.0f), RSHOULDER(false),
-			Tile_up(false), Tile_down(false)		{}
+		build_view(false), Cam(0.0f, 0.0f), Move(0.0f, 0.0f), RSHOULDER(false), LSHOULDER(false),
+		Tile_up(false), Tile_down(false), Build_Go(false), jet_pack_mode(false)		{}
 
 		bool jump;				//A button
 		bool pack;				//B button
@@ -59,8 +59,12 @@ private:
 		bool build_view;	//left trigger
 
 		bool RSHOULDER;		//&&&Right shoulder, only temporary
+		bool LSHOULDER;
+		bool Build_Go;
 		bool Tile_up;
 		bool Tile_down;
+
+		bool jet_pack_mode;
 
 		Zeni::Vector2f		Cam;
 		Zeni::Vector2f		Move;
@@ -68,6 +72,9 @@ private:
 	} input;
 
 	bool inverted;
+	bool left_last;
+	bool right_last;
+
 
 	Shooting_State	Shoot;
 	int Mouse_Camera;

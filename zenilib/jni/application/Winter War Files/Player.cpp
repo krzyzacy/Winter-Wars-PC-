@@ -37,7 +37,7 @@ const float  Stick_Accel = 1200;
 Player::Player(const Zeni::Point3f &center_) 
 	: Moveable(center_ , Vector3f(30.0f,30.0f,30.0f)), m_camera(center_, Quaternion(), 5.0f, 3000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
-	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false),hit_timer(0.0f),throw_timer(0.0f),Selection(NOTHING),
+	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false),hit_timer(0.0f),throw_timer(0.0f),Selection(FORT),
 	stick_theta(0.0f), animation_state(new Standing()), dead_mode(false),player_sound_test(new Zeni::Sound_Source(Zeni::get_Sounds()["meow"]))
 {
 	//field of view in y
@@ -154,8 +154,9 @@ void Player::get_damaged(float damage)
 			player_sound_test->play();
 		switch_state(FLINCH);
 	}
-	//Add respawn stuff / checks here / and the suprise
-	ShakeTime.start();
+	
+	if(health > 0)
+		ShakeTime.start();
 }
 
 void Player::throw_ball() {
@@ -238,10 +239,10 @@ void Player::stop_scooping()	{
 		return;
 
 	//input_vel is joystick values, from 0 to 32768
-	if(mini_open)	{	//Mini-map is open stop moving
-		velocity = Vector3f(0,0, velocity.z);
-		return;
-	}
+	//if(mini_open)	{	//Mini-map is open stop moving
+	//	velocity = Vector3f(0,0, velocity.z);
+	//	return;
+	//}
 
 	//Set up, get Camera Vectors and create variables
 	Vector3f POV_face = m_camera.get_forward().get_ij().normalize();
@@ -344,28 +345,49 @@ void Player::jump()	{
 	
 }
 
-void Player::handle_build_menu(const Vector2f &norml_stick)	{
+void Player::handle_struct_type_change(bool left, bool right)	{
+	if(left && right)
+		return;
+	if(!left && !right)
+		return;
+
+	switch(Selection)	{
+	case SNOWMAN:
+		Selection = FORT;
+		if(left) Selection = HEALING_POOL;
+		break;
+	case FORT:
+		Selection = SNOW_FACTORY;
+		if(left) Selection = SNOWMAN;
+		break;
+	case SNOW_FACTORY:
+		Selection = HEALING_POOL;
+		if(left) Selection = FORT;
+		break;
+	case HEALING_POOL:
+		Selection = SNOWMAN;
+		if(left) Selection = SNOW_FACTORY;
+		break;
+	default:
+		Selection = FORT;
+		break;
+	}
+
+
+}
+
+void Player::Make_Building(bool Go)	{
 	if(is_player_KO())	{
 		Builder = REST;
 		return;
 	}
-	select_type(norml_stick);
+	
 	switch(Builder)	{
 	case REST:
-		if(build_open)	
-			Builder = SELECT_BUILDING;
-			//Now bring up the build selection map
-		break;
-	case SELECT_BUILDING:
-		if(!build_open)	{
-			Selection = select_type(norml_stick);
-			if(Selection == NOTHING)
-				Builder = REST;
-			else
-				Builder = CREATE_BUILDING;
-		}
-		break;
-	case CREATE_BUILDING:
+		//Oay to build fire away
+		if(!Go)
+			return;
+
 		if(create_building(Selection))	{
 			stats.built++;
 			Builder = RECHARGE_BUILD;
@@ -373,8 +395,6 @@ void Player::handle_build_menu(const Vector2f &norml_stick)	{
 		}
 		else
 			Builder = REST;
-
-		Selection = NOTHING;
 		break;
 	case RECHARGE_BUILD:
 		if(BuildTime.seconds() >= Building_Recharge_Time)	{
@@ -391,7 +411,8 @@ void Player::handle_build_menu(const Vector2f &norml_stick)	{
 
 void Player::determine_active_view(bool build, bool mini)	{
 	mini_open = mini;
-	build_open = build && !mini;
+	//build_open = build && !mini;
+	build_open = false;
 }
 
 Structure_Type Player::select_type(const Vector2f &stick)	{
