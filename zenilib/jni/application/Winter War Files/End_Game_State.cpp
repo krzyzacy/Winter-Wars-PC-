@@ -15,39 +15,35 @@ void End_Game_State::on_pop()	{
 }
 
 void End_Game_State::on_joy_hat(const SDL_JoyHatEvent &event)	{
-			
-		if(cursor == 0) {
-			switch(event.value){
-			
-				case SDL_HAT_LEFT:
-					cursor = 0;
-					break;
+	if(event.which == 0){ // player 1 control the end game screen
+	
+		switch(event.value){
+		
+			case SDL_HAT_LEFT:
+				cursor = 0;
+				break;
 
-				case SDL_HAT_RIGHT:
-					cursor = 1;
-					break;
+			case SDL_HAT_RIGHT:
+				cursor = 1;
+				break;
 
-				//case SDL_HAT_RIGHTDOWN:
-				default:
-					break;
-			}
+			default:
+				break;
 		}
+	}
 }
 
 void End_Game_State::on_joy_button(const SDL_JoyButtonEvent &event) {
-	switch(event.button){
-		case 0: // A
-			if(event.state == SDL_PRESSED)	{
-				confirm = true;
-			}
-			break;
-		case 1: // B
-			if(event.state == SDL_PRESSED)	{
-				confirm = false;
-			}
-			break;
-		default:
-			break;
+	if(event.which == 0){
+		switch(event.button){
+			case 0: // A
+				if(event.state == SDL_PRESSED)
+					confirm = true;
+				break;
+				
+			default:
+				break;
+		}
 	}
 }
 
@@ -67,12 +63,12 @@ void End_Game_State::on_key(const SDL_KeyboardEvent &event) {
 } 
 
 void End_Game_State::perform_logic(){
-	if(confirm && cursor == 0){
+	if(confirm && cursor == 0){ // back to main menu
 		get_Game().pop_state();
 		get_Game().pop_state();
 		get_Game().pop_state();
 	}
-	if(confirm && cursor == 1){
+	if(confirm && cursor == 1){ // restart game
 		get_Game().pop_state();
 	}
 }
@@ -103,11 +99,6 @@ void End_Game_State::render() {
 
 	get_Fonts()["cat_64"].render_text("PLAYER STATS | " ,Point2f(50, 300), blk);
 
-	get_Fonts()["cat_36"].render_text("PLAYER 1" ,Point2f(75, 400), blk);
-	get_Fonts()["cat_36"].render_text("PLAYER 2" ,Point2f(75, 450), blk);
-	get_Fonts()["cat_36"].render_text("PLAYER 3" ,Point2f(75, 500), blk);
-	get_Fonts()["cat_36"].render_text("PLAYER 4" ,Point2f(75, 550), blk);
-
 	float cur_width = font_64.get_text_width("PLAYER STATS | ") + 50.0f + 30.0f;
 
 	get_Fonts()["cat_36"].render_text("Kills | " ,Point2f(cur_width, 320), blk);
@@ -127,19 +118,22 @@ void End_Game_State::render() {
 	for (int i = 0 ; i < 4; i++){
 		Player * player = Game_Model::get().get_player(i);
 		Player::Stats stat = player->stats;  
+		const Color player_color = cr[player->get_team()->get_name()];
+		
+		get_Fonts()["cat_36"].render_text("PLAYER " + itoa(i) ,Point2f(75, 400 + 50 * i), player_color);
 
-		get_Fonts()["cat_36"].render_text(itoa(stat.kills) ,Point2f(525, 400 + 50 * i), blk);
-		get_Fonts()["cat_36"].render_text(itoa(stat.deaths) ,Point2f(660, 400 + 50 * i), blk);
+		get_Fonts()["cat_36"].render_text(itoa(stat.kills) ,Point2f(525, 400 + 50 * i), player_color);
+		get_Fonts()["cat_36"].render_text(itoa(stat.deaths) ,Point2f(660, 400 + 50 * i), player_color);
 
 		if(stat.thrown != 0)
-			get_Fonts()["cat_36"].render_text(itoa((stat.hit * 100/stat.thrown)) + " %" ,Point2f(750, 400 + 50 * i), blk);
+			get_Fonts()["cat_36"].render_text(itoa((stat.hit * 100/stat.thrown)) + " %" ,Point2f(750, 400 + 50 * i), player_color);
 		else
-			get_Fonts()["cat_36"].render_text("0 %" ,Point2f(750, 400 + 50 * i), blk);
+			get_Fonts()["cat_36"].render_text("0 %" ,Point2f(750, 400 + 50 * i), player_color);
 
-		get_Fonts()["cat_36"].render_text(itoa(stat.damage_dealt) ,Point2f(900, 400 + 50 * i), blk);
-		get_Fonts()["cat_36"].render_text(itoa(stat.damage_taken) ,Point2f(1100, 400 + 50 * i), blk);
-		get_Fonts()["cat_36"].render_text(itoa(stat.destroyed) ,Point2f(1425, 400 + 50 * i), blk);
-		get_Fonts()["cat_36"].render_text(itoa(stat.built) ,Point2f(1650, 400 + 50 * i), blk);
+		get_Fonts()["cat_36"].render_text(itoa(stat.damage_dealt) ,Point2f(900, 400 + 50 * i), player_color);
+		get_Fonts()["cat_36"].render_text(itoa(stat.damage_taken) ,Point2f(1100, 400 + 50 * i), player_color);
+		get_Fonts()["cat_36"].render_text(itoa(stat.destroyed) ,Point2f(1425, 400 + 50 * i), player_color);
+		get_Fonts()["cat_36"].render_text(itoa(stat.built) ,Point2f(1650, 400 + 50 * i), player_color);
 
 	}
 
@@ -196,24 +190,23 @@ void End_Game_State::render() {
 		Team *team = Game_Model::get().get_team(i);
 		Team::Stats stat = team->stats;
 		cur_width = font_64.get_text_width("TEAM STATS | ") + 50.0f + 30.0f;
-		
+		const Color team_color = cr[team->get_name()];
 		
 	
-		get_Fonts()["cat_36"].render_text(team->get_name_Upper_Case() + " Team" ,Point2f(75, 700 + 50*i), blk);
+		get_Fonts()["cat_36"].render_text(team->get_name_Upper_Case() + " Team" ,Point2f(75, 700 + 50*i), team_color);
 
-		get_Fonts()["cat_36"].render_text(itoa(stat.final_network) ,Point2f(width_array[0], 700 + 50 * i), blk);
-		get_Fonts()["cat_36"].render_text(itoa(stat.largest_network) ,Point2f(width_array[1], 700 + 50 * i), blk);
-		get_Fonts()["cat_36"].render_text(itoa(stat.tiles_lost) ,Point2f(width_array[2], 700 + 50 * i), blk);
-		get_Fonts()["cat_36"].render_text(itoa(stat.resources_spent) ,Point2f(width_array[3], 700 + 50 * i), blk);
+		get_Fonts()["cat_36"].render_text(itoa(stat.final_network) ,Point2f(width_array[0], 700 + 50 * i), team_color);
+		get_Fonts()["cat_36"].render_text(itoa(stat.largest_network) ,Point2f(width_array[1], 700 + 50 * i), team_color);
+		get_Fonts()["cat_36"].render_text(itoa(stat.tiles_lost) ,Point2f(width_array[2], 700 + 50 * i), team_color);
+		get_Fonts()["cat_36"].render_text(itoa(stat.resources_spent) ,Point2f(width_array[3], 700 + 50 * i), team_color);
 
 
-		get_Fonts()["cat_36"].render_text(itoa(stat.structures[1]) ,Point2f(width_array[4], 700 + 50 * i), blk);
-		get_Fonts()["cat_36"].render_text(itoa(stat.structures[2]) ,Point2f(width_array[5], 700 + 50 * i), blk);
-		get_Fonts()["cat_36"].render_text(itoa(stat.structures[3]) ,Point2f(width_array[6], 700 + 50 * i), blk);
-		get_Fonts()["cat_36"].render_text(itoa(stat.structures[4]) ,Point2f(width_array[7], 700 + 50 * i), blk);
+		get_Fonts()["cat_36"].render_text(itoa(stat.structures[1]) ,Point2f(width_array[4], 700 + 50 * i), team_color);
+		get_Fonts()["cat_36"].render_text(itoa(stat.structures[2]) ,Point2f(width_array[5], 700 + 50 * i), team_color);
+		get_Fonts()["cat_36"].render_text(itoa(stat.structures[3]) ,Point2f(width_array[6], 700 + 50 * i), team_color);
+		get_Fonts()["cat_36"].render_text(itoa(stat.structures[4]) ,Point2f(width_array[7], 700 + 50 * i), team_color);
 
 	}
-
 
 
 
@@ -222,20 +215,20 @@ void End_Game_State::render() {
 		get_Fonts()["cat_100"].render_text("RESTART" ,Point2f(1200, 930), blk);
 
 		const Quadrilateral<Vertex2f_Color> bg( Vertex2f_Color(Point2f(480, 910), bgc),
-												Vertex2f_Color(Point2f(480, 1050), bgc),
-												Vertex2f_Color(Point2f(750, 1050), bgc),
-												Vertex2f_Color(Point2f(750, 910), bgc));
-        vr.render(bg);
+							Vertex2f_Color(Point2f(480, 1050), bgc),
+							Vertex2f_Color(Point2f(750, 1050), bgc),
+							Vertex2f_Color(Point2f(750, 910), bgc));
+       		vr.render(bg);
 	}
 	else if(cursor == 1){
 		get_Fonts()["cat_100"].render_text("MENU" ,Point2f(500, 930), blk);
 		get_Fonts()["cat_100"].render_text("RESTART" ,Point2f(1200, 930), Color(0x9911FF11));
 
 		const Quadrilateral<Vertex2f_Color> bg( Vertex2f_Color(Point2f(1180, 910), bgc),
-												Vertex2f_Color(Point2f(1180, 1050), bgc),
-												Vertex2f_Color(Point2f(1570, 1050), bgc),
-												Vertex2f_Color(Point2f(1570, 910), bgc));
-        vr.render(bg);
+							Vertex2f_Color(Point2f(1180, 1050), bgc),
+							Vertex2f_Color(Point2f(1570, 1050), bgc),
+							Vertex2f_Color(Point2f(1570, 910), bgc));
+        	vr.render(bg);
 	}
 	
 }
