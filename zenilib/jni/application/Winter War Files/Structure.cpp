@@ -23,6 +23,7 @@ Structure::Structure(Team *team, Tile* tile_,
 	Connected_to_Team(true), hex(tile_), opened(false),
 	default_position(position_), default_size(Vector3f(1,1,1)*radius), default_radius(radius)
 {
+	save_height = hex->get_height();
 	Present_Clock.start();
 }
 
@@ -45,7 +46,7 @@ void Structure::receive_hit(float damage)	{
 void Structure::update(const float &time)
 {
 	//Structures don't move, so their body doen't need to be changed.
-	//Collidable::update(time);
+	Collidable::update(time);
 	if(Status == DESTROYED)	{
 		perform_destruction_effects();
 		hex->destroy_structure();
@@ -89,6 +90,8 @@ void Structure::update(const float &time)
 			Game_Model::get().add_effect(new Effect("bluepresent_unwrapped", center, size, 50));
 			break;
 		}
+		restore_default_size_and_position();
+		center.z -= (save_height - hex->get_height());
 	}
 }
 

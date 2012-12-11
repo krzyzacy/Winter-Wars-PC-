@@ -98,6 +98,7 @@ protected:
 	virtual void switch_state(StructureEvent_e);
 
 	void restore_default_size_and_position();
+	float save_height;
 
 };
 
