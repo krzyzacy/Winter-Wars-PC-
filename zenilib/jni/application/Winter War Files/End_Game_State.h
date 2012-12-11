@@ -13,7 +13,7 @@ public:
   End_Game_State()
     : Widget_Gamestate(make_pair(Point2f(0.0f, 0.0f), Point2f(800.0f, 600.0f)))
   {
-	  cursor = 0;
+	  cursor = 2;
 	  confirm = false;
   }
   //~End_Game_State();

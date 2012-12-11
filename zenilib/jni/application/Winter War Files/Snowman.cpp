@@ -30,11 +30,13 @@ Snowman::~Snowman(void)
 
 void Snowman::update(const float &time)
 {
+	float turn = 0;
+	Vector3f axis(0,10,0);
 	Structure::update(time);
+
 	//Magic happens here, need to decide how this will works, def statemachine
 	if (Status == UNWRAP_MODE)
 		{
-		restore_default_size_and_position();
 		center.z -= 8;
 		Status = BUILT;
 		}
@@ -49,6 +51,12 @@ void Snowman::update(const float &time)
 			if(!targets.empty() && reload_time.seconds() > 0.5)	{
 				Point3f aim = targets.front();
 				targets.pop_front();
+				turn = axis.angle_between((center - aim).get_ij());
+				if (center.x > aim.x) turn *= -1;
+				rotation = Quaternion(turn,0,0);
+				//Launch depending on the orientation of the snowman
+				left_launch = center - Vector3f(50*cos(turn), 50*sin(turn),0);
+				right_launch = center + Vector3f(50*cos(turn), 50*sin(turn),0);
 				Point3f Origin = right_launch;
 				if(left) Origin = left_launch;
 				Snowball* sb = new Snowball(owner, Origin, Snow_size);

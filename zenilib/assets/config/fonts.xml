@@ -133,6 +133,17 @@ Only TrueType fonts are supported.
         </virtual_screen>
     </cat_36>
     
+    <cat_44>
+        <filepath>fonts/FZMWFont.TTF</filepath>
+        <height>44</height>
+        <bold>1</bold>
+        <italics>0</italics>
+        <virtual_screen>
+            <width>800</width>
+            <height>600</height>
+        </virtual_screen>
+    </cat_44>
+    
     <cat_24>
         <filepath>fonts/FZMWFont.TTF</filepath>
         <height>24</height>

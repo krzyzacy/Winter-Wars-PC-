@@ -25,11 +25,11 @@ Healing_Pool::~Healing_Pool(void)
 void Healing_Pool::update(const float &time)
 {
 	Structure::update(time);
+
 	if (Status == UNWRAP_MODE)
 		{
-		//Magic number shift height attempt
-		restore_default_size_and_position();
 		center.z -= 22;
+		//Magic number shift height attempt
 		Status = BUILT;
 		}
 

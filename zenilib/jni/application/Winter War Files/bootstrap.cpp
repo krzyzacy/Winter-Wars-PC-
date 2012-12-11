@@ -307,7 +307,7 @@ private:
     void render() {
         Widget_Gamestate::render();
 
-		render_image("ts1920", Point2f(0.0f,0.0f), Point2f(1024.0f,1024.0f));
+		render_image("Teamselect", Point2f(0.0f,0.0f), Point2f(1024.0f,1024.0f));
 		get_Fonts()["system_36_800x600"].render_text("Player 1" ,Point2f(270, 30), Color(0x99FF1111));
 		get_Fonts()["system_36_800x600"].render_text("Player 2" ,Point2f(750, 30), Color(0x99FF1111));
 		get_Fonts()["system_36_800x600"].render_text("Player 3" ,Point2f(270, 330), Color(0x99FF1111));
@@ -325,19 +325,23 @@ private:
 				get_Fonts()["system_26_800x600"].render_text("Sensitivity >> " + itoa(player_sensitivity_state[player_idx]) ,Point2f(270 + player_render_offset[player_idx].x, 198 + player_render_offset[player_idx].y), Color(0x99FF1111));
 				render_image(player_gender[player_idx] + player_team[player_idx] + "Regular", Point2f(55 + player_render_offset[player_idx].x,125 + player_render_offset[player_idx].y),Point2f(188 + player_render_offset[player_idx].x,258 + player_render_offset[player_idx].y));
 			}
-
+			else
+				render_image("Join",Point2f(250.0f + player_render_offset[player_idx].x, 100.0f + player_render_offset[player_idx].y), Point2f(400.0f + player_render_offset[player_idx].x, 250.0f + player_render_offset[player_idx].y));
+			
 			if(player_state[player_idx] >= 2){
 				render_image("Ready",Point2f(100.0f + player_render_offset[player_idx].x, 70.0f + player_render_offset[player_idx].y), Point2f(430.0f + player_render_offset[player_idx].x, 400.0f + player_render_offset[player_idx].y));
 			}
 		}
 
-
-		get_Fonts()["system_36_800x600"].render_text("Press Enter to continue" ,Point2f(600, 565), Color(0x99FF3333));
+		if(player_state[0] == 2)
+			get_Fonts()["system_36_800x600"].render_text("P1 Press A to continue" ,Point2f(510, 568), Color(0xFF000000));
 
 		if(loading){
 			render_image("Loading", Point2f(0.0f,0.0f), Point2f(1024.0f,1024.0f));
 			start_game += 1.0f;
 		}
+
+		
     }
     
 	int player_state[4];

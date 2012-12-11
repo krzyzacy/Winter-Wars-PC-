@@ -760,6 +760,11 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Titlescreen/ready.png</filepath>
     <tile>0</tile>
   </Ready>
+
+  <Join>
+    <filepath>textures/2DTextures/Titlescreen/join.png</filepath>
+    <tile>0</tile>
+  </Join>
   
   <Loading>
     <filepath>textures/2DTextures/Titlescreen/loading.png</filepath>
@@ -775,6 +780,26 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Titlescreen/alert.png</filepath>
     <tile>0</tile>
   </Alert>
+  
+  <Alert_red>
+    <filepath>textures/2DTextures/Titlescreen/alert_red.png</filepath>
+    <tile>0</tile>
+  </Alert_red>
+  
+  <Alert_blue>
+    <filepath>textures/2DTextures/Titlescreen/alert_blue.png</filepath>
+    <tile>0</tile>
+  </Alert_blue>
+  
+  <Alert_green>
+    <filepath>textures/2DTextures/Titlescreen/alert_green.png</filepath>
+    <tile>0</tile>
+  </Alert_green>
+  
+  <Alert_orange>
+    <filepath>textures/2DTextures/Titlescreen/alert_orange.png</filepath>
+    <tile>0</tile>
+  </Alert_orange>
 
   <Endscreen>
     <filepath>textures/2DTextures/Titlescreen/Results.png</filepath>
@@ -790,6 +815,11 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Titlescreen/Instructions2.png</filepath>
     <tile>0</tile>
   </Control_2>
+
+  <reaper>
+    <filepath>textures/2DTextures/Titlescreen/reaper.png</filepath>
+    <tile>0</tile>
+  </reaper>
 
 
 
@@ -824,6 +854,26 @@ The following things are unsupported:
     <filepath>textures/2DTextures/HUDSprites/quarter-coin-head.png</filepath>
     <tile>0</tile>
   </coin>
+
+  <message_bar>
+    <filepath>textures/2DTextures/HUDSprites/MessageBar.png</filepath>
+    <tile>0</tile>
+  </message_bar>
+
+  <snow_hit_1>
+    <filepath>textures/2DTextures/HUDSprites/Snow_Hit_1.png</filepath>
+    <tile>0</tile>
+  </snow_hit_1>
+
+  <snow_hit_2>
+    <filepath>textures/2DTextures/HUDSprites/Snow_Hit_2.png</filepath>
+    <tile>0</tile>
+  </snow_hit_2>
+
+  <snow_hit_3>
+    <filepath>textures/2DTextures/HUDSprites/Snow_Hit_3.png</filepath>
+    <tile>0</tile>
+  </snow_hit_3>
   
   <Background>
     <filepath>textures/2DTextures/Background/aurora.png</filepath>
@@ -834,6 +884,8 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Background/Nlights.png</filepath>
     <tile>0</tile>
   </Nlight>
+  
+  
 
 
   <!--

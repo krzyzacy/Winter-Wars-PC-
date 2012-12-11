@@ -71,6 +71,13 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 	}
 	else if(player->get_hit_timer() >= 1.0f){
 		status = "Hit";
+
+		if(player->get_hit_timer() >= 1.7f)
+			render_image("snow_hit_3",topLeft,Point2f(topLeft.x + unit_px * 1024, topLeft.y + unit_px * 1024));
+		else if(player->get_hit_timer() >= 1.4f)
+			render_image("snow_hit_2",topLeft,Point2f(topLeft.x + unit_px * 1024, topLeft.y + unit_px * 1024));
+		else
+			render_image("snow_hit_1",topLeft,Point2f(topLeft.x + unit_px * 1024, topLeft.y + unit_px * 1024));
 	}
 	else if(player->is_packing()){
 		status = "Packing";
@@ -300,22 +307,28 @@ void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRigh
 void Player_View::render_death(const Point2f &topLeft, const Point2f &bottomRight){
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 
-	render_image("Death",topLeft,Point2f(topLeft.x + unit_px * 1024, topLeft.y + unit_px * 960));
-	get_Fonts()["system_36_800x600"].render_text("...Respawn in " + itoa((int)player->get_time_until_respawn()) + " seconds..." ,Point2f(topLeft.x + unit_px * 300, topLeft.y + unit_px * 400), Color(0x99FF1111));
+
+	render_image("Death",topLeft,Point2f(topLeft.x + unit_px * 1024, topLeft.y + unit_px * 1024));
+	//render_image("reaper",Point2f(topLeft.x + unit_px * 350, topLeft.y + unit_px * 350),Point2f(topLeft.x + unit_px * 650, topLeft.y + unit_px * 650));
+	get_Fonts()["system_36_800x600"].render_text("...Respawn in " + itoa((int)player->get_time_until_respawn()) + " seconds..." ,Point2f(topLeft.x + unit_px * 280, topLeft.y + unit_px * 400), Color(0x99FF1111));
 
 }
 
 void Player_View::render_message(const Point2f &topLeft, const Point2f &bottomRight, const Zeni::String message){
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 
-	get_Fonts()["system_36_800x600"].render_text(message ,Point2f(topLeft.x + unit_px * 200, bottomRight.y - unit_px * 50), Color(0x99FF1111));
+	render_image("message_bar",Point2f(topLeft.x, bottomRight.y - unit_px * 280),bottomRight);
+	get_Fonts()["system_36_800x600"].render_text(message ,Point2f(topLeft.x + unit_px * 150, bottomRight.y - unit_px * 75), Color(0xFF000000));
 
 }
 
 void Player_View::render_tree_claimed(const Point2f &topLeft, const Point2f &bottomRight){
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 
-	render_image("Alert",Point2f(topLeft.x + unit_px * 250, topLeft.y + unit_px * 120),Point2f(topLeft.x + unit_px * 710, topLeft.y + unit_px * 580));
+	Colors &cr = get_Colors();
+	const Color blk = cr[player->get_team()->get_name()];
+
+	render_image("Alert_" + Game_Model::get().get_team(Game_Model::get().get_World()->get_center_Tile()->get_team() - 1)->get_name(),Point2f(topLeft.x + unit_px * 250, topLeft.y + unit_px * 120),Point2f(topLeft.x + unit_px * 710, topLeft.y + unit_px * 580));
 	get_Fonts()["cat_100"].render_text(itoa((int)Game_Model::get().time_till_win()) ,Point2f(topLeft.x + unit_px * 440, topLeft.y + unit_px * 50), Color(0xFFFF0000));
 
 }
