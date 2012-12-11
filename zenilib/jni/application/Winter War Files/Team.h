@@ -38,6 +38,8 @@ public:
 	bool is_in_network(Tile *);
 	bool is_adjacent_to_network(Tile *);
 
+	bool is_empty(){ return members.size() == 0; }
+
 	//Building related
 	bool tile_is_ready(Tile * candidate, int type);
 
