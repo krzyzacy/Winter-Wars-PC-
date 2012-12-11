@@ -775,6 +775,26 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Titlescreen/alert.png</filepath>
     <tile>0</tile>
   </Alert>
+  
+  <Alert_red>
+    <filepath>textures/2DTextures/Titlescreen/alert_red.png</filepath>
+    <tile>0</tile>
+  </Alert_red>
+  
+  <Alert_blue>
+    <filepath>textures/2DTextures/Titlescreen/alert_blue.png</filepath>
+    <tile>0</tile>
+  </Alert_blue>
+  
+  <Alert_green>
+    <filepath>textures/2DTextures/Titlescreen/alert_green.png</filepath>
+    <tile>0</tile>
+  </Alert_green>
+  
+  <Alert_orange>
+    <filepath>textures/2DTextures/Titlescreen/alert_orange.png</filepath>
+    <tile>0</tile>
+  </Alert_orange>
 
   <Endscreen>
     <filepath>textures/2DTextures/Titlescreen/Results.png</filepath>
