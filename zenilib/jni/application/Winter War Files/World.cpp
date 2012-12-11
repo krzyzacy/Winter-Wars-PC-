@@ -43,7 +43,7 @@ World::World( View *view_,
 			center.y = h * (tH + tS) + tS;
 			center.z = 0.0f;
 			if(h == 0 || h == map_height - 1 || w == 0 || w == map_width - 1)
-				center.z = tile_size * 1.8;
+				center.z = tile_size * 1.7;
 
 			if((abs(6 - h) + abs(7 - w)) < 4){
 				center.z += 0.6 * tile_size;
@@ -53,8 +53,13 @@ World::World( View *view_,
 			}
 			
 			float scale_size = 2.0*tile_size;
+
 			Tile* tmp;
-			tmp = new Tile(tile_size,center,Zeni::Vector3f(scale_size,scale_size,scale_size),w,h);
+
+			if(h == 0 || h == map_height - 1 || w == 0 || w == map_width - 1)
+				tmp = new Tile(tile_size,center,Zeni::Vector3f(scale_size,scale_size,1.2 * scale_size),w,h);
+			else
+				tmp = new Tile(tile_size,center,Zeni::Vector3f(scale_size,scale_size,scale_size),w,h);
 
 			if((abs(6 - h) + abs(7 - w)) < 4){
 				tmp->set_covering(ICE);

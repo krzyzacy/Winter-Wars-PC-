@@ -37,8 +37,10 @@ void End_Game_State::on_joy_button(const SDL_JoyButtonEvent &event) {
 	if(event.which == 0){
 		switch(event.button){
 			case 0: // A
-				if(event.state == SDL_PRESSED)
-					confirm = true;
+				if(event.state == SDL_PRESSED){
+					if(cursor != 2)
+						confirm = true;
+				}
 				break;
 				
 			default:
