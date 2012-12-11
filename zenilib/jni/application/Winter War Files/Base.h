@@ -12,6 +12,10 @@ public:
 
 	const model_key_t get_model_name() const;
 
+	void receive_hit(float damage);
+
+	void handle_player_collision(Player *P);
+
 private:
 	
 	void create_body();

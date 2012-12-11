@@ -6,28 +6,14 @@
 using namespace std;
 using namespace Zeni;
 
+const float PI = 3.141517;
 
 Base::Base(Team *team, Tile* tile_,
 				const Zeni::Point3f &base_) :
 	Healing_Pool(team, tile_, base_)
 {
-	switch(owner->get_Team_Index())	{
-	case BLUE:
-		rotation += Quaternion(3.1415179*(1/6),0,0);
-		break;
-	case GREEN:
-		rotation += Quaternion(3.1415179*(5/6),0,0);
-		break;
-	case RED:
-		rotation += Quaternion(3.1415179*(7/12),0,0);
-		break;
-	case ORANGE:
-		rotation += Quaternion(3.1415179*(1/3),0,0);
-		break;
-	default:
-		break;
-	}
 	create_body();
+	center.z += 230;
 }
 
 
@@ -37,9 +23,27 @@ Base::~Base(void)
 
 void Base::update(const float &time)
 {
-	size = Vector3f(100,100,100);
-	Structure::update(time);
 	Status = BUILT;
+	switch(owner->get_Team_Index())	{
+		case BLUE:
+			rotation = Quaternion(0,0,0);
+			break;
+		case GREEN:
+			rotation = Quaternion(2.0*PI*(1.0/3.0),0,0);
+			break;
+		case RED:
+			rotation = Quaternion(2.0*PI*(-1.0/6.0),0,0);
+			break;
+		case ORANGE:
+			rotation = Quaternion(2.0*PI*(2.0/3.0),0,0);
+			break;
+		default:
+			rotation += Quaternion(2.0,0,0);
+			break;
+	}
+
+	size = Vector3f(642,642,650);
+
 }
 
 const model_key_t Base::get_model_name() const 
@@ -64,4 +68,19 @@ void Base::create_body()		{
 	Top.z - 10;
 	Point3f Bot = Seen_Object::get_bottom_center();
 	body = Zeni::Collision::Capsule(Top, Bot, size.z/2);
+}
+
+void Base::handle_player_collision(Player *P)	{
+
+	if (Connected_to_Team)
+		{
+		if (P->get_team() == owner)	
+			{
+			P->healing_waters(Healing_rate * Game_Model::get().get_time_step());
+			}
+		}
+}
+
+void Base::receive_hit(float damage)	{
+//Do nothing, base will not take damage
 }
