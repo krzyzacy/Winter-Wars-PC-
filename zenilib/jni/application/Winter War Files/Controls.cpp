@@ -14,6 +14,37 @@ const int Trig_sensitivity = 5000;
 const float Move_factor = 32768;
 
 
+
+int num_tips = 12;
+String tips[12] = {
+	"Show the next tip by pressing (Y)"
+	"Build a structure on a tile in front of your base (x)",
+//	"Never going to give you up...", //funny
+//	"HI",
+	"You can only build structures adjacent to existing structures",
+	"Building on soft snow will earn you the most resources",
+	"Need health?  Go to a pool - but only your pool!",
+	"Forts are difficult to destroy",
+	"Ice tiles make you slip and don't give you resources when you build on it",
+	"Snowmen attacks enemies for you",
+	"Factories changes adjacent tiles to soft snow tiles",
+//	"Walk the dinosaur",  // funny
+//	"Structures can only exist if they're connected to your territory",
+	"Structures go inactive if they aren't connected to your territory",
+	"After a structure is inactive, you need to reconnect it, or it will be destroyed",
+//	"Need to take down enemy structure?  Attack the root!",
+//	"Eat it Sean",
+//	"You can raise or lower tiles by using the D-pad",
+//	"Out of snow?  Go on a soft snow tile to scoop more!",
+//	"Healing pools are like doctors...without the person",
+//	"Pack "
+	"Winter Wars >>> Halo" //funny
+};
+int cur_tip = 0;
+
+
+
+
 Controls::Controls(bool inverted_, int which_id_)	:
 	inverted(inverted_),
 	Shoot(CHILL),
@@ -79,6 +110,9 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 				break;
 			case SDLK_v:
 				input.LSHOULDER = event.state == SDL_PRESSED;
+				break;
+			case SDLK_t:
+				input.tip = event.state == SDL_PRESSED;
 				break;
 			case SDLK_LSHIFT:
 				input.jump = event.type == SDL_KEYDOWN;
@@ -226,9 +260,11 @@ bool Controls::HandleJoy(const SDL_JoyButtonEvent &event)	{
 	case 2:	//X Button
 		input.Build_Go = event.type == SDL_JOYBUTTONDOWN;
 		break;
-	case 3:	//Y Button
-		input.jet_pack_mode = event.state == SDL_PRESSED;
+	case 3:	//Y Button	
+		input.tip = event.state == SDL_PRESSED;
 		break;
+	//	input.jet_pack_mode = event.state == SDL_PRESSED;
+//		break;
 	case 4:	//Left Shoulder
 		if(event.state == SDL_PRESSED && !left_last)	{
 			input.LSHOULDER = true;
@@ -279,6 +315,7 @@ Vector2f Controls::give_movement()	{
 	return input.Move;
 }
 
+
 void Controls::interact_with_player(Player* Tron, const float &time)	{
 	//First deal with shooting state
 	switch(Shoot)		{
@@ -306,6 +343,12 @@ void Controls::interact_with_player(Player* Tron, const float &time)	{
 		Tron->pack_snow();
 	else
 		Tron->stop_scooping();
+
+	if (input.tip)
+	{
+		Tron->add_message(tips[cur_tip++%num_tips]);
+		input.tip = false;
+	}
 
 	//jumping
 	if(input.jump)

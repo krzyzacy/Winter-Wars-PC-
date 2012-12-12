@@ -43,6 +43,8 @@ public:
 	void receive_hit(float damage); 
 
 	virtual void handle_player_collision(Player *P);
+	virtual void destabilize_network()	{}
+	Team* get_team_pt()	{return owner;}
 
 	void perform_destruction_effects();
 

@@ -66,11 +66,12 @@ void End_Game_State::on_key(const SDL_KeyboardEvent &event) {
 
 void End_Game_State::perform_logic(){
 	if(confirm && cursor == 0){ // back to main menu
-		get_Game().pop_state();
+		get_Sound().stop_BGM();
 		get_Game().pop_state();
 		get_Game().pop_state();
 	}
 	if(confirm && cursor == 1){ // restart game
+		get_Sound().stop_BGM();
 		get_Game().pop_state();
 	}
 }
@@ -86,7 +87,7 @@ void End_Game_State::render() {
 	Video &vr = get_Video();
 	const Color winning_color = cr[winning_team->get_name()];
 	const Color bgc = cr["lightblueop"];
-	const Color box = cr["console_border"];
+	const Color box = cr["endscreenbg"];
 	const Color blk = cr["black"];
 
 	get_Fonts()["cat_110"].render_text( winning_team->get_name_Upper_Case() + " Team" + " Wins!" ,Point2f(670, 110), winning_color);
@@ -142,6 +143,7 @@ void End_Game_State::render() {
 	
 	
 	/*RENDER TEAM STATS*/
+	/*
 	get_Fonts()["cat_64"].render_text("TEAM STATS" ,Point2f(50, 650), blk);
 
 
@@ -188,6 +190,7 @@ void End_Game_State::render() {
 	cur_width+=(font_36.get_text_width("Healing Pools | "));
 	width_array[0] += (cur_width - width_array[7])/2;
 
+	
 	int valid = -1;
 	for (int i = 0 ; i < 4; i++){
 		Team *team = Game_Model::get().get_team(i);
@@ -214,6 +217,7 @@ void End_Game_State::render() {
 		get_Fonts()["cat_36"].render_text(itoa(stat.structures[4]) ,Point2f(width_array[7], 700 + 50 * valid), team_color);
 
 	}
+	*/
 
 
 

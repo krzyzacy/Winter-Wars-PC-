@@ -109,6 +109,10 @@ public:
 
 		loading = false;
 		start_game = 0.0f;
+
+		get_Sound().set_BGM("sfx/drum");
+		get_Sound().set_BGM_looping(1);
+		get_Sound().play_BGM();
 	
 
     }
@@ -276,7 +280,8 @@ private:
 				}
 			}
 
-			//get_Game().pop_state();
+			get_Sound().stop_BGM();
+			get_Game().pop_state();
 			get_Game().push_state(new Play_State_Base(genders_, colors_, controls_, sensitivities_));
 		}
 
@@ -372,6 +377,9 @@ class Title_State_Custom : public Title_State<Team_Select_State, Instructions_St
 		: Title_State<Team_Select_State, Instructions_State>("")
 		{
 			m_widgets.unlend_Widget(title);
+			get_Sound().set_BGM("sfx/HappyTreeFriends");
+			get_Sound().set_BGM_looping(1);
+			get_Sound().play_BGM();
 		}
 
 		void render() {

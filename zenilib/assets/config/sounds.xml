@@ -30,12 +30,32 @@ HOWTO:  To convert between types, or to downmix to mono,
   </hello_world>
 
   <meow>
-    <filepath>sfx/meow</filepath>
+    <filepath>sfx/HitBySnow</filepath>
   </meow>
-
 
   <NyanCat>
     <filepath>sfx/NyanCat</filepath>
   </NyanCat>
+
+  <Dead>
+    <filepath>sfx/meowdead</filepath>
+  </Dead>
+
+  <HitBySnow>
+    <filepath>sfx/HitBySnow</filepath>
+  </HitBySnow>
+
+  <titleBG>
+    <filepath>sfx/titleBG</filepath>
+  </titleBG>
+
+  <teamselectBG>
+    <filepath>sfx/drum</filepath>
+  </teamselectBG>
+
+  <htBG>
+    <filepath>sfx/HappyTreeFriends</filepath>
+  </htBG>
+  
 </Sounds>
 

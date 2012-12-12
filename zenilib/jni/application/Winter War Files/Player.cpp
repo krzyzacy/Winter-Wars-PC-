@@ -4,6 +4,7 @@
 #include "Snowball.h"
 #include "Team.h"
 #include "World.h"
+#include "Tile.h"
 #include "Object_factory.h"
 #include "PlayerAnimator.h"
 #include "PlayerAnimators.h"
@@ -35,10 +36,11 @@ const float  Stick_Accel = 1200;
 
 
 Player::Player(const Zeni::Point3f &center_) 
-	: Moveable(center_ , Vector3f(1,1,1)*45), m_camera(center_, Quaternion(), 5.0f, 3000.0f),
+	: Moveable(center_ , Vector3f(1,1,1)*35), m_camera(center_, Quaternion(), 5.0f, 3000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false),hit_timer(0.0f),throw_timer(0.0f),Selection(FORT),
-	stick_theta(0.0f), animation_state(new Standing()), dead_mode(false),player_sound_test(new Zeni::Sound_Source(Zeni::get_Sounds()["meow"]))
+	stick_theta(0.0f), animation_state(new Standing()), dead_mode(false),player_sound_test(new Zeni::Sound_Source(Zeni::get_Sounds()["meow"])),
+	player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"]))
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
@@ -101,6 +103,10 @@ void Player::update(const float &time)	{
 }
 
 void Player::player_death()	{
+
+	if(!player_dead->is_playing())
+		player_dead->play();
+
 	Deathklok.start();
 	stats.deaths++;
 	dead_mode = true;
@@ -125,8 +131,29 @@ void Player::off_map()
 
 void Player::hit_tile()
 {
+	//Use math, get the family, determine which one you are closest too., 
+	//Make a vector from that and push
 	center.x = backup.x;
 	center.y = backup.y;
+
+
+	Vector3f push_dir;
+	Tile* OnT = Game_Model::get().get_World()->get_tile(center);
+	list<Tile*> fam = Game_Model::get().get_World()->Get_Family(OnT);
+	Tile* Closest = fam.front();
+	Vector3f close_dist = Closest->get_structure_base() - OnT->get_structure_base();
+	for(list<Tile*>::iterator it = fam.begin(); it != fam.end(); ++it)	{
+		Vector3f dist((*it)->get_structure_base() - OnT->get_structure_base());
+		if(dist.magnitude() < close_dist.magnitude())	{
+			close_dist = dist;
+			Closest = (*it);
+		}
+	}
+	push_away_from(Closest->get_structure_base(), -7.5);
+
+	//center.x = backup.x;
+	//center.y = backup.y;
+	
 }
 
 void Player::on_ground()
