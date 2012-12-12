@@ -59,6 +59,10 @@ void Team::update()	{
 		network_unstable = false;
 	}
 
+	if (!Disconnected_Tiles.empty())
+	{
+		message_team("ALERT: YOUR TERRITORY IS DISCONNECTED! Link it together with a structure");
+	}
 
 	if(ResourceTime.seconds() > 1)	{
 		Ice_Blocks += intake_rate;
@@ -85,6 +89,13 @@ void Team::update()	{
 	
 }
 
+void Team::message_team(const String &message)
+{
+	for (int i = 0 ; i < members.size() ; i++)
+	{
+		get_player(i)->add_message(message);
+	}
+}
 
 void Team::set_Team_Color(TEAM_INDEX in)	{
 	Team_Color = in;
