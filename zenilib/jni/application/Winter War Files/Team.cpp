@@ -38,6 +38,7 @@ void Team::add_player(Player *p)	{
 }
 
 Point3f Team::get_spawn_point()	const	{
+	
 	float x = rand()%20;
 	float y = rand()%20;
 	Point3f Spawn = Base->get_structure_base();
@@ -45,6 +46,9 @@ Point3f Team::get_spawn_point()	const	{
 	Spawn.y += y;
 	Spawn.z += 150;
 	return Spawn;
+	
+
+	//return Game_Model::get().get_World()->get_center_Tile()->get_top_center();
 }
 
 void Team::update()	{

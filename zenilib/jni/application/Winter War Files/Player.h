@@ -9,6 +9,8 @@ class Tile;
 class PlayerAnimator;
 enum PlayerEvent_e;
 
+extern const float standard_speed;
+
 extern const float Max_Snow_Amount;	
 extern const float Max_Player_Health;
 extern const float max_snowball_size;	
@@ -18,8 +20,10 @@ extern const float snow_absorbtion_rate;	//Rate of filling snow meter from tile
 
 extern const float Building_Recharge_Time;
 extern const int Max_Stick_Input;
-extern const float Tile_Move_Speed;
+
 extern const float Respawn_Time;
+
+extern const float  Stick_Accel;
 
 enum Jump_State	{
 	ON_GROUND, BOOST, FALLING_WITH_STYLE, JET_PACK

@@ -38,8 +38,10 @@ const float  Stick_Accel = 1200;
 Player::Player(const Zeni::Point3f &center_) 
 	: Moveable(center_ , Vector3f(1,1,1)*35), m_camera(center_, Quaternion(), 5.0f, 3000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
-	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false),hit_timer(0.0f),throw_timer(0.0f),Selection(FORT),
-	stick_theta(0.0f), animation_state(new Standing()), dead_mode(false),player_sound_test(new Zeni::Sound_Source(Zeni::get_Sounds()["meow"])),
+	gender(""),
+	myTeam(0), Jumping(ON_GROUND), Builder(REST), Selection(FORT), stick_theta(0.0f),
+	mini_open(false), build_open(false),dead_mode(false),hit_timer(0.0f),throw_timer(0.0f),
+	animation_state(new Standing()), player_sound_test(new Zeni::Sound_Source(Zeni::get_Sounds()["meow"])),
 	player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"]))
 {
 	//field of view in y
@@ -289,11 +291,10 @@ void Player::stop_scooping()	{
 	//0 to 1, will be determined by tile type eventually
 	//(0 represents frictionless environment), (1 immovable environment)
 
-
 	Vector3f dir(Input_Vel_Max - New_vel);		//Determine vector difference of current v, and player desired v
 	Vector3f Input_Accel_Dir(dir.normalize());	//The acceleration vector, based on above
 	
-	if(Input_Vel_Max.magnitude() == 0)	{
+	if(Input_Vel_Max.magnitude() < 0.05)	{
 		Input_Accel_Dir = Vector3f();		//If Player isn't pushing on stick, don't change velocity at all.
 		if(friction == Ice_friction) 
 			New_vel *= (1 - friction/5);			//And do a more powerful effect of friction

@@ -10,6 +10,7 @@ class Tile;
 
 extern const float Ice_friction;
 extern const float Norml_friction;
+extern const float Tile_Move_Speed;
 
 class World
 {

@@ -49,8 +49,8 @@ private:
 
 	struct Inputs	{
 		Inputs()	: jump(false), pack(false), mini_map(false), shoot(false), 
-		build_view(false), Cam(0.0f, 0.0f), Move(0.0f, 0.0f), RSHOULDER(false), LSHOULDER(false),
-		Tile_up(false), Tile_down(false), Build_Go(false), jet_pack_mode(false)		{}
+		build_view(false), RSHOULDER(false), LSHOULDER(false),
+		Build_Go(false), Tile_up(false), Tile_down(false), tip(false), jet_pack_mode(false), Cam(0.0f, 0.0f), Move(0.0f, 0.0f)		{}
 
 		bool jump;				//A button
 		bool pack;				//B button
