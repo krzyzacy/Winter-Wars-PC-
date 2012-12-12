@@ -63,6 +63,7 @@ private:
 		bool Build_Go;
 		bool Tile_up;
 		bool Tile_down;
+		bool tip;
 
 		bool jet_pack_mode;
 
