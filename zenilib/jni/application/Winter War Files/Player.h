@@ -125,6 +125,8 @@ public:
 	float get_throw_timer() const {return throw_timer;}
 	bool is_packing() const { return current_radius > 0.0f? true : false ;}
 
+// sound
+	void play_sound() {if(!player_sound_test->is_playing()) player_sound_test->play();}
 // Messages
 	/* Adds a message for the player */
 	void add_message(const Zeni::String &);
@@ -208,5 +210,6 @@ private:
 	friend Collision_Table;
 
 	Zeni::Sound_Source * player_sound_test;
+	Zeni::Sound_Source * player_dead;
 };
 

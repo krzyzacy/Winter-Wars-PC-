@@ -38,7 +38,8 @@ Player::Player(const Zeni::Point3f &center_)
 	: Moveable(center_ , Vector3f(1,1,1)*45), m_camera(center_, Quaternion(), 5.0f, 3000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	myTeam(0), Jumping(ON_GROUND), Builder(REST), mini_open(false), build_open(false),hit_timer(0.0f),throw_timer(0.0f),Selection(FORT),
-	stick_theta(0.0f), animation_state(new Standing()), dead_mode(false),player_sound_test(new Zeni::Sound_Source(Zeni::get_Sounds()["meow"]))
+	stick_theta(0.0f), animation_state(new Standing()), dead_mode(false),player_sound_test(new Zeni::Sound_Source(Zeni::get_Sounds()["meow"])),
+	player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"]))
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
@@ -101,6 +102,10 @@ void Player::update(const float &time)	{
 }
 
 void Player::player_death()	{
+
+	if(!player_dead->is_playing())
+		player_dead->play();
+
 	Deathklok.start();
 	stats.deaths++;
 	dead_mode = true;

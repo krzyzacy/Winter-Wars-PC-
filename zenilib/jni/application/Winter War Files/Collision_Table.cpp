@@ -166,6 +166,7 @@ void Collision_Table::collideSnowballStructure(Snowball *b2, Structure *w1)
 
 	w1->receive_hit(damage);
 
+	Game_Model::get().get_player(1)->play_sound();
 	Game_Model::get().add_effect(new Effect("explode", b2->center, Vector3f(10,10,10)*b2->size.z/4));
 
 	if (!b2->owner)  //snowmen should damage other structures
