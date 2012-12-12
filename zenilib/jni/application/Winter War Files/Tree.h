@@ -14,5 +14,6 @@ public:
 
 private:
 	Animator *get_animator() const;
+	Zeni::Sound_Source * nyan;
 
 };

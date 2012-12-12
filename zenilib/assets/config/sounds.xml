@@ -32,5 +32,10 @@ HOWTO:  To convert between types, or to downmix to mono,
   <meow>
     <filepath>sfx/meow</filepath>
   </meow>
+
+
+  <NyanCat>
+    <filepath>sfx/NyanCat</filepath>
+  </NyanCat>
 </Sounds>
 

@@ -5,12 +5,19 @@
 
 Tree::Tree(Team *team, Tile* tile_,
 				const Zeni::Point3f &base_) :
-	Structure(team, tile_, base_, 200)
+	Structure(team, tile_, base_, 200),nyan(new Zeni::Sound_Source(Zeni::get_Sounds()["NyanCat"]))
 {	
-	if (!owner)
+	if (!owner){
 		animation_state = new Tree_unowned();
-	else
+		nyan->stop();
+	}
+	else{
 		animation_state = new Tree_owned();
+
+		if(!nyan->is_playing())
+			nyan->play();
+
+	}
 
 	center.z += 60;
 
@@ -20,6 +27,7 @@ Tree::Tree(Team *team, Tile* tile_,
 
 Tree::~Tree(void)
 {
+	nyan->stop();
 }
 
 void Tree::update(const float &time)
@@ -31,7 +39,7 @@ void Tree::update(const float &time)
 		Isolation_Clock.stop();
 
 		owner->remove_tile(hex);
-
+		nyan->stop();
 		// reset to neutral
 		owner = 0;
 		Game_Model::get().tree_claimed(0);

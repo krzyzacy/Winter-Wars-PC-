@@ -122,7 +122,7 @@ void End_Game_State::render() {
 		Player::Stats stat = player->stats;  
 		const Color player_color = cr[player->get_team()->get_name()];
 		
-		get_Fonts()["cat_36"].render_text("PLAYER " + itoa(i) ,Point2f(75, 400 + 50 * i), player_color);
+		get_Fonts()["cat_36"].render_text("PLAYER " + itoa(i + 1) ,Point2f(75, 400 + 50 * i), player_color);
 
 		get_Fonts()["cat_36"].render_text(itoa(stat.kills) ,Point2f(525, 400 + 50 * i), player_color);
 		get_Fonts()["cat_36"].render_text(itoa(stat.deaths) ,Point2f(660, 400 + 50 * i), player_color);
