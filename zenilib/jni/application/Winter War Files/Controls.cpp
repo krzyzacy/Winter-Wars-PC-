@@ -17,7 +17,7 @@ const float Move_factor = 32768;
 
 int num_tips = 12;
 String tips[12] = {
-	"Show the next tip by pressing (Y)"
+	"Show the next tip by pressing (Y)",
 	"Build a structure on a tile in front of your base (x)",
 //	"Never going to give you up...", //funny
 //	"HI",

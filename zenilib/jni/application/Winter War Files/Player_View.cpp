@@ -318,8 +318,15 @@ void Player_View::render_message(const Point2f &topLeft, const Point2f &bottomRi
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 
 	render_image("message_bar",Point2f(topLeft.x, bottomRight.y - unit_px * 280),bottomRight);
-	get_Fonts()["system_36_800x600"].render_text(message ,Point2f(topLeft.x + unit_px * 150, bottomRight.y - unit_px * 75), Color(0xFF000000));
-
+	Font &font_36 = get_Fonts()["cat_36"];
+	Font &font_28 = get_Fonts()["cat_28"];
+	Font &font_24 = get_Fonts()["cat_24"];
+	if(font_36.get_text_width(message) < bottomRight.x - unit_px * 180)
+		get_Fonts()["system_36_800x600"].render_text(message ,Point2f(topLeft.x + unit_px * 100, bottomRight.y - unit_px * 75), Color(0xFF000000));
+	else if(font_28.get_text_width(message) < bottomRight.x - unit_px * 180)
+		get_Fonts()["cat_28"].render_text(message ,Point2f(topLeft.x + unit_px * 100, bottomRight.y - unit_px * 75), Color(0xFF000000));
+	else
+		get_Fonts()["cat_22"].render_text(message ,Point2f(topLeft.x + unit_px * 100, bottomRight.y - unit_px * 75), Color(0xFF000000));
 }
 
 void Player_View::render_tree_claimed(const Point2f &topLeft, const Point2f &bottomRight){

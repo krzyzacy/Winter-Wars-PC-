@@ -328,9 +328,9 @@ Tile * World::player_is_looking_at(const Point3f &player_pos, Vector3f look_Dir)
 	//If the player is "looking" to far away, like level across the board, then
 	//just return the tile next to them in that direction
 
-	return get_tile(player_pos);
+	//return get_tile(player_pos);
 
-	/*
+	
 	if(look_Dir.x >= sqrt(3.0f) / 2){ // right
 		if(get_tile(player_pos)->get_col() != map_width - 1)
 			return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() + 1];
@@ -402,7 +402,7 @@ Tile * World::player_is_looking_at(const Point3f &player_pos, Vector3f look_Dir)
 	}
 	else
 		return NULL;
-	*/
+	
 }
 
 void World::raise_tile(Point3f location)	{
