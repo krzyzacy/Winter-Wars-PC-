@@ -57,7 +57,7 @@ void Structure::update(const float &time)
 		Status = DESTROYED;
 	}
 
-	if (Present_Clock.seconds() > 3 && !opened)
+	if (Present_Clock.seconds() > 1.5 && !opened)
 		{
 		opened = true; 
 		Status = UNWRAP_MODE;
