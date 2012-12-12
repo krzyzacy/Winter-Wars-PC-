@@ -37,6 +37,7 @@ public:
 
 	bool is_in_network(Tile *);
 	bool is_adjacent_to_network(Tile *);
+	void destabilize_network()	{network_unstable = true;}
 
 	bool is_empty(){ return members.size() == 0; }
 

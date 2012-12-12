@@ -47,6 +47,11 @@ void Tree::update(const float &time)
 	}
 }
 
+void Tree::destabilize_network()	{
+	if(owner)
+		owner->destabilize_network();
+}
+
 const model_key_t Tree::get_model_name() const 
 {
 	std::string Teamname;

@@ -6,7 +6,7 @@
 #include "Game_Model.h"
 #include "Object_factory.h"
 
-
+const int Max_Resources = 15000;
 
 using namespace std;
 using namespace Zeni;
@@ -62,6 +62,8 @@ void Team::update()	{
 
 	if(ResourceTime.seconds() > 1)	{
 		Ice_Blocks += intake_rate;
+		if(Ice_Blocks >= Max_Resources)
+			Ice_Blocks = Max_Resources;
 		ResourceTime.reset();
 	
 		intake_rate = 0;
@@ -95,6 +97,7 @@ void Team::set_Team_Color(TEAM_INDEX in)	{
 void Team::add_tile(Tile *t)	{
 	Network.insert(t);
 	Adjacent_Tiles.insert(t);
+	network_unstable = true;
 	//do the stuff for add adjacent members(cycle through family and add
 	World *w = Game_Model::get().get_World();
 	list<Tile*> family = w->Get_Family(t);
@@ -119,6 +122,12 @@ void Team::remove_tile(Tile *t)	{
 }
 
 bool Team::tile_is_ready(Tile * cand, int type)	{
+	if(!is_adjacent_to_network(cand))
+		return false;
+
+	if(cand == Base)
+		return false;
+
 			//If nothing has been built on it, (no one owns it), 
 	//is adjacent to your network, and have enough ice blocks
 	//If you already own this tile, then it assumes you are switching the building type
@@ -135,19 +144,23 @@ bool Team::tile_is_ready(Tile * cand, int type)	{
 	//Return false if you can build on it because don't want to let game_obejct create structure
 	if(Game_Model::get().get_World()->get_center_Tile() == cand)	{
 		//%%%%% Install something related to victory conditions here
-		if(is_adjacent_to_network(cand) && !(Network.count(cand) == 1))	{//Doesn't care about who has it currently, any can claim it
+		if(Network.count(cand) == 0)	{//Doesn't care about who has it currently, any can claim it
+			//cand->get_building()->begin_isolation();
+			if(cand->get_building()->get_team_pt() != 0)
+				cand->get_building()->get_team_pt()->remove_tile(cand);
+
 			cand->destroy_structure();
-			Game_Model::get().add_structure(create_structure(TREE, cand, this));
 			add_tile(cand);
-			cand->set_team(Team_Color);
+			Game_Model::get().add_structure(create_structure(TREE, cand, this));
+			//cand->set_team(Team_Color);
 			Start_Victory_Countdown();
 		}
-		return false; //becasue you can't build on it
+		return false; //becasue tree isn't an option to build
 	}
 
 
 	//This code handles neutral tiles and enemy tiles
-	if(!cand->has_building() && is_adjacent_to_network(cand))	{
+	if(!cand->has_building())	{
 		if(Ice_Blocks >= Build_Cost[type])	{	//Structure cost	
 			Ice_Blocks -= Build_Cost[type];
 			add_tile(cand);
@@ -237,13 +250,17 @@ void Team::check_connectivity()	{
 }
 
 void Team::Deactivate_disconnected()	{
-	for(set<Tile*>::iterator it = Disconnected_Tiles.begin(); it != Disconnected_Tiles.end(); ++it)	
-		(*it)->get_building()->begin_isolation();
+	for(set<Tile*>::iterator it = Disconnected_Tiles.begin(); it != Disconnected_Tiles.end(); ++it)		{
+		if((*it)->has_building())
+			(*it)->get_building()->begin_isolation();
+	}
 }
 
 void Team::reintegrate_connected()	{	//Currently not in use because instantly destroyed
-	for(set<Tile*>::iterator it = Network.begin(); it != Network.end(); ++it)	
-		(*it)->get_building()->reintegrate();
+	for(set<Tile*>::iterator it = Network.begin(); it != Network.end(); ++it)		{
+		if((*it)->has_building())
+			(*it)->get_building()->reintegrate();
+	}
 }
 
 void Team::Start_Victory_Countdown()	{
