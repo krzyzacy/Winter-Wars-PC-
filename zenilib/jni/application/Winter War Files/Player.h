@@ -19,7 +19,7 @@ extern const float snow_depletion_rate;		//Rate at which snow is consumed while 
 extern const float snow_absorbtion_rate;	//Rate of filling snow meter from tile
 
 extern const float Building_Recharge_Time;
-extern const int Max_Stick_Input;
+extern const float Max_Stick_Input;
 
 extern const float Respawn_Time;
 
@@ -68,7 +68,7 @@ public:
 	void adjust_pitch(float phi);
 
 // Moving Functions
-	void calculate_movement(const Zeni::Vector2f &input_vel);
+	void calculate_movement(const Zeni::Vector2f input_vel);
 	void push_away_from(Zeni::Point3f &obstacle, const float force = 100);
 
 // Actions

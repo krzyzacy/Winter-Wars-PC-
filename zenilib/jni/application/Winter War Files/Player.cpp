@@ -26,13 +26,13 @@ const float packing_rate = 50;			// Packing to snowball
 const float snow_depletion_rate = 25;	// Packing from pack
 const float snow_absorbtion_rate = 100;  // Scooping
 
-const int Max_Stick_Input	= 32768;
+const float Max_Stick_Input	= 32768;
 const float Building_Recharge_Time = 1;
 const float Respawn_Time = 6;
 
 
 const Vector3f jump_vec(0,0,500);
-const float  Stick_Accel = 1200;
+const float  Stick_Accel = 200;
 
 const int num_tips = 13;
 String tips[num_tips] = {
@@ -53,13 +53,14 @@ String tips[num_tips] = {
 
 
 Player::Player(const Zeni::Point3f &center_) 
-	: Moveable(center_ , Vector3f(1,1,1)*35), m_camera(center_, Quaternion(), 5.0f, 3000.0f),
+	: Moveable(center_ , Vector3f(1,1,1)*35), cur_tip(0),
+	m_camera(center_, Quaternion(), 5.0f, 3000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	gender(""),
-	myTeam(0), Jumping(ON_GROUND), Builder(REST), Selection(FORT), stick_theta(0.0f),
+	myTeam(0), backup(center_), Jumping(ON_GROUND), Builder(REST), Selection(FORT), stick_theta(0.0f),
 	mini_open(false), build_open(false),dead_mode(false),hit_timer(0.0f),throw_timer(0.0f),
 	animation_state(new Standing()), player_sound_test(new Zeni::Sound_Source(Zeni::get_Sounds()["meow"])),
-	player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"])), cur_tip(0)
+	player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"]))
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
@@ -280,9 +281,15 @@ void Player::stop_scooping()	{
 //	switch_state(STAND);
 }
 
- void Player::calculate_movement(const Vector2f &input_vel)	{
+ void Player::calculate_movement(const Vector2f input_vel)	{
 	 if(is_player_KO())
 		return;
+
+	//Animations
+	if (velocity.x == 0 && velocity.y == 0 && is_on_ground())
+		switch_state(STAND);
+	else if ((velocity.x != 0 || velocity.y != 0) && is_on_ground())
+		switch_state(WALK);
 
 	//input_vel is joystick values, from 0 to 32768
 	//if(mini_open)	{	//Mini-map is open stop moving
@@ -291,53 +298,83 @@ void Player::stop_scooping()	{
 	//}
 
 	//Set up, get Camera Vectors and create variables
-	Vector3f POV_face = m_camera.get_forward().get_ij().normalize();
-	Vector3f POV_left = m_camera.get_left().get_ij().normalize();
+	Vector3f POV_face = m_camera.get_forward().get_ij();
+	POV_face.normalize();
+	Vector3f POV_left = m_camera.get_left().get_ij();
+	POV_left.normalize();
 		//The new velocity
-	Vector3f New_vel(velocity);
+	Vector3f New_vel = velocity;
 		//The maximum speed allowed, based on how far joystick is pushed
-	Vector3f Input_Vel_Max = standard_speed * (( POV_face * input_vel.y/Max_Stick_Input) + (POV_left * input_vel.x/Max_Stick_Input));
+	//if(abs(input_vel.y) < 1000) POV_face = Vector3f();
+	//if(abs(input_vel.x) < 1000) POV_left = Vector3f();
+
+
+	//multiplication and it's effects if negative number??
+	//Vector2f input_vel2 = input_vel;
+	//input_vel2.normalize();
+	//Vector3f Input_Target_Vel = POV_face * input_vel2.y + POV_left * input_vel2.x;
+	Vector3f Input_Target_Vel = ( POV_face * (input_vel.y/Max_Stick_Input)) + (POV_left * (input_vel.x/Max_Stick_Input));
+	
+	Input_Target_Vel *= standard_speed;
+	Input_Target_Vel.z = 0;
 
 	//Force Z movement to be independent
 	float zvel = velocity.z;
 	New_vel.z = 0;
-	Input_Vel_Max.z = 0;
+	
 
 	//friction coefficent
-	float friction = Game_Model::get().get_World()->get_friction_coeff(center);
+	//float friction = Game_Model::get().get_World()->get_friction_coeff(center);
+	float friction = 0.2;
 	//0 to 1, will be determined by tile type eventually
 	//(0 represents frictionless environment), (1 immovable environment)
 
-	Vector3f dir(Input_Vel_Max - New_vel);		//Determine vector difference of current v, and player desired v
-	Vector3f Input_Accel_Dir(dir.normalize());	//The acceleration vector, based on above
-	
-	if(Input_Vel_Max.magnitude() < 0.05)	{
-		Input_Accel_Dir = Vector3f();		//If Player isn't pushing on stick, don't change velocity at all.
-		if(friction == Ice_friction) 
-			New_vel *= (1 - friction/5);			//And do a more powerful effect of friction
-		else
-			New_vel *= (1 - friction);	
-	}
-											
-	//How much the player can control the new direction is also effected by friction
-	Input_Accel_Dir *= Stick_Accel * friction;
-	New_vel *= (1 - friction/15);
-	New_vel += Input_Accel_Dir * Game_Model::get().get_time_step();
 
 	
-	//If the speed is close to player desired, then just set it to player desired speed
-	if(abs(New_vel.magnitude() - Input_Vel_Max.magnitude()) < 1)
-		New_vel = Input_Vel_Max;
+	
+	
+	//This causes all the problems, but why??? 
+	New_vel = (New_vel + Vector3f(Input_Target_Vel.x, Input_Target_Vel.y,0));
+	
+	//New_vel = Input_Target_Vel;
+	New_vel = (1 - friction) * New_vel;
 
+	Vector3f input_dir = Input_Target_Vel;
+	//input_dir.normalize();
+	//if(Input_Target_Vel.magnitude() < 0.05)	{
+	//	input_dir = Vector3f(0,0,0);
+	//}
+	//if(input_dir.magnitude() > 0.1)
+	//	New_vel += input_dir * Stick_Accel * friction * Game_Model::get().get_time_step();
+	
 	//Update Variables
+	//velocity = New_vel;
 	velocity = New_vel;
 	velocity.z = zvel;
 
-	//Animations
-	if (velocity.x == 0 && velocity.y == 0 && is_on_ground())
-		switch_state(STAND);
-	else if ((velocity.x != 0 || velocity.y != 0) && is_on_ground())
-		switch_state(WALK);
+	//Vector3f dir(Input_Vel_Max - New_vel);		//Determine vector difference of current v, and player desired v
+	//Vector3f Input_Accel_Dir(dir.normalize());	//The acceleration vector, based on above
+	//
+	//if(Input_Vel_Max.magnitude() < 0.05)	{
+	//	Input_Accel_Dir = Vector3f();		//If Player isn't pushing on stick, don't change velocity at all.
+	//	if(friction == Ice_friction) 
+	//		New_vel *= (1 - friction/5);			//And do a more powerful effect of friction
+	//	else
+	//		New_vel *= (1 - friction);	
+	//}
+	//										
+	////How much the player can control the new direction is also effected by friction
+	//Input_Accel_Dir *= Stick_Accel * friction;
+	//New_vel *= (1 - friction/15);
+	//New_vel += Input_Accel_Dir * Game_Model::get().get_time_step();
+
+	//
+	////If the speed is close to player desired, then just set it to player desired speed
+	//if(abs(New_vel.magnitude() - Input_Vel_Max.magnitude()) < 1)
+	//	New_vel = Input_Vel_Max;
+
+	
+
 	
 }
 

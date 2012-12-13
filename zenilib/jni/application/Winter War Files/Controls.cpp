@@ -140,7 +140,8 @@ bool Controls::HandleJoy(const SDL_JoyAxisEvent &event)	{
 	//This tracks the triggers and Joysticks
 	bool Handled_Input = true;
 	Sint16 Val = event.value;
-	
+	if(get_Game().joy_mouse.enabled)
+		get_Game().joy_mouse.enabled = false;
 
 	switch(event.axis)	{
 	case 0:		//Left Stick left-right
@@ -259,7 +260,7 @@ bool Controls::HandleJoy(const SDL_JoyButtonEvent &event)	{
 		break;
 	case 7:	//Start Button (Gamestate_Base Handles this for pause only if joymouse enabled)
 		get_Game().joy_mouse.enabled = true;
-		Handled_Input = false;
+		get_Game().push_state(new Popup_Menu_State());
 		break;
 	case 8:	//Click left joystick down
 	case 9:	//Click right joystick down

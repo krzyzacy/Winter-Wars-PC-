@@ -44,6 +44,10 @@ Point3f Team::get_spawn_point()	const	{
 	Spawn.x += x;
 	Spawn.y += y;
 	Spawn.z += 150;
+	if(Team_Color == RED)
+		Spawn = Game_Model::get().get_World()->get_center_Tile()->get_structure_base();
+
+
 	return Spawn;
 }
 

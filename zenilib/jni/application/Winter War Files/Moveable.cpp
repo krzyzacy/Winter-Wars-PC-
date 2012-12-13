@@ -11,7 +11,7 @@ const Zeni::Vector3f grav_accel(0.0f, 0.0f, -250.0f);
 
 Moveable::Moveable(const Point3f &center_, const Vector3f &size_ ) :
 	Seen_Object(center_, size_)
-	, velocity(Vector3f())
+	, velocity(Vector3f(0,0,0))
 {
 }
 
