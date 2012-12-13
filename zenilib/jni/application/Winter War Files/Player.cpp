@@ -32,7 +32,7 @@ const float Respawn_Time = 6;
 
 
 const Vector3f jump_vec(0,0,500);
-const float  Stick_Accel = 200;
+const float  Stick_Accel = 1200;
 
 const int num_tips = 13;
 String tips[num_tips] = {
@@ -324,56 +324,58 @@ void Player::stop_scooping()	{
 	
 
 	//friction coefficent
-	//float friction = Game_Model::get().get_World()->get_friction_coeff(center);
-	float friction = 0.2;
+	float friction = Game_Model::get().get_World()->get_friction_coeff(center);
+	//float friction = 0.2;
 	//0 to 1, will be determined by tile type eventually
 	//(0 represents frictionless environment), (1 immovable environment)
-
-
 	
-	
-	
-	//This causes all the problems, but why??? 
-	New_vel = (New_vel + Vector3f(Input_Target_Vel.x, Input_Target_Vel.y,0));
+	//	New_vel = (New_vel + Vector3f(Input_Target_Vel.x, Input_Target_Vel.y,0));
 	
 	//New_vel = Input_Target_Vel;
-	New_vel = (1 - friction) * New_vel;
+	//New_vel = (1 - friction) * New_vel;
 
-	Vector3f input_dir = Input_Target_Vel;
+
+	//Vector3f input_dir = Input_Target_Vel;
 	//input_dir.normalize();
-	//if(Input_Target_Vel.magnitude() < 0.05)	{
-	//	input_dir = Vector3f(0,0,0);
-	//}
-	//if(input_dir.magnitude() > 0.1)
+	//if(Input_Target_Vel.magnitude() > 0.01)
 	//	New_vel += input_dir * Stick_Accel * friction * Game_Model::get().get_time_step();
-	
-	//Update Variables
-	//velocity = New_vel;
-	velocity = New_vel;
-	velocity.z = zvel;
 
-	//Vector3f dir(Input_Vel_Max - New_vel);		//Determine vector difference of current v, and player desired v
-	//Vector3f Input_Accel_Dir(dir.normalize());	//The acceleration vector, based on above
 	//
-	//if(Input_Vel_Max.magnitude() < 0.05)	{
-	//	Input_Accel_Dir = Vector3f();		//If Player isn't pushing on stick, don't change velocity at all.
-	//	if(friction == Ice_friction) 
-	//		New_vel *= (1 - friction/5);			//And do a more powerful effect of friction
-	//	else
-	//		New_vel *= (1 - friction);	
-	//}
-	//										
-	////How much the player can control the new direction is also effected by friction
-	//Input_Accel_Dir *= Stick_Accel * friction;
-	//New_vel *= (1 - friction/15);
-	//New_vel += Input_Accel_Dir * Game_Model::get().get_time_step();
+	////input_dir.normalize();
+	////if(Input_Target_Vel.magnitude() < 0.05)	{
+	////	input_dir = Vector3f(0,0,0);
+	////}
+	////if(input_dir.magnitude() > 0.1)
+	////	New_vel += input_dir * Stick_Accel * friction * Game_Model::get().get_time_step();
+	//
+	////Update Variables
+	////velocity = New_vel;
+	//velocity = New_vel;
+	//velocity.z = zvel;
+
+	Vector3f dir(Input_Target_Vel - New_vel);		//Determine vector difference of current v, and player desired v
+	Vector3f Input_Accel_Dir(dir.normalize());	//The acceleration vector, based on above
+	
+	if(Input_Target_Vel.magnitude() < 0.05)	{
+		Input_Accel_Dir = Vector3f();		//If Player isn't pushing on stick, don't change velocity at all.
+		if(friction == Ice_friction) 
+			New_vel *= (1 - friction/5);			//And do a more powerful effect of friction
+		else
+			New_vel *= (1 - friction);	
+	}
+											
+	//How much the player can control the new direction is also effected by friction
+	Input_Accel_Dir *= Stick_Accel * friction;
+	New_vel *= (1 - friction/15);
+	New_vel += Input_Accel_Dir * Game_Model::get().get_time_step();
 
 	//
 	////If the speed is close to player desired, then just set it to player desired speed
 	//if(abs(New_vel.magnitude() - Input_Vel_Max.magnitude()) < 1)
 	//	New_vel = Input_Vel_Max;
 
-	
+	velocity = New_vel;
+	velocity.z = zvel;
 
 	
 }

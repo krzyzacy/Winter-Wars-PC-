@@ -95,7 +95,7 @@ void Collision_Table::collidePlayerSnowball(Player* p1, Snowball* b1)
 		return;
 	
 	//If we want to stop the snowball, move this above friendly fire
-	int damage_dealt = b1->deal_damage();  
+	float damage_dealt = b1->deal_damage();  
 	
 	p1->get_damaged(damage_dealt);
 
