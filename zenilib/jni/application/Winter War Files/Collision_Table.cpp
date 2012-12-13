@@ -1,6 +1,7 @@
 #include "Collision_Table.h"
 
 #include "Game_Model.h"
+#include "World.h"
 
 #include "Collidable.h"
 #include "Player.h"
@@ -153,6 +154,10 @@ void Collision_Table::collideStructurePlayer(Structure* w1, Player* ob2)
 
 void Collision_Table::collideSnowballStructure(Snowball *b2, Structure *w1)
 {
+
+	if(Game_Model::get().get_World()->get_tile(w1->get_bottom_center()) == Game_Model::get().get_World()->get_center_Tile())
+		return;
+
 	if (!b2->body.intersects(w1->body))
 		return;
 	

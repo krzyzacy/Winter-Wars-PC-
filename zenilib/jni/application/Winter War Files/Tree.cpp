@@ -1,5 +1,6 @@
 #include "Tree.h"
 #include "Team.h"
+using namespace Zeni;
 
 #include "Game_Model.h"
 
@@ -50,6 +51,15 @@ void Tree::update(const float &time)
 void Tree::destabilize_network()	{
 	if(owner)
 		owner->destabilize_network();
+}
+
+void Tree::handle_player_collision(Player *P)	{
+	//DO NOTHING
+}
+
+void Tree::create_body()	{
+	body = Zeni::Collision::Capsule(center + Vector3f(0,0,1), center - Vector3f(0,0,-1), 0.05);
+
 }
 
 const model_key_t Tree::get_model_name() const 

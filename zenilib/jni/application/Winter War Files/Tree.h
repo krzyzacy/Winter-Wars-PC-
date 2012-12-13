@@ -12,9 +12,13 @@ public:
 
 	void destabilize_network();
 
+	void handle_player_collision(Player *P);
+
 	const model_key_t get_model_name() const;
 
 private:
+	void create_body();
+
 	Animator *get_animator() const;
 	Zeni::Sound_Source * nyan;
 
