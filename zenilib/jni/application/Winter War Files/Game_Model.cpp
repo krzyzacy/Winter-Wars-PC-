@@ -56,7 +56,6 @@ void Game_Model::start_up(const vector<String> &genders_, const vector<int> &col
 		PlayTime.start();
 //		view->add_renderable(&Perm);
 
-		global_message("Build something on a tile next to you!");
 }
 
 void Game_Model::restart()
@@ -151,7 +150,7 @@ void Game_Model::tree_claimed(const Team *team)
 	{
 		if (get_team(i) != team)
 		const_cast<Team*>(get_team(i))->message_team(const_cast<Team*>(team)->get_name_Upper_Case() + 
-			" TEAM CLAIMED THE TREE! Destroy tiles to break their territory");
+			" TEAM CLAIMED THE TREE! Destroy tiles to break their territory", 8);
 	}
 	// team wants to own the tree
 	win_time = PlayTime.seconds() + time_to_win_c;

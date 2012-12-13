@@ -34,6 +34,23 @@ const float Respawn_Time = 6;
 const Vector3f jump_vec(0,0,500);
 const float  Stick_Accel = 1200;
 
+const int num_tips = 13;
+String tips[num_tips] = {
+	"Show the next tip by pressing (Y)",
+	"Point at a tile in front of you and build with (x)",
+	"You can only build structures next to your existing structures",
+	"Building on Soft Snow will earn you the most Money",
+	"Need health? Go to a pool - but only your pool!",
+	"Destroy Structures with Snowballs",
+	"Forts are difficult to destroy",
+	"Ice tiles make you slip and don't give you resources when you build on it",
+	"Snowmen attacks enemies for you",
+	"Factories changes adjacent tiles to soft snow tiles",
+	"Structures go inactive if they aren't connected to your territory",
+	"After a structure is inactive, you need to reconnect it, or it will be destroyed",
+	"Winter Wars >>> Halo" //funny
+};
+
 
 Player::Player(const Zeni::Point3f &center_) 
 	: Moveable(center_ , Vector3f(1,1,1)*35), m_camera(center_, Quaternion(), 5.0f, 3000.0f),
@@ -42,7 +59,7 @@ Player::Player(const Zeni::Point3f &center_)
 	myTeam(0), Jumping(ON_GROUND), Builder(REST), Selection(FORT), stick_theta(0.0f),
 	mini_open(false), build_open(false),dead_mode(false),hit_timer(0.0f),throw_timer(0.0f),
 	animation_state(new Standing()), player_sound_test(new Zeni::Sound_Source(Zeni::get_Sounds()["meow"])),
-	player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"]))
+	player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"])), cur_tip(0)
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
@@ -218,7 +235,7 @@ void Player::charge_ball()	{
 
 	// not enough snow
 	if(Snow_in_Pack <= 0) 	{
-		add_message("Out of Ammo! Find SOFT SNOW and refill.");
+		add_message("Out of Ammo! Find SOFT SNOW and refill (B).");
 		Snow_in_Pack = 0;
 	}
 	
@@ -578,11 +595,10 @@ int Player::get_Team_Index() const	{
 	return myTeam->get_Team_Index();
 }
 
-void Player::add_message(const Zeni::String &msg)
+void Player::add_message(const Zeni::String &msg, int priority)
 {
-	message = Message(msg, 10, 3);
+	message = Message(msg, priority, 3);
 }
-
 
 bool Player::has_message() const
 {
@@ -592,4 +608,9 @@ bool Player::has_message() const
 Zeni::String Player::get_message() const
 {
 	return message.msg;
+}
+
+void Player::next_tip()
+{	
+	add_message(tips[cur_tip++%num_tips], 1);
 }

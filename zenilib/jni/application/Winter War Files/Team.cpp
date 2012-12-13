@@ -38,7 +38,6 @@ void Team::add_player(Player *p)	{
 }
 
 Point3f Team::get_spawn_point()	const	{
-	
 	float x = rand()%20;
 	float y = rand()%20;
 	Point3f Spawn = Base->get_structure_base();
@@ -46,9 +45,6 @@ Point3f Team::get_spawn_point()	const	{
 	Spawn.y += y;
 	Spawn.z += 150;
 	return Spawn;
-	
-
-	//return Game_Model::get().get_World()->get_center_Tile()->get_top_center();
 }
 
 void Team::update()	{
@@ -65,7 +61,7 @@ void Team::update()	{
 
 	if (!Disconnected_Tiles.empty())
 	{
-		message_team("ALERT: YOUR TERRITORY IS DISCONNECTED! Link it together with a structure");
+		message_team("ALERT: YOUR TERRITORY IS DISCONNECTED! Link it together with a structure", 10);
 	}
 
 	if(ResourceTime.seconds() > 1)	{
@@ -93,11 +89,11 @@ void Team::update()	{
 	
 }
 
-void Team::message_team(const String &message)
+void Team::message_team(const String &message, int priority)
 {
 	for (int i = 0 ; i < members.size() ; i++)
 	{
-		get_player(i)->add_message(message);
+		get_player(i)->add_message(message, priority);
 	}
 }
 
@@ -138,10 +134,17 @@ void Team::remove_tile(Tile *t)	{
 
 bool Team::tile_is_ready(Tile * cand, int type)	{
 	if(!is_adjacent_to_network(cand))
+	{
+		
+		message_team("Error: Can only build on tiles next to your active territory!");
 		return false;
+	}
 
 	if(cand == Base)
+	{
+		message_team("Error: Can't build on Base!");
 		return false;
+	}
 
 			//If nothing has been built on it, (no one owns it), 
 	//is adjacent to your network, and have enough ice blocks
@@ -153,12 +156,16 @@ bool Team::tile_is_ready(Tile * cand, int type)	{
 
 	//You can't build on boundary tiles
 	if(Game_Model::get().get_World()->is_boundary_tile(cand))
+	{
+		message_team("Error: Can't build on boundary cliffs!");
 		return false;
+	}
 
 	//Do a check here for the center tile
 	//Return false if you can build on it because don't want to let game_obejct create structure
 	if(Game_Model::get().get_World()->get_center_Tile() == cand)	{
 		//%%%%% Install something related to victory conditions here
+		
 		if(Network.count(cand) == 0)	{//Doesn't care about who has it currently, any can claim it
 			//cand->get_building()->begin_isolation();
 			if(cand->get_building()->get_team_pt() != 0)
@@ -181,7 +188,13 @@ bool Team::tile_is_ready(Tile * cand, int type)	{
 			add_tile(cand);
 			return true;
 		}
+		else
+		{
+			message_team("Error: Not enough Money to Build!");
+			return false;
+		}
 	}
+	
 	return false;
 }
 

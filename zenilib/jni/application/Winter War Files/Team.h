@@ -39,7 +39,7 @@ public:
 	bool is_adjacent_to_network(Tile *);
 	void destabilize_network()	{network_unstable = true;}
 
-	void message_team(const Zeni::String &message);
+	void message_team(const Zeni::String &message, int priority = 0);
 
 	bool is_empty(){ return members.size() == 0; }
 

@@ -35,6 +35,10 @@ enum Build_State	{
 
 struct Message
 {
+	/*priorities*/
+// instructional = 0
+// tip = 1
+// you choose rest
 	Message(const Zeni::String &msg_ = "", int priority_ = 0, float time_ = -1) :
 		msg(msg_), priority(priority_), time(time_)
 		{timer.start();}
@@ -48,6 +52,7 @@ private:
 	Zeni::Chronometer<Zeni::Time> timer;
 	float time;
 };
+
 
 class Player :	public Moveable		{
 public:
@@ -133,7 +138,9 @@ public:
 	void play_sound() {if(!player_sound_test->is_playing()) player_sound_test->play();}
 // Messages
 	/* Adds a message for the player */
-	void add_message(const Zeni::String &);
+	void add_message(const Zeni::String &, int priority = 0);
+	
+	void next_tip();
 
 	/* true if there is a message*/
 	bool has_message() const;
@@ -165,6 +172,8 @@ public:
 	void create_body();
 
 private: 
+	int cur_tip;
+
 	Zeni::Camera m_camera;
 
 	//Snowball and Player Stuff
