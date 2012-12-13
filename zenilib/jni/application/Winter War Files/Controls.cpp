@@ -315,7 +315,7 @@ void Controls::interact_with_player(Player* Tron, const float &time)	{
 
 	if (input.tip)
 	{
-		Tron->next_tip()
+		Tron->next_tip();
 		input.tip = false;
 	}
 
