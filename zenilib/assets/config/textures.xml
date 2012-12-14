@@ -835,6 +835,26 @@ The following things are unsupported:
     <tile>0</tile>
   </Instructions>
 
+  <HUD>
+    <filepath>textures/2DTextures/InstructionState/Instr_HUD.png</filepath>
+    <tile>0</tile>
+  </HUD>
+
+  <World>
+    <filepath>textures/2DTextures/InstructionState/World.png</filepath>
+    <tile>0</tile>
+  </World>
+
+  <Objective>
+    <filepath>textures/2DTextures/InstructionState/Objective.png</filepath>
+    <tile>0</tile>
+  </Objective>
+
+  <StillConfused>
+    <filepath>textures/2DTextures/InstructionState/StillConfused.png</filepath>
+    <tile>0</tile>
+  </StillConfused>
+
   <AvartarFrame>
     <filepath>textures/2DTextures/HUDSprites/AvartarFrame.png</filepath>
     <tile>0</tile>

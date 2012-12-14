@@ -50,10 +50,7 @@ void End_Game_State::on_joy_button(const SDL_JoyButtonEvent &event) {
 }
 
 void End_Game_State::on_key(const SDL_KeyboardEvent &event) {
-	if(event.keysym.sym == SDLK_ESCAPE && event.state == SDL_PRESSED){
-		get_Game().pop_state();
-	}
-	else if(event.keysym.sym == SDLK_a && event.state == SDL_PRESSED){
+	if(event.keysym.sym == SDLK_a && event.state == SDL_PRESSED){
 		cursor = 0;
 	}
 	else if(event.keysym.sym == SDLK_d && event.state == SDL_PRESSED){
@@ -80,6 +77,9 @@ void End_Game_State::render() {
 	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(1920.0f, 1200.0f)), true);
 	render_image("Endscreen", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
 
+	render_minimap();
+	
+
 	Team *winning_team = Game_Model::get().get_team(Game_Model::get().get_World()->get_center_Tile()->get_team() - 1);
 	
 
@@ -90,6 +90,7 @@ void End_Game_State::render() {
 	const Color box = cr["endscreenbg"];
 	const Color blk = cr["black"];
 
+	get_Fonts()["cat_64"].render_text("Time: " + itoa(Game_Model::get().get_time() / 60) + ":" + itoa((int)Game_Model::get().get_time() % 60) ,Point2f(1500, 200), blk);
 	get_Fonts()["cat_110"].render_text( winning_team->get_name_Upper_Case() + " Team" + " Wins!" ,Point2f(670, 110), winning_color);
 	Font &font_36 = get_Fonts()["cat_36"];
 	Font &font_64 = get_Fonts()["cat_64"];
@@ -143,7 +144,7 @@ void End_Game_State::render() {
 	
 	
 	/*RENDER TEAM STATS*/
-	/*
+	
 	get_Fonts()["cat_64"].render_text("TEAM STATS" ,Point2f(50, 650), blk);
 
 
@@ -217,7 +218,7 @@ void End_Game_State::render() {
 		get_Fonts()["cat_36"].render_text(itoa(stat.structures[4]) ,Point2f(width_array[7], 700 + 50 * valid), team_color);
 
 	}
-	*/
+	
 
 
 
@@ -246,4 +247,61 @@ void End_Game_State::render() {
 		get_Fonts()["cat_100"].render_text("RESTART" ,Point2f(1200, 930), blk);
 	}
 	
+}
+
+void End_Game_State::render_minimap(){
+
+	Zeni::Point2f topLeft = Zeni::Point2f(0.0f,0.0f);
+	Zeni::Point2f bottomRight = Zeni::Point2f(500.0f,300.0f);
+
+	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
+	float ratio = 4.85f;
+
+	Zeni::Point2f tile_pos(Game_Model::get().get_World()->get_tile(0, 0)->get_top_center().x, Game_Model::get().get_World()->get_tile(0, 0)->get_top_center().y);
+	//get_Fonts()["system_36_800x600"].render_text("<|Espionage Center|>" ,Point2f(topLeft.x + unit_px * 320, topLeft.y + unit_px * 70),Color(0x99FF0000));
+	//render_image("Heart",Point2f(topLeft.x + tile_pos.x, topLeft.y + tile_pos.y),Point2f(topLeft.x + tile_pos.x + unit_px * 50, topLeft.y + tile_pos.y + unit_px * 50));
+
+	for(int row = 0; row < Game_Model::get().get_World()->get_height(); row++){
+		for(int col = 0; col < Game_Model::get().get_World()->get_width(); col++){
+			
+			Point2f tile_pos(Game_Model::get().get_World()->get_tile(row, col)->get_top_center().x, Game_Model::get().get_World()->get_tile(row, col)->get_top_center().y);
+
+			String tile_name = "Tile2D";
+
+			if(row == 0 || col == 0 || row == Game_Model::get().get_World()->get_height() - 1 || col == Game_Model::get().get_World()->get_width() - 1){
+				tile_name += "Cliff";
+			}
+			else if(row == 6 && col == 7){
+				tile_name += "ChristmasTree";
+			}
+			else{
+				switch (Game_Model::get().get_World()->get_tile(row, col)->get_team()){
+					case NEUTRAL:
+						tile_name += "Neutral";
+						break;
+					case BLUE:
+						tile_name += "Blue";
+						break;
+					case GREEN:
+						tile_name += "Green";
+						break;
+					case RED:
+						tile_name += "Red";
+						break;
+					case ORANGE:
+						tile_name += "Orange";
+						break;
+					default:
+						tile_name += "Regular";
+						break;
+				}
+			}
+
+			tile_pos.x /= ratio;
+			tile_pos.y /= ratio;
+
+			render_image(tile_name,Point2f(topLeft.x + tile_pos.x * unit_px + unit_px * 200, topLeft.y + tile_pos.y * unit_px + unit_px * 90),Point2f(topLeft.x + tile_pos.x * unit_px + unit_px * 257, topLeft.y + tile_pos.y * unit_px + unit_px * 147));
+		
+		}
+	}
 }

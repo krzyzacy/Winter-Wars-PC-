@@ -52,7 +52,7 @@ private:
       get_Game().pop_state();
 	if(event.keysym.sym == SDLK_RETURN && event.state == SDL_PRESSED){
 			state ++;
-			if(state == 3)
+			if(state == 7)
 				get_Game().pop_state();
 	}
   }
@@ -63,7 +63,7 @@ private:
 			case 0: // A
 				if(event.state == SDL_PRESSED)	{
 					state ++;
-					if(state == 3)
+					if(state == 7)
 						get_Game().pop_state();
 				}
 				break;
@@ -83,13 +83,25 @@ private:
 
 	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(1920.0f, 1200.0f)), true);
 	if(state == 0){
-		render_image("Instructions", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
-	}
-	if(state == 1){
 		render_image("Control_1", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
 	}
-	if(state == 2){
+	if(state == 1){
 		render_image("Control_2", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
+	}
+	if(state == 2){
+		render_image("Objective", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
+	}
+	if(state == 3){
+		render_image("World", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
+	}
+	if(state == 4){
+		render_image("HUD", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
+	}
+	if(state == 5){
+		render_image("Instructions", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
+	}
+	if(state == 6){
+		render_image("StillConfused", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
 	}
   
 	render_controls(0);
@@ -343,11 +355,11 @@ private:
 			render_image("Wanted",Point2f(-40.0f + player_render_offset[player_idx].x, 0.0f + player_render_offset[player_idx].y), Point2f(290.0f + player_render_offset[player_idx].x, 330.0f + player_render_offset[player_idx].y));
 
 			if(player_state[player_idx] != 0){
-				render_image("Snowball",Point2f(235.0f + player_render_offset[player_idx].x, 67.0f + 42.0f * player_cursor[player_idx] + player_render_offset[player_idx].y), Point2f(265.0f + player_render_offset[player_idx].x, 97.0f + 42.0f * player_cursor[player_idx] + player_render_offset[player_idx].y));
-				get_Fonts()["system_26_800x600"].render_text("Gender      >> " + player_gender[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 72 + player_render_offset[player_idx].y), Color(0x99FF1111));
-				get_Fonts()["system_26_800x600"].render_text("Team        >> " + player_team[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 114 + player_render_offset[player_idx].y), Color(0x99FF1111));
-				get_Fonts()["system_26_800x600"].render_text("Control     >> " + player_control[player_idx] ,Point2f(270 + player_render_offset[player_idx].x, 156 + player_render_offset[player_idx].y), Color(0x99FF1111));
-				get_Fonts()["system_26_800x600"].render_text("Sensitivity >> " + itoa(player_sensitivity_state[player_idx]) ,Point2f(270 + player_render_offset[player_idx].x, 198 + player_render_offset[player_idx].y), Color(0x99FF1111));
+				render_image("Snowball",Point2f(233.0f + player_render_offset[player_idx].x, 67.0f + 42.0f * player_cursor[player_idx] + player_render_offset[player_idx].y), Point2f(265.0f + player_render_offset[player_idx].x, 97.0f + 42.0f * player_cursor[player_idx] + player_render_offset[player_idx].y));
+				get_Fonts()["cat_24"].render_text("Gender      > " + player_gender[player_idx] ,Point2f(265 + player_render_offset[player_idx].x, 72 + player_render_offset[player_idx].y), Color(0x99FF1111));
+				get_Fonts()["cat_24"].render_text("Team        > " + player_team[player_idx] ,Point2f(265 + player_render_offset[player_idx].x, 114 + player_render_offset[player_idx].y), Color(0x99FF1111));
+				get_Fonts()["cat_24"].render_text("Control     > " + player_control[player_idx] ,Point2f(265 + player_render_offset[player_idx].x, 156 + player_render_offset[player_idx].y), Color(0x99FF1111));
+				get_Fonts()["cat_24"].render_text("Sensitivity > " + itoa(player_sensitivity_state[player_idx]) ,Point2f(265 + player_render_offset[player_idx].x, 198 + player_render_offset[player_idx].y), Color(0x99FF1111));
 				render_image(player_gender[player_idx] + player_team[player_idx] + "Regular", Point2f(55 + player_render_offset[player_idx].x,125 + player_render_offset[player_idx].y),Point2f(188 + player_render_offset[player_idx].x,258 + player_render_offset[player_idx].y));
 			}
 			else

@@ -58,7 +58,7 @@ Player::Player(const Zeni::Point3f &center_)
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	gender(""),
 	myTeam(0), backup(center_), Jumping(ON_GROUND), Builder(REST), Selection(FORT), stick_theta(0.0f),
-	mini_open(false), build_open(false),dead_mode(false),hit_timer(0.0f),throw_timer(0.0f),
+	mini_open(false), build_open(false),dead_mode(false),hit_timer(0.0f),throw_timer(0.0f),packing_timer(0.0f),
 	animation_state(new Standing()), player_sound_test(new Zeni::Sound_Source(Zeni::get_Sounds()["meow"])),
 	player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"]))
 {
@@ -117,6 +117,10 @@ void Player::update(const float &time)	{
 		throw_timer += time;
 		if(throw_timer > 2.0f)
 			throw_timer = 0.0f;
+	}
+
+	if(packing_timer >= 1.0f && packing_timer < 2.1f){
+		packing_timer += time;
 	}
 	
 
@@ -224,6 +228,7 @@ void Player::throw_ball() {
 	stats.thrown++;
 
 	throw_timer = 1.0f;
+	packing_timer = 0.0f;
 
 }
 
@@ -247,6 +252,8 @@ void Player::charge_ball()	{
 	
 	// lets grow it
 	else	{
+		if(packing_timer < 0.5f)
+			packing_timer = 1.0f;
 		current_radius += packing_rate * time;
 		stats.snow_used += packing_rate * time;
 			

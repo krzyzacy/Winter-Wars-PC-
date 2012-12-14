@@ -155,8 +155,16 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 		else if( player->get_build_view() ){
 			//render_tree_claimed(topLeft, bottomRight);
 		}
-		else{
-			render_image("BuildManu2D",Point2f(topLeft.x + unit_px * 460, topLeft.y + unit_px * 280), Point2f(topLeft.x + unit_px * 500, topLeft.y + unit_px * 320));
+		else{ // redical
+			Point2f r_center;
+			r_center.x = topLeft.x + unit_px * 480;
+			r_center.y = topLeft.y + unit_px * 300;
+
+			float scale = 20.0f;
+			if(player->get_packing_timer() >= 1.0f)
+				scale = scale * player->get_packing_timer() * player->get_packing_timer();
+
+			render_image("BuildManu2D",Point2f(r_center.x - scale, r_center.y - scale), Point2f(r_center.x + scale, r_center.y + scale));
 		}
 
 		render_build(topLeft, bottomRight);
@@ -321,9 +329,9 @@ void Player_View::render_message(const Point2f &topLeft, const Point2f &bottomRi
 	Font &font_36 = get_Fonts()["cat_36"];
 	Font &font_28 = get_Fonts()["cat_28"];
 	Font &font_24 = get_Fonts()["cat_24"];
-	if(font_36.get_text_width(message) < bottomRight.x - unit_px * 180)
+	if(font_36.get_text_width(message) < bottomRight.x - topLeft.x - unit_px * 180)
 		get_Fonts()["system_36_800x600"].render_text(message ,Point2f(topLeft.x + unit_px * 100, bottomRight.y - unit_px * 75), Color(0xFF000000));
-	else if(font_28.get_text_width(message) < bottomRight.x - unit_px * 180)
+	else if(font_28.get_text_width(message) < bottomRight.x - topLeft.x - unit_px * 180)
 		get_Fonts()["cat_28"].render_text(message ,Point2f(topLeft.x + unit_px * 100, bottomRight.y - unit_px * 75), Color(0xFF000000));
 	else
 		get_Fonts()["cat_22"].render_text(message ,Point2f(topLeft.x + unit_px * 100, bottomRight.y - unit_px * 75), Color(0xFF000000));

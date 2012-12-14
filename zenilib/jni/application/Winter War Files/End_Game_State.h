@@ -35,6 +35,7 @@ private:
 
   void perform_logic();
   void render();
+  void render_minimap();
 
   int cursor;
   bool confirm;

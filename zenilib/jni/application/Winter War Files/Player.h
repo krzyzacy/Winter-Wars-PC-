@@ -132,6 +132,7 @@ public:
 // HUD stuff
 	float get_hit_timer() const {return hit_timer;}
 	float get_throw_timer() const {return throw_timer;}
+	float get_packing_timer() const {return packing_timer;}
 	bool is_packing() const { return current_radius > 0.0f? true : false ;}
 
 // sound
@@ -206,6 +207,7 @@ private:
 
 	float hit_timer;
 	float throw_timer;
+	float packing_timer;
 
 	virtual void off_map();
 	virtual void hit_tile();
