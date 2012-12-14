@@ -63,6 +63,11 @@ public:
 	void add_structure(Structure *);
 	void add_effect(Effect *);
 
+	void play_breaking();
+	void play_chainbreak();
+	void play_presentplace();
+	void play_snowballthrow();
+
 	/*Goes through all objects(collidables) and deletes them if they have been 
 	marked fr deletion*/
 	void Clean_dead();
@@ -107,5 +112,9 @@ private:
 	void remove_from_model(Effect* zombie);
 	std::list<Effect*> e_deletion_list;
 
+	Zeni::Sound_Source * breaking;
+	Zeni::Sound_Source * chainbreak;
+	Zeni::Sound_Source * presentplace;
+	Zeni::Sound_Source * snowballthrow;
 };
 

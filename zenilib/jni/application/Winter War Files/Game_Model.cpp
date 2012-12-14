@@ -33,6 +33,11 @@ void Game_Model::start_up(const vector<String> &genders_, const vector<int> &col
 		time_step = (0.0f);	
 		win_time = (10000.0f);
 
+		breaking = new Zeni::Sound_Source(get_Sounds()["breaking"]);
+		chainbreak = new Zeni::Sound_Source(get_Sounds()["chainbreak"]);
+		presentplace = new Zeni::Sound_Source(get_Sounds()["presentplace"]);
+		snowballthrow = new Zeni::Sound_Source(get_Sounds()["snowballthrow"]);
+
 		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams.push_back(create_team(world->get_next_Base_Tile()));
@@ -291,4 +296,38 @@ void Game_Model::global_message(const String &message)
 	{
 		players[i]->add_message(message);
 	}
+}
+
+void Game_Model::play_breaking()
+{
+	if(!breaking->is_playing())
+		{
+		breaking->set_gain(0.35);
+		breaking->set_pitch(0.8);
+		breaking->play();
+		}
+}
+
+void Game_Model::play_chainbreak()
+{
+	if(!chainbreak->is_playing())
+		{
+		chainbreak->set_gain(0.32);
+		chainbreak->set_pitch(0.8);
+		chainbreak->play();
+		}
+}
+
+void Game_Model::play_presentplace()
+{
+	presentplace->set_gain(0.8);
+	presentplace->set_pitch(0.8);
+	presentplace->play();
+}
+
+void Game_Model::play_snowballthrow()
+{
+	snowballthrow->set_gain(0.8);
+	snowballthrow->set_pitch(2);
+	snowballthrow->play();
 }

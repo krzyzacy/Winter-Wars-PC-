@@ -25,6 +25,7 @@ Structure::Structure(Team *team, Tile* tile_,
 {
 	save_height = hex->get_height();
 	Present_Clock.start();
+	Game_Model::get().play_presentplace();
 }
 
 void Structure::save_position()
@@ -34,6 +35,8 @@ void Structure::save_position()
 
 Structure::~Structure(void)
 {
+
+
 }
 
 void Structure::receive_hit(float damage)	{
@@ -55,6 +58,7 @@ void Structure::update(const float &time)
 	
 	if(Isolation_Clock.seconds() > 10)	{
 		Status = DESTROYED;
+		Game_Model::get().play_chainbreak();
 	}
 
 	if (Present_Clock.seconds() > 1.5 && !opened)
@@ -109,6 +113,9 @@ void Structure::reintegrate()	{
 void Structure::perform_destruction_effects()	{
 	//Generates some effects;
 	
+	if(Isolation_Clock.seconds() < 10)
+		Game_Model::get().play_breaking();
+
 	int quantity = rand()%8;
 	for(int i = 0; i < quantity; i++)	{
 		int size = rand()%30;

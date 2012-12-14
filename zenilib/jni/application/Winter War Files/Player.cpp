@@ -36,18 +36,18 @@ const float  Stick_Accel = 1200;
 
 const int num_tips = 13;
 String tips[num_tips] = {
-	"Show the next tip by pressing (Y)",
-	"Point at a tile in front of you and build with (x)",
+	"Show the next tip by pressing (Y).",
+	"Point at a tile in front of you and build with (X).",
 	"You can only build structures next to your existing structures",
-	"Building on Soft Snow will earn you the most Money",
+	"Building on soft snow will generate the most resource.",
 	"Need health? Go to a pool - but only your pool!",
-	"Destroy Structures with Snowballs",
-	"Forts are difficult to destroy",
-	"Ice tiles make you slip and don't give you resources when you build on it",
-	"Snowmen attacks enemies for you",
-	"Factories changes adjacent tiles to soft snow tiles",
-	"Structures go inactive if they aren't connected to your territory",
-	"After a structure is inactive, you need to reconnect it, or it will be destroyed",
+	"Destroy structures with snowballs.",
+	"Forts are difficult to destroy.",
+	"Ice tiles make you slip and don't give you resources when owned.",
+	"Snowmen can protect your territory.",
+	"Factories changes adjacent tiles to soft snow tiles.",
+	"Structures become inactive if they aren't connected to your base.",
+	"After a structure is inactive, you need to reconnect it, or it will be destroyed!",
 	"Winter Wars >>> Halo" //funny
 };
 
@@ -59,8 +59,10 @@ Player::Player(const Zeni::Point3f &center_)
 	gender(""),
 	myTeam(0), backup(center_), Jumping(ON_GROUND), Builder(REST), Selection(FORT), stick_theta(0.0f),
 	mini_open(false), build_open(false),dead_mode(false),hit_timer(0.0f),throw_timer(0.0f),packing_timer(0.0f),
-	animation_state(new Standing()), player_sound_test(new Zeni::Sound_Source(Zeni::get_Sounds()["meow"])),
-	player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"]))
+	animation_state(new Standing()), player_boy_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["boy_hit"])),
+	player_girl_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["girl_hit"])), player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"])),
+	snowball_hit1(new Zeni::Sound_Source(Zeni::get_Sounds()["HitBySnow1"])), snowball_hit2(new Zeni::Sound_Source(Zeni::get_Sounds()["HitBySnow2"])),
+	sound_choice(0)
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
@@ -129,13 +131,29 @@ void Player::update(const float &time)	{
 void Player::player_death()	{
 
 	if(!player_dead->is_playing())
+		{
+		player_dead->set_gain(0.2);
 		player_dead->play();
+		}
+
+	if(gender == "girl")
+		{
+		player_girl_hit->set_gain(0.8);
+		player_boy_hit->set_pitch(2);
+		player_girl_hit->play();
+		}
+
+	if(gender == "boy")
+		{
+		player_boy_hit->set_gain(0.8);
+		player_boy_hit->set_pitch(3.5);
+		player_boy_hit->play();
+		}
 
 	Deathklok.start();
 	stats.deaths++;
 	dead_mode = true;
 }
-
 void Player::respawn()	{
 	Deathklok.stop();
 	Deathklok.reset();
@@ -159,7 +177,6 @@ void Player::hit_tile()
 	//Make a vector from that and push
 	center.x = backup.x;
 	center.y = backup.y;
-
 
 	Vector3f push_dir;
 	Tile* OnT = Game_Model::get().get_World()->get_tile(center);
@@ -201,8 +218,20 @@ void Player::get_damaged(float damage)
 	}
 	else{
 		hit_timer = 1.0f;
-		if(!player_sound_test->is_playing())
-			player_sound_test->play();
+
+		if(gender == "girl" && !player_girl_hit->is_playing())
+			{
+			player_girl_hit->set_gain(0.8);
+			player_boy_hit->set_pitch(2);
+			player_girl_hit->play();
+			}
+
+		if(gender == "boy" && !player_boy_hit->is_playing())
+			{
+			player_boy_hit->set_gain(0.8);
+			player_boy_hit->set_pitch(3.5);
+			player_boy_hit->play();
+			}
 		switch_state(FLINCH);
 	}
 	
@@ -218,7 +247,9 @@ void Player::throw_ball() {
 		//if radius is 0, means out of snow, and therefore don't throw
 		return;
 	}
-	
+
+	Game_Model::get().play_snowballthrow();
+
 	Snowball *sb = new Snowball(this, center+m_camera.get_forward(), 
 									Vector3f(current_radius, current_radius,current_radius));
 	sb->get_thrown(m_camera.get_forward());
@@ -291,12 +322,6 @@ void Player::stop_scooping()	{
  void Player::calculate_movement(const Vector2f input_vel)	{
 	 if(is_player_KO())
 		return;
-
-	//Animations
-	if (velocity.x == 0 && velocity.y == 0 && is_on_ground())
-		switch_state(STAND);
-	else if ((velocity.x != 0 || velocity.y != 0) && is_on_ground())
-		switch_state(WALK);
 
 	//input_vel is joystick values, from 0 to 32768
 	//if(mini_open)	{	//Mini-map is open stop moving
@@ -383,6 +408,13 @@ void Player::stop_scooping()	{
 
 	velocity = New_vel;
 	velocity.z = zvel;
+
+	//Animations
+	if (velocity.x <= 0.5 && velocity.y <= 0.5 && is_on_ground())
+		switch_state(STAND);
+	else if ((velocity.x >= 0.5 || velocity.y >= 0.5) && is_on_ground())
+		switch_state(WALK);
+	else {}
 
 	
 }
@@ -672,4 +704,22 @@ Zeni::String Player::get_message() const
 void Player::next_tip()
 {	
 	add_message(tips[cur_tip++%num_tips], 50);
+}
+
+void Player::play_sound()
+{
+	sound_choice++;
+	sound_choice = sound_choice%2;
+	if (sound_choice == 1)
+		{
+		snowball_hit1->set_gain(1.5);
+		snowball_hit1->set_pitch(1.5);
+		snowball_hit1->play();
+		}
+	else
+		{
+		snowball_hit2->set_gain(1);
+		snowball_hit2->set_pitch(3);
+		snowball_hit2->play();
+		}
 }

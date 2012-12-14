@@ -21,6 +21,10 @@ Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<in
 			if(controls_[i] == 1)
 				controllers[i]->set_inverted(true);
 		}
+		get_Sound().set_BGM("sfx/ingamebackground");
+		get_Sound().set_BGM_gain(0.25);
+		get_Sound().set_BGM_looping(1);
+		get_Sound().play_BGM();
 		
 }
 

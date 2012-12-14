@@ -16,6 +16,7 @@ public:
 	  cursor = 2;
 	  confirm = false;
 	  get_Sound().set_BGM("sfx/HappyTreeFriends");
+	  get_Sound().set_BGM_gain(0.4);
 	  get_Sound().set_BGM_looping(1);
 	  get_Sound().play_BGM();
   }

@@ -14,9 +14,12 @@ Tree::Tree(Team *team, Tile* tile_,
 	}
 	else{
 		animation_state = new Tree_owned();
-
+		get_Sound().stop_BGM();
 		if(!nyan->is_playing())
+			{
+			nyan->set_gain(0.5);
 			nyan->play();
+			}
 
 	}
 
@@ -29,6 +32,10 @@ Tree::Tree(Team *team, Tile* tile_,
 Tree::~Tree(void)
 {
 	nyan->stop();
+	get_Sound().set_BGM("sfx/ingamebackground");
+	get_Sound().set_BGM_gain(0.3);
+	get_Sound().set_BGM_looping(1);
+	get_Sound().play_BGM();
 }
 
 void Tree::update(const float &time)

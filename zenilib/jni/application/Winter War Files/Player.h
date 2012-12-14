@@ -136,7 +136,7 @@ public:
 	bool is_packing() const { return current_radius > 0.0f? true : false ;}
 
 // sound
-	void play_sound() {if(!player_sound_test->is_playing()) player_sound_test->play();}
+	void play_sound();
 // Messages
 	/* Adds a message for the player */
 	void add_message(const Zeni::String &, int priority = 0);
@@ -224,7 +224,12 @@ private:
 	const static int player_ID_c;
 	friend Collision_Table;
 
-	Zeni::Sound_Source * player_sound_test;
+	int sound_choice;
+
+	Zeni::Sound_Source * player_boy_hit;
+	Zeni::Sound_Source * player_girl_hit;
+	Zeni::Sound_Source * snowball_hit1;
+	Zeni::Sound_Source * snowball_hit2;
 	Zeni::Sound_Source * player_dead;
 };
 
