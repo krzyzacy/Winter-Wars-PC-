@@ -66,7 +66,16 @@ void Team::update()	{
 	if (!Disconnected_Tiles.empty())
 	{
 		message_team("ALERT: YOUR TERRITORY IS DISCONNECTED! Link it together with a structure", 10);
+	}	
+	else if (Is_Tree_Claimed())
+	{
+		message_team("Your team claimed the Tree! Protect your network for 20 seconds!");
 	}
+	else if (is_adjacent_to_network(Game_Model::get().get_World()->get_center_Tile()))
+	{
+		message_team("You are adjacent to the Tree! Build on it to claim it!");
+	}
+
 
 	if(ResourceTime.seconds() > 1)	{
 		Ice_Blocks += intake_rate;
@@ -90,6 +99,9 @@ void Team::update()	{
 			}
 		}
 	}
+
+	if (stats.all_structures() == 0 && Game_Model::get().get_time() > 10 )
+		message_team("Build something in front of your base, press (x) while facing the tile");
 	
 }
 
@@ -316,7 +328,7 @@ float Team::time_till_win()
 	return 20 - WinTimer.seconds();
 }
 
-
+/*True if this team has the tree*/
 bool Team::Is_Tree_Claimed()	{
 	return Network.count(Game_Model::get().get_World()->get_center_Tile());
 }

@@ -76,6 +76,13 @@ public:
 		int resources_spent;
 		int structures[5];
 	
+		int all_structures()
+		{	int ret = 0;
+			for (int i = 0 ; i < 5 ; i++)
+				ret += structures[i];
+			return ret;
+		}
+
 	} stats;
 
 private:
