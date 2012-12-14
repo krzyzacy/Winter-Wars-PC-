@@ -173,12 +173,20 @@ void Game_Model::check_collisions()
 
 
 // returns true if some team has won
-bool Game_Model::win() const
+bool Game_Model::win()
 {
 	if (time_till_win() <= 0)
-			return true;
-
+	{
+		PlayTime.stop();
+		return true;
+	}
 	return false;
+}
+
+/* return time game has been played*/
+float Game_Model::get_time() const
+{
+	return PlayTime.seconds();
 }
 
 void Game_Model::render() const

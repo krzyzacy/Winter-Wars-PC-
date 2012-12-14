@@ -36,7 +36,8 @@ public:
 	void finish();
 
 	// returns true if some team has won
-	bool win() const;
+	// stops the clock if yes
+	bool win();
 
 	/*set the time to win and the team to win*/
 	void tree_claimed(const Team *);
@@ -44,6 +45,9 @@ public:
 
 	/* return time until someone wins */
 	float time_till_win() const;
+
+	/* return time game has been played*/
+	float get_time() const;
 
 	Player *get_player(int i)
 		{return players.at(i);}
