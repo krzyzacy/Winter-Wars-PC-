@@ -655,6 +655,7 @@ int Player::get_Team_Index() const	{
 
 void Player::add_message(const Zeni::String &msg, int priority)
 {
+	if (message.is_over() || priority >= message.priority)
 	message = Message(msg, priority, 3);
 }
 
@@ -670,5 +671,5 @@ Zeni::String Player::get_message() const
 
 void Player::next_tip()
 {	
-	add_message(tips[cur_tip++%num_tips], 1);
+	add_message(tips[cur_tip++%num_tips], 50);
 }

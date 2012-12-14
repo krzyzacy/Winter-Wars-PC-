@@ -150,7 +150,7 @@ void Game_Model::tree_claimed(const Team *team)
 	{
 		if (get_team(i) != team)
 		const_cast<Team*>(get_team(i))->message_team(const_cast<Team*>(team)->get_name_Upper_Case() + 
-			" TEAM CLAIMED THE TREE! Destroy tiles to break their territory", 8);
+			" TEAM CLAIMED THE TREE! Destroy tiles to break their territory",80);
 	}
 	// team wants to own the tree
 	win_time = PlayTime.seconds() + time_to_win_c;

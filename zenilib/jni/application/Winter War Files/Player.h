@@ -47,8 +47,8 @@ struct Message
 		{ return (time - timer.seconds()) < 0;}
 
 	Zeni::String msg;
-private:
 	int priority;
+private:
 	Zeni::Chronometer<Zeni::Time> timer;
 	float time;
 };

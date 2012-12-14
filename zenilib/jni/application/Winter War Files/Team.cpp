@@ -65,11 +65,11 @@ void Team::update()	{
 
 	if (!Disconnected_Tiles.empty())
 	{
-		message_team("ALERT: YOUR TERRITORY IS DISCONNECTED! Link it together with a structure", 10);
+		message_team("ALERT: YOUR TERRITORY IS DISCONNECTED! Link it together with a structure", 100);
 	}	
 	else if (Is_Tree_Claimed())
 	{
-		message_team("Your team claimed the Tree! Protect your network for 20 seconds!");
+		message_team("Your team claimed the Tree! Protect your network for 20 seconds!", 3);
 	}
 	else if (is_adjacent_to_network(Game_Model::get().get_World()->get_center_Tile()))
 	{
