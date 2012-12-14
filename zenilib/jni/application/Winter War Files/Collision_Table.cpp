@@ -67,6 +67,8 @@ Collision_Table::Collision_Table()
 void Collision_Table::collideSnowballSnowball(Snowball* b1, Snowball* b2)
 {
 
+
+
 }
 
 void Collision_Table::collidePlayerSnowball(Player* p1, Snowball* b1)
@@ -164,10 +166,10 @@ void Collision_Table::collideSnowballStructure(Snowball *b2, Structure *w1)
 	if (b2->damage_dealt)
 		return;
 	
-	int damage = b2->deal_damage();
-
 	if (w1->Status == DESTROYED || b2->team == w1->owner)
 		return;
+
+	int damage = b2->deal_damage();
 
 	w1->receive_hit(damage);
 

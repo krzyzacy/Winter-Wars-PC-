@@ -21,7 +21,7 @@ World::World( View *view_,
 		const float hex_length__
 		) :
 	map(height__, vector<Tile *>(width__, 0) ),
-	view(view_)
+	view(view_), sin_active(false)
 {
 	map_width = width__ - 1;
 	map_height = height__ - 1;
@@ -468,3 +468,7 @@ bool World::is_boundary_tile(Tile* t)	{
 		return true;
 	return false;
 }
+
+void World::Run_Sin_Wave()	{}
+
+

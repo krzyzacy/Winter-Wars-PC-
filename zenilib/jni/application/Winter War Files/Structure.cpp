@@ -107,12 +107,24 @@ void Structure::reintegrate()	{
 }
 
 void Structure::perform_destruction_effects()	{
+	//Generates some effects;
 	
+	int quantity = rand()%8;
+	for(int i = 0; i < quantity; i++)	{
+		int size = rand()%30;
+		int x_off = rand()%150 - 75;
+		int y_off = rand()%150 - 75;
+		int z_off = rand()%80 - 25;
+		Game_Model::get().add_effect(new Effect("explode", center + Vector3f(x_off, y_off, z_off), Vector3f(1,1,1)*size));
+	}
 }
 
 void Structure::handle_player_collision(Player *P)	{
 	//Should be overwritten by each
 	//However fort and factory, for now do the same thing
+	if(Status == PRESENT_MODE)
+		return;
+
 	P->push_away_from(center, 25);
 }
 

@@ -15,8 +15,9 @@ enum TILE_TYPE	{
 //};
 
 //measured from the base of the 
-extern const float Max_Tile_Height;
 extern const float Min_Tile_Height;
+extern const float Inner_Max_TH;
+extern const float Outer_Max_TH;
 
 class Structure;
 

@@ -39,7 +39,8 @@ public:
 	float get_friction_coeff(Zeni::Point3f &spot);
 	bool allowed_to_scoop(Zeni::Point3f &pos_);
 
-	//Boundary check?
+	void Run_Sin_Wave();
+	void Start_Sin_Wave()		{ sin_active = true;}
 	
 	/*Returns the six adjacent tiles to Central*/
 	std::list<Tile*> Get_Family(Tile *Central);
@@ -61,4 +62,5 @@ private:
 	float tile_size;                 // size of a tile
 	int cur_team_count;
 		
+	bool sin_active;
 };

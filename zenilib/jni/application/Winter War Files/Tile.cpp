@@ -2,14 +2,15 @@
 #include "Structure.h"
 #include "Object_factory.h"
 #include "Team.h"
+#include "World.h"
 #include "Game_Model.h"
 
 using namespace Zeni;
 using namespace std;
 
-const float Max_Tile_Height = 175;
 const float Min_Tile_Height = 50;
-
+const float Inner_Max_TH = 275;
+const float Outer_Max_TH = 175;
 
 Tile::Tile(const float tile_size__,
 		   const Zeni::Point3f &center__,
@@ -64,6 +65,14 @@ bool Tile::has_building()	{
 }
 
 bool Tile::set_height(float height__){
+	float Max_Tile_Height = Outer_Max_TH;
+	int map_h = Game_Model::get().get_World()->get_height();
+	int map_w = Game_Model::get().get_World()->get_width();
+	
+	if(row > 3 && row < map_h - 3 && col > 3  && col < map_w - 3)
+		Max_Tile_Height = Inner_Max_TH;
+
+
 	if((get_height() == Max_Tile_Height && height__ > 0) 
 		|| (get_height() == Min_Tile_Height && height__ < 0))
 		return false;
