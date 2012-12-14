@@ -536,13 +536,24 @@ bool Player::create_building(Structure_Type Building)	{
 	//Returns true if building was created, false if unable
 		
 	Tile *t = Game_Model::get().get_World()->player_is_looking_at(center, m_camera.get_forward());
-	//Checks if the tile can be built upon
-	if(!myTeam->tile_is_ready(t, Building))
-		return false;
+	
+	try {
 
-	get_team()->stats.structures[Building]++;
-	Game_Model::get().add_structure(create_structure(Building, t, myTeam));
-	return true;
+		//Checks if the tile can be built upon
+		if(!myTeam->tile_is_ready(t, Building))
+			return false;
+
+		get_team()->stats.structures[Building]++;
+		Game_Model::get().add_structure(create_structure(Building, t, myTeam));
+		return true;
+
+
+	}
+	catch (Error &E)
+	{
+		add_message(E.msg);
+		return false;
+	}
 }
 
 void Player::jet_pack_mode(bool state)	{

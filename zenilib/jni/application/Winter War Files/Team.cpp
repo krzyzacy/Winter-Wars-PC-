@@ -140,13 +140,13 @@ bool Team::tile_is_ready(Tile * cand, int type)	{
 	if(!is_adjacent_to_network(cand))
 	{
 		
-		message_team("Error: Can only build on tiles next to your active territory!");
+		throw Error("Error: Can only build on tiles next to your active territory!");
 		return false;
 	}
 
 	if(cand == Base)
 	{
-		message_team("Error: Can't build on Base!");
+		throw Error("Error: Can't build on Base!");
 		return false;
 	}
 
@@ -161,7 +161,7 @@ bool Team::tile_is_ready(Tile * cand, int type)	{
 	//You can't build on boundary tiles
 	if(Game_Model::get().get_World()->is_boundary_tile(cand))
 	{
-		message_team("Error: Can't build on boundary cliffs!");
+		throw Error("Error: Can't build on boundary cliffs!");
 		return false;
 	}
 
@@ -194,7 +194,7 @@ bool Team::tile_is_ready(Tile * cand, int type)	{
 		}
 		else
 		{
-			message_team("Error: Not enough Money to Build!");
+			throw Error("Error: Not enough Money to Build!");
 			return false;
 		}
 	}
