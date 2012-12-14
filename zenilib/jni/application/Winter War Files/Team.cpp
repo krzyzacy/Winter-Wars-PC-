@@ -79,6 +79,11 @@ void Team::update()	{
 
 	if(ResourceTime.seconds() > 1)	{
 		Ice_Blocks += intake_rate;
+		
+		stats.total_resources += intake_rate;
+
+
+		
 		if(Ice_Blocks >= Max_Resources)
 			Ice_Blocks = Max_Resources;
 		ResourceTime.reset();
@@ -99,6 +104,11 @@ void Team::update()	{
 			}
 		}
 	}
+	
+	stats.final_network = Network.size();
+	
+	if (stats.final_network > stats.largest_network)
+		stats.largest_network = stats.final_network;
 
 	if (stats.all_structures() == 0 && Game_Model::get().get_time() > 10 )
 		message_team("Build something in front of your base, press (x) while facing the tile");
@@ -128,6 +138,7 @@ void Team::add_tile(Tile *t)	{
 	//do the stuff for add adjacent members(cycle through family and add
 	World *w = Game_Model::get().get_World();
 	list<Tile*> family = w->Get_Family(t);
+	
 	for(list<Tile*>::iterator it = family.begin(); it != family.end(); it++)	{
 		Adjacent_Tiles.insert(*it);
 		if(Disconnected_Tiles.count(*it))	{
@@ -135,6 +146,8 @@ void Team::add_tile(Tile *t)	{
 			network_unstable = true;
 		}
 	}
+	
+
 }
 
 void Team::remove_tile(Tile *t)	{
@@ -146,6 +159,8 @@ void Team::remove_tile(Tile *t)	{
 	Network.erase(t);
 	Disconnected_Tiles.erase(t);
 	network_unstable = true;
+	
+	stats.tiles_lost++;
 }
 
 bool Team::tile_is_ready(Tile * cand, int type)	{
@@ -201,6 +216,7 @@ bool Team::tile_is_ready(Tile * cand, int type)	{
 	if(!cand->has_building())	{
 		if(Ice_Blocks >= Build_Cost[type])	{	//Structure cost	
 			Ice_Blocks -= Build_Cost[type];
+			stats.resources_spent += Build_Cost[type];
 			add_tile(cand);
 			return true;
 		}
