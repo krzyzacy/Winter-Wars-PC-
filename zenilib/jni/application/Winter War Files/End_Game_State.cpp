@@ -159,37 +159,37 @@ void End_Game_State::render() {
 	width_array[1] = cur_width;
 	get_Fonts()["cat_36"].render_text("Largest Network | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Largest Network | "));
-	width_array[0] += (cur_width - width_array[1])/2;
+	width_array[1] += (cur_width - width_array[1])/2;
 
 	width_array[2] = cur_width;
 	get_Fonts()["cat_36"].render_text("Tiles Lost | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Tiles Lost | "));
-	width_array[0] += (cur_width - width_array[2])/2;
+	width_array[2] += (cur_width - width_array[2])/2;
 
 	width_array[3] = cur_width;
 	get_Fonts()["cat_36"].render_text("Gold Spent | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Gold Spent | "));
-	width_array[0] += (cur_width - width_array[3])/2;
+	width_array[3] += (cur_width - width_array[3])/2;
 
 	width_array[4] = cur_width;
 	get_Fonts()["cat_36"].render_text("Snowmen | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Snowmen | "));
-	width_array[0] += (cur_width - width_array[4])/2;
+	width_array[4] += (cur_width - width_array[4])/2;
 
 	width_array[5] = cur_width;
 	get_Fonts()["cat_36"].render_text("Forts | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Forts | "));
-	width_array[0] += (cur_width - width_array[5])/2;
+	width_array[5] += (cur_width - width_array[5])/2;
 
 	width_array[6] = cur_width;
 	get_Fonts()["cat_36"].render_text("Factory | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Factory | "));
-	width_array[0] += (cur_width - width_array[6])/2;
+	width_array[6] += (cur_width - width_array[6])/2;
 
 	width_array[7] = cur_width;
 	get_Fonts()["cat_36"].render_text("Healing Pools | " ,Point2f(cur_width, 670), blk);
 	cur_width+=(font_36.get_text_width("Healing Pools | "));
-	width_array[0] += (cur_width - width_array[7])/2;
+	width_array[7] += (cur_width - width_array[7])/2;
 
 	
 	int valid = -1;

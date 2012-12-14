@@ -38,8 +38,8 @@ void Team::add_player(Player *p)	{
 }
 
 Point3f Team::get_spawn_point()	const	{
-	float x = rand()%20;
-	float y = rand()%20;
+	float x = rand()%5;
+	float y = rand()%5;
 	Point3f Spawn = Base->get_structure_base();
 	Spawn.x += x;
 	Spawn.y += y;

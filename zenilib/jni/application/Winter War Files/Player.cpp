@@ -543,7 +543,8 @@ bool Player::create_building(Structure_Type Building)	{
 	//Returns true if building was created, false if unable
 		
 	Tile *t = Game_Model::get().get_World()->player_is_looking_at(center, m_camera.get_forward());
-	
+//	Tile *t = Game_Model::get().get_World()->get_tile(center);
+
 	try {
 
 		//Checks if the tile can be built upon
