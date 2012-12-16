@@ -12,7 +12,7 @@ using namespace std;
 using namespace Zeni;
 
 Team::Team(Tile* BaseTile)	:
-	Base(BaseTile), Ice_Blocks(1000), intake_rate(1), Team_Color(NEUTRAL), 
+	Base(BaseTile), Ice_Blocks(2000), intake_rate(1), Team_Color(NEUTRAL), 
 	network_unstable(false)
 {
 	ResourceTime.start();

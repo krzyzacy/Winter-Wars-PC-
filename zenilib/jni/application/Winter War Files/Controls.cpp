@@ -116,6 +116,15 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 			case SDLK_RIGHT:
 				input.Move.x = -1 * Move_factor* (event.type == SDL_KEYDOWN);
 				break;
+			case SDLK_o:
+				input.Build_Go = event.state == SDL_PRESSED;
+				break;
+			case SDLK_p:
+				input.RSHOULDER = event.state == SDL_PRESSED;
+				break;
+			case SDLK_i:
+				input.LSHOULDER = event.state == SDL_PRESSED;
+				break;
 			case SDLK_RSHIFT:
 				input.jump = event.state == SDL_PRESSED;
 				break;

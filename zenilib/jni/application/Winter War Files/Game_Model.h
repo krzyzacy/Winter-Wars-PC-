@@ -77,6 +77,9 @@ public:
 	void global_message(const Zeni::String &message);
 	
 	Collision_Table table;	
+
+	void play_bgm();
+	void stop_bgm();
 private:
 	
 	Zeni::Chronometer<Zeni::Time> PlayTime;
@@ -116,5 +119,7 @@ private:
 	Zeni::Sound_Source * chainbreak;
 	Zeni::Sound_Source * presentplace;
 	Zeni::Sound_Source * snowballthrow;
+
+	Zeni::Sound_Source * bgm;
 };
 

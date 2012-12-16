@@ -57,7 +57,7 @@ Player::Player(const Zeni::Point3f &center_)
 	m_camera(center_, Quaternion(), 5.0f, 3000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	gender(""),
-	myTeam(0), backup(center_), Jumping(ON_GROUND), Builder(REST), Selection(FORT), stick_theta(0.0f),
+	myTeam(0), backup(center_), Jumping(ON_GROUND), Builder(REST), Selection(HEALING_POOL), stick_theta(0.0f),
 	mini_open(false), build_open(false),dead_mode(false),hit_timer(0.0f),throw_timer(0.0f),packing_timer(0.0f),
 	animation_state(new Standing()), player_boy_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["boy_hit"])),
 	player_girl_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["girl_hit"])), player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"])),
@@ -76,6 +76,12 @@ Player::Player(const Zeni::Point3f &center_)
 
 Player::~Player(void)
 {
+	//Delete sounds
+	delete player_boy_hit;
+	delete player_girl_hit;
+	delete player_dead;
+	delete snowball_hit1;
+	delete snowball_hit2;
 }
 
 void Player::adjust_pitch(float phi) {
