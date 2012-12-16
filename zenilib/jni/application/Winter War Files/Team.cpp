@@ -111,7 +111,7 @@ void Team::update()	{
 		stats.largest_network = stats.final_network;
 
 	if (stats.all_structures() == 0 && Game_Model::get().get_time() > 10 )
-		message_team("Build something in front of your base, press (x) while facing the tile");
+		message_team("Build something in front of your base, press (x) while facing the tile", -1);
 	
 }
 
