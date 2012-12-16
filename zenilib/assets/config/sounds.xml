@@ -84,6 +84,10 @@ HOWTO:  To convert between types, or to downmix to mono,
   <presentplace>
     <filepath>sfx/presentplace</filepath>
   </presentplace>
+  
+  <bgm>
+    <filepath>sfx/ingamebackground</filepath>
+  </bgm>
 
 </Sounds>
 
