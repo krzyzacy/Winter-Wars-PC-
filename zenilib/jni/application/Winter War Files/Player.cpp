@@ -166,6 +166,10 @@ void Player::respawn()	{
 	dead_mode = false;
 	health = Max_Player_Health;
 	Snow_in_Pack = Max_Snow_Amount;
+
+	current_radius = 0;
+	packing_timer = 0.0f;
+
 	center = myTeam->get_spawn_point();
 	switch_state(RESPAWN);
 }
@@ -630,6 +634,7 @@ int Player::get_Team_Blocks() const	{
 }
 
 bool Player::vibrate_feedback()	{
+
 	if(ShakeTime.seconds() > 0.4)	{
 		ShakeTime.stop();
 		ShakeTime.reset();

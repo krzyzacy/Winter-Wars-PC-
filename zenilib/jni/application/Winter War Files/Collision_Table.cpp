@@ -103,6 +103,12 @@ void Collision_Table::collidePlayerSnowball(Player* p1, Snowball* b1)
 	p1->get_damaged(damage_dealt);
 
 	Game_Model::get().add_effect(new Effect("explode", b1->center, Vector3f(10,10,10)*b1->size.z/4));
+	
+	// Drain Resources on death
+	if (p1->is_player_KO() )
+	{
+		b1->team->modify_resources(p1->get_team()->take_resources(500));
+	}
 
 	// if snowman shot it, don't add player stats
 	if (!b1->owner)
@@ -114,8 +120,10 @@ void Collision_Table::collidePlayerSnowball(Player* p1, Snowball* b1)
 
 	// he killed the player
 	if (p1->is_player_KO() )
-		b1->owner->stats.kills++;
+	{
+		b1->owner->stats.kills++;	
 	
+	}
 }
 
 void Collision_Table::collideSnowballPlayer(Snowball* b1, Player* p1)

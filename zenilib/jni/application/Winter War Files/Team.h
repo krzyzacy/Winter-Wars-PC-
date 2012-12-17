@@ -38,6 +38,8 @@ public:
 	bool is_in_network(Tile *);
 	bool is_adjacent_to_network(Tile *);
 	void destabilize_network()	{network_unstable = true;}
+	void modify_resources(int amt);
+	int take_resources(int amt);
 
 	void message_team(const Zeni::String &message, int priority = 0);
 

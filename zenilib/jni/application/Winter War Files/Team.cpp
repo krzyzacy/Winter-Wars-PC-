@@ -12,7 +12,7 @@ using namespace std;
 using namespace Zeni;
 
 Team::Team(Tile* BaseTile)	:
-	Base(BaseTile), Ice_Blocks(2000), intake_rate(1), Team_Color(NEUTRAL), 
+	Base(BaseTile), Ice_Blocks(2000), intake_rate(0), Team_Color(NEUTRAL), 
 	network_unstable(false)
 {
 	ResourceTime.start();
@@ -79,6 +79,7 @@ void Team::update()	{
 
 	if(ResourceTime.seconds() > 1)	{
 		Ice_Blocks += intake_rate;
+
 		
 		stats.total_resources += intake_rate;
 
@@ -102,6 +103,11 @@ void Team::update()	{
 			default:
 				break;
 			}
+
+			// increment intake rate if it is a snow factory
+			if((*it)->get_building() && (*it)->get_building()->is_snow_maker())
+				intake_rate += 50;
+
 		}
 	}
 	
@@ -395,4 +401,25 @@ String Team::get_name_Upper_Case()
 		default:
 			break;
 	}
+}
+
+void Team::modify_resources(int amt)
+{
+	Ice_Blocks += amt;
+
+	if(Ice_Blocks >= Max_Resources)
+			Ice_Blocks = Max_Resources;
+}
+
+int Team::take_resources(int amt)
+{
+	if (amt > Ice_Blocks)
+	{
+		int result = Ice_Blocks;
+		Ice_Blocks = 0;
+		return result;
+	}
+
+	Ice_Blocks -= amt;
+	return amt;
 }

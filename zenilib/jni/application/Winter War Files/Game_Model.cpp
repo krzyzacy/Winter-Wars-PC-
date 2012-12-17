@@ -13,6 +13,8 @@
 #include "Tile.h"
 
 #include <zenilib.h>
+#include "Zeni/Joysticks.h"
+
 
 using namespace std;
 using namespace Zeni;
@@ -78,7 +80,6 @@ void Game_Model::start_up(const vector<String> &genders_, const vector<int> &col
 //		view->add_renderable(&Perm);
 
 		play_bgm();
-
 }
 
 void Game_Model::restart()
@@ -144,6 +145,9 @@ void Game_Model::update()
 	time_passed = frametime_passed;
 	time_step = currentStep;
 
+	if (PlayTime.seconds() < 3 && PlayTime.seconds() > 2)
+		global_message("Build a path of structures from your base to the Tree!");
+
 
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); it++)
 		(*it)->update(time_step);
@@ -206,6 +210,9 @@ bool Game_Model::win()
 {
 	if (time_till_win() <= 0)
 	{
+		for(int i = 0; i < 4; i++)
+			Joysticks::get().set_xinput_vibration(i, 0, 0);
+
 		PlayTime.stop();
 		return true;
 	}
