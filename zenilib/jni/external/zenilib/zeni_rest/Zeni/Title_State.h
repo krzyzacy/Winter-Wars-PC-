@@ -36,10 +36,10 @@
 
 namespace Zeni {
 
-  template <typename PLAY_STATE, typename INSTRUCTIONS_STATE>
+  template <typename PLAY_STATE, typename INSTRUCTIONS_STATE, typename CREDITS_STATE>
   class Title_State : public Widget_Gamestate {
-    Title_State(const Title_State<PLAY_STATE, INSTRUCTIONS_STATE> &);
-    Title_State<PLAY_STATE, INSTRUCTIONS_STATE> & operator=(const Title_State<PLAY_STATE, INSTRUCTIONS_STATE> &);
+    Title_State(const Title_State<PLAY_STATE, INSTRUCTIONS_STATE, CREDITS_STATE> &);
+    Title_State<PLAY_STATE, INSTRUCTIONS_STATE, CREDITS_STATE> & operator=(const Title_State<PLAY_STATE, INSTRUCTIONS_STATE, CREDITS_STATE> &);
 
   public:
     class Title : public Text_Box {
@@ -87,6 +87,22 @@ namespace Zeni {
       }
     } instructions_button;
 
+	class Credits_Button : public Text_Button {
+      Credits_Button(const Credits_Button &);
+      Credits_Button & operator=(const Credits_Button &);
+
+    public:
+      Credits_Button()
+        : Text_Button(Point2f(250.0f, 470.0f), Point2f(385.0f, 530.0f),
+                      "system_36_800x600", "Credits")
+      {
+      }
+
+      void on_accept() {
+        get_Game().push_state(new CREDITS_STATE());
+      }
+    } credits_button;
+
 #ifndef ANDROID
     Popup_Menu_State::Configure_Video_Button configure_video_button;
 #endif
@@ -100,11 +116,12 @@ namespace Zeni {
       configure_video_button(Point2f(250.0f, 390.0f), Point2f(550.0f, 440.0f)),
 #endif
       //sound_check_box(Point2f(32.5f, 480.0f), Point2f(75.5f, 524.0f)),
-      quit_button(Point2f(325.0f, 470.0f), Point2f(475.0f, 530.0f))
+      quit_button(Point2f(415.0f, 470.0f), Point2f(550.0f, 530.0f))
     {
       m_widgets.lend_Widget(title);
       m_widgets.lend_Widget(play_button);
       m_widgets.lend_Widget(instructions_button);
+	  m_widgets.lend_Widget(credits_button);
 #ifndef ANDROID
       m_widgets.lend_Widget(configure_video_button);
 #endif
