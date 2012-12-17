@@ -51,7 +51,7 @@ private:
       get_Game().pop_state();
 	if(event.keysym.sym == SDLK_RETURN && event.state == SDL_PRESSED){
 			state ++;
-			if(state == 2)
+			if(state == 1)
 				get_Game().pop_state();
 	}
   }
@@ -62,7 +62,7 @@ private:
 			case 0: // A
 				if(event.state == SDL_PRESSED)	{
 					state ++;
-					if(state == 2)
+					if(state == 1)
 						get_Game().pop_state();
 				}
 				break;
@@ -82,7 +82,7 @@ private:
 
 	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(1920.0f, 1200.0f)), true);
 	if(state == 0){
-		render_image("Control_1", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
+		render_image("credits", Point2f(0.0f,0.0f), Point2f(2048.0f,2048.0f));
 	}
   
 	render_controls(0);
@@ -205,7 +205,6 @@ public:
 		start_game = 0.0f;
 
 		get_Sound().set_BGM("sfx/drum");
-		get_Sound().set_BGM_gain(0.2);
 		get_Sound().set_BGM_looping(1);
 		get_Sound().play_BGM();
 	
@@ -472,8 +471,7 @@ class Title_State_Custom : public Title_State<Team_Select_State, Instructions_St
 		: Title_State<Team_Select_State, Instructions_State, Credits_State>("")
 		{
 			m_widgets.unlend_Widget(title);
-			get_Sound().set_BGM("sfx/ingamebackground");
-			get_Sound().set_BGM_gain(0.3);
+			get_Sound().set_BGM("sfx/HappyTreeFriends");
 			get_Sound().set_BGM_looping(1);
 			get_Sound().play_BGM();
 		}
