@@ -820,6 +820,11 @@ The following things are unsupported:
     <filepath>textures/2DTextures/Titlescreen/reaper.png</filepath>
     <tile>0</tile>
   </reaper>
+  
+  <credits>
+    <filepath>textures/2DTextures/Titlescreen/Credits.png</filepath>
+    <tile>0</tile>
+  </credits>
 
 
 
