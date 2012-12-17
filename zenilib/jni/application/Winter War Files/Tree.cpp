@@ -10,13 +10,15 @@ Tree::Tree(Team *team, Tile* tile_,
 {	
 	if (!owner){
 		animation_state = new Tree_unowned();
-		nyan->stop();
 	}
 	else{
 		animation_state = new Tree_owned();
-
+		Game_Model::get().stop_bgm();
 		if(!nyan->is_playing())
+			{
+			nyan->set_gain(0.5);
 			nyan->play();
+			}
 
 	}
 
@@ -29,6 +31,7 @@ Tree::Tree(Team *team, Tile* tile_,
 Tree::~Tree(void)
 {
 	nyan->stop();
+	Game_Model::get().play_bgm();
 }
 
 void Tree::update(const float &time)

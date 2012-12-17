@@ -13,6 +13,8 @@
 #include "Tile.h"
 
 #include <zenilib.h>
+#include "Zeni/Joysticks.h"
+
 
 using namespace std;
 using namespace Zeni;
@@ -32,6 +34,27 @@ void Game_Model::start_up(const vector<String> &genders_, const vector<int> &col
 		time_passed = (0.0f); 
 		time_step = (0.0f);	
 		win_time = (10000.0f);
+
+		breaking = new Zeni::Sound_Source(get_Sounds()["breaking"]);
+		chainbreak = new Zeni::Sound_Source(get_Sounds()["chainbreak"]);
+		presentplace = new Zeni::Sound_Source(get_Sounds()["presentplace"]);
+		snowballthrow = new Zeni::Sound_Source(get_Sounds()["snowballthrow"]);
+		bgm = new Zeni::Sound_Source(get_Sounds()["bgm"]);
+
+		breaking->set_gain(0.35);
+		breaking->set_pitch(0.8);
+
+		chainbreak->set_gain(0.32);
+		chainbreak->set_pitch(0.8);
+
+		presentplace->set_gain(0.8);
+		presentplace->set_pitch(0.8);
+
+		snowballthrow->set_gain(0.8);
+		snowballthrow->set_pitch(2);
+
+		bgm->set_looping(1);
+
 
 		teams.push_back(create_team(world->get_next_Base_Tile()));
 		teams.push_back(create_team(world->get_next_Base_Tile()));
@@ -56,6 +79,7 @@ void Game_Model::start_up(const vector<String> &genders_, const vector<int> &col
 		PlayTime.start();
 //		view->add_renderable(&Perm);
 
+		play_bgm();
 }
 
 void Game_Model::restart()
@@ -100,6 +124,12 @@ void Game_Model::finish()
 		delete (*it);
 	teams.clear();
 	
+	//delete sounds
+	delete breaking;
+	delete chainbreak;
+	delete presentplace;
+	delete snowballthrow;
+
 	PlayTime.reset();
 }
 
@@ -114,6 +144,9 @@ void Game_Model::update()
 	const float currentStep = frametime_passed - time_passed;
 	time_passed = frametime_passed;
 	time_step = currentStep;
+
+	if (PlayTime.seconds() < 3 && PlayTime.seconds() > 2)
+		global_message("Build a path of structures from your base to the Tree!");
 
 
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); it++)
@@ -150,7 +183,7 @@ void Game_Model::tree_claimed(const Team *team)
 	{
 		if (get_team(i) != team)
 		const_cast<Team*>(get_team(i))->message_team(const_cast<Team*>(team)->get_name_Upper_Case() + 
-			" TEAM CLAIMED THE TREE! Destroy tiles to break their territory", 8);
+			" TEAM CLAIMED THE TREE! Destroy tiles to break their territory",80);
 	}
 	// team wants to own the tree
 	win_time = PlayTime.seconds() + time_to_win_c;
@@ -177,6 +210,9 @@ bool Game_Model::win()
 {
 	if (time_till_win() <= 0)
 	{
+		for(int i = 0; i < 4; i++)
+			Joysticks::get().set_xinput_vibration(i, 0, 0);
+
 		PlayTime.stop();
 		return true;
 	}
@@ -291,4 +327,36 @@ void Game_Model::global_message(const String &message)
 	{
 		players[i]->add_message(message);
 	}
+}
+
+void Game_Model::play_breaking()
+{
+	if(!breaking->is_playing())
+		breaking->play();
+}
+
+void Game_Model::play_chainbreak()
+{
+	if(!chainbreak->is_playing())
+		chainbreak->play();
+}
+
+void Game_Model::play_presentplace()
+{
+	presentplace->play();
+}
+
+void Game_Model::play_snowballthrow()
+{
+	snowballthrow->play();
+}
+
+void Game_Model::play_bgm(){
+	if(!bgm->is_playing())
+		bgm->play();
+}
+
+void Game_Model::stop_bgm(){
+	if(bgm->is_playing())
+		bgm->stop();
 }

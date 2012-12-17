@@ -26,6 +26,7 @@ public:
 	~Play_State_Base();
 
 
+
 private:		
 	vector<Controls*> controllers;
 	vector<int> teams;

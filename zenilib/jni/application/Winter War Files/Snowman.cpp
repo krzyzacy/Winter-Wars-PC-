@@ -59,6 +59,7 @@ void Snowman::update(const float &time)
 				right_launch = center + Vector3f(50*cos(turn), 50*sin(turn),0);
 				Point3f Origin = right_launch;
 				if(left) Origin = left_launch;
+				Game_Model::get().play_snowballthrow();
 				Snowball* sb = new Snowball(owner, Origin, Snow_size);
 				Vector3f sight_line(aim - Origin);
 				//sight_line.z += 20;

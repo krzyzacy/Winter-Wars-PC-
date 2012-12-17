@@ -12,7 +12,7 @@ using namespace std;
 using namespace Zeni;
 
 Team::Team(Tile* BaseTile)	:
-	Base(BaseTile), Ice_Blocks(1000), intake_rate(1), Team_Color(NEUTRAL), 
+	Base(BaseTile), Ice_Blocks(2000), intake_rate(0), Team_Color(NEUTRAL), 
 	network_unstable(false)
 {
 	ResourceTime.start();
@@ -38,8 +38,8 @@ void Team::add_player(Player *p)	{
 }
 
 Point3f Team::get_spawn_point()	const	{
-	float x = rand()%20;
-	float y = rand()%20;
+	float x = rand()%5;
+	float y = rand()%5;
 	Point3f Spawn = Base->get_structure_base();
 	Spawn.x += x;
 	Spawn.y += y;
@@ -65,11 +65,11 @@ void Team::update()	{
 
 	if (!Disconnected_Tiles.empty())
 	{
-		message_team("ALERT: YOUR TERRITORY IS DISCONNECTED! Link it together with a structure", 10);
+		message_team("ALERT: YOUR TERRITORY IS DISCONNECTED! Link it together with a structure", 100);
 	}	
 	else if (Is_Tree_Claimed())
 	{
-		message_team("Your team claimed the Tree! Protect your network for 20 seconds!");
+		message_team("Your team claimed the Tree! Protect your network for 20 seconds!", 3);
 	}
 	else if (is_adjacent_to_network(Game_Model::get().get_World()->get_center_Tile()))
 	{
@@ -79,6 +79,7 @@ void Team::update()	{
 
 	if(ResourceTime.seconds() > 1)	{
 		Ice_Blocks += intake_rate;
+
 		
 		stats.total_resources += intake_rate;
 
@@ -102,6 +103,11 @@ void Team::update()	{
 			default:
 				break;
 			}
+
+			// increment intake rate if it is a snow factory
+			if((*it)->get_building() && (*it)->get_building()->is_snow_maker())
+				intake_rate += 50;
+
 		}
 	}
 	
@@ -111,7 +117,7 @@ void Team::update()	{
 		stats.largest_network = stats.final_network;
 
 	if (stats.all_structures() == 0 && Game_Model::get().get_time() > 10 )
-		message_team("Build something in front of your base, press (x) while facing the tile");
+		message_team("Build something in front of your base, press (x) while facing the tile", -1);
 	
 }
 
@@ -395,4 +401,25 @@ String Team::get_name_Upper_Case()
 		default:
 			break;
 	}
+}
+
+void Team::modify_resources(int amt)
+{
+	Ice_Blocks += amt;
+
+	if(Ice_Blocks >= Max_Resources)
+			Ice_Blocks = Max_Resources;
+}
+
+int Team::take_resources(int amt)
+{
+	if (amt > Ice_Blocks)
+	{
+		int result = Ice_Blocks;
+		Ice_Blocks = 0;
+		return result;
+	}
+
+	Ice_Blocks -= amt;
+	return amt;
 }

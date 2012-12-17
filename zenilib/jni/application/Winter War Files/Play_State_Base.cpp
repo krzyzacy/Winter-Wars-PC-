@@ -21,6 +21,7 @@ Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<in
 			if(controls_[i] == 1)
 				controllers[i]->set_inverted(true);
 		}
+
 		
 }
 
@@ -108,6 +109,6 @@ void Play_State_Base::render()	{
 	int height = get_Window().get_height();
 //	get_Video().set_2d(pair<Point2f, Point2f>(Point2f(0,0), Point2f(width, height)));
 //	get_Fonts()["system_36_800x600"].render_text(controllers[0]->give_stick_status().c_str(), Point2f(0, 0), Color(1, 0.1, 0.85, 0.1 ));
-	if (Game_Model::get().table.get_collided())
-		get_Fonts()["system_36_800x600"].render_text("Collision detected.", Point2f(0, 300), Color(1, 0.1, 0.85, 0.1 ));
+//	if (Game_Model::get().table.get_collided())
+//		get_Fonts()["system_36_800x600"].render_text("Collision detected.", Point2f(0, 300), Color(1, 0.1, 0.85, 0.1 ));
 }

@@ -205,6 +205,7 @@ public:
 		start_game = 0.0f;
 
 		get_Sound().set_BGM("sfx/drum");
+		get_Sound().set_BGM_gain(0.2);
 		get_Sound().set_BGM_looping(1);
 		get_Sound().play_BGM();
 	
@@ -471,7 +472,8 @@ class Title_State_Custom : public Title_State<Team_Select_State, Instructions_St
 		: Title_State<Team_Select_State, Instructions_State, Credits_State>("")
 		{
 			m_widgets.unlend_Widget(title);
-			get_Sound().set_BGM("sfx/HappyTreeFriends");
+			get_Sound().set_BGM("sfx/ingamebackground");
+			get_Sound().set_BGM_gain(0.3);
 			get_Sound().set_BGM_looping(1);
 			get_Sound().play_BGM();
 		}

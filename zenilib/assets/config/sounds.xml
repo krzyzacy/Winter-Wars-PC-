@@ -38,12 +38,16 @@ HOWTO:  To convert between types, or to downmix to mono,
   </NyanCat>
 
   <Dead>
-    <filepath>sfx/meowdead</filepath>
+    <filepath>sfx/sparrowhawk</filepath>
   </Dead>
 
-  <HitBySnow>
-    <filepath>sfx/HitBySnow</filepath>
-  </HitBySnow>
+  <HitBySnow1>
+    <filepath>sfx/SnowballHit1</filepath>
+  </HitBySnow1>
+
+  <HitBySnow2>
+    <filepath>sfx/SnowballHit2</filepath>
+  </HitBySnow2>
 
   <titleBG>
     <filepath>sfx/titleBG</filepath>
@@ -56,6 +60,34 @@ HOWTO:  To convert between types, or to downmix to mono,
   <htBG>
     <filepath>sfx/HappyTreeFriends</filepath>
   </htBG>
+
+  <girl_hit>
+    <filepath>sfx/girl_hit</filepath>
+  </girl_hit>
+
+  <boy_hit>
+    <filepath>sfx/boy_hit1</filepath>
+  </boy_hit>
+
+  <snowballthrow>
+    <filepath>sfx/snowballthrow</filepath>
+  </snowballthrow>
+
+  <breaking>
+    <filepath>sfx/breaking</filepath>
+  </breaking>
+
+  <chainbreak>
+    <filepath>sfx/chainbreak</filepath>
+  </chainbreak>
+
+  <presentplace>
+    <filepath>sfx/presentplace</filepath>
+  </presentplace>
   
+  <bgm>
+    <filepath>sfx/ingamebackground</filepath>
+  </bgm>
+
 </Sounds>
 
