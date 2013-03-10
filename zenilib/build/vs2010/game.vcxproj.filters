@@ -513,6 +513,9 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\End_Game_State.h">
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Base.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\bootstrap.cpp">
@@ -603,6 +606,9 @@
       <Filter>jni\application\Winter War Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\End_Game_State.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Base.cpp">
       <Filter>jni\application\Winter War Files</Filter>
     </ClCompile>
   </ItemGroup>

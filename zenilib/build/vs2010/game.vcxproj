@@ -217,6 +217,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\jni\application\Winter War Files\Animator.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Base.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Collidable.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Collision_Table.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Component_Shape.h" />
@@ -363,6 +364,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\external\zenilib\zeni_rest\Zeni\Widget_Gamestate.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Base.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\bootstrap.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Collidable.cpp">

@@ -1,7 +1,7 @@
-﻿Build started 12/9/2012 11:03:08 PM.
+﻿Build started 3/10/2013 5:42:55 PM.
      1>Project "H:\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "obj\x32\Release\game.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "obj\x32\Release\game.unsuccessfulbuild".
        PreBuildEvent:
          xcopy ..\..\dev\pc_ ..\.. /E /Y
          xcopy ..\..\jni\external\bin\x32 ..\..\bin\x32 /E /Y
@@ -21,14 +21,22 @@
          ..\..\jni\external\bin\x32\vccorlib110.dll
          6 File(s) copied
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Object_factory.cpp"
-         Object_factory.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Base.cpp"
+         Base.cpp
      1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
      1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(52): warning C4100: 'person' : unreferenced formal parameter
-     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(52): warning C4100: 'color' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(54): warning C4100: 'person' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(54): warning C4100: 'color' : unreferenced formal parameter
+     1>..\..\jni\application\Winter War Files\Base.cpp(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Base.cpp(32): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Base.cpp(35): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Base.cpp(38): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Base.cpp(24): warning C4100: 'time' : unreferenced formal parameter
+     1>..\..\jni\application\Winter War Files\Base.cpp(68): warning C4552: '-' : operator has no effect; expected operator with side-effect
+     1>..\..\jni\application\Winter War Files\Base.cpp(84): warning C4100: 'damage' : unreferenced formal parameter
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\x32\game.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\bin\x32 local_SDLmain.lib zeni_rest.lib zeni_graphics.lib zeni_net.lib zeni_core.lib zeni_audio.lib zeni.lib local_SDL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"obj\x32\Release\game.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"H:\EECS494FinalProject\zenilib\bin\x32\game.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\x32\game.lib" /MACHINE:X86 obj\x32\Release\bootstrap.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\x32\game.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\bin\x32 local_SDLmain.lib zeni_rest.lib zeni_graphics.lib zeni_net.lib zeni_core.lib zeni_audio.lib zeni.lib local_SDL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"obj\x32\Release\game.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"H:\EECS494FinalProject\zenilib\bin\x32\game.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\x32\game.lib" /MACHINE:X86 obj\x32\Release\Base.obj
+         obj\x32\Release\bootstrap.obj
          obj\x32\Release\Collidable.obj
          obj\x32\Release\Collision_Table.obj
          obj\x32\Release\Component_Shape.obj
@@ -68,4 +76,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:10.62
+Time Elapsed 00:00:20.76
