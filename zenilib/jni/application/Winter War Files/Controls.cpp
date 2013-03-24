@@ -13,11 +13,12 @@ const int Stick_sensitivity = 8000;
 const int Trig_sensitivity = 5000;
 const float Move_factor = 32768;
 
+int Controls::Mouse_Camera = 0;
+
 
 Controls::Controls(bool inverted_, int which_id_)	:
 	inverted(inverted_),
 	Shoot(CHILL),
-	Mouse_Camera(0),
 	which_id(which_id_), left_last(false), right_last(false)
 {
 }
@@ -51,7 +52,7 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 		}
 
 
-		if(which == 0)	{
+		if(which == Mouse_Camera)	{
 			switch(event.keysym.sym)	{
 			case SDLK_w:
 				input.Move.y = 1 * Move_factor * (event.type == SDL_KEYDOWN);
@@ -102,7 +103,7 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 			}
 		
 		}
-		else if(which == 1)	{
+		/*else if(which == 1)	{
 			switch(event.keysym.sym)	{
 			case SDLK_UP:
 				input.Move.y = 1 * Move_factor * (event.type == SDL_KEYDOWN);
@@ -138,7 +139,7 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 				Handled_Input = false;
 				break;
 			}
-		}
+		}*/
 		else	
 			Handled_Input = false;
 

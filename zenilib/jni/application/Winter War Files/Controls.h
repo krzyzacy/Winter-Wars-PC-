@@ -78,7 +78,7 @@ private:
 
 
 	Shooting_State	Shoot;
-	int Mouse_Camera;
+	static int Mouse_Camera;
 
 	int which_id;
 
