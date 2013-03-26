@@ -11,12 +11,15 @@ enum	Shooting_State	{
 
 
 
+
 class Controls
 {
 public:
 	Controls(bool inverted_ = false, int which_id_ = 0);
 	~Controls(void);
 	
+	static int Mouse_Camera;
+
 	std::string give_stick_status();
 
 	bool take_keyboard_input(const SDL_KeyboardEvent &event, const int which);
@@ -78,7 +81,7 @@ private:
 
 
 	Shooting_State	Shoot;
-	static int Mouse_Camera;
+	
 
 	int which_id;
 

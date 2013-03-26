@@ -48,16 +48,14 @@ void Play_State_Base::on_pop()	{
 }
 
 void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {
-	controllers[0]->take_keyboard_input(event, 0);
-	controllers[1]->take_keyboard_input(event, 1);
+	controllers[Controls::Mouse_Camera]->take_keyboard_input(event, 0);
 	Gamestate_Base::on_key(event); // Let Gamestate_Base handle it
 } 
 
 void Play_State_Base::on_mouse_motion(const SDL_MouseMotionEvent &event) {	
-	int i = controllers[0]->get_cam_to_adjust();
-	controllers[0]->reset_Cam();
-	Game_Model::get().get_player(i)->adjust_pitch(event.yrel / 500.0f);
-	Game_Model::get().get_player(i)->turn_left(-event.xrel / 500.0f);    
+	controllers[Controls::Mouse_Camera]->reset_Cam();
+	Game_Model::get().get_player(Controls::Mouse_Camera)->adjust_pitch(event.yrel / 500.0f);
+	Game_Model::get().get_player(Controls::Mouse_Camera)->turn_left(-event.xrel / 500.0f);    
 }
 
 void Play_State_Base::on_joy_axis(const SDL_JoyAxisEvent &event)	{
