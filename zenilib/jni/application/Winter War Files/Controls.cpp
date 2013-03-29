@@ -13,7 +13,7 @@ const int Stick_sensitivity = 8000;
 const int Trig_sensitivity = 5000;
 const float Move_factor = 32768;
 
-int Controls::Mouse_Camera = 0;
+int Controls::Mouse_Camera = -1;
 
 
 Controls::Controls(bool inverted_, int which_id_)	:
@@ -31,10 +31,11 @@ void Controls::set_inverted(bool invert)	{
 	inverted = invert;
 }
 
-bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int which)	{
-		//we can incorporate the keyboard (for hacks)
-		bool Handled_Input = true;
-		switch(event.keysym.sym)	{
+void Controls::check_keyboard_player_change(const SDL_KeyboardEvent &event)	{
+	switch(event.keysym.sym)	{
+		case SDLK_0:
+			Mouse_Camera = -1;
+			break;
 		case SDLK_1:
 			Mouse_Camera = 0;
 			break;
@@ -49,99 +50,77 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event, const int whi
 			break;
 		default:
 			break;
-		}
+	}
+}
+
+void Controls::take_God_keyboard(const SDL_KeyboardEvent &event)	{
+	//Put all global functions that effect the whole game in here, 
+	//including things like global variabl adjustment
+	//SIN WAVE
+}
 
 
-		if(which == Mouse_Camera)	{
-			switch(event.keysym.sym)	{
-			case SDLK_w:
-				input.Move.y = 1 * Move_factor * (event.type == SDL_KEYDOWN);
-				break;
-			case SDLK_s:
-				input.Move.y = -1 * Move_factor* (event.type == SDL_KEYDOWN);
-				break;
-			case SDLK_d:
-				input.Move.x = -1 * Move_factor* (event.type == SDL_KEYDOWN);
-				break;
-			case SDLK_a:
-				input.Move.x = 1 * Move_factor* (event.type == SDL_KEYDOWN);
-				break;
-			case SDLK_e:
-				input.pack = event.state == SDL_PRESSED;
-				break;
-			case SDLK_b:
-				input.Build_Go = event.state == SDL_PRESSED;
-				break;
-			case SDLK_m:
-				input.mini_map = event.state == SDL_PRESSED;
-				break;
-			case SDLK_n:
-				input.RSHOULDER = event.state == SDL_PRESSED;
-				break;
-			case SDLK_v:
-				input.LSHOULDER = event.state == SDL_PRESSED;
-				break;
-			case SDLK_t:
-				input.tip = event.state == SDL_PRESSED;
-				break;
-			case SDLK_LSHIFT:
-				input.jump = event.type == SDL_KEYDOWN;
-				break;
-			case SDLK_SPACE:
-				input.shoot = event.state == SDL_PRESSED;
-				break;
-			default:
-				Handled_Input = false;
-				break;
-			}
-
-			if(input.build_view)	{
-				input.Cam.x = input.Move.x;
-				input.Cam.y = input.Move.y;				
-				input.Move.x = 0;
-				input.Move.y = 0;
-			}
+bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event)	{
+		//we can incorporate the keyboard (for hacks)
+		bool Handled_Input = true;
 		
-		}
-		/*else if(which == 1)	{
-			switch(event.keysym.sym)	{
-			case SDLK_UP:
-				input.Move.y = 1 * Move_factor * (event.type == SDL_KEYDOWN);
-				break;
-			case SDLK_DOWN:
-				input.Move.y = -1 * Move_factor * (event.type == SDL_KEYDOWN);
-				break;
-			case SDLK_LEFT:
-				input.Move.x = 1 * Move_factor * (event.type == SDL_KEYDOWN);
-				break;
-			case SDLK_RIGHT:
-				input.Move.x = -1 * Move_factor* (event.type == SDL_KEYDOWN);
-				break;
-			case SDLK_o:
-				input.Build_Go = event.state == SDL_PRESSED;
-				break;
-			case SDLK_p:
-				input.RSHOULDER = event.state == SDL_PRESSED;
-				break;
-			case SDLK_i:
-				input.LSHOULDER = event.state == SDL_PRESSED;
-				break;
-			case SDLK_RSHIFT:
-				input.jump = event.state == SDL_PRESSED;
-				break;
-			case SDLK_RETURN:
-				input.shoot = event.state == SDL_PRESSED;
-				break;
-			case SDLK_BACKSPACE:
-				input.pack = event.state == SDL_PRESSED;
-				break;
-			default:
-				Handled_Input = false;
-				break;
-			}
-		}*/
-		else	
+
+
+		switch(event.keysym.sym)	{
+		case SDLK_w:
+			input.Move.y = 1 * Move_factor * (event.type == SDL_KEYDOWN);
+			break;
+		case SDLK_s:
+			input.Move.y = -1 * Move_factor* (event.type == SDL_KEYDOWN);
+			break;
+		case SDLK_d:
+			input.Move.x = -1 * Move_factor* (event.type == SDL_KEYDOWN);
+			break;
+		case SDLK_a:
+			input.Move.x = 1 * Move_factor* (event.type == SDL_KEYDOWN);
+			break;
+		case SDLK_e:
+			input.pack = event.state == SDL_PRESSED;
+			break;
+		case SDLK_b:
+			input.Build_Go = event.state == SDL_PRESSED;
+			break;
+		case SDLK_m:
+			input.mini_map = event.state == SDL_PRESSED;
+			break;
+		case SDLK_n:
+			input.RSHOULDER = event.state == SDL_PRESSED;
+			break;
+		case SDLK_v:
+			input.LSHOULDER = event.state == SDL_PRESSED;
+			break;
+		case SDLK_t:
+			input.tip = event.state == SDL_PRESSED;
+			break;
+		case SDLK_u:
+			input.Tile_up = event.state == SDL_PRESSED;
+			break;
+		case SDLK_j:
+			input.Tile_down = event.state == SDL_PRESSED;
+			break;
+		case SDLK_LSHIFT:
+			input.jump = event.type == SDL_KEYDOWN;
+			break;
+		case SDLK_SPACE:
+			input.shoot = event.state == SDL_PRESSED;
+			break;
+		default:
 			Handled_Input = false;
+			break;
+		}
+
+		if(input.build_view)	{
+			input.Cam.x = input.Move.x;
+			input.Cam.y = input.Move.y;				
+			input.Move.x = 0;
+			input.Move.y = 0;
+		}
+
 
 		return Handled_Input;
 }

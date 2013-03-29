@@ -19,10 +19,13 @@ public:
 	~Controls(void);
 	
 	static int Mouse_Camera;
+	static void check_keyboard_player_change(const SDL_KeyboardEvent &event);
+	static void take_God_keyboard(const SDL_KeyboardEvent &event);
 
 	std::string give_stick_status();
 
-	bool take_keyboard_input(const SDL_KeyboardEvent &event, const int which);
+	bool take_keyboard_input(const SDL_KeyboardEvent &event);
+
 
 	bool HandleJoy(const SDL_JoyAxisEvent &event);
 	bool HandleJoy(const SDL_JoyHatEvent &event);
@@ -30,7 +33,7 @@ public:
 
 	/*		This function translates most control inputs into actions
 		Doesn't handle joystics, might split up into buttons and triggers*/
-	void interact_with_player(Player* Tron, const float &time);
+	void interact_with_player(Player* Tron , const float &time);
 
 	/* Adjust player view using right stick	*/
 	void adjust_Cam(Player* Tron);

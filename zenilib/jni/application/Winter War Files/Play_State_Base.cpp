@@ -48,7 +48,13 @@ void Play_State_Base::on_pop()	{
 }
 
 void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {
-	controllers[Controls::Mouse_Camera]->take_keyboard_input(event, 0);
+	Controls::check_keyboard_player_change(event);
+	
+	if(Controls::Mouse_Camera == -1)
+		Controls::take_God_keyboard(event);
+	else	
+		controllers[Controls::Mouse_Camera]->take_keyboard_input(event);
+
 	Gamestate_Base::on_key(event); // Let Gamestate_Base handle it
 } 
 
