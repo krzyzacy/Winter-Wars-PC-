@@ -19,12 +19,19 @@
 #include "MessageIdentifiers.h"
 #include "BitStream.h"
 #include "RakNetTypes.h"  // MessageID
+#include <vector>
 
 using namespace std;
 using namespace Zeni;
 
 #define MAX_CLIENTS 10
 #define SERVER_PORT 60000
+
+struct Client
+{
+	RakNet::SystemAddress ip_addr;
+	TEAM_INDEX color;
+};
 
 class Lobby_State : public Widget_Gamestate {
   Lobby_State(const Lobby_State &);
@@ -37,6 +44,8 @@ public:
 	  initialize();
 	  state = 0;
 	  room_created = false;
+	  room_status = 0;
+	  teamIndex = GREEN;
 	  get_Game().joy_mouse.enabled = true;
   }
   ~Lobby_State(){
@@ -50,6 +59,10 @@ private:
   RakNet::SocketDescriptor sd;
 
   bool room_created;
+  int room_status;
+  TEAM_INDEX teamIndex;
+  vector<Client> client_list;
+  RakNet::SystemAddress server_addr;
 
   void render_controls(int y){}
   void on_pop() {get_Game().joy_mouse.enabled = true;}
@@ -58,11 +71,15 @@ private:
 
   void on_joy_button(const SDL_JoyButtonEvent &event);
 
+  void perform_logic();
+
   void initialize();
 
   void createRoom();
 
   void searchRoom();
+
+  void changeTeam(TEAM_INDEX newTeam);
 
   void render();
 };
