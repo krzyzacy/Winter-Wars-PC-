@@ -15,6 +15,7 @@ class Moveable;
 class Collidable;
 class Effect;
 class Structure;
+class Tile;
 
 extern const float time_to_win_c; //max time it should take to win
 
@@ -57,6 +58,8 @@ public:
 
 	World* get_World()
 		{return world;}
+
+	Tile *get_tile(const Zeni::Point3f&);
 
 	void add_player(Player *);
 	void add_moveable(Moveable *);

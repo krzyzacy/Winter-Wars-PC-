@@ -134,7 +134,7 @@ void Team::set_Team_Color(TEAM_INDEX in)	{
 	add_tile(Base);
 	Base->set_covering(SOFT_SNOW);
 	Base->set_team(Team_Color);
-	Game_Model::get().add_structure(create_structure(BASE, Base, this));
+	create_structure(BASE, Base, this);
 }
 
 void Team::add_tile(Tile *t)	{
