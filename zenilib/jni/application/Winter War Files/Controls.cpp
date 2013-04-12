@@ -13,7 +13,7 @@ const int Stick_sensitivity = 8000;
 const int Trig_sensitivity = 5000;
 const float Move_factor = 32768;
 
-int Controls::Mouse_Camera = -1;
+int Controls::Mouse_Camera = 0;
 
 
 Controls::Controls(bool inverted_, int which_id_)	:

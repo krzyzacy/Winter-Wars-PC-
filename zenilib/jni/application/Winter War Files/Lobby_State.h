@@ -26,6 +26,7 @@ using namespace Zeni;
 
 #define MAX_CLIENTS 10
 #define SERVER_PORT 60000
+#define MAX_PLAYER_NUM 4
 
 struct Client
 {
@@ -39,13 +40,15 @@ class Lobby_State : public Widget_Gamestate {
 
 public:
   Lobby_State()
-    : Widget_Gamestate(make_pair(Point2f(0.0f, 0.0f), Point2f(800.0f, 600.0f)))
+    : Widget_Gamestate(make_pair(Point2f(0.0f, 0.0f), Point2f(800.0f, 600.0f))),client_list(MAX_PLAYER_NUM)
   {
 	  initialize();
 	  state = 0;
 	  room_created = false;
 	  room_status = 0;
 	  teamIndex = GREEN;
+	  isStarted = false;
+	  
 	  get_Game().joy_mouse.enabled = true;
   }
   ~Lobby_State(){
@@ -64,6 +67,10 @@ private:
   vector<Client> client_list;
   RakNet::SystemAddress server_addr;
 
+  RakNet::SystemAddress host_addr;
+  RakNet::SystemAddress self_addr;
+  bool isStarted;
+
   void render_controls(int y){}
   void on_pop() {get_Game().joy_mouse.enabled = true;}
 
@@ -74,6 +81,8 @@ private:
   void perform_logic();
 
   void initialize();
+
+  void start_game();
 
   void createRoom();
 

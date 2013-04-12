@@ -1,12 +1,15 @@
 #include "Lobby_State.h"
 
+
+
 enum GameMessages
 {
 	ID_GAME_MESSAGE_1 = ID_USER_PACKET_ENUM + 1,
 	CREATE_ROOM,
 	SEARCH_ROOM,
 	NO_ROOM,
-	TEAM_CHANGE
+	TEAM_CHANGE,
+	START_GAME
 };
 
 void Lobby_State::on_key(const SDL_KeyboardEvent &event) {
@@ -25,6 +28,14 @@ void Lobby_State::on_key(const SDL_KeyboardEvent &event) {
 
 	if(event.keysym.sym == SDLK_DOWN && event.state == SDL_PRESSED)
 		changeTeam( (TEAM_INDEX)(((int)teamIndex + 3) % 4));
+
+	if(event.keysym.sym == SDLK_RETURN && event.state == SDL_PRESSED){
+		if(room_created) {
+			isStarted = true;
+			start_game();
+		}
+	}
+
 }
 
 void Lobby_State::on_joy_button(const SDL_JoyButtonEvent &event) {
@@ -41,26 +52,40 @@ void Lobby_State::on_joy_button(const SDL_JoyButtonEvent &event) {
 }
 
 void Lobby_State::perform_logic(){
-	if(room_status == 1){
+	if(room_status == 1 || room_created){
+
+		
+		
 		for (packet=peer->Receive(); packet; peer->DeallocatePacket(packet), packet=peer->Receive())
 			{
 				switch (packet->data[0])
 				{
 					case TEAM_CHANGE:
 					{
+
+						RakNet::BitStream bsOut;
+						bsOut.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
+						bsOut.Write("perform logic");
+						peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,server_addr,false);
+
 						int num_client;
 
 						Client client;
 						RakNet::BitStream bsIn(packet->data,packet->length,false);
 						bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
 						bsIn.Read(num_client);
-
+						
 						//int num_client = rs.GetLength();
 						for(int i = 0; i < num_client; i ++)
 						{
 							bsIn.Read(client);
 							client_list[i] = client;
 						}
+
+						RakNet::BitStream bsOut2;
+						bsOut2.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
+						bsOut2.Write("after for loop");
+						peer->Send(&bsOut2,HIGH_PRIORITY,RELIABLE_ORDERED,0,server_addr,false);
 					}
 					break;
 
@@ -80,10 +105,9 @@ void Lobby_State::render() {
 		get_Fonts()["system_36_800x600"].render_text("B to searching for games" ,Point2f(155, 260), Color(0xFF33BBE8));
 	}
 	else if(room_created){
+
 		get_Fonts()["system_36_800x600"].render_text("ROOM CREATED" ,Point2f(155, 160), Color(0xFF33BBE8));
-	}
-	else if(room_status == 1){  // join game
-		get_Fonts()["system_36_800x600"].render_text("Joined Game" ,Point2f(155, 160), Color(0xFF33BBE8));
+
 		for(int i = 0; i < client_list.size(); i++){
 			if(client_list[i].color == GREEN)
 				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 190 + i * 30), Color(0xFF00FF00));
@@ -93,6 +117,24 @@ void Lobby_State::render() {
 				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 190 + i * 30), Color(0xFF0000FF));
 			if(client_list[i].color == ORANGE)
 				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 190 + i * 30), Color(0xFFFFFF00));
+		}
+	}
+	else if(room_status == 1){  // join game
+		get_Fonts()["system_36_800x600"].render_text("Joined Game" ,Point2f(155, 160), Color(0xFF33BBE8));
+
+		//get_Fonts()["system_36_800x600"].render_text(self_addr.ToString() ,Point2f(70, 190), Color(0xFF33BBE8));
+
+		for(int i = 0; i < client_list.size(); i++){
+			//if(client_list[i].ip_addr == self_addr) continue;
+
+			if(client_list[i].color == GREEN)
+				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 220 + i * 30), Color(0xFF00FF00));
+			if(client_list[i].color == RED)
+				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 220 + i * 30), Color(0xFFFF0000));
+			if(client_list[i].color == BLUE)
+				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 220 + i * 30), Color(0xFF0000FF));
+			if(client_list[i].color == ORANGE)
+				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 220 + i * 30), Color(0xFFFFFF00));
 		}
 	}
 	else if(room_status == -1){
@@ -107,6 +149,38 @@ void Lobby_State::initialize(){
 	peer = RakNet::RakPeerInterface::GetInstance();  
 	peer->Startup(1,&sd, 1);
 	peer->Connect("127.0.0.1", SERVER_PORT, 0,0);
+}
+
+void Lobby_State::start_game(){
+
+	vector<int> colors_(MAX_PLAYER_NUM);
+	vector<Zeni::String> genders_(MAX_PLAYER_NUM);
+	vector<int> controls_(MAX_PLAYER_NUM);
+	vector<int> sensitivities_(MAX_PLAYER_NUM);
+
+	for(int i = 0; i < MAX_PLAYER_NUM; i++)
+	{
+		RakNet::BitStream bsOut;
+		bsOut.Write((RakNet::MessageID)START_GAME);
+		bsOut.Write(i);
+		peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,server_addr,false);
+
+		if(i < client_list.size())
+		{
+			colors_[i] = client_list[i].color;
+		}
+		else
+		{
+			colors_[i] = GREEN;
+		}
+
+		genders_[i] = "Boy";
+		controls_[i] = 0;
+		sensitivities_[i] = 5;
+	}
+
+	//get_Game().pop_state();
+	get_Game().push_state(new Play_State_Base(genders_, colors_, controls_, sensitivities_));
 }
 
 void Lobby_State::createRoom(){
@@ -141,25 +215,28 @@ void Lobby_State::createRoom(){
 			case ID_CONNECTION_LOST:
 				printf("Connection lost.\n");
 				break;
-			case ID_GAME_MESSAGE_1:
-				{
-					RakNet::RakString rs;
-					RakNet::BitStream bsIn(packet->data,packet->length,false);
-					bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
-					bsIn.Read(rs);
-					printf("%s\n", rs.C_String());
-				}
-				break;
+
 			case CREATE_ROOM:
 				{
 					room_created = true;
+
+					RakNet::BitStream bsIn(packet->data,packet->length,false);
+					bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+					bsIn.Read(host_addr);
+
+					self_addr = host_addr;
+
+					Client host;
+					host.ip_addr = host_addr;
+					host.color = GREEN;
+					client_list.push_back(host);
 
 					RakNet::BitStream bsOut;
 					bsOut.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
 					bsOut.Write("ROOM CREATED");
 					peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,packet->systemAddress,false);
 				}
-			break;
+				break;
 			
 			
 			default:
@@ -206,25 +283,8 @@ void Lobby_State::searchRoom(){
 			case ID_CONNECTION_LOST:
 				printf("Connection lost.\n");
 				break;
-			case ID_GAME_MESSAGE_1:
-				{
-					RakNet::RakString rs;
-					RakNet::BitStream bsIn(packet->data,packet->length,false);
-					bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
-					bsIn.Read(rs);
-					printf("%s\n", rs.C_String());
-				}
-				break;
-			case CREATE_ROOM:
-				{
-					room_created = true;
 
-					RakNet::BitStream bsOut;
-					bsOut.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
-					bsOut.Write("ROOM CREATED");
-					peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,packet->systemAddress,false);
-				}
-			break;
+
 			case SEARCH_ROOM:
 				{
 					room_status = 1;
@@ -243,6 +303,9 @@ void Lobby_State::searchRoom(){
 						client_list.push_back(client);
 					}
 
+					host_addr = client_list[0].ip_addr;
+					self_addr = client_list[num_client - 1].ip_addr;
+
 
 					RakNet::BitStream bsOut;
 					bsOut.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
@@ -250,9 +313,19 @@ void Lobby_State::searchRoom(){
 					peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,packet->systemAddress,false);
 				}
 			break;
+
 			case NO_ROOM:
 				{
 					room_status = -1;
+				}
+			break;
+
+			case START_GAME:
+				{
+					if(!isStarted){
+						isStarted = true;
+						start_game();
+					}
 				}
 			break;
 			
