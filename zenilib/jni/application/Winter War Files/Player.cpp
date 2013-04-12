@@ -594,7 +594,7 @@ bool Player::create_building(Structure_Type Building)	{
 			return false;
 
 		get_team()->stats.structures[Building]++;
-		Game_Model::get().add_structure(create_structure(Building, t, myTeam));
+		create_structure(Building, t, myTeam);
 		return true;
 
 

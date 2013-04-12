@@ -67,6 +67,7 @@ Structure *create_structure(int type, Tile* ti, Team* team_)	{
 	}
 
 	ti->build_structure(st, team_);
+	Game_Model::get().add_structure(st);
 	return st;
 }
 

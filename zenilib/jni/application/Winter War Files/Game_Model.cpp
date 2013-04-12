@@ -360,3 +360,8 @@ void Game_Model::stop_bgm(){
 	if(bgm->is_playing())
 		bgm->stop();
 }
+
+Tile *Game_Model::get_tile(const Point3f& pos)
+{
+	return world->get_tile(pos);
+}
