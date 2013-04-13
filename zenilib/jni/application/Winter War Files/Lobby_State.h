@@ -1,17 +1,18 @@
-#include <zenilib.h>
+/*
+	Winter Wars Team
+	04/13/2013
+*/
 
-#include "Controls.h"
-#include "View.h"
-#include "Player.h"
-#include "Player_View.h"
-#include "Permanent.h"
+#ifndef LOBBY_STATE_H
+#define LOBBY_STATE_H
+
+#include <zenilib.h>
 
 #include "Play_State_Base.h"
 
 #include "String.h"
 #include <vector>
 #include "Team.h"
-#include "Object_factory.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -20,6 +21,7 @@
 #include "BitStream.h"
 #include "RakNetTypes.h"  // MessageID
 #include <vector>
+#include <map>
 
 using namespace std;
 using namespace Zeni;
@@ -36,14 +38,17 @@ struct Client
 
 class Lobby_State : public Widget_Gamestate {
   Lobby_State(const Lobby_State &);
-  Lobby_State operator=(const Lobby_State &);
 
 public:
   Lobby_State()
-    : Widget_Gamestate(make_pair(Point2f(0.0f, 0.0f), Point2f(800.0f, 600.0f))),client_list(MAX_PLAYER_NUM)
+    : Widget_Gamestate(make_pair(Point2f(0.0f, 0.0f), Point2f(800.0f, 600.0f))),client_list(MAX_PLAYER_NUM),state(0)
   {
 	  initialize();
-	  state = 0;
+	  color_to_int[GREEN] = 0xFF00FF00;
+	  color_to_int[RED] = 0xFFFF0000;
+	  color_to_int[BLUE] = 0xFF0000FF;
+	  color_to_int[ORANGE] = 0xFFFF6600;
+
 	  room_created = false;
 	  room_status = 0;
 	  teamIndex = GREEN;
@@ -56,6 +61,9 @@ public:
   }
 
 private:
+
+  map<TEAM_INDEX, Uint32> color_to_int; 
+
   int state;
   RakNet::RakPeerInterface * peer;
   RakNet::Packet * packet;
@@ -92,3 +100,5 @@ private:
 
   void render();
 };
+
+#endif

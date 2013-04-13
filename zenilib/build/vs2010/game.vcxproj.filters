@@ -79,11 +79,11 @@
     <Filter Include="jni\application\Raknet Code">
       <UniqueIdentifier>{daa7374a-a1c8-4e6f-949a-c926ae5002a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="jni\application\Winter War Files\Game_States">
+      <UniqueIdentifier>{ac09f108-6bea-4d24-8634-f33f81deb930}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Play_State_Base.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\Team.h">
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
@@ -511,9 +511,6 @@
       <Filter>jni\application\Winter War Files\Animators</Filter>
     </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\Effect.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\End_Game_State.h">
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\Base.h">
@@ -984,14 +981,20 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Event.h">
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\End_Game_State.h">
+      <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Play_State_Base.h">
+      <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Instructions_State.h">
+      <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Team_Select_State.h">
+      <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\jni\application\Winter War Files\bootstrap.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Play_State_Base.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
       <Filter>jni\application\Winter War Files</Filter>
     </ClCompile>
@@ -1071,9 +1074,6 @@
       <Filter>jni\application\Winter War Files\Animators</Filter>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Effect.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\End_Game_State.cpp">
       <Filter>jni\application\Winter War Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Base.cpp">
@@ -1411,6 +1411,27 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Event.cpp">
       <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\End_Game_State.cpp">
+      <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Play_State_Base.cpp">
+      <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\bootstrap.cpp">
+      <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Instructions_State.cpp">
+      <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Team_Select_State.cpp">
+      <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Mode_State.h">
+      <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Credits_State.h">
+      <Filter>jni\application\Winter War Files\Game_States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

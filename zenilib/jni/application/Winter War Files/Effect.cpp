@@ -1,3 +1,8 @@
+/*
+	Winter Wars Team
+	04/13/2013
+*/
+
 #include "Effect.h"
 #include "Seen_Object.h"
 

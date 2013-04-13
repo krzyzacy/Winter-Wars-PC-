@@ -1,3 +1,9 @@
+/*
+	Winter Wars Team
+	04/13/2013
+*/
+
+
 #include "Lobby_State.h"
 
 
@@ -17,11 +23,14 @@ void Lobby_State::on_key(const SDL_KeyboardEvent &event) {
 		get_Game().pop_state();
 	if(event.keysym.sym == SDLK_a && event.state == SDL_PRESSED)
 	{
-		if(!room_created)
+		if(!room_created && room_status == 0)
 			createRoom();
 	}
 	if(event.keysym.sym == SDLK_b && event.state == SDL_PRESSED)
-		searchRoom();
+	{
+		if(!room_created && room_status == 0)
+			searchRoom();
+	}
 
 	if(event.keysym.sym == SDLK_UP && event.state == SDL_PRESSED)
 		changeTeam( (TEAM_INDEX)(((int)teamIndex + 1) % 4));
@@ -63,11 +72,6 @@ void Lobby_State::perform_logic(){
 					case TEAM_CHANGE:
 					{
 
-						RakNet::BitStream bsOut;
-						bsOut.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
-						bsOut.Write("perform logic");
-						peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,server_addr,false);
-
 						int num_client;
 
 						Client client;
@@ -81,11 +85,15 @@ void Lobby_State::perform_logic(){
 							bsIn.Read(client);
 							client_list[i] = client;
 						}
+					}
+					break;
 
-						RakNet::BitStream bsOut2;
-						bsOut2.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
-						bsOut2.Write("after for loop");
-						peer->Send(&bsOut2,HIGH_PRIORITY,RELIABLE_ORDERED,0,server_addr,false);
+					case START_GAME:
+					{
+						if(!isStarted){
+							isStarted = true;
+							start_game();
+						}
 					}
 					break;
 
@@ -101,40 +109,36 @@ void Lobby_State::render() {
 	Widget_Gamestate::render();
 	get_Fonts()["system_36_800x600"].render_text("Game Lobby v0.0" ,Point2f(155, 60), Color(0xFF33BBE8));
 	if(!room_created && !room_status){
-		get_Fonts()["system_36_800x600"].render_text("A to create a new game" ,Point2f(155, 160), Color(0xFF33BBE8));
-		get_Fonts()["system_36_800x600"].render_text("B to searching for games" ,Point2f(155, 260), Color(0xFF33BBE8));
+		get_Fonts()["system_36_800x600"].render_text("A to create a new game" ,Point2f(100, 180), Color(0xFF33BBE8));
+		get_Fonts()["system_36_800x600"].render_text("B to searching for games" ,Point2f(100, 250), Color(0xFF33BBE8));
 	}
 	else if(room_created){
 
 		get_Fonts()["system_36_800x600"].render_text("ROOM CREATED" ,Point2f(155, 160), Color(0xFF33BBE8));
 
+		get_Fonts()["system_36_800x600"].render_text(self_addr.ToString() ,Point2f(70, 190), Color(color_to_int[teamIndex]));
+		int counter = 0;
 		for(int i = 0; i < client_list.size(); i++){
-			if(client_list[i].color == GREEN)
-				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 190 + i * 30), Color(0xFF00FF00));
-			if(client_list[i].color == RED)
-				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 190 + i * 30), Color(0xFFFF0000));
-			if(client_list[i].color == BLUE)
-				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 190 + i * 30), Color(0xFF0000FF));
-			if(client_list[i].color == ORANGE)
-				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 190 + i * 30), Color(0xFFFFFF00));
+			if(client_list[i].ip_addr == self_addr)
+				continue;
+			else
+				counter++;
+
+			get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 190 + counter * 30), Color(color_to_int[client_list[i].color]));
 		}
 	}
 	else if(room_status == 1){  // join game
 		get_Fonts()["system_36_800x600"].render_text("Joined Game" ,Point2f(155, 160), Color(0xFF33BBE8));
 
-		//get_Fonts()["system_36_800x600"].render_text(self_addr.ToString() ,Point2f(70, 190), Color(0xFF33BBE8));
-
+		get_Fonts()["system_36_800x600"].render_text(self_addr.ToString() ,Point2f(70, 190), Color(color_to_int[teamIndex]));
+		int counter = 0;
 		for(int i = 0; i < client_list.size(); i++){
-			//if(client_list[i].ip_addr == self_addr) continue;
+			if(client_list[i].ip_addr == self_addr)
+				continue;
+			else
+				counter++;
 
-			if(client_list[i].color == GREEN)
-				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 220 + i * 30), Color(0xFF00FF00));
-			if(client_list[i].color == RED)
-				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 220 + i * 30), Color(0xFFFF0000));
-			if(client_list[i].color == BLUE)
-				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 220 + i * 30), Color(0xFF0000FF));
-			if(client_list[i].color == ORANGE)
-				get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 220 + i * 30), Color(0xFFFFFF00));
+			get_Fonts()["system_36_800x600"].render_text(client_list[i].ip_addr.ToString() ,Point2f(70, 190 + counter * 30), Color(color_to_int[client_list[i].color]));
 		}
 	}
 	else if(room_status == -1){
@@ -229,7 +233,7 @@ void Lobby_State::createRoom(){
 					Client host;
 					host.ip_addr = host_addr;
 					host.color = GREEN;
-					client_list.push_back(host);
+					client_list[0] = host;
 
 					RakNet::BitStream bsOut;
 					bsOut.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
@@ -290,26 +294,27 @@ void Lobby_State::searchRoom(){
 					room_status = 1;
 
 					int num_client;
+					RakNet::SystemAddress temp_addr;
 
 					Client client;
 					RakNet::BitStream bsIn(packet->data,packet->length,false);
 					bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
 					bsIn.Read(num_client);
+					bsIn.Read(temp_addr);
 
 					//int num_client = rs.GetLength();
 					for(int i = 0; i < num_client; i ++)
 					{
 						bsIn.Read(client);
-						client_list.push_back(client);
+						client_list[i] = client;
 					}
 
 					host_addr = client_list[0].ip_addr;
-					self_addr = client_list[num_client - 1].ip_addr;
-
+					self_addr = temp_addr;
 
 					RakNet::BitStream bsOut;
 					bsOut.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
-					bsOut.Write("Thanks");
+					bsOut.Write(self_addr.ToString());
 					peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,packet->systemAddress,false);
 				}
 			break;
@@ -317,15 +322,6 @@ void Lobby_State::searchRoom(){
 			case NO_ROOM:
 				{
 					room_status = -1;
-				}
-			break;
-
-			case START_GAME:
-				{
-					if(!isStarted){
-						isStarted = true;
-						start_game();
-					}
 				}
 			break;
 			
