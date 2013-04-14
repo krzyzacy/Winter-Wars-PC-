@@ -82,6 +82,20 @@ void Game_Model::start_up(const vector<String> &genders_, const vector<int> &col
 		play_bgm();
 }
 
+void Game_Model::initialize_peer(bool isServer){
+	
+
+	if(isServer){
+		peer = new Ingame_Server();
+	}
+	else{
+		peer = new Ingame_Client();
+	}
+
+	peer->start_peer();
+
+}
+
 void Game_Model::restart()
 {
 	vector<String> genders;

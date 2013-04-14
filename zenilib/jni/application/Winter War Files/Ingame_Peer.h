@@ -28,14 +28,17 @@
 
 class Ingame_Peer{
 
-	Ingame_Peer();
-	~Ingame_Peer();
+public:
+	virtual Ingame_Peer();
+	virtual ~Ingame_Peer();
 
 
-	RakNet::RakPeerInterface peer;
-	virtual void initialize(bool isServer);
-	virtual void send(Event * e);
-	virtual void 
+	RakNet::RakPeerInterface * peer;
+	RakNet::SocketDescriptor * sd;
+
+	virtual void start_peer(RakNet::SystemAddress addr);
+	virtual void send(WWEvent * e);
+
 
 };
 

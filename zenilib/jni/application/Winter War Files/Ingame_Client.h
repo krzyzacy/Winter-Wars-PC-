@@ -11,6 +11,7 @@
 #include <zenilib.h>
 
 #include "Ingame_Peer.h"
+#include "Utility.h"
 
 #include "String.h"
 #include <vector>
@@ -26,7 +27,12 @@
 
 class Ingame_Client: public Ingame_Peer
 {
-	virtual void initialize(bool isServer);
+
+public:
+	Ingame_Client();
+	~Ingame_Client();
+
+	virtual void start_peer(RakNet::SystemAddress addr);
 	virtual void send(WWEvent * e);
 
 };

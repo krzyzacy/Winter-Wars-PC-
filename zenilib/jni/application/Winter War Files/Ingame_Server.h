@@ -9,11 +9,11 @@
 
 #include <zenilib.h>
 
-#include "Play_State_Base.h"
+#include "Ingame_Peer.h"
+#include "Utility.h"
 
 #include "String.h"
 #include <vector>
-#include "Team.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -23,6 +23,19 @@
 #include "RakNetTypes.h"  // MessageID
 #include <vector>
 #include <map>
+
+class Ingame_Server: public Ingame_Peer
+{
+
+public:
+	Ingame_Server();
+	~Ingame_Server();
+
+	
+	virtual void start_peer(RakNet::SystemAddress addr);
+	virtual void send(WWEvent * e);
+
+};
 
 
 

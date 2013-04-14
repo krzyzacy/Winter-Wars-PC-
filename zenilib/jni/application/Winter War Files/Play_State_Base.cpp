@@ -10,10 +10,11 @@
 #include "Team.h"
 #include "End_Game_State.h"
 
-Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<int> &colors_, const vector<int> &controls_, const vector<int> &sensitivities_)	:
+Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<int> &colors_, const vector<int> &controls_, const vector<int> &sensitivities_, bool isLocalGame_ = true, bool isServer_ = false)	:
 	m_prev_clear_color(get_Video().get_clear_Color()),
 	genders(genders_),
-	teams(colors_)
+	teams(colors_),
+	isLocal(isLocalGame_), isServer(isServer_)
 {		
 		set_pausable(true);
 		for(int i = 0; i < 4; i++)	{
@@ -37,6 +38,9 @@ void Play_State_Base::on_push()	{
 		get_Video().set_clear_Color(Color(0,.1,.1,.1));
 		get_Game().joy_mouse.enabled = false;
 		Game_Model::get().start_up(genders, teams);
+
+		if(!isLocal)
+			Game_Model::get().initialize_peer(isServer);
 }
 
 void Play_State_Base::on_pop()	{

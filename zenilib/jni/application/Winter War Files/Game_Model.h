@@ -5,6 +5,11 @@
 #include <String>
 
 #include "Collision_Table.h"
+#include "RakPeerInterface.h"
+#include "Utility.h"
+#include "Ingame_Client.h"
+#include "Ingame_Server.h"
+#include "Ingame_Peer.h"
 
 class Seen_Object;
 class View;
@@ -33,6 +38,7 @@ public:
 	void update();
 	void render() const;
 	void start_up(const std::vector<Zeni::String> &genders_, const std::vector<int> &colors_);
+	void initialize_peer(bool isServer);
 	void restart();
 	void finish();
 
@@ -58,6 +64,9 @@ public:
 
 	World* get_World()
 		{return world;}
+
+	Ingame_Peer * get_peer()
+		{return peer;}
 
 	Tile *get_tile(const Zeni::Point3f&);
 
@@ -85,6 +94,9 @@ public:
 	void stop_bgm();
 private:
 	
+	// RakNet Peer Interface
+	Ingame_Peer * peer;
+
 	Zeni::Chronometer<Zeni::Time> PlayTime;
 	float time_passed;
 	float time_step;

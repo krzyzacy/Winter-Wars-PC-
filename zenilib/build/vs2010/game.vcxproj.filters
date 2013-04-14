@@ -82,12 +82,15 @@
     <Filter Include="jni\application\Winter War Files\Game_States">
       <UniqueIdentifier>{ac09f108-6bea-4d24-8634-f33f81deb930}</UniqueIdentifier>
     </Filter>
+    <Filter Include="jni\application\Winter War Files\Client/Server">
+      <UniqueIdentifier>{2eac5239-c8bb-435f-a803-9d9af9dbf33e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni\application\Winter War Files\Environment">
+      <UniqueIdentifier>{48b00eea-d593-43ed-a818-3098458b5461}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\jni\application\Winter War Files\Team.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Tile.h">
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\Utility.h">
@@ -511,9 +514,6 @@
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\Base.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Lobby_State.h">
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\jni\application\Raknet\Source\_FindFirst.h">
@@ -975,9 +975,6 @@
     <ClInclude Include="..\..\jni\application\Raknet\Source\XBox360Includes.h">
       <Filter>jni\application\Raknet Code</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Event.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\End_Game_State.h">
       <Filter>jni\application\Winter War Files\Game_States</Filter>
     </ClInclude>
@@ -991,23 +988,29 @@
       <Filter>jni\application\Winter War Files\Game_States</Filter>
     </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Client.h">
-      <Filter>jni\application</Filter>
+      <Filter>jni\application\Winter War Files\Client/Server</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Peer.h">
-      <Filter>jni\application</Filter>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Lobby_State.h">
+      <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\World.h">
+      <Filter>jni\application\Winter War Files\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Tile.h">
+      <Filter>jni\application\Winter War Files\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Event.h">
+      <Filter>jni\application\Winter War Files\Client/Server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Server.h">
-      <Filter>jni\application</Filter>
+      <Filter>jni\application\Winter War Files\Client/Server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Peer.h">
+      <Filter>jni\application\Winter War Files\Client/Server</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Tile.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\World.cpp">
       <Filter>jni\application\Winter War Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Collidable.cpp">
@@ -1083,9 +1086,6 @@
       <Filter>jni\application\Winter War Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Base.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Lobby_State.cpp">
       <Filter>jni\application\Winter War Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Raknet\Source\_FindFirst.cpp">
@@ -1415,9 +1415,6 @@
     <ClCompile Include="..\..\jni\application\Raknet\Source\WSAStartupSingleton.cpp">
       <Filter>jni\application\Raknet Code</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Event.cpp">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\End_Game_State.cpp">
       <Filter>jni\application\Winter War Files\Game_States</Filter>
     </ClCompile>
@@ -1440,13 +1437,25 @@
       <Filter>jni\application\Winter War Files\Game_States</Filter>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Client.cpp">
-      <Filter>jni\application</Filter>
+      <Filter>jni\application\Winter War Files\Client/Server</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Peer.cpp">
-      <Filter>jni\application</Filter>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Lobby_State.cpp">
+      <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\World.cpp">
+      <Filter>jni\application\Winter War Files\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Tile.cpp">
+      <Filter>jni\application\Winter War Files\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Event.cpp">
+      <Filter>jni\application\Winter War Files\Client/Server</Filter>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Server.cpp">
-      <Filter>jni\application</Filter>
+      <Filter>jni\application\Winter War Files\Client/Server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Peer.cpp">
+      <Filter>jni\application\Winter War Files\Client/Server</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -184,7 +184,7 @@ void Lobby_State::start_game(){
 	}
 
 	//get_Game().pop_state();
-	get_Game().push_state(new Play_State_Base(genders_, colors_, controls_, sensitivities_));
+	get_Game().push_state(new Play_State_Base(genders_, colors_, controls_, sensitivities_, false, room_created));
 }
 
 void Lobby_State::createRoom(){

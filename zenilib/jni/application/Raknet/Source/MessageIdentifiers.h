@@ -421,7 +421,20 @@ enum DefaultMessageIDTypes
 	ID_RESERVED_9,
 
 	// For the user to use.  Start your first enumeration at this value.
-	ID_USER_PACKET_ENUM
+	ID_USER_PACKET_ENUM,
+
+	ID_GAME_MESSAGE_1,
+	CREATE_ROOM,
+	SEARCH_ROOM,
+	NO_ROOM,
+	TEAM_CHANGE,
+	START_GAME,
+
+	// communication within game
+
+
+
+
 	//-------------------------------------------------------------------------------------------------------------
  
 };
