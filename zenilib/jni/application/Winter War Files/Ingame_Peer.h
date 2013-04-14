@@ -4,6 +4,8 @@
 	04/14/2013
 */
 
+#pragma once
+
 #ifndef INGAME_PEER_H
 #define INGAME_PEER_H
 
@@ -13,10 +15,10 @@
 
 #include "String.h"
 #include <vector>
-#include "Team.h"
 
 #include <stdio.h>
 #include <string.h>
+#include "Event.h"
 #include "RakPeerInterface.h"
 #include "MessageIdentifiers.h"
 #include "BitStream.h"
@@ -24,7 +26,18 @@
 #include <vector>
 #include <map>
 
-class Ingame_Peer
+class Ingame_Peer{
+
+	Ingame_Peer();
+	~Ingame_Peer();
+
+
+	RakNet::RakPeerInterface peer;
+	virtual void initialize(bool isServer);
+	virtual void send(Event * e);
+	virtual void 
+
+};
 
 
 #endif
