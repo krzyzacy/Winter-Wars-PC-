@@ -382,6 +382,9 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Fortress.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Game_Model.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Healing_Pool.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Client.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Peer.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Server.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Instructions_State.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Lobby_State.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Moveable.h" />
@@ -406,7 +409,6 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Tree.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Utility.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\View.h" />
-    <ClInclude Include="..\..\jni\application\Winter War Files\World.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zenilib.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni\zeni.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Android.h" />
@@ -650,6 +652,9 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClCompile Include="..\..\jni\application\Winter War Files\Game_Model.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Healing_Pool.cpp" />
+    <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Client.cpp" />
+    <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Peer.cpp" />
+    <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Server.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Instructions_State.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Lobby_State.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Mode_State.h" />

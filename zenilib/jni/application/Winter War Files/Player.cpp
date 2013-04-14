@@ -8,6 +8,7 @@
 #include "Object_factory.h"
 #include "PlayerAnimator.h"
 #include "PlayerAnimators.h"
+#include "Event.h"
 
 #include <zenilib.h>
 
@@ -594,7 +595,7 @@ bool Player::create_building(Structure_Type Building)	{
 			return false;
 
 		get_team()->stats.structures[Building]++;
-		create_structure(Building, t, myTeam);
+		new Build_Event(create_structure(Building, t, myTeam));
 		return true;
 
 

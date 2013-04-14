@@ -7,13 +7,13 @@
 #ifndef INGAME_CLIENT_H
 #define INGAME_CLIENT_H
 
+
 #include <zenilib.h>
 
-#include "Play_State_Base.h"
+#include "Ingame_Peer.h"
 
 #include "String.h"
 #include <vector>
-#include "Team.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -24,6 +24,11 @@
 #include <vector>
 #include <map>
 
+class Ingame_Client: public Ingame_Peer
+{
+	virtual void initialize(bool isServer);
+	virtual void send(WWEvent * e);
 
+};
 
 #endif

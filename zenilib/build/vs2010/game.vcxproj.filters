@@ -93,9 +93,6 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Utility.h">
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\jni\application\Winter War Files\World.h">
-      <Filter>jni\application\Winter War Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\jni\external\zenilib\zenilib.h">
       <Filter>jni\external\zenilib</Filter>
     </ClInclude>
@@ -993,6 +990,15 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Team_Select_State.h">
       <Filter>jni\application\Winter War Files\Game_States</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Client.h">
+      <Filter>jni\application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Peer.h">
+      <Filter>jni\application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Server.h">
+      <Filter>jni\application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
@@ -1432,6 +1438,15 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Credits_State.h">
       <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Client.cpp">
+      <Filter>jni\application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Peer.cpp">
+      <Filter>jni\application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Server.cpp">
+      <Filter>jni\application</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

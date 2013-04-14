@@ -2,8 +2,9 @@
 #include "Event.h"
 
 #include  "Player.h"
-#include "Snowman.h"
+#include "Structure.h"
 #include "Team.h"
+#include "Ingame_Peer.h"
 
 #include "Object_factory.h"
 #include "Game_Model.h"
@@ -11,7 +12,7 @@
 
 using namespace Zeni;
 
-Build_Event::Build_Event(Snowman *snowman)
+Build_Event::Build_Event(Structure *snowman)
 	: type(SNOWMAN), tile(snowman->get_top_center()), team_color(snowman->get_team_pt()->get_Team_Index())
 {
 

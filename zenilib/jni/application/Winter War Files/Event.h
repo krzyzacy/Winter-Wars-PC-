@@ -7,9 +7,9 @@
 
 #include "BitStream.h"
 class Player;
-class Snowman;
+class Structure;
 
-class Event
+class WWEvent
 {
 public :
 	virtual RakNet::BitStream *package() = 0;
@@ -19,10 +19,10 @@ public :
 
 };
 
-class Build_Event : public Event
+class Build_Event : public WWEvent
 {
 public:	
-	Build_Event(Snowman *);
+	Build_Event(Structure *);
 	Build_Event(){}
 
 	virtual RakNet::BitStream *package();
