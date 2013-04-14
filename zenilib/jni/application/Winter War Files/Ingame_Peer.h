@@ -29,15 +29,16 @@
 class Ingame_Peer{
 
 public:
-	virtual Ingame_Peer();
-	virtual ~Ingame_Peer();
+	Ingame_Peer() {} 
+	virtual ~Ingame_Peer() {}
 
 
 	RakNet::RakPeerInterface * peer;
 	RakNet::SocketDescriptor * sd;
+	RakNet::SystemAddress host_addr;
 
-	virtual void start_peer(RakNet::SystemAddress addr);
-	virtual void send(WWEvent * e);
+	virtual void start_peer(RakNet::SystemAddress addr) {}
+	virtual void send(WWEvent * e) {}
 
 
 };

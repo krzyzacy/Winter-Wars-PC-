@@ -10,11 +10,12 @@
 #include "Team.h"
 #include "End_Game_State.h"
 
-Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<int> &colors_, const vector<int> &controls_, const vector<int> &sensitivities_, bool isLocalGame_ = true, bool isServer_ = false)	:
+Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<int> &colors_, const vector<int> &controls_, const vector<int> &sensitivities_,
+			bool isLocalGame_, bool isServer_, RakNet::SystemAddress server_addr)	:
 	m_prev_clear_color(get_Video().get_clear_Color()),
 	genders(genders_),
 	teams(colors_),
-	isLocal(isLocalGame_), isServer(isServer_)
+	isLocal(isLocalGame_), isServer(isServer_), host_addr(server_addr)
 {		
 		set_pausable(true);
 		for(int i = 0; i < 4; i++)	{
@@ -40,7 +41,7 @@ void Play_State_Base::on_push()	{
 		Game_Model::get().start_up(genders, teams);
 
 		if(!isLocal)
-			Game_Model::get().initialize_peer(isServer);
+			Game_Model::get().initialize_peer(isServer, host_addr);
 }
 
 void Play_State_Base::on_pop()	{

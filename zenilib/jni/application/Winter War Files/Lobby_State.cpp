@@ -7,17 +7,6 @@
 #include "Lobby_State.h"
 
 
-
-enum GameMessages
-{
-	ID_GAME_MESSAGE_1 = ID_USER_PACKET_ENUM + 1,
-	CREATE_ROOM,
-	SEARCH_ROOM,
-	NO_ROOM,
-	TEAM_CHANGE,
-	START_GAME
-};
-
 void Lobby_State::on_key(const SDL_KeyboardEvent &event) {
 	if(event.keysym.sym == SDLK_ESCAPE && event.state == SDL_PRESSED)
 		get_Game().pop_state();
@@ -184,7 +173,7 @@ void Lobby_State::start_game(){
 	}
 
 	//get_Game().pop_state();
-	get_Game().push_state(new Play_State_Base(genders_, colors_, controls_, sensitivities_, false, room_created));
+	get_Game().push_state(new Play_State_Base(genders_, colors_, controls_, sensitivities_, false, room_created, host_addr));
 }
 
 void Lobby_State::createRoom(){

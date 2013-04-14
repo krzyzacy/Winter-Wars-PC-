@@ -6,6 +6,9 @@
 
 #include "Collision_Table.h"
 #include "RakPeerInterface.h"
+#include "MessageIdentifiers.h"
+#include "BitStream.h"
+#include "RakNetTypes.h"
 #include "Utility.h"
 #include "Ingame_Client.h"
 #include "Ingame_Server.h"
@@ -38,7 +41,7 @@ public:
 	void update();
 	void render() const;
 	void start_up(const std::vector<Zeni::String> &genders_, const std::vector<int> &colors_);
-	void initialize_peer(bool isServer);
+	void initialize_peer(bool isServer, RakNet::SystemAddress host_addr);
 	void restart();
 	void finish();
 

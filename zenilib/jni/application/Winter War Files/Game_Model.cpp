@@ -82,7 +82,7 @@ void Game_Model::start_up(const vector<String> &genders_, const vector<int> &col
 		play_bgm();
 }
 
-void Game_Model::initialize_peer(bool isServer){
+void Game_Model::initialize_peer(bool isServer, RakNet::SystemAddress host_addr){
 	
 
 	if(isServer){
@@ -92,7 +92,7 @@ void Game_Model::initialize_peer(bool isServer){
 		peer = new Ingame_Client();
 	}
 
-	peer->start_peer();
+	peer->start_peer(host_addr);
 
 }
 
