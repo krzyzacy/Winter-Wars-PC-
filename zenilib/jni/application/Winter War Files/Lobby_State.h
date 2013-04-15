@@ -49,6 +49,12 @@ public:
 	  color_to_int[BLUE] = 0xFF0000FF;
 	  color_to_int[ORANGE] = 0xFFFF6600;
 
+	  client_list[0].color = GREEN;
+	  client_list[1].color = GREEN;
+	  client_list[2].color = GREEN;
+	  client_list[3].color = GREEN;
+
+
 	  room_created = false;
 	  room_status = 0;
 	  teamIndex = GREEN;

@@ -160,11 +160,11 @@ void Lobby_State::start_game(){
 
 		if(i < client_list.size())
 		{
-			colors_[i] = client_list[i].color;
+			colors_[i] = (int)client_list[i].color - 1;
 		}
 		else
 		{
-			colors_[i] = GREEN;
+			colors_[i] = 0;
 		}
 
 		genders_[i] = "Boy";
