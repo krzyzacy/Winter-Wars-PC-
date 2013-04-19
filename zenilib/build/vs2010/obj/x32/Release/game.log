@@ -1,7 +1,7 @@
-﻿Build started 4/14/2013 4:18:12 PM.
+﻿Build started 4/18/2013 8:19:24 PM.
      1>Project "H:\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "obj\x32\Release\game.unsuccessfulbuild".
+         Creating "obj\x32\Release\game.unsuccessfulbuild" because "AlwaysCreate" was specified.
        PreBuildEvent:
          xcopy ..\..\dev\pc_ ..\.. /E /Y
          xcopy ..\..\jni\external\bin\x32 ..\..\bin\x32 /E /Y
@@ -20,3 +20,44 @@
          ..\..\jni\external\bin\x32\OpenAL32.dll
          ..\..\jni\external\bin\x32\vccorlib110.dll
          6 File(s) copied
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application\Raknet\Source /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Base.cpp" "..\..\jni\application\Winter War Files\Collision_Table.cpp" "..\..\jni\application\Winter War Files\Effect.cpp" "..\..\jni\application\Winter War Files\End_Game_State.cpp" "..\..\jni\application\Winter War Files\Event.cpp" "..\..\jni\application\Winter War Files\Game_Model.cpp" "..\..\jni\application\Winter War Files\Healing_Pool.cpp" "..\..\jni\application\Winter War Files\Ingame_Client.cpp" "..\..\jni\application\Winter War Files\Ingame_Peer.cpp" "..\..\jni\application\Winter War Files\Ingame_Server.cpp" "..\..\jni\application\Winter War Files\Moveable.cpp" "..\..\jni\application\Winter War Files\Object_factory.cpp" "..\..\jni\application\Winter War Files\Play_State_Base.cpp" "..\..\jni\application\Winter War Files\Player.cpp" "..\..\jni\application\Winter War Files\PlayerAnimators.cpp" "..\..\jni\application\Winter War Files\Player_View.cpp" "..\..\jni\application\Winter War Files\Seen_Object.cpp" "..\..\jni\application\Winter War Files\Snow_Factory.cpp" "..\..\jni\application\Winter War Files\Snowball.cpp" "..\..\jni\application\Winter War Files\Snowman.cpp" "..\..\jni\application\Winter War Files\Structure.cpp" "..\..\jni\application\Winter War Files\StructureAnimators.cpp" "..\..\jni\application\Winter War Files\Team.cpp" "..\..\jni\application\Winter War Files\Tile.cpp" "..\..\jni\application\Winter War Files\Tree.cpp" "..\..\jni\application\Winter War Files\World.cpp"
+         Base.cpp
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(54): warning C4100: 'person' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(54): warning C4100: 'color' : unreferenced formal parameter
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(84) : see previous definition of 'INADDR_ANY'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(93) : see previous definition of 'INADDR_BROADCAST'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(87) : see previous definition of 'INADDR_NONE'
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Ingame_Peer.h(40): warning C4100: 'addr' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Ingame_Peer.h(41): warning C4100: 'e' : unreferenced formal parameter
+     1>..\..\jni\application\Winter War Files\Base.cpp(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Base.cpp(32): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Base.cpp(35): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Base.cpp(38): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Base.cpp(24): warning C4100: 'time' : unreferenced formal parameter
+     1>..\..\jni\application\Winter War Files\Base.cpp(68): warning C4552: '-' : operator has no effect; expected operator with side-effect
+     1>..\..\jni\application\Winter War Files\Base.cpp(84): warning C4100: 'damage' : unreferenced formal parameter
+         Collision_Table.cpp
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(84) : see previous definition of 'INADDR_ANY'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(93) : see previous definition of 'INADDR_BROADCAST'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(87) : see previous definition of 'INADDR_NONE'
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Ingame_Peer.h(40): warning C4100: 'addr' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Ingame_Peer.h(41): warning C4100: 'e' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(54): warning C4100: 'person' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(54): warning C4100: 'color' : unreferenced formal parameter
+     1>..\..\jni\application\Winter War Files\Collision_Table.cpp(67): warning C4100: 'b2' : unreferenced formal parameter
+     1>..\..\jni\application\Winter War Files\Collision_Table.cpp(67): warning C4100: 'b1' : unreferenced formal parameter
+     1>..\..\jni\application\Winter War Files\Collision_Table.cpp(119): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\jni\application\Winter War Files\Collision_Table.cpp(180): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\jni\application\Winter War Files\Collision_Table.cpp(182): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Effect.cpp

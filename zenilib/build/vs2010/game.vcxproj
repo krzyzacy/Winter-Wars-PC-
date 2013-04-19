@@ -27,7 +27,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -82,7 +82,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\jni\application;..\..\jni\external\zenilib;..\..\jni\external\zenilib\zeni_rest;..\..\jni\external\zenilib\zeni_graphics;..\..\jni\external\zenilib\zeni_net;..\..\jni\external\zenilib\zeni_core;..\..\jni\external\zenilib\zeni_audio;..\..\jni\external\libvorbis\include;..\..\jni\external\libogg\include;..\..\jni\external\zenilib\zeni;..\..\jni\external\sdl_net;..\..\jni\external\sdl;..\..\jni\external\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\EECS494FinalProject\zenilib\jni\application\Raknet\Source;..\..\jni\application;..\..\jni\external\zenilib;..\..\jni\external\zenilib\zeni_rest;..\..\jni\external\zenilib\zeni_graphics;..\..\jni\external\zenilib\zeni_net;..\..\jni\external\zenilib\zeni_core;..\..\jni\external\zenilib\zeni_audio;..\..\jni\external\libvorbis\include;..\..\jni\external\libogg\include;..\..\jni\external\zenilib\zeni;..\..\jni\external\sdl_net;..\..\jni\external\sdl;..\..\jni\external\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDOWS;WIN32;_CRT_SECURE_NO_DEPRECATE;_DEBUG;DEBUG;TEST_NASTY_CONDITIONS;DISABLE_CPP11;GLEW_NO_GLU;DISABLE_CG;ZLIB_DLL;OGG_DLL=__declspec(dllimport);VORBIS_DLL=__declspec(dllimport);VORBISFILE_DLL=__declspec(dllimport);LIB3DSAPI=__declspec(dllimport);TINYXML_DLL=__declspec(dllimport);TINYXML_EXT=extern;ZENI_DLL=__declspec(dllimport);ZENI_EXT=extern;ZENI_AUDIO_DLL=__declspec(dllimport);ZENI_AUDIO_EXT=extern;ZENI_CORE_DLL=__declspec(dllimport);ZENI_CORE_EXT=extern;ZENI_GRAPHICS_DLL=__declspec(dllimport);ZENI_GRAPHICS_EXT=extern;ZENI_NET_DLL=__declspec(dllimport);ZENI_NET_EXT=extern;ZENI_REST_DLL=__declspec(dllimport);ZENI_REST_EXT=extern;ENABLE_XINPUT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -102,7 +102,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>local_SDLmain_d.lib;zeni_rest_d.lib;zeni_graphics_d.lib;zeni_net_d.lib;zeni_core_d.lib;zeni_audio_d.lib;zeni_d.lib;local_SDL_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;local_SDLmain_d.lib;zeni_rest_d.lib;zeni_graphics_d.lib;zeni_net_d.lib;zeni_core_d.lib;zeni_audio_d.lib;zeni_d.lib;local_SDL_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)game.exe</OutputFile>
       <AdditionalLibraryDirectories>..\..\bin\d32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
