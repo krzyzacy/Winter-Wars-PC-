@@ -11,6 +11,7 @@
 #include "Effect.h"
 
 #include "Tile.h"
+#include <pthread.h>
 
 #include <zenilib.h>
 #include "Zeni/Joysticks.h"
@@ -82,17 +83,28 @@ void Game_Model::start_up(const vector<String> &genders_, const vector<int> &col
 		play_bgm();
 }
 
+
+pthread::p_thread_t peer_thread;
+
 void Game_Model::initialize_peer(bool isServer, RakNet::SystemAddress host_addr){
 	
 
 	if(isServer){
 		peer = new Ingame_Server();
+		pthread_create(peer_thread, NULL, &Ingame_Server::start_peer, (void*) &host_addr);
 	}
 	else{
 		peer = new Ingame_Client();
+		pthread_create(peer_thread, NULL, &Ingame_Client::start_peer, (void*) &host_addr);
 	}
 
-	peer->start_peer(host_addr);
+	int 
+pthread_create (pthread_t *thread_id, const pthread_attr_t *attributes,
+                void *(*thread_function)(void *), void *arguments);
+
+	
+
+	//peer->start_peer(host_addr);
 
 }
 
