@@ -3,6 +3,7 @@
 	04/13/2013
 */
 
+#include <zenilib.h>
 
 #include "Lobby_State.h"
 
@@ -50,10 +51,10 @@ void Lobby_State::on_joy_button(const SDL_JoyButtonEvent &event) {
 }
 
 void Lobby_State::perform_logic(){
+	RakNet::Packet * packet;
+	RakNet::RakPeerInterface * peer = WWClient::get()->getPeer();
 	if(room_status == 1 || room_created){
 
-		
-		
 		for (packet=peer->Receive(); packet; peer->DeallocatePacket(packet), packet=peer->Receive())
 			{
 				switch (packet->data[0])
@@ -139,9 +140,7 @@ void Lobby_State::render() {
 }
 
 void Lobby_State::initialize(){
-	peer = RakNet::RakPeerInterface::GetInstance();  
-	peer->Startup(1,&sd, 1);
-	peer->Connect("127.0.0.1", SERVER_PORT, 0,0);
+	WWClient::get()->init();
 }
 
 void Lobby_State::start_game(){
@@ -153,10 +152,7 @@ void Lobby_State::start_game(){
 
 	for(int i = 0; i < MAX_PLAYER_NUM; i++)
 	{
-		RakNet::BitStream bsOut;
-		bsOut.Write((RakNet::MessageID)START_GAME);
-		bsOut.Write(i);
-		peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,server_addr,false);
+		WWClient::get()->start_game(server_addr);
 
 		if(i < client_list.size())
 		{
@@ -177,159 +173,14 @@ void Lobby_State::start_game(){
 }
 
 void Lobby_State::createRoom(){
-	char str[512];
-
-	while (1)
-	{
-		for (packet=peer->Receive(); packet; peer->DeallocatePacket(packet), packet=peer->Receive())
-		{
-			switch (packet->data[0])
-			{
-			case ID_CONNECTION_REQUEST_ACCEPTED:
-				{
-					printf("Our connection request has been accepted.\n");
-
-					// Use a BitStream to write a custom user message
-					// Bitstreams are easier to use than sending casted structures, and handle endian swapping automatically
-					RakNet::BitStream bsOut;
-					bsOut.Write((RakNet::MessageID)CREATE_ROOM);
-					bsOut.Write("CREATE A NEW GAME ROOM");
-					peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,packet->systemAddress,false);
-
-					server_addr = packet->systemAddress;
-				}
-				break;
-			case ID_NO_FREE_INCOMING_CONNECTIONS:
-				printf("The server is full.\n");
-				break;
-			case ID_DISCONNECTION_NOTIFICATION:
-				printf("We have been disconnected.\n");
-				break;
-			case ID_CONNECTION_LOST:
-				printf("Connection lost.\n");
-				break;
-
-			case CREATE_ROOM:
-				{
-					room_created = true;
-
-					RakNet::BitStream bsIn(packet->data,packet->length,false);
-					bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
-					bsIn.Read(host_addr);
-
-					self_addr = host_addr;
-
-					Client host;
-					host.ip_addr = host_addr;
-					host.color = GREEN;
-					client_list[0] = host;
-
-					RakNet::BitStream bsOut;
-					bsOut.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
-					bsOut.Write("ROOM CREATED");
-					peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,packet->systemAddress,false);
-				}
-				break;
-			
-			
-			default:
-				printf("Message with identifier %i has arrived.\n", packet->data[0]);
-				break;
-			}
-			
-			if(room_created) break;
-		}
-		if(room_created) break;
-	}
-
+	WWClient::get()->createRoom(server_addr, host_addr, self_addr, room_created, client_list);
 }
 
 void Lobby_State::searchRoom(){
-	char str[512];
-
-	while (1)
-	{
-		for (packet=peer->Receive(); packet; peer->DeallocatePacket(packet), packet=peer->Receive())
-		{
-			switch (packet->data[0])
-			{
-			case ID_CONNECTION_REQUEST_ACCEPTED:
-				{
-					printf("Our connection request has been accepted.\n");
-
-					// Use a BitStream to write a custom user message
-					// Bitstreams are easier to use than sending casted structures, and handle endian swapping automatically
-					RakNet::BitStream bsOut;
-					bsOut.Write((RakNet::MessageID)SEARCH_ROOM);
-					bsOut.Write("Search for an existing game room");
-					peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,packet->systemAddress,false);
-
-					server_addr = packet->systemAddress;
-				}
-				break;
-			case ID_NO_FREE_INCOMING_CONNECTIONS:
-				printf("The server is full.\n");
-				break;
-			case ID_DISCONNECTION_NOTIFICATION:
-				printf("We have been disconnected.\n");
-				break;
-			case ID_CONNECTION_LOST:
-				printf("Connection lost.\n");
-				break;
-
-
-			case SEARCH_ROOM:
-				{
-					room_status = 1;
-
-					int num_client;
-					RakNet::SystemAddress temp_addr;
-
-					Client client;
-					RakNet::BitStream bsIn(packet->data,packet->length,false);
-					bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
-					bsIn.Read(num_client);
-					bsIn.Read(temp_addr);
-
-					//int num_client = rs.GetLength();
-					for(int i = 0; i < num_client; i ++)
-					{
-						bsIn.Read(client);
-						client_list[i] = client;
-					}
-
-					host_addr = client_list[0].ip_addr;
-					self_addr = temp_addr;
-
-					RakNet::BitStream bsOut;
-					bsOut.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
-					bsOut.Write(self_addr.ToString());
-					peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,packet->systemAddress,false);
-				}
-			break;
-
-			case NO_ROOM:
-				{
-					room_status = -1;
-				}
-			break;
-			
-			default:
-				printf("Message with identifier %i has arrived.\n", packet->data[0]);
-				break;
-			}
-			
-			if(room_status != 0) break;
-		}
-		if(room_status != 0) break;
-	}
+	WWClient::get()->searchRoom(server_addr, host_addr, self_addr, room_status, client_list);
 }
 
 void Lobby_State::changeTeam(TEAM_INDEX newTeam){
 	teamIndex = newTeam;
-
-	RakNet::BitStream bsOut;
-	bsOut.Write((RakNet::MessageID)TEAM_CHANGE);
-	bsOut.Write(newTeam);
-	peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,server_addr,false);
+	WWClient::get()->changeTeam(server_addr, newTeam);
 }

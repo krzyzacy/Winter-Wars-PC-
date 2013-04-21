@@ -3,8 +3,9 @@
 
 Ingame_Server::Ingame_Server()
 {
-	sd = new RakNet::SocketDescriptor(SERVER_PORT,0);
+	sd = new RakNet::SocketDescriptor(HOST_PORT,0);
 	peer->Startup(MAX_CLIENTS, sd, 1);
+	peer->SetMaximumIncomingConnections(MAX_CLIENTS);
 }
 
 Ingame_Server::~Ingame_Server()
@@ -12,15 +13,17 @@ Ingame_Server::~Ingame_Server()
 	RakNet::RakPeerInterface::DestroyInstance(peer);
 }
 
-void Ingame_Server::start_peer(RakNet::SystemAddress addr)
+void Ingame_Server::start_peer()
 {
-	host_addr = addr;
-	RakNet::Packet * packet;
-	peer->SetMaximumIncomingConnections(MAX_CLIENTS);
+	//host_addr = addr;
+	//RakNet::Packet * packet;
+	
+}
 
-	while (1)
-	{
-		for (packet=peer->Receive(); packet; peer->DeallocatePacket(packet), packet=peer->Receive())
+void Ingame_Server::peer_logic()
+{
+	RakNet::Packet * packet;
+	for (packet=peer->Receive(); packet; peer->DeallocatePacket(packet), packet=peer->Receive())
 		{
 			switch (packet->data[0])
 			{
@@ -42,14 +45,14 @@ void Ingame_Server::start_peer(RakNet::SystemAddress addr)
 					build_event->put_in_game();
 				}
 				break;
-			
+
 			default:
 				printf("Message with identifier %i has arrived.\n", packet->data[0]);
 				break;
 			}
-			
+
 		}
-	}
+
 }
 
 void Ingame_Server::send(WWEvent * e)

@@ -7,34 +7,17 @@
 #define LOBBY_STATE_H
 
 #include <zenilib.h>
-
+#include "WWClient.h"
 #include "Play_State_Base.h"
 
 #include "String.h"
-#include <vector>
-#include "Team.h"
 
 #include <stdio.h>
 #include <string.h>
-#include "RakPeerInterface.h"
-#include "MessageIdentifiers.h"
-#include "BitStream.h"
-#include "RakNetTypes.h"  // MessageID
-#include <vector>
 #include <map>
 
 using namespace std;
 using namespace Zeni;
-
-#define MAX_CLIENTS 10
-#define SERVER_PORT 60000
-#define MAX_PLAYER_NUM 4
-
-struct Client
-{
-	RakNet::SystemAddress ip_addr;
-	TEAM_INDEX color;
-};
 
 class Lobby_State : public Widget_Gamestate {
   Lobby_State(const Lobby_State &);
@@ -63,7 +46,7 @@ public:
 	  get_Game().joy_mouse.enabled = true;
   }
   ~Lobby_State(){
-	  RakNet::RakPeerInterface::DestroyInstance(peer);
+	  
   }
 
 private:
@@ -71,9 +54,6 @@ private:
   map<TEAM_INDEX, Uint32> color_to_int; 
 
   int state;
-  RakNet::RakPeerInterface * peer;
-  RakNet::Packet * packet;
-  RakNet::SocketDescriptor sd;
 
   bool room_created;
   int room_status;

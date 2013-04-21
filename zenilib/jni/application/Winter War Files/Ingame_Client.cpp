@@ -6,7 +6,7 @@
 Ingame_Client::Ingame_Client()
 {
 	sd = new RakNet::SocketDescriptor;
-	peer->Startup(MAX_CLIENTS, sd, 1);
+	peer->Startup(1, sd, 1);
 }
 
 Ingame_Client::~Ingame_Client()
@@ -40,7 +40,6 @@ void Ingame_Client::start_peer(RakNet::SystemAddress addr)
 				printf("Message with identifier %i has arrived.\n", packet->data[0]);
 				break;
 			}
-			
 		}
 	}
 }

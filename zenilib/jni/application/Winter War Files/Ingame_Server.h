@@ -9,8 +9,9 @@
 
 #include <zenilib.h>
 
-#include "Ingame_Peer.h"
+//#include "Ingame_Peer.h"
 #include "Utility.h"
+#include "Event.h"
 
 #include "String.h"
 #include <vector>
@@ -24,7 +25,7 @@
 #include <vector>
 #include <map>
 
-class Ingame_Server: public Ingame_Peer
+class Ingame_Server
 {
 
 public:
@@ -32,8 +33,14 @@ public:
 	~Ingame_Server();
 
 	
-	virtual void start_peer(RakNet::SystemAddress addr);
+	virtual void start_peer();
 	virtual void send(WWEvent * e);
+
+	virtual void peer_logic();
+
+private:
+	RakNet::RakPeerInterface * peer;
+	RakNet::SocketDescriptor * sd;
 
 };
 

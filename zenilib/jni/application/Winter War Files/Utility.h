@@ -10,6 +10,8 @@
 #define SERVER_PORT 60000
 #define ROOM_CAPACITY 16
 
+#define HOST_PORT 61111
+
 struct Player_info{
 	int colors_;
 	Zeni::String genders_;

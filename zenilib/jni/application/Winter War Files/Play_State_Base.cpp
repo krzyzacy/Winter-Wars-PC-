@@ -109,6 +109,12 @@ void Play_State_Base::perform_logic()
 	if (Game_Model::get().win()){		
 		get_Game().push_state(new End_Game_State());
 	}
+
+
+
+	// networking code here
+	if(isServer)
+		Game_Model::get().get_peer()->peer_logic();
 }
 
 void Play_State_Base::render()	{

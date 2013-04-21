@@ -10,9 +10,9 @@
 #include "BitStream.h"
 #include "RakNetTypes.h"
 #include "Utility.h"
-#include "Ingame_Client.h"
+//#include "Ingame_Client.h"
 #include "Ingame_Server.h"
-#include "Ingame_Peer.h"
+//#include "Ingame_Peer.h"
 
 class Seen_Object;
 class View;
@@ -68,7 +68,7 @@ public:
 	World* get_World()
 		{return world;}
 
-	Ingame_Peer * get_peer()
+	Ingame_Server * get_peer()
 		{return peer;}
 
 	Tile *get_tile(const Zeni::Point3f&);
@@ -98,7 +98,7 @@ public:
 private:
 	
 	// RakNet Peer Interface
-	Ingame_Peer * peer;
+	Ingame_Server * peer;
 
 	Zeni::Chronometer<Zeni::Time> PlayTime;
 	float time_passed;

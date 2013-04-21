@@ -14,6 +14,7 @@
 
 #include <zenilib.h>
 #include "Zeni/Joysticks.h"
+#include "WWClient.h"
 
 
 using namespace std;
@@ -83,16 +84,14 @@ void Game_Model::start_up(const vector<String> &genders_, const vector<int> &col
 }
 
 void Game_Model::initialize_peer(bool isServer, RakNet::SystemAddress host_addr){
-	
+
 
 	if(isServer){
 		peer = new Ingame_Server();
 	}
 	else{
-		peer = new Ingame_Client();
+		WWClient::get()->setHostAddr(host_addr);
 	}
-
-	peer->start_peer(host_addr);
 
 }
 
