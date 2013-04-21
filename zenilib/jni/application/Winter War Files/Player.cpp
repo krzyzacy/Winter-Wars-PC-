@@ -595,7 +595,9 @@ bool Player::create_building(Structure_Type Building)	{
 			return false;
 
 		get_team()->stats.structures[Building]++;
-		Game_Model::get().get_peer()->send(new Build_Event(create_structure(Building, t, myTeam)));
+
+		Build_Event(create_structure(Building, t, myTeam));
+
 		return true;
 
 

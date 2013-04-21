@@ -25,6 +25,8 @@
 #include <vector>
 #include <map>
 
+#include <pthread.h>
+
 class Ingame_Client: public Ingame_Peer
 {
 

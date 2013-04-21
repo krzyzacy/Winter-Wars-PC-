@@ -12,6 +12,7 @@ class Structure;
 class WWEvent
 {
 public :
+	WWEvent();
 	virtual RakNet::BitStream *package() = 0;
 	virtual void unpackage(RakNet::BitStream *) = 0;
 

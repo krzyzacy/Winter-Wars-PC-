@@ -92,7 +92,6 @@ void Game_Model::initialize_peer(bool isServer, RakNet::SystemAddress host_addr)
 	else{
 		WWClient::get()->setHostAddr(host_addr);
 	}
-
 }
 
 void Game_Model::restart()

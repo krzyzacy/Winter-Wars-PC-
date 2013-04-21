@@ -12,10 +12,16 @@
 
 using namespace Zeni;
 
+WWEvent::WWEvent()
+{
+	if (Game_Model::get().get_peer())
+		Game_Model::get().get_peer()->send(this);
+}
+
+
 Build_Event::Build_Event(Structure *snowman)
 	: type(SNOWMAN), tile(snowman->get_top_center()), team_color(snowman->get_team_pt()->get_Team_Index())
 {
-	Game_Model::get().get_peer()->send(this);
 }
 
 RakNet::BitStream *Build_Event::package()
