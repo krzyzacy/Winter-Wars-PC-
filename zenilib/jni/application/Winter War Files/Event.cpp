@@ -1,6 +1,6 @@
 
 #include "Event.h"
-
+#include "WWClient.h"
 #include  "Player.h"
 #include "Structure.h"
 #include "Team.h"
@@ -14,20 +14,25 @@ using namespace Zeni;
 
 WWEvent::WWEvent()
 {
-	if (Game_Model::get().get_peer())
-		Game_Model::get().get_peer()->send(this);
+}
+
+void WWEvent::send_me()
+{
+	if (WWClient::isNetwork())
+		WWClient::get()->send(this);
 }
 
 
 Build_Event::Build_Event(Structure *snowman)
 	: type(SNOWMAN), tile(snowman->get_top_center()), team_color(snowman->get_team_pt()->get_Team_Index())
 {
+	send_me();
 }
 
 RakNet::BitStream *Build_Event::package()
 {
 	RakNet::BitStream *bsOut = new RakNet::BitStream;		
-	bsOut->Write((RakNet::MessageID)170);
+	bsOut->Write((RakNet::MessageID)BUILDING);
 
 	bsOut->Write(type );
 
@@ -41,7 +46,7 @@ RakNet::BitStream *Build_Event::package()
 
 void Build_Event::unpackage(RakNet::BitStream *bsIn)
 {
-	bsIn->IgnoreBytes(sizeof(RakNet::MessageID));
+	//bsIn->IgnoreBytes(sizeof(RakNet::MessageID));
 	
 	bsIn->Read(type );
 

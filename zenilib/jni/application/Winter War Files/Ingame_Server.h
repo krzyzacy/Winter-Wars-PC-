@@ -40,7 +40,7 @@ public:
 
 private:
 	RakNet::RakPeerInterface * peer;
-	RakNet::SocketDescriptor * sd;
+	RakNet::SocketDescriptor sd;
 
 };
 

@@ -18,6 +18,8 @@ public :
 
 	virtual void put_in_game() = 0;
 
+	void send_me();
+
 };
 
 class Build_Event : public WWEvent

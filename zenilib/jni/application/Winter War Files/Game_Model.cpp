@@ -82,16 +82,17 @@ void Game_Model::start_up(const vector<String> &genders_, const vector<int> &col
 
 		play_bgm();
 }
-
+bool isServerBAD;
 void Game_Model::initialize_peer(bool isServer, RakNet::SystemAddress host_addr){
 
+	isServerBAD = isServer;
 
 	if(isServer){
 		peer = new Ingame_Server();
 	}
-	else{
-		WWClient::get()->setHostAddr(host_addr);
-	}
+
+	WWClient::get()->setHostAddr(host_addr);
+	
 }
 
 void Game_Model::restart()
@@ -149,7 +150,7 @@ Game_Model::~Game_Model(void)
 {
 //	finish();
 }
-
+#include "Event.h"
 void Game_Model::update()
 {	
 	const float frametime_passed = PlayTime.seconds();
@@ -158,8 +159,11 @@ void Game_Model::update()
 	time_step = currentStep;
 
 	if (PlayTime.seconds() < 3 && PlayTime.seconds() > 2)
+	{
+		if (!isServerBAD)
+			Build_Event(create_structure(HEALING_POOL, world->get_tile(1,2), teams.at(0)));
 		global_message("Build a path of structures from your base to the Tree!");
-
+	}
 
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); it++)
 		(*it)->update(time_step);

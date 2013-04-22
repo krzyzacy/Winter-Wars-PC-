@@ -19,8 +19,9 @@ WWClient* WWClient::get(){
 
 void WWClient::init(){
 	peer = RakNet::RakPeerInterface::GetInstance();  
-	peer->Startup(1,&sd, 1);
+	peer->Startup(2,&sd, 1);
 	peer->Connect("127.0.0.1", SERVER_PORT, 0,0);
+	//peer->Connect("127.0.0.1", HOST_PORT, 0,0);
 }
 
 void WWClient::createRoom(RakNet::SystemAddress &server_addr, RakNet::SystemAddress &host_addr, 
@@ -186,6 +187,7 @@ void WWClient::changeTeam(RakNet::SystemAddress server_addr, TEAM_INDEX newTeam)
 
 void WWClient::start_game(RakNet::SystemAddress server_addr)
 {
+	this->server_addr = server_addr;
 	RakNet::BitStream bsOut;
 	bsOut.Write((RakNet::MessageID)START_GAME);
 	peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,server_addr,false);
@@ -193,5 +195,60 @@ void WWClient::start_game(RakNet::SystemAddress server_addr)
 
 void WWClient::send(WWEvent *e)
 {
-	peer->Send(e->package(),HIGH_PRIORITY,RELIABLE_ORDERED,0,host_addr,false);
+	talkToServer(host_addr.ToString());
+
+	// I need to delete bsOut since package new's it
+	RakNet::BitStream *bsOut = e->package();
+	peer->Send(bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,server_addr,false);
+
+	delete bsOut;
+}
+
+void WWClient::talkToServer(const char * msg)
+{
+	RakNet::BitStream bsOut;
+	bsOut.Write((RakNet::MessageID)ID_GAME_MESSAGE_1);
+	bsOut.Write(msg);
+	peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,server_addr,false);
+}
+
+void WWClient::WWhost_logic()
+{
+	for (packet=peer->Receive(); packet; peer->DeallocatePacket(packet), packet=peer->Receive())
+		{
+			switch (packet->data[0])
+			{
+			case ID_CONNECTION_REQUEST_ACCEPTED:
+				{
+					printf("Our connection request has been accepted.\n");
+
+				}
+				break;
+				
+			case BUILDING:
+				{
+					WWClient::get()->talkToServer("receiving event");
+
+					RakNet::BitStream bsIn(packet->data,packet->length,false);
+					bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+
+					WWEvent * build_event = new Build_Event();
+					build_event->unpackage(&bsIn);
+					build_event->put_in_game();
+				}
+				break;
+
+			default:
+				{
+				}
+				break;
+			}
+
+		}
+
+}
+
+void WWClient::connect_to_host()
+{
+	peer->Connect("127.0.0.1", host_addr.GetPort(), 0, 0);
 }

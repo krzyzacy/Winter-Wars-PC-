@@ -10,6 +10,8 @@
 #include "Team.h"
 #include "End_Game_State.h"
 
+#include "WWClient.h"
+
 Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<int> &colors_, const vector<int> &controls_, const vector<int> &sensitivities_,
 			bool isLocalGame_, bool isServer_, RakNet::SystemAddress server_addr)	:
 	m_prev_clear_color(get_Video().get_clear_Color()),
@@ -113,8 +115,9 @@ void Play_State_Base::perform_logic()
 
 
 	// networking code here
-	if(isServer)
-		Game_Model::get().get_peer()->peer_logic();
+	//if(isServer)
+	WWClient::get()->WWhost_logic();
+		//Game_Model::get().get_peer()->peer_logic();
 }
 
 void Play_State_Base::render()	{
