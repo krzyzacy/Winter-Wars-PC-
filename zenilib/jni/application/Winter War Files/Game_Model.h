@@ -101,6 +101,7 @@ private:
 	Ingame_Server * peer;
 
 	Zeni::Chronometer<Zeni::Time> PlayTime;
+	Zeni::Chronometer<Zeni::Time> Player_Movement_Message_Ticker;
 	float time_passed;
 	float time_step;
 

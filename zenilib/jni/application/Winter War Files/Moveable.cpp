@@ -53,3 +53,9 @@ void Moveable::accelerate(const Vector3f &acc, const float &time)	{
 	velocity += acc * time;
 }
 
+void Moveable::network_overwrite_members(Zeni::Point3f &pos, Zeni::Vector3f &vel)	{
+	center = pos;
+	velocity = vel;
+}
+
+

@@ -78,6 +78,8 @@ void Game_Model::start_up(const vector<String> &genders_, const vector<int> &col
 
 		PlayTime.reset();
 		PlayTime.start();
+		Player_Movement_Message_Ticker.reset();
+		Player_Movement_Message_Ticker.start();
 //		view->add_renderable(&Perm);
 
 		play_bgm();
@@ -144,6 +146,7 @@ void Game_Model::finish()
 	delete snowballthrow;
 
 	PlayTime.reset();
+	Player_Movement_Message_Ticker.reset();
 }
 
 Game_Model::~Game_Model(void)
@@ -181,6 +184,12 @@ void Game_Model::update()
 	}
 
 	check_collisions();
+
+	if(Player_Movement_Message_Ticker.seconds() > 0.5)
+	{
+		if(!isServerBAD)
+			Player_Movement_Event(players.at(0));
+	}
 
 	Game_Model::get().Clean_dead();
 }

@@ -24,6 +24,10 @@ public:
 
 	void accelerate(const Zeni::Vector3f &, const float &time);
 
+	virtual Zeni::Vector3f get_velocity()	{return velocity;}
+
+	virtual void network_overwrite_members(Zeni::Point3f &pos, Zeni::Vector3f &vel);
+
 protected:
 	Zeni::Vector3f velocity;	
 	

@@ -237,6 +237,19 @@ void WWClient::WWhost_logic()
 					build_event->put_in_game();
 				}
 				break;
+				
+			case PLAYER_MOVEMENT:
+				{
+					WWClient::get()->talkToServer("move receive event");
+
+					RakNet::BitStream bsIn(packet->data, packet->length, false);
+					bsIn.IgnoreBits(sizeof(RakNet::MessageID));
+
+					WWEvent * player_move = new Player_Movement_Event();
+					player_move->unpackage(&bsIn);
+					player_move->put_in_game();
+				}
+				break;
 
 			default:
 				{
