@@ -41,8 +41,8 @@ private:
 	RakNet::SystemAddress host_addr;
 
 	vector<Controls*> controllers;
-	vector<int> teams;
-	vector<Zeni::String> genders;
+
+	std::vector<Player_info*> player_info;
 
 	Color m_prev_clear_color;
 

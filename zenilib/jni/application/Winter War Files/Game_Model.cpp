@@ -387,9 +387,9 @@ Tile *Game_Model::get_tile(const Point3f& pos)
 	return world->get_tile(pos);
 }
 
-void Game_Model::get_player_here(int i)
+Player *Game_Model::get_player_here(int i)
 {
-	if (WWClient.isNetwork())
+	if (WWClient::isNetwork())
 		return clients_to_players[WWClient::get()->get_my_address()].at(i);
 	
 	//if it is local

@@ -12,11 +12,10 @@
 #include "Utility.h"
 #include "WWClient.h"
 
-Play_State_Base::Play_State_Base(const vector<Player_info*> &player_info,
+Play_State_Base::Play_State_Base(const vector<Player_info*> &player_info_,
 			bool isLocalGame_, bool isServer_, RakNet::SystemAddress server_addr)	:
-	m_prev_clear_color(get_Video().get_clear_Color()),
-	genders(genders_),
-	teams(colors_),
+	player_info(player_info_),
+	m_prev_clear_color(get_Video().get_clear_Color()),	
 	isLocal(isLocalGame_), isServer(isServer_), host_addr(server_addr)
 {		
 		set_pausable(false);
