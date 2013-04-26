@@ -12,6 +12,7 @@
 #include "MessageIdentifiers.h"
 #include "BitStream.h"
 #include "RakNetTypes.h"
+#include "Utility.h"
 
 class Controls;
 class Team;
@@ -27,7 +28,7 @@ class Play_State_Base : public Gamestate_Base		{
   Play_State_Base operator=(const Play_State_Base &);
  
 public:
-	Play_State_Base(const vector<String> &genders_, const vector<int> &colors_, const vector<int> &controls_, const vector<int> &sensitivities_, 
+	Play_State_Base(const std::vector<Player_info*> &player_info,
 					 bool isLocalGame_ = true, bool isServer_ = false, RakNet::SystemAddress server_addr = RakNet::UNASSIGNED_SYSTEM_ADDRESS);
 	~Play_State_Base();
 
