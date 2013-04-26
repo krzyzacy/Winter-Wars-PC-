@@ -84,17 +84,16 @@ void Game_Model::start_up(const vector<String> &genders_, const vector<int> &col
 
 		play_bgm();
 }
-bool isServerBAD;
-void Game_Model::initialize_peer(bool isServer, RakNet::SystemAddress host_addr){
 
-	isServerBAD = isServer;
+
+void Game_Model::initialize_peer(bool isServer, RakNet::SystemAddress host_addr){
 
 	if(isServer){
 		peer = new Ingame_Server();
 	}
 
-	WWClient::get()->setHostAddr(host_addr);
-	
+	if (WWClient::isNetwork())	
+		WWClient::get()->setHostAddr(host_addr);	
 }
 
 void Game_Model::restart()
@@ -163,7 +162,7 @@ void Game_Model::update()
 
 	if (PlayTime.seconds() < 3 && PlayTime.seconds() > 2)
 	{
-		if (!isServerBAD)
+		if (WWClient::isNetwork())
 			Build_Event(create_structure(HEALING_POOL, world->get_tile(1,2), teams.at(0)));
 		global_message("Build a path of structures from your base to the Tree!");
 	}
@@ -187,12 +186,14 @@ void Game_Model::update()
 
 	if(Player_Movement_Message_Ticker.seconds() > 0.5)
 	{
-		if(!isServerBAD)
+		if(WWClient::isNetwork())
 			Player_Movement_Event(players.at(0));
 	}
 
 	Game_Model::get().Clean_dead();
 }
+
+
 
 /*set the time to win and the team to win*/
 void Game_Model::tree_claimed(const Team *team)

@@ -115,8 +115,8 @@ void Play_State_Base::perform_logic()
 
 
 	// networking code here
-	//if(isServer)
-	WWClient::get()->WWhost_logic();
+	if(WWClient::isNetwork())
+		WWClient::get()->WWhost_logic();
 		//Game_Model::get().get_peer()->peer_logic();
 }
 
