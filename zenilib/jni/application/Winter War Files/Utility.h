@@ -11,6 +11,7 @@
 #define MAX_CLIENTS 10
 #define SERVER_PORT 60000
 #define ROOM_CAPACITY 16
+#define MAX_PLAYER_NUM 4
 
 #define HOST_PORT 61111
 
