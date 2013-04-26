@@ -28,7 +28,7 @@ class Play_State_Base : public Gamestate_Base		{
   Play_State_Base operator=(const Play_State_Base &);
  
 public:
-	Play_State_Base(const std::vector<Player_info*> &player_info,
+	Play_State_Base(std::vector<Player_info*> *player_info,
 					 bool isLocalGame_ = true, bool isServer_ = false, RakNet::SystemAddress server_addr = RakNet::UNASSIGNED_SYSTEM_ADDRESS);
 	~Play_State_Base();
 
@@ -42,7 +42,7 @@ private:
 
 	vector<Controls*> controllers;
 
-	std::vector<Player_info*> player_info;
+	std::vector<Player_info*> *player_info;
 
 	Color m_prev_clear_color;
 

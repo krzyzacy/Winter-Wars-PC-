@@ -144,8 +144,8 @@ void Lobby_State::initialize(){
 }
 
 void Lobby_State::start_game(){
-
-	vector<Player_info *> player_list(MAX_PLAYER_NUM);
+	
+	vector<Player_info *> *player_list = new vector<Player_info*>;
 	WWClient::get()->start_game(server_addr);
 
 	for(int i = 0; i < MAX_PLAYER_NUM; i++)
@@ -167,7 +167,7 @@ void Lobby_State::start_game(){
 		newPlayer->sensitivities_ = 5;
 		newPlayer->self_addr = this->self_addr;
 
-		player_list.push_back(newPlayer);
+		player_list->push_back(newPlayer);
 	}
 
 	//get_Game().pop_state();

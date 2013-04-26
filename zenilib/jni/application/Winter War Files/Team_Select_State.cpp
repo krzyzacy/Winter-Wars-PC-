@@ -144,7 +144,7 @@ void Team_Select_State::perform_logic(){
 
 		if(start_game > 5.0f){
 
-			vector<Player_info *> player_list(MAX_PLAYER_NUM);
+			vector<Player_info *> *player_list = new vector<Player_info*>;
 
 			for(int player_idx = 0; player_idx < 4; player_idx ++){
 
@@ -170,7 +170,7 @@ void Team_Select_State::perform_logic(){
 
 				newPlayer->self_addr = RakNet::UNASSIGNED_SYSTEM_ADDRESS;
 
-				player_list.push_back(newPlayer);
+				player_list->push_back(newPlayer);
 			}
 
 			get_Sound().stop_BGM();

@@ -12,7 +12,7 @@
 #include "Utility.h"
 #include "WWClient.h"
 
-Play_State_Base::Play_State_Base(const vector<Player_info*> &player_info_,
+Play_State_Base::Play_State_Base(vector<Player_info*> *player_info_,
 			bool isLocalGame_, bool isServer_, RakNet::SystemAddress server_addr)	:
 	player_info(player_info_),
 	m_prev_clear_color(get_Video().get_clear_Color()),	
@@ -21,7 +21,7 @@ Play_State_Base::Play_State_Base(const vector<Player_info*> &player_info_,
 		set_pausable(false);
 		for(int i = 0; i < 4; i++)	{
 			controllers.push_back(new Controls(false, i));
-			if(player_info.at(i)->controls_ == 1)
+			if(player_info->at(i)->controls_ == 1)
 				controllers[i]->set_inverted(true);
 		}
 
@@ -39,7 +39,7 @@ void Play_State_Base::on_push()	{
 		get_Window().mouse_grab(true);
 		get_Video().set_clear_Color(Color(0,.1,.1,.1));
 		get_Game().joy_mouse.enabled = false;
-		Game_Model::get().start_up(player_info);
+		Game_Model::get().start_up(*player_info);
 
 		if(!isLocal)
 			Game_Model::get().initialize_peer(isServer, host_addr);
@@ -52,8 +52,9 @@ void Play_State_Base::on_pop()	{
     get_Game().joy_mouse.enabled = true;
 		Game_Model::get().finish();
 
-		for (int i = 0 ; i < player_info.size() ; i++)
-			delete player_info[i];
+		for (int i = 0 ; i < player_info->size() ; i++)
+			delete player_info->at(i);
+		delete player_info;
 }
 
 void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {
