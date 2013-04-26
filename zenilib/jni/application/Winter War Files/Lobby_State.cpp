@@ -144,32 +144,34 @@ void Lobby_State::initialize(){
 }
 
 void Lobby_State::start_game(){
-
-	vector<int> colors_(MAX_PLAYER_NUM);
-	vector<Zeni::String> genders_(MAX_PLAYER_NUM);
-	vector<int> controls_(MAX_PLAYER_NUM);
-	vector<int> sensitivities_(MAX_PLAYER_NUM);
+	
+	vector<Player_info *> *player_list = new vector<Player_info*>;
+	WWClient::get()->start_game(server_addr);
 
 	for(int i = 0; i < MAX_PLAYER_NUM; i++)
 	{
-		WWClient::get()->start_game(server_addr);
+		Player_info * newPlayer = new Player_info();
 
 		if(i < client_list.size())
 		{
-			colors_[i] = (int)client_list[i].color - 1;
+			newPlayer->colors_ = (int)client_list[i].color - 1;
+
 		}
 		else
 		{
-			colors_[i] = 0;
+			newPlayer->colors_ = 0;
 		}
 
-		genders_[i] = "Boy";
-		controls_[i] = 0;
-		sensitivities_[i] = 5;
+		newPlayer->genders_ = "Boy";
+		newPlayer->controls_ = 0;
+		newPlayer->sensitivities_ = 5;
+		newPlayer->self_addr = this->self_addr;
+
+		player_list->push_back(newPlayer);
 	}
 
 	//get_Game().pop_state();
-	get_Game().push_state(new Play_State_Base(genders_, colors_, controls_, sensitivities_, false, room_created, host_addr));
+	get_Game().push_state(new Play_State_Base(player_list, false, room_created, host_addr));
 }
 
 void Lobby_State::createRoom(){

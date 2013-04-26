@@ -264,4 +264,10 @@ void WWClient::WWhost_logic()
 void WWClient::connect_to_host()
 {
 	peer->Connect("127.0.0.1", host_addr.GetPort(), 0, 0);
+
+}
+	
+RakNet::SystemAddress WWClient::get_my_address()
+{
+	return peer->GetSystemAddressFromGuid(peer->GetMyGUID());
 }
