@@ -9,6 +9,7 @@
 #include "Snowball.h"
 #include "Structure.h"
 #include "Effect.h"
+#include "Controls.h"
 
 #include "Tile.h"
 
@@ -187,7 +188,7 @@ void Game_Model::update()
 	if(Player_Movement_Message_Ticker.seconds() > 0.5)
 	{
 		if(WWClient::isNetwork())
-			Player_Movement_Event(players.at(0));
+			Player_Movement_Event(players.at(Controls::Mouse_Camera));
 	}
 
 	Game_Model::get().Clean_dead();
