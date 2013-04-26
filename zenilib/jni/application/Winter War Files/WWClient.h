@@ -46,8 +46,6 @@ class WWClient
 		void send(WWEvent *e);
 		static bool isNetwork() {return wwInstance;}
 
-		RakNet::SystemAddress get_my_address();
-
 		void talkToServer(const char * msg);
 
 		RakNet::SystemAddress getServerAddr(){ return server_addr;}

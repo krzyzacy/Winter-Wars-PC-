@@ -63,7 +63,7 @@ Player::Player(const Zeni::Point3f &center_)
 	animation_state(new Standing()), player_boy_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["boy_hit"])),
 	player_girl_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["girl_hit"])), player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"])),
 	snowball_hit1(new Zeni::Sound_Source(Zeni::get_Sounds()["HitBySnow1"])), snowball_hit2(new Zeni::Sound_Source(Zeni::get_Sounds()["HitBySnow2"])),
-	sound_choice(0)
+	sound_choice(0), allowed_to_calculate_movement(true)
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
@@ -334,6 +334,8 @@ void Player::stop_scooping()	{
 	 if(is_player_KO())
 		return;
 
+	 if(!allowed_to_calculate_movement)
+		 return;
 	//input_vel is joystick values, from 0 to 32768
 	//if(mini_open)	{	//Mini-map is open stop moving
 	//	velocity = Vector3f(0,0, velocity.z);

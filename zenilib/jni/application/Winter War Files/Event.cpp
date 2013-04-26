@@ -112,7 +112,7 @@ void Player_Movement_Event::unpackage(RakNet::BitStream *bsIn)
 void Player_Movement_Event::put_in_game()
 {
 	//This will have to change because we will have to store stuff differently
-	Player* p = Game_Model::get().get_player(player_num);
+	Player* p = Game_Model::get().get_player(1);
 	p->network_overwrite_members(position, velocity);
 }
 

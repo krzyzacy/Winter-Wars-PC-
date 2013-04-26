@@ -172,6 +172,8 @@ public:
 // Collision Body
 	void create_body();
 
+	bool allowed_to_calculate_movement;
+
 private: 
 	int cur_tip;
 

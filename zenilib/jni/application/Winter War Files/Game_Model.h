@@ -40,7 +40,7 @@ public:
 
 	void update();
 	void render() const;
-	void start_up(const std::vector<Player_info*> &player_info);
+	void start_up(const std::vector<Zeni::String> &genders_, const std::vector<int> &colors_);
 	void initialize_peer(bool isServer, RakNet::SystemAddress host_addr);
 	void restart();
 	void finish();
@@ -61,9 +61,6 @@ public:
 
 	Player *get_player(int i)
 		{return players.at(i);}
-
-	/* returns the ith player on this machine*/
-	Player *get_player_here(int index_on_this_client);
 
 	Team *get_team(int i)
 		{return	teams.at(i);}
@@ -143,8 +140,5 @@ private:
 	Zeni::Sound_Source * snowballthrow;
 
 	Zeni::Sound_Source * bgm;
-
-	std::vector<Player_info*> init_player_info;
-	std::map<RakNet::SystemAddress, std::vector<Player *> > clients_to_players;
 };
 

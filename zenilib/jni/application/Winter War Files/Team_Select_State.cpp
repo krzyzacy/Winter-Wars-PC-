@@ -1,5 +1,4 @@
 #include "Team_Select_State.h"
-#include "Utility.h"
 
 void Team_Select_State::on_key(const SDL_KeyboardEvent &event) {
         if(event.keysym.sym == SDLK_ESCAPE && event.state == SDL_PRESSED){
@@ -144,38 +143,28 @@ void Team_Select_State::perform_logic(){
 
 		if(start_game > 5.0f){
 
-			vector<Player_info *> *player_list = new vector<Player_info*>;
-
 			for(int player_idx = 0; player_idx < 4; player_idx ++){
-
-				Player_info * newPlayer = new Player_info();
-
-				newPlayer->genders_ = player_gender[player_idx];
-				newPlayer->controls_ = player_control_state[player_idx];
-				newPlayer->sensitivities_ = player_sensitivity_state[player_idx];
-				
+				genders_.push_back(player_gender[player_idx]);
+				controls_.push_back(player_control_state[player_idx]);
+				sensitivities_.push_back(player_sensitivity_state[player_idx]);
 
 				if(player_team[player_idx] == "Green"){
-					newPlayer->colors_ = 0;
+					colors_.push_back(0);
 				}
-				else if(player_team[player_idx] == "Red"){
-					newPlayer->colors_ = 1;
+				if(player_team[player_idx] == "Red"){
+					colors_.push_back(1);
 				}
-				else if(player_team[player_idx] == "Blue"){
-					newPlayer->colors_ = 2;
+				if(player_team[player_idx] == "Blue"){
+					colors_.push_back(2);
 				}
-				else if(player_team[player_idx] == "Orange"){
-					newPlayer->colors_ = 3;
+				if(player_team[player_idx] == "Orange"){
+					colors_.push_back(3);
 				}
-
-				newPlayer->self_addr = RakNet::UNASSIGNED_SYSTEM_ADDRESS;
-
-				player_list->push_back(newPlayer);
 			}
 
 			get_Sound().stop_BGM();
 			get_Game().pop_state();
-			get_Game().push_state(new Play_State_Base(player_list));
+			get_Game().push_state(new Play_State_Base(genders_, colors_, controls_, sensitivities_));
 		}
 
 

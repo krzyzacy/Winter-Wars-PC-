@@ -29,10 +29,8 @@ Game_Model::Game_Model(void)
 
 }
 
-void Game_Model::start_up(const vector<Player_info*> &player_info)
+void Game_Model::start_up(const vector<String> &genders_, const vector<int> &colors_)
 {
-	init_player_info = player_info;
-
 		view = (new View());
 		world = (new World(view));
 		time_passed = (0.0f); 
@@ -71,7 +69,7 @@ void Game_Model::start_up(const vector<Player_info*> &player_info)
 
 
 	for(int i = 0; i < 4; i++){
-		Player *p = create_player(teams[player_info[i]->colors_], player_info[i]->genders_);
+		Player *p = create_player(teams[colors_[i]], genders_[i]);
 		//Player *p = create_player(teams[i], genders_[i]);
 		add_player(p);
 	}
@@ -83,12 +81,13 @@ void Game_Model::start_up(const vector<Player_info*> &player_info)
 		PlayTime.start();
 		Player_Movement_Message_Ticker.reset();
 		Player_Movement_Message_Ticker.start();
+		//%%%%% bad hardcode
+		players.at(1)->allowed_to_calculate_movement = false;
+
+
 //		view->add_renderable(&Perm);
 
 		play_bgm();
-
-
-		// setup map of players
 }
 
 
@@ -104,9 +103,19 @@ void Game_Model::initialize_peer(bool isServer, RakNet::SystemAddress host_addr)
 
 void Game_Model::restart()
 {
+	vector<String> genders;
+	vector<int> colors;
+	
+	for(int i = 0; i < players.size(); i++){
+		genders.push_back(String(players[i]->get_gender()));
+		colors.push_back(players[i]->get_team()->get_Team_Index()-1);
+
+	}
+	
 	finish();
 
-	start_up(init_player_info);
+	start_up(genders, colors);
+
 }
 
 void Game_Model::finish()
@@ -144,11 +153,14 @@ void Game_Model::finish()
 	Player_Movement_Message_Ticker.reset();
 }
 
+
+
 Game_Model::~Game_Model(void)
 {
 //	finish();
 }
 #include "Event.h"
+#include <WinBase.h>
 void Game_Model::update()
 {	
 	const float frametime_passed = PlayTime.seconds();
@@ -178,13 +190,27 @@ void Game_Model::update()
 		}	
 	}
 
+	//OutputDebugString("Update Loop has Occured\n");
+
+
 	check_collisions();
 
-	if(Player_Movement_Message_Ticker.seconds() > 0.5)
-	{
-		if(WWClient::isNetwork())
-			Player_Movement_Event(players.at(Controls::Mouse_Camera));
-	}
+	//if(Player_Movement_Message_Ticker.seconds() > 0.5)
+	//{
+	//	OutputDebugString("Fired the I'm going to send a movement message tick\n");
+	//	cerr<<"DERRRRP"<<endl;
+	//	if(WWClient::isNetwork())	{
+	//		OutputDebugString("This is a network game, now create player movement event\n");
+	//		cerr<<"This is a network game, now create player movement event"<<endl;
+	//		Player_Movement_Event(players.at(0));
+	//		OutputDebugString("Made it to past creating the event\n");
+	//		cerr<<"Made it to past creating the event"<<endl;
+	//	}
+	//	
+
+	//	Player_Movement_Message_Ticker.reset();
+	//	Player_Movement_Message_Ticker.start();
+	//}
 
 	Game_Model::get().Clean_dead();
 }
@@ -386,13 +412,4 @@ void Game_Model::stop_bgm(){
 Tile *Game_Model::get_tile(const Point3f& pos)
 {
 	return world->get_tile(pos);
-}
-
-Player *Game_Model::get_player_here(int i)
-{
-	if (WWClient::isNetwork())
-		return clients_to_players[WWClient::get()->get_my_address()].at(i);
-	
-	//if it is local
-	return get_player(i);
 }
