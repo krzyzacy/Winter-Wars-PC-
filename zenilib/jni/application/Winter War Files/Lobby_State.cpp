@@ -8,6 +8,30 @@
 #include "Lobby_State.h"
 
 
+
+  Lobby_State::Lobby_State()
+    : Widget_Gamestate(make_pair(Point2f(0.0f, 0.0f), Point2f(800.0f, 600.0f))),client_list(MAX_PLAYER_NUM),state(0)
+  {
+	  initialize();
+	  color_to_int[GREEN] = 0xFF00FF00;
+	  color_to_int[RED] = 0xFFFF0000;
+	  color_to_int[BLUE] = 0xFF0000FF;
+	  color_to_int[ORANGE] = 0xFFFF6600;
+
+	  client_list[0].color = GREEN;
+	  client_list[1].color = GREEN;
+	  client_list[2].color = GREEN;
+	  client_list[3].color = GREEN;
+
+
+	  room_created = false;
+	  room_status = 0;
+	  teamIndex = GREEN;
+	  isStarted = false;
+	  
+	  get_Game().joy_mouse.enabled = true;
+  }
+
 void Lobby_State::on_key(const SDL_KeyboardEvent &event) {
 	if(event.keysym.sym == SDLK_ESCAPE && event.state == SDL_PRESSED)
 		get_Game().pop_state();

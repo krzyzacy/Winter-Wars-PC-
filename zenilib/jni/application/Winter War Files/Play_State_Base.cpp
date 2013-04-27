@@ -19,7 +19,7 @@ Play_State_Base::Play_State_Base(const vector<String> &genders_, const vector<in
 	teams(colors_),
 	isLocal(isLocalGame_), isServer(isServer_), host_addr(server_addr)
 {		
-		set_pausable(true);
+		set_pausable(false);
 		for(int i = 0; i < 4; i++)	{
 			controllers.push_back(new Controls(false, i));
 			if(controls_[i] == 1)

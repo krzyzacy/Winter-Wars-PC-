@@ -410,6 +410,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Utility.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\View.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\World.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\WWClient.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zenilib.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni\zeni.h" />
     <ClInclude Include="..\..\jni\external\zenilib\zeni\Zeni\Android.h" />
@@ -693,6 +694,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\World.cpp">
     </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\WWClient.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\assets\config\textures.xml">

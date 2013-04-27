@@ -1008,6 +1008,9 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Peer.h">
       <Filter>jni\application\Winter War Files\Client/Server</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\WWClient.h">
+      <Filter>jni\application\Winter War Files\Client/Server</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
@@ -1455,6 +1458,9 @@
       <Filter>jni\application\Winter War Files\Client/Server</Filter>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Peer.cpp">
+      <Filter>jni\application\Winter War Files\Client/Server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\WWClient.cpp">
       <Filter>jni\application\Winter War Files\Client/Server</Filter>
     </ClCompile>
   </ItemGroup>

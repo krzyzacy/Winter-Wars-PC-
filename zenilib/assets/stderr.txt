@@ -1,14 +1,7 @@
 User-specific config file loaded from '\\storage.adsroot.itcs.umich.edu\home\profiles\CLSE2012\AppData\zenilib\config/zenilib.xml'.
 zenilib App Info    : Loading asset from file 'icons/icon.png'.
 zenilib App Debug   : Loading config/textures.xml
-zenilib App Info    : Loading asset from file 'textures/crate_light.png'.
-zenilib App Info    : Loading asset from file 'textures/crate_light.png'.
 zenilib App Info    : Loading asset from file 'textures/snow.png'.
-zenilib App Info    : Loading asset from file 'textures/blue.png'.
-zenilib App Info    : Loading asset from file 'textures/snow.png'.
-zenilib App Info    : Loading asset from file 'textures/floor.png'.
-zenilib App Info    : Loading asset from file 'textures/2DTextures/Avatars/BoyBlueRegular.png'.
-zenilib App Info    : Loading asset from file 'textures/3Dtextures/Player/BLCLOTH.png'.
 zenilib App Info    : Loading asset from file 'textures/3Dtextures/Fort/FORTICE.png'.
 zenilib App Info    : Loading asset from file 'textures/3Dtextures/Fort/FWINDOW.png'.
 zenilib App Info    : Loading asset from file 'textures/3Dtextures/Snowman/SNOW3.png'.
@@ -175,7 +168,7 @@ zenilib App Info    : Loading asset from file 'textures/2DTextures/Background/au
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Background/Nlights.png'.
 zenilib App Debug   : Loaded config/textures.xml
 zenilib App Debug   : Loading config/fonts.xml
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -183,7 +176,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -191,7 +184,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -199,7 +192,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 26.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 26.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -207,7 +200,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 92.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 92.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -215,7 +208,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 46.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 46.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -223,7 +216,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 23.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 23.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -231,7 +224,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 56.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 56.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -239,7 +232,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 100.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 100.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -247,7 +240,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 110.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 110.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -255,7 +248,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -263,7 +256,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 44.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 44.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -271,7 +264,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 24.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 24.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -279,7 +272,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 28.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 28.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -287,7 +280,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 22.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 22.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -295,7 +288,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 64.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 64.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -303,7 +296,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 20.000000, ratio 1.913333
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 20.000000, ratio 1.116667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -313,11 +306,6 @@ zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
 zenilib App Debug   : Loaded config/fonts.xml
 zenilib App Debug   : Loading config/sounds.xml
-WARNING: 'sfx/NyanCat' is stereo and will be unaffected by the OpenAL positional audio system.
-WARNING: 'sfx/titleBG' is stereo and will be unaffected by the OpenAL positional audio system.
-WARNING: 'sfx/snowballthrow' is stereo and will be unaffected by the OpenAL positional audio system.
-WARNING: 'sfx/breaking' is stereo and will be unaffected by the OpenAL positional audio system.
-WARNING: 'sfx/ingamebackground' is stereo and will be unaffected by the OpenAL positional audio system.
 zenilib App Debug   : Loaded config/sounds.xml
 zenilib App Debug   : Loading config/colors.xml
 zenilib App Debug   : Loaded config/colors.xml
@@ -345,3 +333,11 @@ zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
 zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
 zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
 zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+Printing all possible error strings:
+SDL       : no error
+SDL_net   : no error
+OpenGL    : no error
+OpenAL    : AL_NO_ERROR
