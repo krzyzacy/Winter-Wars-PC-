@@ -35,12 +35,12 @@ public:
 		static Game_Model m;
 		return m;
 	}
-	
+
 	~Game_Model(void);
 
 	void update();
 	void render() const;
-	void start_up(const std::vector<Zeni::String> &genders_, const std::vector<int> &colors_);
+	void start_up(const std::vector<Player_info*> &player_info);
 	void initialize_peer(bool isServer, RakNet::SystemAddress host_addr);
 	void restart();
 	void finish();
@@ -61,6 +61,9 @@ public:
 
 	Player *get_player(int i)
 		{return players.at(i);}
+
+	/* returns the ith player on this machine*/
+	Player *get_player_here(int index_on_this_client);
 
 	Team *get_team(int i)
 		{return	teams.at(i);}
@@ -90,13 +93,13 @@ public:
 	float get_time_step();
 
 	void global_message(const Zeni::String &message);
-	
+
 	Collision_Table table;	
 
 	void play_bgm();
 	void stop_bgm();
 private:
-	
+
 	// RakNet Peer Interface
 	Ingame_Server * peer;
 
@@ -108,7 +111,7 @@ private:
 	float win_time; //set to 10000.0f to mean no one claimed tree
 
 	Game_Model(void); //cant create any instances
-	
+
 	void check_collisions();
 
 	View *view;
@@ -124,13 +127,13 @@ private:
 	std::set<Structure*>	structures;
 
 	std::set<Effect*> effects;
-	
+
 
 	void remove_from_model(Moveable* zombie);
 	void remove_from_model(Structure* zombie);
 	std::list<Moveable*> m_deletion_list;
 	std::list<Structure*> s_deletion_list;
-	
+
 	void remove_from_model(Effect* zombie);
 	std::list<Effect*> e_deletion_list;
 
@@ -140,5 +143,7 @@ private:
 	Zeni::Sound_Source * snowballthrow;
 
 	Zeni::Sound_Source * bgm;
-};
 
+	std::vector<Player_info*> init_player_info;
+	std::map<RakNet::SystemAddress, std::vector<Player *> > clients_to_players;
+};

@@ -79,13 +79,13 @@ void WWClient::createRoom(RakNet::SystemAddress &server_addr, RakNet::SystemAddr
 					peer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,packet->systemAddress,false);
 				}
 				break;
-			
-			
+
+
 			default:
 				printf("Message with identifier %i has arrived.\n", packet->data[0]);
 				break;
 			}
-			
+
 			if(room_created) break;
 		}
 		if(room_created) break;
@@ -165,12 +165,12 @@ void WWClient::searchRoom(RakNet::SystemAddress &server_addr, RakNet::SystemAddr
 					room_status = -1;
 				}
 			break;
-			
+
 			default:
 				printf("Message with identifier %i has arrived.\n", packet->data[0]);
 				break;
 			}
-			
+
 			if(room_status != 0) break;
 		}
 		if(room_status != 0) break;
@@ -224,7 +224,7 @@ void WWClient::WWhost_logic()
 
 				}
 				break;
-				
+
 			case BUILDING:
 				{
 					WWClient::get()->talkToServer("receiving event");
@@ -237,7 +237,7 @@ void WWClient::WWhost_logic()
 					build_event->put_in_game();
 				}
 				break;
-				
+
 			case PLAYER_MOVEMENT:
 				{
 					WWClient::get()->talkToServer("move receive event");
@@ -264,4 +264,10 @@ void WWClient::WWhost_logic()
 void WWClient::connect_to_host()
 {
 	peer->Connect("127.0.0.1", host_addr.GetPort(), 0, 0);
+
+}
+
+RakNet::SystemAddress WWClient::get_my_address()
+{
+	return peer->GetSystemAddressFromGuid(peer->GetMyGUID());
 }
