@@ -9,6 +9,9 @@ public:
 	~Tree(void);
 
 	void update(const float&);
+	
+	virtual Structure_Type get_type()
+	{ return TREE;}
 
 	void destabilize_network();
 

@@ -24,7 +24,7 @@ void WWEvent::send_me()
 
 
 Build_Event::Build_Event(Structure *snowman)
-	: type(SNOWMAN), tile(snowman->get_top_center()), team_color(snowman->get_team_pt()->get_Team_Index())
+	: type(snowman->get_type()), tile(snowman->get_top_center()), team_color(snowman->get_team_pt()->get_Team_Index())
 {
 	send_me();
 }

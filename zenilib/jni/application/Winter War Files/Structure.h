@@ -38,6 +38,8 @@ public:
 
 	void update(const float&);
 
+	virtual Structure_Type get_type() = 0;
+
 	void change_height(const float &delta);
 
 	void receive_hit(float damage); 

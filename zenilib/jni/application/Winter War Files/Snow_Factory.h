@@ -9,6 +9,9 @@ public:
 	~Snow_Factory(void);
 
 	void update(const float&);
+	
+	virtual Structure_Type get_type()
+	{ return SNOW_FACTORY;}
 
 	const model_key_t get_model_name() const;
 

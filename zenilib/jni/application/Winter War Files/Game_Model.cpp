@@ -170,8 +170,6 @@ void Game_Model::update()
 
 	if (PlayTime.seconds() < 3 && PlayTime.seconds() > 2)
 	{
-		if (WWClient::isNetwork())
-			Build_Event(create_structure(HEALING_POOL, world->get_tile(1,2), teams.at(0)));
 		global_message("Build a path of structures from your base to the Tree!");
 	}
 

@@ -10,6 +10,10 @@ public:
 
 	void update(const float&);
 
+	
+	virtual Structure_Type get_type()
+	{ return BASE;}
+
 	const model_key_t get_model_name() const;
 
 	void receive_hit(float damage);
