@@ -38,50 +38,42 @@ void Ingame_Server::peer_logic()
 	//WWClient::get()->talkToServer("peer logic");
 	RakNet::Packet * packet;
 	for (packet=peer->Receive(); packet; peer->DeallocatePacket(packet), packet=peer->Receive())
+	{
+		WWClient::get()->talkToServer("for loop");
+		switch (packet->data[0])
 		{
-			WWClient::get()->talkToServer("for loop");
-			switch (packet->data[0])
+		case ID_CONNECTION_REQUEST_ACCEPTED:
 			{
-			case ID_CONNECTION_REQUEST_ACCEPTED:
-				{
-					printf("Our connection request has been accepted.\n");
+				printf("Our connection request has been accepted.\n");
 
-				}
-				break;
-
-
-			case BUILDING:
-				{
-					WWClient::get()->talkToServer("receiving event");
-
-					RakNet::BitStream bsIn(packet->data,packet->length,false);
-					bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
-
-					WWEvent * build_event = new Build_Event();
-					build_event->unpackage(&bsIn);
-					build_event->put_in_game();
-				}
-				break;
-
-			case PLAYER_MOVEMENT:
-				{
-					WWClient::get()->talkToServer("move receive event");
-
-					RakNet::BitStream bsIn(packet->data, packet->length, false);
-					bsIn.IgnoreBits(sizeof(RakNet::MessageID));
-
-					WWEvent * player_move = new Player_Movement_Event();
-					player_move->unpackage(&bsIn);
-					player_move->put_in_game();
-				}
-				break;
-
-			default:
-				printf("Message with identifier %i has arrived.\n", packet->data[0]);
-				break;
 			}
+			break;
+
+				
+		default: // Handle Events Here
+			
+			try
+			{
+
+			// will throw an error if not one of our events
+				WWEvent * new_event = create_event(packet->data[0]);
+
+				RakNet::BitStream bsIn(packet->data,packet->length,false);
+				bsIn.IgnoreBytes(sizeof(RakNet::MessageID));
+
+				new_event->unpackage(&bsIn);
+				new_event->put_in_game();
+
+			}
+			// for if it isn't one of our Events
+			catch (Zeni::Error&) 
+			{}
+			
+			break;
 
 		}
+
+	}
 
 }
 

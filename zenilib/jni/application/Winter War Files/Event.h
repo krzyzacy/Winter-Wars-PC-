@@ -6,6 +6,7 @@
 #include <zenilib.h>
 
 #include "BitStream.h"
+
 class Player;
 class Structure;
 
@@ -21,6 +22,8 @@ public :
 	void send_me();
 
 };
+
+WWEvent *create_event(unsigned char event_type);
 
 class Build_Event : public WWEvent
 {

@@ -6,9 +6,13 @@
 #include "Team.h"
 #include "Ingame_Peer.h"
 
+#include "MessageIdentifiers.h"
 #include "Object_factory.h"
 #include "Game_Model.h"
 #include "World.h"
+
+
+#include "MessageIdentifiers.h"
 
 using namespace Zeni;
 
@@ -22,6 +26,20 @@ void WWEvent::send_me()
 		WWClient::get()->send(this);
 }
 
+
+WWEvent *create_event(unsigned char event_type)
+{
+	switch (DefaultMessageIDTypes(event_type))
+	{
+		case BUILDING:
+			return new Build_Event;
+		case PLAYER_MOVEMENT:
+			return new Player_Movement_Event;
+
+		default:
+			throw Error("Not An Event");
+	};
+}
 
 Build_Event::Build_Event(Structure *snowman)
 	: type(snowman->get_type()), tile(snowman->get_top_center()), team_color(snowman->get_team_pt()->get_Team_Index())
@@ -46,8 +64,8 @@ RakNet::BitStream *Build_Event::package()
 
 void Build_Event::unpackage(RakNet::BitStream *bsIn)
 {
-	//bsIn->IgnoreBytes(sizeof(RakNet::MessageID));
-	
+	WWClient::get()->talkToServer("receiving event");
+
 	bsIn->Read(type );
 
 	bsIn->Read(tile.x);	
@@ -93,8 +111,8 @@ RakNet::BitStream *Player_Movement_Event::package()
 }
 
 void Player_Movement_Event::unpackage(RakNet::BitStream *bsIn)
-{
-	//Ignore Bytes???
+{	
+	WWClient::get()->talkToServer("move receive event");
 
 	bsIn->Read(player_num);
 

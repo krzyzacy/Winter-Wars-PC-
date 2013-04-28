@@ -86,9 +86,6 @@ void Game_Model::start_up(const vector<Player_info*> &player_info)
 //		view->add_renderable(&Perm);
 
 		play_bgm();
-
-
-		// setup map of players
 }
 
 void Game_Model::initialize_peer(bool isServer, RakNet::SystemAddress host_addr){
