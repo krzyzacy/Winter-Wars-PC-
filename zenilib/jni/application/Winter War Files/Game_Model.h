@@ -62,6 +62,8 @@ public:
 	Player *get_player(int i)
 		{return players.at(i);}
 
+	int num_players() {return players.size();}
+
 	/* returns the ith player on this machine*/
 	Player *get_player_here(int index_on_this_client);
 

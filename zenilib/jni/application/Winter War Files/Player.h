@@ -109,7 +109,7 @@ public:
 	bool vibrate_feedback();
 
 // Getters
-	const Zeni::Point3f &get_posistion() const {return center;}
+	const Zeni::Point3f &get_position() const {return center;}
 
 	const Zeni::Camera &get_camera() const
 		{return m_camera;}

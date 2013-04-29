@@ -433,7 +433,8 @@ enum DefaultMessageIDTypes
 	// communication within game
 
 	BUILDING,
-	PLAYER_MOVEMENT
+	PLAYER_MOVEMENT,
+	THROW_SNOWBALL
 
 
 	//-------------------------------------------------------------------------------------------------------------

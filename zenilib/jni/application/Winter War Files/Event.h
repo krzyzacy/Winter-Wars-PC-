@@ -9,6 +9,7 @@
 
 class Player;
 class Structure;
+class Snowball;
 
 class WWEvent
 {
@@ -60,5 +61,26 @@ private:
 	int team_color;
 };
 
+class Throw_Snowball_Event : public WWEvent
+{
+public:
+	Throw_Snowball_Event(Player* , 
+		const Zeni::Point3f &position,
+		const Zeni::Vector3f &velo,
+		float radius);
+
+	Throw_Snowball_Event()	{};
+
+	virtual RakNet::BitStream *package();
+	virtual void unpackage(RakNet::BitStream *);
+
+	virtual void put_in_game();
+
+private:
+	int player_num; 
+	Zeni::Point3f pos;
+	Zeni::Vector3f velo;
+	float radius;
+};
 
 #endif

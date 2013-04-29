@@ -39,6 +39,11 @@ The following things are unsupported:
 
 <Textures>
 
+  <BLCLOTH.PNG>
+    <filepath>textures/3Dtextures/Player/BLCLOTH.png</filepath>
+    <tile>1</tile>
+  </BLCLOTH.PNG>
+  
   <SNOW.PNG>
     <filepath>textures/snow.png</filepath>
     <tile>1</tile>

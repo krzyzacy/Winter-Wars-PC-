@@ -264,8 +264,13 @@ void Player::throw_ball() {
 	Snowball *sb = new Snowball(this, center+m_camera.get_forward(), 
 									Vector3f(current_radius, current_radius,current_radius));
 	sb->get_thrown(m_camera.get_forward());
-	current_radius = 0;
+
 	Game_Model::get().add_moveable(sb);
+
+	Throw_Snowball_Event(this, center+m_camera.get_forward()
+		, m_camera.get_forward(), current_radius);
+
+	current_radius = 0;
 	switch_state(THROW);
 	stats.thrown++;
 
@@ -595,9 +600,8 @@ bool Player::create_building(Structure_Type Building)	{
 		//Checks if the tile can be built upon
 		if(!myTeam->tile_is_ready(t, Building))
 			return false;
-
-		get_team()->stats.structures[Building]++;
-
+		
+		myTeam->stats.structures[Building]++;
 		Build_Event(create_structure(Building, t, myTeam));
 
 		return true;

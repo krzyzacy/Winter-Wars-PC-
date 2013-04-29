@@ -10,6 +10,7 @@
 #include "Object_factory.h"
 #include "Game_Model.h"
 #include "World.h"
+#include "Snowball.h"
 
 
 #include "MessageIdentifiers.h"
@@ -35,11 +36,18 @@ WWEvent *create_event(unsigned char event_type)
 			return new Build_Event;
 		case PLAYER_MOVEMENT:
 			return new Player_Movement_Event;
+		case THROW_SNOWBALL:
+			return new Throw_Snowball_Event;
+
 
 		default:
 			throw Error("Not An Event");
 	};
 }
+
+/*
+	BUILD
+*/
 
 Build_Event::Build_Event(Structure *snowman)
 	: type(snowman->get_type()), tile(snowman->get_top_center()), team_color(snowman->get_team_pt()->get_Team_Index())
@@ -64,7 +72,7 @@ RakNet::BitStream *Build_Event::package()
 
 void Build_Event::unpackage(RakNet::BitStream *bsIn)
 {
-	WWClient::get()->talkToServer("receiving event");
+	WWClient::get()->talkToServer("Build event");
 
 	bsIn->Read(type );
 
@@ -80,9 +88,13 @@ void Build_Event::put_in_game()
 						Game_Model::get().get_team(team_color - 1));
 }
 
+/*
+	PLAYER MOVEMENT
+*/
+
 Player_Movement_Event::Player_Movement_Event(Player * _player)
 	: player_num(0),
-	position(_player->get_posistion()),
+	position(_player->get_position()),
 	velocity(_player->get_velocity()),
 	team_color(_player->get_Team_Index())
 {
@@ -134,5 +146,67 @@ void Player_Movement_Event::put_in_game()
 	p->network_overwrite_members(position, velocity);
 }
 
+/*
+	Throw_Snowball_Event
+*/
+
+Throw_Snowball_Event::Throw_Snowball_Event(Player *p, 
+		const Zeni::Point3f &pos_,
+		const Zeni::Vector3f &velo_,
+		float rad)
+	: player_num(1), pos(pos_), velo(velo_), radius(rad)
+{
+	send_me();
+}
+
+RakNet::BitStream *Throw_Snowball_Event::package()
+{
+	RakNet::BitStream *bsOut = new RakNet::BitStream;		
+	bsOut->Write((RakNet::MessageID)THROW_SNOWBALL);
+
+	bsOut->Write(player_num );
+
+	bsOut->Write(pos.x);	
+	bsOut->Write(pos.y);	
+	bsOut->Write(pos.z);
+
+	bsOut->Write(velo.x);	
+	bsOut->Write(velo.y);	
+	bsOut->Write(velo.z);
+
+	bsOut->Write(radius);
+
+	return bsOut;
+}
+
+void Throw_Snowball_Event::unpackage(RakNet::BitStream *bsIn)
+{
+	WWClient::get()->talkToServer("Snowball event");
+	
+	bsIn->Read(player_num );
+
+	bsIn->Read(pos.x);	
+	bsIn->Read(pos.y);	
+	bsIn->Read(pos.z);
+
+	bsIn->Read(velo.x);	
+	bsIn->Read(velo.y);	
+	bsIn->Read(velo.z);
+
+	bsIn->Read(radius);	
+}
+
+void Throw_Snowball_Event::put_in_game()
+{	
+	// in the future we should account for delay, 
+	// calculate where it should be on the computer it was sent.
+
+	Snowball *sb = new Snowball(Game_Model::get().get_player(player_num),
+		pos, Vector3f(radius, radius, radius));
+
+	sb->get_thrown(velo);
+
+	Game_Model::get().add_moveable(sb);
+}
 
 

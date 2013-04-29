@@ -64,6 +64,8 @@ void Ingame_Server::peer_logic()
 				new_event->unpackage(&bsIn);
 				new_event->put_in_game();
 
+				delete new_event;
+
 			}
 			// for if it isn't one of our Events
 			catch (Zeni::Error&) 

@@ -65,6 +65,7 @@ Structure *create_structure(int type, Tile* ti, Team* team_)	{
 		st =  new Fortress(team_, ti, base);
 		break;
 	}
+	
 
 	ti->build_structure(st, team_);
 	Game_Model::get().add_structure(st);

@@ -68,7 +68,7 @@ public:
 			total_resources(0), largest_network(0), 
 			tiles_lost(0), final_network(0), resources_spent(0)
 		{
-			for (int i = 0 ; i < 5 ; i++)
+			for (int i = 0 ; i < 10; i++)
 				structures[i] = 0;
 		}
 		int total_resources;
@@ -76,7 +76,7 @@ public:
 		int tiles_lost;
 		int final_network;	
 		int resources_spent;
-		int structures[5];
+		int structures[10];
 	
 		int all_structures()
 		{	int ret = 0;

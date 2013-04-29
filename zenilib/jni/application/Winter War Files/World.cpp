@@ -410,8 +410,8 @@ void World::raise_tile(Point3f location)	{
 	Tile* ti = get_tile(location);
 	float delta = Game_Model::get().get_time_step() * Tile_Move_Speed;
 	if(ti->set_height(delta))	{
-		for(int i = 0; i < 4; i++)	{
-			if(get_tile(Game_Model::get().get_player(i)->get_posistion()) == ti)
+		for(int i = 0; i < Game_Model::get().num_players(); i++)	{
+			if(get_tile(Game_Model::get().get_player(i)->get_position()) == ti)
 				Game_Model::get().get_player(i)->change_z(delta);
 		}
 	}
@@ -421,8 +421,8 @@ void World::lower_tile(Point3f location)	{
 	Tile* ti = get_tile(location);
 	float delta = Game_Model::get().get_time_step() * Tile_Move_Speed;
 	if(ti->set_height(-delta))	{
-		for(int i = 0; i < 4; i++)	{
-			if(get_tile(Game_Model::get().get_player(i)->get_posistion()) == ti)
+		for(int i = 0; i < Game_Model::get().num_players(); i++)	{
+			if(get_tile(Game_Model::get().get_player(i)->get_position()) == ti)
 				Game_Model::get().get_player(i)->change_z(-delta);
 		}
 	}
