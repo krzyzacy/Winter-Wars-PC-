@@ -228,6 +228,8 @@ private:
 
 	int sound_choice;
 
+	Zeni::Chronometer<Zeni::Time> Player_Movement_Message_Ticker;
+
 	Zeni::Sound_Source * player_boy_hit;
 	Zeni::Sound_Source * player_girl_hit;
 	Zeni::Sound_Source * snowball_hit1;

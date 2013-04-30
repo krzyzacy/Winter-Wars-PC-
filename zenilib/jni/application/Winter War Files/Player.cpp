@@ -72,6 +72,9 @@ Player::Player(const Zeni::Point3f &center_)
 	//player_sound_test = new Zeni::Sound_Source(Zeni::get_Sounds()["meow"]);
 	//rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0, 0);
 	//rotation += Quaternion(Global::pi_over_two, 0,0);
+
+	Player_Movement_Message_Ticker.reset();
+	Player_Movement_Message_Ticker.start();
 }
 
 
@@ -132,6 +135,14 @@ void Player::update(const float &time)	{
 		packing_timer += time;
 	}
 	
+
+	if(Player_Movement_Message_Ticker.seconds() > 0.5)
+	{
+		Player_Movement_Event(this);
+		
+		Player_Movement_Message_Ticker.reset();
+		Player_Movement_Message_Ticker.start();
+	}
 
 }
 

@@ -371,6 +371,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Raknet\Source\_FindFirst.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Animator.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Base.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Claim_Tree_Level.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Collidable.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Collision_Table.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Component_Shape.h" />
@@ -386,6 +387,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Peer.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Server.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Instructions_State.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Level.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Lobby_State.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Moveable.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Object_factory.h" />
@@ -407,6 +409,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Team_Select_State.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Tile.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Tree.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Tutorial_Level.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Utility.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\View.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\World.h" />
@@ -637,6 +640,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClCompile Include="..\..\jni\application\Winter War Files\Base.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\bootstrap.cpp">
     </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Claim_Tree_Level.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Collidable.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Collision_Table.cpp" />
@@ -658,6 +662,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Peer.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Server.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Instructions_State.cpp" />
+    <ClCompile Include="..\..\jni\application\Winter War Files\Level.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Lobby_State.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Mode_State.h" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Moveable.cpp">
@@ -690,6 +695,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClCompile Include="..\..\jni\application\Winter War Files\Tile.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Tree.cpp" />
+    <ClCompile Include="..\..\jni\application\Winter War Files\Tutorial_Level.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\View.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\World.cpp">

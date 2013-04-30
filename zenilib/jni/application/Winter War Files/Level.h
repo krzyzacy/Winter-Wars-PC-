@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef LEVEL_H
+#define LEVEL_H
 
 #include <zenilib.h>
 #include <vector>
@@ -10,9 +12,7 @@
 #include "BitStream.h"
 #include "RakNetTypes.h"
 #include "Utility.h"
-//#include "Ingame_Client.h"
 #include "Ingame_Server.h"
-//#include "Ingame_Peer.h"
 
 class Seen_Object;
 class View;
@@ -25,24 +25,16 @@ class Effect;
 class Structure;
 class Tile;
 
-class Level;
-
 extern const float time_to_win_c; //max time it should take to win
 
-class Game_Model
+class Level
 {
 public:
-	static Game_Model &get()
-	{
-		static Game_Model m;
-		return m;
-	}
-
-	~Game_Model(void);
+	Level();
+	~Level();
 
 	void update();
 	void render() const;
-	void change_level(Level *new_level);
 	void start_up(const std::vector<Player_info*> &player_info);
 	void initialize_peer(bool isServer, RakNet::SystemAddress host_addr);
 	void restart();
@@ -62,30 +54,30 @@ public:
 	/* return time game has been played*/
 	float get_time() const;
 
-	Player *get_player(int i);
+	Player *get_player(int i)
+		{return players.at(i);}
 
-	int num_players();
+	int num_players() {return players.size();}
 
 	/* returns the ith player on this machine*/
 	Player *get_player_here(int index_on_this_client);
 
-	Team *get_team(int i);
+	Team *get_team(int i)
+		{return	teams.at(i);}
 
-	World* get_World();
+	World* get_World()
+		{return world;}
 
-	Ingame_Server * get_peer();
+	Ingame_Server * get_peer()
+		{return peer;}
 
 	Tile *get_tile(const Zeni::Point3f&);
 
+	void add_player(Player *);
 	void add_moveable(Moveable *);
 	void add_structure(Structure *);
 	void add_effect(Effect *);
-
-	void play_breaking();
-	void play_chainbreak();
-	void play_presentplace();
-	void play_snowballthrow();
-
+	
 	/*Goes through all objects(collidables) and deletes them if they have been 
 	marked fr deletion*/
 	void Clean_dead();
@@ -96,18 +88,47 @@ public:
 
 	Collision_Table table;	
 
-	void play_bgm();
-	void stop_bgm();
 private:
-	Game_Model(void); //cant create any instances
+
+	// RakNet Peer Interface
+	Ingame_Server * peer;
+
+	Zeni::Chronometer<Zeni::Time> PlayTime;
+	float time_passed;
+	float time_step;
+
+	float win_time; //set to 10000.0f to mean no one claimed tree
 	
-	Zeni::Sound_Source * breaking;
-	Zeni::Sound_Source * chainbreak;
-	Zeni::Sound_Source * presentplace;
-	Zeni::Sound_Source * snowballthrow;
+	void check_collisions();
 
-	Zeni::Sound_Source * bgm;
+	View *view;
+	World *world;
 
-	Level *current_level;
+	std::vector<Player*>	players; 
+	std::vector<Team*>		teams;
+
+	typedef std::set<Moveable*> moveable_list_t;
+	moveable_list_t movers; 
+	typedef std::set<Collidable*> collidable_list_t;
+	collidable_list_t colliders;
+	std::set<Structure*>	structures;
+
+	std::set<Effect*> effects;
+
+
+	void remove_from_model(Moveable* zombie);
+	void remove_from_model(Structure* zombie);
+	std::list<Moveable*> m_deletion_list;
+	std::list<Structure*> s_deletion_list;
+
+	void remove_from_model(Effect* zombie);
+	std::list<Effect*> e_deletion_list;
+
+
+	std::vector<Player_info*> init_player_info;
+	std::map<RakNet::SystemAddress, std::vector<Player *> > clients_to_players;
+
 
 };
+
+#endif 
