@@ -226,21 +226,56 @@ void View::render() const
 	int width = get_Window().get_width();
 	int height = get_Window().get_height();
 
-	Point2f topLeft(0, 0), middle(width/2, height/2), bottomRight(width,height), ySize(0, height/2), xSize(width/2, 0);
+	int ySize, xSize;
+	int num_players = 3;//player_views.size();
+	
+	if (num_players > 1)
+		ySize = height / 2;
+	else
+		ySize = height;
 
+	if (num_players > 2)
+		xSize = width / 2;
+	else
+		xSize = width;
 
-	render_player(0, topLeft, bottomRight);
-	//render_player(1, topLeft+xSize, middle+xSize);
-//	render_player(2, topLeft+ySize, middle+ySize);
-//	render_player(3, middle, bottomRight);
+	
+	Vector2f topLeft(0, 0),
+		xSize_v(xSize, 0),
+		ySize_v(0, ySize),
+		middle(topLeft + xSize_v + ySize_v),
+		bottomRight(middle + middle);
+
+	render_player(0, topLeft, middle);
+
+	if (num_players > 2)
+	{
+		// Keep player 3 and 2 as we'd expect them
+		render_player(1, topLeft+xSize_v, topLeft+xSize_v + middle);
+		render_player(2, topLeft+ySize_v, topLeft+ySize_v + middle);
+		
+		if (num_players > 3)
+			render_player(3, middle, middle + xSize_v+ySize_v);
+	}
+	else if (num_players == 2) // if only two players put player 2 on bottom
+		render_player(1, topLeft+ySize_v, topLeft+ySize_v + middle);
+
 
 	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(width, height)), true);
 	
-	render_player_hud(0, topLeft, bottomRight);
-//	render_player_hud(1, topLeft+xSize, middle+xSize);          
-//	render_player_hud(2, topLeft+ySize, middle+ySize);
-//	render_player_hud(3, middle, bottomRight);
+	render_player_hud(0, topLeft, middle);
 	
+	if (num_players > 2)
+	{
+		// Keep player 3 and 2 as we'd expect them
+		render_player_hud(1, topLeft+xSize_v, topLeft+xSize_v + middle);
+		render_player_hud(2, topLeft+ySize_v, topLeft+ySize_v + middle);
+		
+		if (num_players > 3)
+			render_player_hud(3, middle, middle + xSize_v+ySize_v);
+	}
+	else if (num_players == 2) // if only two players put player 2 on bottom
+		render_player_hud(1, topLeft+ySize_v, topLeft+ySize_v + middle);
 }
 
 Player_View *cur_View; // The current player we are viewing
