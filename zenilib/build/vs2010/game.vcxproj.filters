@@ -88,6 +88,9 @@
     <Filter Include="jni\application\Winter War Files\Environment">
       <UniqueIdentifier>{48b00eea-d593-43ed-a818-3098458b5461}</UniqueIdentifier>
     </Filter>
+    <Filter Include="jni\application\Winter War Files\Level">
+      <UniqueIdentifier>{a3ebed13-5001-4610-9581-0ecd0a876614}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\jni\application\Winter War Files\Team.h">
@@ -1011,6 +1014,15 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\WWClient.h">
       <Filter>jni\application\Winter War Files\Client/Server</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Level.h">
+      <Filter>jni\application\Winter War Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Claim_Tree_Level.h">
+      <Filter>jni\application\Winter War Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Tutorial_Level.h">
+      <Filter>jni\application\Winter War Files\Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
@@ -1462,6 +1474,15 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\WWClient.cpp">
       <Filter>jni\application\Winter War Files\Client/Server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Level.cpp">
+      <Filter>jni\application\Winter War Files\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Claim_Tree_Level.cpp">
+      <Filter>jni\application\Winter War Files\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Tutorial_Level.cpp">
+      <Filter>jni\application\Winter War Files\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

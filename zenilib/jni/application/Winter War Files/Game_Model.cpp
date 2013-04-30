@@ -17,364 +17,132 @@
 #include "Zeni/Joysticks.h"
 #include "WWClient.h"
 
+#include "Level.h"
 
 using namespace std;
 using namespace Zeni;
-
-
-const float time_to_win_c = 20.0f; //max time it should take to win
 
 Game_Model::Game_Model(void)
 {
 
 }
 
+void Game_Model::change_level(Level *new_level)
+{
+	delete current_level;
+
+	current_level = new_level;
+}
+
 void Game_Model::start_up(const vector<Player_info*> &player_info)
 {
-	init_player_info = player_info;
+	breaking = new Zeni::Sound_Source(get_Sounds()["breaking"]);
+	chainbreak = new Zeni::Sound_Source(get_Sounds()["chainbreak"]);
+	presentplace = new Zeni::Sound_Source(get_Sounds()["presentplace"]);
+	snowballthrow = new Zeni::Sound_Source(get_Sounds()["snowballthrow"]);
+	bgm = new Zeni::Sound_Source(get_Sounds()["bgm"]);
 
-		view = (new View());
-		world = (new World(view));
-		time_passed = (0.0f); 
-		time_step = (0.0f);	
-		win_time = (10000.0f);
+	breaking->set_gain(0.35);
+	breaking->set_pitch(0.8);
 
-		breaking = new Zeni::Sound_Source(get_Sounds()["breaking"]);
-		chainbreak = new Zeni::Sound_Source(get_Sounds()["chainbreak"]);
-		presentplace = new Zeni::Sound_Source(get_Sounds()["presentplace"]);
-		snowballthrow = new Zeni::Sound_Source(get_Sounds()["snowballthrow"]);
-		bgm = new Zeni::Sound_Source(get_Sounds()["bgm"]);
+	chainbreak->set_gain(0.32);
+	chainbreak->set_pitch(0.8);
 
-		breaking->set_gain(0.35);
-		breaking->set_pitch(0.8);
+	presentplace->set_gain(0.8);
+	presentplace->set_pitch(0.8);
 
-		chainbreak->set_gain(0.32);
-		chainbreak->set_pitch(0.8);
+	snowballthrow->set_gain(0.8);
+	snowballthrow->set_pitch(2);
 
-		presentplace->set_gain(0.8);
-		presentplace->set_pitch(0.8);
-
-		snowballthrow->set_gain(0.8);
-		snowballthrow->set_pitch(2);
-
-		bgm->set_looping(1);
-
-
-		teams.push_back(create_team(world->get_next_Base_Tile()));
-		teams.push_back(create_team(world->get_next_Base_Tile()));
-		teams.push_back(create_team(world->get_next_Base_Tile()));
-		teams.push_back(create_team(world->get_next_Base_Tile()));
-		teams[0]->set_Team_Color(GREEN);
-		teams[1]->set_Team_Color(RED);
-		teams[2]->set_Team_Color(BLUE);
-		teams[3]->set_Team_Color(ORANGE);
-
-
-	for(int i = 0; i < player_info.size() ; i++){
-		Player *p = create_player(teams[player_info[i]->colors_], player_info[i]->genders_);
-		//Player *p = create_player(teams[i], genders_[i]);
-		add_player(p);
-	}
-
-	// Place Tree
-	add_structure(create_structure(TREE, world->get_center_Tile(), NULL));
-
-	PlayTime.reset();
-	PlayTime.start();
-	Player_Movement_Message_Ticker.reset();
-	Player_Movement_Message_Ticker.start();
+	bgm->set_looping(1);
 
 	play_bgm();
 
-	if (!WWClient::isNetwork())
-		// not a network game
-	{	// put all players in views
-		for ( int i = 0 ; i < num_players() ; i++)
-			view->add_player_view(new Player_View(get_player(i)));
-	}
+	current_level->start_up(player_info);
 }
 
 void Game_Model::initialize_peer(bool isServer, RakNet::SystemAddress host_addr){
 
-	if(isServer){
-		peer = new Ingame_Server();
-	}
-
-	if (WWClient::isNetwork())	
-	{
-		WWClient::get()->setHostAddr(host_addr);	
-
-		cerr << WWClient::get()->get_my_address().ToString();
-
-		// set up map of players
-		for (int i = 0 ; i < init_player_info.size() ; i++)
-		{
-			// insert this player into the map at his client's address
-			clients_to_players[init_player_info.at(i)->self_addr].push_back(get_player(i));
-			
-			// only players on this machine get a view.
-			if (init_player_info.at(i)->self_addr != RakNet::UNASSIGNED_SYSTEM_ADDRESS && 
-				init_player_info.at(i)->self_addr.GetPort() == WWClient::get()->get_my_address().GetPort())
-			{
-				cerr << init_player_info.at(i)->self_addr.ToString() << endl;
-				view->add_player_view(new Player_View(get_player(i)));
-			}
-
-		}
-	}
+	current_level->initialize_peer(isServer, host_addr);
 }
 
 void Game_Model::restart()
 {
-	finish();
-
-	start_up(init_player_info);
+	current_level->restart();
 }
 
 void Game_Model::finish()
 {
-	//Everything is a collidable in all the other lists, so this represents all things
-	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); ++it)
-		delete (*it);
-	
-	for(set<Effect*>::iterator it = effects.begin(); it != effects.end(); ++it)
-		delete (*it);
+	current_level->finish();
 
-	delete world; //destroys tiles too
-	delete view;	
-
-	movers.clear();
-	colliders.clear();
-	structures.clear();
-	effects.clear();
-
-	// if we want to cfreate players and teams outside of this
-	// cant clear players and team too
-	players.clear();
-
-	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)	
-		delete (*it);
-	teams.clear();
-	
 	//delete sounds
 	delete breaking;
 	delete chainbreak;
 	delete presentplace;
 	delete snowballthrow;
-
-	PlayTime.reset();
-	Player_Movement_Message_Ticker.reset();
 }
-
-
 
 Game_Model::~Game_Model(void)
 {
-//	finish();
+
 }
 
 void Game_Model::update()
 {	
-	const float frametime_passed = PlayTime.seconds();
-	const float currentStep = frametime_passed - time_passed;
-	time_passed = frametime_passed;
-	time_step = currentStep;
-
-	if (PlayTime.seconds() < 3 && PlayTime.seconds() > 2)
-	{
-		global_message("Build a path of structures from your base to the Tree!");
-	}
-
-	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); it++)
-		(*it)->update(time_step);
-
-	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)
-		(*it)->update();
-
-
-	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)	{
-		if((*it)->Is_Tree_Claimed())
-		{
-
-			world->raise_tile(world->get_center_Tile()->get_structure_base());
-		}	
-	}
-	
-	check_collisions();
-
-	if(Player_Movement_Message_Ticker.seconds() > 0.5)
-	{
-		if(WWClient::isNetwork())	{
-			Player_Movement_Event(players.at(0));
-		}
-		
-
-		Player_Movement_Message_Ticker.reset();
-		Player_Movement_Message_Ticker.start();
-	}
-
-	Game_Model::get().Clean_dead();
+	current_level->update();
 }
-
-
 
 /*set the time to win and the team to win*/
 void Game_Model::tree_claimed(const Team *team)
 {
-	// if no team owns the tree
-	if (!team)
-	{
-		world->get_center_Tile()->set_team(NEUTRAL);
-		win_time = 10000.0f;
-		return ;
-	}
-	for (int i = 0; i < 4 ; i++)
-	{
-		if (get_team(i) != team)
-		const_cast<Team*>(get_team(i))->message_team(const_cast<Team*>(team)->get_name_Upper_Case() + 
-			" TEAM CLAIMED THE TREE! Destroy tiles to break their territory",80);
-	}
-	// team wants to own the tree
-	win_time = PlayTime.seconds() + time_to_win_c;
-
+	current_level->tree_claimed(team);
 }
-
-
-void Game_Model::check_collisions()
-{
-	// for each moveable/collidable pair
-	for(moveable_list_t::iterator it = movers.begin()
-						; it != movers.end(); ++it)
-		for(collidable_list_t::iterator jt = colliders.begin()
-							; jt != colliders.end(); ++jt)
-		{
-			table.handle_collision((*it)->get_ID(), (*jt)->get_ID()
-				, *it, *jt);
-		}
-}
-
 
 // returns true if some team has won
 bool Game_Model::win()
 {
-	if (time_till_win() <= 0)
-	{
-		for(int i = 0; i < 4; i++)
-			Joysticks::get().set_xinput_vibration(i, 0, 0);
-
-		PlayTime.stop();
-		return true;
-	}
-	return false;
+	return current_level->win();
 }
 
 /* return time game has been played*/
 float Game_Model::get_time() const
 {
-	return PlayTime.seconds();
+	return current_level->get_time();
 }
 
 void Game_Model::render() const
 {
-	view->render();
+	current_level->render();
 }
 
-float Game_Model::get_time_step()	{
-	return time_step;
-}
-
-void Game_Model::add_player(Player *p)
+float Game_Model::get_time_step()	
 {
-	players.push_back(p);
-	view->add_renderable(p);	
-	colliders.insert(p);
-	movers.insert(p);
+	return current_level->get_time_step();
 }
 
 void Game_Model::add_moveable(Moveable *m)
 {
-	movers.insert(m);
-	colliders.insert(m);
-	view->add_renderable(m);
+	current_level->add_moveable(m);
 }
 
-void Game_Model::add_structure(Structure* S)	{
-	colliders.insert(S);
-	structures.insert(S);
-	view->add_renderable(S);
+void Game_Model::add_structure(Structure* S)	
+{
+	current_level->add_structure(S);
 }
 
-void Game_Model::add_effect(Effect* S)	{
-	effects.insert(S);
-	view->add_renderable(S);
-}
-
-void Game_Model::Clean_dead()	{
-		// Runs through destructable objects to check if they have died
-		//places them in trash list if they have
-		for(moveable_list_t::iterator it = movers.begin(); it != movers.end(); ++it)	{
-			if(!(*it)->is_alive())
-				m_deletion_list.push_back(*it);
-		}
-
-		for(set<Structure*>::iterator it = structures.begin(); it != structures.end(); ++it)		{
-			if(!(*it)->is_alive())
-				s_deletion_list.push_back(*it);
-		}
-
-		for(set<Effect*>::iterator it = effects.begin(); it != effects.end(); ++it)		{
-			if(!(*it)->is_alive())
-				e_deletion_list.push_back(*it);
-		}
-
-		//Clean trash
-		for(list<Moveable*>::iterator it = m_deletion_list.begin(); it != m_deletion_list.end(); ++it)	
-				remove_from_model(*it);
-
-		for(list<Structure*>::iterator it = s_deletion_list.begin(); it != s_deletion_list.end(); ++it)		
-				remove_from_model(*it);
-
-		for(list<Effect*>::iterator it = e_deletion_list.begin(); it != e_deletion_list.end(); ++it)	
-				remove_from_model(*it);
-
-		
-		m_deletion_list.clear();
-		s_deletion_list.clear();
-		e_deletion_list.clear();
-}
-
-
-void Game_Model::remove_from_model(Moveable* Z)	{
-	movers.erase(Z);
-	colliders.erase(Z);
-	view->remove_renderable(Z);
-	delete Z;
-}
-
-void Game_Model::remove_from_model(Effect* Z)	{
-	effects.erase(Z);
-	view->remove_renderable(Z);
-	delete Z;
-}
-
-void Game_Model::remove_from_model(Structure* Z)	{
-	colliders.erase(Z);
-	structures.erase(Z);
-	view->remove_renderable(Z);
-	delete Z;
+void Game_Model::add_effect(Effect* S)	
+{
+	current_level->add_effect(S);
 }
 
 float Game_Model::time_till_win() const
 {
-	return win_time - PlayTime.seconds();
+	return current_level->time_till_win();
 }
 
 void Game_Model::global_message(const String &message)
 {	
-	for(int i = 0; i < 4; i++)
-	{
-		players[i]->add_message(message);
-	}
+	current_level->global_message(message);
 }
 
 void Game_Model::play_breaking()
@@ -411,5 +179,31 @@ void Game_Model::stop_bgm(){
 
 Tile *Game_Model::get_tile(const Point3f& pos)
 {
-	return world->get_tile(pos);
+	return current_level->get_tile(pos);
 }
+
+Team *Game_Model::get_team(int i)
+{
+	return current_level->get_team(i);
+}
+
+World* Game_Model::get_World()
+{
+	return current_level->get_World();
+}
+
+Ingame_Server * Game_Model::get_peer()
+{
+	return current_level->get_peer();
+}
+
+Player *Game_Model::get_player(int i)
+{
+	return current_level->get_player(i);
+}
+
+int Game_Model::num_players()
+{
+	return current_level->num_players();
+}
+	

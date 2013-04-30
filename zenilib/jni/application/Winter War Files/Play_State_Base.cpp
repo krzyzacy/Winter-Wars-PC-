@@ -11,6 +11,7 @@
 #include "End_Game_State.h"
 #include "Utility.h"
 #include "WWClient.h"
+#include "Claim_Tree_Level.h"
 
 Play_State_Base::Play_State_Base(vector<Player_info*> *player_info_,
 			bool isLocalGame_, bool isServer_, RakNet::SystemAddress server_addr)	:
@@ -39,6 +40,8 @@ void Play_State_Base::on_push()	{
 		get_Window().mouse_grab(true);
 		get_Video().set_clear_Color(Color(0,.1,.1,.1));
 		get_Game().joy_mouse.enabled = false;
+
+		Game_Model::get().change_level(new Claim_Tree_Level());
 		Game_Model::get().start_up(*player_info);
 
 		if(!isLocal)
