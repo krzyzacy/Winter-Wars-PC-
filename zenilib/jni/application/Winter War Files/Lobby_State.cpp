@@ -165,6 +165,11 @@ void Lobby_State::render() {
 
 void Lobby_State::initialize(){
 	WWClient::get()->init();
+
+
+
+
+
 }
 
 void Lobby_State::start_game(){
