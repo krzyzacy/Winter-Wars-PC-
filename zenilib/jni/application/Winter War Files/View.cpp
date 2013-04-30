@@ -227,7 +227,7 @@ void View::render() const
 	int height = get_Window().get_height();
 
 	int ySize, xSize;
-	int num_players = 3;//player_views.size();
+	int num_players = player_views.size();
 	
 	if (num_players > 1)
 		ySize = height / 2;
