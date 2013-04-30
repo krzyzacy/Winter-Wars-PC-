@@ -91,17 +91,6 @@ Only TrueType fonts are supported.
     
     <cat>
         <filepath>fonts/FZMWFont.TTF</filepath>
-        <height>56</height>
-        <bold>1</bold>
-        <italics>0</italics>
-        <virtual_screen>
-            <width>800</width>
-            <height>600</height>
-        </virtual_screen>
-    </cat>
-    
-    <cat_100>
-        <filepath>fonts/FZMWFont.TTF</filepath>
         <height>100</height>
         <bold>1</bold>
         <italics>0</italics>
@@ -109,94 +98,6 @@ Only TrueType fonts are supported.
             <width>800</width>
             <height>600</height>
         </virtual_screen>
-    </cat_100>
-    
-    <cat_110>
-        <filepath>fonts/FZMWFont.TTF</filepath>
-        <height>110</height>
-        <bold>1</bold>
-        <italics>0</italics>
-        <virtual_screen>
-            <width>800</width>
-            <height>600</height>
-        </virtual_screen>
-    </cat_110>
-    
-    <cat_36>
-        <filepath>fonts/FZMWFont.TTF</filepath>
-        <height>36</height>
-        <bold>1</bold>
-        <italics>0</italics>
-        <virtual_screen>
-            <width>800</width>
-            <height>600</height>
-        </virtual_screen>
-    </cat_36>
-    
-    <cat_44>
-        <filepath>fonts/FZMWFont.TTF</filepath>
-        <height>44</height>
-        <bold>1</bold>
-        <italics>0</italics>
-        <virtual_screen>
-            <width>800</width>
-            <height>600</height>
-        </virtual_screen>
-    </cat_44>
-    
-    <cat_24>
-        <filepath>fonts/FZMWFont.TTF</filepath>
-        <height>24</height>
-        <bold>1</bold>
-        <italics>0</italics>
-        <virtual_screen>
-            <width>800</width>
-            <height>600</height>
-        </virtual_screen>
-    </cat_24>
-    
-    <cat_28>
-        <filepath>fonts/FZMWFont.TTF</filepath>
-        <height>28</height>
-        <bold>1</bold>
-        <italics>0</italics>
-        <virtual_screen>
-            <width>800</width>
-            <height>600</height>
-        </virtual_screen>
-    </cat_28>
-    
-    <cat_22>
-        <filepath>fonts/FZMWFont.TTF</filepath>
-        <height>22</height>
-        <bold>1</bold>
-        <italics>0</italics>
-        <virtual_screen>
-            <width>800</width>
-            <height>600</height>
-        </virtual_screen>
-    </cat_22>
-    
-    <cat_64>
-        <filepath>fonts/FZMWFont.TTF</filepath>
-        <height>64</height>
-        <bold>1</bold>
-        <italics>0</italics>
-        <virtual_screen>
-            <width>800</width>
-            <height>600</height>
-        </virtual_screen>
-    </cat_64>
-    
-    <resource>
-        <filepath>fonts/FZMWFont.TTF</filepath>
-        <height>20</height>
-        <bold>1</bold>
-        <italics>0</italics>
-        <virtual_screen>
-            <width>800</width>
-            <height>600</height>
-        </virtual_screen>
-    </resource>
+    </cat>
     
 </Fonts>

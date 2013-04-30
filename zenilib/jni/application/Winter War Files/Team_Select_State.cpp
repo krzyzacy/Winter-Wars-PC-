@@ -217,10 +217,10 @@ void Team_Select_State::render() {
 
 			if(player_state[player_idx] != 0){
 				render_image("Snowball",Point2f(233.0f + player_render_offset[player_idx].x, 67.0f + 42.0f * player_cursor[player_idx] + player_render_offset[player_idx].y), Point2f(265.0f + player_render_offset[player_idx].x, 97.0f + 42.0f * player_cursor[player_idx] + player_render_offset[player_idx].y));
-				get_Fonts()["cat_24"].render_text("Gender      > " + player_gender[player_idx] ,Point2f(265 + player_render_offset[player_idx].x, 72 + player_render_offset[player_idx].y), Color(0x99FF1111));
-				get_Fonts()["cat_24"].render_text("Team        > " + player_team[player_idx] ,Point2f(265 + player_render_offset[player_idx].x, 114 + player_render_offset[player_idx].y), Color(0x99FF1111));
-				get_Fonts()["cat_24"].render_text("Control     > " + player_control[player_idx] ,Point2f(265 + player_render_offset[player_idx].x, 156 + player_render_offset[player_idx].y), Color(0x99FF1111));
-				get_Fonts()["cat_24"].render_text("Sensitivity > " + itoa(player_sensitivity_state[player_idx]) ,Point2f(265 + player_render_offset[player_idx].x, 198 + player_render_offset[player_idx].y), Color(0x99FF1111));
+				get_Fonts()["cat"].render_text("Gender      > " + player_gender[player_idx] ,Point3f(265 + player_render_offset[player_idx].x, 72 + player_render_offset[player_idx].y, 0), Vector3f(0.28 ,0,0), Vector3f(0,0.28,0), Color(0x99FF1111));
+				get_Fonts()["cat"].render_text("Team        > " + player_team[player_idx] ,Point3f(265 + player_render_offset[player_idx].x, 114 + player_render_offset[player_idx].y, 0), Vector3f(0.28 ,0,0), Vector3f(0,0.28,0), Color(0x99FF1111));
+				get_Fonts()["cat"].render_text("Control     > " + player_control[player_idx] ,Point3f(265 + player_render_offset[player_idx].x, 156 + player_render_offset[player_idx].y, 0), Vector3f(0.28 ,0,0), Vector3f(0,0.28,0), Color(0x99FF1111));
+				get_Fonts()["cat"].render_text("Sensitivity > " + itoa(player_sensitivity_state[player_idx]) ,Point3f(265 + player_render_offset[player_idx].x, 198 + player_render_offset[player_idx].y, 0), Vector3f(0.28 ,0,0), Vector3f(0,0.28,0), Color(0x99FF1111));
 				render_image(player_gender[player_idx] + player_team[player_idx] + "Regular", Point2f(55 + player_render_offset[player_idx].x,125 + player_render_offset[player_idx].y),Point2f(188 + player_render_offset[player_idx].x,258 + player_render_offset[player_idx].y));
 			}
 			else
