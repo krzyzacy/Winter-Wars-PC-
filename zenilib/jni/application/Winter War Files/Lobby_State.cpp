@@ -194,7 +194,7 @@ void Lobby_State::start_game(){
 		newPlayer->genders_ = "Boy";
 		newPlayer->controls_ = 0;
 		newPlayer->sensitivities_ = 5;
-		newPlayer->self_addr = this->self_addr;
+		newPlayer->self_addr = client_list[i].ip_addr; // Assumes 1 player per computer
 
 		player_list->push_back(newPlayer);
 	}

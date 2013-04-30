@@ -76,16 +76,22 @@ void Game_Model::start_up(const vector<Player_info*> &player_info)
 		add_player(p);
 	}
 
-		// Place Tree
-		add_structure(create_structure(TREE, world->get_center_Tile(), NULL));
+	// Place Tree
+	add_structure(create_structure(TREE, world->get_center_Tile(), NULL));
 
-		PlayTime.reset();
-		PlayTime.start();
-		Player_Movement_Message_Ticker.reset();
-		Player_Movement_Message_Ticker.start();
-//		view->add_renderable(&Perm);
+	PlayTime.reset();
+	PlayTime.start();
+	Player_Movement_Message_Ticker.reset();
+	Player_Movement_Message_Ticker.start();
 
-		play_bgm();
+	play_bgm();
+
+	if (!WWClient::isNetwork())
+		// not a network game
+	{	// put all players in views
+		for ( int i = 0 ; i < num_players() ; i++)
+			view->add_player_view(new Player_View(get_player(i)));
+	}
 }
 
 void Game_Model::initialize_peer(bool isServer, RakNet::SystemAddress host_addr){
@@ -98,11 +104,22 @@ void Game_Model::initialize_peer(bool isServer, RakNet::SystemAddress host_addr)
 	{
 		WWClient::get()->setHostAddr(host_addr);	
 
+		cerr << WWClient::get()->get_my_address().ToString();
+
 		// set up map of players
 		for (int i = 0 ; i < init_player_info.size() ; i++)
 		{
 			// insert this player into the map at his client's address
 			clients_to_players[init_player_info.at(i)->self_addr].push_back(get_player(i));
+			
+			// only players on this machine get a view.
+			if (init_player_info.at(i)->self_addr != RakNet::UNASSIGNED_SYSTEM_ADDRESS && 
+				init_player_info.at(i)->self_addr.GetPort() == WWClient::get()->get_my_address().GetPort())
+			{
+				cerr << init_player_info.at(i)->self_addr.ToString() << endl;
+				view->add_player_view(new Player_View(get_player(i)));
+			}
+
 		}
 	}
 }
@@ -155,8 +172,7 @@ Game_Model::~Game_Model(void)
 {
 //	finish();
 }
-#include "Event.h"
-#include <WinBase.h>
+
 void Game_Model::update()
 {	
 	const float frametime_passed = PlayTime.seconds();
@@ -183,28 +199,19 @@ void Game_Model::update()
 			world->raise_tile(world->get_center_Tile()->get_structure_base());
 		}	
 	}
-
-	//OutputDebugString("Update Loop has Occured\n");
-
-
+	
 	check_collisions();
 
-	//if(Player_Movement_Message_Ticker.seconds() > 0.5)
-	//{
-	//	OutputDebugString("Fired the I'm going to send a movement message tick\n");
-	//	cerr<<"DERRRRP"<<endl;
-	//	if(WWClient::isNetwork())	{
-	//		OutputDebugString("This is a network game, now create player movement event\n");
-	//		cerr<<"This is a network game, now create player movement event"<<endl;
-	//		Player_Movement_Event(players.at(0));
-	//		OutputDebugString("Made it to past creating the event\n");
-	//		cerr<<"Made it to past creating the event"<<endl;
-	//	}
-	//	
+	if(Player_Movement_Message_Ticker.seconds() > 0.5)
+	{
+		if(WWClient::isNetwork())	{
+			Player_Movement_Event(players.at(0));
+		}
+		
 
-	//	Player_Movement_Message_Ticker.reset();
-	//	Player_Movement_Message_Ticker.start();
-	//}
+		Player_Movement_Message_Ticker.reset();
+		Player_Movement_Message_Ticker.start();
+	}
 
 	Game_Model::get().Clean_dead();
 }
@@ -279,8 +286,7 @@ float Game_Model::get_time_step()	{
 void Game_Model::add_player(Player *p)
 {
 	players.push_back(p);
-	view->add_renderable(p);
-	view->add_player_view(new Player_View(p));
+	view->add_renderable(p);	
 	colliders.insert(p);
 	movers.insert(p);
 }
