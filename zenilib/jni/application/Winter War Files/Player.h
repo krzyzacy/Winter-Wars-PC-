@@ -139,7 +139,7 @@ public:
 	void play_sound();
 // Messages
 	/* Adds a message for the player */
-	void add_message(const Zeni::String &, int priority = 0);
+	void add_message(const Zeni::String &, int priority = 0, float seconds = 3);
 	
 	void next_tip();
 

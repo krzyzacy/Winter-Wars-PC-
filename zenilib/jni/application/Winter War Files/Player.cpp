@@ -716,10 +716,10 @@ int Player::get_Team_Index() const	{
 	return myTeam->get_Team_Index();
 }
 
-void Player::add_message(const Zeni::String &msg, int priority)
+void Player::add_message(const Zeni::String &msg, int priority, float seconds)
 {
 	if (message.is_over() || priority >= message.priority)
-	message = Message(msg, priority, 3);
+	message = Message(msg, priority, seconds);
 }
 
 bool Player::has_message() const
