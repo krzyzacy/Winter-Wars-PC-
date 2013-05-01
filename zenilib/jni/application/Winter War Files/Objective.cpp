@@ -16,7 +16,7 @@ bool Objective::has_been_completed()
 	return false;
 }
 
-string Objective::get_message_to_display()
+Zeni::String Objective::get_message_to_display()
 {
 	return message;
 }
@@ -64,6 +64,11 @@ Objective* Raise_Lower_Tiles::get_next_Objective()
 Objective* Build_a_Chain_To_Tree::get_next_Objective()
 {
 	return new Destroy_Key_Enemy_Structures();
+}
+
+Objective* Destroy_Key_Enemy_Structures::get_next_Objective()
+{
+	return new Rescue_Your_Network();
 }
 
 Objective* Rescue_Your_Network::get_next_Objective()

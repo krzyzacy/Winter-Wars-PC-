@@ -1,7 +1,7 @@
 #ifndef __OBJECTIVE_H__
 #define __OBJECTIVE_H__
 
-#include <String>
+#include <zenilib.h>
 
 class Objective 
 {
@@ -10,11 +10,11 @@ public:
 	virtual ~Objective() = 0;
 
 	virtual bool has_been_completed();
-	virtual std::string get_message_to_display();
+	virtual Zeni::String get_message_to_display();
 	virtual Objective* get_next_Objective();
 
 protected:
-	std::string message;
+	Zeni::String message;
 };
 
 class Build_a_Healing_Pool : public Objective
@@ -39,7 +39,7 @@ class Throw_Snowball_At_Enemy : public Objective
 {
 public:
 	Throw_Snowball_At_Enemy()
-	{ message = "Throw Snowballs with right trigger to defeat enemies!"};
+	{ message = "Throw Snowballs with right trigger to defeat enemies!";}
 	~Throw_Snowball_At_Enemy() {}
 	Objective* get_next_Objective();
 };
