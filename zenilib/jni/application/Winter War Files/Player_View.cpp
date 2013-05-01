@@ -9,6 +9,8 @@
 #include <zenilib.h>
 #include "Structure.h"
 
+#define PI 3.1415926
+
 using namespace Zeni;
 
 Player_View::Player_View(const Player *p) :
