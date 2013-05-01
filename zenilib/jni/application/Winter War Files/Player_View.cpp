@@ -233,8 +233,15 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 	}
 
 	Point2f player_pos(player->get_camera().position.x / ratio,player->get_camera().position.y / ratio);
-	render_image((Zeni::String)avartar,Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 195.0f, topLeft.y + player_pos.y * unit_px + 80.0f * unit_px),Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 235, topLeft.y + player_pos.y * unit_px + unit_px * 120));
+	
+	// rotate theta
+	float angle = atan(player->get_camera().get_forward().x / player->get_camera().get_forward().y);
+	if(player->get_camera().get_forward().y < 0)
+		angle += PI;
 
+	render_image((Zeni::String)avartar,Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 195.0f, topLeft.y + player_pos.y * unit_px + 80.0f * unit_px),
+				Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 235, topLeft.y + player_pos.y * unit_px + unit_px * 120), 
+				angle , 1.0f, Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 215, topLeft.y + player_pos.y * unit_px + unit_px * 100) );
 }
 
 void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRight){
