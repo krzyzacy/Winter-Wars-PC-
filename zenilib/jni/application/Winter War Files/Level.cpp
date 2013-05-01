@@ -148,10 +148,10 @@ void Level::update()
 	time_passed = frametime_passed;
 	time_step = currentStep;
 
-	if (PlayTime.seconds() < 3 && PlayTime.seconds() > 2)
-	{
-		global_message("Build a path of structures from your base to the Tree!");
-	}
+	//if (PlayTime.seconds() < 3 && PlayTime.seconds() > 2)
+	//{
+	//	global_message("Build a path of structures from your base to the Tree!");
+	//}
 
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); it++)
 		(*it)->update(time_step);

@@ -12,7 +12,7 @@ public:
 	Tutorial_Level();
 	~Tutorial_Level();
 	
-
+	void start_up(const std::vector<Player_info*> &player_info);
 	void update();
 	
 private:
