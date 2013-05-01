@@ -86,4 +86,62 @@ Objective* Defend_Your_Claim::get_next_Objective()
 	return NULL;
 }
 
+bool Build_a_Healing_Pool::has_been_completed()
+{
+	return false;
+}
 
+bool Build_Other_Structures::has_been_completed()
+{
+	return false;
+}
+
+bool Throw_Snowball_At_Enemy::has_been_completed()
+{
+	return false;
+}
+
+bool Pack_Snowball::has_been_completed()
+{
+	return false;
+}
+
+bool Scoop_Snow::has_been_completed()
+{
+	return false;
+}
+
+bool Destroy_Structures::has_been_completed()
+{
+	return false;
+}
+
+bool Raise_Lower_Tiles::has_been_completed()
+{
+	return false;
+}
+
+bool Build_a_Chain_To_Tree::has_been_completed()
+{
+	return false;
+}
+
+bool Destroy_Key_Enemy_Structures::has_been_completed()
+{
+	return false;
+}
+
+bool Rescue_Your_Network::has_been_completed()
+{
+	return false;
+}
+
+bool Claim_The_Tree::has_been_completed()
+{
+	return false;
+}
+
+bool Defend_Your_Claim::has_been_completed()
+{//represents win?
+	return false;
+}
