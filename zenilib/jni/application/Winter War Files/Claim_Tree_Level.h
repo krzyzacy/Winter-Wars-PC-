@@ -6,6 +6,7 @@
 
 class Claim_Tree_Level : public Level
 {	
+protected:
 	void update();
 	void start_up(const std::vector<Player_info*> &player_info);
 

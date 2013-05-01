@@ -31,28 +31,28 @@ class Level
 {
 public:
 	Level();
-	~Level();
+	virtual ~Level();
 
-	void update();
-	void render() const;
-	void start_up(const std::vector<Player_info*> &player_info);
-	void initialize_peer(bool isServer, RakNet::SystemAddress host_addr);
-	void restart();
-	void finish();
+	virtual void update();
+	virtual void render() const;
+	virtual void start_up(const std::vector<Player_info*> &player_info);
+	virtual void initialize_peer(bool isServer, RakNet::SystemAddress host_addr);
+	virtual void restart();
+	virtual void finish();
 
 	// returns true if some team has won
 	// stops the clock if yes
-	bool win();
+	virtual bool win();
 
 	/*set the time to win and the team to win*/
-	void tree_claimed(const Team *);
+	virtual void tree_claimed(const Team *);
 
 
 	/* return time until someone wins */
-	float time_till_win() const;
+	virtual float time_till_win() const;
 
 	/* return time game has been played*/
-	float get_time() const;
+	virtual float get_time() const;
 
 	Player *get_player(int i)
 		{return players.at(i);}
