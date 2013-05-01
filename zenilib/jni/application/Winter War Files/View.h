@@ -17,6 +17,7 @@ public:
 	~View(void);
 
 	void render() const;
+	void animate() const; // don't do in render loop
 
 	void remove_renderable(Seen_Object *);
 	void add_renderable(Seen_Object *);
@@ -33,4 +34,6 @@ private:
 	void render_player_hud(int player, const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight) const;
 	void render_world() const;
 	void render_renderable(const Seen_Object *to_rend) const;
+
+	Zeni::Model *get_model(const Seen_Object*) const;
 };

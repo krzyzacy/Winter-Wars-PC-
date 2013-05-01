@@ -11,6 +11,194 @@ using namespace Zeni;
 
 using namespace std;
 
+void View::add_renderable(Seen_Object *to_rend)
+{
+	to_render.insert(to_rend);
+}
+
+void View::remove_renderable(Seen_Object *to_rend)
+{
+	to_render.erase(to_rend);
+}
+
+void View::add_player_view(Player_View *pv)
+{
+	player_views.push_back(pv);
+}
+
+void View::animate() const
+{	
+	// Animate all the objects
+	for (set<Seen_Object*>::iterator i = to_render.begin() ; 
+				i != to_render.end() ; ++i)
+		(*i)->animate(get_model(*i));
+}
+
+void View::render() const
+{	
+	int width = get_Window().get_width();
+	int height = get_Window().get_height();
+
+	int ySize, xSize;
+	int num_players = player_views.size();
+	
+	if (num_players > 1)
+		ySize = height / 2;
+	else
+		ySize = height;
+
+	if (num_players > 2)
+		xSize = width / 2;
+	else
+		xSize = width;
+
+	
+	Vector2f topLeft(0, 0),
+		xSize_v(xSize, 0),
+		ySize_v(0, ySize),
+		middle(topLeft + xSize_v + ySize_v),
+		bottomRight(middle + middle);
+
+	render_player(0, topLeft, middle);
+
+	if (num_players > 2)
+	{
+		// Keep player 3 and 2 as we'd expect them
+		render_player(1, topLeft+xSize_v, topLeft+xSize_v + middle);
+		render_player(2, topLeft+ySize_v, topLeft+ySize_v + middle);
+		
+		if (num_players > 3)
+			render_player(3, middle, middle + xSize_v+ySize_v);
+	}
+	else if (num_players == 2) // if only two players put player 2 on bottom
+		render_player(1, topLeft+ySize_v, topLeft+ySize_v + middle);
+
+
+	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(width, height)), true);
+	
+	render_player_hud(0, topLeft, middle);
+	
+	if (num_players > 2)
+	{
+		// Keep player 3 and 2 as we'd expect them
+		render_player_hud(1, topLeft+xSize_v, topLeft+xSize_v + middle);
+		render_player_hud(2, topLeft+ySize_v, topLeft+ySize_v + middle);
+		
+		if (num_players > 3)
+			render_player_hud(3, middle, middle + xSize_v+ySize_v);
+	}
+	else if (num_players == 2) // if only two players put player 2 on bottom
+		render_player_hud(1, topLeft+ySize_v, topLeft+ySize_v + middle);
+}
+
+Player_View *cur_View; // The current player we are viewing
+				// DONT TOUCH IF YOU DON"T KNOW WHAT YOU ARE DOING!
+
+void View::render_player(int player, const Point2f &topLeft, const Point2f &bottomRight) const
+{	
+	Video &vr = get_Video();
+	//vr.set_3d(cur_View->get_player()->);
+	cur_View = player_views[player];  // this is the cur player
+	player_views[player]->set_camera(topLeft,bottomRight);
+
+	Vertex3f_Texture c_p0(Point3f(0.0f,0.0f,1000.0f),                             Point2f(0.0f, 0.0f));
+    Vertex3f_Texture c_p1(Point3f(0.0f,2500.0f,1000.0f),                             Point2f(0.0f, 1.0f));
+    Vertex3f_Texture c_p2(Point3f(2500.0f,2500.0f,1000.0f),                             Point2f(1.0f, 1.0f)); 
+    Vertex3f_Texture c_p3(Point3f(2500.0f,0.0f,1000.0f),                             Point2f(1.0f, 0.0f));
+    Material c_material("Nlight");
+      
+    Quadrilateral<Vertex3f_Texture> c_quad(c_p0, c_p1, c_p2, c_p3);
+    c_quad.fax_Material(&c_material);
+      
+    vr.render(c_quad);
+
+	for(int i = 0 ; i < 4; i++){
+		float xx, yy;
+		Material w_material("Background");
+
+		if(i == 0){
+			Vertex3f_Texture w_p0(Point3f(0.0f,0.0f,1000.0f),                             Point2f(0.0f, 0.0f));
+			Vertex3f_Texture w_p1(Point3f(0.0f,0.0f,-250.0f),                             Point2f(0.0f, 1.0f));
+			Vertex3f_Texture w_p2(Point3f(0.0f,2500.0f,-250.0f),                              Point2f(1.0f, 1.0f)); 
+			Vertex3f_Texture w_p3(Point3f(0.0f,2500.0f,1000.0f),                              Point2f(1.0f, 0.0f));
+			Quadrilateral<Vertex3f_Texture> w_quad(w_p0, w_p1, w_p2, w_p3);
+			w_quad.fax_Material(&w_material);
+			vr.render(w_quad);
+		}
+		else if(i == 1){
+			Vertex3f_Texture w_p0(Point3f(0.0f,2500.0f,1000.0f),                             Point2f(0.0f, 0.0f));
+			Vertex3f_Texture w_p1(Point3f(0.0f,2500.0f,-250.0f),                             Point2f(0.0f, 1.0f));
+			Vertex3f_Texture w_p2(Point3f(2500.0f,2500.0f,-250.0f),                              Point2f(1.0f, 1.0f)); 
+			Vertex3f_Texture w_p3(Point3f(2500.0f,2500.0f,1000.0f),                              Point2f(1.0f, 0.0f));
+			Quadrilateral<Vertex3f_Texture> w_quad(w_p0, w_p1, w_p2, w_p3);
+			w_quad.fax_Material(&w_material);
+			vr.render(w_quad);
+		}
+		else if(i == 2){
+			Vertex3f_Texture w_p0(Point3f(2500.0f,2500.0f,1000.0f),                             Point2f(0.0f, 0.0f));
+			Vertex3f_Texture w_p1(Point3f(2500.0f,2500.0f,-250.0f),                             Point2f(0.0f, 1.0f));
+			Vertex3f_Texture w_p2(Point3f(2500.0f,0.0f,-250.0f),                              Point2f(1.0f, 1.0f)); 
+			Vertex3f_Texture w_p3(Point3f(2500.0f,0.0f,1000.0f),                              Point2f(1.0f, 0.0f));
+			Quadrilateral<Vertex3f_Texture> w_quad(w_p0, w_p1, w_p2, w_p3);
+			w_quad.fax_Material(&w_material);
+			vr.render(w_quad);
+		}
+		else if(i == 3){
+			Vertex3f_Texture w_p0(Point3f(2500.0f,0.0f,1000.0f),                             Point2f(0.0f, 0.0f));
+			Vertex3f_Texture w_p1(Point3f(2500.0f,0.0f,-250.0f),                             Point2f(0.0f, 1.0f));
+			Vertex3f_Texture w_p2(Point3f(0.0f,0.0f,-250.0f),                              Point2f(1.0f, 1.0f)); 
+			Vertex3f_Texture w_p3(Point3f(0.0f,0.0f,1000.0f),                              Point2f(1.0f, 0.0f));
+			Quadrilateral<Vertex3f_Texture> w_quad(w_p0, w_p1, w_p2, w_p3);
+			w_quad.fax_Material(&w_material);
+			vr.render(w_quad);
+		}
+		
+	}
+
+
+
+	render_world();
+
+}
+
+void View::render_player_hud(int player, const Point2f &topLeft, const Point2f &bottomRight) const
+{	
+	// render the player's hud
+	player_views[player]->render_hud(topLeft,bottomRight);
+}
+
+
+// Renders the entire list of renderables to Video
+void View::render_world() const 
+{
+	// background
+
+	// pass each renderable into render_renderable
+	for_each(to_render.begin(), to_render.end(),
+		bind1st(mem_fun(&View::render_renderable), this));
+
+}
+
+// Render a single object
+void View::render_renderable(const Seen_Object *to_rend) const
+{	
+	// don't render the current player
+	if (cur_View->get_player() == to_rend)
+		return;
+
+	to_rend->render(get_model(to_rend));
+}
+
+Model *View::get_model(const Seen_Object *to_rend) const
+{	
+	map<model_key_t, Model *>::const_iterator mIt = model_map.find(to_rend->get_model_name()); 
+
+	if (mIt == model_map.end())
+		throw Error(("Model " + to_rend->get_model_name() + " does not exist.").data());
+
+	return mIt->second;
+}
+
 View::View(void)
 {
 	model_map["snowball"] = new Zeni::Model("models/snowball.3ds");
@@ -204,180 +392,3 @@ View::View(void)
 View::~View(void)
 {
 }
-
-void View::add_renderable(Seen_Object *to_rend)
-{
-	to_render.insert(to_rend);
-}
-
-void View::remove_renderable(Seen_Object *to_rend)
-{
-	to_render.erase(to_rend);
-}
-
-void View::add_player_view(Player_View *pv)
-{
-	player_views.push_back(pv);
-}
-
-
-void View::render() const
-{	
-	int width = get_Window().get_width();
-	int height = get_Window().get_height();
-
-	int ySize, xSize;
-	int num_players = player_views.size();
-	
-	if (num_players > 1)
-		ySize = height / 2;
-	else
-		ySize = height;
-
-	if (num_players > 2)
-		xSize = width / 2;
-	else
-		xSize = width;
-
-	
-	Vector2f topLeft(0, 0),
-		xSize_v(xSize, 0),
-		ySize_v(0, ySize),
-		middle(topLeft + xSize_v + ySize_v),
-		bottomRight(middle + middle);
-
-	render_player(0, topLeft, middle);
-
-	if (num_players > 2)
-	{
-		// Keep player 3 and 2 as we'd expect them
-		render_player(1, topLeft+xSize_v, topLeft+xSize_v + middle);
-		render_player(2, topLeft+ySize_v, topLeft+ySize_v + middle);
-		
-		if (num_players > 3)
-			render_player(3, middle, middle + xSize_v+ySize_v);
-	}
-	else if (num_players == 2) // if only two players put player 2 on bottom
-		render_player(1, topLeft+ySize_v, topLeft+ySize_v + middle);
-
-
-	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(width, height)), true);
-	
-	render_player_hud(0, topLeft, middle);
-	
-	if (num_players > 2)
-	{
-		// Keep player 3 and 2 as we'd expect them
-		render_player_hud(1, topLeft+xSize_v, topLeft+xSize_v + middle);
-		render_player_hud(2, topLeft+ySize_v, topLeft+ySize_v + middle);
-		
-		if (num_players > 3)
-			render_player_hud(3, middle, middle + xSize_v+ySize_v);
-	}
-	else if (num_players == 2) // if only two players put player 2 on bottom
-		render_player_hud(1, topLeft+ySize_v, topLeft+ySize_v + middle);
-}
-
-Player_View *cur_View; // The current player we are viewing
-				// DONT TOUCH IF YOU DON"T KNOW WHAT YOU ARE DOING!
-
-void View::render_player(int player, const Point2f &topLeft, const Point2f &bottomRight) const
-{	
-	Video &vr = get_Video();
-	//vr.set_3d(cur_View->get_player()->);
-	cur_View = player_views[player];  // this is the cur player
-	player_views[player]->set_camera(topLeft,bottomRight);
-
-	Vertex3f_Texture c_p0(Point3f(0.0f,0.0f,1000.0f),                             Point2f(0.0f, 0.0f));
-    Vertex3f_Texture c_p1(Point3f(0.0f,2500.0f,1000.0f),                             Point2f(0.0f, 1.0f));
-    Vertex3f_Texture c_p2(Point3f(2500.0f,2500.0f,1000.0f),                             Point2f(1.0f, 1.0f)); 
-    Vertex3f_Texture c_p3(Point3f(2500.0f,0.0f,1000.0f),                             Point2f(1.0f, 0.0f));
-    Material c_material("Nlight");
-      
-    Quadrilateral<Vertex3f_Texture> c_quad(c_p0, c_p1, c_p2, c_p3);
-    c_quad.fax_Material(&c_material);
-      
-    vr.render(c_quad);
-
-	for(int i = 0 ; i < 4; i++){
-		float xx, yy;
-		Material w_material("Background");
-
-		if(i == 0){
-			Vertex3f_Texture w_p0(Point3f(0.0f,0.0f,1000.0f),                             Point2f(0.0f, 0.0f));
-			Vertex3f_Texture w_p1(Point3f(0.0f,0.0f,-250.0f),                             Point2f(0.0f, 1.0f));
-			Vertex3f_Texture w_p2(Point3f(0.0f,2500.0f,-250.0f),                              Point2f(1.0f, 1.0f)); 
-			Vertex3f_Texture w_p3(Point3f(0.0f,2500.0f,1000.0f),                              Point2f(1.0f, 0.0f));
-			Quadrilateral<Vertex3f_Texture> w_quad(w_p0, w_p1, w_p2, w_p3);
-			w_quad.fax_Material(&w_material);
-			vr.render(w_quad);
-		}
-		else if(i == 1){
-			Vertex3f_Texture w_p0(Point3f(0.0f,2500.0f,1000.0f),                             Point2f(0.0f, 0.0f));
-			Vertex3f_Texture w_p1(Point3f(0.0f,2500.0f,-250.0f),                             Point2f(0.0f, 1.0f));
-			Vertex3f_Texture w_p2(Point3f(2500.0f,2500.0f,-250.0f),                              Point2f(1.0f, 1.0f)); 
-			Vertex3f_Texture w_p3(Point3f(2500.0f,2500.0f,1000.0f),                              Point2f(1.0f, 0.0f));
-			Quadrilateral<Vertex3f_Texture> w_quad(w_p0, w_p1, w_p2, w_p3);
-			w_quad.fax_Material(&w_material);
-			vr.render(w_quad);
-		}
-		else if(i == 2){
-			Vertex3f_Texture w_p0(Point3f(2500.0f,2500.0f,1000.0f),                             Point2f(0.0f, 0.0f));
-			Vertex3f_Texture w_p1(Point3f(2500.0f,2500.0f,-250.0f),                             Point2f(0.0f, 1.0f));
-			Vertex3f_Texture w_p2(Point3f(2500.0f,0.0f,-250.0f),                              Point2f(1.0f, 1.0f)); 
-			Vertex3f_Texture w_p3(Point3f(2500.0f,0.0f,1000.0f),                              Point2f(1.0f, 0.0f));
-			Quadrilateral<Vertex3f_Texture> w_quad(w_p0, w_p1, w_p2, w_p3);
-			w_quad.fax_Material(&w_material);
-			vr.render(w_quad);
-		}
-		else if(i == 3){
-			Vertex3f_Texture w_p0(Point3f(2500.0f,0.0f,1000.0f),                             Point2f(0.0f, 0.0f));
-			Vertex3f_Texture w_p1(Point3f(2500.0f,0.0f,-250.0f),                             Point2f(0.0f, 1.0f));
-			Vertex3f_Texture w_p2(Point3f(0.0f,0.0f,-250.0f),                              Point2f(1.0f, 1.0f)); 
-			Vertex3f_Texture w_p3(Point3f(0.0f,0.0f,1000.0f),                              Point2f(1.0f, 0.0f));
-			Quadrilateral<Vertex3f_Texture> w_quad(w_p0, w_p1, w_p2, w_p3);
-			w_quad.fax_Material(&w_material);
-			vr.render(w_quad);
-		}
-		
-	}
-
-
-
-	render_world();
-
-}
-
-void View::render_player_hud(int player, const Point2f &topLeft, const Point2f &bottomRight) const
-{	
-	// render the player's hud
-	player_views[player]->render_hud(topLeft,bottomRight);
-}
-
-
-// Renders the entire list of renderables to Video
-void View::render_world() const 
-{
-	// background
-
-	// pass each renderable into render_renderable
-	for_each(to_render.begin(), to_render.end(),
-		bind1st(mem_fun(&View::render_renderable), this));
-
-}
-
-// Render a single object
-void View::render_renderable(const Seen_Object *to_rend) const
-{
-	map<model_key_t, Model *>::const_iterator mIt = model_map.find(to_rend->get_model_name()); 
-
-	if (mIt == model_map.end())
-		throw Error(("Model " + to_rend->get_model_name() + " does not exist.").data());
-	
-	// don't render the current player
-	if (cur_View->get_player() == to_rend)
-		return;
-
-	to_rend->render(mIt->second);
-}
-

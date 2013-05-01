@@ -29,15 +29,18 @@ Seen_Object::~Seen_Object(void)
 {
 }
 
-void Seen_Object::render(Model *model) const
+void Seen_Object::animate(Model *model)
 {
-	if (!model)
-		throw Error("Trying to render NULL Model!");
-
 	if (get_animator())
 	{
 		get_animator()->animate(model);
 	}
+}
+
+void Seen_Object::render(Model *model) const
+{
+	if (!model)
+		throw Error("Trying to render NULL Model!");
 
 	const std::pair<Vector3f, float> rot = rotation.get_rotation();
 

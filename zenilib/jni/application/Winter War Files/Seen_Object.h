@@ -26,6 +26,7 @@ public:
 	virtual ~Seen_Object(void) = 0;
 
 	void render(Zeni::Model *model) const;
+	void animate(Zeni::Model *model); // go to the next animation frame
 
 	virtual const model_key_t get_model_name() const = 0;
 

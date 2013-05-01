@@ -171,6 +171,9 @@ void Level::update()
 	check_collisions();
 
 	Clean_dead();
+
+
+	view->animate();
 }
 
 
