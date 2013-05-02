@@ -99,7 +99,14 @@ bool Build_a_Healing_Pool::has_been_completed()
 }
 
 bool Build_Other_Structures::has_been_completed()
-{
+{	
+	if (Game_Model::get().get_player(0)->get_team()->stats.structures[HEALING_POOL]
+	&& Game_Model::get().get_player(0)->get_team()->stats.structures[FORT]
+	&& Game_Model::get().get_player(0)->get_team()->stats.structures[SNOWMAN]
+	&& Game_Model::get().get_player(0)->get_team()->stats.structures[SNOW_FACTORY]
+	)
+		return true;
+
 	return false;
 }
 

@@ -34,8 +34,11 @@ void Tutorial_Level::update()
 
 	if(current_objective->has_been_completed())
 	{
-		//Make success doobers happen hear
+		//Make success doobers happen here
 		current_objective = current_objective->get_next_Objective();
+		// You didn't delete the objective!!!!
+		
+		
 		get_player(0)->add_message(current_objective->get_message_to_display(), 0, 10);
 	}
 
