@@ -6,7 +6,7 @@
 // WALKING
 void Walking::animate(Zeni::Model *model)
 {
-	WalkFrame += Game_Model::get().get_time_step()*10;
+	WalkFrame += Game_Model::get().get_time_step()*4*10;
 	Frame = WalkFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -56,7 +56,7 @@ model_key_t Walking::get_model_name()
 void Jumping::animate(Zeni::Model *model)
 {
 
-	JumpFrame += Game_Model::get().get_time_step()*10;
+	JumpFrame += Game_Model::get().get_time_step()*4*10;
 	Frame = JumpFrame;
 	if (JumpFrame < 50)
 		model->set_keyframe(Frame);
@@ -107,7 +107,7 @@ model_key_t Jumping::get_model_name()
 // STANDING
 void Standing::animate(Zeni::Model *model)
 {
-	StandFrame += Game_Model::get().get_time_step()*10;
+	StandFrame += Game_Model::get().get_time_step()*4*10;
 	Frame = StandFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -155,7 +155,7 @@ model_key_t Standing::get_model_name()
 //PACKING
 void Packing::animate(Zeni::Model *model)
 {
-	PackFrame += Game_Model::get().get_time_step()*10;
+	PackFrame += Game_Model::get().get_time_step()*4*10;
 	Frame = PackFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -204,7 +204,7 @@ model_key_t Packing::get_model_name()
 //SCOOPING
 void Scooping::animate(Zeni::Model *model)
 {
-	ScoopFrame += Game_Model::get().get_time_step()*10;
+	ScoopFrame += Game_Model::get().get_time_step()*4*10;
 	Frame = ScoopFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -252,7 +252,7 @@ model_key_t Scooping::get_model_name()
 //THROWING
 void Throwing::animate(Zeni::Model *model)
 {
-	ThrowFrame += Game_Model::get().get_time_step()*40;
+	ThrowFrame += Game_Model::get().get_time_step()*4*40;
 	Frame = ThrowFrame;
 
 	if (Frame <= 50)
@@ -315,7 +315,7 @@ model_key_t Throwing::get_model_name()
 //FLINCHING
 void Flinching::animate(Zeni::Model *model)
 {
-	FlinchFrame += Game_Model::get().get_time_step()*12;
+	FlinchFrame += Game_Model::get().get_time_step()*4*12;
 	Frame = FlinchFrame;
 	if (Frame == 50)
 		{
@@ -404,7 +404,7 @@ model_key_t Flinching::get_model_name()
 //DYING
 void Dying::animate(Zeni::Model *model)
 {
-	DieFrame += Game_Model::get().get_time_step()*7.5;
+	DieFrame += Game_Model::get().get_time_step()*4*7.5;
 	Frame = DieFrame;
 	if (Frame == 50)
 		model->set_keyframe(50);

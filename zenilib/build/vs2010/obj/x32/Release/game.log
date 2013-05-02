@@ -1,4 +1,4 @@
-﻿Build started 5/1/2013 6:07:18 PM.
+﻿Build started 5/1/2013 10:00:31 PM.
      1>Project "H:\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "obj\x32\Release\game.unsuccessfulbuild".
@@ -21,8 +21,8 @@
          ..\..\jni\external\bin\x32\vccorlib110.dll
          6 File(s) copied
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application\Raknet\Source /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Objective.cpp"
-         Objective.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application\Raknet\Source /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Event.cpp" "..\..\jni\application\Winter War Files\Ingame_Client.cpp" "..\..\jni\application\Winter War Files\Ingame_Peer.cpp" "..\..\jni\application\Winter War Files\Lobby_State.cpp" "..\..\jni\application\Winter War Files\Mode_State.h" "..\..\jni\application\Winter War Files\Play_State_Base.cpp" "..\..\jni\application\Winter War Files\Team_Select_State.cpp"
+         Event.cpp
      1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
      1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
      1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
@@ -31,6 +31,101 @@
                  ..\..\jni\external\sdl_net\SDL/SDL_net.h(93) : see previous definition of 'INADDR_BROADCAST'
      1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
                  ..\..\jni\external\sdl_net\SDL/SDL_net.h(87) : see previous definition of 'INADDR_NONE'
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\WWClient.h(46): warning C4800: 'WWClient *' : forcing value to bool 'true' or 'false' (performance warning)
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(56): warning C4100: 'person' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(56): warning C4100: 'color' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Ingame_Peer.h(40): warning C4100: 'addr' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Ingame_Peer.h(41): warning C4100: 'e' : unreferenced formal parameter
+     1>..\..\jni\application\Winter War Files\Event.cpp(153): warning C4100: 'p' : unreferenced formal parameter
+         Ingame_Client.cpp
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(84) : see previous definition of 'INADDR_ANY'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(93) : see previous definition of 'INADDR_BROADCAST'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(87) : see previous definition of 'INADDR_NONE'
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Ingame_Peer.h(40): warning C4100: 'addr' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Ingame_Peer.h(41): warning C4100: 'e' : unreferenced formal parameter
+     1>..\..\jni\application\Winter War Files\Ingame_Client.cpp(25): warning C4127: conditional expression is constant
+         Ingame_Peer.cpp
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(84) : see previous definition of 'INADDR_ANY'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(93) : see previous definition of 'INADDR_BROADCAST'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(87) : see previous definition of 'INADDR_NONE'
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Ingame_Peer.h(40): warning C4100: 'addr' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Ingame_Peer.h(41): warning C4100: 'e' : unreferenced formal parameter
+         Lobby_State.cpp
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(84) : see previous definition of 'INADDR_ANY'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(93) : see previous definition of 'INADDR_BROADCAST'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(87) : see previous definition of 'INADDR_NONE'
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\WWClient.h(46): warning C4800: 'WWClient *' : forcing value to bool 'true' or 'false' (performance warning)
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Lobby_State.h(46): warning C4100: 'y' : unreferenced formal parameter
+     1>..\..\jni\application\Winter War Files\Lobby_State.cpp(135): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\jni\application\Winter War Files\Lobby_State.cpp(141): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Lobby_State.cpp(149): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\jni\application\Winter War Files\Lobby_State.cpp(155): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>..\..\jni\application\Winter War Files\Lobby_State.cpp(184): warning C4018: '<' : signed/unsigned mismatch
+         Mode_State.h
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(84) : see previous definition of 'INADDR_ANY'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(93) : see previous definition of 'INADDR_BROADCAST'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(87) : see previous definition of 'INADDR_NONE'
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\WWClient.h(46): warning C4800: 'WWClient *' : forcing value to bool 'true' or 'false' (performance warning)
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Lobby_State.h(46): warning C4100: 'y' : unreferenced formal parameter
+     1>..\..\jni\application\Winter War Files\Mode_State.h(32): warning C4100: 'y' : unreferenced formal parameter
+         Play_State_Base.cpp
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(84) : see previous definition of 'INADDR_ANY'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(93) : see previous definition of 'INADDR_BROADCAST'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(87) : see previous definition of 'INADDR_NONE'
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(56): warning C4100: 'person' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(56): warning C4100: 'color' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\End_Game_State.h(19): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\End_Game_State.h(27): warning C4100: 'y' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\WWClient.h(46): warning C4800: 'WWClient *' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(42): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(42): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(42): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(59): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(134): warning C4189: 'height' : local variable is initialized but not referenced
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(133): warning C4189: 'width' : local variable is initialized but not referenced
+         Team_Select_State.cpp
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(84) : see previous definition of 'INADDR_ANY'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(93) : see previous definition of 'INADDR_BROADCAST'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(87) : see previous definition of 'INADDR_NONE'
+     1>..\..\jni\application\Winter War Files\Team_Select_State.cpp(220): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Team_Select_State.cpp(220): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Team_Select_State.cpp(221): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Team_Select_State.cpp(221): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Team_Select_State.cpp(222): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Team_Select_State.cpp(222): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Team_Select_State.cpp(223): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Team_Select_State.cpp(223): warning C4305: 'argument' : truncation from 'double' to 'const float'
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\x32\game.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\bin\x32 ws2_32.lib local_SDLmain.lib zeni_rest.lib zeni_graphics.lib zeni_net.lib zeni_core.lib zeni_audio.lib zeni.lib local_SDL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"obj\x32\Release\game.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"H:\EECS494FinalProject\zenilib\bin\x32\game.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\x32\game.lib" /MACHINE:X86 obj\x32\Release\Base64Encoder.obj
          obj\x32\Release\BitStream.obj
@@ -196,4 +291,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:20.57
+Time Elapsed 00:00:57.38

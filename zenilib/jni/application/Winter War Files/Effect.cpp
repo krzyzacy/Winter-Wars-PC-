@@ -21,7 +21,7 @@ public:
 	EffectAnimator(Effect *E_, int frame_death_): frame(0), frame_death(frame_death_), E(E_){}
 	void animate(Model *model)
 	{
-		frame += Game_Model::get().get_time_step()*10;
+		frame += Game_Model::get().get_time_step()*4*10;
 		int frame_int = frame;
 
 		model->set_keyframe(frame_int++);

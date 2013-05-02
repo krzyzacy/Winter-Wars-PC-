@@ -7,7 +7,7 @@
 
 void Fort_spin::animate(Zeni::Model *model)
 {
-	FSFrame += Game_Model::get().get_time_step()*10;
+	FSFrame += Game_Model::get().get_time_step()*4*10;
 	Frame = FSFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -36,7 +36,7 @@ model_key_t Fort_spin::get_model_name()
 
 void Fort_isolated::animate(Zeni::Model *model)
 {
-	FIFrame += Game_Model::get().get_time_step()*10;
+	FIFrame += Game_Model::get().get_time_step()*4*10;
 	Frame = FIFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -70,7 +70,7 @@ model_key_t Fort_isolated::get_model_name()
 
 void Snowman_stand::animate(Zeni::Model *model)
 {
-	SMFrame += Game_Model::get().get_time_step()*10;
+	SMFrame += Game_Model::get().get_time_step()*4*10;
 	Frame = SMFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -105,7 +105,7 @@ model_key_t Snowman_stand::get_model_name()
 
 void Snowman_thwr::animate(Zeni::Model *model)
 {
-	SMFrame += Game_Model::get().get_time_step()*20;
+	SMFrame += Game_Model::get().get_time_step()*4*20;
 	if (SMFrame >= 50) finished = true;
 	Frame = SMFrame;
 	Frame = (Frame % 50) + 1;
@@ -156,7 +156,7 @@ model_key_t Snowman_thwr::get_model_name()
 
 void Snowman_thwl::animate(Zeni::Model *model)
 {
-	SMFrame += Game_Model::get().get_time_step()*20;
+	SMFrame += Game_Model::get().get_time_step()*4*20;
 	if (SMFrame >= 50) finished = true;
 	Frame = SMFrame;
 	Frame = (Frame % 50) + 1;
@@ -207,7 +207,7 @@ model_key_t Snowman_thwl::get_model_name()
 
 void Snowman_isolated::animate(Zeni::Model *model)
 {
-	SIFrame += Game_Model::get().get_time_step()*20;
+	SIFrame += Game_Model::get().get_time_step()*4*20;
 	Frame = SIFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -246,7 +246,7 @@ model_key_t Snowman_isolated::get_model_name()
 
 void Factory_spin::animate(Zeni::Model *model)
 {
-	FSFrame += Game_Model::get().get_time_step()*4;
+	FSFrame += Game_Model::get().get_time_step()*4*4;
 	Frame = FSFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -275,7 +275,7 @@ model_key_t Factory_spin::get_model_name()
 
 void Factory_isolated::animate(Zeni::Model *model)
 {
-	FIFrame += Game_Model::get().get_time_step()*4;
+	FIFrame += Game_Model::get().get_time_step()*4*4;
 	Frame = FIFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -308,7 +308,7 @@ model_key_t Factory_isolated::get_model_name()
 
 void Pool_heal::animate(Zeni::Model *model)
 {
-	PHFrame += Game_Model::get().get_time_step()*5;
+	PHFrame += Game_Model::get().get_time_step()*4*5;
 	Frame = PHFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -337,7 +337,7 @@ model_key_t Pool_heal::get_model_name()
 
 void Pool_isolated::animate(Zeni::Model *model)
 {
-	PIFrame += Game_Model::get().get_time_step()*5;
+	PIFrame += Game_Model::get().get_time_step()*4*5;
 	Frame = PIFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -370,7 +370,7 @@ model_key_t Pool_isolated::get_model_name()
 
 void Present_wrapped::animate(Zeni::Model *model)
 {
-	PWFrame += Game_Model::get().get_time_step()*10;
+	PWFrame += Game_Model::get().get_time_step()*4*10;
 	Frame = PWFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -426,7 +426,7 @@ model_key_t Present_wrapped::get_model_name()
 
 void Present_unwrapped::animate(Zeni::Model *model)
 {
-	PUFrame += Game_Model::get().get_time_step()*10;
+	PUFrame += Game_Model::get().get_time_step()*4*10;
 	Frame = PUFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -459,7 +459,7 @@ model_key_t Present_unwrapped::get_model_name()
 
 void Tree_owned::animate(Zeni::Model *model)
 {
-	TOFrame += Game_Model::get().get_time_step()*10;
+	TOFrame += Game_Model::get().get_time_step()*4*10;
 	Frame = TOFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);
@@ -490,7 +490,7 @@ model_key_t Tree_owned::get_model_name()
 
 void Tree_unowned::animate(Zeni::Model *model)
 {
-	TUFrame += Game_Model::get().get_time_step()*10;
+	TUFrame += Game_Model::get().get_time_step()*4*10;
 	Frame = TUFrame;
 	Frame = (Frame % 50) + 1;
 	model->set_keyframe(Frame);

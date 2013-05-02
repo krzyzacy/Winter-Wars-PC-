@@ -1,6 +1,10 @@
 #include "Objective.h"
 #include "Game_Model.h"
 
+#include "Player.h"
+#include "Team.h"
+#include "Structure.h"
+
 using namespace std;
 
 Objective::Objective()
@@ -88,6 +92,9 @@ Objective* Defend_Your_Claim::get_next_Objective()
 
 bool Build_a_Healing_Pool::has_been_completed()
 {
+	if (Game_Model::get().get_player(0)->get_team()->stats.structures[HEALING_POOL])
+		return true;
+
 	return false;
 }
 
