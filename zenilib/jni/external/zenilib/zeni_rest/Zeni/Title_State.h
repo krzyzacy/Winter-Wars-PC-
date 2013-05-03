@@ -33,13 +33,15 @@
 #include <Zeni/Popup_State.h>
 #include <Zeni/Sound_Source_Pool.h>
 #include <Zeni/Widget_Gamestate.h>
+#include <vector>
+#include "../Winter War Files/Utility.h"
 
 namespace Zeni {
 
-  template <typename PLAY_STATE, typename INSTRUCTIONS_STATE, typename CREDITS_STATE>
+  template <typename PLAY_STATE, typename TUTORIAL_STATE, typename INSTRUCTIONS_STATE, typename CREDITS_STATE>
   class Title_State : public Widget_Gamestate {
-    Title_State(const Title_State<PLAY_STATE, INSTRUCTIONS_STATE, CREDITS_STATE> &);
-    Title_State<PLAY_STATE, INSTRUCTIONS_STATE, CREDITS_STATE> & operator=(const Title_State<PLAY_STATE, INSTRUCTIONS_STATE, CREDITS_STATE> &);
+    Title_State(const Title_State<PLAY_STATE, TUTORIAL_STATE, INSTRUCTIONS_STATE, CREDITS_STATE> &);
+    Title_State<PLAY_STATE, TUTORIAL_STATE, INSTRUCTIONS_STATE, CREDITS_STATE> & operator=(const Title_State<PLAY_STATE, TUTORIAL_STATE, INSTRUCTIONS_STATE, CREDITS_STATE> &);
 
   public:
     class Title : public Text_Box {
@@ -61,7 +63,7 @@ namespace Zeni {
 
     public:
       Play_Button()
-        : Text_Button(Point2f(250.0f, 250.0f), Point2f(550.0f, 300.0f),
+        : Text_Button(Point2f(250.0f, 240.0f), Point2f(550.0f, 290.0f),
                       "system_36_800x600", "Play")
       {
       }
@@ -71,13 +73,41 @@ namespace Zeni {
       }
     } play_button;
 
+	class Tutorial_Button : public Text_Button {
+      Tutorial_Button(const Tutorial_Button &);
+      Tutorial_Button & operator=(const Tutorial_Button &);
+
+    public:
+      Tutorial_Button()
+        : Text_Button(Point2f(250.0f, 300.0f), Point2f(550.0f, 350.0f),
+                      "system_36_800x600", "Tutorial")
+      {
+      }
+
+      void on_accept() {
+		vector<Player_info* > * player_list = new vector<Player_info* >;
+
+		Player_info * newPlayer = new Player_info();
+
+		newPlayer->colors_ = GREEN;
+		newPlayer->genders_ = "Boy";
+		newPlayer->controls_ = 0;
+		newPlayer->sensitivities_ = 5;
+		newPlayer->self_addr = RakNet::UNASSIGNED_SYSTEM_ADDRESS; // Assumes 1 player per computer
+
+		player_list->push_back(newPlayer);
+
+        get_Game().push_state(new TUTORIAL_STATE(player_list, true));
+      }
+    } tutorial_button;
+
     class Instructions_Button : public Text_Button {
       Instructions_Button(const Instructions_Button &);
       Instructions_Button & operator=(const Instructions_Button &);
 
     public:
       Instructions_Button()
-        : Text_Button(Point2f(250.0f, 320.0f), Point2f(550.0f, 370.0f),
+        : Text_Button(Point2f(250.0f, 360.0f), Point2f(550.0f, 410.0f),
                       "system_36_800x600", "Instructions")
       {
       }
@@ -93,7 +123,7 @@ namespace Zeni {
 
     public:
       Credits_Button()
-        : Text_Button(Point2f(250.0f, 470.0f), Point2f(385.0f, 530.0f),
+        : Text_Button(Point2f(250.0f, 480.0f), Point2f(385.0f, 530.0f),
                       "system_36_800x600", "Credits")
       {
       }
@@ -113,13 +143,14 @@ namespace Zeni {
       : Widget_Gamestate(std::make_pair(Point2f(0.0f, 0.0f), Point2f(800.0f, 600.0f))),
       title(title_),
 #ifndef ANDROID
-      configure_video_button(Point2f(250.0f, 390.0f), Point2f(550.0f, 440.0f)),
+      configure_video_button(Point2f(250.0f, 420.0f), Point2f(550.0f, 470.0f)),
 #endif
       //sound_check_box(Point2f(32.5f, 480.0f), Point2f(75.5f, 524.0f)),
-      quit_button(Point2f(415.0f, 470.0f), Point2f(550.0f, 530.0f))
+      quit_button(Point2f(415.0f, 480.0f), Point2f(550.0f, 530.0f))
     {
       m_widgets.lend_Widget(title);
       m_widgets.lend_Widget(play_button);
+	  m_widgets.lend_Widget(tutorial_button);
       m_widgets.lend_Widget(instructions_button);
 	  m_widgets.lend_Widget(credits_button);
 #ifndef ANDROID
