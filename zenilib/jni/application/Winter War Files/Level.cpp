@@ -306,7 +306,7 @@ float Level::time_till_win() const
 
 void Level::global_message(const String &message)
 {	
-	for(int i = 0; i < 4; i++)
+	for(int i = 0; i < num_players() ; i++)
 	{
 		players[i]->add_message(message);
 	}

@@ -61,10 +61,11 @@ void Controls::take_God_keyboard(const SDL_KeyboardEvent &event)	{
 
 void Controls::take_mouse_button_input(const SDL_MouseButtonEvent & event)	{
 
-	if(event.button == 0) //left??
+	if(event.button == SDL_BUTTON_LEFT)
 		input.shoot = event.state == SDL_PRESSED;
-	else
-		input.Build_Go = event.type == SDL_KEYDOWN;
+	
+	if(event.button == SDL_BUTTON_RIGHT)
+		input.Build_Go = event.type == SDL_MOUSEBUTTONDOWN;
 	
 }
 
