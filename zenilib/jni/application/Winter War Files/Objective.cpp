@@ -27,10 +27,10 @@ Zeni::String Objective::get_message_to_display()
 
 Objective* Objective::get_next_Objective()
 {
-	return new Build_a_Healing_Pool();
+	return new Build_Structure(HEALING_POOL);
 }
 
-Objective* Build_a_Healing_Pool::get_next_Objective()
+Objective* Build_Structure::get_next_Objective()
 {
 	return new Build_Other_Structures();
 }
@@ -90,9 +90,9 @@ Objective* Defend_Your_Claim::get_next_Objective()
 	return NULL;
 }
 
-bool Build_a_Healing_Pool::has_been_completed()
+bool Build_Structure::has_been_completed()
 {
-	if (Game_Model::get().get_player(0)->get_team()->stats.structures[HEALING_POOL])
+	if (Game_Model::get().get_player(0)->get_team()->stats.structures[type])
 		return true;
 
 	return false;

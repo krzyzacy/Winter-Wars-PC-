@@ -22,3 +22,4 @@ struct Player_info{
 	int sensitivities_;
 	RakNet::SystemAddress self_addr;
 };
+

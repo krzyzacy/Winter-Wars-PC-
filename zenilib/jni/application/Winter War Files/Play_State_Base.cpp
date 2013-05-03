@@ -51,9 +51,8 @@ void Play_State_Base::on_push()	{
 
 void Play_State_Base::on_mouse_button(const SDL_MouseButtonEvent &event)
 {
-	event.button
-	
-	Gamestate_Base::on_mouse_button(event);
+	if(Controls::Mouse_Camera != -1)
+		controllers[Controls::Mouse_Camera]->take_mouse_button_input(event);
 }
 
 void Play_State_Base::on_pop()	{
@@ -83,10 +82,6 @@ void Play_State_Base::on_mouse_motion(const SDL_MouseMotionEvent &event) {
 	controllers[Controls::Mouse_Camera]->reset_Cam();
 	Game_Model::get().get_player(Controls::Mouse_Camera)->adjust_pitch(event.yrel / 500.0f);
 	Game_Model::get().get_player(Controls::Mouse_Camera)->turn_left(-event.xrel / 500.0f);    
-}
-
-void Play_State_Base::on_mouse_button(const SDL_MouseButtonEvent &event)	{
-	controllers[Controls::Mouse_Camera]->take_mouse_button_input(event);
 }
 
 void Play_State_Base::on_joy_axis(const SDL_JoyAxisEvent &event)	{

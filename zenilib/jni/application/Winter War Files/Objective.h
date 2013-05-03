@@ -17,14 +17,17 @@ protected:
 	Zeni::String message;
 };
 
-class Build_a_Healing_Pool : public Objective
+class Build_Structure : public Objective
 {
 public:
-	Build_a_Healing_Pool()
+	Build_Structure(int type_) : type(type_)
 	{ message = "Build a Healing pool by pressing x!"; }
-	~Build_a_Healing_Pool() {}
+	~Build_Structure() {}
 	Objective* get_next_Objective();
 	bool has_been_completed();
+
+private:
+	int type;
 };
 
 class Build_Other_Structures : public Objective

@@ -1,13 +1,13 @@
 #include "Tutorial_Level.h"
 #include "Objective.h"
 #include "Player.h"
-
+#include "Structure.h"
 
 using namespace std;
 
 Tutorial_Level::Tutorial_Level()
 {
-	current_objective = new Build_a_Healing_Pool();
+	current_objective = new Build_Structure(HEALING_POOL);
 	
 	
 }
