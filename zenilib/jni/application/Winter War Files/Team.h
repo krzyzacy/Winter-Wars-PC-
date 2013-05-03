@@ -6,11 +6,6 @@ class World;
 class Tile;
 class Player;
 
-enum TEAM_INDEX	{
-	NEUTRAL, GREEN, RED, BLUE, ORANGE
-};
-
-
 
 class Team
 {	
