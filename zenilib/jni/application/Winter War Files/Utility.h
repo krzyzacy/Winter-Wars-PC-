@@ -23,3 +23,7 @@ struct Player_info{
 	RakNet::SystemAddress self_addr;
 };
 
+enum TEAM_INDEX	{
+	NEUTRAL, GREEN, RED, BLUE, ORANGE
+};
+
