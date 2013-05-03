@@ -49,6 +49,13 @@ void Play_State_Base::on_push()	{
 			Game_Model::get().initialize_peer(isServer, host_addr);
 }
 
+void Play_State_Base::on_mouse_button(const SDL_MouseButtonEvent &event)
+{
+	event.button
+	
+	Gamestate_Base::on_mouse_button(event);
+}
+
 void Play_State_Base::on_pop()	{
 		get_Window().mouse_hide(false);
 		get_Window().mouse_grab(false);
@@ -76,6 +83,10 @@ void Play_State_Base::on_mouse_motion(const SDL_MouseMotionEvent &event) {
 	controllers[Controls::Mouse_Camera]->reset_Cam();
 	Game_Model::get().get_player(Controls::Mouse_Camera)->adjust_pitch(event.yrel / 500.0f);
 	Game_Model::get().get_player(Controls::Mouse_Camera)->turn_left(-event.xrel / 500.0f);    
+}
+
+void Play_State_Base::on_mouse_button(const SDL_MouseButtonEvent &event)	{
+	controllers[Controls::Mouse_Camera]->take_mouse_button_input(event);
 }
 
 void Play_State_Base::on_joy_axis(const SDL_JoyAxisEvent &event)	{

@@ -25,7 +25,7 @@ public:
 	std::string give_stick_status();
 
 	bool take_keyboard_input(const SDL_KeyboardEvent &event);
-
+	void take_mouse_button_input(const SDL_MouseButtonEvent &event);
 
 	bool HandleJoy(const SDL_JoyAxisEvent &event);
 	bool HandleJoy(const SDL_JoyHatEvent &event);

@@ -59,6 +59,14 @@ void Controls::take_God_keyboard(const SDL_KeyboardEvent &event)	{
 	//SIN WAVE
 }
 
+void Controls::take_mouse_button_input(const SDL_MouseButtonEvent & event)	{
+
+	if(event.button == 0) //left??
+		input.shoot = event.state == SDL_PRESSED;
+	else
+		input.Build_Go = event.type == SDL_KEYDOWN;
+	
+}
 
 bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event)	{
 		//we can incorporate the keyboard (for hacks)
@@ -82,33 +90,33 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event)	{
 		case SDLK_e:
 			input.pack = event.state == SDL_PRESSED;
 			break;
-		case SDLK_b:
-			input.Build_Go = event.state == SDL_PRESSED;
-			break;
-		case SDLK_m:
+		//case SDLK_b:
+		//	input.Build_Go = event.state == SDL_PRESSED;
+		//	break;
+		case SDLK_LSHIFT:
 			input.mini_map = event.state == SDL_PRESSED;
 			break;
-		case SDLK_n:
+		case SDLK_TAB:
 			input.RSHOULDER = event.state == SDL_PRESSED;
 			break;
-		case SDLK_v:
-			input.LSHOULDER = event.state == SDL_PRESSED;
-			break;
+		//case SDLK_v:
+		//	input.LSHOULDER = event.state == SDL_PRESSED;
+		//	break;
 		case SDLK_t:
 			input.tip = event.state == SDL_PRESSED;
 			break;
-		case SDLK_u:
+		case SDLK_r:
 			input.Tile_up = event.state == SDL_PRESSED;
 			break;
-		case SDLK_j:
+		case SDLK_f:
 			input.Tile_down = event.state == SDL_PRESSED;
 			break;
-		case SDLK_LSHIFT:
+		case SDLK_SPACE:
 			input.jump = event.type == SDL_KEYDOWN;
 			break;
-		case SDLK_SPACE:
-			input.shoot = event.state == SDL_PRESSED;
-			break;
+		//case SDLK_SPACE:
+		//	input.shoot = event.state == SDL_PRESSED;
+		//	break;
 		default:
 			Handled_Input = false;
 			break;
