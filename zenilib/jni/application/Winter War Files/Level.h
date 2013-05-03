@@ -61,6 +61,8 @@ public:
 
 	/* returns the ith player on this machine*/
 	Player *get_player_here(int index_on_this_client);
+	
+	int num_players_here();
 
 	Team *get_team(int i)
 		{return	teams.at(i);}

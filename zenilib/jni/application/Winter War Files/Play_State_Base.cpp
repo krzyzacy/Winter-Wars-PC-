@@ -21,19 +21,9 @@ Play_State_Base::Play_State_Base(vector<Player_info*> *player_info_,
 	isLocal(isLocalGame_), isServer(isServer_), host_addr(server_addr)
 {		
 		set_pausable(false);
-		for(int i = 0; i < 4; i++)	{
-			controllers.push_back(new Controls(false, i));
-			if(player_info->at(i)->controls_ == 1)
-				controllers[i]->set_inverted(true);
-		}
-
-
 }
 
 Play_State_Base::~Play_State_Base()	 {
-	for(int i = 0; i < 4; i++)	{
-		delete controllers[i];
-	}
 }
 
 void Play_State_Base::on_push()	{
@@ -47,24 +37,28 @@ void Play_State_Base::on_push()	{
 
 		if(!isLocal)
 			Game_Model::get().initialize_peer(isServer, host_addr);
-}
-
-void Play_State_Base::on_mouse_button(const SDL_MouseButtonEvent &event)
-{
-	if(Controls::Mouse_Camera != -1)
-		controllers[Controls::Mouse_Camera]->take_mouse_button_input(event);
+				
+		for(int i = 0; i < Game_Model::get().num_players() ; i++)	{
+			controllers.push_back(new Controls(false, i));
+			if(player_info->at(i)->controls_ == 1)
+				controllers[i]->set_inverted(true);
+		}
 }
 
 void Play_State_Base::on_pop()	{
-		get_Window().mouse_hide(false);
-		get_Window().mouse_grab(false);
-		get_Video().set_clear_Color(m_prev_clear_color);
-    get_Game().joy_mouse.enabled = true;
-		Game_Model::get().finish();
+	get_Window().mouse_hide(false);
+	get_Window().mouse_grab(false);
+	get_Video().set_clear_Color(m_prev_clear_color);
+	get_Game().joy_mouse.enabled = true;
+	Game_Model::get().finish();
 
-		for (int i = 0 ; i < player_info->size() ; i++)
-			delete player_info->at(i);
-		delete player_info;
+	for (int i = 0 ; i < player_info->size() ; i++)
+		delete player_info->at(i);
+	delete player_info;
+
+	for(int i = 0; i < controllers.size() ; i++)	{
+		delete controllers[i];
+	}
 }
 
 void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {
@@ -77,6 +71,12 @@ void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {
 
 	Gamestate_Base::on_key(event); // Let Gamestate_Base handle it
 } 
+
+void Play_State_Base::on_mouse_button(const SDL_MouseButtonEvent &event)
+{
+	if(Controls::Mouse_Camera != -1)
+		controllers[Controls::Mouse_Camera]->take_mouse_button_input(event);
+}
 
 void Play_State_Base::on_mouse_motion(const SDL_MouseMotionEvent &event) {	
 	controllers[Controls::Mouse_Camera]->reset_Cam();
@@ -105,23 +105,27 @@ void Play_State_Base::on_joy_button(const SDL_JoyButtonEvent &event)	{
 
 void Play_State_Base::perform_logic()	
 {
-	for(int i = 0; i < 4; i++)	
+	for(int i = 0; i < controllers.size(); i++)	
 		controllers[i]->adjust_Cam(Game_Model::get().get_player(i));
 
-	for(int i = 0; i < 4; i++)
+	for(int i = 0; i < controllers.size(); i++)
 		controllers[i]->interact_with_player(Game_Model::get().get_player(i), Game_Model::get().get_time_step());
 
 
 	//update player velocity/movement
-	for(int i = 0; i < 4; i++)
-		Game_Model::get().get_player(i)->calculate_movement(controllers[i]->give_movement());
+	for(int i = 0; i < controllers.size(); i++)
+		Game_Model::get().get_player_here(i)->calculate_movement(controllers[i]->give_movement());
 
 
 
 	//updates all positions
 	Game_Model::get().update();
 
-	if (Game_Model::get().win()){		
+	if (Game_Model::get().win()){
+
+		for(int i = 0; i < controllers.size(); i++)
+			Joysticks::get().set_xinput_vibration(i, 0, 0);		
+
 		get_Game().push_state(new End_Game_State());
 	}
 

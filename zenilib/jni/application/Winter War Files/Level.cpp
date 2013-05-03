@@ -163,7 +163,6 @@ void Level::update()
 	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)	{
 		if((*it)->Is_Tree_Claimed())
 		{
-
 			world->raise_tile(world->get_center_Tile()->get_structure_base());
 		}	
 	}
@@ -188,7 +187,7 @@ void Level::tree_claimed(const Team *team)
 		win_time = 10000.0f;
 		return ;
 	}
-	for (int i = 0; i < 4 ; i++)
+	for (int i = 0; i < num_players() ; i++)
 	{
 		if (get_team(i) != team)
 		const_cast<Team*>(get_team(i))->message_team(const_cast<Team*>(team)->get_name_Upper_Case() + 
@@ -219,9 +218,6 @@ bool Level::win()
 {
 	if (time_till_win() <= 0)
 	{
-		for(int i = 0; i < 4; i++)
-			Joysticks::get().set_xinput_vibration(i, 0, 0);
-
 		PlayTime.stop();
 		return true;
 	}
@@ -339,4 +335,22 @@ void Level::remove_from_model(Structure* Z)	{
 	structures.erase(Z);
 	view->remove_renderable(Z);
 	delete Z;
+}
+
+Player *Level::get_player_here(int i)
+{
+	if (WWClient::isNetwork())
+		return clients_to_players[WWClient::get()->get_my_address()].at(i);
+
+	//if it is local
+	return get_player(i);
+}
+
+int Level::num_players_here()
+{	
+	if (WWClient::isNetwork())
+		return clients_to_players[WWClient::get()->get_my_address()].size();
+
+	//if it is local
+	return num_players();
 }

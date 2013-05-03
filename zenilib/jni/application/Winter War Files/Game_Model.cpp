@@ -202,8 +202,17 @@ Player *Game_Model::get_player(int i)
 	return current_level->get_player(i);
 }
 
+Player *Game_Model::get_player_here(int i)
+{
+	return current_level->get_player_here(i);
+}
+
 int Game_Model::num_players()
 {
 	return current_level->num_players();
 }
 	
+int Game_Model::num_players_here()
+{
+	return current_level->num_players_here();
+}
