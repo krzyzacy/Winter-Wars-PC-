@@ -28,11 +28,11 @@ using namespace std;
 using namespace Zeni;
 
 
-class Title_State_Custom : public Title_State<Modes_State, Instructions_State, Credits_State>{
+class Title_State_Custom : public Title_State<Modes_State, Play_State_Base, Instructions_State, Credits_State>{
 
 	public:
 		Title_State_Custom()
-		: Title_State<Modes_State, Instructions_State, Credits_State>("")
+		: Title_State<Modes_State, Play_State_Base, Instructions_State, Credits_State>("")
 		{
 			m_widgets.unlend_Widget(title);
 			get_Sound().set_BGM("sfx/HappyTreeFriends");
@@ -49,7 +49,7 @@ class Title_State_Custom : public Title_State<Modes_State, Instructions_State, C
 			int height = get_Window().get_height();
 
 			render_image("ts800", Point2f(0.0f,0.0f), Point2f(1024.0f, 1024.0f));
-			Title_State<Modes_State, Instructions_State, Credits_State>::render();
+			Title_State<Modes_State, Play_State_Base, Instructions_State, Credits_State>::render();
 			//get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(800.0f, 600.0f)), true);
 
 			//get_Fonts()["cat_110"].render_text("Winter Wars" ,Point2f(155, 60), Color(0xFF33BBE8));
