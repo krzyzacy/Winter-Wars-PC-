@@ -388,6 +388,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Server.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Instructions_State.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Level.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Level_Factory.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Lobby_State.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Moveable.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Objective.h" />
@@ -664,6 +665,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Server.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Instructions_State.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Level.cpp" />
+    <ClCompile Include="..\..\jni\application\Winter War Files\Level_Factory.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Lobby_State.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Mode_State.h" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Moveable.cpp">
