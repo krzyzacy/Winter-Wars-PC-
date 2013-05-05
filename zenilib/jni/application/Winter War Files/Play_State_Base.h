@@ -28,7 +28,7 @@ class Play_State_Base : public Gamestate_Base		{
   Play_State_Base operator=(const Play_State_Base &);
  
 public:
-	Play_State_Base(std::vector<Player_info*> *player_info,
+	Play_State_Base(std::vector<Player_info*> *player_info, Zeni::String level,
 					 bool isLocalGame_ = true, bool isServer_ = false, RakNet::SystemAddress server_addr = RakNet::UNASSIGNED_SYSTEM_ADDRESS);
 	~Play_State_Base();
 
@@ -38,6 +38,7 @@ private:
 
 	bool isServer;
 	bool isLocal;
+	Zeni::String level;
 	RakNet::SystemAddress host_addr;
 
 	vector<Controls*> controllers;
