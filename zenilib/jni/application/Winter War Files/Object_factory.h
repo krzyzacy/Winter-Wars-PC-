@@ -12,6 +12,8 @@ class Structure;
 // gender can be "Boy" or "Girl"
 Player *create_player(Team* team_, const Zeni::String &gender);
 
+Player *create_player(Team* team_, const Zeni::String &gender, Tile *tile);
+
 Team	*create_team(Tile * Base_Tile);
 
 // creates a structure and adds it to the tile

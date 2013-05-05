@@ -43,8 +43,7 @@ public:
 class Throw_Snowball_At_Enemy : public Objective
 {
 public:
-	Throw_Snowball_At_Enemy()
-	{ message = "Throw Snowballs with right trigger to defeat enemies!";}
+	Throw_Snowball_At_Enemy();
 	~Throw_Snowball_At_Enemy() {}
 	Objective* get_next_Objective();
 	bool has_been_completed();

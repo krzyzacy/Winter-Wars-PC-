@@ -78,9 +78,11 @@ public:
 
 	Tile *get_tile(const Zeni::Point3f&);
 
+
 	void add_moveable(Moveable *);
 	void add_structure(Structure *);
 	void add_effect(Effect *);
+	void add_player(Player *);
 
 	void play_breaking();
 	void play_chainbreak();

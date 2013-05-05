@@ -29,7 +29,7 @@ Game_Model::Game_Model(void)
 
 void Game_Model::change_level(Level *new_level)
 {
-	delete current_level;
+//	delete current_level;
 
 	current_level = new_level;
 }
@@ -73,7 +73,7 @@ void Game_Model::restart()
 
 void Game_Model::finish()
 {
-	current_level->finish();
+	delete current_level;
 
 	//delete sounds
 	delete breaking;
@@ -118,6 +118,11 @@ void Game_Model::render() const
 float Game_Model::get_time_step()	
 {
 	return current_level->get_time_step();
+}
+
+void Game_Model::add_player(Player*p)
+{
+	current_level->add_player(p);
 }
 
 void Game_Model::add_moveable(Moveable *m)

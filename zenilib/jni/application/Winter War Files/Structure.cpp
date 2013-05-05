@@ -12,7 +12,7 @@ using namespace Zeni;
 const int Structure::structure_ID_c = 3;
 
 // NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL
-const int Build_Cost[5] = { 0, 2800, 2200, 1600, 800 };
+const int Build_Cost[5] = { 0, 280, 220, 160, 80 };
 
 const float Struct_Integrity[5] = {1, 100, 250, 80, 150};
 

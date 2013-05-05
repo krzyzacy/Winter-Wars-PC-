@@ -34,6 +34,20 @@ Player *create_player(Team* team_,const Zeni::String &gender)
 	return player;
 }
 
+
+Player *create_player(Team* team_,const Zeni::String &gender, Tile *tile)
+{
+	Player* player = new Player(tile->get_bottom_center());
+	
+	if (gender == "Boy" || gender == "boy")
+		player->set_Gender("boy");
+	else if (gender == "Girl" || gender == "girl")
+		player->set_Gender("girl");
+	
+	team_->add_player(player);
+	return player;
+}
+
 Team *create_team(Tile * Base_Tile)	{
 	return new Team(Base_Tile);
 }

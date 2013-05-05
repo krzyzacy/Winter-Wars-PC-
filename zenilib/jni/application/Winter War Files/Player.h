@@ -154,13 +154,18 @@ public:
 	{
 		Stats () :
 			kills(0), deaths(0), thrown(0),
-			hit(0), friendly_hit(0),
+			hit(0), biggest_snowball(0), 
+			num_large_snowballs(0),
+			num_small_snowballs(0), friendly_hit(0),
 			snow_used(0), built(0), destroyed(0),
 			damage_taken(0), damage_dealt(0){}
 		int kills;
 		int deaths;
 		int thrown;
 		int hit;
+		int biggest_snowball;
+		int num_large_snowballs;
+		int num_small_snowballs;
 		int friendly_hit;
 		int snow_used;
 		int built;

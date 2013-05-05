@@ -20,9 +20,9 @@ const float standard_speed = 200;
 const float turn_speed = 40;
 const float up_look_speed = 20;
 
-const float Max_Snow_Amount = 100;
-const float Max_Player_Health = 100;
-const float max_snowball_size = 50;		
+const float Max_Snow_Amount = 100;		// most you can scoop/reload
+const float Max_Player_Health = 100;	
+const float max_snowball_size = 50;		// most you can pack/charge	
 const float packing_rate = 50;			// Packing to snowball
 const float snow_depletion_rate = 25;	// Packing from pack
 const float snow_absorbtion_rate = 100;  // Scooping
@@ -149,24 +149,24 @@ void Player::update(const float &time)	{
 void Player::player_death()	{
 
 	if(!player_dead->is_playing())
-		{
+	{
 		player_dead->set_gain(0.2);
 		player_dead->play();
-		}
+	}
 
 	if(gender == "girl")
-		{
+	{
 		player_girl_hit->set_gain(0.8);
 		player_boy_hit->set_pitch(2);
 		player_girl_hit->play();
-		}
+	}
 
 	if(gender == "boy")
-		{
+	{
 		player_boy_hit->set_gain(0.8);
 		player_boy_hit->set_pitch(3.5);
 		player_boy_hit->play();
-		}
+	}
 
 	Deathklok.start();
 	stats.deaths++;
@@ -275,6 +275,14 @@ void Player::throw_ball() {
 	Snowball *sb = new Snowball(this, center+m_camera.get_forward(), 
 									Vector3f(current_radius, current_radius,current_radius));
 	sb->get_thrown(m_camera.get_forward());
+	
+	if (current_radius > stats.biggest_snowball)
+		stats.biggest_snowball = current_radius;
+
+	if (current_radius > max_snowball_size/2)
+		stats.num_large_snowballs++;
+	else
+		stats.num_small_snowballs--;
 
 	Game_Model::get().add_moveable(sb);
 
@@ -324,6 +332,8 @@ void Player::charge_ball()	{
 void Player::pack_snow()	{
 	if(is_player_KO())
 		return;
+
+
 
 	//This will change, but exists for now as a simple test function
 	if (!is_on_ground())

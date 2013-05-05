@@ -4,8 +4,11 @@
 #include "Player.h"
 #include "Team.h"
 #include "Structure.h"
+#include "Object_factory.h"
+#include "Tile.h"
 
 using namespace std;
+using namespace Zeni;
 
 Objective::Objective()
 {
@@ -110,13 +113,27 @@ bool Build_Other_Structures::has_been_completed()
 	return false;
 }
 
+Throw_Snowball_At_Enemy::Throw_Snowball_At_Enemy()
+{
+	message = "Throw Snowballs with right trigger to defeat enemies!";
+	Game_Model::get().add_player(create_player(Game_Model::get().get_team(RED-1), "Boy"
+		));//, Game_Model::get().get_tile(Point3f(100,100,0))));
+}
+
 bool Throw_Snowball_At_Enemy::has_been_completed()
 {
+	if (Game_Model::get().get_player(0)->stats.damage_dealt 
+		&& Game_Model::get().get_player(1)->stats.damage_taken)
+		return true;
+
 	return false;
 }
 
 bool Pack_Snowball::has_been_completed()
 {
+	if (Game_Model::get().get_player(0)->stats.biggest_snowball > max_snowball_size/2)
+		return true;
+
 	return false;
 }
 
