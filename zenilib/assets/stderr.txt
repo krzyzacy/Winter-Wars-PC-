@@ -250,23 +250,3 @@ zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
 zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
 zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
 zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
-Printing all possible error strings:
-SDL       : no error
-SDL_net   : no error
-OpenGL    : no error
-OpenAL    : AL_NO_ERROR
