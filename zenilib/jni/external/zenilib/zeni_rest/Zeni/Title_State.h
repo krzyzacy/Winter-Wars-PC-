@@ -89,7 +89,7 @@ namespace Zeni {
 
 		Player_info * newPlayer = new Player_info();
 
-		newPlayer->colors_ = GREEN;
+		newPlayer->colors_ = GREEN - 1;
 		newPlayer->genders_ = "Boy";
 		newPlayer->controls_ = 0;
 		newPlayer->sensitivities_ = 5;
@@ -97,7 +97,7 @@ namespace Zeni {
 
 		player_list->push_back(newPlayer);
 
-        get_Game().push_state(new TUTORIAL_STATE(player_list, true));
+        get_Game().push_state(new TUTORIAL_STATE(player_list, "Tutorial", true));
       }
     } tutorial_button;
 
