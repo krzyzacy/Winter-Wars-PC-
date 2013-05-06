@@ -35,6 +35,7 @@ Objective* Objective::get_next_Objective()
 
 Objective* Build_Structure::get_next_Objective()
 {
+	//return new Scoop_Snow();
 	return new Build_Other_Structures();
 }
 
@@ -131,14 +132,23 @@ bool Throw_Snowball_At_Enemy::has_been_completed()
 
 bool Pack_Snowball::has_been_completed()
 {
-	if (Game_Model::get().get_player(0)->stats.biggest_snowball > max_snowball_size/2)
+	if (Game_Model::get().get_player(0)->stats.num_large_snowballs)
 		return true;
 
 	return false;
 }
 
+Scoop_Snow::Scoop_Snow() :
+	start_scooped(Game_Model::get().get_player(0)->stats.amount_scooped)
+{
+	message = "Press B to scoop up snow, you must be on a soft snow tile";
+}
+
 bool Scoop_Snow::has_been_completed()
 {
+	if (Game_Model::get().get_player(0)->stats.amount_scooped > start_scooped)
+		return true;
+
 	return false;
 }
 

@@ -45,7 +45,7 @@ struct Message
 
 	bool is_over() const
 		{ return (time - timer.seconds()) < 0;}
-
+	
 	Zeni::String msg;
 	int priority;
 private:
@@ -75,7 +75,7 @@ public:
 	void throw_ball();
 	void charge_ball();
 	/*SCOOP - Takes snow from ground into pack*/
-	void pack_snow();
+	void scoop_snow();
 	void stop_scooping();
 	void jump();
 	void jet_pack_mode(bool state);
@@ -166,6 +166,7 @@ public:
 		int biggest_snowball;
 		int num_large_snowballs;
 		int num_small_snowballs;
+		int amount_scooped;
 		int friendly_hit;
 		int snow_used;
 		int built;

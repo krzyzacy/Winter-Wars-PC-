@@ -62,11 +62,13 @@ public:
 class Scoop_Snow : public Objective
 {
 public:
-	Scoop_Snow()
-	{ message = "Press B to scoop up snow, you must be on a soft snow tile";}
+	Scoop_Snow();
 	~Scoop_Snow() {}
 	Objective* get_next_Objective();
 	bool has_been_completed();
+
+private:
+	float start_scooped;
 };
 
 class Destroy_Structures : public Objective

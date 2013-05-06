@@ -9,10 +9,10 @@ Tutorial_Level::Tutorial_Level()
 {
 	current_objective = new Build_Structure(HEALING_POOL);
 	
-	
 }
 
-Tutorial_Level::~Tutorial_Level() {}
+Tutorial_Level::~Tutorial_Level() 
+{}
 
 void Tutorial_Level::start_up(const std::vector<Player_info*> &player_info)
 {

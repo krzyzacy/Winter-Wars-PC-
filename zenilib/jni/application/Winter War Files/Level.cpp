@@ -139,8 +139,6 @@ void Level::finish()
 	PlayTime.reset();
 }
 
-
-
 void Level::update()
 {	
 	const float frametime_passed = PlayTime.seconds();
@@ -175,8 +173,6 @@ void Level::update()
 	view->animate();
 }
 
-
-
 /*set the time to win and the team to win*/
 void Level::tree_claimed(const Team *team)
 {
@@ -195,7 +191,6 @@ void Level::tree_claimed(const Team *team)
 	}
 	// team wants to own the tree
 	win_time = PlayTime.seconds() + time_to_win_c;
-
 }
 
 

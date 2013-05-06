@@ -276,9 +276,6 @@ void Player::throw_ball() {
 									Vector3f(current_radius, current_radius,current_radius));
 	sb->get_thrown(m_camera.get_forward());
 	
-	if (current_radius > stats.biggest_snowball)
-		stats.biggest_snowball = current_radius;
-
 	if (current_radius > max_snowball_size/2)
 		stats.num_large_snowballs++;
 	else
@@ -329,12 +326,11 @@ void Player::charge_ball()	{
 }
 
 // SCOOP!!!!
-void Player::pack_snow()	{
+void Player::scoop_snow()	
+{
 	if(is_player_KO())
 		return;
-
-
-
+	
 	//This will change, but exists for now as a simple test function
 	if (!is_on_ground())
 		return;
@@ -348,7 +344,10 @@ void Player::pack_snow()	{
 	if(Snow_in_Pack >= Max_Snow_Amount)
 		Snow_in_Pack = Max_Snow_Amount;
 	else
+	{
 		Snow_in_Pack += snow_absorbtion_rate * time;
+		stats.amount_scooped += snow_absorbtion_rate * time;
+	}
 
 }
 
