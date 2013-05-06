@@ -21,7 +21,7 @@ void Team_Select_State::on_key(const SDL_KeyboardEvent &event) {
 				player_control_state[event.which] = (player_control_state[event.which] + 1) % 2;
 			}
 			else if(player_cursor[event.which] == 3){
-				player_sensitivity_state[event.which] = (player_sensitivity_state[event.which] + 10) % 11;
+				player_sensitivity_state[event.which] = (player_sensitivity_state[event.which] + 9) % 10 + 1;
 			}
 			else{
 				player_team_state[0] = (player_team_state[0] + 3) % 4;
@@ -35,7 +35,7 @@ void Team_Select_State::on_key(const SDL_KeyboardEvent &event) {
 				player_control_state[event.which] = (player_control_state[event.which] + 1) % 2;
 			}
 			else if(player_cursor[event.which] == 3){
-				player_sensitivity_state[event.which] = (player_sensitivity_state[event.which] + 1) % 11;
+				player_sensitivity_state[event.which] = (player_sensitivity_state[event.which]) % 10 + 1;
 			}
 			else{
 				player_team_state[0] = (player_team_state[0] + 1) % 4;
@@ -67,7 +67,7 @@ void Team_Select_State::on_joy_hat(const SDL_JoyHatEvent &event) {
 						player_control_state[event.which] = (player_control_state[event.which] + 1) % 2;
 					}
 					else if(player_cursor[event.which] == 3){
-						player_sensitivity_state[event.which] = (player_sensitivity_state[event.which] + 10) % 11;
+						player_sensitivity_state[event.which] = (player_sensitivity_state[event.which] + 9) % 10 + 1;
 					}
 					else{
 						player_team_state[event.which] = (player_team_state[event.which] + 3) % 4;
@@ -82,7 +82,7 @@ void Team_Select_State::on_joy_hat(const SDL_JoyHatEvent &event) {
 						player_control_state[event.which] = (player_control_state[event.which] + 1) % 2;
 					}
 					else if(player_cursor[event.which] == 3){
-						player_sensitivity_state[event.which] = (player_sensitivity_state[event.which] + 1) % 11;
+						player_sensitivity_state[event.which] = (player_sensitivity_state[event.which]) % 10 + 1;
 					}
 					else{
 						player_team_state[event.which] = (player_team_state[event.which] + 1) % 4;
@@ -106,8 +106,10 @@ void Team_Select_State::on_joy_button(const SDL_JoyButtonEvent &event){
 					if(event.state == SDL_PRESSED)	{
 						if(player_state[0] != 2)
 							player_state[0] ++;
-						else
+						else{
+							if(player_state[1] != 1 && player_state[2] != 1 && player_state[3] != 1)
 							loading = true;
+						}
 					}
 					break;
 				case 1: // B
@@ -147,6 +149,8 @@ void Team_Select_State::perform_logic(){
 			vector<Player_info *> *player_list = new vector<Player_info*>;
 
 			for(int player_idx = 0; player_idx < 4; player_idx ++){
+
+				if(player_state[player_idx] != 2) continue;
 
 				Player_info * newPlayer = new Player_info();
 
