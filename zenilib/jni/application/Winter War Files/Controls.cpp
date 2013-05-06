@@ -1,7 +1,7 @@
 #include "Controls.h"
 #include "Player.h"
 #include "Zeni/Joysticks.h"
-
+#include "Game_Model.h"
 
 #include <sstream>
 
@@ -40,13 +40,16 @@ void Controls::check_keyboard_player_change(const SDL_KeyboardEvent &event)	{
 			Mouse_Camera = 0;
 			break;
 		case SDLK_2:
-			Mouse_Camera = 1;
+			if(Game_Model::get().num_players_here() >= 2)
+				Mouse_Camera = 1;
 			break;
 		case SDLK_3:
-			Mouse_Camera = 2;
+			if(Game_Model::get().num_players_here() >= 3)
+				Mouse_Camera = 2;
 			break;
 		case SDLK_4:
-			Mouse_Camera = 3;
+			if(Game_Model::get().num_players_here() >= 4)
+				Mouse_Camera = 3;
 			break;
 		default:
 			break;
@@ -95,10 +98,10 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event)	{
 		//	input.Build_Go = event.state == SDL_PRESSED;
 		//	break;
 		case SDLK_LSHIFT:
-			input.mini_map = event.state == SDL_PRESSED;
+			input.RSHOULDER = event.state == SDL_PRESSED;
 			break;
 		case SDLK_TAB:
-			input.RSHOULDER = event.state == SDL_PRESSED;
+			input.mini_map = event.state == SDL_PRESSED;			
 			break;
 		//case SDLK_v:
 		//	input.LSHOULDER = event.state == SDL_PRESSED;
