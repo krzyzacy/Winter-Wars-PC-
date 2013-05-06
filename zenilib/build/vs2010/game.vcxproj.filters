@@ -1029,6 +1029,9 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Level_Factory.h">
       <Filter>jni\application\Winter War Files\Level</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Globals.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
@@ -1495,6 +1498,9 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Level_Factory.cpp">
       <Filter>jni\application\Winter War Files\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Globals.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

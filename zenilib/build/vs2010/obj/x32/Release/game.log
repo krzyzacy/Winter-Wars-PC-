@@ -1,5 +1,5 @@
-﻿Build started 5/6/2013 1:35:12 AM.
-     1>Project "C:\Users\Daniel\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" on node 2 (build target(s)).
+﻿Build started 5/6/2013 7:23:18 PM.
+     1>Project "H:\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "obj\x32\Release\game.unsuccessfulbuild".
        PreBuildEvent:
@@ -21,33 +21,54 @@
          ..\..\jni\external\bin\x32\vccorlib110.dll
          6 File(s) copied
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application\Raknet\Source /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Objective.cpp" "..\..\jni\application\Winter War Files\Tutorial_Level.cpp"
-         Objective.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application\Raknet\Source /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Globals.cpp" "..\..\jni\application\Winter War Files\Tutorial_Level.cpp"
+         Globals.cpp
      1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
      1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
-     1>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
                  ..\..\jni\external\sdl_net\SDL/SDL_net.h(84) : see previous definition of 'INADDR_ANY'
-     1>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
                  ..\..\jni\external\sdl_net\SDL/SDL_net.h(93) : see previous definition of 'INADDR_BROADCAST'
-     1>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
                  ..\..\jni\external\sdl_net\SDL/SDL_net.h(87) : see previous definition of 'INADDR_NONE'
-     1>c:\users\daniel\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(56): warning C4100: 'person' : unreferenced formal parameter
-     1>c:\users\daniel\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(56): warning C4100: 'color' : unreferenced formal parameter
-     1>..\..\jni\application\Winter War Files\Objective.cpp(143): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Globals.h(36): warning C4512: 'Game_Parameter' : assignment operator could not be generated
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Globals.h(9) : see declaration of 'Game_Parameter'
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(56): warning C4100: 'person' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(56): warning C4100: 'color' : unreferenced formal parameter
+     1>..\..\jni\application\Winter War Files\Globals.cpp(36): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\jni\application\Winter War Files\Globals.cpp(37): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\jni\application\Winter War Files\Globals.cpp(38): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>..\..\jni\application\Winter War Files\Globals.cpp(39): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
          Tutorial_Level.cpp
      1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
      1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
-     1>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
                  ..\..\jni\external\sdl_net\SDL/SDL_net.h(84) : see previous definition of 'INADDR_ANY'
-     1>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
                  ..\..\jni\external\sdl_net\SDL/SDL_net.h(93) : see previous definition of 'INADDR_BROADCAST'
-     1>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
                  ..\..\jni\external\sdl_net\SDL/SDL_net.h(87) : see previous definition of 'INADDR_NONE'
-     1>c:\users\daniel\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(56): warning C4100: 'person' : unreferenced formal parameter
-     1>c:\users\daniel\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(56): warning C4100: 'color' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(56): warning C4100: 'person' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Structure.h(56): warning C4100: 'color' : unreferenced formal parameter
+     1>h:\eecs494finalproject\zenilib\jni\application\winter war files\Globals.h(36): warning C4512: 'Game_Parameter' : assignment operator could not be generated
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Globals.h(9) : see declaration of 'Game_Parameter'
+     1>..\..\jni\application\Winter War Files\Tutorial_Level.cpp(14): warning C4621: no postfix form of 'operator --' found for type 'Game_Parameter', using prefix form
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Globals.h(9) : see declaration of 'Game_Parameter'
+     1>..\..\jni\application\Winter War Files\Tutorial_Level.cpp(15): warning C4621: no postfix form of 'operator --' found for type 'Game_Parameter', using prefix form
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Globals.h(9) : see declaration of 'Game_Parameter'
+     1>..\..\jni\application\Winter War Files\Tutorial_Level.cpp(16): warning C4621: no postfix form of 'operator --' found for type 'Game_Parameter', using prefix form
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Globals.h(9) : see declaration of 'Game_Parameter'
+     1>..\..\jni\application\Winter War Files\Tutorial_Level.cpp(17): warning C4621: no postfix form of 'operator --' found for type 'Game_Parameter', using prefix form
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Globals.h(9) : see declaration of 'Game_Parameter'
+     1>..\..\jni\application\Winter War Files\Tutorial_Level.cpp(18): warning C4621: no postfix form of 'operator --' found for type 'Game_Parameter', using prefix form
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Globals.h(9) : see declaration of 'Game_Parameter'
+     1>..\..\jni\application\Winter War Files\Tutorial_Level.cpp(19): warning C4621: no postfix form of 'operator --' found for type 'Game_Parameter', using prefix form
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Globals.h(9) : see declaration of 'Game_Parameter'
+     1>..\..\jni\application\Winter War Files\Tutorial_Level.cpp(20): warning C4621: no postfix form of 'operator --' found for type 'Game_Parameter', using prefix form
+                 h:\eecs494finalproject\zenilib\jni\application\winter war files\Globals.h(9) : see declaration of 'Game_Parameter'
          Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\x32\game.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\bin\x32 ws2_32.lib local_SDLmain.lib zeni_rest.lib zeni_graphics.lib zeni_net.lib zeni_core.lib zeni_audio.lib zeni.lib local_SDL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"obj\x32\Release\game.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"C:\Users\Daniel\EECS494FinalProject\zenilib\bin\x32\game.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\x32\game.lib" /MACHINE:X86 obj\x32\Release\Base64Encoder.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\x32\game.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\bin\x32 ws2_32.lib local_SDLmain.lib zeni_rest.lib zeni_graphics.lib zeni_net.lib zeni_core.lib zeni_audio.lib zeni.lib local_SDL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"obj\x32\Release\game.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"H:\EECS494FinalProject\zenilib\bin\x32\game.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\x32\game.lib" /MACHINE:X86 obj\x32\Release\Base64Encoder.obj
          obj\x32\Release\BitStream.obj
          obj\x32\Release\CCRakNetSlidingWindow.obj
          obj\x32\Release\CCRakNetUDT.obj
@@ -170,6 +191,7 @@
          obj\x32\Release\Event.obj
          obj\x32\Release\Fortress.obj
          obj\x32\Release\Game_Model.obj
+         obj\x32\Release\Globals.obj
          obj\x32\Release\Healing_Pool.obj
          obj\x32\Release\Ingame_Client.obj
          obj\x32\Release\Ingame_Peer.obj
@@ -202,14 +224,14 @@
          obj\x32\Release\View.obj
          obj\x32\Release\World.obj
          obj\x32\Release\WWClient.obj
-         game.vcxproj -> C:\Users\Daniel\EECS494FinalProject\zenilib\build\vs2010\..\..\bin\x32\game.exe
+         game.vcxproj -> H:\EECS494FinalProject\zenilib\build\vs2010\..\..\bin\x32\game.exe
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\x32\game.exe;#1" /manifest obj\x32\Release\game.exe.intermediate.manifest
+         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\x32\game.exe;#1" /manifest obj\x32\Release\game.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "obj\x32\Release\game.unsuccessfulbuild".
          Touching "obj\x32\Release\game.lastbuildstate".
-     1>Done Building Project "C:\Users\Daniel\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" (build target(s)).
+     1>Done Building Project "H:\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:11.84
+Time Elapsed 00:00:32.69
