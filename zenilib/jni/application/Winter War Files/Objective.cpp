@@ -6,6 +6,8 @@
 #include "Structure.h"
 #include "Object_factory.h"
 #include "Tile.h"
+#include "Event.h"
+#include "Snowball.h"
 
 using namespace std;
 using namespace Zeni;
@@ -96,8 +98,10 @@ Objective* Defend_Your_Claim::get_next_Objective()
 
 bool Build_Structure::has_been_completed()
 {
-	if (Game_Model::get().get_player(0)->get_team()->stats.structures[type])
+	if (Game_Model::get().get_player(0)->get_team()->stats.structures[type]){
 		return true;
+	}
+		
 
 	return false;
 }
@@ -119,6 +123,18 @@ Throw_Snowball_At_Enemy::Throw_Snowball_At_Enemy()
 	message = "Throw Snowballs with right trigger to defeat enemies!";
 	Game_Model::get().add_player(create_player(Game_Model::get().get_team(RED-1), "Boy"
 		));//, Game_Model::get().get_tile(Point3f(100,100,0))));
+
+
+	for(int i = 0; i < 10; i++){
+		for(int j = 0; j < 10; j++){
+			Snowball *sb = new Snowball(Game_Model::get().get_player(1),
+				Point3f(50 * (i + 5), 50 * (j + 5), 1000), Vector3f(20, 20, 20));
+
+			sb->get_thrown(Vector3f(0, 0, 0));
+
+			Game_Model::get().add_moveable(sb);
+		}
+	}
 }
 
 bool Throw_Snowball_At_Enemy::has_been_completed()
@@ -152,9 +168,19 @@ bool Scoop_Snow::has_been_completed()
 	return false;
 }
 
+Destroy_Structures::Destroy_Structures()
+{
+	message = "Destroy Enemy Stuctures by shooting snowballs at them";
+
+	Build_Event ev;
+	
+	ev.put_in_game(10,12,2,3);
+}
+
 bool Destroy_Structures::has_been_completed()
 {
-	return false;
+	return (Game_Model::get().get_tile(10, 12)->has_building() ^ 0x1);
+	//return false;
 }
 
 bool Raise_Lower_Tiles::has_been_completed()

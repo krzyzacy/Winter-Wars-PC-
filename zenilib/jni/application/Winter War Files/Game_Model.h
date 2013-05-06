@@ -77,7 +77,7 @@ public:
 	Ingame_Server * get_peer();
 
 	Tile *get_tile(const Zeni::Point3f&);
-
+	Tile *get_tile(int row, int col);
 
 	void add_moveable(Moveable *);
 	void add_structure(Structure *);

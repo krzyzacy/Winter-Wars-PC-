@@ -187,6 +187,11 @@ Tile *Game_Model::get_tile(const Point3f& pos)
 	return current_level->get_tile(pos);
 }
 
+Tile *Game_Model::get_tile(int row, int col)
+{
+	return current_level->get_World()->get_tile(row, col);
+}
+
 Team *Game_Model::get_team(int i)
 {
 	return current_level->get_team(i);
