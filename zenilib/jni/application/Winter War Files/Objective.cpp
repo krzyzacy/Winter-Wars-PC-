@@ -141,7 +141,7 @@ bool Pack_Snowball::has_been_completed()
 Scoop_Snow::Scoop_Snow() :
 	start_scooped(Game_Model::get().get_player(0)->stats.amount_scooped)
 {
-	message = "Press B to scoop up snow, you must be on a soft snow tile";
+	message = "Hold B to scoop up snow, you must be on a soft snow tile";
 }
 
 bool Scoop_Snow::has_been_completed()
