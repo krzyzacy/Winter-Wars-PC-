@@ -125,7 +125,7 @@ void End_Game_State::render() {
 	cur_width+=(font_36.get_text_width("Structure Destroyed | "));
 	get_Fonts()["system_36_800x600"].render_text("Structure Built | " ,Point2f(cur_width, 320), blk);
 
-	for (int i = 0 ; i < 4; i++){
+	for (int i = 0 ; i < Game_Model::get().num_players() ; i++){
 		Player * player = Game_Model::get().get_player(i);
 		Player::Stats stat = player->stats;  
 		const Color player_color = cr[player->get_team()->get_name()];

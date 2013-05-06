@@ -84,6 +84,7 @@ void Build_Event::unpackage(RakNet::BitStream *bsIn)
 
 void Build_Event::put_in_game()
 {
+	Game_Model::get().get_team(team_color - 1)->add_tile(Game_Model::get().get_World()->get_tile(tile));
 	create_structure(type, Game_Model::get().get_World()->get_tile(tile),
 						Game_Model::get().get_team(team_color - 1));
 }

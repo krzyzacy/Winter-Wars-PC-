@@ -200,7 +200,7 @@ void Lobby_State::start_game(){
 	}
 
 	//get_Game().pop_state();
-	get_Game().push_state(new Play_State_Base(player_list, "Clain Tree", false, room_created, host_addr));
+	get_Game().push_state(new Play_State_Base(player_list, "Claim Tree", false, room_created, host_addr));
 }
 
 void Lobby_State::createRoom(){
