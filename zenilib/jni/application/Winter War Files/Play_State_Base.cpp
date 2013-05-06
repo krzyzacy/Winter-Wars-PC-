@@ -37,10 +37,12 @@ void Play_State_Base::on_push()	{
 		if(!isLocal)
 			Game_Model::get().initialize_peer(isServer, host_addr);
 				
-		for(int i = 0; i < Game_Model::get().num_players() ; i++)	{
+		for(int i = 0; i < Game_Model::get().num_players() ; i++)	{ //Ask dan if this should be num players here
 			controllers.push_back(new Controls(false, i));
 			if(player_info->at(i)->controls_ == 1)
 				controllers[i]->set_inverted(true);
+			//Set the sensitivity
+			controllers[i]->set_input_sensitivity(player_info->at(i)->sensitivities_);
 		}
 }
 

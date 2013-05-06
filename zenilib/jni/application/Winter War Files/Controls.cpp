@@ -19,7 +19,8 @@ int Controls::Mouse_Camera = 0;
 Controls::Controls(bool inverted_, int which_id_)	:
 	inverted(inverted_),
 	Shoot(CHILL),
-	which_id(which_id_), left_last(false), right_last(false)
+	which_id(which_id_), left_last(false), right_last(false), 
+	aim_input_sensitivity(1)
 {
 }
 
@@ -29,6 +30,22 @@ Controls::~Controls(void)
 
 void Controls::set_inverted(bool invert)	{
 	inverted = invert;
+}
+
+void Controls::set_input_sensitivity(int _sensitivity)	{
+	//Max will make it 4 times as sensitive. 
+	// 5 == 1
+	// 10 == 4
+	// 1 == 1/8
+
+	if(_sensitivity == 1)
+		aim_input_sensitivity = 0.125;
+
+	if(_sensitivity >= 2 && _sensitivity <= 7)	
+		aim_input_sensitivity = 1 + ((_sensitivity - 5)/4);
+
+	if(_sensitivity >= 8 && _sensitivity <= 10)
+		aim_input_sensitivity = _sensitivity - 6;
 }
 
 void Controls::check_keyboard_player_change(const SDL_KeyboardEvent &event)	{
@@ -158,12 +175,12 @@ bool Controls::HandleJoy(const SDL_JoyAxisEvent &event)	{
 	case 4:		//Right Stick left-right
 		if(abs(event.value) < Stick_sensitivity)
 			Val = 0;
-		input.Cam.x = -Val;
+		input.Cam.x = -Val * aim_input_sensitivity;
 		break;
 	case 3:		//Right Stick up_down
 		if(abs(event.value) < Stick_sensitivity)
 			Val = 0;
-		input.Cam.y = (!inverted - inverted) * Val;
+		input.Cam.y = (!inverted - inverted) * Val * aim_input_sensitivity;
 		break;
 	case 5:		//Left Trigger
 		if(Val > Trig_sensitivity)
