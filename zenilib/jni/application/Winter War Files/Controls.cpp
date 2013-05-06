@@ -39,7 +39,7 @@ void Controls::set_input_sensitivity(int _sensitivity)	{
 	// 1 == 1/8
 
 	if(_sensitivity == 1)
-		aim_input_sensitivity = 0.125;
+		aim_input_sensitivity = 0.2;
 
 	if(_sensitivity >= 2 && _sensitivity <= 7)	
 		aim_input_sensitivity = 1 + ((_sensitivity - 5)/4);

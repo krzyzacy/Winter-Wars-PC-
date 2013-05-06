@@ -41,7 +41,6 @@ void Play_State_Base::on_push()	{
 			controllers.push_back(new Controls(false, i));
 			if(player_info->at(i)->controls_ == 1)
 				controllers[i]->set_inverted(true);
-			//Set the sensitivity
 			controllers[i]->set_input_sensitivity(player_info->at(i)->sensitivities_);
 		}
 }
@@ -60,6 +59,18 @@ void Play_State_Base::on_pop()	{
 	for(int i = 0; i < controllers.size() ; i++)	{
 		delete controllers[i];
 	}
+}
+
+void Play_State_Base::on_cover()	{
+	get_Window().mouse_hide(false);
+	get_Window().mouse_grab(false);
+	get_Game().joy_mouse.enabled = true;
+}
+
+void Play_State_Base::on_uncover()	{
+	get_Window().mouse_hide(true);
+	get_Window().mouse_grab(true);
+	get_Game().joy_mouse.enabled = false;
 }
 
 void Play_State_Base::on_key(const SDL_KeyboardEvent &event) {
@@ -104,6 +115,7 @@ void Play_State_Base::on_joy_button(const SDL_JoyButtonEvent &event)	{
 		get_Game().joy_mouse.enabled = false;
 	}
 }
+
 
 
 
