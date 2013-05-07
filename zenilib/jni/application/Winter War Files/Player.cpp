@@ -111,7 +111,7 @@ void Player::turn_left(float theta) {
 void Player::update(const float &time)	{
 	backup = center;
 	
-	if(Deathklok.seconds() > Respawn_Time)
+	if(Deathclock.seconds() > Respawn_Time)
 		respawn();
 
 	if(is_player_KO())
@@ -169,13 +169,13 @@ void Player::player_death()	{
 		player_boy_hit->play();
 	}
 
-	Deathklok.start();
+	Deathclock.start();
 	stats.deaths++;
 	dead_mode = true;
 }
 void Player::respawn()	{
-	Deathklok.stop();
-	Deathklok.reset();
+	Deathclock.stop();
+	Deathclock.reset();
 	dead_mode = false;
 	health = Max_Player_Health;
 	Snow_in_Pack = Max_Snow_Amount;

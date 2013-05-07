@@ -4,6 +4,7 @@
 
 #include <zenilib.h>
 #include <vector>
+#include <map>
 
 class Game_Parameter
 {
@@ -21,6 +22,7 @@ public:
 	void decrement();
 
 	float get_value() {return current_value;}
+	void set_value(float new_value) { current_value = new_value; }
 
 	void reset();
 
@@ -41,6 +43,7 @@ public:
 	Parameter_List();
 
 	Game_Parameter &at(int i) {return list.at(i);}
+	Game_Parameter &find(const Zeni::String &);
 
 	int size() {return list.size();} 
 
@@ -48,6 +51,7 @@ public:
 
 private:
 	std::vector<Game_Parameter> list;
+	std::map<Zeni::String, int> name_to_index;
 
 } ;
 

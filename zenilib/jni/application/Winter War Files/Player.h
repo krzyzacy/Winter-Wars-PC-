@@ -122,7 +122,7 @@ public:
 	float get_Snow() const {return Snow_in_Pack;}
 	float get_Health() const {return health;}
 	int get_Team_Blocks() const;
-	float get_time_until_respawn()	const {return Respawn_Time - Deathklok.seconds();	}
+	float get_time_until_respawn()	const {return Respawn_Time - Deathclock.seconds();	}
 	int get_Team_Index() const;
 	std::string get_gender() const	{return gender;}
 	Team * get_team() const {return myTeam;}
@@ -207,7 +207,7 @@ private:
 	float stick_theta;
 
 	Zeni::Chronometer<Zeni::Time> ShakeTime;
-	Zeni::Chronometer<Zeni::Time> Deathklok;
+	Zeni::Chronometer<Zeni::Time> Deathclock;
 
 	/* "" if no message */
 	Message message;

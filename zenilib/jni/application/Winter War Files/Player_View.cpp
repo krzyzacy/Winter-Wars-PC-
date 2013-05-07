@@ -145,7 +145,7 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 		render_tree_claimed(topLeft, bottomRight);
 	}
 
-	if( player->get_time_until_respawn() < 6.0f){
+	if( player->get_time_until_respawn() < Respawn_Time){
 		render_death(topLeft, bottomRight);
 	}
 	else{

@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "Team.h"
 
+#include "Utility.h"
+
 void Game_Parameter::increment()
 {
 	current_value += unit_increment;
@@ -62,9 +64,13 @@ Parameter_List::Parameter_List()
 
 }
 
-
 void Parameter_List::reset_all()
 {
 	for (int i = 0 ; i < size() ; i++)
 		at(i).reset();
+}
+
+Game_Parameter &Parameter_List::find(const Zeni::String &name_)
+{	
+	return list.at(0);
 }
