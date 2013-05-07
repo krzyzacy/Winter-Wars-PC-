@@ -6,13 +6,17 @@
 #include "Game_Model.h"
 #include "Object_factory.h"
 
-const int Max_Resources = 15000;
+float Max_Resources = 15000;
+float starting_resources = 2000;
+float hard_snow_intake = 50;
+float soft_snow_intake = 30;
+float ice_intake = 0;
 
 using namespace std;
 using namespace Zeni;
 
 Team::Team(Tile* BaseTile)	:
-	Base(BaseTile), Ice_Blocks(2000), intake_rate(0), Team_Color(NEUTRAL), 
+	Base(BaseTile), Ice_Blocks(starting_resources), intake_rate(0), Team_Color(NEUTRAL), 
 	network_unstable(false)
 {
 	ResourceTime.start();
@@ -93,20 +97,21 @@ void Team::update()	{
 		for(set<Tile*>::iterator it = Network.begin(); it != Network.end(); ++it)	{
 			switch((*it)->get_covering())	{
 			case SOFT_SNOW:
-				intake_rate += 50;
+				intake_rate += soft_snow_intake;
 				break;
 			case HARD_SNOW:
-				intake_rate += 30;
+				intake_rate += hard_snow_intake;
 				break;
 			case ICE:
+				intake_rate += ice_intake;
 				break;
 			default:
 				break;
 			}
 
 			// increment intake rate if it is a snow factory
-			if((*it)->get_building() && (*it)->get_building()->is_snow_maker())
-				intake_rate += 50;
+			if((*it)->get_building())
+				(*it)->get_building()->get_intake();
 
 		}
 	}
@@ -115,10 +120,6 @@ void Team::update()	{
 	
 	if (stats.final_network > stats.largest_network)
 		stats.largest_network = stats.final_network;
-
-	if (stats.all_structures() == 0 && Game_Model::get().get_time() > 10 )
-		message_team("Build something in front of your base, press (x) while facing the tile", -1);
-	
 }
 
 void Team::message_team(const String &message, int priority)

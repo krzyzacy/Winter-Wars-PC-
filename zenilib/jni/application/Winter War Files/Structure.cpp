@@ -16,6 +16,8 @@ float Build_Cost[5] = { 0, 2800, 2200, 1600, 800 };
 
 float Struct_Integrity[5] = {1, 100, 250, 80, 150};
 
+float snow_factory_intake = 50;
+
 Structure::Structure(Team *team, Tile* tile_,
 				const Zeni::Point3f &position_,	 float radius) :
 	Seen_Object(position_ + Point3f(0, 0, 40), Vector3f(1,1,1)*radius),

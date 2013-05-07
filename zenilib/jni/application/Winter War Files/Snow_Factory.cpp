@@ -111,3 +111,8 @@ Animator *Snow_Factory::get_animator() const
 {
 	return animation_state;
 }
+
+int Snow_Factory::get_intake()
+{
+	return snow_factory_intake;
+}

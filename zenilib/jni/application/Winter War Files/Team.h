@@ -7,6 +7,12 @@ class Tile;
 class Player;
 
 
+extern float Max_Resources;
+extern float starting_resources;
+extern float hard_snow_intake;
+extern float soft_snow_intake;
+extern float ice_intake;
+
 class Team
 {	
 public:
