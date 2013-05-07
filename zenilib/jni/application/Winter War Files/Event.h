@@ -36,6 +36,7 @@ public:
 	virtual void unpackage(RakNet::BitStream *);
 
 	virtual void put_in_game();
+	virtual void put_in_game(int row, int col, int team_, int type_);
 
 private:
 	int type;

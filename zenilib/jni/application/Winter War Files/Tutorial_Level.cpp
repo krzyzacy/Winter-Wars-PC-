@@ -5,10 +5,20 @@
 
 using namespace std;
 
+#include "Globals.h"
+
 Tutorial_Level::Tutorial_Level()
 {
 	current_objective = new Build_Structure(HEALING_POOL);
 	
+	parameters.at(4)--;
+	parameters.at(4)--;
+	parameters.at(4)--;
+	parameters.at(4)--;
+	parameters.at(4)--;
+	parameters.at(4)--;
+	parameters.at(4)--;
+
 }
 
 Tutorial_Level::~Tutorial_Level() 

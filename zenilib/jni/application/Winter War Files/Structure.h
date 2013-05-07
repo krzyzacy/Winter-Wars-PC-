@@ -12,9 +12,9 @@ enum Structure_Type	{
 
 //These enums represnt the different types of buildings for now
 
-extern const int Build_Cost[5];
+extern int Build_Cost[5];
 
-extern const float Struct_Integrity[5];
+extern float Struct_Integrity[5];
 
 enum	Universal_State	{
 	PRESENT_MODE, UNWRAP_MODE, BUILT, DAMAGED, DESTROYED
