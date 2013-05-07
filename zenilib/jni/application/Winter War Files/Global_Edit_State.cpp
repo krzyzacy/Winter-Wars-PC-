@@ -37,8 +37,8 @@ void Global_Edit_State::render()
 	//get_Fonts()["system_36_800x600"].render_text(parameters.at(cursor).name ,Point3f(20, 120 + 50, 0), Vector3f(0.8,0,0), Vector3f(0,0.8,0), Color(0xFF33BBE8));
 	//get_Fonts()["system_36_800x600"].render_text(itoa(parameters.at(cursor).get_value()) ,Point3f(300, 120 + 50, 0), Vector3f(0.8,0,0), Vector3f(0,0.8,0), Color(0xFF33BBE8));
 
-	int adjust_height = 120;
-	int digit_width = 400;
+	int adjust_height = 140;
+	int digit_width = 540;
 	for(int i = 0; i < 5; i++){
 		if(i == 2){
 			get_Fonts()["system_36_800x600"].render_text(">>" ,Point3f(0, adjust_height, 0),Vector3f(0.8,0,0), Vector3f(0,0.8,0), Color(0xFFC11b17));
