@@ -169,71 +169,72 @@ void Team::remove_tile(Tile *t)	{
 	stats.tiles_lost++;
 }
 
-bool Team::tile_is_ready(Tile * cand, int type)	{
-	if(!is_adjacent_to_network(cand))
-	{
-		
+bool Team::allowed_to_build_on_Tile(Tile* cand)	{
+	if(!is_adjacent_to_network(cand))	{
 		throw Error("Error: Can only build on tiles next to your active territory!");
 		return false;
 	}
 
-	if(cand == Base)
-	{
+	if(cand == Base)	{
 		throw Error("Error: Can't build on Base!");
 		return false;
 	}
 
-			//If nothing has been built on it, (no one owns it), 
-	//is adjacent to your network, and have enough ice blocks
-	//If you already own this tile, then it assumes you are switching the building type
-	if(is_in_network(cand) && cand != Game_Model::get().get_World()->get_center_Tile())	{
-		cand->destroy_structure();
-		return true;
-	}
-
 	//You can't build on boundary tiles
-	if(Game_Model::get().get_World()->is_boundary_tile(cand))
-	{
+	if(Game_Model::get().get_World()->is_boundary_tile(cand))	{
 		throw Error("Error: Can't build on boundary cliffs!");
 		return false;
 	}
 
-	//Do a check here for the center tile
-	//Return false if you can build on it because don't want to let game_obejct create structure
-	if(Game_Model::get().get_World()->get_center_Tile() == cand)	{
-		//%%%%% Install something related to victory conditions here
-		
-		if(Network.count(cand) == 0)	{//Doesn't care about who has it currently, any can claim it
-			//cand->get_building()->begin_isolation();
-			if(cand->get_building()->get_team_pt() != 0)
-				cand->get_building()->get_team_pt()->remove_tile(cand);
-
-			cand->destroy_structure();
-			add_tile(cand);
-			Game_Model::get().add_structure(create_structure(TREE, cand, this));
-			//cand->set_team(Team_Color);
-			Start_Victory_Countdown();
-		}
-		return false; //becasue tree isn't an option to build
-	}
-
-
-	//This code handles neutral tiles and enemy tiles
-	if(!cand->has_building())	{
-		if(Ice_Blocks >= Build_Cost[type])	{	//Structure cost	
-			Ice_Blocks -= Build_Cost[type];
-			stats.resources_spent += Build_Cost[type];
-			add_tile(cand);
-			return true;
-		}
-		else
-		{
-			throw Error("Error: Not enough Money to Build!");
-			return false;
-		}
-	}
+	//If you own it, then its fine to build on
+	if(is_in_network(cand) && cand != Game_Model::get().get_World()->get_center_Tile())	
+		return true;
 	
+	//Do a check here for the center tile
+	if(Game_Model::get().get_World()->get_center_Tile() == cand)	{
+		if(Network.count(cand) == 0)	//If you do not have the tree
+			return true;
+		return false;	//If you do have the tree, you can't build on it again		
+	}
+
+	//I think this constitutes a double check in the logic, but it's fine
+	if(is_adjacent_to_network(cand))
+		return true;
+
+	//Should never get here, but if it 
 	return false;
+}
+
+bool Team::can_afford_building(int type)	{
+	if(Ice_Blocks >= Build_Cost[type])	
+		return true;
+	else	{
+		throw Error("Error: Not enough Money to Build!");
+		return false;
+	}
+}
+
+void Team::pay_for_building(int type)	{
+	Ice_Blocks -= Build_Cost[type];
+	stats.resources_spent += Build_Cost[type];
+}
+
+/*
+* Assumes that allowed to build on tile is true
+*/
+void Team::add_tile_to_team_network(Tile* cand)	{
+	cand->destroy_structure();
+	add_tile(cand);
+
+	//different behavior for center tile
+	if(Game_Model::get().get_World()->get_center_Tile() == cand)	{
+		//if some one else has it, kindly remove it from their network
+		if(cand->get_building()->get_team_pt() != 0)
+				cand->get_building()->get_team_pt()->remove_tile(cand); 
+		//create the new tree structure
+		Game_Model::get().add_structure(create_structure(TREE, cand, this));
+		Start_Victory_Countdown();
+	}
 }
 
 bool Team::is_adjacent_to_network(Tile *t)	{

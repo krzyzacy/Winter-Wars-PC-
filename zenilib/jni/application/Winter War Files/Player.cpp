@@ -616,17 +616,16 @@ bool Player::create_building(Structure_Type Building)	{
 //	Tile *t = Game_Model::get().get_World()->get_tile(center);
 
 	try {
+		if(myTeam->allowed_to_build_on_Tile(t) && myTeam->can_afford_building(Building))	{
+			myTeam->pay_for_building(Building);
+			myTeam->add_tile_to_team_network(t);
+			myTeam->stats.structures[Building]++;
+			Build_Event(create_structure(Building, t, myTeam));
+			return true;
+		}
 
 		//Checks if the tile can be built upon
-		if(!myTeam->tile_is_ready(t, Building))
-			return false;
-		
-		myTeam->stats.structures[Building]++;
-		Build_Event(create_structure(Building, t, myTeam));
-
-		return true;
-
-
+		return false;
 	}
 	catch (Error &E)
 	{
