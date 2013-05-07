@@ -7,6 +7,12 @@ class Tile;
 class Player;
 
 
+extern float Max_Resources;
+extern float starting_resources;
+extern float hard_snow_intake;
+extern float soft_snow_intake;
+extern float ice_intake;
+
 class Team
 {	
 public:
@@ -27,7 +33,7 @@ public:
 	void check_connectivity();	//Deactivates tiles if they aren't connected
 	void Deactivate_disconnected();
 	void reintegrate_connected();
-	void add_tile(Tile *);
+	
 	void remove_tile(Tile *);
 
 	bool is_in_network(Tile *);
@@ -41,7 +47,12 @@ public:
 	bool is_empty(){ return members.size() == 0; }
 
 	//Building related
-	bool tile_is_ready(Tile * candidate, int type);
+	bool allowed_to_build_on_Tile(Tile* candidate);
+	bool can_afford_building(int type);
+	void add_tile_to_team_network(Tile* new_tile);
+	void pay_for_building(int type);
+
+
 
 	//Set Up and utility
 	int get_Resources()	const {return Ice_Blocks;}
@@ -103,6 +114,7 @@ private:
 
 	Tile* Base;
 
+	void add_tile(Tile *);
 
 };
 

@@ -12,9 +12,9 @@ enum Structure_Type	{
 
 //These enums represnt the different types of buildings for now
 
-extern const int Build_Cost[5];
-
-extern const float Struct_Integrity[5];
+extern float Build_Cost[5];
+extern float Struct_Integrity[5];
+extern float snow_factory_intake;
 
 enum	Universal_State	{
 	PRESENT_MODE, UNWRAP_MODE, BUILT, DAMAGED, DESTROYED
@@ -59,6 +59,7 @@ public:
 		{return structure_ID_c;}
 
 	virtual bool is_snow_maker()	{return false;}
+	virtual int get_intake()  {return 0;}
 
 	void save_position();
 

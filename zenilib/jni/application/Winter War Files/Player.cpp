@@ -16,24 +16,25 @@ using namespace std;
 using namespace Zeni;
 
 const int Player::player_ID_c = 1;
-const float standard_speed = 200;
-const float turn_speed = 40;
-const float up_look_speed = 20;
 
-const float Max_Snow_Amount = 100;		// most you can scoop/reload
-const float Max_Player_Health = 100;	
-const float max_snowball_size = 50;		// most you can pack/charge	
-const float packing_rate = 50;			// Packing to snowball
-const float snow_depletion_rate = 25;	// Packing from pack
-const float snow_absorbtion_rate = 100;  // Scooping
+float standard_speed = 200;
+float turn_speed = 40;
+float up_look_speed = 20;
 
-const float Max_Stick_Input	= 32768;
-const float Building_Recharge_Time = 1;
-const float Respawn_Time = 6;
+float Max_Player_Health = 100;	
+float Max_Snow_Amount = 100;		// most you can scoop/reload
+float max_snowball_size = 50;		// most you can pack/charge	
+float packing_rate = 50;			// Packing to snowball
+float snow_depletion_rate = 25;	// Packing from pouch
+float snow_absorbtion_rate = 100;  // Scooping
+
+float Max_Stick_Input	= 32768;
+float Building_Recharge_Time = 1;
+float Respawn_Time = 6;
 
 
 const Vector3f jump_vec(0,0,500);
-const float  Stick_Accel = 1200;
+float Stick_Accel = 1200;
 
 const int num_tips = 13;
 String tips[num_tips] = {
@@ -616,17 +617,16 @@ bool Player::create_building(Structure_Type Building)	{
 //	Tile *t = Game_Model::get().get_World()->get_tile(center);
 
 	try {
+		if(myTeam->allowed_to_build_on_Tile(t) && myTeam->can_afford_building(Building))	{
+			myTeam->pay_for_building(Building);
+			myTeam->add_tile_to_team_network(t);
+			myTeam->stats.structures[Building]++;
+			Build_Event(create_structure(Building, t, myTeam));
+			return true;
+		}
 
 		//Checks if the tile can be built upon
-		if(!myTeam->tile_is_ready(t, Building))
-			return false;
-		
-		myTeam->stats.structures[Building]++;
-		Build_Event(create_structure(Building, t, myTeam));
-
-		return true;
-
-
+		return false;
 	}
 	catch (Error &E)
 	{

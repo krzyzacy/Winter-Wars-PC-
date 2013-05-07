@@ -74,8 +74,8 @@ private:
 class Destroy_Structures : public Objective
 {
 public: 
-	Destroy_Structures()
-	{ message = "Destroy Enemy Stuctures by shooting snowballs at them";}
+	Destroy_Structures();
+	~Destroy_Structures() {}
 	Objective* get_next_Objective();
 	bool has_been_completed();
 };
@@ -101,8 +101,7 @@ public:
 class Destroy_Key_Enemy_Structures : public Objective
 {
 public:
-	Destroy_Key_Enemy_Structures()
-	{ message = "Destroy key enemy structures to disconnect them from the enemy base, and they will all disappear!";}
+	Destroy_Key_Enemy_Structures();
 	Objective* get_next_Objective();
 	bool has_been_completed();
 };

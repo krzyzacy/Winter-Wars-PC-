@@ -16,6 +16,7 @@ public:
 	const model_key_t get_model_name() const;
 
 	bool is_snow_maker()	{return true;}
+	int get_intake();
 
 	Animator* get_animator();
 

@@ -382,6 +382,8 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Event.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Fortress.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Game_Model.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Globals.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Global_Edit_State.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Healing_Pool.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Client.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Ingame_Peer.h" />
@@ -659,6 +661,8 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClCompile Include="..\..\jni\application\Winter War Files\Fortress.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Game_Model.cpp">
     </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Globals.cpp" />
+    <ClCompile Include="..\..\jni\application\Winter War Files\Global_Edit_State.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Healing_Pool.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Client.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Ingame_Peer.cpp" />

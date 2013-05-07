@@ -48,6 +48,7 @@ public:
 
 	/*	Sets inverted if the player changes options menu (options to be implemented */
 	void set_inverted(bool invert);
+	void set_input_sensitivity(int _sensitivity);
 
 	Zeni::Vector2f give_movement();
 
@@ -79,6 +80,7 @@ private:
 	} input;
 
 	bool inverted;
+	float aim_input_sensitivity;
 	bool left_last;
 	bool right_last;
 

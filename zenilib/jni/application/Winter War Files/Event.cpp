@@ -84,8 +84,17 @@ void Build_Event::unpackage(RakNet::BitStream *bsIn)
 
 void Build_Event::put_in_game()
 {
+	Game_Model::get().get_team(team_color - 1)->add_tile_to_team_network(Game_Model::get().get_World()->get_tile(tile));
+	Game_Model::get().get_team(team_color - 1)->pay_for_building(type);
 	create_structure(type, Game_Model::get().get_World()->get_tile(tile),
 						Game_Model::get().get_team(team_color - 1));
+}
+
+void Build_Event::put_in_game(int row, int col, int team_, int type_)
+{
+	//Game_Model::get().get_team(team_ - 1)->add_tile(Game_Model::get().get_World()->get_tile(row, col));
+	create_structure(type_, Game_Model::get().get_World()->get_tile(row, col),
+						Game_Model::get().get_team(team_ - 1));
 }
 
 /*

@@ -170,7 +170,7 @@ zenilib App Info    : Loading asset from file 'textures/2DTextures/Background/au
 zenilib App Info    : Loading asset from file 'textures/2DTextures/Background/Nlights.png'.
 zenilib App Debug   : Loaded config/textures.xml
 zenilib App Debug   : Loading config/fonts.xml
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 0.791667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 0.886667
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -178,7 +178,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 0.791667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 36.000000, ratio 0.886667
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -186,7 +186,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 0.791667
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 36.000000, ratio 0.886667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -194,7 +194,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 26.000000, ratio 0.791667
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 26.000000, ratio 0.886667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -202,7 +202,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 92.000000, ratio 0.791667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 92.000000, ratio 0.886667
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -210,7 +210,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 46.000000, ratio 0.791667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 46.000000, ratio 0.886667
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -218,7 +218,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 23.000000, ratio 0.791667
+zenilib App Debug   : Generating font 'fonts/FORGOTTE.TTF', size 23.000000, ratio 0.886667
 zenilib App Info    : Loading asset from file 'fonts/FORGOTTE.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -226,7 +226,7 @@ zenilib App Debug   : FT_Set_Pixel_Sizes(...) success.
 zenilib App Debug   : Generating Texture from glyphs.
 zenilib App Debug   : Calling FT_Done_Face(...).
 zenilib App Debug   : Calling FT_Done_FreeType(...).
-zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 100.000000, ratio 0.791667
+zenilib App Debug   : Generating font 'fonts/FZMWFont.TTF', size 100.000000, ratio 0.886667
 zenilib App Info    : Loading asset from file 'fonts/FZMWFont.TTF'.
 zenilib App Debug   : FT_Init_FreeType(...) success.
 zenilib App Debug   : FT_Open_Face(...) success.
@@ -251,6 +251,126 @@ zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
 zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
 zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
 zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+add_tile_to_team_network complete
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+zenilib App Debug   : Sound_Source_HW added to Sound_Source_Pool
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
+add_tile_to_team_network complete
 Printing all possible error strings:
 SDL       : no error
 SDL_net   : no error
