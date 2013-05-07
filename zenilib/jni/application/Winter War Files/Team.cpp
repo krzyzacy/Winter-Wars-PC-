@@ -186,9 +186,6 @@ bool Team::allowed_to_build_on_Tile(Tile* cand)	{
 		return false;
 	}
 
-	if(cand->has_building())
-		return false;
-
 	//If you own it, then its fine to build on
 	if(is_in_network(cand) && cand != Game_Model::get().get_World()->get_center_Tile())	
 		return true;
@@ -199,6 +196,10 @@ bool Team::allowed_to_build_on_Tile(Tile* cand)	{
 			return true;
 		return false;	//If you do have the tree, you can't build on it again		
 	}
+
+	//If has a building, its not the tree so you can't claim it
+	if(cand->has_building())
+		return false;
 
 	//I think this constitutes a double check in the logic, but it's fine
 	if(is_adjacent_to_network(cand))
@@ -226,18 +227,35 @@ void Team::pay_for_building(int type)	{
 * Assumes that allowed to build on tile is true
 */
 void Team::add_tile_to_team_network(Tile* cand)	{
-	cand->destroy_structure();
-	add_tile(cand);
-
+	
 	//different behavior for center tile
 	if(Game_Model::get().get_World()->get_center_Tile() == cand)	{
+		cerr<<"Trying to add tree"<<endl;
+
 		//if some one else has it, kindly remove it from their network
-		if(cand->get_building()->get_team_pt() != 0)
-				cand->get_building()->get_team_pt()->remove_tile(cand); 
+		if(cand->get_building()->get_team_pt() != 0)	{
+			cand->get_building()->get_team_pt()->remove_tile(cand); 
+			cerr<<"Trying to remove from someone else"<<endl;
+		}
+		cerr<<"Destroying old tree structure"<<endl;
+		cand->destroy_structure();
+		cerr<<"Adding to network"<<endl;
+		add_tile(cand);
+
 		//create the new tree structure
+		cerr<<"creating the structure"<<endl;
 		Game_Model::get().add_structure(create_structure(TREE, cand, this));
 		Start_Victory_Countdown();
+		cerr<<"Return from tree call to add tile"<<endl;
+		return;
 	}
+
+	//cerr<<"Destroying Old struct"<<endl;
+	cand->destroy_structure();
+	//cerr<<"Adding tile to network"<<endl;
+	add_tile(cand);
+
+	cerr<<"add_tile_to_team_network complete"<<endl;
 }
 
 bool Team::is_adjacent_to_network(Tile *t)	{
