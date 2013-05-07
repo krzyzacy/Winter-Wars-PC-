@@ -185,12 +185,31 @@ bool Destroy_Structures::has_been_completed()
 
 bool Raise_Lower_Tiles::has_been_completed()
 {
-	return false;
+	return true;
 }
 
 bool Build_a_Chain_To_Tree::has_been_completed()
 {
-	return false;
+	return Game_Model::get().get_player(0)->stats.built > 9 ? true : false;
+}
+
+Destroy_Key_Enemy_Structures::Destroy_Key_Enemy_Structures()
+{
+	message = "Destroy key enemy structures to disconnect them from the enemy base, and they will all disappear!";
+
+	Build_Event ev;
+	
+	ev.put_in_game(10,12,2,2);
+	ev.put_in_game(10,11,2,2);
+	ev.put_in_game(10,10,2,1);
+	ev.put_in_game(10,9,2,4);
+	ev.put_in_game(10,8,2,3);
+	ev.put_in_game(9,11,2,2);
+	ev.put_in_game(9,10,2,4);
+	ev.put_in_game(9,9,2,2);
+	ev.put_in_game(8,9,2,2);
+	ev.put_in_game(8,8,2,1);
+	ev.put_in_game(8,7,2,2);
 }
 
 bool Destroy_Key_Enemy_Structures::has_been_completed()

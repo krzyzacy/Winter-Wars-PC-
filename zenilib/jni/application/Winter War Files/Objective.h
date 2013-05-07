@@ -101,8 +101,7 @@ public:
 class Destroy_Key_Enemy_Structures : public Objective
 {
 public:
-	Destroy_Key_Enemy_Structures()
-	{ message = "Destroy key enemy structures to disconnect them from the enemy base, and they will all disappear!";}
+	Destroy_Key_Enemy_Structures();
 	Objective* get_next_Objective();
 	bool has_been_completed();
 };

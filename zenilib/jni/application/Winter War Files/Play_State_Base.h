@@ -58,9 +58,6 @@ private:
 
 	void on_push();
 	void on_pop();
-	void on_uncover();
-	void on_cover();
-	
 
 	void perform_logic();
 
