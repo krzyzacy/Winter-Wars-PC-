@@ -38,6 +38,10 @@ The following things are unsupported:
 -->
 
 <Textures>
+  <SKY.PNG>
+    <filepath>textures/sky.png</filepath>
+    <tile>1</tile>
+  </SKY.PNG>
 
   <BLCLOTH.PNG>
     <filepath>textures/3Dtextures/Player/BLCLOTH.png</filepath>
