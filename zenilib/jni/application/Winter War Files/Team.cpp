@@ -186,6 +186,9 @@ bool Team::allowed_to_build_on_Tile(Tile* cand)	{
 		return false;
 	}
 
+	if(cand->has_building())
+		return false;
+
 	//If you own it, then its fine to build on
 	if(is_in_network(cand) && cand != Game_Model::get().get_World()->get_center_Tile())	
 		return true;

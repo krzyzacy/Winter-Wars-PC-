@@ -117,6 +117,9 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event)	{
 		case SDLK_LSHIFT:
 			input.RSHOULDER = event.state == SDL_PRESSED;
 			break;
+		case SDLK_q:
+			input.LSHOULDER = event.state == SDL_PRESSED;
+			break;
 		case SDLK_TAB:
 			input.mini_map = event.state == SDL_PRESSED;			
 			break;
