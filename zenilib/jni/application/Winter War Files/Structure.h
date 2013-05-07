@@ -12,7 +12,7 @@ enum Structure_Type	{
 
 //These enums represnt the different types of buildings for now
 
-extern int Build_Cost[5];
+extern float Build_Cost[5];
 
 extern float Struct_Integrity[5];
 

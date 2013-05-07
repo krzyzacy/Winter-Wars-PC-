@@ -8,8 +8,8 @@
 class Game_Parameter
 {
 public:
-	Game_Parameter(const Zeni::String &name_, int default_value_, 
-				int max_, int unit_increment_ = 10, int min_ = 0)
+	Game_Parameter(const Zeni::String &name_, float &default_value_, 
+				float max_, float unit_increment_ = 10, float min_ = 0)
 		: name(name_), unit_increment(unit_increment_), 
 		default_value(default_value_), current_value(default_value_),
 		max(max_), min(min_)
@@ -20,7 +20,7 @@ public:
 	void increment();
 	void decrement();
 
-	int &get_value() {return current_value;}
+	float get_value() {return current_value;}
 
 	void reset();
 
@@ -28,11 +28,11 @@ public:
 	Game_Parameter &operator--() {decrement(); return *this;}
 
 private:
-	int unit_increment;
-	int default_value;
-	int &current_value;
-	int max;
-	int min;
+	float unit_increment;
+	float default_value;
+	float &current_value;
+	float max;
+	float min;
 };
 
 class Parameter_List
