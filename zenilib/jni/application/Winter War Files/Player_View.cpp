@@ -190,7 +190,7 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 
 	Point2f tile_pos(Game_Model::get().get_World()->get_tile(0, 0)->get_top_center().x, Game_Model::get().get_World()->get_tile(0, 0)->get_top_center().y);
 
-	scaled_render_text("<|Espionage Center|>", Point3f(topLeft.x + unit_px * 320, topLeft.y + unit_px * 70, 0), Color(0x99FF0000), (bottomRight.x - topLeft.x) * 0.35);
+	//scaled_render_text("<|Espionage Center|>", Point3f(topLeft.x + unit_px * 320, topLeft.y + unit_px * 70, 0), Color(0x99FF0000), (bottomRight.x - topLeft.x) * 0.35);
 	
 	//get_Fonts()["system_36_800x600"].render_text("<|Espionage Center|>" ,Point2f(320, 70),Color(0x99FF0000));
 	//render_image("Heart",Point2f(topLeft.x + tile_pos.x, topLeft.y + tile_pos.y),Point2f(topLeft.x + tile_pos.x + unit_px * 50, topLeft.y + tile_pos.y + unit_px * 50));
@@ -198,7 +198,8 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 	for(int row = 0; row < Game_Model::get().get_World()->get_height(); row++){
 		for(int col = 0; col < Game_Model::get().get_World()->get_width(); col++){
 			
-			Point2f tile_pos(Game_Model::get().get_World()->get_tile(row, col)->get_top_center().x, Game_Model::get().get_World()->get_tile(row, col)->get_top_center().y);
+			Point2f tile_pos(Game_Model::get().get_World()->get_tile(row, col)->get_top_center().x,
+							Game_Model::get().get_World()->get_center_Tile()->get_top_center().y * 2 - Game_Model::get().get_World()->get_tile(row, col)->get_top_center().y);
 
 			String tile_name = "Tile2D";
 
@@ -239,15 +240,20 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 		}
 	}
 
-	Point2f player_pos(player->get_camera().position.x / ratio,player->get_camera().position.y / ratio);
+	
+	Point2f player_pos((player->get_camera().position.x) / ratio,
+					   (Game_Model::get().get_World()->get_center_Tile()->get_top_center().y * 2 - player->get_camera().position.y) / ratio);
 
 	float angle = atan(player->get_camera().get_forward().x / player->get_camera().get_forward().y);
 	if(player->get_camera().get_forward().y < 0)
 		angle += PI;
 
-	render_image((Zeni::String)avartar,Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 195.0f, topLeft.y + player_pos.y * unit_px + 80.0f * unit_px),
-				Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 235, topLeft.y + player_pos.y * unit_px + unit_px * 120), 
-				angle , 1.0f, Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 215, topLeft.y + player_pos.y * unit_px + unit_px * 100) );
+	angle = PI * 2 - angle;
+	angle += PI;
+
+	render_image((Zeni::String)avartar,Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 190.0f, topLeft.y + player_pos.y * unit_px + 70.0f * unit_px),
+				Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 230, topLeft.y + player_pos.y * unit_px + unit_px * 110), 
+				angle , 1.0f, Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 210, topLeft.y + player_pos.y * unit_px + unit_px * 90) );
 
 }
 
