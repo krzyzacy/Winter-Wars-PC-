@@ -614,13 +614,12 @@ bool Player::create_building(Structure_Type Building)	{
 	//Returns true if building was created, false if unable
 		
 	Tile *t = Game_Model::get().get_World()->player_is_looking_at(center, m_camera.get_forward());
-//	Tile *t = Game_Model::get().get_World()->get_tile(center);
+	//true if the player is trying to build on the tree
+	if(t->has_building() && t->get_building()->get_type() == TREE)
+		Building = TREE;
 
 	try {
 		if(myTeam->allowed_to_build_on_Tile(t) && myTeam->can_afford_building(Building))	{
-			myTeam->pay_for_building(Building);
-			myTeam->add_tile_to_team_network(t);
-			myTeam->stats.structures[Building]++;
 			Build_Event(create_structure(Building, t, myTeam));
 			return true;
 		}

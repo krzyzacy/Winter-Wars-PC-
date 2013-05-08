@@ -198,8 +198,9 @@ Point3f Tile::get_structure_base()	{
 }
 
 void Tile::build_structure(Structure* S, Team* new_team)	{
+	destroy_structure();
 	if(new_team)
-		team = new_team->get_Team_Index();
+		set_team(new_team->get_Team_Index());
 	Building = S;
 }
 
@@ -207,7 +208,7 @@ void Tile::destroy_structure()	{
 	//Will add more here later, but tile should be interface for interacting with a structure
 	if(has_building())
 		Building->mark_for_deletion();
-	team = NEUTRAL;
+	set_team(NEUTRAL);
 	Building = 0;
 }
 

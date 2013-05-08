@@ -42,6 +42,7 @@ public:
 
 		loading = false;
 		start_game = 0.0f;
+		keyboard_index = 0;
 
 		get_Sound().set_BGM("sfx/drum");
 		get_Sound().set_BGM_looping(1);
@@ -72,6 +73,7 @@ private:
 	Point2f player_render_offset[4];
 	bool loading;
 	float start_game;
+	int keyboard_index;
 
 	vector<int> colors_;
 	vector<Zeni::String> genders_;

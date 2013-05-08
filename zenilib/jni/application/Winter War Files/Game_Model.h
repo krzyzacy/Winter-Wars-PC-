@@ -78,6 +78,7 @@ public:
 
 	Tile *get_tile(const Zeni::Point3f&);
 	Tile *get_tile(int row, int col);
+	Tile *get_center_tile();
 
 	void add_moveable(Moveable *);
 	void add_structure(Structure *);

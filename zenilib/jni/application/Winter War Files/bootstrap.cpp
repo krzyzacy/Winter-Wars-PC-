@@ -44,6 +44,12 @@ class Title_State_Custom : public Title_State<Modes_State, Play_State_Base, Inst
 			get_Window().mouse_hide(false);
 		}
 
+		void on_uncover()	{
+			get_Window().mouse_hide(false);
+			get_Window().mouse_grab(false);
+			get_Game().joy_mouse.enabled = true;
+		}
+
 		void render() {
 			int width = get_Window().get_width();
 			int height = get_Window().get_height();

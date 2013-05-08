@@ -48,10 +48,7 @@ Point3f Team::get_spawn_point()	const	{
 	Spawn.x += x;
 	Spawn.y += y;
 	Spawn.z += 150;
-	//if(Team_Color == RED)
-	//	Spawn = Game_Model::get().get_World()->get_center_Tile()->get_structure_base();
-
-
+	
 	return Spawn;
 }
 
@@ -171,42 +168,35 @@ void Team::remove_tile(Tile *t)	{
 }
 
 bool Team::allowed_to_build_on_Tile(Tile* cand)	{
-	if(!is_adjacent_to_network(cand))	{
-		throw Error("Error: Can only build on tiles next to your active territory!");
-		return false;
-	}
-
-	if(cand == Base)	{
+	//Check for illegal tiles, base, boundary and not adjacent
+	if(cand == Base)	
 		throw Error("Error: Can't build on Base!");
-		return false;
-	}
-
-	//You can't build on boundary tiles
-	if(Game_Model::get().get_World()->is_boundary_tile(cand))	{
+	if(Game_Model::get().get_World()->is_boundary_tile(cand))	
 		throw Error("Error: Can't build on boundary cliffs!");
-		return false;
-	}
-
-	//If you own it, then its fine to build on
-	if(is_in_network(cand) && cand != Game_Model::get().get_World()->get_center_Tile())	
-		return true;
+	if(!is_adjacent_to_network(cand))	
+		throw Error("Error: Can only build on tiles next to your active territory!");
 	
-	//Do a check here for the center tile
-	if(Game_Model::get().get_World()->get_center_Tile() == cand)	{
+	//Do a check to see if cand is the tree
+	if(cand->has_building() && cand->get_building()->get_type() == TREE)	{
 		if(Network.count(cand) == 0)	//If you do not have the tree
 			return true;
 		return false;	//If you do have the tree, you can't build on it again		
 	}
 
-	//If has a building, its not the tree so you can't claim it
-	if(cand->has_building())
+	//At this point, you know it's not the tree, not an illegal tile, so if it's in
+	//your network you can build on it
+	if(is_in_network(cand))	
+		return true;
+
+	//At this point, you know it's not in your network and it's a legal tile 
+	if(cand->has_building()) //Someone else has built on it
 		return false;
 
-	//I think this constitutes a double check in the logic, but it's fine
+	//You know it's a legal tile, no one else has it, it's not the tree, so if it's adj your good
 	if(is_adjacent_to_network(cand))
 		return true;
 
-	//Should never get here, but if it 
+	//Should never get here, but if it does it isn't legal
 	return false;
 }
 
@@ -219,44 +209,28 @@ bool Team::can_afford_building(int type)	{
 	}
 }
 
-void Team::pay_for_building(int type)	{
-	Ice_Blocks -= Build_Cost[type];
-	stats.resources_spent += Build_Cost[type];
+void Team::pay_for_building(Structure* st)	{
+	Ice_Blocks -= Build_Cost[st->get_type()];
+	stats.resources_spent += Build_Cost[st->get_type()];
 }
 
 /*
 * Assumes that allowed to build on tile is true
 */
 void Team::add_tile_to_team_network(Tile* cand)	{
-	
 	//different behavior for center tile
-	if(Game_Model::get().get_World()->get_center_Tile() == cand)	{
-		cerr<<"Trying to add tree"<<endl;
-
+	if(cand->has_building() && cand->get_building()->get_type() == TREE)	{
 		//if some one else has it, kindly remove it from their network
 		if(cand->get_building()->get_team_pt() != 0)	{
 			cand->get_building()->get_team_pt()->remove_tile(cand); 
-			cerr<<"Trying to remove from someone else"<<endl;
 		}
-		cerr<<"Destroying old tree structure"<<endl;
-		cand->destroy_structure();
-		cerr<<"Adding to network"<<endl;
-		add_tile(cand);
-
-		//create the new tree structure
-		cerr<<"creating the structure"<<endl;
-		Game_Model::get().add_structure(create_structure(TREE, cand, this));
 		Start_Victory_Countdown();
-		cerr<<"Return from tree call to add tile"<<endl;
-		return;
 	}
 
-	//cerr<<"Destroying Old struct"<<endl;
-	cand->destroy_structure();
-	//cerr<<"Adding tile to network"<<endl;
+	
 	add_tile(cand);
 
-	cerr<<"add_tile_to_team_network complete"<<endl;
+	
 }
 
 bool Team::is_adjacent_to_network(Tile *t)	{

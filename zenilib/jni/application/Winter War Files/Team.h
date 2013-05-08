@@ -5,7 +5,7 @@
 class World;
 class Tile;
 class Player;
-
+class Structure;
 
 extern float Max_Resources;
 extern float starting_resources;
@@ -50,7 +50,7 @@ public:
 	bool allowed_to_build_on_Tile(Tile* candidate);
 	bool can_afford_building(int type);
 	void add_tile_to_team_network(Tile* new_tile);
-	void pay_for_building(int type);
+	void pay_for_building(Structure *);
 
 
 

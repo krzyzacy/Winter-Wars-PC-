@@ -2,48 +2,67 @@
 #include "Utility.h"
 
 void Team_Select_State::on_key(const SDL_KeyboardEvent &event) {
+		switch(event.keysym.sym)	{
+		case SDLK_1:
+			keyboard_index = 0;
+			break;
+		case SDLK_2:
+			keyboard_index = 1;
+			break;
+		case SDLK_3:
+			keyboard_index = 2;
+			break;
+		case SDLK_4:
+			keyboard_index = 3;
+			break;
+		default:
+			break;
+		}
+
+
+
         if(event.keysym.sym == SDLK_ESCAPE && event.state == SDL_PRESSED){
             get_Game().pop_state();
         }
 		else if(event.keysym.sym == SDLK_w && event.state == SDL_PRESSED){
-			if(player_cursor[0] != 0)
-				player_cursor[0] --;
+			if(player_cursor[keyboard_index] != 0)
+				player_cursor[keyboard_index] --;
 		}
 		else if(event.keysym.sym == SDLK_s && event.state == SDL_PRESSED){
-			if(player_cursor[0] != 3)
-				player_cursor[0] ++;
+			if(player_cursor[keyboard_index] != 3)
+				player_cursor[keyboard_index] ++;
 		}
 		else if(event.keysym.sym == SDLK_a && event.state == SDL_PRESSED){
-			if(player_cursor[0] == 0){
-				player_gender_state[0] = (player_gender_state[0] + 1) % 2;
+			if(player_cursor[keyboard_index] == 0){
+				player_gender_state[keyboard_index] = (player_gender_state[keyboard_index] + 1) % 2;
 			}
-			else if(player_cursor[event.which] == 2){
-				player_control_state[event.which] = (player_control_state[event.which] + 1) % 2;
+			else if(player_cursor[keyboard_index] == 2){
+				player_control_state[keyboard_index] = (player_control_state[keyboard_index] + 1) % 2;
 			}
-			else if(player_cursor[event.which] == 3){
-				player_sensitivity_state[event.which] = (player_sensitivity_state[event.which] + 9) % 10 + 1;
+			else if(player_cursor[keyboard_index] == 3){
+				player_sensitivity_state[keyboard_index] = (player_sensitivity_state[keyboard_index] + 9) % 10 + 1;
 			}
 			else{
-				player_team_state[0] = (player_team_state[0] + 3) % 4;
+				player_team_state[keyboard_index] = (player_team_state[keyboard_index] + 3) % 4;
 			}
 		}
 		else if(event.keysym.sym == SDLK_d && event.state == SDL_PRESSED){
-			if(player_cursor[0] == 0){
-				player_gender_state[0] = (player_gender_state[0] + 1) % 2;
+			if(player_cursor[keyboard_index] == 0){
+				player_gender_state[keyboard_index] = (player_gender_state[keyboard_index] + 1) % 2;
 			}
-			else if(player_cursor[event.which] == 2){
-				player_control_state[event.which] = (player_control_state[event.which] + 1) % 2;
+			else if(player_cursor[keyboard_index] == 2){
+				player_control_state[keyboard_index] = (player_control_state[keyboard_index] + 1) % 2;
 			}
-			else if(player_cursor[event.which] == 3){
-				player_sensitivity_state[event.which] = (player_sensitivity_state[event.which]) % 10 + 1;
+			else if(player_cursor[keyboard_index] == 3){
+				player_sensitivity_state[keyboard_index] = (player_sensitivity_state[keyboard_index]) % 10 + 1;
 			}
 			else{
-				player_team_state[0] = (player_team_state[0] + 1) % 4;
+				player_team_state[keyboard_index] = (player_team_state[keyboard_index] + 1) % 4;
 			}
 		}
         else if(event.keysym.sym == SDLK_RETURN && event.state == SDL_PRESSED){
-			if(player_state[0] != 2)
-				player_state[0] ++;
+			if(player_state[keyboard_index] != 2)
+				player_state[keyboard_index] ++;
 			else{
 				loading = true;
 			}

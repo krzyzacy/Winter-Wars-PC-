@@ -192,6 +192,10 @@ Tile *Game_Model::get_tile(int row, int col)
 	return current_level->get_World()->get_tile(row, col);
 }
 
+Tile *Game_Model::get_center_tile()	{
+	return current_level->get_center_tile();
+}
+
 Team *Game_Model::get_team(int i)
 {
 	return current_level->get_team(i);
