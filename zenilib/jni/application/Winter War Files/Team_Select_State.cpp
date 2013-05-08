@@ -199,7 +199,7 @@ void Team_Select_State::perform_logic(){
 
 			get_Sound().stop_BGM();
 			get_Game().pop_state();
-			get_Game().push_state(new Play_State_Base(player_list, "Claim Tree"));
+			get_Game().push_state(new Play_State_Base(player_list, level));
 		}
 
 

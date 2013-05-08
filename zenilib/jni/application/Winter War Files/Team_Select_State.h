@@ -5,7 +5,6 @@
 #include "String.h"
 #include <vector>
 
-
 using namespace std;
 using namespace Zeni;
 
@@ -16,8 +15,8 @@ class Team_Select_State : public Widget_Gamestate {
     Team_Select_State operator=(const Team_Select_State &);
     
 public:
-    Team_Select_State()
-    : Widget_Gamestate(make_pair(Point2f(0.0f, 0.0f), Point2f(960.0f, 600.0f)))
+    Team_Select_State(Zeni::String level_)
+    : Widget_Gamestate(make_pair(Point2f(0.0f, 0.0f), Point2f(960.0f, 600.0f))), level(level_)
     {
 		for(int player_idx = 0; player_idx < 4; player_idx++){
 			player_state[player_idx] = 0;
@@ -79,5 +78,6 @@ private:
 	vector<Zeni::String> genders_;
 	vector<int> controls_;
 	vector<int> sensitivities_;
+	Zeni::String level;
 	//Point2f player_render_base;
 };
