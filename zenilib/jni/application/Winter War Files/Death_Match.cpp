@@ -5,7 +5,7 @@
 Death_Match::Death_Match()
 {
 	//Stop player from being able to build structures
-	parameters.find("Max Resources").set_value(2050.0f);
+	parameters.find("Max Resources").set_value(0.0f);
 }
 
 Death_Match::~Death_Match() 
@@ -20,7 +20,6 @@ bool Death_Match::win()
 		Team* team = get_team(i);
 		if(team->get_Player_Kills() >= parameters.find("Max Kills Deathmatch").get_value())
 		{
-			stop();
 			set_winning_team(team);
 			return true;
 		}

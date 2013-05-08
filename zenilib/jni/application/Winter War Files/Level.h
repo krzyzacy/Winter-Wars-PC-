@@ -24,6 +24,7 @@ class Collidable;
 class Effect;
 class Structure;
 class Tile;
+class Player_View;
 
 extern const float time_to_win_c; //max time it should take to win
 
@@ -59,6 +60,10 @@ public:
 
 	Player *get_player(int i)
 		{return players.at(i);}
+
+	//Creates a player view from a player
+	//overridden for specific player view types
+	virtual Player_View *create_player_view(Player *p);
 
 	int num_players() {return players.size();}
 

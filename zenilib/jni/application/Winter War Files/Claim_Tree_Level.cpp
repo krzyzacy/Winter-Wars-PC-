@@ -23,7 +23,6 @@ bool Claim_Tree_Level::win()
 {
 	if (time_till_win() <= 0)
 	{
-		stop();
 		set_winning_team(get_team(get_center_tile()->get_team() - 1));
 		return true;
 	}

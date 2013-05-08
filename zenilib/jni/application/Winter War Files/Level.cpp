@@ -101,7 +101,7 @@ void Level::initialize_peer(bool isServer, RakNet::SystemAddress host_addr){
 			if (init_player_info.at(i)->self_addr != RakNet::UNASSIGNED_SYSTEM_ADDRESS && 
 				init_player_info.at(i)->self_addr.GetPort() == WWClient::get()->get_my_address().GetPort())
 			{
-				view->add_player_view(new Player_View(get_player(i)));
+				view->add_player_view(create_player_view(get_player(i)));
 			}
 
 		}
@@ -335,6 +335,10 @@ void Level::remove_from_model(Structure* Z)	{
 	structures.erase(Z);
 	view->remove_renderable(Z);
 	delete Z;
+}
+
+Player_View *Level::create_player_view(Player* p) {
+	return new Player_View(p);
 }
 
 Player *Level::get_player_here(int i)

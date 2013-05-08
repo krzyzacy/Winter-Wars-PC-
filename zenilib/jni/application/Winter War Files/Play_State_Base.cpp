@@ -138,7 +138,7 @@ void Play_State_Base::perform_logic()
 	Game_Model::get().update();
 
 	if (Game_Model::get().win()){
-		//Game_Model::get().();
+		Game_Model::get().stop();
 		for(int i = 0; i < controllers.size(); i++)
 			Joysticks::get().set_xinput_vibration(i, 0, 0);		
 
