@@ -61,6 +61,11 @@ void Game_Model::start_up(const vector<Player_info*> &player_info)
 	current_level->start_up(player_info);
 }
 
+void Game_Model::stop() {
+	current_level->stop();
+}
+
+
 void Game_Model::initialize_peer(bool isServer, RakNet::SystemAddress host_addr){
 
 	current_level->initialize_peer(isServer, host_addr);
@@ -71,7 +76,7 @@ void Game_Model::restart()
 	current_level->restart();
 }
 
-void Game_Model::finish()
+void Game_Model::clean()
 {
 	delete current_level;
 
@@ -194,7 +199,7 @@ Tile *Game_Model::get_tile(const Point3f& pos)
 
 Tile *Game_Model::get_tile(int row, int col)
 {
-	return current_level->get_World()->get_tile(row, col);
+	return current_level->get_tile(row, col);
 }
 
 Tile *Game_Model::get_center_tile()	{

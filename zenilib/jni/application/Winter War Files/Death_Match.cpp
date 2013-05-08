@@ -8,7 +8,10 @@ Death_Match::Death_Match()
 	parameters.find("Max Resources").set_value(2050.0f);
 }
 
-Death_Match::~Death_Match() { }
+Death_Match::~Death_Match() 
+{
+	parameters.find("Max Resources").reset();
+}
 
 bool Death_Match::win()
 {
@@ -17,7 +20,7 @@ bool Death_Match::win()
 		Team* team = get_team(i);
 		if(team->get_Player_Kills() >= parameters.find("Max Kills Deathmatch").get_value())
 		{
-			PlayTime.stop();
+			stop();
 			set_winning_team(team);
 			return true;
 		}

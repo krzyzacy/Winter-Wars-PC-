@@ -50,7 +50,7 @@ void Play_State_Base::on_pop()	{
 	get_Window().mouse_grab(false);
 	get_Video().set_clear_Color(m_prev_clear_color);
 	get_Game().joy_mouse.enabled = true;
-	Game_Model::get().finish();
+	Game_Model::get().clean();
 
 	for (int i = 0 ; i < player_info->size() ; i++)
 		delete player_info->at(i);
@@ -138,6 +138,7 @@ void Play_State_Base::perform_logic()
 	Game_Model::get().update();
 
 	if (Game_Model::get().win()){
+		//Game_Model::get().();
 		for(int i = 0; i < controllers.size(); i++)
 			Joysticks::get().set_xinput_vibration(i, 0, 0);		
 

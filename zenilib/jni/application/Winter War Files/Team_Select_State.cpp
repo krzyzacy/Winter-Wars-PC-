@@ -64,7 +64,8 @@ void Team_Select_State::on_key(const SDL_KeyboardEvent &event) {
 			if(player_state[keyboard_index] != 2)
 				player_state[keyboard_index] ++;
 			else{
-				loading = true;
+				if(keyboard_index == 0 && player_state[1] != 1 && player_state[2] != 1 && player_state[3] != 1)
+					loading = true;
 			}
 		}
     }
@@ -198,7 +199,7 @@ void Team_Select_State::perform_logic(){
 
 			get_Sound().stop_BGM();
 			get_Game().pop_state();
-			get_Game().push_state(new Play_State_Base(player_list, "Claim Tree"));
+			get_Game().push_state(new Play_State_Base(player_list, level));
 		}
 
 

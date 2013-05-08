@@ -36,13 +36,14 @@ public:
 	virtual void update();
 	virtual void render() const;
 	virtual void start_up(const std::vector<Player_info*> &player_info);
+	virtual void stop();
 	virtual void initialize_peer(bool isServer, RakNet::SystemAddress host_addr);
 	virtual void restart();
-	virtual void finish();
+	virtual void clean();
 
 	// returns true if some team has won
 	// stops the clock if yes
-	virtual bool win();
+	virtual bool win() = 0;
 
 	virtual Team* get_winning_team() { return winning_team; }
 	virtual void set_winning_team(Team* winning_team_) { winning_team = winning_team_; }
@@ -70,12 +71,13 @@ public:
 		{return	teams.at(i);}
 
 	World* get_World()
-		{return world;}
+	{return world;}
 
 	Ingame_Server * get_peer()
 		{return peer;}
 
 	Tile *get_tile(const Zeni::Point3f&);
+	Tile *get_tile(int row, int col);
 	virtual Tile *get_center_tile();
 
 	void add_player(Player *);

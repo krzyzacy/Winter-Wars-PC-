@@ -12,7 +12,7 @@ protected:
 
 	//// returns true if some team has won
 	//// stops the clock if yes
-	//bool win();
+	bool win() override;
 
 	///*set the time to win and the team to win*/
 	//void tree_claimed(const Team *);
