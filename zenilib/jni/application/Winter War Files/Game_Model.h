@@ -44,9 +44,10 @@ public:
 	void render() const;
 	void change_level(Level *new_level);
 	void start_up(const std::vector<Player_info*> &player_info);
+	void stop();
 	void initialize_peer(bool isServer, RakNet::SystemAddress host_addr);
 	void restart();
-	void finish();
+	void clean();
 
 	// returns true if some team has won
 	// stops the clock if yes

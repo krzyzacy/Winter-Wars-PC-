@@ -30,7 +30,7 @@ Level::Level()
 
 Level::~Level(void)
 {
-	finish();
+	clean();
 }
 
 void Level::start_up(const vector<Player_info*> &player_info)
@@ -74,6 +74,11 @@ void Level::start_up(const vector<Player_info*> &player_info)
 	}
 }
 
+void Level::stop()
+{
+	PlayTime.stop();
+}
+
 void Level::initialize_peer(bool isServer, RakNet::SystemAddress host_addr){
 
 	if(isServer){
@@ -105,12 +110,12 @@ void Level::initialize_peer(bool isServer, RakNet::SystemAddress host_addr){
 
 void Level::restart()
 {
-	finish();
+	clean();
 
 	start_up(init_player_info);
 }
 
-void Level::finish()
+void Level::clean()
 {
 	//Everything is a collidable in all the other lists, so this represents all things
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); ++it)
@@ -208,17 +213,7 @@ void Level::check_collisions()
 }
 
 
-// returns true if some team has won
-bool Level::win()
-{
-	if (time_till_win() <= 0)
-	{
-		PlayTime.stop();
-		set_winning_team(get_team(get_World()->get_center_Tile()->get_team() - 1));
-		return true;
-	}
-	return false;
-}
+
 
 /* return time game has been played*/
 float Level::get_time() const
@@ -311,6 +306,11 @@ void Level::global_message(const String &message)
 Tile *Level::get_tile(const Point3f& pos)
 {
 	return world->get_tile(pos);
+}
+
+Tile *Level::get_tile(int row, int col)
+{
+	return world->get_tile(row, col);
 }
 
 Tile *Level::get_center_tile()	{
