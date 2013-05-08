@@ -52,10 +52,13 @@ Team *create_team(Tile * Base_Tile)	{
 	return new Team(Base_Tile);
 }
 
+/*
+ * Creates the structure object, and modifies relevant tile
+ */
 Structure *create_structure(int type, Tile* ti, Team* team_)	{
-	//Creates the structure object, and modifies relevant tile
 	Structure * st = 0;
 	Point3f base = ti->get_structure_base();
+	
 	switch(type)	{
 	case SNOWMAN:
 		st =  new Snowman(team_, ti, base);		
@@ -80,7 +83,11 @@ Structure *create_structure(int type, Tile* ti, Team* team_)	{
 		break;
 	}
 	
-
+	if(team_ != NULL)	{
+		team_->pay_for_building(st);
+		team_->add_tile_to_team_network(ti);
+		team_->stats.structures[type]++;
+	}
 	ti->build_structure(st, team_);
 	Game_Model::get().add_structure(st);
 	return st;

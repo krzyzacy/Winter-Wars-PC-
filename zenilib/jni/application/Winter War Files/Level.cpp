@@ -313,6 +313,10 @@ Tile *Level::get_tile(const Point3f& pos)
 	return world->get_tile(pos);
 }
 
+Tile *Level::get_center_tile()	{
+	return world->get_center_Tile();
+}
+
 void Level::remove_from_model(Moveable* Z)	{
 	movers.erase(Z);
 	colliders.erase(Z);

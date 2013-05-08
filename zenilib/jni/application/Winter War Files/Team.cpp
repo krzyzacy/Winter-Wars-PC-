@@ -8,12 +8,13 @@
 
 float Max_Resources = 15000;
 float starting_resources = 2000;
-float hard_snow_intake = 50;
-float soft_snow_intake = 30;
+float hard_snow_intake = 30;
+float soft_snow_intake = 50; 
 float ice_intake = 0;
 
 using namespace std;
 using namespace Zeni;
+
 
 Team::Team(Tile* BaseTile)	:
 	Base(BaseTile), Ice_Blocks(starting_resources), intake_rate(0), Team_Color(NEUTRAL), 
@@ -61,7 +62,7 @@ int Team::get_Player_Kills() {
 		     [&team_kills](Player* p)
 	         { team_kills += p->stats.kills; });
 	return team_kills;
-};
+}
 
 void Team::update()	{
 	//First do stuff based on the network from the last step

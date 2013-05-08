@@ -11,8 +11,8 @@ using namespace Zeni;
 
 const int Structure::structure_ID_c = 3;
 
-// NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL
-float Build_Cost[5] = { 0, 2800, 2200, 1600, 800 };
+// NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL, TREE
+float Build_Cost[7] = { 0, 2800, 2200, 1600, 800, 0, 0 };
 
 float Struct_Integrity[5] = {1, 100, 250, 80, 150};
 
@@ -160,6 +160,7 @@ void Structure::switch_state(StructureEvent_e sevent)
 		animation_state = next;
 	}
 }
+
 
 void Structure::restore_default_size_and_position()
 {

@@ -12,7 +12,7 @@ enum Structure_Type	{
 
 //These enums represnt the different types of buildings for now
 
-extern float Build_Cost[5];
+extern float Build_Cost[7];
 extern float Struct_Integrity[5];
 extern float snow_factory_intake;
 
@@ -39,7 +39,7 @@ public:
 	void update(const float&);
 
 	virtual Structure_Type get_type() = 0;
-
+	
 	void change_height(const float &delta);
 
 	void receive_hit(float damage); 

@@ -76,6 +76,7 @@ public:
 		{return peer;}
 
 	Tile *get_tile(const Zeni::Point3f&);
+	virtual Tile *get_center_tile();
 
 	void add_player(Player *);
 	void add_moveable(Moveable *);
