@@ -1035,6 +1035,9 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Global_Edit_State.h">
       <Filter>jni\application\Winter War Files\Game_States</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Death_Match.h">
+      <Filter>jni\application\Winter War Files\Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
@@ -1507,6 +1510,9 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Global_Edit_State.cpp">
       <Filter>jni\application\Winter War Files\Game_States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Death_Match.cpp">
+      <Filter>jni\application\Winter War Files\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

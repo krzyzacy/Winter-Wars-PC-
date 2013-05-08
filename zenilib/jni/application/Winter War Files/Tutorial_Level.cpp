@@ -11,7 +11,7 @@ Tutorial_Level::Tutorial_Level()
 {
 	current_objective = new Build_Structure(HEALING_POOL);
 	
-	-- -- -- -- -- -- --parameters.at(4);
+	parameters.find("Snow Factory Intake per Second").get_value();
 
 }
 
