@@ -11,8 +11,8 @@ Level *create_level(const string &type)
 		return new Tutorial_Level();
 	
 	if (type == "Claim Tree")
-		//return new Claim_Tree_Level();
-		return new Death_Match();
+		return new Claim_Tree_Level();
+		//return new Death_Match();
 
 
 	if (type == "Death Match")
