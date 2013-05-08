@@ -108,7 +108,7 @@ void Team::update()	{
 
 			// increment intake rate if it is a snow factory
 			if((*it)->get_building())
-				(*it)->get_building()->get_intake();
+				intake_rate += (*it)->get_building()->get_intake();
 
 		}
 	}
