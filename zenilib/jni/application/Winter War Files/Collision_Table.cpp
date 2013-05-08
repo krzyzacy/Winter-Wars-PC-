@@ -149,8 +149,8 @@ void Collision_Table::collideStructureSnowball(Structure* w1, Snowball* ob2)
 void Collision_Table::collidePlayerStructure(Player *ob2, Structure *w1)
 {	
 	//Structure player collision resolution
-	
-	w1->handle_player_in_range(ob2->myTeam, ob2->body);
+	if (!ob2->is_player_KO())
+		w1->handle_player_in_range(ob2->myTeam, ob2->body);
 
 	if(!ob2->body.intersects(w1->body))
 		return;

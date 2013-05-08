@@ -19,6 +19,8 @@ public:
 
 	void handle_player_in_range(Team *t, Zeni::Collision::Capsule &person);
 
+	virtual int get_intake();
+
 private:
 	Zeni::Point3f left_launch;
 	Zeni::Point3f right_launch;
