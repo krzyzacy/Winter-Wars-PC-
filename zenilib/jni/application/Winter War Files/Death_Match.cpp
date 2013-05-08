@@ -15,7 +15,7 @@ bool Death_Match::win()
 	for(int i = 0; i < 4; i++)
 	{
 		Team* team = get_team(i);
-		if(team->get_Player_Kills() >= 2/*parameters.find("Max Kills Deathmatch").get_value()*/)
+		if(team->get_Player_Kills() >= parameters.find("Max Kills Deathmatch").get_value())
 		{
 			PlayTime.stop();
 			set_winning_team(team);

@@ -76,5 +76,9 @@ void Parameter_List::reset_all()
 
 Game_Parameter &Parameter_List::find(const Zeni::String &name_)
 {	
-	return list.at(0);
+	for (int i = 0 ; i < size() ; i++)
+		if (name_ == at(i).name)
+			return at(i);
+
+	throw Zeni::Error(name_ + "Game Parameter Not Found");
 }
