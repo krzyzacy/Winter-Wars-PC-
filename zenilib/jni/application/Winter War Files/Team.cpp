@@ -55,6 +55,14 @@ Point3f Team::get_spawn_point()	const	{
 	return Spawn;
 }
 
+int Team::get_Player_Kills() {
+	int team_kills = 0;
+	for_each(members.begin(), members.end(), 
+		     [&team_kills](Player* p)
+	         { team_kills += p->stats.kills; });
+	return team_kills;
+};
+
 void Team::update()	{
 	//First do stuff based on the network from the last step
 	if(Base->get_covering() != SOFT_SNOW)

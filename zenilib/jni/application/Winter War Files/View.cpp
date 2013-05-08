@@ -101,17 +101,29 @@ void View::render_player(int player, const Point2f &topLeft, const Point2f &bott
 	cur_View = player_views[player];  // this is the cur player
 	player_views[player]->set_camera(topLeft,bottomRight);
 
+	//Skysphere hardcode
+	/*
+	Model* model = model_map.find("skysphere")->second;
+
+	if (!model)
+		throw Error("Trying to render NULL Model!");
+
+    model->set_translate(Vector3f(0, 0, 0));
+    model->set_scale(Vector3f(10, 10, 10));
+
+    model->render();
+	*/
 	Vertex3f_Texture c_p0(Point3f(0.0f,0.0f,1000.0f),                             Point2f(0.0f, 0.0f));
     Vertex3f_Texture c_p1(Point3f(0.0f,2500.0f,1000.0f),                             Point2f(0.0f, 1.0f));
     Vertex3f_Texture c_p2(Point3f(2500.0f,2500.0f,1000.0f),                             Point2f(1.0f, 1.0f)); 
     Vertex3f_Texture c_p3(Point3f(2500.0f,0.0f,1000.0f),                             Point2f(1.0f, 0.0f));
     Material c_material("Nlight");
-      
-    Quadrilateral<Vertex3f_Texture> c_quad(c_p0, c_p1, c_p2, c_p3);
+
+	Quadrilateral<Vertex3f_Texture> c_quad(c_p0, c_p1, c_p2, c_p3);
     c_quad.fax_Material(&c_material);
       
     vr.render(c_quad);
-
+	
 	for(int i = 0 ; i < 4; i++){
 		float xx, yy;
 		Material w_material("Background");
@@ -154,8 +166,6 @@ void View::render_player(int player, const Point2f &topLeft, const Point2f &bott
 		}
 		
 	}
-
-
 
 	render_world();
 
@@ -386,6 +396,9 @@ View::View(void)
 	model_map["orangebase"] = new Zeni::Model("models/base/orangebase.3ds");
 
 	model_map["explode"] = new Zeni::Model("models/hiteffect/hiteffect.3ds");
+
+	//Skysphere
+	model_map["skysphere"] = new Zeni::Model("models/skysphere.3ds");
 
 }
 

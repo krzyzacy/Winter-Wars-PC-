@@ -79,9 +79,7 @@ void End_Game_State::render() {
 
 	render_minimap();
 	
-
-	Team *winning_team = Game_Model::get().get_team(Game_Model::get().get_World()->get_center_Tile()->get_team() - 1);
-	
+	Team *winning_team = Game_Model::get().get_winning_team();
 
 	Colors &cr = get_Colors();
 	Video &vr = get_Video();

@@ -55,6 +55,7 @@ public:
 
 
 	//Set Up and utility
+	int get_Player_Kills();
 	int get_Resources()	const {return Ice_Blocks;}
 	void set_Team_Color(TEAM_INDEX in);
 	TEAM_INDEX get_Team_Index()	{return Team_Color;}
@@ -77,6 +78,7 @@ public:
 			for (int i = 0 ; i < 10; i++)
 				structures[i] = 0;
 		}
+		//int total_kills;
 		int total_resources;
 		int largest_network;
 		int tiles_lost;

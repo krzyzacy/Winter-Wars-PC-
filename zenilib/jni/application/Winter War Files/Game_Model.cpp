@@ -104,6 +104,11 @@ bool Game_Model::win()
 	return current_level->win();
 }
 
+Team* Game_Model::get_winning_team()
+{
+	return current_level->get_winning_team();
+}
+
 /* return time game has been played*/
 float Game_Model::get_time() const
 {

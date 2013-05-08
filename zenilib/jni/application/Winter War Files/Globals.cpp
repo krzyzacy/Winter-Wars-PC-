@@ -7,6 +7,8 @@
 
 #include "Utility.h"
 
+float max_kills_deathmatch = 25;
+
 void Game_Parameter::increment()
 {
 	current_value += unit_increment;
@@ -53,7 +55,7 @@ Parameter_List::Parameter_List()
 	
 	list.push_back(Game_Parameter("Structure Recharge Seconds", Building_Recharge_Time, 10, 1, 0.5));
 
-	list.push_back(Game_Parameter("Max Resouces", Max_Resources, 1000000, 1000, 0));
+	list.push_back(Game_Parameter("Max Resources", Max_Resources, 1000000, 1000, 0));
 	list.push_back(Game_Parameter("Starting Resources", starting_resources, 1000000, 500, 0));
 
 	list.push_back(Game_Parameter("Soft Snow Intake", soft_snow_intake, 500, 10, 0));
@@ -61,6 +63,8 @@ Parameter_List::Parameter_List()
 	list.push_back(Game_Parameter("Ice Intake", ice_intake, 500, 10, 0));
 
 	list.push_back(Game_Parameter("Snow Factory Intake per Second", snow_factory_intake, 500, 10, 0));
+
+	list.push_back(Game_Parameter("Max Kills Deathmatch", max_kills_deathmatch, 100, 1, 0));
 
 }
 

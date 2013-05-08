@@ -44,9 +44,11 @@ public:
 	// stops the clock if yes
 	virtual bool win();
 
+	virtual Team* get_winning_team() { return winning_team; }
+	virtual void set_winning_team(Team* winning_team_) { winning_team = winning_team_; }
+
 	/*set the time to win and the team to win*/
 	virtual void tree_claimed(const Team *);
-
 
 	/* return time until someone wins */
 	virtual float time_till_win() const;
@@ -90,12 +92,14 @@ public:
 
 	Collision_Table table;	
 
+protected:
+	Zeni::Chronometer<Zeni::Time> PlayTime;
+
 private:
 
 	// RakNet Peer Interface
 	Ingame_Server * peer;
 
-	Zeni::Chronometer<Zeni::Time> PlayTime;
 	float time_passed;
 	float time_step;
 
@@ -108,6 +112,8 @@ private:
 
 	std::vector<Player*>	players; 
 	std::vector<Team*>		teams;
+
+	Team* winning_team;
 
 	typedef std::set<Moveable*> moveable_list_t;
 	moveable_list_t movers; 

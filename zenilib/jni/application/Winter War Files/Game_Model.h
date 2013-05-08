@@ -52,9 +52,11 @@ public:
 	// stops the clock if yes
 	bool win();
 
+	// returns winning team if there is one
+	Team *get_winning_team();
+
 	/*set the time to win and the team to win*/
 	void tree_claimed(const Team *);
-
 
 	/* return time until someone wins */
 	float time_till_win() const;

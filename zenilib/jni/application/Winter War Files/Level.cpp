@@ -214,6 +214,7 @@ bool Level::win()
 	if (time_till_win() <= 0)
 	{
 		PlayTime.stop();
+		set_winning_team(get_team(get_World()->get_center_Tile()->get_team() - 1));
 		return true;
 	}
 	return false;
