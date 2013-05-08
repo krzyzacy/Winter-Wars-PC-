@@ -83,7 +83,7 @@ void End_Game_State::render() {
 
 	Colors &cr = get_Colors();
 	Video &vr = get_Video();
-	const Color winning_color = cr[winning_team->get_name()];
+
 	const Color bgc = cr["lightblueop"];
 	const Color box = cr["endscreenbg"];
 	const Color blk = cr["black"];
@@ -95,7 +95,10 @@ void End_Game_State::render() {
 	gameTime += itoa((int)Game_Model::get().get_time() % 60);
 
 	get_Fonts()["cat"].render_text(gameTime ,Point3f(1500, 200, 0), Vector3f(0.64,0,0), Vector3f(0,0.64,0), blk);
-	get_Fonts()["cat"].render_text( winning_team->get_name_Upper_Case() + " Team" + " Wins!" ,Point2f(670, 110), winning_color);
+	if(winning_team)
+		get_Fonts()["cat"].render_text( winning_team->get_name_Upper_Case() + " Team" + " Wins!" ,Point2f(670, 110), cr[winning_team->get_name()]);
+	else get_Fonts()["cat"].render_text( "Tie!" ,Point2f(670, 110), blk);
+	
 	Font &font_36 = get_Fonts()["system_36_800x600"];
 	Font &font_64 = get_Fonts()["cat"];
 

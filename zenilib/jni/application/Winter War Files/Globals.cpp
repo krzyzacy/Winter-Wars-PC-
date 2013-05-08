@@ -7,7 +7,8 @@
 
 #include "Utility.h"
 
-float max_kills_deathmatch = 25;
+float max_kills_deathmatch = 10;
+float timer_deathmatch = 600;
 float snowman_consumption_rate = 10;
 
 void Game_Parameter::increment()
@@ -67,6 +68,7 @@ Parameter_List::Parameter_List()
 	list.push_back(Game_Parameter("Snowman Consumption per Second", snowman_consumption_rate, 500, 10, 0));
 
 	list.push_back(Game_Parameter("Max Kills Deathmatch", max_kills_deathmatch, 100, 1, 0));
+	list.push_back(Game_Parameter("Timer Deathmatch", timer_deathmatch, 2000, 30, 60));
 
 }
 

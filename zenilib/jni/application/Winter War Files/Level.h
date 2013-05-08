@@ -95,15 +95,15 @@ public:
 	void Clean_dead();
 
 	float get_time_step();
+	float get_time_passed()
+	{ return time_passed; }
 
 	void global_message(const Zeni::String &message);
 
 	Collision_Table table;	
 
-protected:
-	Zeni::Chronometer<Zeni::Time> PlayTime;
-
 private:
+	Zeni::Chronometer<Zeni::Time> PlayTime;
 
 	// RakNet Peer Interface
 	Ingame_Server * peer;
