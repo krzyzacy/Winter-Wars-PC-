@@ -793,3 +793,12 @@ Player::Player_Stats::Player_Stats() :
 	add_stat("Tiles Lowered", &tiles_lowered);		
 			
 }
+
+void Player::stop_lowering()	{
+	stats.tiles_lowered++;
+}
+
+void Player::stop_raising()	{
+	stats.tiles_raised++;
+}
+

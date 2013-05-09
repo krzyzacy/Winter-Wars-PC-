@@ -143,9 +143,13 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event)	{
 			break;
 		case SDLK_r:
 			input.Tile_up = event.state == SDL_PRESSED;
+			if(event.type == SDL_KEYUP)
+				Chell->stop_raising();
 			break;
 		case SDLK_f:
 			input.Tile_down = event.state == SDL_PRESSED;
+			if(event.type == SDL_KEYUP)
+				Chell->stop_lowering();
 			break;
 		case SDLK_SPACE:
 			input.jump = event.type == SDL_KEYDOWN;
@@ -230,6 +234,10 @@ bool Controls::HandleJoy(const SDL_JoyHatEvent &event)	{
 	//case SDL_HAT_RIGHTUP:
 	//case SDL_HAT_LEFT:     
 	case SDL_HAT_CENTERED:
+		if(input.Tile_down)
+			Chell->stop_lowering();
+		if(input.Tile_up)
+			Chell->stop_raising();
 		input.Tile_up = false;
 		input.Tile_down = false;
 		break;

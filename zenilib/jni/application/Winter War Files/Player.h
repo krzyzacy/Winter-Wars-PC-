@@ -97,6 +97,8 @@ public:
 	
 	void raise_tile();
 	void lower_tile();
+	void stop_raising();
+	void stop_lowering();
 	void change_z(const float &delta)	{center.z += delta;}
 
 
