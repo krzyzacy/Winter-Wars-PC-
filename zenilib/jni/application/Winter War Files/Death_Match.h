@@ -9,6 +9,8 @@ public:
 	Death_Match();
 	virtual ~Death_Match();
 
+	std::string get_level_name() override;
+
 	Player_View *create_player_view(Player *p) override;
 
 protected:

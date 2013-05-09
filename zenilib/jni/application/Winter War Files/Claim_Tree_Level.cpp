@@ -4,6 +4,11 @@
 
 using namespace std;
 
+string Claim_Tree_Level::get_level_name()
+{
+	return "Claim_Tree_Level";
+}
+
 void Claim_Tree_Level::start_up(const vector<Player_info*> &player_info)
 {
 	Level::start_up(player_info);

@@ -34,6 +34,11 @@ Level::~Level(void)
 	clean();
 }
 
+string Level::get_level_name()
+{ 
+	return "Level"; 
+}
+
 void Level::start_up(const vector<Player_info*> &player_info)
 {
 	init_player_info = player_info;

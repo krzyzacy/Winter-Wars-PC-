@@ -615,6 +615,11 @@ bool Player::create_building(Structure_Type Building)	{
 	//Returns true if building was created, false if unable
 		
 	Tile *t = Game_Model::get().get_World()->player_is_looking_at(center, m_camera.get_forward());
+	
+	if(t->has_building() && t->get_building()->get_type() == Building)
+		return false;
+	
+	
 	//true if the player is trying to build on the tree
 	if(t->has_building() && t->get_building()->get_type() == TREE)
 		Building = TREE;
