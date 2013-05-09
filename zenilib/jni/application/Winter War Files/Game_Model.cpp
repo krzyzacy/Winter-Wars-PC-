@@ -240,3 +240,8 @@ int Game_Model::num_players_here()
 {
 	return current_level->num_players_here();
 }
+
+string Game_Model::get_level_name()
+{
+	return current_level->get_level_name();
+}

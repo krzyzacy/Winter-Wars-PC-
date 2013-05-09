@@ -1,6 +1,7 @@
 
 #include "Stats.h"
 #include <fstream>
+#include "Game_Model.h"
 
 using namespace std;
 
@@ -26,7 +27,7 @@ void Stats::save_to_history()
 
 void Stats::save_to_file()
 {
-	ofstream fout((name + " Stat History.txt").c_str());
+	ofstream fout((Game_Model::get().get_level_name() + name + " Stat History.txt").c_str());
 
 	for (int i = 0 ; i < names.size() ; i++)
 		fout << names[i] << "\t";

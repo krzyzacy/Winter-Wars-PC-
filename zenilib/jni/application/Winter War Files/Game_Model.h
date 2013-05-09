@@ -49,6 +49,8 @@ public:
 	void restart();
 	void clean();
 
+	std::string get_level_name();
+
 	// returns true if some team has won
 	// stops the clock if yes
 	bool win();
