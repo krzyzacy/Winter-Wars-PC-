@@ -107,6 +107,8 @@ public:
 	Rescue_Your_Network();
 	Objective* get_next_Objective();
 	bool has_been_completed();
+private:
+	bool snowballs_caused_disconnect;
 };
 
 class Claim_The_Tree : public Objective
@@ -123,6 +125,9 @@ public:
 	Defend_Your_Claim();
 	Objective* get_next_Objective();
 	bool has_been_completed();
+private:
+	Zeni::Chronometer<Zeni::Time> wait_to_claim_tree;
+	int claim_count;
 };
 
 //Win??

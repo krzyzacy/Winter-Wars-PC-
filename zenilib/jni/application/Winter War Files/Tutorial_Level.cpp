@@ -10,19 +10,27 @@ using namespace std;
 Tutorial_Level::Tutorial_Level()
 {
 	current_objective = new Build_Structure(HEALING_POOL);
+	//We should set the globals to original here
 	
-	parameters.find("Snow Factory Intake per Second").get_value();
+	parameters.find("Starting Resources").set_value(7000);
+
 
 }
 
 Tutorial_Level::~Tutorial_Level() 
-{}
+{
+	parameters.find("Starting Resources").reset();
+
+}
 
 void Tutorial_Level::start_up(const std::vector<Player_info*> &player_info)
 {
 	Claim_Tree_Level::start_up(player_info);
 	
 	get_player(0)->add_message(current_objective->get_message_to_display(),0, 10);
+
+
+
 }
 
 void Tutorial_Level::update()

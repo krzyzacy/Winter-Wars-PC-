@@ -11,6 +11,7 @@
 extern float Build_Cost[NUM_STRUCTURES];
 extern float Struct_Integrity[NUM_STRUCTURES];
 extern float snow_factory_intake;
+extern float isolation_survival_time;
 
 enum	Universal_State	{
 	PRESENT_MODE, UNWRAP_MODE, BUILT, DAMAGED, DESTROYED

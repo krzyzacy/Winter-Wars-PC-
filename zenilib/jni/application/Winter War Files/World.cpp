@@ -488,7 +488,7 @@ void World::Activate_Sine_Wave()	{
 		Vector3f target = get_center_Tile()->get_structure_base() - Game_Model::get().get_player_here(i)->get_position(); 
 		target.normalize();
 		target.z = 1;
-		target *= 500;
+		target *= 300;
 		Game_Model::get().get_player_here(i)->accelerate(target, 1);
 	}
 
