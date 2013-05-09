@@ -3,6 +3,9 @@
 #include "Globals.h"
 #include "Player_Deathmatch_View.h"
 #include "Player_View.h"
+#include <string>
+
+using namespace std;
 
 Death_Match::Death_Match()
 {
@@ -14,6 +17,11 @@ Death_Match::Death_Match()
 Death_Match::~Death_Match() 
 {
 	parameters.find("Max Resources").reset();
+}
+
+string Death_Match::get_level_name() 
+{
+	return "Death_Match_Level"; 
 }
 
 bool Death_Match::win()

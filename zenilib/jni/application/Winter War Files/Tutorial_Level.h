@@ -11,6 +11,8 @@ class Tutorial_Level : public Claim_Tree_Level
 public:
 	Tutorial_Level();
 	~Tutorial_Level();
+
+	std::string get_level_name() override;
 	
 	void start_up(const std::vector<Player_info*> &player_info);
 	void update();

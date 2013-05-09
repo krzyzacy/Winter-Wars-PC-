@@ -34,6 +34,8 @@ public:
 	Level();
 	virtual ~Level();
 
+	virtual std::string get_level_name() = 0;
+
 	virtual void update();
 	virtual void render() const;
 	virtual void start_up(const std::vector<Player_info*> &player_info);

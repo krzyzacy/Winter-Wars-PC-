@@ -6,6 +6,8 @@
 
 class Claim_Tree_Level : public Level
 {	
+public:
+	std::string get_level_name() override;
 protected:
 	void update();
 	void start_up(const std::vector<Player_info*> &player_info);
