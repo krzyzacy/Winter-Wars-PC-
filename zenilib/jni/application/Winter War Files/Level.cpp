@@ -117,6 +117,15 @@ void Level::restart()
 
 void Level::clean()
 {
+	
+	//save stats
+	for(vector<Player*>::iterator it = players.begin(); it != players.end(); it++)
+		(*it)->stats.save_to_file();
+
+	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)
+		(*it)->stats.save_to_file();
+
+
 	//Everything is a collidable in all the other lists, so this represents all things
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); ++it)
 		delete (*it);

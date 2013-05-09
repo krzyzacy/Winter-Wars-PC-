@@ -12,9 +12,9 @@ using namespace Zeni;
 const int Structure::structure_ID_c = 3;
 
 // NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL, TREE
-float Build_Cost[7] = { 0, 2800, 2200, 1600, 800, 0, 0 };
+float Build_Cost[NUM_STRUCTURES] = { 0, 2800, 2200, 1600, 800, 0, 0 };
 
-float Struct_Integrity[5] = {1, 100, 250, 80, 150};
+float Struct_Integrity[NUM_STRUCTURES] = {1, 100, 250, 80, 150, 0, 0};
 
 float snow_factory_intake = 50;
 

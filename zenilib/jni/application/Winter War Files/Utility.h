@@ -27,3 +27,11 @@ enum TEAM_INDEX	{
 	NEUTRAL, GREEN, RED, BLUE, ORANGE
 };
 
+#define NUM_STRUCTURES 7
+
+enum Structure_Type	{
+	NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL, TREE, BASE
+};
+
+extern Zeni::String Structure_Names[NUM_STRUCTURES];
+

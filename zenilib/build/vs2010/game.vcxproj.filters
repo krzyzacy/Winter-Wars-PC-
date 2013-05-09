@@ -1038,6 +1038,12 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Death_Match.h">
       <Filter>jni\application\Winter War Files\Level</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Stats.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Enums.h">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
@@ -1513,6 +1519,12 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Death_Match.cpp">
       <Filter>jni\application\Winter War Files\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Stats.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Utility.cpp">
+      <Filter>jni\application\Winter War Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

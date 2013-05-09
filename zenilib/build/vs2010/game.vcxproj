@@ -380,6 +380,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Death_Match.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Effect.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\End_Game_State.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Enums.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Event.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Fortress.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Game_Model.h" />
@@ -407,6 +408,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Snowball.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Snowman.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Snow_Factory.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Stats.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Structure.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\StructureAnimator.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\StructureAnimators.h" />
@@ -696,6 +698,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClCompile Include="..\..\jni\application\Winter War Files\Snowman.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Snow_Factory.cpp" />
+    <ClCompile Include="..\..\jni\application\Winter War Files\Stats.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Structure.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\StructureAnimators.cpp" />
@@ -706,6 +709,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Tree.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Tutorial_Level.cpp" />
+    <ClCompile Include="..\..\jni\application\Winter War Files\Utility.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\View.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\World.cpp">
