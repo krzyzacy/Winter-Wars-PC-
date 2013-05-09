@@ -10,14 +10,14 @@ class Tile;
 
 extern const float Ice_friction;
 extern const float Norml_friction;
-extern const float Tile_Move_Speed;
+extern float Tile_Move_Speed;
 
 class World
 {
 public:
 	World( View *view_,
-		   const int width__ = 15,
-		   const int height__ = 14,
+		   const int width__ = 14,
+		   const int height__ = 13,
 		   const float hex_length__ = 100.0f
 		);
 	~World(void);
@@ -34,13 +34,16 @@ public:
 	bool is_boundary_tile(Tile *t);
 
 	void raise_tile(Zeni::Point3f location);
+	void raise_tile(Tile* ti);
 	void lower_tile(Zeni::Point3f location);
+	void lower_tile(Tile* ti);
 
 	float get_friction_coeff(Zeni::Point3f &spot);
 	bool allowed_to_scoop(Zeni::Point3f &pos_);
 
-	void Run_Sin_Wave();
-	void Start_Sin_Wave()		{ sin_active = true;}
+	bool Sine_Wave_is_Active()	{return sine_active;}
+	void Run_Sine_Wave();
+	void Activate_Sine_Wave();
 	
 	/*Returns the six adjacent tiles to Central*/
 	std::list<Tile*> Get_Family(Tile *Central);
@@ -61,6 +64,15 @@ private:
 	int map_height;                  // #row
 	float tile_size;                 // size of a tile
 	int cur_team_count;
-		
-	bool sin_active;
+	
+	//Sin wave stuff
+	bool sine_active;
+	bool crest_past_start; //true only after the crest of the wave has moved pass the start
+	int sine_ticks;
+	int wave_row;
+	std::set<Tile*> ascending;
+	std::set<Tile*> descending;
+
+
+
 };

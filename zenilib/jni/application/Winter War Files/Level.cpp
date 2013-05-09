@@ -17,6 +17,7 @@
 #include "Zeni/Joysticks.h"
 #include "WWClient.h"
 
+#include "Windows.h"
 
 using namespace std;
 using namespace Zeni;
@@ -150,6 +151,11 @@ void Level::update()
 	//{
 	//	global_message("Build a path of structures from your base to the Tree!");
 	//}
+
+	if(world->Sine_Wave_is_Active())
+		world->Run_Sine_Wave();
+
+
 
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); it++)
 		(*it)->update(time_step);
