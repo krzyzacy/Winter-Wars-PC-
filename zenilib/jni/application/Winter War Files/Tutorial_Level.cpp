@@ -22,7 +22,7 @@ void Tutorial_Level::start_up(const std::vector<Player_info*> &player_info)
 {
 	Claim_Tree_Level::start_up(player_info);
 	
-	get_player(0)->add_message(current_objective->get_message_to_display(),0, 10);
+	get_player(0)->add_message(current_objective->get_message_to_display(), 10000, 100);
 }
 
 void Tutorial_Level::update()
@@ -43,7 +43,7 @@ void Tutorial_Level::update()
 		// You didn't delete the objective!!!!
 		
 		
-		get_player(0)->add_message(current_objective->get_message_to_display(), 0, 10);
+		get_player(0)->add_message(current_objective->get_message_to_display(), 10000, 100);
 	}
 
 	//Not sure how to tell the view to display hints, but this is where to get it
