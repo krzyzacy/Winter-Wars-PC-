@@ -24,6 +24,7 @@ class Collidable;
 class Effect;
 class Structure;
 class Tile;
+class Player_View;
 
 extern const float time_to_win_c; //max time it should take to win
 
@@ -36,13 +37,14 @@ public:
 	virtual void update();
 	virtual void render() const;
 	virtual void start_up(const std::vector<Player_info*> &player_info);
+	virtual void stop();
 	virtual void initialize_peer(bool isServer, RakNet::SystemAddress host_addr);
 	virtual void restart();
-	virtual void finish();
+	virtual void clean();
 
 	// returns true if some team has won
 	// stops the clock if yes
-	virtual bool win();
+	virtual bool win() = 0;
 
 	virtual Team* get_winning_team() { return winning_team; }
 	virtual void set_winning_team(Team* winning_team_) { winning_team = winning_team_; }
@@ -59,6 +61,10 @@ public:
 	Player *get_player(int i)
 		{return players.at(i);}
 
+	//Creates a player view from a player
+	//overridden for specific player view types
+	virtual Player_View *create_player_view(Player *p);
+
 	int num_players() {return players.size();}
 
 	/* returns the ith player on this machine*/
@@ -70,12 +76,13 @@ public:
 		{return	teams.at(i);}
 
 	World* get_World()
-		{return world;}
+	{return world;}
 
 	Ingame_Server * get_peer()
 		{return peer;}
 
 	Tile *get_tile(const Zeni::Point3f&);
+	Tile *get_tile(int row, int col);
 	virtual Tile *get_center_tile();
 
 	void add_player(Player *);
@@ -88,15 +95,15 @@ public:
 	void Clean_dead();
 
 	float get_time_step();
+	float get_time_passed()
+	{ return time_passed; }
 
 	void global_message(const Zeni::String &message);
 
 	Collision_Table table;	
 
-protected:
-	Zeni::Chronometer<Zeni::Time> PlayTime;
-
 private:
+	Zeni::Chronometer<Zeni::Time> PlayTime;
 
 	// RakNet Peer Interface
 	Ingame_Server * peer;

@@ -116,7 +116,7 @@ void Team::update()	{
 
 			// increment intake rate if it is a snow factory
 			if((*it)->get_building())
-				(*it)->get_building()->get_intake();
+				intake_rate += (*it)->get_building()->get_intake();
 
 		}
 	}
@@ -125,6 +125,8 @@ void Team::update()	{
 
 	if (stats.final_network > stats.largest_network)
 		stats.largest_network = stats.final_network;
+
+	stats.save_to_history();
 }
 
 void Team::message_team(const String &message, int priority)
@@ -427,4 +429,22 @@ int Team::take_resources(int amt)
 
 	Ice_Blocks -= amt;
 	return amt;
+}
+
+Team::Team_Stats::Team_Stats() :
+	Stats("Team"),
+			total_resources(0), largest_network(0), 
+			tiles_lost(0), final_network(0), resources_spent(0)
+{
+	add_stat("Total Resources", &total_resources);
+	add_stat("Largest Network", &largest_network);
+	add_stat("Tiles Lost", &tiles_lost);
+	add_stat("Final Network", &final_network);
+	add_stat("Resources_Spent", &resources_spent);
+
+	for (int i = 0 ; i < NUM_STRUCTURES ; i++)
+	{
+		structures[i] = 0;
+		add_stat(Structure_Names[i].std_str() + "'s Built", &structures[i]);
+	}
 }

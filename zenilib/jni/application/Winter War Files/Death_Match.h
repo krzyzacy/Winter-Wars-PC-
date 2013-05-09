@@ -12,6 +12,9 @@ public:
 protected:
 	bool win() override;
 
+private:
+	
+
 };
 
 #endif

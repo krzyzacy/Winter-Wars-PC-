@@ -5,6 +5,8 @@
 #include "Snowball.h"
 #include "Game_Model.h"
 
+#include "Globals.h"
+
 using namespace std;
 using namespace Zeni;
 
@@ -132,3 +134,10 @@ Animator *Snowman::get_animator() const
 	return animation_state;
 }
 
+int Snowman::get_intake()  
+{
+	if (targets.size())
+		return -1 * parameters.find("Snowman Consumption per Second").get_value();
+
+	return Structure::get_intake();
+}
