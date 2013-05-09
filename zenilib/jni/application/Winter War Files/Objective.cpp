@@ -200,6 +200,11 @@ bool Raise_Lower_Tiles::has_been_completed()
 		Game_Model::get().get_player(0)->stats.tiles_raised ;
 }
 
+Build_a_Chain_To_Tree::Build_a_Chain_To_Tree()
+{ 
+	message = "Build a connected set of tiles to the tree!";
+}
+
 bool Build_a_Chain_To_Tree::has_been_completed()
 {
 	return Game_Model::get().get_player(0)->stats.built > 9 ? true : false;
@@ -229,15 +234,24 @@ bool Destroy_Key_Enemy_Structures::has_been_completed()
 	return false;
 }
 
+Rescue_Your_Network::Rescue_Your_Network()
+{ message = "The Enemy has disconnected your network, reconnect it with Structures before it disappears!";}
+
 bool Rescue_Your_Network::has_been_completed()
 {
 	return false;
 }
 
+Claim_The_Tree::Claim_The_Tree()
+{ message = "Build on the Tree to claim it for your team!";}
+
 bool Claim_The_Tree::has_been_completed()
 {
 	return false;
 }
+
+Defend_Your_Claim::Defend_Your_Claim()
+{ message = "Defend the tree for 20 seconds by destroying enemies next to it, or reclaiming it as your own!";}
 
 bool Defend_Your_Claim::has_been_completed()
 {//represents win?

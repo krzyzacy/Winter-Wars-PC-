@@ -88,8 +88,7 @@ public:
 class Build_a_Chain_To_Tree : public Objective
 {
 public:
-	Build_a_Chain_To_Tree()
-	{ message = "Build a connected set of tiles to the tree!";}
+	Build_a_Chain_To_Tree();
 	Objective* get_next_Objective();
 	bool has_been_completed();
 };
@@ -105,8 +104,7 @@ public:
 class Rescue_Your_Network : public Objective
 {
 public:
-	Rescue_Your_Network()
-	{ message = "The Enemy has disconnected your network, reconnect it with buildings before it disappears!";}
+	Rescue_Your_Network();
 	Objective* get_next_Objective();
 	bool has_been_completed();
 };
@@ -114,8 +112,7 @@ public:
 class Claim_The_Tree : public Objective
 {
 public:
-	Claim_The_Tree()
-	{ message = "Build on the Tree to claim it for your team!";}
+	Claim_The_Tree();
 	Objective* get_next_Objective();
 	bool has_been_completed();
 };
@@ -123,8 +120,7 @@ public:
 class Defend_Your_Claim : public Objective
 {
 public:
-	Defend_Your_Claim()
-	{ message = "Defend the tree for 20 seconds by destroying enemies next to it, or reclaiming it as your own!";}
+	Defend_Your_Claim();
 	Objective* get_next_Objective();
 	bool has_been_completed();
 };
