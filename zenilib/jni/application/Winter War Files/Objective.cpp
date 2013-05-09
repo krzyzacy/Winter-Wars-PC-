@@ -3,7 +3,7 @@
 
 #include "Player.h"
 #include "Team.h"
-#include "Structure.h"
+#include "Utility.h"
 #include "Object_factory.h"
 #include "Tile.h"
 #include "Event.h"
@@ -37,7 +37,6 @@ Objective* Objective::get_next_Objective()
 
 Objective* Build_Structure::get_next_Objective()
 {
-	//return new Scoop_Snow();
 	return new Build_Other_Structures();
 }
 
@@ -92,19 +91,24 @@ Objective* Claim_The_Tree::get_next_Objective()
 }
 
 Objective* Defend_Your_Claim::get_next_Objective()
-{//represents win?
+{
 	return NULL;
 }
+
+Build_Structure::Build_Structure(int type_) : type(type_)
+{ message = "Build a " + Structure_Names[type] + " by right clicking towards the tile you want."; }
 
 bool Build_Structure::has_been_completed()
 {
 	if (Game_Model::get().get_player(0)->get_team()->stats.structures[type]){
 		return true;
-	}
-		
+	}		
 
 	return false;
 }
+
+Build_Other_Structures::Build_Other_Structures()
+{ message = "Switch to Other with Q and Shift Stuctures. Build one of each!"; }
 
 bool Build_Other_Structures::has_been_completed()
 {	
@@ -120,11 +124,11 @@ bool Build_Other_Structures::has_been_completed()
 
 Throw_Snowball_At_Enemy::Throw_Snowball_At_Enemy()
 {
-	message = "Throw Snowballs with right trigger to defeat enemies!";
+	message = "Throw Snowballs with Left Mouse Button to defeat enemies!";
 	Game_Model::get().add_player(create_player(Game_Model::get().get_team(RED-1), "Boy"
-		));//, Game_Model::get().get_tile(Point3f(100,100,0))));
+		, Game_Model::get().get_tile(11,11)));
 
-
+	/*
 	for(int i = 0; i < 10; i++){
 		for(int j = 0; j < 10; j++){
 			Snowball *sb = new Snowball(Game_Model::get().get_player(1),
@@ -135,6 +139,7 @@ Throw_Snowball_At_Enemy::Throw_Snowball_At_Enemy()
 			Game_Model::get().add_moveable(sb);
 		}
 	}
+	*/
 }
 
 bool Throw_Snowball_At_Enemy::has_been_completed()
@@ -145,6 +150,9 @@ bool Throw_Snowball_At_Enemy::has_been_completed()
 
 	return false;
 }
+
+Pack_Snowball::Pack_Snowball()
+{ message = "Hold the Left Mouse Button down to pack snow from your snow pouch and make a larger snowball"; }
 
 bool Pack_Snowball::has_been_completed()
 {
@@ -157,7 +165,7 @@ bool Pack_Snowball::has_been_completed()
 Scoop_Snow::Scoop_Snow() :
 	start_scooped(Game_Model::get().get_player(0)->stats.amount_scooped)
 {
-	message = "Hold B to scoop up snow, you must be on a soft snow tile";
+	message = "Hold E to scoop up snow and put it in your snow pouch, you must be on a soft snow tile";
 }
 
 bool Scoop_Snow::has_been_completed()
@@ -183,9 +191,13 @@ bool Destroy_Structures::has_been_completed()
 	//return false;
 }
 
+Raise_Lower_Tiles::Raise_Lower_Tiles()
+{ message = "Press R and F to raise and lower tiles"; }
+
 bool Raise_Lower_Tiles::has_been_completed()
 {
-	return true;
+	return Game_Model::get().get_player(0)->stats.tiles_lowered || 
+		Game_Model::get().get_player(0)->stats.tiles_raised ;
 }
 
 bool Build_a_Chain_To_Tree::has_been_completed()

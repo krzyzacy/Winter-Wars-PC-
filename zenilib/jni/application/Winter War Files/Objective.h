@@ -20,8 +20,7 @@ protected:
 class Build_Structure : public Objective
 {
 public:
-	Build_Structure(int type_) : type(type_)
-	{ message = "Build a Healing pool by pressing x!"; }
+	Build_Structure(int type_);
 	~Build_Structure() {}
 	Objective* get_next_Objective();
 	bool has_been_completed();
@@ -33,8 +32,7 @@ private:
 class Build_Other_Structures : public Objective
 {
 public:
-	Build_Other_Structures()
-	{ message = "Switch to Other Stuctures and build them"; }
+	Build_Other_Structures();
 	~Build_Other_Structures() {}
 	Objective* get_next_Objective();
 	bool has_been_completed();
@@ -52,8 +50,7 @@ public:
 class Pack_Snowball : public Objective
 {
 public:
-	Pack_Snowball()
-	{ message = "Hold the trigger down to pack and make a larger snowball"; }
+	Pack_Snowball();
 	~Pack_Snowball() {}
 	Objective* get_next_Objective();
 	bool has_been_completed();
@@ -83,8 +80,7 @@ public:
 class Raise_Lower_Tiles : public Objective
 {
 public:
-	Raise_Lower_Tiles()
-	{ message = "Press up and down on the dpad to raise and lower tiles"; }
+	Raise_Lower_Tiles();
 	Objective* get_next_Objective();
 	bool has_been_completed();
 };
