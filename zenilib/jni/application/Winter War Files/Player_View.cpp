@@ -184,7 +184,7 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 }
 
-void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRight, std::string avartar){
+void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRight, std::string avatar){
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 	float ratio = 4.85f;
 
@@ -251,7 +251,7 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 	angle = PI * 2 - angle;
 	angle += PI;
 
-	render_image((Zeni::String)avartar,Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 190.0f, topLeft.y + player_pos.y * unit_px + 70.0f * unit_px),
+	render_image((Zeni::String)avatar,Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 190.0f, topLeft.y + player_pos.y * unit_px + 70.0f * unit_px),
 				Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 230, topLeft.y + player_pos.y * unit_px + unit_px * 110), 
 				angle , 1.0f, Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 210, topLeft.y + player_pos.y * unit_px + unit_px * 90) );
 

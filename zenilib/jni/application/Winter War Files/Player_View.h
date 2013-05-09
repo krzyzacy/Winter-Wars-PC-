@@ -13,9 +13,9 @@ public:
 
 	void set_camera(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
 
-	void render_hud(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
+	virtual void render_hud(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
 
-	void render_minimap(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight, const std::string avartar);
+	virtual void render_minimap(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight, const std::string avatar);
 
 	void render_build(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
 
@@ -32,5 +32,3 @@ private:
 	const Player *player;
 
 };
-
-

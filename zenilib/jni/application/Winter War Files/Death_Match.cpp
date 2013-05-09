@@ -1,6 +1,8 @@
 #include "Death_Match.h"
 #include "Team.h"
 #include "Globals.h"
+#include "Player_Deathmatch_View.h"
+#include "Player_View.h"
 
 Death_Match::Death_Match()
 {
@@ -52,4 +54,9 @@ bool Death_Match::win()
 	}
 
 	return false;
+}
+
+Player_View *Death_Match::create_player_view(Player *p)
+{
+	return new Player_Deathmatch_View(p);
 }
