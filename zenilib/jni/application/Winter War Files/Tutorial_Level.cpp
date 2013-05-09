@@ -18,6 +18,11 @@ Tutorial_Level::Tutorial_Level()
 Tutorial_Level::~Tutorial_Level() 
 {}
 
+string Tutorial_Level::get_level_name()
+{
+	return "Tutorial_Level";
+}
+
 void Tutorial_Level::start_up(const std::vector<Player_info*> &player_info)
 {
 	Claim_Tree_Level::start_up(player_info);
