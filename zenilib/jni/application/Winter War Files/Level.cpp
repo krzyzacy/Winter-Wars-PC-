@@ -57,7 +57,6 @@ void Level::start_up(const vector<Player_info*> &player_info)
 
 	for(int i = 0; i < player_info.size() ; i++){
 		Player *p = create_player(teams[player_info[i]->colors_], player_info[i]->genders_);
-		//Player *p = create_player(teams[i], genders_[i]);
 		add_player(p);
 	}
 
@@ -71,7 +70,7 @@ void Level::start_up(const vector<Player_info*> &player_info)
 		// not a network game
 	{	// put all players in views
 		for ( int i = 0 ; i < num_players() ; i++)
-			view->add_player_view(new Player_View(get_player(i)));
+			view->add_player_view(create_player_view(get_player(i)));
 	}
 }
 
