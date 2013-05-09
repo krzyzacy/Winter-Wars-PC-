@@ -1044,6 +1044,9 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Enums.h">
       <Filter>jni\application\Winter War Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Player_Deathmatch_View.h">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
@@ -1525,6 +1528,9 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Utility.cpp">
       <Filter>jni\application\Winter War Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Player_Deathmatch_View.cpp">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

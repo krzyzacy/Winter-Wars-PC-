@@ -400,6 +400,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Permanent.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\PlayerAnimator.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\PlayerAnimators.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Player_Deathmatch_View.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Play_State_Base.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Player.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Player_View.h" />
@@ -683,6 +684,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClCompile Include="..\..\jni\application\Winter War Files\Permanent.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\PlayerAnimators.cpp" />
+    <ClCompile Include="..\..\jni\application\Winter War Files\Player_Deathmatch_View.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Play_State_Base.cpp">
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Player.cpp">
