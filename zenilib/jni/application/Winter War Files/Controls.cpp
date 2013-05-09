@@ -2,6 +2,8 @@
 #include "Player.h"
 #include "Zeni/Joysticks.h"
 #include "Game_Model.h"
+#include "World.h"
+
 
 #include <sstream>
 
@@ -77,6 +79,16 @@ void Controls::take_God_keyboard(const SDL_KeyboardEvent &event)	{
 	//Put all global functions that effect the whole game in here, 
 	//including things like global variabl adjustment
 	//SIN WAVE
+	switch(event.keysym.sym)	{
+	case SDLK_s:
+		if(event.state == SDL_PRESSED)	{
+			Game_Model::get().get_World()->Activate_Sine_Wave();
+		}
+		break;
+	default:
+		break;
+	}
+
 }
 
 void Controls::take_mouse_button_input(const SDL_MouseButtonEvent & event)	{

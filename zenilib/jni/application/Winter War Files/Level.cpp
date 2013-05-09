@@ -17,6 +17,7 @@
 #include "Zeni/Joysticks.h"
 #include "WWClient.h"
 
+#include "Windows.h"
 
 using namespace std;
 using namespace Zeni;
@@ -117,6 +118,15 @@ void Level::restart()
 
 void Level::clean()
 {
+	
+	//save stats
+	for(vector<Player*>::iterator it = players.begin(); it != players.end(); it++)
+		(*it)->stats.save_to_file();
+
+	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)
+		(*it)->stats.save_to_file();
+
+
 	//Everything is a collidable in all the other lists, so this represents all things
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); ++it)
 		delete (*it);
@@ -155,6 +165,11 @@ void Level::update()
 	//{
 	//	global_message("Build a path of structures from your base to the Tree!");
 	//}
+
+	if(world->Sine_Wave_is_Active())
+		world->Run_Sine_Wave();
+
+
 
 	for(collidable_list_t::iterator it = colliders.begin(); it != colliders.end(); it++)
 		(*it)->update(time_step);

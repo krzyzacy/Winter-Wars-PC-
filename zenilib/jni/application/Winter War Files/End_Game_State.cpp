@@ -128,7 +128,7 @@ void End_Game_State::render() {
 
 	for (int i = 0 ; i < Game_Model::get().num_players() ; i++){
 		Player * player = Game_Model::get().get_player(i);
-		Player::Stats stat = player->stats;  
+		Player::Player_Stats &stat = player->stats;  
 		const Color player_color = cr[player->get_team()->get_name()];
 		
 		get_Fonts()["system_36_800x600"].render_text("PLAYER " + itoa(i + 1) ,Point2f(75, 400 + 50 * i), player_color);
@@ -204,7 +204,7 @@ void End_Game_State::render() {
 			continue;
 		else
 			valid++;
-		Team::Stats stat = team->stats;
+		Team::Team_Stats &stat = team->stats;
 		cur_width = font_64.get_text_width("TEAM STATS | ") + 50.0f + 30.0f;
 		const Color team_color = cr[team->get_name()];
 		

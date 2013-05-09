@@ -1,6 +1,7 @@
 #pragma once
 
 #include <zenilib.h>
+#include "Stats.h"
 
 class World;
 class Tile;
@@ -70,14 +71,8 @@ public:
 	// returns "Orange", "Blue"
 	Zeni::String get_name_Upper_Case();
 
-	struct Stats{
-		Stats() :
-			total_resources(0), largest_network(0), 
-			tiles_lost(0), final_network(0), resources_spent(0)
-		{
-			for (int i = 0 ; i < 10; i++)
-				structures[i] = 0;
-		}
+	struct Team_Stats: public Stats{
+		Team_Stats();
 		//int total_kills;
 		int total_resources;
 		int largest_network;

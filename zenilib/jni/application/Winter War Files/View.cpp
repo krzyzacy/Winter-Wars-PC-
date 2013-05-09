@@ -399,7 +399,6 @@ View::View(void)
 
 	//Skysphere
 	model_map["skysphere"] = new Zeni::Model("models/skysphere.3ds");
-
 }
 
 View::~View(void)

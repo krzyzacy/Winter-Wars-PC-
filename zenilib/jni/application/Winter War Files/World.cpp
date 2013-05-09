@@ -5,6 +5,8 @@
 #include "Tile.h"
 #include "Player.h"
 
+#include "Windows.h"
+
 using namespace std;
 using namespace Zeni;
 
@@ -13,7 +15,7 @@ using namespace Zeni;
 const float Ice_friction = 0.05;
 const float Norml_friction = 0.2;
 
-const float Tile_Move_Speed = 50;
+float Tile_Move_Speed = 50;
 
 World::World( View *view_,
 		const int width__,
@@ -21,10 +23,11 @@ World::World( View *view_,
 		const float hex_length__
 		) :
 	map(height__, vector<Tile *>(width__, 0) ),
-	view(view_), sin_active(false)
+	view(view_), sine_active(false), crest_past_start(false), 
+	sine_ticks(0), wave_row(1)
 {
-	map_width = width__ - 1;
-	map_height = height__ - 1;
+	map_width = width__ ;
+	map_height = height__;
 	cur_team_count = 0;
 
 	tile_size = hex_length__;
@@ -408,6 +411,10 @@ Tile * World::player_is_looking_at(const Point3f &player_pos, Vector3f look_Dir)
 void World::raise_tile(Point3f location)	{
 	//Add ownership restrictions to this later
 	Tile* ti = get_tile(location);
+	raise_tile(ti);
+}
+
+void World::raise_tile(Tile* ti)	{
 	float delta = Game_Model::get().get_time_step() * Tile_Move_Speed;
 	if(ti->set_height(delta))	{
 		for(int i = 0; i < Game_Model::get().num_players(); i++)	{
@@ -419,6 +426,10 @@ void World::raise_tile(Point3f location)	{
 
 void World::lower_tile(Point3f location)	{
 	Tile* ti = get_tile(location);
+	lower_tile(ti);
+}
+
+void World::lower_tile(Tile* ti)	{
 	float delta = Game_Model::get().get_time_step() * Tile_Move_Speed;
 	if(ti->set_height(-delta))	{
 		for(int i = 0; i < Game_Model::get().num_players(); i++)	{
@@ -469,6 +480,94 @@ bool World::is_boundary_tile(Tile* t)	{
 	return false;
 }
 
-void World::Run_Sin_Wave()	{}
+void World::Activate_Sine_Wave()	{
+	sine_active = true;
+	wave_row = 1;
+	//Throw the players here should be towards the tree
+	for(int i = 0; i < Game_Model::get().num_players_here(); i++)	{
+		Vector3f target = get_center_Tile()->get_structure_base() - Game_Model::get().get_player_here(i)->get_position(); 
+		target.normalize();
+		target.z = 1;
+		target *= 500;
+		Game_Model::get().get_player_here(i)->accelerate(target, 1);
+	}
+
+	for(int i = 0; i < get_width(); i++)	{
+		if(!is_boundary_tile(map.at(wave_row)[i]))	{
+			ascending.insert(map.at(wave_row)[i]);
+			
+		}
+	}
+
+	wave_row++;
+	//Inner_Max_TH = 225;
+	Min_Tile_Height = 25;
+	Tile_Move_Speed = 150;
+}
+
+void World::Run_Sine_Wave()	{
+	
+	sine_ticks++;
+
+	for(set<Tile*>::iterator it = ascending.begin(); it != ascending.end(); ++it)	
+		raise_tile(*it);
+
+	for(set<Tile*>::iterator it = descending.begin(); it != descending.end(); ++it)
+		lower_tile(*it);
+
+	
+
+	//Counting logic (causes the wave to travel)
+	if(sine_ticks > 30 && wave_row < get_height())	{
+		
+		for(int i = 0; i < get_width(); i++)	{
+			if(!is_boundary_tile(map.at(wave_row)[i]))	{
+				ascending.insert(map.at(wave_row)[i]);
+			}
+		}
+		sine_ticks = 0;
+		wave_row++;
+	}
+
+	
+	//Checking for crest transitions
+	list<Tile*> remove_list;
+	for(set<Tile*>::iterator it = ascending.begin(); it != ascending.end(); ++it)	{
+		if((*it)->get_height() == Inner_Max_TH)	{
+			descending.insert(*it);
+			remove_list.push_back(*it);
+		}		
+	}
+	for(list<Tile*>::iterator it = remove_list.begin(); it != remove_list.end(); ++it)	{
+		ascending.erase(*it);
+	}
+	remove_list.clear();
+
+
+	
+	list<Tile*> delete_list;
+	for(set<Tile*>::iterator it = descending.begin(); it != descending.end(); ++it)	{
+		if((*it)->get_height() == Min_Tile_Height)	
+			delete_list.push_back(*it);
+	}
+	for(list<Tile*>::iterator it = delete_list.begin(); it != delete_list.end(); ++it)	{
+		
+		descending.erase(*it);
+	}
+	delete_list.clear();
+
+	//The Sine wave is complete, set everything back to normal
+	if(descending.empty() && crest_past_start)	{
+		//This isn't getting called
+		ascending.clear();
+		Inner_Max_TH = 175;
+		Min_Tile_Height = 50; //%%%% This might cause a problem, test and see
+		Tile_Move_Speed = 50;
+		sine_ticks = 0;
+		wave_row = 1;
+		crest_past_start = false;
+		sine_active = false;
+	}
+}
 
 

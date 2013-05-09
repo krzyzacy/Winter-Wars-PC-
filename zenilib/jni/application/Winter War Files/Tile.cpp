@@ -8,8 +8,8 @@
 using namespace Zeni;
 using namespace std;
 
-const float Min_Tile_Height = 50;
-const float Inner_Max_TH = 175;
+float Min_Tile_Height = 50;
+float Inner_Max_TH = 175;  
 const float Outer_Max_TH = 175;
 
 Tile::Tile(const float tile_size__,

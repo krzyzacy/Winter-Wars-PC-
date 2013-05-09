@@ -1,6 +1,8 @@
 #pragma once
 #include "Moveable.h"
-#include "Structure.h"
+#include "Utility.h"
+#include "Stats.h"
+
 #include <Zeni/Sound.h>
 
 class Collision_Table;
@@ -150,16 +152,10 @@ public:
 	Zeni::String get_message() const;
 
 // Stats
-	struct Stats
+	struct Player_Stats : public Stats
 	{
-		Stats () :
-			kills(0), deaths(0), thrown(0),
-			hit(0), biggest_snowball(0), 
-			num_large_snowballs(0),
-			num_small_snowballs(0), amount_scooped(0),
-			tiles_raised(0), tiles_lowered(0), friendly_hit(0),
-			snow_used(0), built(0), destroyed(0),
-			damage_taken(0), damage_dealt(0){}
+		Player_Stats();
+
 		int kills;
 		int deaths;
 		int thrown;

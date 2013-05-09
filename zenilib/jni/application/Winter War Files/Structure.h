@@ -6,14 +6,10 @@
 
 #include <zenilib.h>
 
-enum Structure_Type	{
-	NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL, TREE, BASE
-};
+#include "Utility.h"
 
-//These enums represnt the different types of buildings for now
-
-extern float Build_Cost[7];
-extern float Struct_Integrity[5];
+extern float Build_Cost[NUM_STRUCTURES];
+extern float Struct_Integrity[NUM_STRUCTURES];
 extern float snow_factory_intake;
 
 enum	Universal_State	{
