@@ -82,7 +82,15 @@ Structure *create_structure(int type, Tile* ti, Team* team_)	{
 		st =  new Fortress(team_, ti, base);
 		break;
 	}
-	
+
+	//In a normal game this should already be taken care of.
+	//But in tutorial and possibly network, this will allow create structure to override
+	//and enforce a correct game state
+	if(ti->has_building() && ti->get_building()->get_team_pt() != 0)	{
+		ti->get_building()->get_team_pt()->remove_tile(ti);
+	}
+
+	//Enforce the team requirements for structures
 	if(team_ != NULL)	{
 		team_->pay_for_building(st);
 		team_->add_tile_to_team_network(ti);

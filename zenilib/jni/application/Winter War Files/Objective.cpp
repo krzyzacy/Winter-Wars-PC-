@@ -3,11 +3,16 @@
 
 #include "Player.h"
 #include "Team.h"
+#include "World.h"
 #include "Utility.h"
 #include "Object_factory.h"
 #include "Tile.h"
 #include "Event.h"
 #include "Snowball.h"
+
+#include "Globals.h"
+
+#include <list>
 
 using namespace std;
 using namespace Zeni;
@@ -107,8 +112,33 @@ bool Build_Structure::has_been_completed()
 	return false;
 }
 
-Build_Other_Structures::Build_Other_Structures()
-{ message = "Switch to Other with Q and Shift Stuctures. Build one of each!"; }
+Build_Other_Structures::Build_Other_Structures()	{
+	message = "Build other Structures with Q and Shift. Build one of each!"; 
+	Build_Event ev;
+	
+	ev.put_in_game(10,12,2,2);
+	ev.put_in_game(10,11,2,2);
+	ev.put_in_game(10,10,2,1);
+	ev.put_in_game(10,9,2,4);
+	ev.put_in_game(10,8,2,3);
+	ev.put_in_game(9,11,2,2);
+	ev.put_in_game(9,10,2,4);
+	ev.put_in_game(9,9,2,2);
+	ev.put_in_game(8,9,2,2);
+	ev.put_in_game(8,8,2,1);
+	ev.put_in_game(8,7,2,2);
+	
+		
+	//Old snow factory
+	//ev.put_in_game(10,12,2,3);
+
+	list<Tile*> tree_ring = Game_Model::get().get_World()->Get_Family(Game_Model::get().get_World()->get_center_Tile());
+	for(list<Tile*>::iterator it = tree_ring.begin(); it != tree_ring.end(); ++it)	{
+		create_structure(FORT, (*it), Game_Model::get().get_team(RED - 1));
+	}
+
+
+}
 
 bool Build_Other_Structures::has_been_completed()
 {	
@@ -126,7 +156,10 @@ Throw_Snowball_At_Enemy::Throw_Snowball_At_Enemy()
 {
 	message = "Throw Snowballs with Left Mouse Button to defeat enemies!";
 	Game_Model::get().add_player(create_player(Game_Model::get().get_team(RED-1), "Boy"
-		, Game_Model::get().get_tile(11,11)));
+		, Game_Model::get().get_tile(6,5)));
+
+	//Changed from 11 to 6, 5
+
 
 	/*
 	for(int i = 0; i < 10; i++){
@@ -180,14 +213,12 @@ Destroy_Structures::Destroy_Structures()
 {
 	message = "Destroy Enemy Stuctures by shooting snowballs at them";
 
-	Build_Event ev;
-	
-	ev.put_in_game(10,12,2,3);
+
 }
 
 bool Destroy_Structures::has_been_completed()
 {
-	return (Game_Model::get().get_tile(10, 12)->has_building() ^ 0x1);
+	return (Game_Model::get().get_player(0)->stats.destroyed > 0);
 	//return false;
 }
 
@@ -207,7 +238,7 @@ Build_a_Chain_To_Tree::Build_a_Chain_To_Tree()
 
 bool Build_a_Chain_To_Tree::has_been_completed()
 {
-	return Game_Model::get().get_player(0)->stats.built > 9 ? true : false;
+	return Game_Model::get().get_player(0)->stats.built > 6;
 }
 
 Destroy_Key_Enemy_Structures::Destroy_Key_Enemy_Structures()
@@ -227,33 +258,109 @@ Destroy_Key_Enemy_Structures::Destroy_Key_Enemy_Structures()
 	ev.put_in_game(8,9,2,2);
 	ev.put_in_game(8,8,2,1);
 	ev.put_in_game(8,7,2,2);
+	
+	list<Tile*> tree_ring = Game_Model::get().get_World()->Get_Family(Game_Model::get().get_World()->get_center_Tile());
+	for(list<Tile*>::iterator it = tree_ring.begin(); it != tree_ring.end(); ++it)	{
+		create_structure(FORT, (*it), Game_Model::get().get_team(RED - 1));
+	}
 }
 
 bool Destroy_Key_Enemy_Structures::has_been_completed()
 {
+	if(Game_Model::get().get_team(RED-1)->territory_disconnected())	{
+		isolation_survival_time = 0;
+		return true;
+	}
+
 	return false;
 }
 
-Rescue_Your_Network::Rescue_Your_Network()
-{ message = "The Enemy has disconnected your network, reconnect it with Structures before it disappears!";}
+Rescue_Your_Network::Rescue_Your_Network()	
+	: snowballs_caused_disconnect(false)
+{
+	message = "The Enemy has disconnected your network, reconnect it with Structures before it disappears!";
+
+	list<Tile*> base_ring = Game_Model::get().get_World()->Get_Family(Game_Model::get().get_team(GREEN - 1)->get_base());
+	for(list<Tile*>::iterator it = base_ring.begin(); it != base_ring.end(); ++it)	{
+		for(int i = 0; i < 20; i++)	{
+			Snowball *sb = new Snowball(Game_Model::get().get_player(1),
+				(*it)->get_structure_base() + Point3f(0,0,500) , Vector3f(20, 20, 20));
+			sb->get_thrown(Vector3f(0, 0, 0));
+			Game_Model::get().add_moveable(sb);
+		}
+	}
+
+	//like 20 days or so, should be plenty
+	//isolation_survival_time = 1000000;
+
+
+}
 
 bool Rescue_Your_Network::has_been_completed()
 {
+	isolation_survival_time = 1000000;
+	//First wait for the snowballs to drop and kill it
+	//Then If they reconnect it move on
+	if(Game_Model::get().get_team(GREEN - 1)->territory_disconnected())	{
+		snowballs_caused_disconnect = true;
+	}
+
+	if(snowballs_caused_disconnect && !Game_Model::get().get_team(GREEN - 1)->territory_disconnected())	{
+		parameters.find("Disappearance Wait Time").reset();
+		return true;
+	}
+
 	return false;
 }
 
-Claim_The_Tree::Claim_The_Tree()
-{ message = "Build on the Tree to claim it for your team!";}
+
+Claim_The_Tree::Claim_The_Tree()	{
+	message = "Build on the Tree to claim it for your team!";
+
+	
+}
 
 bool Claim_The_Tree::has_been_completed()
 {
-	return false;
+	return Game_Model::get().get_team(GREEN - 1)->stats.structures[TREE];
 }
 
-Defend_Your_Claim::Defend_Your_Claim()
-{ message = "Defend the tree for 20 seconds by destroying enemies next to it, or reclaiming it as your own!";}
+Defend_Your_Claim::Defend_Your_Claim() 
+	:claim_count(0)
+{
+	message = "Defend the tree for 20 seconds by destroying enemies next to it, or reclaiming it as your own!";
+
+	Build_Event ev;
+	
+	ev.put_in_game(10,12,2,2);
+	ev.put_in_game(10,11,2,2);
+	ev.put_in_game(10,10,2,1);
+	ev.put_in_game(10,9,2,4);
+	ev.put_in_game(10,8,2,3);
+	ev.put_in_game(9,11,2,2);
+	ev.put_in_game(9,10,2,4);
+	ev.put_in_game(9,9,2,2);
+	ev.put_in_game(8,9,2,2);
+	ev.put_in_game(8,8,2,1);
+	ev.put_in_game(8,7,2,2);
+	
+	list<Tile*> tree_ring = Game_Model::get().get_World()->Get_Family(Game_Model::get().get_World()->get_center_Tile());
+	for(list<Tile*>::iterator it = tree_ring.begin(); it != tree_ring.end(); ++it)	{
+		create_structure(SNOWMAN, (*it), Game_Model::get().get_team(RED - 1));
+	}
+
+	wait_to_claim_tree.start();
+	
+
+}
 
 bool Defend_Your_Claim::has_been_completed()
 {//represents win?
+	if(wait_to_claim_tree.seconds() > 5)	{
+		create_structure(TREE, Game_Model::get().get_World()->get_center_Tile(), Game_Model::get().get_team(RED - 1));
+		wait_to_claim_tree.reset();
+		wait_to_claim_tree.stop();
+	}
+
 	return false;
 }

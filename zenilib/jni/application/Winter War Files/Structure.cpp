@@ -17,6 +17,7 @@ float Build_Cost[NUM_STRUCTURES] = { 0, 2800, 2200, 1600, 800, 0, 0 };
 float Struct_Integrity[NUM_STRUCTURES] = {1, 100, 250, 80, 150, 0, 0};
 
 float snow_factory_intake = 50;
+float isolation_survival_time = 10;
 
 Structure::Structure(Team *team, Tile* tile_,
 				const Zeni::Point3f &position_,	 float radius) :
@@ -58,7 +59,7 @@ void Structure::update(const float &time)
 		owner->remove_tile(hex);
 	}
 	
-	if(Isolation_Clock.seconds() > 10)	{
+	if(Isolation_Clock.seconds() > isolation_survival_time)	{
 		Status = DESTROYED;
 		Game_Model::get().play_chainbreak();
 	}
@@ -115,7 +116,7 @@ void Structure::reintegrate()	{
 void Structure::perform_destruction_effects()	{
 	//Generates some effects;
 	
-	if(Isolation_Clock.seconds() < 10)
+	if(Isolation_Clock.seconds() > isolation_survival_time)
 		Game_Model::get().play_breaking();
 
 	int quantity = rand()%8;

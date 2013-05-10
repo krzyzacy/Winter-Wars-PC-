@@ -11,6 +11,7 @@ float max_kills_deathmatch = 10;
 float timer_deathmatch = 600;
 float snowman_consumption_rate = 10;
 
+
 void Game_Parameter::increment()
 {
 	current_value += unit_increment;
@@ -56,6 +57,7 @@ Parameter_List::Parameter_List()
 	list.push_back(Game_Parameter("Packing Rate per Second", packing_rate, 600, 5, 0));
 	
 	list.push_back(Game_Parameter("Structure Recharge Seconds", Building_Recharge_Time, 10, 1, 0.5));
+	list.push_back(Game_Parameter("Disappearance Wait Time", isolation_survival_time, 100000, 1, 0));
 
 	list.push_back(Game_Parameter("Max Resources", Max_Resources, 1000000, 1000, 0));
 	list.push_back(Game_Parameter("Starting Resources", starting_resources, 1000000, 500, 0));
