@@ -113,7 +113,7 @@ bool Build_Structure::has_been_completed()
 }
 
 Build_Other_Structures::Build_Other_Structures()	{
-	message = "Build other Structures with Q and Shift. Build one of each!"; 
+	message = "Select other Structures with Q and Shift. Build one of each!"; 
 	Build_Event ev;
 	
 	ev.put_in_game(10,12,2,2);
@@ -233,7 +233,7 @@ bool Raise_Lower_Tiles::has_been_completed()
 
 Build_a_Chain_To_Tree::Build_a_Chain_To_Tree()
 { 
-	message = "Build a connected set of tiles to the tree!";
+	message = "Connect a set of tiles from your base to the tree!";
 }
 
 bool Build_a_Chain_To_Tree::has_been_completed()
@@ -243,7 +243,7 @@ bool Build_a_Chain_To_Tree::has_been_completed()
 
 Destroy_Key_Enemy_Structures::Destroy_Key_Enemy_Structures()
 {
-	message = "Destroy key enemy structures to disconnect them from the enemy base, and they will all disappear!";
+	message = "Destroy key enemy structures that link the rest of their network to their base, and they will all disappear!";
 
 	Build_Event ev;
 	
@@ -278,7 +278,7 @@ bool Destroy_Key_Enemy_Structures::has_been_completed()
 Rescue_Your_Network::Rescue_Your_Network()	
 	: snowballs_caused_disconnect(false)
 {
-	message = "The Enemy has disconnected your network, reconnect it with Structures before it disappears!";
+	message = "The Enemy has disconnected part of your network from your base,\nreconnect it with Structures before it disappears!";
 
 	list<Tile*> base_ring = Game_Model::get().get_World()->Get_Family(Game_Model::get().get_team(GREEN - 1)->get_base());
 	for(list<Tile*>::iterator it = base_ring.begin(); it != base_ring.end(); ++it)	{

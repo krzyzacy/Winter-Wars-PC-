@@ -33,8 +33,8 @@ void Stats::save_to_history()
 	for (int i = 0 ; i < stat_refs.size() ; i++)
 		stat_history.at(stat_history.size()-1).push_back(*stat_refs[i]);
 
-	for (int i = 0 ; i < float_stats.size() ; i++)
-		stat_history.at(float_stat_history.size()-1).push_back(*float_stats[i]);
+	//for (int i = 0 ; i < float_stats.size() ; i++)
+	//	stat_history.at(float_stat_history.size()-1).push_back(*float_stats[i]);
 
 
 	history_time.reset();
@@ -64,8 +64,8 @@ void Stats::save_to_file()
 		for (int j = 0 ; j < stat_history.at(i).size() ; j++)
 			fout << stat_history[i][j] << "\t";
 		
-		for (int j = 0 ; j < float_stat_history.at(i).size() ; j++)
-			fout << float_stat_history[i][j] << "\t";
+		//for (int j = 0 ; j < float_stat_history.at(i).size() ; j++)
+		//	fout << float_stat_history[i][j] << "\t";
 
 
 		fout << endl;
