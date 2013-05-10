@@ -239,10 +239,9 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 	angle = PI * 2 - angle;
 	angle += PI;
 
-	render_image((Zeni::String)avatar,Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 190.0f, topLeft.y + player_pos.y * unit_px + 70.0f * unit_px),
-				Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 230, topLeft.y + player_pos.y * unit_px + unit_px * 110), 
-				angle , 1.0f, Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 210, topLeft.y + player_pos.y * unit_px + unit_px * 90) );
-
+	render_image((Zeni::String)avatar,Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 200.0f, topLeft.y + player_pos.y * unit_px + 100.0f * unit_px),
+			Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 240, topLeft.y + player_pos.y * unit_px + unit_px * 140), 
+			angle , 1.0f, Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 220, topLeft.y + player_pos.y * unit_px + unit_px * 120) );
 }
 
 void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRight){
