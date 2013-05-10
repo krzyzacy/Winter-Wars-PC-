@@ -156,7 +156,7 @@ public:
 // Stats
 	struct Player_Stats : public Stats
 	{
-		Player_Stats();
+		Player_Stats(int id);
 
 		int kills;
 		int deaths;
@@ -181,7 +181,11 @@ public:
 
 	bool allowed_to_calculate_movement;
 
+	int get_player_id() {return id;}
+
 private: 
+	int id;
+
 	int cur_tip;
 
 	Zeni::Camera m_camera;

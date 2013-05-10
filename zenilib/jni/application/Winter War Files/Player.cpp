@@ -53,9 +53,10 @@ String tips[num_tips] = {
 	"Winter Wars >>> Halo" //funny
 };
 
+int max_id = 0;
 
 Player::Player(const Zeni::Point3f &center_) 
-	: Moveable(center_ , Vector3f(1,1,1)*35), cur_tip(0),
+	: Moveable(center_ , Vector3f(1,1,1)*35), id(max_id++), cur_tip(0),
 	m_camera(center_, Quaternion(), 5.0f, 3000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	gender(""),
@@ -64,7 +65,7 @@ Player::Player(const Zeni::Point3f &center_)
 	animation_state(new Standing()), player_boy_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["boy_hit"])),
 	player_girl_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["girl_hit"])), player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"])),
 	snowball_hit1(new Zeni::Sound_Source(Zeni::get_Sounds()["HitBySnow1"])), snowball_hit2(new Zeni::Sound_Source(Zeni::get_Sounds()["HitBySnow2"])),
-	sound_choice(0), allowed_to_calculate_movement(true)
+	sound_choice(0), allowed_to_calculate_movement(true), stats(id)
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
@@ -770,8 +771,8 @@ void Player::play_sound()
 }
 
 
-Player::Player_Stats::Player_Stats() :
-			Stats("PLayer"),
+Player::Player_Stats::Player_Stats(int id) :
+	Stats("PLayer" + itoa(id).std_str()),
 			kills(0), deaths(0), thrown(0),
 			hit(0), biggest_snowball(0), 
 			num_large_snowballs(0),
