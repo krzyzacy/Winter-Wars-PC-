@@ -1047,6 +1047,9 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Player_Deathmatch_View.h">
       <Filter>jni\application\Winter War Files\MVC</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Player_Claim_Tree_View.h">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
@@ -1530,6 +1533,9 @@
       <Filter>jni\application\Winter War Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Player_Deathmatch_View.cpp">
+      <Filter>jni\application\Winter War Files\MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Player_Claim_Tree_View.cpp">
       <Filter>jni\application\Winter War Files\MVC</Filter>
     </ClCompile>
   </ItemGroup>
