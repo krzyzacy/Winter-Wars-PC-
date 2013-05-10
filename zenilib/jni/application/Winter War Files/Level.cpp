@@ -249,6 +249,10 @@ float Level::get_time_step()	{
 	return time_step;
 }
 
+float Level::get_time_left() {
+	return 0.0;
+}
+
 void Level::add_player(Player *p)
 {
 	players.push_back(p);
@@ -354,10 +358,6 @@ void Level::remove_from_model(Structure* Z)	{
 	structures.erase(Z);
 	view->remove_renderable(Z);
 	delete Z;
-}
-
-Player_View *Level::create_player_view(Player* p) {
-	return new Player_View(p);
 }
 
 Player *Level::get_player_here(int i)

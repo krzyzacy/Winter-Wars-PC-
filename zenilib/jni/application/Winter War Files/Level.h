@@ -65,7 +65,7 @@ public:
 
 	//Creates a player view from a player
 	//overridden for specific player view types
-	virtual Player_View *create_player_view(Player *p);
+	virtual Player_View *create_player_view(Player *p) = 0;
 
 	int num_players() {return players.size();}
 
@@ -99,6 +99,8 @@ public:
 	float get_time_step();
 	float get_time_passed()
 	{ return time_passed; }
+
+	virtual float get_time_left();
 
 	void global_message(const Zeni::String &message);
 

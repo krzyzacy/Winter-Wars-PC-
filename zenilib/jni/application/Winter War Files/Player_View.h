@@ -9,7 +9,7 @@ class Player_View
 public:
 	Player_View(const Player *);
 
-	~Player_View();
+	virtual ~Player_View() = 0;
 
 	void set_camera(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
 
@@ -25,7 +25,7 @@ public:
 
 	void render_tree_claimed(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight);
 
-	const Player *get_player() const 
+	const virtual Player *get_player() const 
 		{return player;}
 
 private:

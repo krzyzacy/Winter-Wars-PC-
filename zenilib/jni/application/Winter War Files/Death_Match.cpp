@@ -68,3 +68,8 @@ Player_View *Death_Match::create_player_view(Player *p)
 {
 	return new Player_Deathmatch_View(p);
 }
+
+float Death_Match::get_time_left()
+{
+	return parameters.find("Timer Deathmatch").get_value() - get_time_passed();
+}

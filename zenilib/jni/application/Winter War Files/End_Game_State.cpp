@@ -9,6 +9,7 @@
 #include "World.h"
 #include "Tile.h"
 #include "Team.h"
+#include "Utility.h"
 
 void End_Game_State::on_pop()	{
 	Game_Model::get().restart();
@@ -88,11 +89,7 @@ void End_Game_State::render() {
 	const Color box = cr["endscreenbg"];
 	const Color blk = cr["black"];
 
-	Zeni::String gameTime = "Time: " + itoa(Game_Model::get().get_time() / 60) + ":" ;
-	if((int)Game_Model::get().get_time() % 60 < 10)
-		gameTime += "0";
-	 
-	gameTime += itoa((int)Game_Model::get().get_time() % 60);
+	Zeni::String gameTime = "Time: " + make_time_string(Game_Model::get().get_time());
 
 	get_Fonts()["cat"].render_text(gameTime ,Point3f(1500, 200, 0), Vector3f(0.64,0,0), Vector3f(0,0.64,0), blk);
 	if(winning_team)

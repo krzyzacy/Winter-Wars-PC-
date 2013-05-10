@@ -58,7 +58,7 @@ public:
 	Tile* get_base()	{return Base;}
 
 	//Set Up and utility
-	int get_Player_Kills();
+	int get_Player_Kills() const;
 	int get_Resources()	const {return Ice_Blocks;}
 	void set_Team_Color(TEAM_INDEX in);
 	TEAM_INDEX get_Team_Index()	{return Team_Color;}
