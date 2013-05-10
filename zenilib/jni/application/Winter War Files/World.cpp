@@ -430,14 +430,17 @@ bool World::is_boundary_tile(Tile* t)	{
 }
 
 void World::Activate_Sine_Wave()	{
+	if(Sine_Wave_is_Active())
+		return;
+
 	sine_active = true;
 	wave_row = 1;
 	//Throw the players here should be towards the tree
 	for(int i = 0; i < Game_Model::get().num_players_here(); i++)	{
 		Vector3f target = get_center_Tile()->get_structure_base() - Game_Model::get().get_player_here(i)->get_position(); 
 		target.normalize();
-		target.z = 1;
-		target *= 300;
+		target.z = 0.25;
+		target *= 1000;
 		Game_Model::get().get_player_here(i)->accelerate(target, 1);
 	}
 
@@ -449,8 +452,8 @@ void World::Activate_Sine_Wave()	{
 	}
 
 	wave_row++;
-	//Inner_Max_TH = 225;
-	Min_Tile_Height = 25;
+	Inner_Max_TH = 225;
+	Outer_Max_TH = 225;
 	Tile_Move_Speed = 150;
 }
 
@@ -483,6 +486,7 @@ void World::Run_Sine_Wave()	{
 	list<Tile*> remove_list;
 	for(set<Tile*>::iterator it = ascending.begin(); it != ascending.end(); ++it)	{
 		if((*it)->get_height() == Inner_Max_TH)	{
+			crest_past_start = true;
 			descending.insert(*it);
 			remove_list.push_back(*it);
 		}		
@@ -509,9 +513,8 @@ void World::Run_Sine_Wave()	{
 	if(descending.empty() && crest_past_start)	{
 		//This isn't getting called
 		ascending.clear();
-		Inner_Max_TH = 175;
-		Min_Tile_Height = 50; //%%%% This might cause a problem, test and see
-		Tile_Move_Speed = 50;
+		//Inner_Max_TH = 175;
+		Tile_Move_Speed = 150;
 		sine_ticks = 0;
 		wave_row = 1;
 		crest_past_start = false;

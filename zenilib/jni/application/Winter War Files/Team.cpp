@@ -17,7 +17,7 @@ using namespace Zeni;
 
 Team::Team(Tile* BaseTile, TEAM_INDEX color)	:
 	Base(BaseTile), Ice_Blocks(starting_resources), intake_rate(0), Team_Color(color), 
-		network_unstable(false), stats(/*get_name_Upper_Case().std_str()*/"FUCK")
+		network_unstable(false), spawn_position(-1), stats(/*get_name_Upper_Case().std_str()*/"FUCK")
 {
 	ResourceTime.start();
 
@@ -46,13 +46,14 @@ void Team::add_player(Player *p)	{
 	p->set_Team(this);
 }
 
-Point3f Team::get_spawn_point()	const	{
-	float x = rand()%5;
-	float y = rand()%5;
+Point3f Team::get_spawn_point()	{
+	float x = 7*spawn_position;
+	float y = 7*spawn_position;
 	Point3f Spawn = Base->get_structure_base();
 	Spawn.x += x;
 	Spawn.y += y;
 	Spawn.z += 150;
+	spawn_position++;
 
 	return Spawn;
 }

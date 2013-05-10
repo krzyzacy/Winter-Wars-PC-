@@ -29,7 +29,7 @@ float snow_depletion_rate = 25;	// Packing from pouch
 float snow_absorbtion_rate = 100;  // Scooping
 
 float Max_Stick_Input	= 32768;
-float Building_Recharge_Time = 1;
+float Building_Recharge_Time = 0.2;
 float Respawn_Time = 6;
 
 
@@ -69,11 +69,17 @@ Player::Player(const Zeni::Point3f &center_)
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
+	m_camera.look_at(Game_Model::get().get_center_tile()->get_top_center());
+
 	rotation = m_camera.orientation + Quaternion(Global::pi_over_two + Global::pi_over_two/2, 0,0);
 
 	//player_sound_test = new Zeni::Sound_Source(Zeni::get_Sounds()["meow"]);
 	//rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0, 0);
 	//rotation += Quaternion(Global::pi_over_two, 0,0);
+
+	stats.add_stat("X pos", &center.x);
+	stats.add_stat("Y pos", &center.y);
+
 
 	Player_Movement_Message_Ticker.reset();
 	Player_Movement_Message_Ticker.start();
@@ -203,8 +209,9 @@ void Player::hit_tile()
 
 	//OutputDebugString(("HIT TILE" + itoa(hit_count ++ ) + "\n").std_str().c_str());
 
-	center.x = backup.x;
-	center.y = backup.y;
+	//Anit geting stuck measures
+	//center.x = backup.x;
+	//center.y = backup.y;
 
 	Vector3f push_dir;
 	Tile* OnT = Game_Model::get().get_World()->get_tile(center);
@@ -228,8 +235,8 @@ void Player::hit_tile()
 		}
 	}
 //	OutputDebugString(("PUSH AWAY FROM TILE ROW: " + itoa(Closest->get_row()) + " COL: " + itoa(Closest->get_col() ) + "\n").std_str().c_str());
-	push_away_from(Closest->get_structure_base(), 12.5);
-
+	//push_away_from(Closest->get_structure_base(), 12.5);
+	push_away_from(Closest->get_structure_base(), 25);
 	
 	//push_away_from(tile->get_top_center(), -15.0f);
 
