@@ -684,6 +684,10 @@ int Player::get_Team_Blocks() const	{
 	return myTeam->get_Resources();
 }
 
+int Player::get_Team_Resource_Rate() const {
+	return myTeam->get_Resource_Rate();
+}
+
 bool Player::vibrate_feedback()	{
 
 	if(ShakeTime.seconds() > 0.4)	{

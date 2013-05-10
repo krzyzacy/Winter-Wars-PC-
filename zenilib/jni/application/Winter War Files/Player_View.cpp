@@ -35,7 +35,7 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 //	get_Video().set_2d(std::make_pair(topLeft,bottomRight), true);
 
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
-	
+
 	std::string gender = "Girl";
 	std::string team = "Blue";
 	std::string status = "Regular";
@@ -82,17 +82,16 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 	render_image("AvartarFrame",topLeft,Point2f(topLeft.x + unit_px * 200, topLeft.y + unit_px * 200));
 	render_image("BuildingFrame",Point2f(bottomRight.x - unit_px * 270, topLeft.y),Point2f(bottomRight.x, topLeft.y + unit_px * 270));
-	render_image("PriceBox",Point2f(bottomRight.x - unit_px * 100, topLeft.y + unit_px * 5),Point2f(bottomRight.x - unit_px * 5, topLeft.y + unit_px * 100));
+	render_image("PriceBox",Point2f(bottomRight.x - unit_px * 100, topLeft.y + unit_px * 5),Point2f(bottomRight.x - unit_px * 5, topLeft.y + unit_px * 110));
 	render_image((Zeni::String)gender+(Zeni::String)team+(Zeni::String)status,Point2f(topLeft.x + unit_px * 10, topLeft.y + unit_px * 10), Point2f(topLeft.x + unit_px * 120, topLeft.y + unit_px * 120));
 	//render_image("IceBlock",Point2f(topLeft.x + unit_px * 410, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 450, topLeft.y + unit_px * 45));
 	render_image("coin",Point2f(bottomRight.x - unit_px * 93, topLeft.y + unit_px * 12),Point2f(bottomRight.x - unit_px * 69, topLeft.y + unit_px * 36));
 
-	scaled_render_text(itoa((int)player->get_Team_Blocks()), Point3f(bottomRight.x - unit_px * 65, topLeft.y + unit_px * 10, 0), Color(0xCCFF1111), (bottomRight.x - topLeft.x) * 0.05);
-	
+	scaled_render_text(itoa((int)player->get_Team_Blocks()), Point3f(bottomRight.x - unit_px * 65, topLeft.y + unit_px * 10, 0), Color(0xCCFF1111), unit_px * 30);
+	scaled_render_text("+" + itoa((int)player->get_Team_Resource_Rate()), Point3f(bottomRight.x - unit_px * 65, topLeft.y + unit_px * 26, 0), Color(0xCCFF1111), unit_px * 20);
+
 	render_image("Heart",Point2f(topLeft.x + unit_px * 180, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 220, topLeft.y + unit_px * 45));
 	render_image("Snowball",Point2f(topLeft.x + unit_px * 515, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 555, topLeft.y + unit_px * 45));
-
-	
 
 	const Point2f p_ul(topLeft.x + unit_px * 560, topLeft.y + unit_px * 15);
 	const Point2f p_ll(topLeft.x + unit_px * 560, topLeft.y + unit_px * 35);

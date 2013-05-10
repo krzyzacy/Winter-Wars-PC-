@@ -60,6 +60,7 @@ public:
 	//Set Up and utility
 	int get_Player_Kills() const;
 	int get_Resources()	const {return Ice_Blocks;}
+	int get_Resource_Rate() const { return intake_rate; }
 	void set_Team_Color(TEAM_INDEX in);
 	TEAM_INDEX get_Team_Index()	{return Team_Color;}
 	Zeni::Point3f get_spawn_point() const;
