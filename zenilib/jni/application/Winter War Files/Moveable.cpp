@@ -56,7 +56,7 @@ void Moveable::update(const float &time)	{
 				return;
 			}
 			else if(Game_Model::get().get_World()->get_ground_height(Point3f(player_pos + pos_dir * size.x / 2 )) >= get_bottom_center().z + 10.0f){
-				hit_tile());
+				hit_tile();
 				return;
 			}
 
