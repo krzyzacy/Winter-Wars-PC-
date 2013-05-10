@@ -5,10 +5,10 @@
 #include "Game_Model.h"
 #include "Tile.h"
 #include "string.h"
+#include "Utility.h"
 #include <math.h>
 
 #include <zenilib.h>
-#include "Structure.h"
 
 #define PI 3.1415926
 
@@ -17,24 +17,12 @@ using namespace Zeni;
 Player_View::Player_View(const Player *p) :
 	player(p)
 {
-	
+
 }
 	
 Player_View::~Player_View()
 {
 
-}
-
-void scaled_render_text(const Zeni::String text, const Zeni::Point3f &position, const Zeni::Color &color, float range){
-	float ratio = 1.0f;
-	float msglength = get_Fonts()["system_36_800x600"].get_text_width(text);
-
-	while(msglength > range){
-		msglength *= 0.9f;
-		ratio *= 0.9f;
-	}
-
-	get_Fonts()["system_36_800x600"].render_text(text ,position, Vector3f(ratio,0,0), Vector3f(0,ratio,0), color);
 }
 
 void Player_View::set_camera(const Point2f &topLeft, const Point2f &bottomRight)

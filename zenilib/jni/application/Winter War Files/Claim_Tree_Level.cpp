@@ -1,4 +1,5 @@
 #include "Claim_Tree_Level.h"
+#include "Player_Claim_Tree_View.h"
 #include "World.h"
 #include "Tile.h"
 
@@ -8,6 +9,12 @@ string Claim_Tree_Level::get_level_name()
 {
 	return "Claim_Tree_Level";
 }
+
+Player_View *Claim_Tree_Level::create_player_view(Player *p)
+{
+	return new Player_Claim_Tree_View(p);
+}
+
 
 void Claim_Tree_Level::start_up(const vector<Player_info*> &player_info)
 {

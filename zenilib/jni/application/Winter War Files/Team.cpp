@@ -52,7 +52,7 @@ Point3f Team::get_spawn_point()	const	{
 	return Spawn;
 }
 
-int Team::get_Player_Kills() {
+int Team::get_Player_Kills() const {
 	int team_kills = 0;
 	for_each(members.begin(), members.end(), 
 		     [&team_kills](Player* p)

@@ -98,6 +98,8 @@ public:
 	void Clean_dead();
 
 	float get_time_step();
+	float get_time_passed();
+	float get_time_left();
 
 	void global_message(const Zeni::String &message);
 

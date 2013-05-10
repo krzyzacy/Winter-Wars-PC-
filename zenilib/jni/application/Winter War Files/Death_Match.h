@@ -13,12 +13,12 @@ public:
 
 	Player_View *create_player_view(Player *p) override;
 
+	float get_time_left() override;
+
 protected:
 	bool win() override;
 
 private:
-	
-
 };
 
 #endif

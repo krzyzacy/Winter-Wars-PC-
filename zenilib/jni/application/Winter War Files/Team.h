@@ -53,10 +53,8 @@ public:
 	void add_tile_to_team_network(Tile* new_tile);
 	void pay_for_building(Structure *);
 
-
-
 	//Set Up and utility
-	int get_Player_Kills();
+	int get_Player_Kills() const;
 	int get_Resources()	const {return Ice_Blocks;}
 	void set_Team_Color(TEAM_INDEX in);
 	TEAM_INDEX get_Team_Index()	{return Team_Color;}

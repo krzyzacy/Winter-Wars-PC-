@@ -130,6 +130,16 @@ float Game_Model::get_time_step()
 	return current_level->get_time_step();
 }
 
+float Game_Model::get_time_passed()
+{
+	return current_level->get_time_passed();
+}
+
+float Game_Model::get_time_left()
+{
+	return current_level->get_time_left();
+}
+
 void Game_Model::add_player(Player*p)
 {
 	current_level->add_player(p);

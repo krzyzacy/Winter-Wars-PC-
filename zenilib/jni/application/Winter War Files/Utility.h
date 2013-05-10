@@ -35,3 +35,8 @@ enum Structure_Type	{
 
 extern Zeni::String Structure_Names[NUM_STRUCTURES];
 
+//Render scaled text
+void scaled_render_text(const Zeni::String text, const Zeni::Point3f &position, const Zeni::Color &color, float range);
+
+//Makes a time string of a XX:XX format
+Zeni::String make_time_string(int seconds);
