@@ -17,7 +17,7 @@ extern float ice_intake;
 class Team
 {	
 public:
-	Team(Tile* BaseTile = 0); //Enter Players, And Color?
+	Team(Tile* BaseTile = 0, TEAM_INDEX = NEUTRAL); //Enter Players, And Color?
 	~Team(void);
 
 	void add_player(Player *);
@@ -74,7 +74,7 @@ public:
 	Zeni::String get_name_Upper_Case();
 
 	struct Team_Stats: public Stats{
-		Team_Stats();
+		Team_Stats(const std::string &color);
 		
 		int total_resources;
 		int largest_network;

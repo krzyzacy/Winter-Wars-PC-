@@ -53,10 +53,10 @@ String tips[num_tips] = {
 	"Winter Wars >>> Halo" //funny
 };
 
-int max_id = 0;
+int Player::max_id = 0;
 
 Player::Player(const Zeni::Point3f &center_) 
-	: Moveable(center_ , Vector3f(1,1,1)*35), id(max_id++), cur_tip(0),
+	: Moveable(center_ , Vector3f(1,1,1)*35), ID(max_id++), cur_tip(0),
 	m_camera(center_, Quaternion(), 5.0f, 3000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	gender(""),
@@ -65,7 +65,7 @@ Player::Player(const Zeni::Point3f &center_)
 	animation_state(new Standing()), player_boy_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["boy_hit"])),
 	player_girl_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["girl_hit"])), player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"])),
 	snowball_hit1(new Zeni::Sound_Source(Zeni::get_Sounds()["HitBySnow1"])), snowball_hit2(new Zeni::Sound_Source(Zeni::get_Sounds()["HitBySnow2"])),
-	sound_choice(0), allowed_to_calculate_movement(true), stats(id)
+	sound_choice(0), allowed_to_calculate_movement(true), stats(ID)
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
@@ -750,7 +750,7 @@ int Player::get_Team_Index() const	{
 void Player::add_message(const Zeni::String &msg, int priority, float seconds)
 {
 	if (message.is_over() || priority >= message.priority)
-	message = Message(msg, priority, seconds);
+		message = Message(msg, priority, seconds);
 }
 
 bool Player::has_message() const

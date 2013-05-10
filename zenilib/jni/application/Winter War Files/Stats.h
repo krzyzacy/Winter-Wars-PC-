@@ -26,13 +26,13 @@ public:
 
 	void send_to_server();
 
+	std::string name;
 private:
 	std::vector<int*> stat_refs;
 	std::vector<std::string> names;
 
 	std::vector<std::vector<int> > stat_history;
 
-	std::string name;
 	Zeni::Chronometer<Zeni::Time> history_time;
 };
 

@@ -181,10 +181,9 @@ public:
 
 	bool allowed_to_calculate_movement;
 
-	int get_player_id() {return id;}
-
 private: 
-	int id;
+	static int max_id;
+	int ID;
 
 	int cur_tip;
 

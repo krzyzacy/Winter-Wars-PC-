@@ -32,7 +32,9 @@ void Stats::save_to_history()
 void Stats::save_to_file()
 {
 	stringstream ss; 
-	ss <</* Game_Model::get().get_level_name() <<*/ clock() << name << string(" Stat History.txt");
+	ss << string("Stats") <<  Game_Model::get().get_level_name() 
+		<< clock() 
+		<< name << string(" Stat History.txt");
 	string filename;
 
 	ss >> filename;
