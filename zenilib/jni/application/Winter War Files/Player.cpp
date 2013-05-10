@@ -200,22 +200,38 @@ void Player::hit_tile()
 {
 	//Use math, get the family, determine which one you are closest too., 
 	//Make a vector from that and push
+
+	//OutputDebugString(("HIT TILE" + itoa(hit_count ++ ) + "\n").std_str().c_str());
+
 	center.x = backup.x;
 	center.y = backup.y;
 
 	Vector3f push_dir;
 	Tile* OnT = Game_Model::get().get_World()->get_tile(center);
+//	OutputDebugString(("CURRENT TILE       ROW: " + itoa(OnT->get_row()) + " COL: " + itoa(OnT->get_col() ) + "\n").std_str().c_str());
+
 	list<Tile*> fam = Game_Model::get().get_World()->Get_Family(OnT);
 	Tile* Closest = fam.front();
-	Vector3f close_dist = Closest->get_structure_base() - OnT->get_structure_base();
+	Vector3f close_dist = Closest->get_structure_base() - center;
+	close_dist.z = 0;
 	for(list<Tile*>::iterator it = fam.begin(); it != fam.end(); ++it)	{
-		Vector3f dist((*it)->get_structure_base() - OnT->get_structure_base());
+		Vector3f dist((*it)->get_structure_base() - center);
+		dist.z = 0;
+
+//		OutputDebugString(("***---PARSING TILE:  ROW: " + itoa((*it)->get_row()) + " COL: " + itoa((*it)->get_col() ) + "\n").std_str().c_str());
+//		OutputDebugString(("***---PARSING DIST:  " + itoa(dist.magnitude()) + "\n").std_str().c_str());
+
+
 		if(dist.magnitude() < close_dist.magnitude())	{
 			close_dist = dist;
 			Closest = (*it);
 		}
 	}
-	push_away_from(Closest->get_structure_base(), -7.5);
+//	OutputDebugString(("PUSH AWAY FROM TILE ROW: " + itoa(Closest->get_row()) + " COL: " + itoa(Closest->get_col() ) + "\n").std_str().c_str());
+	push_away_from(Closest->get_structure_base(), 12.5);
+
+	
+	//push_away_from(tile->get_top_center(), -15.0f);
 
 	//center.x = backup.x;
 	//center.y = backup.y;
