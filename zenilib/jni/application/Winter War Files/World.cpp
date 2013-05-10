@@ -327,84 +327,33 @@ Tile * World::get_next_Base_Tile()	{
 }
 
 Tile * World::player_is_looking_at(const Point3f &player_pos, Vector3f look_Dir)	{
-	//&&& Basic for now, to allow for testing
+	//&&& Basic for now, to allow for testing 
 	//If the player is "looking" to far away, like level across the board, then
 	//just return the tile next to them in that direction
 
-	//return get_tile(player_pos);
+	Tile* cur_Tile = get_tile(player_pos);
+	Point3f cur_pos = player_pos;
+	OutputDebugString(Zeni::String("Tile Standing On: row : " + itoa(cur_Tile->get_row()) + " ; col : " + itoa(cur_Tile->get_col()) + " \n").std_str().c_str());
+	OutputDebugString(Zeni::String("Current Tile:     row : " + itoa(get_tile(cur_pos)->get_row()) + " ; col : " + itoa(get_tile(cur_pos)->get_col()) + " \n").std_str().c_str());
 
+	Vector3f normalized_dir = look_Dir;
+	normalized_dir.normalize();
+
+	while(1){
+		
+		// look at a different tile
+		if(get_tile(cur_pos)->get_col() != cur_Tile->get_col() || get_tile(cur_pos)->get_row() != cur_Tile->get_row()) break;
+		// look at your own tile
+		if(cur_pos.z < get_ground_height(cur_pos)) break;
+
+		cur_pos.x += normalized_dir.x;
+		cur_pos.y += normalized_dir.y;
+		cur_pos.z += normalized_dir.z;
+
+		if(get_tile(cur_pos) == NULL) return NULL;
+	}
 	
-	if(look_Dir.x >= sqrt(3.0f) / 2){ // right
-		if(get_tile(player_pos)->get_col() != map_width - 1)
-			return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() + 1];
-		else
-			return NULL;
-	}
-	else if(look_Dir.x <= - sqrt(3.0f) / 2){ // left
-		if(get_tile(player_pos)->get_col() != 0)
-			return map[get_tile(player_pos)->get_row()][get_tile(player_pos)->get_col() - 1];
-		else
-			return NULL;
-	}
-	else if((look_Dir.x <= sqrt(3.0f) / 2 && look_Dir.x >= 0) && look_Dir.y <= 0 ){ // upright
-		if(get_tile(player_pos)->get_row() == 0)
-			return NULL;
-		else if(get_tile(player_pos)->get_row() % 2 == 1){
-			if(get_tile(player_pos)->get_col() == map_width - 1){
-				return NULL;
-			}
-			else{
-				return map[get_tile(player_pos)->get_row() - 1][get_tile(player_pos)->get_col() + 1];
-			}
-		}
-		else
-			return map[get_tile(player_pos)->get_row() - 1][get_tile(player_pos)->get_col()];	
-	}
-	else if((look_Dir.x >= - sqrt(3.0f) / 2 && look_Dir.x <= 0) && look_Dir.y <= 0 ){ // upleft
-		if(get_tile(player_pos)->get_row() == 0)
-			return NULL;
-		else if(get_tile(player_pos)->get_row() % 2 == 0){
-			if(get_tile(player_pos)->get_col() == 0){
-				return NULL;
-			}
-			else{
-				return map[get_tile(player_pos)->get_row() - 1][get_tile(player_pos)->get_col() - 1];
-			}
-		}
-		else
-			return map[get_tile(player_pos)->get_row() - 1][get_tile(player_pos)->get_col()];
-	}
-	else if((look_Dir.x <= sqrt(3.0f) / 2 && look_Dir.x >= 0) && look_Dir.y >= 0 ){ // lowerright
-		if(get_tile(player_pos)->get_row() == map_height)
-			return NULL;
-		else if(get_tile(player_pos)->get_row() % 2 == 1){
-			if(get_tile(player_pos)->get_col() == map_width - 1){
-				return NULL;
-			}
-			else{
-				return map[get_tile(player_pos)->get_row() + 1][get_tile(player_pos)->get_col() + 1];
-			}
-		}
-		else
-			return map[get_tile(player_pos)->get_row() + 1][get_tile(player_pos)->get_col()];
-			
-	}
-	else if((look_Dir.x >= - sqrt(3.0f) / 2 && look_Dir.x <= 0) && look_Dir.y >= 0 ){ // lowerleft
-		if(get_tile(player_pos)->get_row() == map_height)
-			return NULL;
-		else if(get_tile(player_pos)->get_row() % 2 == 0){
-			if(get_tile(player_pos)->get_col() == 0){
-				return NULL;
-			}
-			else{
-				return map[get_tile(player_pos)->get_row() + 1][get_tile(player_pos)->get_col() - 1];
-			}
-		}
-		else
-			return map[get_tile(player_pos)->get_row() + 1][get_tile(player_pos)->get_col()];
-	}
-	else
-		return NULL;
+	return get_tile(cur_pos);
 	
 }
 
