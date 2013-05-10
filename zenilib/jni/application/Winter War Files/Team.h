@@ -53,7 +53,9 @@ public:
 	void add_tile_to_team_network(Tile* new_tile);
 	void pay_for_building(Structure *);
 
-
+	//Public information, created for tutorial
+	bool territory_disconnected();
+	Tile* get_base()	{return Base;}
 
 	//Set Up and utility
 	int get_Player_Kills();

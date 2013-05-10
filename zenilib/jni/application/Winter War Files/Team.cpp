@@ -72,7 +72,7 @@ void Team::update()	{
 		network_unstable = false;
 	}
 
-	if (!Disconnected_Tiles.empty())
+	if (territory_disconnected())
 	{
 		message_team("ALERT: YOUR TERRITORY IS DISCONNECTED! Link it together with a structure", 100);
 	}	
@@ -448,3 +448,8 @@ Team::Team_Stats::Team_Stats() :
 		add_stat(Structure_Names[i].std_str() + "'s Built", &structures[i]);
 	}
 }
+
+bool Team::territory_disconnected()	{
+	return !Disconnected_Tiles.empty();
+}
+
