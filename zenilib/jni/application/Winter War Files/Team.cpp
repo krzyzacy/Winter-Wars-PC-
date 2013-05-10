@@ -15,11 +15,16 @@ float ice_intake = 0;
 using namespace std;
 using namespace Zeni;
 
-Team::Team(Tile* BaseTile)	:
-	Base(BaseTile), Ice_Blocks(starting_resources), intake_rate(0), Team_Color(NEUTRAL), 
-	network_unstable(false)
+Team::Team(Tile* BaseTile, TEAM_INDEX color)	:
+	Base(BaseTile), Ice_Blocks(starting_resources), intake_rate(0), Team_Color(color), 
+		network_unstable(false), spawn_position(-1), stats(/*get_name_Upper_Case().std_str()*/"FUCK")
 {
 	ResourceTime.start();
+
+	stats.add_stat("Current Resources", &Ice_Blocks);
+	stats.add_stat("Intake Rate", &intake_rate);
+
+	set_Team_Color(color);
 }
 
 Team::~Team(void)
@@ -41,13 +46,14 @@ void Team::add_player(Player *p)	{
 	p->set_Team(this);
 }
 
-Point3f Team::get_spawn_point()	const	{
-	float x = rand()%5;
-	float y = rand()%5;
+Point3f Team::get_spawn_point()	{
+	float x = 7*spawn_position;
+	float y = 7*spawn_position;
 	Point3f Spawn = Base->get_structure_base();
 	Spawn.x += x;
 	Spawn.y += y;
 	Spawn.z += 150;
+	spawn_position++;
 
 	return Spawn;
 }
@@ -143,6 +149,7 @@ void Team::set_Team_Color(TEAM_INDEX in)	{
 	Base->set_covering(SOFT_SNOW);
 	Base->set_team(Team_Color);
 	create_structure(BASE, Base, this);
+	stats.name = get_name_Upper_Case().std_str() + "Team"; 
 }
 
 void Team::add_tile(Tile *t)	{
@@ -431,8 +438,8 @@ int Team::take_resources(int amt)
 	return amt;
 }
 
-Team::Team_Stats::Team_Stats() :
-	Stats("Team"),
+Team::Team_Stats::Team_Stats(const string &color) :
+	Stats(color + "Team"),
 			total_resources(0), largest_network(0), 
 			tiles_lost(0), final_network(0), resources_spent(0)
 {

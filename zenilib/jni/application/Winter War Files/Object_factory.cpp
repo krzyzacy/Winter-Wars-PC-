@@ -48,8 +48,8 @@ Player *create_player(Team* team_,const Zeni::String &gender, Tile *tile)
 	return player;
 }
 
-Team *create_team(Tile * Base_Tile)	{
-	return new Team(Base_Tile);
+Team *create_team(Tile * Base_Tile, TEAM_INDEX color)	{
+	return new Team(Base_Tile, color);
 }
 
 /*

@@ -17,7 +17,7 @@ extern float ice_intake;
 class Team
 {	
 public:
-	Team(Tile* BaseTile = 0); //Enter Players, And Color?
+	Team(Tile* BaseTile = 0, TEAM_INDEX = NEUTRAL); //Enter Players, And Color?
 	~Team(void);
 
 	void add_player(Player *);
@@ -63,7 +63,7 @@ public:
 	int get_Resource_Rate() const { return intake_rate; }
 	void set_Team_Color(TEAM_INDEX in);
 	TEAM_INDEX get_Team_Index()	{return Team_Color;}
-	Zeni::Point3f get_spawn_point() const;
+	Zeni::Point3f get_spawn_point();
 
 	// returns null if index == number of players
 	Player *get_player(int index);
@@ -75,18 +75,18 @@ public:
 	Zeni::String get_name_Upper_Case();
 
 	struct Team_Stats: public Stats{
-		Team_Stats();
-		//int total_kills;
+		Team_Stats(const std::string &color);
+		
 		int total_resources;
 		int largest_network;
 		int tiles_lost;
 		int final_network;	
 		int resources_spent;
-		int structures[10];
+		int structures[NUM_STRUCTURES];
 	
 		int all_structures()
 		{	int ret = 0;
-			for (int i = 0 ; i < 5 ; i++)
+			for (int i = 0 ; i < NUM_STRUCTURES; i++)
 				ret += structures[i];
 			return ret;
 		}
@@ -113,6 +113,8 @@ private:
 	std::set<Tile*> Disconnected_Tiles;
 
 	Tile* Base;
+
+	int spawn_position;
 
 	void add_tile(Tile *);
 

@@ -10,8 +10,11 @@
 #include "Team.h"
 #include "Effect.h"
 
+#include <cmath>
 #include <vector>
 #include <zenilib.h>
+
+#define PI 3.1415926
 
 using namespace std;
 using namespace Zeni;
@@ -66,8 +69,53 @@ Collision_Table::Collision_Table()
 
 void Collision_Table::collideSnowballSnowball(Snowball* b1, Snowball* b2)
 {
+	if(b1 == b2)
+		return;
+
+	if(!b1->body.intersects(b2->body))
+		return;
+
+	if(b1->damage_dealt || b2->damage_dealt)
+		return;
 
 
+	if(b1->size.x > max_snowball_size/2 && b2->size.x < max_snowball_size/2)
+	{ //represents big snowball for b1
+		b2->deal_damage();
+		b1->size *= 0.8;
+	}
+
+	if(b1->size.x < max_snowball_size/2 && b2->size.x > max_snowball_size/2)
+	{ //represents big snowball for b2
+		b1->deal_damage();
+		b2->size *= 0.8;
+	}
+
+	if(b1->size.x > max_snowball_size/2 && b2->size.x > max_snowball_size/2)
+	{ //represents big snowballs both colliding
+		b2->deal_damage();
+		b1->deal_damage();
+		b1->mark_for_deletion();
+		b2->mark_for_deletion();		
+
+		Vector3f origin(b1->center);
+		float s = max_snowball_size/4;
+
+		//Wish this could be random :(
+		//them in several directions...., instead just do many based on unit circle
+		for(int i = -2; i < 3; i++)	{
+			for(int j = 0; j < 12; j++)	{
+				Vector3f direction(cos(j*PI/6), sin(j*PI/6), sin(i*PI/6));
+				Snowball *sb;
+				if(j%2 == 1)	
+					sb = new Snowball(b1->team, Point3f(origin + 20*direction), Vector3f(s,s,s));
+				else	
+					sb = new Snowball(b2->team, Point3f(origin + 20*direction), Vector3f(s,s,s));
+				sb->get_thrown(direction);
+				Game_Model::get().add_moveable(sb);
+			}
+		}
+	}
 
 }
 
@@ -164,8 +212,7 @@ void Collision_Table::collideStructurePlayer(Structure* w1, Player* ob2)
 
 void Collision_Table::collideSnowballStructure(Snowball *b2, Structure *w1)
 {
-	//if(Game_Model::get().get_World()->get_tile(w1->get_bottom_center()) == Game_Model::get().get_World()->get_center_Tile())
-	if(w1->get_type() == TREE)
+	if(w1->get_type() == TREE || w1->get_type() == BASE)
 		return;
 
 	if (!b2->body.intersects(w1->body))

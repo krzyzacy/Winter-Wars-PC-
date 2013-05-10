@@ -50,15 +50,10 @@ void Level::start_up(const vector<Player_info*> &player_info)
 	win_time = (10000.0f);
 
 
-	teams.push_back(create_team(world->get_next_Base_Tile()));
-	teams.push_back(create_team(world->get_next_Base_Tile()));
-	teams.push_back(create_team(world->get_next_Base_Tile()));
-	teams.push_back(create_team(world->get_next_Base_Tile()));
-	teams[0]->set_Team_Color(GREEN);
-	teams[1]->set_Team_Color(RED);
-	teams[2]->set_Team_Color(BLUE);
-	teams[3]->set_Team_Color(ORANGE);
-
+	teams.push_back(create_team(world->get_next_Base_Tile(), GREEN));
+	teams.push_back(create_team(world->get_next_Base_Tile(), RED));
+	teams.push_back(create_team(world->get_next_Base_Tile(), BLUE));
+	teams.push_back(create_team(world->get_next_Base_Tile(), ORANGE));
 
 	for(int i = 0; i < player_info.size() ; i++){
 		Player *p = create_player(teams[player_info[i]->colors_], player_info[i]->genders_);

@@ -29,7 +29,7 @@ float snow_depletion_rate = 25;	// Packing from pouch
 float snow_absorbtion_rate = 100;  // Scooping
 
 float Max_Stick_Input	= 32768;
-float Building_Recharge_Time = 1;
+float Building_Recharge_Time = 0.2;
 float Respawn_Time = 6;
 
 
@@ -53,10 +53,10 @@ String tips[num_tips] = {
 	"Winter Wars >>> Halo" //funny
 };
 
-int max_id = 0;
+int Player::max_id = 0;
 
 Player::Player(const Zeni::Point3f &center_) 
-	: Moveable(center_ , Vector3f(1,1,1)*35), id(max_id++), cur_tip(0),
+	: Moveable(center_ , Vector3f(1,1,1)*35), ID(max_id++), cur_tip(0),
 	m_camera(center_, Quaternion(), 5.0f, 3000.0f),
 	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
 	gender(""),
@@ -65,15 +65,21 @@ Player::Player(const Zeni::Point3f &center_)
 	animation_state(new Standing()), player_boy_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["boy_hit"])),
 	player_girl_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["girl_hit"])), player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"])),
 	snowball_hit1(new Zeni::Sound_Source(Zeni::get_Sounds()["HitBySnow1"])), snowball_hit2(new Zeni::Sound_Source(Zeni::get_Sounds()["HitBySnow2"])),
-	sound_choice(0), allowed_to_calculate_movement(true), stats(id)
+	sound_choice(0), allowed_to_calculate_movement(true), stats(ID)
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
+	m_camera.look_at(Game_Model::get().get_center_tile()->get_top_center());
+
 	rotation = m_camera.orientation + Quaternion(Global::pi_over_two + Global::pi_over_two/2, 0,0);
 
 	//player_sound_test = new Zeni::Sound_Source(Zeni::get_Sounds()["meow"]);
 	//rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0, 0);
 	//rotation += Quaternion(Global::pi_over_two, 0,0);
+
+	stats.add_stat("X pos", &center.x);
+	stats.add_stat("Y pos", &center.y);
+
 
 	Player_Movement_Message_Ticker.reset();
 	Player_Movement_Message_Ticker.start();
@@ -203,8 +209,9 @@ void Player::hit_tile()
 
 	//OutputDebugString(("HIT TILE" + itoa(hit_count ++ ) + "\n").std_str().c_str());
 
-	center.x = backup.x;
-	center.y = backup.y;
+	//Anit geting stuck measures
+	//center.x = backup.x;
+	//center.y = backup.y;
 
 	Vector3f push_dir;
 	Tile* OnT = Game_Model::get().get_World()->get_tile(center);
@@ -228,8 +235,8 @@ void Player::hit_tile()
 		}
 	}
 //	OutputDebugString(("PUSH AWAY FROM TILE ROW: " + itoa(Closest->get_row()) + " COL: " + itoa(Closest->get_col() ) + "\n").std_str().c_str());
-	push_away_from(Closest->get_structure_base(), 12.5);
-
+	//push_away_from(Closest->get_structure_base(), 12.5);
+	push_away_from(Closest->get_structure_base(), 25);
 	
 	//push_away_from(tile->get_top_center(), -15.0f);
 
@@ -754,7 +761,7 @@ int Player::get_Team_Index() const	{
 void Player::add_message(const Zeni::String &msg, int priority, float seconds)
 {
 	if (message.is_over() || priority >= message.priority)
-	message = Message(msg, priority, seconds);
+		message = Message(msg, priority, seconds);
 }
 
 bool Player::has_message() const
