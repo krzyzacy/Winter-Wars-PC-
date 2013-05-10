@@ -75,17 +75,17 @@ public:
 
 	struct Team_Stats: public Stats{
 		Team_Stats();
-		//int total_kills;
+		
 		int total_resources;
 		int largest_network;
 		int tiles_lost;
 		int final_network;	
 		int resources_spent;
-		int structures[10];
+		int structures[NUM_STRUCTURES];
 	
 		int all_structures()
 		{	int ret = 0;
-			for (int i = 0 ; i < 5 ; i++)
+			for (int i = 0 ; i < NUM_STRUCTURES; i++)
 				ret += structures[i];
 			return ret;
 		}

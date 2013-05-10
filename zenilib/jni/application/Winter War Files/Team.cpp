@@ -20,6 +20,9 @@ Team::Team(Tile* BaseTile)	:
 	network_unstable(false)
 {
 	ResourceTime.start();
+
+	stats.add_stat("Current Resources", &Ice_Blocks);
+	stats.add_stat("Intake Rate", &intake_rate);
 }
 
 Team::~Team(void)
