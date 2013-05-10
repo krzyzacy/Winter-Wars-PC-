@@ -62,7 +62,7 @@ public:
 	int get_Resources()	const {return Ice_Blocks;}
 	void set_Team_Color(TEAM_INDEX in);
 	TEAM_INDEX get_Team_Index()	{return Team_Color;}
-	Zeni::Point3f get_spawn_point() const;
+	Zeni::Point3f get_spawn_point();
 
 	// returns null if index == number of players
 	Player *get_player(int index);
@@ -112,6 +112,8 @@ private:
 	std::set<Tile*> Disconnected_Tiles;
 
 	Tile* Base;
+
+	int spawn_position;
 
 	void add_tile(Tile *);
 

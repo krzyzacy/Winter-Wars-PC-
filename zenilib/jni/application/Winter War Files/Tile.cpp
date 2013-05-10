@@ -10,7 +10,7 @@ using namespace std;
 
 float Min_Tile_Height = 50;
 float Inner_Max_TH = 175;  
-const float Outer_Max_TH = 175;
+float Outer_Max_TH = 175;
 
 Tile::Tile(const float tile_size__,
 		   const Zeni::Point3f &center__,
