@@ -440,7 +440,7 @@ Team::Team_Stats::Team_Stats() :
 	add_stat("Largest Network", &largest_network);
 	add_stat("Tiles Lost", &tiles_lost);
 	add_stat("Final Network", &final_network);
-	add_stat("Resources_Spent", &resources_spent);
+	add_stat("Resources Spent", &resources_spent);
 
 	for (int i = 0 ; i < NUM_STRUCTURES ; i++)
 	{

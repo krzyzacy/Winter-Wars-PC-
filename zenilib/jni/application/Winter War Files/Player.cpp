@@ -298,7 +298,7 @@ void Player::throw_ball() {
 	if (current_radius > max_snowball_size/2)
 		stats.num_large_snowballs++;
 	else
-		stats.num_small_snowballs--;
+		stats.num_small_snowballs++;
 
 	Game_Model::get().add_moveable(sb);
 
@@ -788,7 +788,7 @@ void Player::play_sound()
 
 
 Player::Player_Stats::Player_Stats(int id) :
-	Stats("PLayer" + itoa(id).std_str()),
+	Stats("Player" + itoa(id).std_str()),
 			kills(0), deaths(0), thrown(0),
 			hit(0), biggest_snowball(0), 
 			num_large_snowballs(0),
