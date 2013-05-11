@@ -55,6 +55,9 @@ void Level::start_up(const vector<Player_info*> &player_info)
 	teams.push_back(create_team(world->get_next_Base_Tile(), BLUE));
 	teams.push_back(create_team(world->get_next_Base_Tile(), ORANGE));
 
+	Effect *e = new Effect("skysphere", get_center_tile()->get_top_center(), Vector3f(50,50,50), 100000);
+	view->add_renderable(e);
+
 	for(int i = 0; i < player_info.size() ; i++){
 		Player *p = create_player(teams[player_info[i]->colors_], player_info[i]->genders_);
 		add_player(p);
