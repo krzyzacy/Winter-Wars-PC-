@@ -118,14 +118,14 @@ Build_Other_Structures::Build_Other_Structures()	{
 	
 	ev.put_in_game(10,12,2,2);
 	ev.put_in_game(10,11,2,2);
-	ev.put_in_game(10,10,2,1);
+	ev.put_in_game(10,10,2,2);
 	ev.put_in_game(10,9,2,4);
 	ev.put_in_game(10,8,2,3);
 	ev.put_in_game(9,11,2,2);
 	ev.put_in_game(9,10,2,4);
 	ev.put_in_game(9,9,2,2);
 	ev.put_in_game(8,9,2,2);
-	ev.put_in_game(8,8,2,1);
+	ev.put_in_game(8,8,2,2);
 	ev.put_in_game(8,7,2,2);
 	
 		
@@ -143,9 +143,9 @@ Build_Other_Structures::Build_Other_Structures()	{
 bool Build_Other_Structures::has_been_completed()
 {	
 	if (Game_Model::get().get_player(0)->get_team()->stats.structures[HEALING_POOL]
-	&& Game_Model::get().get_player(0)->get_team()->stats.structures[FORT]
-	&& Game_Model::get().get_player(0)->get_team()->stats.structures[SNOWMAN]
-	&& Game_Model::get().get_player(0)->get_team()->stats.structures[SNOW_FACTORY]
+		&& Game_Model::get().get_player(0)->get_team()->stats.structures[FORT]
+		&& Game_Model::get().get_player(0)->get_team()->stats.structures[SNOWMAN]
+		&& Game_Model::get().get_player(0)->get_team()->stats.structures[SNOW_FACTORY]
 	)
 		return true;
 
@@ -249,14 +249,14 @@ Destroy_Key_Enemy_Structures::Destroy_Key_Enemy_Structures()
 	
 	ev.put_in_game(10,12,2,2);
 	ev.put_in_game(10,11,2,2);
-	ev.put_in_game(10,10,2,1);
+	ev.put_in_game(10,10,2,2);
 	ev.put_in_game(10,9,2,4);
 	ev.put_in_game(10,8,2,3);
 	ev.put_in_game(9,11,2,2);
 	ev.put_in_game(9,10,2,4);
 	ev.put_in_game(9,9,2,2);
 	ev.put_in_game(8,9,2,2);
-	ev.put_in_game(8,8,2,1);
+	ev.put_in_game(8,8,2,2);
 	ev.put_in_game(8,7,2,2);
 	
 	list<Tile*> tree_ring = Game_Model::get().get_World()->Get_Family(Game_Model::get().get_World()->get_center_Tile());
@@ -334,20 +334,20 @@ Defend_Your_Claim::Defend_Your_Claim()
 	
 	ev.put_in_game(10,12,2,2);
 	ev.put_in_game(10,11,2,2);
-	ev.put_in_game(10,10,2,1);
+	ev.put_in_game(10,10,2,2);
 	ev.put_in_game(10,9,2,4);
 	ev.put_in_game(10,8,2,3);
 	ev.put_in_game(9,11,2,2);
 	ev.put_in_game(9,10,2,4);
 	ev.put_in_game(9,9,2,2);
 	ev.put_in_game(8,9,2,2);
-	ev.put_in_game(8,8,2,1);
+	ev.put_in_game(8,8,2,SNOW_FACTORY);
 	ev.put_in_game(8,7,2,2);
 	
-	list<Tile*> tree_ring = Game_Model::get().get_World()->Get_Family(Game_Model::get().get_World()->get_center_Tile());
-	for(list<Tile*>::iterator it = tree_ring.begin(); it != tree_ring.end(); ++it)	{
-		create_structure(SNOWMAN, (*it), Game_Model::get().get_team(RED - 1));
-	}
+//	list<Tile*> tree_ring = Game_Model::get().get_World()->Get_Family(Game_Model::get().get_World()->get_center_Tile());
+//	for(list<Tile*>::iterator it = tree_ring.begin(); it != tree_ring.end(); ++it)	{
+//		create_structure(HEALING_POOL, (*it), Game_Model::get().get_team(RED - 1));
+//	}
 
 	wait_to_claim_tree.start();
 	
@@ -357,9 +357,13 @@ Defend_Your_Claim::Defend_Your_Claim()
 bool Defend_Your_Claim::has_been_completed()
 {//represents win?
 	if(wait_to_claim_tree.seconds() > 5)	{
+		Build_Event ev;
+
+		ev.put_in_game(7,7, 2, SNOW_FACTORY);
 		create_structure(TREE, Game_Model::get().get_World()->get_center_Tile(), Game_Model::get().get_team(RED - 1));
 		wait_to_claim_tree.reset();
 		wait_to_claim_tree.stop();
+		message = "Red Team Stole The Tree from you!!! Build over it or destroy their connection to it!";
 	}
 
 	return false;
