@@ -37,6 +37,7 @@ private:
 	std::vector<std::vector<int>> stat_history;
 	
 	std::vector<std::vector<float>> float_stat_history;
+	std::vector<std::string> float_names;
 
 	Zeni::Chronometer<Zeni::Time> history_time;
 };

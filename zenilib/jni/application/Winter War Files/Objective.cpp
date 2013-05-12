@@ -350,8 +350,6 @@ Defend_Your_Claim::Defend_Your_Claim()
 //	}
 
 	wait_to_claim_tree.start();
-	
-
 }
 
 bool Defend_Your_Claim::has_been_completed()

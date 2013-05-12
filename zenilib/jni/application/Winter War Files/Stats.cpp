@@ -15,10 +15,9 @@ void Stats::add_stat(const string &name, int *stat)
 	stat_refs.push_back(stat);
 }
 
-
 void Stats::add_stat(const string &name, float *stat)
 {
-	names.push_back(name);
+	float_names.push_back(name);
 	float_stats.push_back(stat);
 }
 
@@ -29,12 +28,13 @@ void Stats::save_to_history()
 		return;
 
 	stat_history.push_back(vector<int>());
-
+	float_stat_history.push_back(vector<float>());
+	
 	for (int i = 0 ; i < stat_refs.size() ; i++)
 		stat_history.at(stat_history.size()-1).push_back(*stat_refs[i]);
 
-	//for (int i = 0 ; i < float_stats.size() ; i++)
-	//	stat_history.at(float_stat_history.size()-1).push_back(*float_stats[i]);
+	for (int i = 0 ; i < float_stats.size() ; i++)
+		float_stat_history.at(float_stat_history.size()-1).push_back(*float_stats[i]);
 
 
 	history_time.reset();
@@ -56,6 +56,9 @@ void Stats::save_to_file()
 
 	for (int i = 0 ; i < names.size() ; i++)
 		fout << names[i] << "\t";
+	
+	for (int i = 0 ; i < float_names.size() ; i++)
+		fout << float_names[i] << "\t";
 
 	fout << endl;
 
@@ -64,10 +67,9 @@ void Stats::save_to_file()
 		for (int j = 0 ; j < stat_history.at(i).size() ; j++)
 			fout << stat_history[i][j] << "\t";
 		
-		//for (int j = 0 ; j < float_stat_history.at(i).size() ; j++)
-		//	fout << float_stat_history[i][j] << "\t";
-
-
+		for (int j = 0 ; j < float_stat_history.at(i).size() ; j++)
+			fout << float_stat_history[i][j] << "\t";
+		
 		fout << endl;
 	}
 	

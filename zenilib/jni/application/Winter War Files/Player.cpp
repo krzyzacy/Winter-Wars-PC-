@@ -181,6 +181,7 @@ void Player::player_death()	{
 	stats.deaths++;
 	dead_mode = true;
 }
+
 void Player::respawn()	{
 	Deathclock.stop();
 	Deathclock.reset();
@@ -659,7 +660,7 @@ bool Player::create_building(Structure_Type Building)	{
 	}
 	catch (Error &E)
 	{
-		add_message(E.msg);
+		add_message(E.msg, 20000);
 		return false;
 	}
 }
@@ -761,7 +762,9 @@ int Player::get_Team_Index() const	{
 void Player::add_message(const Zeni::String &msg, int priority, float seconds)
 {
 	if (message.is_over() || priority >= message.priority)
+	{
 		message = Message(msg, priority, seconds);
+	}
 }
 
 bool Player::has_message() const

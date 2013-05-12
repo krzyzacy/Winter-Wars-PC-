@@ -47,7 +47,7 @@ struct Message
 
 	bool is_over() const
 		{ return (time - timer.seconds()) < 0;}
-	
+
 	Zeni::String msg;
 	int priority;
 private:
@@ -212,7 +212,7 @@ private:
 	Zeni::Chronometer<Zeni::Time> ShakeTime;
 	Zeni::Chronometer<Zeni::Time> Deathclock;
 
-	/* "" if no message */
+	/* "" if no message */  
 	Message message;
 
 	bool mini_open;

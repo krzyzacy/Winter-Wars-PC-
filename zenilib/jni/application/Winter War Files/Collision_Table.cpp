@@ -10,6 +10,7 @@
 #include "Team.h"
 #include "Effect.h"
 
+
 #include <cmath>
 #include <vector>
 #include <zenilib.h>
@@ -69,6 +70,8 @@ Collision_Table::Collision_Table()
 
 void Collision_Table::collideSnowballSnowball(Snowball* b1, Snowball* b2)
 {
+
+
 	if(b1 == b2)
 		return;
 
@@ -170,7 +173,6 @@ void Collision_Table::collidePlayerSnowball(Player* p1, Snowball* b1)
 	if (p1->is_player_KO() )
 	{
 		b1->owner->stats.kills++;	
-	
 	}
 }
 
