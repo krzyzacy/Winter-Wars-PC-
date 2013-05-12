@@ -100,8 +100,37 @@ Objective* Defend_Your_Claim::get_next_Objective()
 	return NULL;
 }
 
+Use_Tips::Use_Tips()
+{
+	message = "Press C throughout this tutorial to learn things about the game.";
+
+
+	tips.push_back("Good! Press this button if you forget what to do or want more info about the game.");
+	
+}
+
+bool Use_Tips::has_been_completed()
+{
+	return Game_Model::get().get_player(0)->stats.tips > 1;
+}
+
+Objective *Use_Tips::get_next_Objective()
+{
+	return new Build_Structure(HEALING_POOL);
+}
+
 Build_Structure::Build_Structure(int type_) : type(type_)
-{ message = "Build a " + Structure_Names[type] + " by right clicking towards the tile you want."; }
+{
+	message = "Build a " + Structure_Names[type] + " by right clicking towards the tile you want."; 
+
+	Game_Model::get().get_player(0)->reset_tips();
+
+	tips.push_back("Healing Pools will heal you if you stand them.");
+	tips.push_back("The number below the structure Icon in the top left is how many resources structures cost");
+	tips.push_back("The box above has your team's total resources and the rate your resources are increasing");
+
+
+}
 
 bool Build_Structure::has_been_completed()
 {
@@ -137,6 +166,13 @@ Build_Other_Structures::Build_Other_Structures()	{
 		create_structure(FORT, (*it), Game_Model::get().get_team(RED - 1));
 	}
 
+	Game_Model::get().get_player(0)->reset_tips();
+
+	tips.push_back("There are four structures: Healing Pools, Snow Factories, Snowmen, and Forts");
+	tips.push_back("Building on Soft Snow will give you 50 resources per second; Hard snow gives 30");
+	tips.push_back("Building on Ice will give you NO resources");
+
+	tips.push_back(message);
 
 }
 
@@ -158,21 +194,12 @@ Throw_Snowball_At_Enemy::Throw_Snowball_At_Enemy()
 	Game_Model::get().add_player(create_player(Game_Model::get().get_team(RED-1), "Boy"
 		, Game_Model::get().get_tile(6,5)));
 
-	//Changed from 11 to 6, 5
+	Game_Model::get().get_player(0)->reset_tips();
+	tips.push_back("Larger Snowballs do more damage");
+	tips.push_back("Large snowballs explode when they hit other large snowballs");
+	tips.push_back("If a small snowball hits a large snowball, it will deal damage to it");
 
-
-	/*
-	for(int i = 0; i < 10; i++){
-		for(int j = 0; j < 10; j++){
-			Snowball *sb = new Snowball(Game_Model::get().get_player(1),
-				Point3f(50 * (i + 5), 50 * (j + 5), 1000), Vector3f(20, 20, 20));
-
-			sb->get_thrown(Vector3f(0, 0, 0));
-
-			Game_Model::get().add_moveable(sb);
-		}
-	}
-	*/
+	tips.push_back(message);
 }
 
 bool Throw_Snowball_At_Enemy::has_been_completed()
@@ -185,7 +212,11 @@ bool Throw_Snowball_At_Enemy::has_been_completed()
 }
 
 Pack_Snowball::Pack_Snowball()
-{ message = "Hold the Left Mouse Button down to pack snow from your snow pouch and make a larger snowball"; }
+{
+	message = "Hold the Left Mouse Button down to pack snow from your snow pouch and make a larger snowball"; 
+
+	tips.push_back(message);
+}
 
 bool Pack_Snowball::has_been_completed()
 {
@@ -199,6 +230,9 @@ Scoop_Snow::Scoop_Snow() :
 	start_scooped(Game_Model::get().get_player(0)->stats.amount_scooped)
 {
 	message = "Hold E to scoop up snow and put it in your snow pouch, you must be on a soft snow tile";
+	tips.push_back("The white bar in the upper left is your snow pouch");
+	tips.push_back("When your snow pouch is empty, you must scoop more from soft snow tiles.");
+	tips.push_back(message);
 }
 
 bool Scoop_Snow::has_been_completed()
@@ -213,7 +247,7 @@ Destroy_Structures::Destroy_Structures()
 {
 	message = "Destroy Enemy Stuctures by shooting snowballs at them";
 
-
+	tips.push_back(message);
 }
 
 bool Destroy_Structures::has_been_completed()
@@ -223,7 +257,14 @@ bool Destroy_Structures::has_been_completed()
 }
 
 Raise_Lower_Tiles::Raise_Lower_Tiles()
-{ message = "Press R and F to raise and lower tiles"; }
+{
+	message = "Press R and F to raise and lower tiles"; 
+	
+	Game_Model::get().get_player(0)->reset_tips();
+	tips.push_back("You can use tiles to protect your base from enemies attacking");
+	tips.push_back(message);
+
+}
 
 bool Raise_Lower_Tiles::has_been_completed()
 {
@@ -243,7 +284,7 @@ bool Build_a_Chain_To_Tree::has_been_completed()
 
 Destroy_Key_Enemy_Structures::Destroy_Key_Enemy_Structures()
 {
-	message = "Destroy key enemy structures that link the rest of their network to their base, and they will all disappear!";
+	message = "Destroy key enemy structures that link the rest of their territory to their base, and they will all disappear!";
 
 	Build_Event ev;
 	
@@ -263,12 +304,20 @@ Destroy_Key_Enemy_Structures::Destroy_Key_Enemy_Structures()
 	for(list<Tile*>::iterator it = tree_ring.begin(); it != tree_ring.end(); ++it)	{
 		create_structure(FORT, (*it), Game_Model::get().get_team(RED - 1));
 	}
+
+	Game_Model::get().get_player(0)->reset_tips();
+	tips.push_back("Use the mini map (TAB) to look for weak points in the enemy's territory");
+	tips.push_back("If you see their territory is only connected by one tile, go destroy it");
+	tips.push_back("Disconnected Structures are inactive for a few seconds, giving the team a chance to re-connect it.");
+	tips.push_back("If the team doesn't reconnect the inactive tiles, they will be destroyed after a few seconds");
+	tips.push_back(message);
+
 }
 
 bool Destroy_Key_Enemy_Structures::has_been_completed()
 {
 	if(Game_Model::get().get_team(RED-1)->territory_disconnected())	{
-		isolation_survival_time = 0;
+		isolation_survival_time = 20;
 		return true;
 	}
 
@@ -278,7 +327,7 @@ bool Destroy_Key_Enemy_Structures::has_been_completed()
 Rescue_Your_Network::Rescue_Your_Network()	
 	: snowballs_caused_disconnect(false)
 {
-	message = "The Enemy has disconnected part of your network from your base,\nreconnect it with Structures before it disappears!";
+	message = "The Enemy has disconnected part of your territory from your base,\nreconnect it with Structures before it disappears!";
 
 	list<Tile*> base_ring = Game_Model::get().get_World()->Get_Family(Game_Model::get().get_team(GREEN - 1)->get_base());
 	for(list<Tile*>::iterator it = base_ring.begin(); it != base_ring.end(); ++it)	{
@@ -290,15 +339,17 @@ Rescue_Your_Network::Rescue_Your_Network()
 		}
 	}
 
-	//like 20 days or so, should be plenty
-	//isolation_survival_time = 1000000;
+	
+	Game_Model::get().get_player(0)->reset_tips();
+	tips.push_back("Use the mini map (TAB) to find where there is a missing link in your territory");
+	tips.push_back("Go back and add a structure to any missing tiles");
+	tips.push_back("After enough time passes, the inactive structures will be destroyed and you will have to rebuild");
 
 
 }
 
 bool Rescue_Your_Network::has_been_completed()
 {
-	isolation_survival_time = 1000000;
 	//First wait for the snowballs to drop and kill it
 	//Then If they reconnect it move on
 	if(Game_Model::get().get_team(GREEN - 1)->territory_disconnected())	{
@@ -316,6 +367,10 @@ bool Rescue_Your_Network::has_been_completed()
 
 Claim_The_Tree::Claim_The_Tree()	{
 	message = "Build on the Tree to claim it for your team!";
+	
+	Game_Model::get().get_player(0)->reset_tips();
+	tips.push_back("The goal of the game is to claim the tree for 20 seconds");
+	tips.push_back(message);
 
 	
 }
@@ -329,6 +384,14 @@ Defend_Your_Claim::Defend_Your_Claim()
 	:claim_count(0)
 {
 	message = "Defend the tree for 20 seconds by destroying enemies next to it, or reclaiming it as your own!";
+	
+	Game_Model::get().get_player(0)->reset_tips();
+	tips.push_back("If the Caution Triangle or the lights on the tree is not your color, then you don't have the tree claimed!");
+	tips.push_back("If you lose the tree, you can build on it to reclaim it, if the tree is connected to your base.");
+	tips.push_back("If another team has the tree, disconnecting their territory from the tree will release it");
+
+	tips.push_back(message);
+
 
 	Build_Event ev;
 	
@@ -361,7 +424,7 @@ bool Defend_Your_Claim::has_been_completed()
 		create_structure(TREE, Game_Model::get().get_World()->get_center_Tile(), Game_Model::get().get_team(RED - 1));
 		wait_to_claim_tree.reset();
 		wait_to_claim_tree.stop();
-		message = "Red Team Stole The Tree from you!!! Build over it or destroy their connection to it!";
+		
 	}
 
 	return false;

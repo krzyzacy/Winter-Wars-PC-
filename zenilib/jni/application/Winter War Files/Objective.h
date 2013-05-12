@@ -17,6 +17,16 @@ protected:
 	Zeni::String message;
 };
 
+class Use_Tips : public Objective
+{
+public:
+	Use_Tips();
+	~Use_Tips() {}
+	Objective* get_next_Objective();
+	bool has_been_completed();
+
+};
+
 class Build_Structure : public Objective
 {
 public:

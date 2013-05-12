@@ -9,7 +9,7 @@ using namespace std;
 
 Tutorial_Level::Tutorial_Level()
 {
-	current_objective = new Build_Structure(HEALING_POOL);
+	current_objective = new Use_Tips();
 	//We should set the globals to original here
 	
 	parameters.find("Starting Resources").set_value(7000);
@@ -20,7 +20,6 @@ Tutorial_Level::Tutorial_Level()
 Tutorial_Level::~Tutorial_Level() 
 {
 	parameters.find("Starting Resources").reset();
-
 }
 
 string Tutorial_Level::get_level_name()
@@ -49,10 +48,12 @@ void Tutorial_Level::update()
 
 	if(current_objective->has_been_completed())
 	{
+		Objective *old_ob = current_objective;
+
 		//Make success doobers happen here
 		current_objective = current_objective->get_next_Objective();
-		// You didn't delete the objective!!!!
 		
+		delete old_ob;
 		
 		get_player(0)->add_message(current_objective->get_message_to_display(), 10000, 100);
 	}

@@ -37,7 +37,8 @@ const Vector3f jump_vec(0,0,500);
 float Stick_Accel = 1200;
 
 const int num_tips = 13;
-String tips[num_tips] = {
+vector<String> tips;
+/*{
 	"Show the next tip by pressing (Y).",
 	"Point at a tile in front of you and build with (X).",
 	"You can only build structures next to your existing structures",
@@ -51,7 +52,7 @@ String tips[num_tips] = {
 	"Structures become inactive if they aren't connected to your base.",
 	"After a structure is inactive, you need to reconnect it, or it will be destroyed!",
 	"Winter Wars >>> Halo" //funny
-};
+};*/
 
 int Player::max_id = 0;
 
@@ -779,7 +780,20 @@ Zeni::String Player::get_message() const
 
 void Player::next_tip()
 {	
-	add_message(tips[cur_tip++%num_tips], 50);
+	stats.tips++;
+	if (!tips.size())
+	{
+		add_message("No Tips Available");
+		return;
+	}
+	
+	add_message(tips[cur_tip++%tips.size()], 10000);
+}
+
+void Player::reset_tips()
+{
+	tips.clear();
+	cur_tip = 0;
 }
 
 void Player::play_sound()
@@ -804,7 +818,7 @@ void Player::play_sound()
 Player::Player_Stats::Player_Stats(int id) :
 	Stats("Player" + itoa(id).std_str()),
 			kills(0), deaths(0), thrown(0),
-			hit(0), biggest_snowball(0), 
+			hit(0), tips(0), biggest_snowball(0), 
 			num_large_snowballs(0),
 			num_small_snowballs(0), amount_scooped(0),
 			tiles_raised(0), tiles_lowered(0), friendly_hit(0),
@@ -827,6 +841,7 @@ Player::Player_Stats::Player_Stats(int id) :
 	add_stat("Amount Scooped", &amount_scooped); 
 	add_stat("Tiles Raised", &tiles_raised);
 	add_stat("Tiles Lowered", &tiles_lowered);		
+	add_stat("Tips", &tips);
 			
 }
 

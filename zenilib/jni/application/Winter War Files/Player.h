@@ -35,6 +35,8 @@ enum Build_State	{
 		REST, RECHARGE_BUILD
 };
 
+extern std::vector<Zeni::String> tips;
+
 struct Message
 {
 	/*priorities*/
@@ -148,6 +150,7 @@ public:
 	void add_message(const Zeni::String &, int priority = 0, float seconds = 3);
 	
 	void next_tip();
+	void reset_tips();
 
 	/* true if there is a message*/
 	bool has_message() const;
@@ -164,6 +167,7 @@ public:
 		int deaths;
 		int thrown;
 		int hit;
+		int tips;
 		int biggest_snowball;
 		int num_large_snowballs;
 		int num_small_snowballs;

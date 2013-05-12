@@ -138,7 +138,7 @@ bool Controls::take_keyboard_input(const SDL_KeyboardEvent &event)	{
 		//case SDLK_v:
 		//	input.LSHOULDER = event.state == SDL_PRESSED;
 		//	break;
-		case SDLK_t:
+		case SDLK_c:
 			input.tip = event.state == SDL_PRESSED;
 			break;
 		case SDLK_r:
