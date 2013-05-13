@@ -105,7 +105,7 @@ Use_Tips::Use_Tips()
 	message = "Press C throughout this tutorial to learn things about the game.";
 
 
-	tips.push_back("Good! Press this button if you forget what to do or want more info about the game.");
+	tips.push_back("Good! Press this button if you forget what to do \nor want more info about the game.");
 	
 }
 
@@ -126,8 +126,6 @@ Build_Structure::Build_Structure(int type_) : type(type_)
 	Game_Model::get().get_player(0)->reset_tips();
 
 	tips.push_back("Healing Pools will heal you if you stand them.");
-	tips.push_back("The number below the structure Icon in the top left is how many resources structures cost");
-	tips.push_back("The box above has your team's total resources and the rate your resources are increasing");
 
 
 }
@@ -169,7 +167,10 @@ Build_Other_Structures::Build_Other_Structures()	{
 	Game_Model::get().get_player(0)->reset_tips();
 
 	tips.push_back("There are four structures: Healing Pools, Snow Factories, Snowmen, and Forts");
-	tips.push_back("Building on Soft Snow will give you 50 resources per second; Hard snow gives 30");
+	tips.push_back("The number below the structure Icon in the top right is how many resources structures cost");
+	tips.push_back("The box above has your team's total resources and the rate your resources are increasing");
+	tips.push_back("Every second, each tile in your territory earns you resources");
+	tips.push_back("Building on Soft Snow will give you more resources per second than Hard Snow");
 	tips.push_back("Building on Ice will give you NO resources");
 
 	tips.push_back(message);
@@ -197,7 +198,8 @@ Throw_Snowball_At_Enemy::Throw_Snowball_At_Enemy()
 	Game_Model::get().get_player(0)->reset_tips();
 	tips.push_back("Larger Snowballs do more damage");
 	tips.push_back("Large snowballs explode when they hit other large snowballs");
-	tips.push_back("If a small snowball hits a large snowball, it will deal damage to it");
+	tips.push_back("If a small snowball hits a large snowball, it will be destroyed");
+	tips.push_back("You can Jump with SPACE");
 
 	tips.push_back(message);
 }
@@ -213,7 +215,7 @@ bool Throw_Snowball_At_Enemy::has_been_completed()
 
 Pack_Snowball::Pack_Snowball()
 {
-	message = "Hold the Left Mouse Button down to pack snow from your snow pouch and make a larger snowball"; 
+	message = "Hold the Left Mouse Button down to pack snow \nfrom your snow pouch and make a larger snowball"; 
 
 	tips.push_back(message);
 }
@@ -229,8 +231,8 @@ bool Pack_Snowball::has_been_completed()
 Scoop_Snow::Scoop_Snow() :
 	start_scooped(Game_Model::get().get_player(0)->stats.amount_scooped)
 {
-	message = "Hold E to scoop up snow and put it in your snow pouch, you must be on a soft snow tile";
-	tips.push_back("The white bar in the upper left is your snow pouch");
+	message = "Hold E to scoop up snow and put it in your snow pouch,\nyou must be on a soft snow tile";
+	tips.push_back("The white bar in the upper right is your snow pouch");
 	tips.push_back("When your snow pouch is empty, you must scoop more from soft snow tiles.");
 	tips.push_back(message);
 }
@@ -284,7 +286,7 @@ bool Build_a_Chain_To_Tree::has_been_completed()
 
 Destroy_Key_Enemy_Structures::Destroy_Key_Enemy_Structures()
 {
-	message = "Destroy key enemy structures that link the rest of their territory to their base, and they will all disappear!";
+	message = "Destroy key enemy structures that link the rest of their territory to their base,\n and the will become inactive";
 
 	Build_Event ev;
 	
@@ -295,9 +297,9 @@ Destroy_Key_Enemy_Structures::Destroy_Key_Enemy_Structures()
 	ev.put_in_game(10,8,2,3);
 	ev.put_in_game(9,11,2,2);
 	ev.put_in_game(9,10,2,4);
-	ev.put_in_game(9,9,2,2);
-	ev.put_in_game(8,9,2,2);
-	ev.put_in_game(8,8,2,2);
+	ev.put_in_game(9,9,2,SNOW_FACTORY);
+	ev.put_in_game(8,9,2,SNOW_FACTORY);
+	ev.put_in_game(8,8,2,SNOW_FACTORY);
 	ev.put_in_game(8,7,2,2);
 	
 	list<Tile*> tree_ring = Game_Model::get().get_World()->Get_Family(Game_Model::get().get_World()->get_center_Tile());

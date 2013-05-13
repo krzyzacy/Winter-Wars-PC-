@@ -787,7 +787,7 @@ void Player::next_tip()
 		return;
 	}
 	
-	add_message(tips[cur_tip++%tips.size()], 10000);
+	add_message(tips[cur_tip++%tips.size()], 10000, 10);
 }
 
 void Player::reset_tips()
