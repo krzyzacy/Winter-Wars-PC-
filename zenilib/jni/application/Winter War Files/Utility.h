@@ -38,5 +38,8 @@ extern Zeni::String Structure_Names[NUM_STRUCTURES];
 //Render scaled text
 void scaled_render_text(const Zeni::String text, const Zeni::Point3f &position, const Zeni::Color &color, float range);
 
+//Render scaled text, scaled by height
+void scaled_render_text_height(const Zeni::String text, const Zeni::Point3f &position, const Zeni::Color &color, float height);
+
 //Makes a time string of a XX:XX format
 Zeni::String make_time_string(int seconds);

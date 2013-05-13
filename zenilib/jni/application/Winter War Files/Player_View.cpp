@@ -87,8 +87,8 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 	//render_image("IceBlock",Point2f(topLeft.x + unit_px * 410, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 450, topLeft.y + unit_px * 45));
 	render_image("coin",Point2f(bottomRight.x - unit_px * 93, topLeft.y + unit_px * 12),Point2f(bottomRight.x - unit_px * 69, topLeft.y + unit_px * 36));
 
-	scaled_render_text(itoa((int)player->get_Team_Blocks()), Point3f(bottomRight.x - unit_px * 65, topLeft.y + unit_px * 10, 0), Color(0xCCFF1111), unit_px * 30);
-	scaled_render_text("+" + itoa((int)player->get_Team_Resource_Rate()), Point3f(bottomRight.x - unit_px * 65, topLeft.y + unit_px * 26, 0), Color(0xCCFF1111), unit_px * 20);
+	scaled_render_text_height(itoa((int)player->get_Team_Blocks()), Point3f(bottomRight.x - unit_px * 65, topLeft.y + unit_px * 10, 0), Color(0xCCFF1111), unit_px * 30);
+	scaled_render_text_height("+" + itoa((int)player->get_Team_Resource_Rate()), Point3f(bottomRight.x - unit_px * 65, topLeft.y + unit_px * 26, 0), Color(0xCCFF1111), unit_px * 20);
 
 	render_image("Heart",Point2f(topLeft.x + unit_px * 180, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 220, topLeft.y + unit_px * 45));
 	render_image("Snowball",Point2f(topLeft.x + unit_px * 515, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 555, topLeft.y + unit_px * 45));
