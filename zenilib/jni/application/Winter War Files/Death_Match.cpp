@@ -21,7 +21,7 @@ Death_Match::~Death_Match()
 
 string Death_Match::get_level_name() 
 {
-	return "Death_Match_Level"; 
+	return "Snowball_Fight"; 
 }
 
 bool Death_Match::win()

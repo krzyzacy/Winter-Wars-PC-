@@ -34,7 +34,7 @@ public:
 	Level();
 	virtual ~Level();
 
-	virtual std::string get_level_name();
+	virtual std::string get_level_name() = 0;
 
 	virtual void update();
 	virtual void render() const;

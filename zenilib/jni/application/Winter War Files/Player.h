@@ -187,8 +187,8 @@ public:
 
 	bool allowed_to_calculate_movement;
 
-private: 
 	static int max_id;
+private: 
 	int ID;
 
 	int cur_tip;

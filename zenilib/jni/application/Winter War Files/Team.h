@@ -67,6 +67,7 @@ public:
 
 	// returns null if index == number of players
 	Player *get_player(int index);
+	int num_players() {return members.size();}
 
 	 // returns "orange", "blue", etc.
 	Zeni::String get_name();

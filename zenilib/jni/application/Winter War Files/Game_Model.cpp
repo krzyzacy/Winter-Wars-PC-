@@ -1,19 +1,8 @@
 #include "Game_Model.h"
-#include "View.h"
-#include "World.h"
 #include "Object_factory.h"
 
-#include "Player.h"
-#include "Team.h"
-#include "Player_View.h"
-#include "Snowball.h"
-#include "Structure.h"
-#include "Effect.h"
-#include "Controls.h"
-
-#include "Tile.h"
-
 #include <zenilib.h>
+#include <fstream>
 #include "Zeni/Joysticks.h"
 #include "WWClient.h"
 
@@ -24,7 +13,19 @@ using namespace Zeni;
 
 Game_Model::Game_Model(void)
 {
+	// get max id
+	ifstream fin_id("game_id");
+	fin_id >> id;
+	fin_id.close();
 
+}
+
+Game_Model::~Game_Model(void)
+{
+	// save max id
+	ofstream fout_id("game_id");
+	fout_id << id;
+	fout_id.close();
 }
 
 void Game_Model::change_level(Level *new_level)
@@ -36,28 +37,31 @@ void Game_Model::change_level(Level *new_level)
 
 void Game_Model::start_up(const vector<Player_info*> &player_info)
 {
+	id++;
+	
 	breaking = new Zeni::Sound_Source(get_Sounds()["breaking"]);
 	chainbreak = new Zeni::Sound_Source(get_Sounds()["chainbreak"]);
 	presentplace = new Zeni::Sound_Source(get_Sounds()["presentplace"]);
 	snowballthrow = new Zeni::Sound_Source(get_Sounds()["snowballthrow"]);
 	bgm = new Zeni::Sound_Source(get_Sounds()["bgm"]);
 
-	breaking->set_gain(0.35);
-	breaking->set_pitch(0.8);
+	breaking->set_gain(0.35f);
+	breaking->set_pitch(0.8f);
 
-	chainbreak->set_gain(0.32);
-	chainbreak->set_pitch(0.8);
+	chainbreak->set_gain(0.32f);
+	chainbreak->set_pitch(0.8f);
 
-	presentplace->set_gain(0.8);
-	presentplace->set_pitch(0.8);
+	presentplace->set_gain(0.8f);
+	presentplace->set_pitch(0.8f);
 
-	snowballthrow->set_gain(0.8);
-	snowballthrow->set_pitch(2);
+	snowballthrow->set_gain(0.8f);
+	snowballthrow->set_pitch(2.0f);
 
 	bgm->set_looping(1);
 
-	play_bgm();
 
+	play_bgm();
+	
 	current_level->start_up(player_info);
 }
 
@@ -78,6 +82,7 @@ void Game_Model::restart()
 
 void Game_Model::clean()
 {
+	current_level->clean();
 	delete current_level;
 
 	//delete sounds
@@ -85,11 +90,6 @@ void Game_Model::clean()
 	delete chainbreak;
 	delete presentplace;
 	delete snowballthrow;
-}
-
-Game_Model::~Game_Model(void)
-{
-
 }
 
 void Game_Model::update()
@@ -254,4 +254,9 @@ int Game_Model::num_players_here()
 string Game_Model::get_level_name()
 {
 	return current_level->get_level_name();
+}
+
+int Game_Model::get_game_id()
+{
+	return id;
 }
