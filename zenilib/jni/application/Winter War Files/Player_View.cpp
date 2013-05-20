@@ -146,8 +146,8 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 		}
 		else{ // redical
 			Point2f r_center;
-			r_center.x = topLeft.x + unit_px * 480;
-			r_center.y = topLeft.y + unit_px * 300;
+			r_center.x = (topLeft.x + bottomRight.x)/2;
+			r_center.y = (topLeft.y + bottomRight.y)/2;
 
 			float scale = 20.0f;
 			if(player->get_packing_timer() >= 1.0f)
