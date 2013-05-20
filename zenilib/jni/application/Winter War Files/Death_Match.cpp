@@ -27,22 +27,26 @@ string Death_Match::get_level_name()
 bool Death_Match::win()
 {
 	Team* winning_team = nullptr;
+	int winning_team_score = 0;
 	bool tie = false;
 
 	for(int i = 0; i < 4; i++)
 	{
 		Team* t = get_team(i);
+		int team_score = t->get_Player_Kills() - t->get_Player_Teamkills();
 		if(!winning_team)
 		{
 			winning_team = t;
+			winning_team_score = team_score;
 		}
-		else if(t->get_Player_Kills() == winning_team->get_Player_Kills())
+		else if(team_score == winning_team_score)
 		{
 			tie = true;
 		}
-		else if(t->get_Player_Kills() > winning_team->get_Player_Kills())
+		else if(team_score > winning_team_score)
 		{
 			winning_team = t;
+			winning_team_score = team_score;
 			tie = false;
 		}
 	}
@@ -56,7 +60,7 @@ bool Death_Match::win()
 		return true;
 	}
 	else if(!tie && 
-		    winning_team->get_Player_Kills() >= parameters.find("Max Kills Deathmatch").get_value())
+		    winning_team_score >= parameters.find("Max Kills Deathmatch").get_value())
 	{
 		return true;
 	}

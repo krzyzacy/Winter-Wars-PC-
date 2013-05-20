@@ -59,6 +59,7 @@ public:
 
 	//Set Up and utility
 	int get_Player_Kills() const;
+	int get_Player_Teamkills() const;
 	int get_Resources()	const {return Ice_Blocks;}
 	int get_Resource_Rate() const { return intake_rate; }
 	void set_Team_Color(TEAM_INDEX in);

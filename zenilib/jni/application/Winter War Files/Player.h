@@ -164,6 +164,7 @@ public:
 		Player_Stats(int id);
 
 		int kills;
+		int friendly_kills;
 		int deaths;
 		int thrown;
 		int hit;

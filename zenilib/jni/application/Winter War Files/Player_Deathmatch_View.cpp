@@ -18,16 +18,15 @@ Player_Deathmatch_View::~Player_Deathmatch_View()
 void Player_Deathmatch_View::render_hud(const Zeni::Point2f &topLeft, const Zeni::Point2f &bottomRight)
 {
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
-
-
+	
 	Player_View::render_hud(topLeft, bottomRight);
 	Zeni::Point2f bottomLeft(topLeft.x, bottomRight.y);
-	int team_kills = get_player()->get_team()->get_Player_Kills();
+	int team_score = get_player()->get_team()->get_Player_Kills() - get_player()->get_team()->get_Player_Teamkills();
 	int time_left = Game_Model::get().get_time_left();
 	const Color &team_color = get_Colors()[get_player()->get_team()->get_name()];
 
 	render_image("PriceBox", Point2f(bottomLeft.x, bottomLeft.y - unit_px * 75), Point2f(bottomLeft.x + unit_px * 96, bottomLeft.y + unit_px * 117));
-	scaled_render_text_height("Score:    " + itoa(team_kills), Point3f(bottomLeft.x + unit_px * 8, bottomLeft.y - unit_px * 55, 0), team_color, unit_px * 20);
+	scaled_render_text_height("Score:   " + itoa(team_score), Point3f(bottomLeft.x + unit_px * 8, bottomLeft.y - unit_px * 55, 0), team_color, unit_px * 20);
 	scaled_render_text_height("Time:  " + make_time_string(int(time_left)), Point3f(bottomLeft.x + unit_px * 8, bottomLeft.y - unit_px * 33, 0), team_color, unit_px * 20);
 }
 

@@ -817,7 +817,7 @@ void Player::play_sound()
 
 Player::Player_Stats::Player_Stats(int id) :
 	Stats(string("Player") + itoa(id).std_str()),
-			kills(0), deaths(0), thrown(0),
+			kills(0), friendly_kills(0), deaths(0), thrown(0),
 			hit(0), tips(0), biggest_snowball(0), 
 			num_large_snowballs(0),
 			num_small_snowballs(0), amount_scooped(0),
