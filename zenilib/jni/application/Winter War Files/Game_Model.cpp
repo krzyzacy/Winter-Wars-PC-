@@ -14,7 +14,7 @@ using namespace Zeni;
 Game_Model::Game_Model(void)
 {
 	// get max id
-	ifstream fin_id("game_id");
+	ifstream fin_id("stats\\game_id");
 	fin_id >> id;
 	fin_id.close();
 
@@ -23,7 +23,7 @@ Game_Model::Game_Model(void)
 Game_Model::~Game_Model(void)
 {
 	// save max id
-	ofstream fout_id("game_id");
+	ofstream fout_id("stats\\game_id");
 	fout_id << id;
 	fout_id.close();
 }
