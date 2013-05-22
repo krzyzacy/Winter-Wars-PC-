@@ -50,6 +50,7 @@ public:
 	void clean();
 
 	std::string get_level_name();
+	int get_game_id();
 
 	// returns true if some team has won
 	// stops the clock if yes
@@ -120,5 +121,6 @@ private:
 	Zeni::Sound_Source * bgm;
 
 	Level *current_level;
+	int id;
 
 };

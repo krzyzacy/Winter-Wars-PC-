@@ -1,2 +1,0 @@
-Kills	Deaths	Snowballs Thrown	Hit	Friendly Fire	Structures Built	Structures Destroyed	Damage Dealt	Damage Taken	Snow Used	Biggest Snowball	# Large	# Small	Amount Scooped	Tiles Raised	Tiles Lowered	
-0	0	6	0	0	0	0	0	0	0	0	3	-3	0	0	0	

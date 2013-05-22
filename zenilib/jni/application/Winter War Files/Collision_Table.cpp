@@ -172,7 +172,13 @@ void Collision_Table::collidePlayerSnowball(Player* p1, Snowball* b1)
 	// he killed the player
 	if (p1->is_player_KO() )
 	{
-		b1->owner->stats.kills++;	
+		//Keep track of friendly fire kills separately
+		if (p1->get_team() == b1->team)
+		{
+			b1->owner->stats.friendly_kills++;
+		}
+		else
+			b1->owner->stats.kills++;
 	}
 }
 

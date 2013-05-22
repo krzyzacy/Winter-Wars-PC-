@@ -43,16 +43,11 @@ void Stats::save_to_history()
 
 void Stats::save_to_file()
 {
-	stringstream ss; 
-	ss << string("Stats") <<  Game_Model::get().get_level_name() 
-		<< clock() 
-		<< name << string(" Stat History.txt");
+	string filename = string("Stats") + Game_Model::get().get_level_name() 
+		+ Zeni::itoa(Game_Model::get().get_game_id()).std_str()
+		+ name;
 
-	string filename;
-
-	ss >> filename;
-	
-	ofstream fout((filename).c_str());
+	ofstream fout(("stats//" + (filename + string(" Stat History.txt"))).c_str());
 
 	for (int i = 0 ; i < names.size() ; i++)
 		fout << names[i] << "\t";

@@ -64,6 +64,14 @@ int Team::get_Player_Kills() const {
 	return team_kills;
 }
 
+int Team::get_Player_Teamkills() const {
+	int teamkills = 0;
+	for_each(members.begin(), members.end(), 
+		     [&teamkills](Player* p)
+	         { teamkills += p->stats.friendly_kills; });
+	return teamkills;
+}
+
 void Team::update()	{
 	//First do stuff based on the network from the last step
 	if(Base->get_covering() != SOFT_SNOW)

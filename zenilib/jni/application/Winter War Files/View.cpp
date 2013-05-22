@@ -43,14 +43,14 @@ void View::render() const
 	int num_players = player_views.size();
 	
 	if (num_players > 1)
-		ySize = height / 2;
-	else
-		ySize = height;
-
-	if (num_players > 2)
 		xSize = width / 2;
 	else
 		xSize = width;
+
+	if (num_players > 2)
+		ySize = height / 2;
+	else
+		ySize = height;
 
 	
 	Vector2f topLeft(0, 0),
@@ -71,7 +71,7 @@ void View::render() const
 			render_player(3, middle, middle + xSize_v+ySize_v);
 	}
 	else if (num_players == 2) // if only two players put player 2 on bottom
-		render_player(1, topLeft+ySize_v, topLeft+ySize_v + middle);
+		render_player(1, topLeft+xSize_v, topLeft+xSize_v + middle);
 
 
 	get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(width, height)), true);
@@ -88,7 +88,7 @@ void View::render() const
 			render_player_hud(3, middle, middle + xSize_v+ySize_v);
 	}
 	else if (num_players == 2) // if only two players put player 2 on bottom
-		render_player_hud(1, topLeft+ySize_v, topLeft+ySize_v + middle);
+		render_player_hud(1, topLeft+xSize_v, topLeft+xSize_v + middle);
 }
 
 Player_View *cur_View; // The current player we are viewing

@@ -39,7 +39,6 @@ vector<String> tips;
 };*/
 
 
-
 Player::Player(Team* team_, const std::string &gender_)
 	: Elf(team_, gender_),
 	cur_tip(0),
@@ -517,8 +516,8 @@ void Player::reset_tips()
 
 
 Player::Player_Stats::Player_Stats(int id) :
-	Stats("Player" + itoa(id).std_str()),
-			kills(0), deaths(0), thrown(0),
+	Stats(string("Player") + itoa(id).std_str()),
+			kills(0), friendly_kills(0), deaths(0), thrown(0),
 			hit(0), tips(0), biggest_snowball(0), 
 			num_large_snowballs(0),
 			num_small_snowballs(0), amount_scooped(0),

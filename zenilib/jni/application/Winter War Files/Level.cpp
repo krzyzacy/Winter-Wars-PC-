@@ -31,16 +31,12 @@ Level::Level()
 
 Level::~Level(void)
 {
-	clean();
-}
-
-string Level::get_level_name()
-{ 
-	return "Level"; 
+//	clean();
 }
 
 void Level::start_up(const vector<Player_info*> &player_info)
 {
+	Player::max_id = 1; // id needs to be based on Network stuff too!
 	init_player_info = player_info;
 
 	view = (new View());
@@ -126,7 +122,8 @@ void Level::clean()
 		(*it)->stats.save_to_file();
 
 	for(vector<Team*>::iterator it = teams.begin(); it != teams.end(); ++it)
-		(*it)->stats.save_to_file();
+		if ((*it)->num_players())
+			(*it)->stats.save_to_file();
 
 
 	//Everything is a collidable in all the other lists, so this represents all things
