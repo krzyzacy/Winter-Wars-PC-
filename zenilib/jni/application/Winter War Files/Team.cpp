@@ -43,7 +43,6 @@ Player *Team::get_player(int index)
 
 void Team::add_player(Player *p)	{
 	members.push_back(p);
-	p->set_Team(this);
 }
 
 Point3f Team::get_spawn_point()	{
@@ -53,8 +52,7 @@ Point3f Team::get_spawn_point()	{
 	Spawn.x += x;
 	Spawn.y += y;
 	Spawn.z += 150;
-	spawn_position++;
-
+	spawn_position = (++spawn_position)%5;
 	return Spawn;
 }
 

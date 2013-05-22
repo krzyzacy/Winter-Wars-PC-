@@ -379,6 +379,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClInclude Include="..\..\jni\application\Winter War Files\Controls.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Death_Match.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Effect.h" />
+    <ClInclude Include="..\..\jni\application\Winter War Files\Elf.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\End_Game_State.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Enums.h" />
     <ClInclude Include="..\..\jni\application\Winter War Files\Event.h" />
@@ -662,6 +663,7 @@ xcopy ..\..\jni\external\bin\x64 ..\..\bin\x64 /E /Y</Command>
     <ClCompile Include="..\..\jni\application\Winter War Files\Credits_State.h" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Death_Match.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Effect.cpp" />
+    <ClCompile Include="..\..\jni\application\Winter War Files\Elf.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\End_Game_State.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Event.cpp" />
     <ClCompile Include="..\..\jni\application\Winter War Files\Fortress.cpp" />

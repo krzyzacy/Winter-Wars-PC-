@@ -2,6 +2,7 @@
 #include "Globals.h"
 
 #include "Structure.h"
+#include "Elf.h"
 #include "Player.h"
 #include "Team.h"
 

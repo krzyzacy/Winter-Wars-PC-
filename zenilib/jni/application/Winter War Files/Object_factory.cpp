@@ -23,27 +23,28 @@ using namespace Zeni;
 
 Player *create_player(Team* team_,const Zeni::String &gender)
 {
-	Player* player = new Player(team_->get_spawn_point());
-	
+	std::string gen;
 	if (gender == "Boy" || gender == "boy")
-		player->set_Gender("boy");
+		gen = "boy";
 	else if (gender == "Girl" || gender == "girl")
-		player->set_Gender("girl");
+		gen = "girl";
 	
+	Player* player = new Player(team_, gen);
 	team_->add_player(player);
 	return player;
 }
 
 
 Player *create_player(Team* team_,const Zeni::String &gender, Tile *tile)
-{
-	Player* player = new Player(tile->get_bottom_center());
-	
+{//This is only used in the tutorial. But it seems, ..odd
+	std::string gen;
 	if (gender == "Boy" || gender == "boy")
-		player->set_Gender("boy");
+		gen = "boy";
 	else if (gender == "Girl" || gender == "girl")
-		player->set_Gender("girl");
+		gen = "girl";
 	
+	Player* player = new Player(team_, gen);
+	player->teleport(tile->get_bottom_center() + Zeni::Point3f(0,0,50));
 	team_->add_player(player);
 	return player;
 }

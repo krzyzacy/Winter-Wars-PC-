@@ -16,25 +16,9 @@ using namespace std;
 using namespace Zeni;
 
 const int Player::player_ID_c = 1;
-
-float standard_speed = 200;
 float turn_speed = 40;
 float up_look_speed = 20;
 
-float Max_Player_Health = 100;	
-float Max_Snow_Amount = 100;		// most you can scoop/reload
-float max_snowball_size = 50;		// most you can pack/charge	
-float packing_rate = 50;			// Packing to snowball
-float snow_depletion_rate = 25;	// Packing from pouch
-float snow_absorbtion_rate = 100;  // Scooping
-
-float Max_Stick_Input	= 32768;
-float Building_Recharge_Time = 0.2;
-float Respawn_Time = 6;
-
-
-const Vector3f jump_vec(0,0,500);
-float Stick_Accel = 1200;
 
 const int num_tips = 13;
 vector<String> tips;
@@ -54,19 +38,15 @@ vector<String> tips;
 	"Winter Wars >>> Halo" //funny
 };*/
 
-int Player::max_id = 0;
 
-Player::Player(const Zeni::Point3f &center_) 
-	: Moveable(center_ , Vector3f(1,1,1)*35), ID(max_id++), cur_tip(0),
-	m_camera(center_, Quaternion(), 5.0f, 3000.0f),
-	current_radius(0.0f), Snow_in_Pack(Max_Snow_Amount), health(Max_Player_Health), 
-	gender(""),
-	myTeam(0), backup(center_), Jumping(ON_GROUND), Builder(REST), Selection(HEALING_POOL), stick_theta(0.0f),
-	mini_open(false), build_open(false),dead_mode(false),hit_timer(0.0f),throw_timer(0.0f),packing_timer(0.0f),
-	animation_state(new Standing()), player_boy_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["boy_hit"])),
-	player_girl_hit(new Zeni::Sound_Source(Zeni::get_Sounds()["girl_hit"])), player_dead(new Zeni::Sound_Source(Zeni::get_Sounds()["Dead"])),
-	snowball_hit1(new Zeni::Sound_Source(Zeni::get_Sounds()["HitBySnow1"])), snowball_hit2(new Zeni::Sound_Source(Zeni::get_Sounds()["HitBySnow2"])),
-	sound_choice(0), allowed_to_calculate_movement(true), stats(ID)
+
+Player::Player(Team* team_, const std::string &gender_)
+	: Elf(team_, gender_),
+	cur_tip(0),
+	m_camera(center, Quaternion(), 5.0f, 3000.0f),
+	stick_theta(0.0f),
+	mini_open(false), 
+	build_open(false)
 {
 	//field of view in y
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
@@ -78,24 +58,10 @@ Player::Player(const Zeni::Point3f &center_)
 	//rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0, 0);
 	//rotation += Quaternion(Global::pi_over_two, 0,0);
 
-	stats.add_stat("X pos", &center.x);
-	stats.add_stat("Y pos", &center.y);
-
-
-	Player_Movement_Message_Ticker.reset();
-	Player_Movement_Message_Ticker.start();
 }
-
 
 Player::~Player(void)
-{
-	//Delete sounds
-	delete player_boy_hit;
-	delete player_girl_hit;
-	delete player_dead;
-	delete snowball_hit1;
-	delete snowball_hit2;
-}
+{}
 
 void Player::adjust_pitch(float phi) {
     const Quaternion backup = m_camera.orientation;
@@ -117,33 +83,9 @@ void Player::turn_left(float theta) {
 }
 
 void Player::update(const float &time)	{
-	backup = center;
-	
-	if(Deathclock.seconds() > Respawn_Time)
-		respawn();
+	Elf::update(time);
 
-	if(is_player_KO())
-		return;
-
-	Moveable::update(time);
 	m_camera.position = center;
-
-	if(hit_timer >= 1.0f){
-		hit_timer += time;
-		if(hit_timer > 2.0f)
-			hit_timer = 0.0f;
-	}
-
-	if(throw_timer >= 1.0f){
-		throw_timer += time;
-		if(throw_timer > 2.0f)
-			throw_timer = 0.0f;
-	}
-
-	if(packing_timer >= 1.0f && packing_timer < 2.1f){
-		packing_timer += time;
-	}
-	
 
 	if(Player_Movement_Message_Ticker.seconds() > 0.5)
 	{
@@ -156,47 +98,116 @@ void Player::update(const float &time)	{
 	stats.save_to_history();
 }
 
-void Player::player_death()	{
-
-	if(!player_dead->is_playing())
-	{
-		player_dead->set_gain(0.2);
-		player_dead->play();
-	}
-
-	if(gender == "girl")
-	{
-		player_girl_hit->set_gain(0.8);
-		player_boy_hit->set_pitch(2);
-		player_girl_hit->play();
-	}
-
-	if(gender == "boy")
-	{
-		player_boy_hit->set_gain(0.8);
-		player_boy_hit->set_pitch(3.5);
-		player_boy_hit->play();
-	}
-
-	Deathclock.start();
-	stats.deaths++;
-	dead_mode = true;
+void Player::get_damaged(float damage)	{
+	Elf::get_damaged(damage);
+	if(health > 0)
+		ShakeTime.start();
 }
 
-void Player::respawn()	{
-	Deathclock.stop();
-	Deathclock.reset();
-	dead_mode = false;
-	health = Max_Player_Health;
-	Snow_in_Pack = Max_Snow_Amount;
+void Player::throw_ball()	{
+	if(is_player_KO())
+		return;
+	
+	if(current_radius <= 0)	{
+		//if radius is 0, means out of snow, and therefore don't throw
+		return;
+	}
+
+	Game_Model::get().play_snowballthrow();
+
+	Snowball *sb = new Snowball(this, center+m_camera.get_forward(), 
+									Vector3f(current_radius, current_radius,current_radius));
+	sb->get_thrown(m_camera.get_forward());
+	
+	if (current_radius > max_snowball_size/2)
+		stats.num_large_snowballs++;
+	else
+		stats.num_small_snowballs++;
+
+	Game_Model::get().add_moveable(sb);
+
+	Throw_Snowball_Event(this, center+m_camera.get_forward()
+		, m_camera.get_forward(), current_radius);
 
 	current_radius = 0;
-	packing_timer = 0.0f;
+	switch_state(THROW);
+	stats.thrown++;
 
-	center = myTeam->get_spawn_point();
-	switch_state(RESPAWN);
+	throw_timer = 1.0f;
+	packing_timer = 0.0f;
 }
 
+void Player::charge_ball()	{
+	Elf::charge_ball();
+
+		// not enough snow
+	if(Snow_in_Pack <= 0) 	{
+		add_message("Out of Ammo! Find SOFT SNOW and refill (B).");
+		Snow_in_Pack = 0;
+	}
+}
+
+bool Player::create_building(Structure_Type Building)	{
+	//Returns true if building was created, false if unable
+		
+	Tile *t = Game_Model::get().get_World()->player_is_looking_at(center, m_camera.get_forward());
+	
+	if(t->has_building() && t->get_building()->get_type() == Building)
+		return false;
+	
+	
+	//true if the player is trying to build on the tree
+	if(t->has_building() && t->get_building()->get_type() == TREE)
+		Building = TREE;
+
+	try {
+		if(myTeam->allowed_to_build_on_Tile(t) && myTeam->can_afford_building(Building))	{
+			Build_Event(create_structure(Building, t, myTeam));
+			return true;
+		}
+
+		//Checks if the tile can be built upon
+		return false;
+	}
+	catch (Error &E)
+	{
+		add_message(E.msg, 20000);
+		return false;
+	}
+}
+
+void Player::Make_Building(bool Go)	{
+	if(is_player_KO())	{
+		Builder = REST;
+		return;
+	}
+	
+	switch(Builder)	{
+	case REST:
+		//Oay to build fire away
+		if(!Go)
+			return;
+
+		if(create_building(Selection))	{
+			stats.built++;
+			Builder = RECHARGE_BUILD;
+			BuildTime.start();
+		}
+		else
+			Builder = REST;
+		break;
+	case RECHARGE_BUILD:
+		if(BuildTime.seconds() >= Building_Recharge_Time)	{
+			BuildTime.stop();
+			BuildTime.reset();
+			Builder = REST;
+		}
+		break;
+	default:
+		Builder = REST;
+		break;
+	}
+}
 
 void Player::off_map()
 {
@@ -256,132 +267,13 @@ void Player::on_ground()
 	center.z = Game_Model::get().get_World()->get_ground_height(center) + size.z/2 + 10.0f;
 }
 
-void Player::get_damaged(float damage)
-{
-	health -= damage;
-	stats.damage_taken += damage;
 
-	if (health < 0)	{
-		health = 0;
-		switch_state(DIE);
-		player_death();
-	}
-	else{
-		hit_timer = 1.0f;
 
-		if(gender == "girl" && !player_girl_hit->is_playing())
-			{
-			player_girl_hit->set_gain(0.8);
-			player_boy_hit->set_pitch(2);
-			player_girl_hit->play();
-			}
 
-		if(gender == "boy" && !player_boy_hit->is_playing())
-			{
-			player_boy_hit->set_gain(0.8);
-			player_boy_hit->set_pitch(3.5);
-			player_boy_hit->play();
-			}
-		switch_state(FLINCH);
-	}
-	
-	if(health > 0)
-		ShakeTime.start();
-}
 
-void Player::throw_ball() {
-	if(is_player_KO())
-		return;
-	
-	if(current_radius <= 0)	{
-		//if radius is 0, means out of snow, and therefore don't throw
-		return;
-	}
 
-	Game_Model::get().play_snowballthrow();
 
-	Snowball *sb = new Snowball(this, center+m_camera.get_forward(), 
-									Vector3f(current_radius, current_radius,current_radius));
-	sb->get_thrown(m_camera.get_forward());
-	
-	if (current_radius > max_snowball_size/2)
-		stats.num_large_snowballs++;
-	else
-		stats.num_small_snowballs++;
 
-	Game_Model::get().add_moveable(sb);
-
-	Throw_Snowball_Event(this, center+m_camera.get_forward()
-		, m_camera.get_forward(), current_radius);
-
-	current_radius = 0;
-	switch_state(THROW);
-	stats.thrown++;
-
-	throw_timer = 1.0f;
-	packing_timer = 0.0f;
-
-}
-
-// PACK!!!
-void Player::charge_ball()	{
-	if(is_player_KO())
-		return;
-	//This represents when the player is "packing" snow into a ball
-	const float time = Game_Model::get().get_time_step();
-
-	// not enough snow
-	if(Snow_in_Pack <= 0) 	{
-		add_message("Out of Ammo! Find SOFT SNOW and refill (B).");
-		Snow_in_Pack = 0;
-	}
-	
-	//Too big
-	else if (current_radius >= max_snowball_size)	{
-		current_radius = max_snowball_size;
-	}
-	
-	// lets grow it
-	else	{
-		if(packing_timer < 0.5f)
-			packing_timer = 1.0f;
-		current_radius += packing_rate * time;
-		stats.snow_used += packing_rate * time;
-			
-		Snow_in_Pack -= snow_depletion_rate * time;
-		switch_state(PACK);
-	}
-}
-
-// SCOOP!!!!
-void Player::scoop_snow()	
-{
-	if(is_player_KO())
-		return;
-	
-	//This will change, but exists for now as a simple test function
-	if (!is_on_ground())
-		return;
-
-	if(!Game_Model::get().get_World()->allowed_to_scoop(center))
-		return;
-
-	switch_state(SCOOP);
-
-	const float time = Game_Model::get().get_time_step();
-	if(Snow_in_Pack >= Max_Snow_Amount)
-		Snow_in_Pack = Max_Snow_Amount;
-	else
-	{
-		Snow_in_Pack += snow_absorbtion_rate * time;
-		stats.amount_scooped += snow_absorbtion_rate * time;
-	}
-
-}
-
-void Player::stop_scooping()	{
-//	switch_state(STAND);
-}
 
  void Player::calculate_movement(const Vector2f input_vel)	{
 	 if(is_player_KO())
@@ -485,54 +377,8 @@ void Player::stop_scooping()	{
 	
 }
 
- void Player::push_away_from(Point3f &P, const float force)	{
-	 Vector3f shove(center - P);
-	 shove.z = 0;
-	 shove *= force;
-	 set_velocity(Vector3f(0,0, velocity.z));
-	 accelerate(shove, Game_Model::get().get_time_step());
- }
+
  
-void Player::jump()	{
-	if(is_player_KO())
-		return;
-	switch(Jumping)	{
-	case ON_GROUND:
-		switch_state(JUMP);
-		AirTime.start();
-		accelerate(jump_vec, Game_Model::get().get_time_step());
-		Jumping = BOOST;
-		break;
-	case BOOST:
-		{
-		switch_state(JUMP);
-		if(AirTime.seconds() <= 0.4)	
-			accelerate(jump_vec, Game_Model::get().get_time_step());
-		else	{
-			Jumping = FALLING_WITH_STYLE;
-			AirTime.stop();
-			AirTime.reset();
-		}
-		break;
-		}
-	case FALLING_WITH_STYLE:
-		{
-		if(is_on_ground())
-			Jumping = ON_GROUND;
-		break;
-		}
-	case JET_PACK:
-		accelerate(jump_vec, Game_Model::get().get_time_step());
-		break;
-	default:
-		if(is_on_ground())
-			Jumping = ON_GROUND;
-		else
-			Jumping = FALLING_WITH_STYLE;
-		break;
-	}
-	
-}
 
 void Player::handle_struct_type_change(bool left, bool right)	{
 	if(left && right)
@@ -565,38 +411,7 @@ void Player::handle_struct_type_change(bool left, bool right)	{
 
 }
 
-void Player::Make_Building(bool Go)	{
-	if(is_player_KO())	{
-		Builder = REST;
-		return;
-	}
-	
-	switch(Builder)	{
-	case REST:
-		//Oay to build fire away
-		if(!Go)
-			return;
 
-		if(create_building(Selection))	{
-			stats.built++;
-			Builder = RECHARGE_BUILD;
-			BuildTime.start();
-		}
-		else
-			Builder = REST;
-		break;
-	case RECHARGE_BUILD:
-		if(BuildTime.seconds() >= Building_Recharge_Time)	{
-			BuildTime.stop();
-			BuildTime.reset();
-			Builder = REST;
-		}
-		break;
-	default:
-		Builder = REST;
-		break;
-	}
-}
 
 void Player::determine_active_view(bool build, bool mini)	{
 	mini_open = mini;
@@ -637,65 +452,12 @@ Structure_Type Player::select_type(const Vector2f &stick)	{
 		return HEALING_POOL;
 }
 
-bool Player::create_building(Structure_Type Building)	{
-	//Returns true if building was created, false if unable
-		
-	Tile *t = Game_Model::get().get_World()->player_is_looking_at(center, m_camera.get_forward());
-	
-	if(t->has_building() && t->get_building()->get_type() == Building)
-		return false;
-	
-	
-	//true if the player is trying to build on the tree
-	if(t->has_building() && t->get_building()->get_type() == TREE)
-		Building = TREE;
 
-	try {
-		if(myTeam->allowed_to_build_on_Tile(t) && myTeam->can_afford_building(Building))	{
-			Build_Event(create_structure(Building, t, myTeam));
-			return true;
-		}
 
-		//Checks if the tile can be built upon
-		return false;
-	}
-	catch (Error &E)
-	{
-		add_message(E.msg, 20000);
-		return false;
-	}
-}
 
-void Player::jet_pack_mode(bool state)	{
-	if(state) //Super easy to add as a power up
-		Jumping = JET_PACK;
-	else if(Jumping == JET_PACK)
-		Jumping = FALLING_WITH_STYLE;
-}
 
-void Player::raise_tile()	{
-	//Add restrictions and shit to this later
-	//wnership etc.
-	Game_Model::get().get_World()->raise_tile(center);
-}
 
-void Player::lower_tile()	{
-	Game_Model::get().get_World()->lower_tile(center);
-}
 
-void Player::create_body()
-{
-	body = Zeni::Collision::Capsule(center + Vector3f(0, 0 , size.z*0.25)
-		, center - Vector3f(0, 0, size.z*0.25), size.z*0.25);
-}
-
-int Player::get_Team_Blocks() const	{
-	return myTeam->get_Resources();
-}
-
-int Player::get_Team_Resource_Rate() const {
-	return myTeam->get_Resource_Rate();
-}
 
 bool Player::vibrate_feedback()	{
 
@@ -710,55 +472,10 @@ bool Player::vibrate_feedback()	{
 }
 
 
-const model_key_t Player::get_model_name() const
-{
-	string Teamname;
-	switch(myTeam->get_Team_Index())	{
-	case GREEN:
-		Teamname = "green";
-		break;
-	case RED:
-		Teamname = "red";
-		break;
-	case BLUE:
-		Teamname = "blue";
-		break;
-	case ORANGE:
-		Teamname = "orange";
-		break;
-	default:
-		Teamname = "blue";
-		break;
-	}
 
-	//return animation_state->get_model_name();
-	return Teamname + gender + animation_state->get_model_name();
-}
 
-Animator *Player::get_animator() const
-{
-	return animation_state;
-}
 
-void Player::switch_state(PlayerEvent_e pevent)
-{
-	PlayerAnimator *next = animation_state->get_next(pevent);
-	if (next)
-	{
-		delete animation_state;
-		animation_state = next;
-	}
-}
 
-void Player::healing_waters(float health_up)	{
-	health += health_up;
-	if(health > Max_Player_Health)
-		health = Max_Player_Health;
-}
-
-int Player::get_Team_Index() const	{
-	return myTeam->get_Team_Index();
-}
 
 void Player::add_message(const Zeni::String &msg, int priority, float seconds)
 {
@@ -796,23 +513,7 @@ void Player::reset_tips()
 	cur_tip = 0;
 }
 
-void Player::play_sound()
-{
-	sound_choice++;
-	sound_choice = sound_choice%2;
-	if (sound_choice == 1)
-		{
-		snowball_hit1->set_gain(1.5);
-		snowball_hit1->set_pitch(1.5);
-		snowball_hit1->play();
-		}
-	else
-		{
-		snowball_hit2->set_gain(1);
-		snowball_hit2->set_pitch(3);
-		snowball_hit2->play();
-		}
-}
+
 
 
 Player::Player_Stats::Player_Stats(int id) :
@@ -845,11 +546,4 @@ Player::Player_Stats::Player_Stats(int id) :
 			
 }
 
-void Player::stop_lowering()	{
-	stats.tiles_lowered++;
-}
-
-void Player::stop_raising()	{
-	stats.tiles_raised++;
-}
 
