@@ -50,6 +50,45 @@ void End_Game_State::on_joy_button(const SDL_JoyButtonEvent &event) {
 	}
 }
 
+  void End_Game_State::on_mouse_motion(const SDL_MouseMotionEvent &event){
+
+	  float ratio_width = get_Window().get_width() / 1920.0f;
+	  float ratio_height = get_Window().get_height() / 1200.0f;
+
+	  mouse_x = event.x / ratio_width;
+	  mouse_y = event.y / ratio_height;
+
+	  int hover_idx = -1;
+
+	  if(mouse_y > 910 && mouse_y < 1050){
+		  if(mouse_x > 480 && mouse_x < 750){
+			  cursor = 0;
+		  }
+		  else if(mouse_x > 1180 && mouse_x < 1570){
+			  cursor = 1;
+		  }
+		  else{
+			  cursor = 2;
+		  }
+	  }
+	  else{
+		  cursor = 2;
+	  }
+  }
+
+  void End_Game_State::on_mouse_button(const SDL_MouseButtonEvent &event){
+	if(cursor == 0){ // back to main menu
+		get_Sound().stop_BGM();
+		get_Game().pop_state();
+		get_Game().pop_state();
+	}
+	if(cursor == 1){ // restart game
+		get_Sound().stop_BGM();
+		get_Game().pop_state();
+	}
+	 
+  }
+
 void End_Game_State::on_key(const SDL_KeyboardEvent &event) {
 	if(event.keysym.sym == SDLK_a && event.state == SDL_PRESSED){
 		cursor = 0;
