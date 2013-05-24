@@ -37,7 +37,7 @@ void Play_State_Base::on_push()	{
 		if(!isLocal)
 			Game_Model::get().initialize_peer(isServer, host_addr);
 				
-		for(int i = 0; i < Game_Model::get().num_players() ; i++)	{ //Ask dan if this should be num players here
+		for(int i = 0; i < Game_Model::get().num_players_here() ; i++)	{
 			controllers.push_back(new Controls(false, i));
 			if(player_info->at(i)->controls_ == 1)
 				controllers[i]->set_inverted(true);

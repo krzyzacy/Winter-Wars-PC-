@@ -431,3 +431,19 @@ bool Defend_Your_Claim::has_been_completed()
 
 	return false;
 }
+
+Destroy_All_Structures::Destroy_All_Structures(TEAM_INDEX to_destroy) 
+	: team(to_destroy)
+{
+	message = "Destroy all of the opposing Team's Structures";
+	
+	Game_Model::get().get_player(0)->reset_tips();
+	tips.push_back("Try attacking near the other team's base.");
+	tips.push_back(message);
+	
+}
+
+bool Destroy_All_Structures::has_been_completed()
+{
+	return Game_Model::get().get_team(team - 1)->stats.final_network == 1;
+}

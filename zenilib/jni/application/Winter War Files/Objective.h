@@ -140,6 +140,16 @@ private:
 	int claim_count;
 };
 
+class Destroy_All_Structures : public Objective
+{
+public:
+	Destroy_All_Structures(TEAM_INDEX to_destroy);
+	bool has_been_completed();
+
+private:
+	TEAM_INDEX team;
+};
+
 //Win??
 
 #endif

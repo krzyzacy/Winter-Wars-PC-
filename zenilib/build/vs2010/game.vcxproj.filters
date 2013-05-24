@@ -1053,6 +1053,9 @@
     <ClInclude Include="..\..\jni\application\Winter War Files\Elf.h">
       <Filter>jni\application\Winter War Files\Game Object</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\jni\application\Winter War Files\Kill_Snowmen.h">
+      <Filter>jni\application\Winter War Files\Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\jni\application\Winter War Files\Team.cpp">
@@ -1543,6 +1546,9 @@
     </ClCompile>
     <ClCompile Include="..\..\jni\application\Winter War Files\Elf.cpp">
       <Filter>jni\application\Winter War Files\Game Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\jni\application\Winter War Files\Kill_Snowman.cpp">
+      <Filter>jni\application\Winter War Files\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -31,7 +31,7 @@ Level::Level()
 
 Level::~Level(void)
 {
-//	clean();
+
 }
 
 void Level::start_up(const vector<Player_info*> &player_info)

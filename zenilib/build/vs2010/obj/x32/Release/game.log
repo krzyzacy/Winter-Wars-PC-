@@ -1,7 +1,7 @@
-﻿Build started 5/9/2013 8:25:29 PM.
-     1>Project "C:\Users\Daniel\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" on node 2 (build target(s)).
+﻿Build started 5/24/2013 7:00:39 PM.
+     1>Project "C:\Users\dlees\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "obj\x32\Release\game.unsuccessfulbuild".
+         Creating "obj\x32\Release\game.unsuccessfulbuild" because "AlwaysCreate" was specified.
        PreBuildEvent:
          xcopy ..\..\dev\pc_ ..\.. /E /Y
          xcopy ..\..\jni\external\bin\x32 ..\..\bin\x32 /E /Y
@@ -21,18 +21,57 @@
          ..\..\jni\external\bin\x32\vccorlib110.dll
          6 File(s) copied
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application\Raknet\Source /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Player_Claim_Tree_View.cpp"
-         Player_Claim_Tree_View.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\jni\application\Raknet\Source /I..\..\jni\application /I..\..\jni\external\zenilib /I..\..\jni\external\zenilib\zeni_rest /I..\..\jni\external\zenilib\zeni_graphics /I..\..\jni\external\zenilib\zeni_net /I..\..\jni\external\zenilib\zeni_core /I..\..\jni\external\zenilib\zeni_audio /I..\..\jni\external\libvorbis\include /I..\..\jni\external\libogg\include /I..\..\jni\external\zenilib\zeni /I..\..\jni\external\sdl_net /I..\..\jni\external\sdl /I..\..\jni\external\tinyxml /nologo /W4 /WX- /Ox /Oy- /D _WINDOWS /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D NDEBUG /D DISABLE_CPP11 /D GLEW_NO_GLU /D DISABLE_CG /D ZLIB_DLL /D "OGG_DLL=__declspec(dllimport)" /D "VORBIS_DLL=__declspec(dllimport)" /D "VORBISFILE_DLL=__declspec(dllimport)" /D "LIB3DSAPI=__declspec(dllimport)" /D "TINYXML_DLL=__declspec(dllimport)" /D TINYXML_EXT=extern /D "ZENI_DLL=__declspec(dllimport)" /D ZENI_EXT=extern /D "ZENI_AUDIO_DLL=__declspec(dllimport)" /D ZENI_AUDIO_EXT=extern /D "ZENI_CORE_DLL=__declspec(dllimport)" /D ZENI_CORE_EXT=extern /D "ZENI_GRAPHICS_DLL=__declspec(dllimport)" /D ZENI_GRAPHICS_EXT=extern /D "ZENI_NET_DLL=__declspec(dllimport)" /D ZENI_NET_EXT=extern /D "ZENI_REST_DLL=__declspec(dllimport)" /D ZENI_REST_EXT=extern /D ENABLE_XINPUT /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\x32\Release\\" /Fd"obj\x32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\..\jni\application\Winter War Files\Level_Factory.cpp" "..\..\jni\application\Winter War Files\Play_State_Base.cpp"
+         Level_Factory.cpp
      1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
      1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
-     1>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
                  ..\..\jni\external\sdl_net\SDL/SDL_net.h(84) : see previous definition of 'INADDR_ANY'
-     1>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
                  ..\..\jni\external\sdl_net\SDL/SDL_net.h(93) : see previous definition of 'INADDR_BROADCAST'
-     1>C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
                  ..\..\jni\external\sdl_net\SDL/SDL_net.h(87) : see previous definition of 'INADDR_NONE'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Claim_Tree_Level.h(10): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Claim_Tree_Level.h(12): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Claim_Tree_Level.h(20): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Tutorial_Level.h(15): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Tutorial_Level.h(17): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Tutorial_Level.h(18): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Tutorial_Level.h(20): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Death_Match.h(12): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Death_Match.h(14): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Death_Match.h(16): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Death_Match.h(19): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Kill_Snowmen.h(16): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Kill_Snowmen.h(17): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Kill_Snowmen.h(19): warning C4481: nonstandard extension used: override specifier 'override'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\Kill_Snowmen.h(22): warning C4481: nonstandard extension used: override specifier 'override'
+         Play_State_Base.cpp
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(204): warning C4189: 'lr' : local variable is initialized but not referenced
+     1>..\..\jni\external\zenilib\zeni_rest\Zeni/Popup_State.h(203): warning C4189: 'ul' : local variable is initialized but not referenced
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(547): warning C4005: 'INADDR_ANY' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(84) : see previous definition of 'INADDR_ANY'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(549): warning C4005: 'INADDR_BROADCAST' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(93) : see previous definition of 'INADDR_BROADCAST'
+     1>c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ws2def.h(550): warning C4005: 'INADDR_NONE' : macro redefinition
+                 ..\..\jni\external\sdl_net\SDL/SDL_net.h(87) : see previous definition of 'INADDR_NONE'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\End_Game_State.h(19): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\End_Game_State.h(27): warning C4100: 'y' : unreferenced formal parameter
+     1>c:\users\dlees\eecs494finalproject\zenilib\jni\application\winter war files\WWClient.h(46): warning C4800: 'WWClient *' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(31): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(31): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(31): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(55): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(59): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(124): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(127): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(132): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(142): warning C4018: '<' : signed/unsigned mismatch
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(160): warning C4189: 'height' : local variable is initialized but not referenced
+     1>..\..\jni\application\Winter War Files\Play_State_Base.cpp(159): warning C4189: 'width' : local variable is initialized but not referenced
+         Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\x32\game.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\bin\x32 ws2_32.lib local_SDLmain.lib zeni_rest.lib zeni_graphics.lib zeni_net.lib zeni_core.lib zeni_audio.lib zeni.lib local_SDL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"obj\x32\Release\game.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"C:\Users\Daniel\EECS494FinalProject\zenilib\bin\x32\game.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\x32\game.lib" /MACHINE:X86 obj\x32\Release\Base64Encoder.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\x32\game.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\bin\x32 ws2_32.lib local_SDLmain.lib zeni_rest.lib zeni_graphics.lib zeni_net.lib zeni_core.lib zeni_audio.lib zeni.lib local_SDL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"obj\x32\Release\game.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"C:\Users\dlees\EECS494FinalProject\zenilib\bin\x32\game.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\x32\game.lib" /MACHINE:X86 obj\x32\Release\Base64Encoder.obj
          obj\x32\Release\BitStream.obj
          obj\x32\Release\CCRakNetSlidingWindow.obj
          obj\x32\Release\CCRakNetUDT.obj
@@ -152,6 +191,7 @@
          obj\x32\Release\Credits_State.obj
          obj\x32\Release\Death_Match.obj
          obj\x32\Release\Effect.obj
+         obj\x32\Release\Elf.obj
          obj\x32\Release\End_Game_State.obj
          obj\x32\Release\Event.obj
          obj\x32\Release\Fortress.obj
@@ -163,6 +203,7 @@
          obj\x32\Release\Ingame_Peer.obj
          obj\x32\Release\Ingame_Server.obj
          obj\x32\Release\Instructions_State.obj
+         obj\x32\Release\Kill_Snowman.obj
          obj\x32\Release\Level.obj
          obj\x32\Release\Level_Factory.obj
          obj\x32\Release\Lobby_State.obj
@@ -194,14 +235,14 @@
          obj\x32\Release\View.obj
          obj\x32\Release\World.obj
          obj\x32\Release\WWClient.obj
-         game.vcxproj -> C:\Users\Daniel\EECS494FinalProject\zenilib\build\vs2010\..\..\bin\x32\game.exe
+         game.vcxproj -> C:\Users\dlees\EECS494FinalProject\zenilib\build\vs2010\..\..\bin\x32\game.exe
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\x32\game.exe;#1" /manifest obj\x32\Release\game.exe.intermediate.manifest
+         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"..\..\bin\x32\game.exe;#1" /manifest obj\x32\Release\game.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "obj\x32\Release\game.unsuccessfulbuild".
          Touching "obj\x32\Release\game.lastbuildstate".
-     1>Done Building Project "C:\Users\Daniel\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" (build target(s)).
+     1>Done Building Project "C:\Users\dlees\EECS494FinalProject\zenilib\build\vs2010\game.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:03.07
+Time Elapsed 00:00:04.21
