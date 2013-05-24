@@ -93,42 +93,10 @@ public:
 
 	/* Gets most important message for player */
 	Zeni::String get_message() const;
-
-
-// Stats
-	struct Player_Stats : public Stats
-	{
-		Player_Stats(int id);
-
-		int kills;
-		int friendly_kills;
-		int deaths;
-		int thrown;
-		int hit;
-		int tips;
-		int biggest_snowball;
-		int num_large_snowballs;
-		int num_small_snowballs;
-		int tiles_raised;
-		int tiles_lowered;
-		int amount_scooped;
-		int friendly_hit;
-		int snow_used;
-		int built;
-		int destroyed;
-		int damage_taken;
-		int damage_dealt;
-	}stats;
-
-// Collision Body
-	void create_body();
-
+	
 	bool allowed_to_calculate_movement;
 
-	static int max_id;
 private: 
-	int ID;
-
 	int cur_tip;
 
 	Zeni::Camera m_camera;

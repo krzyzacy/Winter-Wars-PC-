@@ -505,3 +505,35 @@ void Elf::update(const float &time)	{
 	
 
 }
+
+Elf::Player_Stats::Player_Stats(int id) :
+	Stats(string("Elf") + itoa(id).std_str()),
+			kills(0), friendly_kills(0), deaths(0), thrown(0),
+			hit(0), tips(0), biggest_snowball(0), 
+			num_large_snowballs(0),
+			num_small_snowballs(0), amount_scooped(0),
+			tiles_raised(0), tiles_lowered(0), friendly_hit(0),
+			snow_used(0), built(0), destroyed(0),
+			damage_taken(0), damage_dealt(0)
+{
+	add_stat("Kills", &kills);
+	add_stat("Deaths", &deaths); 
+	add_stat("Snowballs Thrown", &thrown);
+	add_stat("Hit", &hit);
+	add_stat("Friendly Fire", &friendly_hit);
+	add_stat("Structures Built", &built); 
+	add_stat("Structures Destroyed", &destroyed);
+	add_stat("Damage Dealt", &damage_dealt); 
+	add_stat("Damage Taken", &damage_taken);
+	add_stat("Snow Used", &snow_used); 
+	add_stat("Biggest Snowball", &biggest_snowball);
+	add_stat("# Large", &num_large_snowballs); 
+	add_stat("# Small", &num_small_snowballs);
+	add_stat("Amount Scooped", &amount_scooped); 
+	add_stat("Tiles Raised", &tiles_raised);
+	add_stat("Tiles Lowered", &tiles_lowered);		
+	add_stat("Tips", &tips);
+			
+}
+
+
