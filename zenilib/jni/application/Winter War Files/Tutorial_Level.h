@@ -14,8 +14,10 @@ public:
 
 	std::string get_level_name() override;
 	
-	void start_up(const std::vector<Player_info*> &player_info);
-	void update();
+	void start_up(const std::vector<Player_info*> &player_info) override;
+	void clean() override;
+
+	void update() override;
 	
 private:
 	Objective* current_objective;
