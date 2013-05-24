@@ -141,7 +141,7 @@ void Player::charge_ball()	{
 
 		// not enough snow
 	if(Snow_in_Pack <= 0) 	{
-		add_message("Out of Ammo! Find SOFT SNOW and refill (B).");
+		add_message("Out of Ammo! Find SOFT SNOW and scoop some up (E).");
 		Snow_in_Pack = 0;
 	}
 }
