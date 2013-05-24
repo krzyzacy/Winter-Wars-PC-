@@ -8,13 +8,8 @@ using namespace std;
 #include "Globals.h"
 
 Tutorial_Level::Tutorial_Level()
-{
-	current_objective = new Use_Tips();
-	//We should set the globals to original here
-	
+{	
 	parameters.find("Starting Resources").set_value(7000);
-
-
 }
 
 Tutorial_Level::~Tutorial_Level() 
@@ -30,10 +25,21 @@ string Tutorial_Level::get_level_name()
 void Tutorial_Level::start_up(const std::vector<Player_info*> &player_info)
 {
 	Claim_Tree_Level::start_up(player_info);
+
+	current_objective = new Use_Tips();
 	
 	get_player(0)->add_message(current_objective->get_message_to_display(), 10000, 100);
 
+
 }
+
+void Tutorial_Level::clean()
+{	
+	Claim_Tree_Level::clean();
+
+	delete current_objective;
+}
+
 
 void Tutorial_Level::update()
 {
