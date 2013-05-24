@@ -70,8 +70,8 @@ Parameter_List::Parameter_List()
 	list.push_back(Game_Parameter("Snow Factory Intake per Second", snow_factory_intake, 500, 10, 0));
 	list.push_back(Game_Parameter("Snowman Consumption per Second", snowman_consumption_rate, 500, 10, 0));
 
-	list.push_back(Game_Parameter("Max Kills Deathmatch", max_kills_deathmatch, 100, 1, 0));
-	list.push_back(Game_Parameter("Timer Deathmatch", timer_deathmatch, 2000, 30, 60));
+	list.push_back(Game_Parameter("Max Kills Snowball Fight", max_kills_deathmatch, 100, 1, 0));
+	list.push_back(Game_Parameter("Timer Snowball Fight", timer_deathmatch, 2000, 30, 60));
 
 }
 

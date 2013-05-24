@@ -35,6 +35,8 @@ public:
 
 	int get_cam_to_adjust();
 
+	void reset_controls();
+
 	void reset_Cam()	{
 		input.Cam.x = 0;
 		input.Cam.y = 0;
@@ -54,6 +56,8 @@ private:
 		build_view(false), RSHOULDER(false), LSHOULDER(false),
 		Build_Go(false), Tile_up(false), Tile_down(false), tip(false), jet_pack_mode(false), Cam(0.0f, 0.0f), Move(0.0f, 0.0f)		{}
 
+
+
 		bool jump;				//A button
 		bool pack;				//B button
 		bool mini_map;		//left shoulder
@@ -71,6 +75,8 @@ private:
 
 		Zeni::Vector2f		Cam;
 		Zeni::Vector2f		Move;
+
+		void reset_inputs();
 
 	} input;
 

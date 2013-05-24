@@ -846,6 +846,11 @@ The following things are unsupported:
     <tile>0</tile>
   </BuildingFrame>
 
+  <BuildingFrameEmpty>
+    <filepath>textures/2DTextures/HUDSprites/BuildingFrame_ori.png</filepath>
+    <tile>0</tile>
+  </BuildingFrameEmpty>
+
   <PriceBox>
     <filepath>textures/2DTextures/HUDSprites/PriceBox.png</filepath>
     <tile>0</tile>

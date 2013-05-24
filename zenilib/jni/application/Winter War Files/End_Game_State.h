@@ -34,10 +34,16 @@ private:
   void on_joy_hat(const SDL_JoyHatEvent &event);
   void on_joy_button(const SDL_JoyButtonEvent &event);
 
+  void on_mouse_motion(const SDL_MouseMotionEvent &event);
+  void on_mouse_button(const SDL_MouseButtonEvent &event);
+
   void perform_logic();
   void render();
   void render_minimap();
 
   int cursor;
   bool confirm;
+
+  float mouse_x;
+  float mouse_y;
 };
