@@ -55,12 +55,12 @@ bool Death_Match::win()
 		set_winning_team(winning_team);
 	else set_winning_team(nullptr);
 
-	if(get_time_passed() >= parameters.find("Timer Deathmatch").get_value())
+	if(get_time_passed() >= parameters.find("Timer Snowball Fight").get_value())
 	{
 		return true;
 	}
 	else if(!tie && 
-		    winning_team_score >= parameters.find("Max Kills Deathmatch").get_value())
+		    winning_team_score >= parameters.find("Max Kills Snowball Fight").get_value())
 	{
 		return true;
 	}
@@ -75,5 +75,5 @@ Player_View *Death_Match::create_player_view(Player *p)
 
 float Death_Match::get_time_left()
 {
-	return parameters.find("Timer Deathmatch").get_value() - get_time_passed();
+	return parameters.find("Timer Snowball Fight").get_value() - get_time_passed();
 }
