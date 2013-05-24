@@ -100,7 +100,7 @@ Elf::~Elf(void)
  }
 
  void Elf::manage_shooting_state(bool shoot_input)	{
-	 switch(Shoot)		{
+	switch(Shoot)		{
 	case CHILL:
 		//Check for charge command, else do nothing
 		if(shoot_input)
@@ -159,9 +159,15 @@ Elf::~Elf(void)
 void Elf::charge_ball()	{
 	if(is_player_KO())
 		return;
+	
+	//Not enough snow to make a ball
+	if(Snow_in_Pack <= 0)	{
+		Snow_in_Pack = 0;
+		return;
+	}
+	
 	//This represents when the player is "packing" snow into a ball
 	const float time = Game_Model::get().get_time_step();
-
 
 	
 	//Too big

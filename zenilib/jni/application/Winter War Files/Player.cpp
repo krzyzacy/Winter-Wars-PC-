@@ -51,7 +51,8 @@ Player::Player(Team* team_, const std::string &gender_)
 	m_camera.fov_rad = Zeni::Global::pi / 3.0f;
 	m_camera.look_at(Game_Model::get().get_center_tile()->get_top_center());
 
-	rotation = m_camera.orientation + Quaternion(Global::pi_over_two + Global::pi_over_two/2, 0,0);
+	rotation = m_camera.orientation + Quaternion(Global::pi_over_two*2.5, 0,0);
+	//rotation = m_camera.orientation;
 
 	//player_sound_test = new Zeni::Sound_Source(Zeni::get_Sounds()["meow"]);
 	//rotation = m_camera.orientation + Quaternion(Global::pi_over_two, 0, 0);
@@ -78,7 +79,9 @@ void Player::turn_left(float theta) {
 
 	m_camera.turn_left_xy(angle);
 	//rotation *= m_camera.orientation.Vector3f_to_Vector3f(m_camera.get_forward().get_ij(), Old);
-	rotation *= rotation.Axis_Angle(Vector3f(0,0,10) , angle);
+	//rotation *= rotation.Axis_Angle(Vector3f(0,0,10) , angle);
+	rotation *= rotation.Axis_Angle(Vector3f(0,0,1) , angle);
+	//rotation = m_camera.orientation;
 }
 
 void Player::update(const float &time)	{
