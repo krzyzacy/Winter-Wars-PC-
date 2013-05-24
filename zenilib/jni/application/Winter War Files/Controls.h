@@ -5,11 +5,6 @@
 
 class Player;
 
-enum	Shooting_State	{
-		CHILL, CHARGING, FIRE
-};
-
-
 
 
 class Controls
@@ -85,7 +80,7 @@ private:
 	bool right_last;
 
 
-	Shooting_State	Shoot;
+	
 	
 
 	int which_id;

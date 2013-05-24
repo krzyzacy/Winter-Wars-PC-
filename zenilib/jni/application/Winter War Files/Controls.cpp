@@ -20,7 +20,6 @@ int Controls::Mouse_Camera = 0;
 
 Controls::Controls(bool inverted_, int which_id_)	:
 	inverted(inverted_),
-	Shoot(CHILL),
 	which_id(which_id_), left_last(false), right_last(false), 
 	aim_input_sensitivity(1)
 {
@@ -44,10 +43,13 @@ void Controls::set_input_sensitivity(int _sensitivity)	{
 		aim_input_sensitivity = 0.2;
 
 	if(_sensitivity >= 2 && _sensitivity <= 7)	
-		aim_input_sensitivity = 1 + ((_sensitivity - 5)/4);
+		aim_input_sensitivity = 1 + ((_sensitivity - 5)/3);
+	
+	if(_sensitivity >= 8 && _sensitivity <= 9)
+		aim_input_sensitivity = 3 + (_sensitivity%8);
 
-	if(_sensitivity >= 8 && _sensitivity <= 10)
-		aim_input_sensitivity = _sensitivity - 6;
+	if(_sensitivity == 10)
+		aim_input_sensitivity = 8;
 }
 
 void Controls::check_keyboard_player_change(const SDL_KeyboardEvent &event)	{
@@ -329,25 +331,7 @@ Vector2f Controls::give_movement()	{
 
 void Controls::interact_with_player(Player* Tron, const float &time)	{
 	//First deal with shooting state
-	switch(Shoot)		{
-	case CHILL:
-		//Check for charge command, else do nothing
-		if(input.shoot)
-			Shoot = CHARGING;
-		break;
-	case CHARGING:
-		Tron->charge_ball();
-		if(!input.shoot)
-			Shoot = FIRE;
-		break;
-	case FIRE:
-		Tron->throw_ball();
-		Shoot = CHILL;
-		break;
-	default:
-		Shoot = CHILL;
-		break;
-	}
+	Tron->manage_shooting_state(input.shoot);
 	
 	//packing
 	if(input.pack)

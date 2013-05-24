@@ -183,7 +183,7 @@ void Level::update()
 			world->raise_tile(world->get_center_Tile()->get_structure_base());
 		}	
 	}
-	
+
 	check_collisions();
 
 	Clean_dead();

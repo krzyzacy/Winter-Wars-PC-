@@ -33,6 +33,8 @@ enum Structure_Type	{
 	NOTHING, SNOWMAN, FORT, SNOW_FACTORY, HEALING_POOL, TREE, BASE
 };
 
+
+
 extern Zeni::String Structure_Names[NUM_STRUCTURES];
 
 //Render scaled text
