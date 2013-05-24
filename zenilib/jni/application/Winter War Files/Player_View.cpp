@@ -7,12 +7,14 @@
 #include "string.h"
 #include "Utility.h"
 #include <math.h>
+#include <string>
 
 #include <zenilib.h>
 
 #define PI 3.1415926
 
 using namespace Zeni;
+using std::string;
 
 Player_View::Player_View(const Player *p) :
 	player(p)
@@ -36,45 +38,15 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 
-	std::string gender = "Girl";
-	std::string team = "Blue";
-	std::string status = "Regular";
+	string avatar = get_avatar();
 	
-	if(player->get_gender() == "boy")
-		gender = "Boy";
-	if(player->get_gender() == "girl")
-		gender = "Girl";
-
-	if(player->get_team()->get_Team_Index() == 1)
-		team = "Green";
-	else if(player->get_team()->get_Team_Index() == 2)
-		team = "Red";
-	else if(player->get_team()->get_Team_Index() == 3)
-		team = "Blue";
-	else if(player->get_team()->get_Team_Index() == 4)
-		team = "Orange";
-
-	if(player->is_player_KO()){
-		status = "Fainted";
-	}
-	else if(player->get_hit_timer() >= 1.0f){
-		status = "Hit";
-
+	if(player->get_hit_timer() >= 1.0f){
 		if(player->get_hit_timer() >= 1.7f)
-			render_image("snow_hit_3",topLeft,Point2f(topLeft.x + unit_px * 1024, topLeft.y + unit_px * 1024));
+			render_image("snow_hit_3",topLeft,bottomRight);
 		else if(player->get_hit_timer() >= 1.4f)
-			render_image("snow_hit_2",topLeft,Point2f(topLeft.x + unit_px * 1024, topLeft.y + unit_px * 1024));
+			render_image("snow_hit_2",topLeft,bottomRight);
 		else
-			render_image("snow_hit_1",topLeft,Point2f(topLeft.x + unit_px * 1024, topLeft.y + unit_px * 1024));
-	}
-	else if(player->is_packing()){
-		status = "Packing";
-	}
-	else if(player->get_throw_timer() >= 1.0f){
-		status = "Throwing";
-	}
-	else if(player->get_Health() <= 30.0f){
-		status = "Tired";
+			render_image("snow_hit_1",topLeft,bottomRight);
 	}
 
 
@@ -83,7 +55,7 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 	render_image("AvartarFrame",topLeft,Point2f(topLeft.x + unit_px * 200, topLeft.y + unit_px * 200));
 	render_image("BuildingFrame",Point2f(bottomRight.x - unit_px * 270, topLeft.y),Point2f(bottomRight.x, topLeft.y + unit_px * 270));
 	render_image("PriceBox",Point2f(bottomRight.x - unit_px * 100, topLeft.y + unit_px * 5),Point2f(bottomRight.x - unit_px * 5, topLeft.y + unit_px * 110));
-	render_image((Zeni::String)gender+(Zeni::String)team+(Zeni::String)status,Point2f(topLeft.x + unit_px * 10, topLeft.y + unit_px * 10), Point2f(topLeft.x + unit_px * 120, topLeft.y + unit_px * 120));
+	render_image(String(avatar) ,Point2f(topLeft.x + unit_px * 10, topLeft.y + unit_px * 10), Point2f(topLeft.x + unit_px * 120, topLeft.y + unit_px * 120));
 	//render_image("IceBlock",Point2f(topLeft.x + unit_px * 410, topLeft.y + unit_px * 5), Point2f(topLeft.x + unit_px * 450, topLeft.y + unit_px * 45));
 	render_image("coin",Point2f(bottomRight.x - unit_px * 93, topLeft.y + unit_px * 12),Point2f(bottomRight.x - unit_px * 69, topLeft.y + unit_px * 36));
 
@@ -139,7 +111,7 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 		if( player->get_mini_view() ){
 			//render_death(topLeft, bottomRight);
-			render_minimap(topLeft, bottomRight, gender+team+status );
+			render_minimap(topLeft, bottomRight, avatar);
 		}
 		else if( player->get_build_view() ){
 			//render_tree_claimed(topLeft, bottomRight);
@@ -171,7 +143,7 @@ void Player_View::render_hud(const Point2f &topLeft, const Point2f &bottomRight)
 
 }
 
-void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRight, std::string avatar){
+void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRight, string avatar){
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 	float ratio = 4.85f;
 
@@ -238,7 +210,7 @@ void Player_View::render_minimap(const Point2f &topLeft, const Point2f &bottomRi
 	angle = PI * 2 - angle;
 	angle += PI;
 
-	render_image((Zeni::String)avatar,Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 200.0f, topLeft.y + player_pos.y * unit_px + 100.0f * unit_px),
+	render_image(Zeni::String(avatar),Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 200.0f, topLeft.y + player_pos.y * unit_px + 100.0f * unit_px),
 			Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 240, topLeft.y + player_pos.y * unit_px + unit_px * 140), 
 			angle , 1.0f, Point2f(topLeft.x + player_pos.x * unit_px + unit_px * 220, topLeft.y + player_pos.y * unit_px + unit_px * 120) );
 }
@@ -324,10 +296,11 @@ void Player_View::render_build(const Point2f &topLeft, const Point2f &bottomRigh
 void Player_View::render_death(const Point2f &topLeft, const Point2f &bottomRight){
 	float unit_px = (bottomRight.x - topLeft.x) / 960.0f;
 
-
+	render_minimap(topLeft, bottomRight, get_avatar());
 	render_image("Death",topLeft,Point2f(topLeft.x + unit_px * 1024, topLeft.y + unit_px * 1024));
+	
 	//render_image("reaper",Point2f(topLeft.x + unit_px * 350, topLeft.y + unit_px * 350),Point2f(topLeft.x + unit_px * 650, topLeft.y + unit_px * 650));
-	get_Fonts()["system_36_800x600"].render_text("...Respawn in " + itoa((int)player->get_time_until_respawn()) + " seconds..." ,Point2f(topLeft.x + unit_px * 280, topLeft.y + unit_px * 400), Color(0x99FF1111));
+	get_Fonts()["system_36_800x600"].render_text("...Respawn in " + itoa((int)player->get_time_until_respawn()) + " seconds..." ,Point2f(topLeft.x + unit_px * 280, topLeft.y + unit_px * 400), get_Colors()["black"]);//Color(0x99FF1111));
 
 }
 
@@ -352,3 +325,41 @@ void Player_View::render_tree_claimed(const Point2f &topLeft, const Point2f &bot
 
 }
 
+const string Player_View::get_avatar()
+{
+	string gender = "Girl";
+	string team = "Blue";
+	string status = "Regular";
+	
+	if(player->get_gender() == "boy")
+		gender = "Boy";
+	if(player->get_gender() == "girl")
+		gender = "Girl";
+
+	if(player->get_team()->get_Team_Index() == 1)
+		team = "Green";
+	else if(player->get_team()->get_Team_Index() == 2)
+		team = "Red";
+	else if(player->get_team()->get_Team_Index() == 3)
+		team = "Blue";
+	else if(player->get_team()->get_Team_Index() == 4)
+		team = "Orange";
+
+	if(player->is_player_KO()){
+		status = "Fainted";
+	}
+	else if(player->get_hit_timer() >= 1.0f){
+		status = "Hit";
+	}
+	else if(player->is_packing()){
+		status = "Packing";
+	}
+	else if(player->get_throw_timer() >= 1.0f){
+		status = "Throwing";
+	}
+	else if(player->get_Health() <= 30.0f){
+		status = "Tired";
+	}
+
+	return gender+team+status;
+}

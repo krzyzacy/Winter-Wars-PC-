@@ -65,7 +65,7 @@ private:
     Widget_Gamestate::render();
 	get_Fonts()["system_36_800x600"].render_text("Select Game Mode: " ,Point2f(155, 60), Color(0xFF33BBE8));
 	get_Fonts()["system_36_800x600"].render_text("A for Claim Tree Level" ,Point2f(100, 180), Color(0xFF33BBE8));
-	get_Fonts()["system_36_800x600"].render_text("B for Death Match" ,Point2f(100, 250), Color(0xFF33BBE8));
+	get_Fonts()["system_36_800x600"].render_text("B for Snowball Fight" ,Point2f(100, 250), Color(0xFF33BBE8));
 	get_Fonts()["system_36_800x600"].render_text("C for Network Game" ,Point2f(100, 320), Color(0xFF33BBE8));
 	get_Fonts()["system_36_800x600"].render_text("D for Change Globals" ,Point2f(100, 390), Color(0xFF33BBE8));
 	//get_Video().set_2d(make_pair(Point2f(0.0f, 0.0f), Point2f(1920.0f, 1200.0f)), true);

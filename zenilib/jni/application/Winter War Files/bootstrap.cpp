@@ -66,7 +66,10 @@ class Title_State_Custom : public Title_State<Modes_State, Play_State_Base, Inst
 class Bootstrap {
   class Gamestate_One_Initializer : public Gamestate_Zero_Initializer {
     virtual Gamestate_Base * operator()() {
-      Window::set_title("Winter Wars");
+	  //Useful if want to lock resolution(windowed)
+	  //Window::preinit_resizable(false);
+	  Window::set_title("Winter Wars");
+	  
 
       get_Joysticks();
       get_Video();

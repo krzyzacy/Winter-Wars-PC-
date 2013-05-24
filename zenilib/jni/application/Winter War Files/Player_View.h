@@ -1,6 +1,7 @@
 #pragma once
 
 #include <zenilib.h>
+#include <string>
 
 class Player;
 
@@ -27,6 +28,8 @@ public:
 
 	const virtual Player *get_player() const 
 		{return player;}
+
+	const virtual std::string get_avatar();
 
 private:
 	const Player *player;
