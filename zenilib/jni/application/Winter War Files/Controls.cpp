@@ -94,7 +94,6 @@ void Controls::take_God_keyboard(const SDL_KeyboardEvent &event)	{
 }
 
 void Controls::take_mouse_button_input(const SDL_MouseButtonEvent & event)	{
-
 	if(event.button == SDL_BUTTON_LEFT)
 		input.shoot = event.state == SDL_PRESSED;
 	
@@ -407,6 +406,27 @@ string Controls::give_stick_status()	{
 	return status;
 }
 
+void Controls::reset_controls()	{
+	input.reset_inputs();
+	Joysticks::get().set_xinput_vibration(which_id, 0, 0);
+}
+
+void Controls::Inputs::reset_inputs()	{
+	jump = false; 
+	pack = false;
+	mini_map = false; 
+	shoot = false; 
+	build_view = false; 
+	RSHOULDER = false; 
+	LSHOULDER = false;
+	Build_Go = false; 
+	Tile_up = false; 
+	Tile_down = false; 
+	tip = false; 
+	jet_pack_mode = false; 
+	Cam = Vector2f(0,0);
+	Move = Vector2f(0,0);
+}
 
 int Controls::get_cam_to_adjust()	{
 	return Mouse_Camera;
