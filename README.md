@@ -1,4 +1,4 @@
-EECS494FinalProject
+Winter War ( PC - windows )
 ===================
 
-EECS494FinalProject
+PC - Make it to public because github charges me Q_Q
